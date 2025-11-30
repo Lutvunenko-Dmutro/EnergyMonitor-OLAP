@@ -68,7 +68,7 @@ if default_start < min_date: default_start = min_date
 
 date_range = st.sidebar.date_input("📅 Період:", value=(default_start, max_date), min_value=min_date, max_value=max_date)
 
-# --- 4. ФІЛЬТРАЦІЯ (ОПТИМІЗОВАНО) ---
+# --- 4. ФІЛЬТРАЦІЯ ---
 def apply_filters(df, region, date_range):
     """Фільтрує датафрейм за регіоном та датою."""
     if df.empty: return df
@@ -120,4 +120,5 @@ with tabs[4]:
     tab_finance.render(filtered_data["fin"], filtered_data["lines"])
 
 st.divider()
+
 st.caption("© 2025 Energy Systems")
