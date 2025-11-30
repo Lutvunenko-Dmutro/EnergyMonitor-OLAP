@@ -36,7 +36,7 @@ def render(df_load, group_by_col):
         mean_val = df_load['actual_load_mw'].mean()
         fig.add_hline(y=mean_val, line_dash="dash", line_color="white", opacity=0.5, annotation_text="Середнє")
         
-        # --- НОВЕ: Маркер Піку (Peak Annotation) ---
+        # --- Маркер Піку (Peak Annotation) ---
         # Знаходимо точку максимуму
         max_idx = df_load['actual_load_mw'].idxmax()
         max_point = df_load.loc[max_idx]
@@ -72,7 +72,7 @@ def render(df_load, group_by_col):
             df_stat = df_load[['timestamp', 'actual_load_mw']].copy()
             df_stat['hour'] = df_stat['timestamp'].dt.hour
             
-            # Оптимізоване визначення типу дня (0-4: будні, 5-6: вихідні)
+            # Визначення типу дня (0-4: будні, 5-6: вихідні)
             df_stat['day_type'] = df_stat['timestamp'].dt.dayofweek.map(lambda x: 'Вихідний' if x >= 5 else 'Робочий')
             
             fig_box = px.box(
@@ -120,4 +120,5 @@ def render(df_load, group_by_col):
                 title="Залежність споживання від температури"
             )
             fig_scatter.update_layout(margin=dict(l=20, r=20, t=40, b=20))
+
             st.plotly_chart(fig_scatter, use_container_width=True)
