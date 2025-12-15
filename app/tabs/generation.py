@@ -3,14 +3,17 @@ import plotly.express as px
 import plotly.graph_objects as go
 
 def render(df_gen):
-    """Вкладка генерації з повною аналітикою (Optimized)."""
+    """
+    Рендеринг вкладки генерації.
+    Візуалізація: Sankey (потоки), Pie (частка), Area (динаміка).
+    """
     st.subheader("⚡ Структура генерації")
     
     if df_gen.empty:
         st.warning("⚠️ Дані про генерацію відсутні.")
         return
 
-    # Словник для перекладу
+    # Словник для підписів графіків
     labels_ua = {
         "actual_generation_mw": "Генерація (МВт)",
         "timestamp": "Час",
@@ -19,16 +22,17 @@ def render(df_gen):
     }
 
     # --- 1. SANKEY DIAGRAM (Потік енергії) ---
-    st.markdown("##### 🌊 Потік енергії (Sankey)")
+    st.markdown("##### 🌊 Потік енергії (Джерело -> Регіон)")
     
-    # Групуємо дані: Джерело -> Регіон
+    # Групуємо дані для діаграми
     df_s = df_gen.groupby(['generator_type', 'region_name'])['actual_generation_mw'].sum().reset_index()
     
-    # Підготовка вузлів та лінків
+    # Підготовка вузлів (Nodes)
     src_labels = list(df_s['generator_type'].unique())
     tgt_labels = list(df_s['region_name'].unique())
     all_nodes = src_labels + tgt_labels
     
+    # Підготовка зв'язків (Links)
     source_indices = [all_nodes.index(s) for s in df_s['generator_type']]
     target_indices = [all_nodes.index(t) for t in df_s['region_name']]
     values = df_s['actual_generation_mw'].tolist()
@@ -39,18 +43,18 @@ def render(df_gen):
             thickness=20, 
             line=dict(color="black", width=0.5), 
             label=all_nodes, 
-            color="#3b82f6" # Синій колір вузлів
+            color="#3b82f6"
         ),
         link=dict(
             source=source_indices, 
             target=target_indices, 
-            value=values,
-            color="rgba(59, 130, 246, 0.3)" # Напівпрозорі лінії
+            value=values, 
+            color="rgba(59, 130, 246, 0.3)"
         )
     ))
     
-    fig_sankey.update_layout(title_text="Баланс: Джерело -> Регіон", font_size=12, height=400)
-    st.plotly_chart(fig_sankey, use_container_width=True)
+    fig_sankey.update_layout(height=400, margin=dict(l=10, r=10, t=30, b=10))
+    st.plotly_chart(fig_sankey, use_container_width=True, config={'displayModeBar': False})
 
     st.markdown("---")
 
@@ -68,12 +72,15 @@ def render(df_gen):
             labels=labels_ua
         )
         fig_pie.update_traces(textposition='inside', textinfo='percent+label')
-        fig_pie.update_layout(showlegend=False, margin=dict(l=20, r=20, t=30, b=20))
-        st.plotly_chart(fig_pie, use_container_width=True)
+        fig_pie.update_layout(
+            showlegend=False, 
+            margin=dict(l=20, r=20, t=30, b=20)
+        )
+        st.plotly_chart(fig_pie, use_container_width=True, config={'displayModeBar': False})
         
     with c2:
-        st.markdown("##### 🌊 Динаміка генерації (Stacked Area)")
-        # Агрегація по часу для прискорення графіка
+        st.markdown("##### 🌊 Динаміка генерації")
+        # Агрегація для Area Chart (сума по годинах)
         df_area = df_gen.groupby(['timestamp', 'generator_type'])['actual_generation_mw'].sum().reset_index()
         
         fig_area = px.area(
@@ -84,5 +91,9 @@ def render(df_gen):
             color_discrete_sequence=px.colors.qualitative.Pastel,
             labels=labels_ua
         )
-        fig_area.update_layout(hovermode="x unified", showlegend=False, margin=dict(l=20, r=20, t=30, b=20))
-        st.plotly_chart(fig_area, use_container_width=True)
+        fig_area.update_layout(
+            hovermode="x unified", 
+            showlegend=False, 
+            margin=dict(l=20, r=20, t=30, b=20)
+        )
+        st.plotly_chart(fig_area, use_container_width=True, config={'displayModeBar': False})
