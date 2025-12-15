@@ -10,10 +10,9 @@ from contextlib import contextmanager
 from typing import List, Tuple, Dict, Any, Optional
 from dotenv import load_dotenv
 
-# --- 1. CONFIGURATION & LOGGING (Шліфування) ---
+# --- 1. CONFIGURATION & LOGGING ---
 load_dotenv()
 
-# Налаштування логування замість print
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
@@ -29,7 +28,7 @@ DB_CONFIG = {
     "port": os.getenv("DB_PORT", "5432")
 }
 
-# Константи винесені окремо (Чистка)
+# Константи винесені окремо 
 START_DATE = datetime.datetime(2025, 11, 1)
 END_DATE = datetime.datetime(2025, 11, 30)
 FREQ = "60min"
@@ -59,7 +58,7 @@ LOAD_PROFILES = {
     }
 }
 
-# --- 2. DATABASE UTILS (Шліфування) ---
+# --- 2. DATABASE UTILS ---
 @contextmanager
 def get_db_cursor():
     """Контекстний менеджер для безпечної роботи з БД."""
@@ -77,7 +76,7 @@ def get_db_cursor():
         if conn:
             conn.close()
 
-# --- 3. BUSINESS LOGIC HELPER FUNCTIONS (Чистка & Декомпозиція) ---
+# --- 3. BUSINESS LOGIC HELPER FUNCTIONS ---
 
 def calculate_weather(hour: int, current_temps: Dict[int, float]) -> Dict[int, Tuple[float, str]]:
     """Розраховує погоду для кожного регіону на поточну годину."""
@@ -87,7 +86,6 @@ def calculate_weather(hour: int, current_temps: Dict[int, float]) -> Dict[int, T
         daily_cycle = 4 * np.sin((hour - 9) * np.pi / 12)
         noise = np.random.normal(0, 0.5)
         
-        # Оновлюємо базову температуру (дрейф)
         current_temps[region_id] += day_trend / 24 + np.random.normal(0, 0.1)
         
         final_temp = float(current_temps[region_id] + daily_cycle + noise)
@@ -145,7 +143,6 @@ def calculate_generator_output(gen_type: str, max_mw: float, hour: int) -> float
     if gen_type == 'solar':
         if 7 <= hour <= 17:
             sun_curve = np.sin((hour - 7) * np.pi / 10)
-            # ВИПРАВЛЕННЯ ТУТ: огортаємо результат у float()
             val = max_mw * sun_curve * random.uniform(0.2, 1.0)
             return float(val) 
         return 0.0
@@ -154,7 +151,7 @@ def calculate_generator_output(gen_type: str, max_mw: float, hour: int) -> float
         ws = random.weibullvariate(2, 5)
         if 3 < ws < 25:
             val = max_mw * min(1, (ws**3)/(12**3))
-            return float(val) # Тут теж про всяк випадок
+            return float(val) 
         return 0.0
         
     if gen_type == 'nuclear':
@@ -280,3 +277,4 @@ if __name__ == "__main__":
         generate_professional_data()
     except Exception as e:
         logger.critical(f"Критична помилка виконання: {e}")
+
