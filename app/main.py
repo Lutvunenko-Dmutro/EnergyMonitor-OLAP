@@ -17,33 +17,30 @@ st.set_page_config(
     page_title="Energy Monitor ULTIMATE",
     layout="wide",
     page_icon="⚡",
-    initial_sidebar_state="auto"
+    initial_sidebar_state="expanded"
 )
 
 # Глобальні налаштування графіків
 pio.templates.default = "plotly_dark"
 
-# --- MOBILE OPTIMIZATION ---
+# CSS хаки для чистоти інтерфейсу
 st.markdown("""
 <style>
-    @media (max-width: 600px) {
-        div[data-testid="column"] { width: 50% !important; flex: 1 1 50% !important; min-width: 50% !important; }
-        .block-container { padding-top: 2rem !important; padding-left: 0.5rem !important; padding-right: 0.5rem !important; }
-        div[data-testid="stMetricValue"] { font-size: 1.2rem !important; }
-        div[data-testid="stMetricLabel"] { font-size: 0.8rem !important; }
-        button[data-baseweb="tab"] { padding: 0.5rem !important; margin: 0 !important; }
-    }
-    .modebar { display: none !important; }
+    .block-container { padding-top: 1.5rem; }
+    [data-testid="stMetricValue"] { font-size: 1.4rem; }
+    footer {visibility: hidden;}
 </style>
 """, unsafe_allow_html=True)
 
 # --- 2. ЗАВАНТАЖЕННЯ ДАНИХ ---
-if st.sidebar.button("🔄 Оновити дані"):
+if st.sidebar.button("🔄 Оновити дані", type="primary"):
     st.cache_data.clear()
+    st.rerun()
 
-with st.spinner('Завантаження даних...'):
-    # Завантажуємо всі датафрейми в словник для зручності
-    data = {
+@st.cache_data(ttl=600)
+def load_all_data():
+    """Завантажує всі дані одним пакетом."""
+    return {
         "load": db.run_query(q.QUERY_LOAD_WEATHER),
         "gen": db.run_query(q.QUERY_GENERATION),
         "alerts": db.run_query(q.QUERY_ALERTS),
@@ -51,58 +48,74 @@ with st.spinner('Завантаження даних...'):
         "fin": db.run_query(q.QUERY_FINANCE)
     }
 
+with st.spinner('Завантаження аналітики...'):
+    data = load_all_data()
+
+# Перевірка на пусту базу
 if data["load"].empty:
-    st.error("⚠️ **Увага:** Дані відсутні! Запустіть генератор (03_generate...).")
+    st.warning("⚠️ База даних порожня. Запустіть генератор даних.")
     st.stop()
 
 # --- 3. САЙДБАР (ФІЛЬТРИ) ---
-st.sidebar.header("🎛️ Налаштування")
+st.sidebar.header("🎛️ Фільтри")
 
+# 3.1. Регіон
 regions_list = ["Всі регіони"] + sorted(data["load"]['region_name'].unique().tolist())
 selected_region = st.sidebar.selectbox("📍 Регіон:", regions_list)
 
+# 3.2. Дата
 min_date = data["load"]['timestamp'].min().date()
 max_date = data["load"]['timestamp'].max().date()
-default_start = max_date - timedelta(days=7)
-if default_start < min_date: default_start = min_date
+# За замовчуванням показуємо останній тиждень
+default_start = max(min_date, max_date - timedelta(days=7))
 
-date_range = st.sidebar.date_input("📅 Період:", value=(default_start, max_date), min_value=min_date, max_value=max_date)
+date_range = st.sidebar.date_input(
+    "📅 Період:", 
+    value=(default_start, max_date), 
+    min_value=min_date, 
+    max_value=max_date
+)
 
-# --- 4. ФІЛЬТРАЦІЯ ---
-def apply_filters(df, region, date_range):
-    """Фільтрує датафрейм за регіоном та датою."""
+# --- 4. ЛОГІКА ФІЛЬТРАЦІЇ (CLEAN LOGIC) ---
+def filter_dataframe(df, region, dates, dataset_name):
+    """
+    Розумна фільтрація:
+    - Графіки фільтруються по даті.
+    - Аварії (alerts) ігнорують дату, щоб показати журнал повністю.
+    """
     if df.empty: return df
+    df_filtered = df.copy()
     
-    # Фільтр регіону
-    if region != "Всі регіони" and 'region_name' in df.columns:
-        df = df[df['region_name'] == region]
+    # 1. Регіон (для всіх)
+    if region != "Всі регіони" and 'region_name' in df_filtered.columns:
+        df_filtered = df_filtered[df_filtered['region_name'] == region]
         
-    # Фільтр дати
-    if 'timestamp' in df.columns and date_range and len(date_range) == 2:
-        mask = (df['timestamp'].dt.date >= date_range[0]) & (df['timestamp'].dt.date <= date_range[1])
-        df = df.loc[mask]
+    # 2. Дата (для всього, КРІМ alerts)
+    if dataset_name != 'alerts':
+        if 'timestamp' in df_filtered.columns and isinstance(dates, tuple) and len(dates) == 2:
+            mask = (df_filtered['timestamp'].dt.date >= dates[0]) & (df_filtered['timestamp'].dt.date <= dates[1])
+            df_filtered = df_filtered.loc[mask]
         
-    return df
+    return df_filtered
 
-# Застосовуємо фільтр до всіх датафреймів у циклі
-filtered_data = {key: apply_filters(df, selected_region, date_range) for key, df in data.items()}
+# Застосовуємо фільтр до кожного датасету
+filtered_data = {
+    key: filter_dataframe(df, selected_region, date_range, key) 
+    for key, df in data.items()
+}
 
+# Визначаємо колонку для групування на графіках
 group_by_col = 'substation_name' if selected_region != "Всі регіони" else 'region_name'
 
 # --- 5. ГОЛОВНИЙ ЕКРАН ---
 st.title("⚡ Energy Monitor")
+st.caption(f"Останнє оновлення: {data['load']['timestamp'].max().strftime('%Y-%m-%d %H:%M')}")
 
-last_update = data["load"]['timestamp'].max().strftime('%d.%m %H:%M')
-period_str = f"{date_range[0].strftime('%d.%m')} - {date_range[1].strftime('%d.%m')}" if len(date_range) == 2 else "..."
-
-st.caption(f"🟢 ONLINE | 🕒 {last_update} | 📅 {period_str}")
-
-# --- МОДУЛІ ---
-# KPI
+# KPI Block
 tab_kpi.render(filtered_data["load"], filtered_data["gen"], filtered_data["fin"], filtered_data["lines"])
 
 # Вкладки
-tabs = st.tabs(["🗺️ Карта", "📉 Спожив.", "🏭 Генер.", "🚨 Аварії", "💰 Фінанси"])
+tabs = st.tabs(["🗺️ Карта", "📉 Споживання", "🏭 Генерація", "🚨 Аварії", "💰 Економіка"])
 
 with tabs[0]: 
     tab_map.render(filtered_data["load"])
@@ -120,5 +133,4 @@ with tabs[4]:
     tab_finance.render(filtered_data["fin"], filtered_data["lines"])
 
 st.divider()
-
-st.caption("© 2025 Energy Systems")
+st.markdown("<center>© 2025 Energy Systems Analytics</center>", unsafe_allow_html=True)
