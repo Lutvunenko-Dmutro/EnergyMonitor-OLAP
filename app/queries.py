@@ -17,7 +17,7 @@ QUERY_LOAD_WEATHER = """
         lm.timestamp = wr.timestamp 
         AND r.region_id = wr.region_id
     ORDER BY lm.timestamp DESC
-    LIMIT 8000
+    LIMIT 50000
 """
 
 QUERY_GENERATION = """
@@ -31,10 +31,9 @@ QUERY_GENERATION = """
     JOIN Substations s ON g.substation_id = s.substation_id
     JOIN Regions r ON s.region_id = r.region_id
     ORDER BY gm.timestamp DESC
-    LIMIT 6000
+    LIMIT 50000
 """
 
-# ОНОВЛЕНО: Додано a.alert_id для редагування
 QUERY_ALERTS = """
     SELECT 
         a.alert_id,
@@ -48,6 +47,7 @@ QUERY_ALERTS = """
     JOIN Substations s ON a.substation_id = s.substation_id
     JOIN Regions r ON s.region_id = r.region_id
     ORDER BY a.timestamp DESC
+    LIMIT 1000
 """
 
 QUERY_LINES = """
@@ -56,14 +56,17 @@ QUERY_LINES = """
         pl.line_name,
         lm.actual_load_mw,
         pl.max_load_mw,
-        (lm.actual_load_mw / pl.max_load_mw * 100) as load_pct,
+        CASE 
+            WHEN pl.max_load_mw > 0 THEN (lm.actual_load_mw / pl.max_load_mw * 100)
+            ELSE 0 
+        END as load_pct,
         r.region_name
     FROM LineMeasurements lm
     JOIN PowerLines pl ON lm.line_id = pl.line_id
     JOIN Substations s_from ON pl.from_substation_id = s_from.substation_id
     JOIN Regions r ON s_from.region_id = r.region_id
     ORDER BY lm.timestamp DESC
-    LIMIT 6000
+    LIMIT 50000
 """
 
 QUERY_FINANCE = """
@@ -80,5 +83,5 @@ QUERY_FINANCE = """
         lm.timestamp = ep.timestamp
         AND r.region_id = ep.region_id
     ORDER BY lm.timestamp DESC
-    LIMIT 6000
+    LIMIT 50000
 """
