@@ -1,0 +1,239 @@
+import datetime
+import os
+from contextlib import contextmanager
+from typing import Optional
+
+import pandas as pd
+import psycopg2
+import streamlit as st
+from dotenv import load_dotenv
+from sqlalchemy import create_engine, text
+
+from src.core.config import DB_CONFIG
+from src.core.logger import setup_logger
+
+load_dotenv()
+
+log = setup_logger(__name__)
+
+
+# --- 1. CONFIGURATION ---
+@st.cache_resource
+def get_engine():
+    """
+    Створює та кешує пул з'єднань з базою даних.
+    Використовує pool_pre_ping=True для автоматичного відновлення розірваних з'єднань.
+    """
+    user = os.getenv("DB_USER", "postgres")
+    password = os.getenv("DB_PASSWORD", "password")
+    host = os.getenv("DB_HOST", "localhost")
+    port = os.getenv("DB_PORT", "5432")
+    dbname = os.getenv("DB_NAME", "postgres")
+
+    url = f"postgresql+psycopg2://{user}:{password}@{host}:{port}/{dbname}"
+    return create_engine(url, pool_pre_ping=True)
+
+
+# --- 2. psycopg2 CORE (For Data Generator) ---
+
+
+@contextmanager
+def get_db_cursor():
+    """
+    Контекстний менеджер для безпечної роботи з базою даних через psycopg2.
+    """
+    conn = None
+    try:
+        # DB_CONFIG беремо з config.py
+        conn = psycopg2.connect(**DB_CONFIG)
+        yield conn, conn.cursor()
+        conn.commit()
+    except Exception as e:
+        log.error(f"Database operation failed: {e}")
+        if conn:
+            conn.rollback()
+        raise e
+    finally:
+        if conn:
+            conn.close()
+
+
+def execute_sql_file(cursor, filename):
+    """Читає та виконує SQL з файлу."""
+    if not os.path.exists(filename):
+        log.error(f"❌ Файл {filename} не знайдено! Пропускаємо.")
+        return
+
+    with open(filename, "r", encoding="utf-8") as f:
+        sql_script = f.read()
+
+    cursor.execute(sql_script)
+    log.info(f"📜 Виконано скрипт: {filename}")
+
+
+# --- 3. SQLALCHEMY CORE (For Streamlit App) ---
+
+
+def run_query(query_text: str, params: Optional[dict] = None) -> pd.DataFrame:
+    """Виконує SELECT запит і повертає DataFrame."""
+    try:
+        engine = get_engine()
+        with engine.connect() as conn:
+            return pd.read_sql(text(query_text), conn, params=params)
+    except Exception as e:
+        log.error(f"Помилка SQL: {e}", exc_info=True)
+        return pd.DataFrame()
+
+
+def execute_update(query_text: str, params: Optional[dict] = None) -> bool:
+    """Виконує INSERT/UPDATE/DELETE з автоматичним комітом."""
+    try:
+        engine = get_engine()
+        with engine.begin() as conn:  # Автоматичний COMMIT
+            conn.execute(text(query_text), params or {})
+        return True
+    except Exception as e:
+        log.error(f"Помилка запису: {e}", exc_info=True)
+        return False
+
+
+def get_latest_measurements() -> pd.DataFrame:
+    """
+    Отримує останній запис телеметрії для кожної підстанції.
+    Автоматично розраховує віртуальні показники (voltage, health, temp),
+    оскільки вони більше не зберігаються в базі (згідно з 3-колонковою схемою).
+    """
+    import random
+
+    query = """
+        SELECT DISTINCT ON (m.substation_id) 
+            m.timestamp, 
+            m.substation_id, 
+            s.substation_name,
+            s.capacity_mw,
+            m.actual_load_mw,
+            m.temperature_c,
+            m.h2_ppm,
+            m.health_score
+        FROM LoadMeasurements m
+        JOIN Substations s ON m.substation_id = s.substation_id
+        ORDER BY m.substation_id, m.timestamp DESC
+    """
+    df = run_query(query)
+
+    if df.empty:
+        return df
+
+    # --- DIGITAL TWIN: Реконструкція упущених електричних показників (вольтаж/частота) ---
+    def calculate_synthetic_electrical(row):
+        cap = float(row["capacity_mw"]) if row["capacity_mw"] else 100.0
+
+        # 1. Вольтаж (залежить від класу напруги підстанції)
+        voltage = round(
+            random.uniform(325.0, 335.0)
+            if cap > 1000
+            else random.uniform(108.0, 112.0),
+            1,
+        )
+
+        # 2. Частота (стабільна)
+        freq = round(random.uniform(49.95, 50.05), 2)
+
+        return pd.Series([voltage, freq])
+
+    cols = ["voltage_kv", "frequency_hz"]
+    df[cols] = df.apply(calculate_synthetic_electrical, axis=1)
+
+    return df
+
+
+# --- 3. BUSINESS LOGIC (ALERTS) ---
+
+
+def create_custom_alert(
+    sub_name: str, alert_type: str, description: str
+) -> tuple[bool, str]:
+    """
+    Створює нову аварію.
+    Повертає кортеж: (Успіх [True/False], Повідомлення).
+    """
+    engine = get_engine()
+
+    try:
+        with engine.begin() as conn:
+            # 1. Знаходимо ID підстанції за назвою
+            res = conn.execute(
+                text(
+                    "SELECT substation_id FROM Substations WHERE substation_name = :name"
+                ),
+                {"name": sub_name},
+            ).fetchone()
+
+            if not res:
+                return False, f"Підстанцію '{sub_name}' не знайдено!"
+
+            sub_id = res[0]
+
+            # 2. Вставляємо запис про аварію
+            sql = """
+                INSERT INTO Alerts (timestamp, alert_type, description, substation_id, status)
+                VALUES (:ts, :type, :desc, :sub_id, 'NEW')
+            """
+            params = {
+                "ts": datetime.datetime.now(),
+                "type": alert_type,
+                "desc": description,
+                "sub_id": sub_id,
+            }
+            conn.execute(text(sql), params)
+
+        return True, "Інцидент успішно створено!"
+
+    except Exception as e:
+        log.error(f"Помилка бази даних: {e}", exc_info=True)
+        return False, f"Помилка бази даних: {e}"
+
+
+def update_alert_status(alert_id, new_status: str):
+    """Оновлює статус існуючої аварії."""
+    sql = "UPDATE Alerts SET status = :status WHERE alert_id = :id"
+    execute_update(sql, {"status": new_status, "id": int(alert_id)})
+
+
+def delete_alert(alert_id: int):
+    """Видаляє конкретний запис за ID."""
+    sql = "DELETE FROM Alerts WHERE alert_id = :id"
+    execute_update(sql, {"id": int(alert_id)})
+
+
+def cleanup_old_alerts(keep_last: int = 10) -> bool:
+    """
+    Розумна очистка: видаляє всі старі записи, залишаючи N останніх.
+    Використовує безпечний підхід через SELECT -> DELETE NOT IN.
+    """
+    engine = get_engine()
+    try:
+        # Крок 1: Знаходимо ID, які треба залишити
+        with engine.connect() as conn:
+            res = conn.execute(
+                text("SELECT alert_id FROM Alerts ORDER BY alert_id DESC LIMIT :lim"),
+                {"lim": keep_last},
+            ).fetchall()
+
+            keep_ids = [row[0] for row in res]
+
+        if not keep_ids:
+            return True  # Таблиця вже пуста або майже пуста
+
+        # Крок 2: Видаляємо все зайве
+        with engine.begin() as conn:
+            conn.execute(
+                text("DELETE FROM Alerts WHERE alert_id NOT IN :ids"),
+                {"ids": tuple(keep_ids)},
+            )
+
+        return True
+
+    except Exception as e:
+        log.error(f"Помилка очищення: {e}", exc_info=True)
+        return False

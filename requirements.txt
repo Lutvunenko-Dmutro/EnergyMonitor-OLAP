@@ -1,5 +1,10 @@
-aiogram==2.23.1
-yt-dlp
-aiohttp
-sentry-sdk
-requests
+SQLAlchemy
+joblib
+numpy
+pandas
+plotly
+psycopg2-binary
+python-dotenv
+scikit-learn
+streamlit
+tensorflow

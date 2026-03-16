@@ -1,9 +1,54 @@
+# Python & Virtual Env
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
-env/
+.venv/
 venv/
-*.env
+*.py[cod]
+*$py.class
+*.so
+
+# Caches & IDEs
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.pyre/
+.idea/
+.vscode/
+cache/
+
+# Project configuration & secrets
+.env
+secrets.toml
+*.session
+data_generator.session
+
+# DB & Data
+*.db
+*.sqlite3
+
+# Logs & Reports
 *.log
+ruff_report.txt
+comments_report.txt
+tmp/
+
+# Documentation (MkDocs)
+site/
+
+# OS specific
+.DS_Store
+
+# Temporary & Diagnostic scripts
+regex_fix.py
+count_loc.py
+print_tree.py
+audit_comments.py
+test_st.py
+test_st_plotly.py
+test_main.py
+revert_plotly.py
+fix_width.py
+fix_width_v2.py
+fix_predict.py
+docs/troubleshooting/diagnostic_files/
+diagnostic_files/
+diagnostic/
