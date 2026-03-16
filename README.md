@@ -1,101 +1,117 @@
-# ⚡ Energy Monitor Ultimate (Digital Twin Platform)
+# ⚡ Energy Monitor Ultimate (OLAP & AI Forecasting System)
 
-![Python](https://img.shields.io/badge/Python-3.9%2B-blue)
-![Streamlit](https://img.shields.io/badge/Streamlit-App-FF4B4B)
-![TensorFlow](https://img.shields.io/badge/TensorFlow-LSTM-orange)
-
-Інтелектуальна аналітична система класу **Digital Twin (Цифровий Двійник)** для моніторингу, діагностики та прогнозування навантаження на енергосистеми в режимі реального часу.
+**Інтелектуальна система аналітики та предиктивного моделювання навантаження енергетичних мереж на базі концепції Digital Twin та рекурентних нейромереж LSTM.**
 
 ---
 
-## 📸 Огляд функціоналу
+## 📖 Розширений опис проєкту
 
-### 1. 🏥 Оперативний моніторинг (Live Telemetry)
-Автономне опитування віртуальних датчиків кожні 5 секунд. Система відображає:
-* Здоров'я мережі (AI Health Score).
-* Частоту системи ($f$).
-* Напругу ($U$) та струми навантаження ($I$).
+Дана система розроблена для вирішення задачі автоматизованого контролю, аналізу (OLAP) та прогнозування показників енерговузлів (підстанцій) у реальному часі. 
 
-### 2. 🔮 ШІ-Прогнозування (LSTM)
-Прогнозування споживання на 24 години наперед за допомогою трьох архітектур нейромереж:
-* **V1 (Базова)** — Тільки історія МВт.
-* **V2 (Мультимодальна)** — Враховує температуру та технічний стан.
-* **V3 (Advanced)** — Враховує часові ознаки (Hour/Dayofweek).
-
-### 3. 📊 Аналіз втрат та Кластеризація (KMeans)
-* Сегментація підстанцій на рівні ризику (🔴 Високе, 🟡 Штатне, 🟢 Низьке навантаження).
-* Розрахунок фізичних втрат потужності для ліній змінного струму (**AC**) та постійного струму високої напруги (**HVDC**).
+Проєкт функціонує як **Цифровий двійник (Digital Twin)**, безперервно генеруючи телеметрію (струми, температуру масла, водень) та даючи інтелектуальну оцінку стабільності мережі, запобігаючи перевантаженням.
 
 ---
 
-## 🏛️ Архітектура рішення
+## 🛠️ Деталізований Технологічний Стек
 
-Проєкт побудовано за принципами **SOLID** та **Layered Architecture** (Багатошарова архітектура):
+| Рівень (Layer) | Технологічний стек та фреймворки |
+| :--- | :--- |
+| **Backend & Core** | `Python 3.13`, `SQLAlchemy`, `Psycopg2`, `python-dotenv` |
+| **СУБД (Data)** | `PostgreSQL 14+` (Агрегація: `DATE_TRUNC`, `AVG`) |
+| **Штучний Інтелект (AI)** | `TensorFlow 2.x/Keras` (LSTM моделі), `scikit-learn` (`MinMaxScaler`), `joblib` |
+| **Frontend (Dashboard)** | `Streamlit` (модульний RAD інтерфейс) |
+| **Візуалізація** | `Plotly Express / Graphviz` (Інтерактивні графіки) |
+
+---
+
+## 🌳 Структура Проєкту (Файлове дерево)
 
 ```text
-📦 Test/Py
- ┣ 📂 app                     # Додаткові системні файли
- ┃ ┗ 📜 config.py             # Системний config (відключає логи, порти тощо)
- ┃
- ┣ 📂 core                    # БІЗНЕС-ЛОГІКА (Domain Layer)
- ┃ ┣ 📂 database              # SQL, сесії, connection pool
- ┃ ┣ 📂 analytics             # Математичні розрахунки для відображення
- ┃ ┃ ┣ 📜 aggregator.py       # Всі `.resample()`, `.sum()` винесені сюди
- ┃ ┃ ┣ 📜 clustering.py       # Логіка KMeans та аналітики
- ┃ ┃ ┗ 📜 physics.py          # Розрахунок втрат AC/DC
- ┃ ┗ 📂 data_loaders          # KaggleLoader, Репозиторії даних
- ┃
- ┣ 📂 ui                      # ПРЕДСТАВЛЕННЯ (Presentation Layer)
- ┃ ┣ 📂 components            # Дрібні атомні компоненти (Atomics)
- ┃ ┃ ┣ 📜 cards.py            # render_gauge, make_health_bar
- ┃ ┃ ┣ 📜 charts.py           # px.line, px.bar wrappers
- ┃ ┃ ┗ 📜 styles.py           # CSS утиліти
- ┃ ┣ 📂 segments              # Панелі (Sidebar, Header, Navigation)
- ┃ ┗ 📂 views                 # Модулі відображення (Колишні tabs/)
- ┃
- ┣ 📂 ml                      # Моделі машинного навчання (LSTM, Predictors)
- ┗ 📜 main.py                 # Router (Ініціалізація та виклик views)
+📂 EnergyMonitor/
+├── 📂 app/                     # Глобальні конфігурації
+│   └── 📄 config.py
+├── 📂 core/                    # Аналітичне ядро
+│   ├── 📂 analytics/           # Алгоритми OLAP, Фізика та Кластеризація
+│   │   ├── 📄 aggregator.py
+│   │   ├── 📄 clustering.py
+│   │   ├── 📄 filter.py
+│   │   └── 📄 physics.py
+│   └── 📂 database/            # Локальний бекап інструментів БД
+│       └── 📄 loader.py
+├── 📂 ml/                      # Машинне навчання (AI Pipeline)
+│   ├── 📄 backtest.py          # Валідація моделей
+│   ├── 📄 predict_v2.py        # Контролер прогнозів
+│   ├── 📄 train_lstm.py        # Навчання багатофакторних мереж
+│   └── 📄 vectorizer.py       # Віконне перетворення та масштаб
+├── 📂 src/                     # Серверні сервіси
+│   ├── 📂 core/                # Підключення до БД та Логер
+│   │   ├── 📄 config.py
+│   │   ├── 📄 database.py
+│   │   └── 📄 physics.py
+│   └── 📂 services/            # ETL Симулятор (Digital Twin)
+│       ├── 📄 data_generator.py
+│       └── 📄 advanced_mining.py
+├── 📂 tests/                   # Автоматичні тести
+│   └── 📄 test_physics.py
+└── 📂 ui/                      # Модульний інтерфейс
+    ├── 📂 components/          # Спільні віджети
+    │   ├── 📄 cards.py
+    │   └── 📄 charts.py
+    ├── 📂 segments/            # Структурні блоки
+    │   ├── 📄 dashboard.py
+    │   └── 📄 sidebar.py
+    └── 📂 views/               # Зрізи аналітики (Сторінки)
+        ├── 📄 forecast.py
+        ├── 📄 consumption.py
+        ├── 📄 alerts.py
+        └── 📄 map.py
 ```
 
 ---
 
-## 🚀 Як запустити проект
+## 🧠 Нейромережі (Machine Learning Pipelines)
 
-Для запуску вам знадобиться встановлений **Python 3.9+**.
+Система підтримує ітеративну еволюцію предиктивних моделей:
 
-1. **Клонуйте репозиторій:**
-   ```bash
-   git clone https://github.com/Lutvunenko-Dmutro/my-telegram-bot.git
-   cd my-telegram-bot
-   ```
-
-2.  **Встановіть залежності:**
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-3.  **Запустіть фоновий генератор датчиків:**
-    ```bash
-    python -m src.services.data_generator
-    ```
-
-4.  **Запустіть панель моніторингу:**
-    ```bash
-    python -m streamlit run main.py
-    ```
+| Версія (Version) | Кількість Вхідний Ознак (Inputs) | Вихідні таргети (Outputs) | Особливості |
+| :---: | :---: | :---: | :--- |
+| **`v1`** | 1 (`load_mw`) | 1 (`load_mw`) | Базова модель одновимірного часового ряду. |
+| **`v2`** | 5 (Навантаження, Oil_Temp, H2, Health, Air_Temp) | 2 (`load_mw`, `health`) | Багатофакторна рекурентна мережа. |
+| **`v3`** | 9 (v2 + Циклічні гармоніки: `hour_sin`, `hour_cos`, `day_sin`, `day_cos`) | 2 (`load_mw`, `health`) | **Релізна версія**: враховує добову та тижневу сезонність енергоспоживання. |
 
 ---
 
-## 🛠 Технологічний стек
+## 💻 Інструкція з Тренування та Розгортання
 
-  * **Backend**: Python 3.9+
-  * **Frontend Panel**: Streamlit, Plotly (Dynamic charts)
-  * **Database Layer**: Memory Sync DB / SQLite
-  * **Machine Learning**: TensorFlow (Keras LSTM), Scikit-Learn (KMeans)
-  * **Data Processing**: Pandas, NumPy
+### 1. Тренування ШІ-моделей
+Ви можете перетренувати прогнозну модель на свіжих даних з бази:
+
+```bash
+# Тренування моделі версії V3 (за замовчуванням)
+python ml/train_lstm.py --version v3
+
+# Тренування простішої моделі V1
+python ml/train_lstm.py --version v1
+```
+*Ваги моделі та скалер автоматично збережуться в `./models/substation_model_v3.h5`.*
 
 ---
 
-### 👨‍💻 Автор
-**Литвиненко Дмитро**  
-Дипломний проєкт розробки інтелектуальних систем моніторингу енергомереж.
+### 2. Встановлення та Запуск (Dashboard)
+
+```bash
+# 1. Активація віртуального середовища
+python -m venv .venv
+.venv\Scripts\activate
+
+# 2. Встановлення пакетів
+pip install -r requirements.txt
+
+# 3. Запуск ETL Симулятора (в окремому вікні, якщо потрібно)
+python -m src.services.data_generator
+
+# 4. Запуск інтерфейсу
+streamlit run main.py
+```
+
+*Система автоматично підніме локальний веб-хост `http://localhost:8501` для візуального аналізу.*
