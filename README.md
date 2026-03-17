@@ -257,6 +257,96 @@ stateDiagram-v2
 
 ---
 
+### 🗄️ 5. Структура Бази Даних (ER Diagram)
+*Логічна модель даних (OLAP Cube) для агрегації телеметрії та прогнозів:*
+
+```mermaid
+erDiagram
+    REGIONS ||--o{ SUBSTATIONS : "містить"
+    SUBSTATIONS ||--o{ LOADMEASUREMENTS : "вимірює"
+    SUBSTATIONS ||--o{ PREDICTIONS : "прогнозує"
+    SUBSTATIONS ||--o{ ALERTS : "генерує"
+
+    REGIONS {
+        int region_id PK
+        string region_name
+    }
+
+    SUBSTATIONS {
+        int substation_id PK
+        int region_id FK
+        string substation_name
+        float capacity_mw
+    }
+
+    LOADMEASUREMENTS {
+        int measurement_id PK
+        int substation_id FK
+        float actual_load_mw
+        float health_score
+        float temperature_c
+        timestamp timestamp
+    }
+
+    PREDICTIONS {
+        int prediction_id PK
+        int substation_id FK
+        float predicted_load_mw
+        float predicted_health
+        timestamp forecast_ts
+    }
+
+    ALERTS {
+        int alert_id PK
+        int substation_id FK
+        string alert_type
+        string message
+        timestamp timestamp
+    }
+```
+
+---
+
+### 👨‍💻 6. Ролі та Прецеденти (Use Case Diagram)
+*Сценарії взаємодії користувачів із функціоналом системи:*
+
+```mermaid
+%%{init: {'theme': 'dark', 'themeVariables': { 'primaryColor': '#00ff88', 'edgeLabelBackground':'#1e1e1e', 'clusterBkg':'#181c20'}}}%%
+graph LR
+    subgraph Actors [👥 Користувачі]
+        D_Actor["👷 Диспетчер мережі"]
+        A_Actor["📊 Аналітик (Енергетик)"]
+    end
+
+    subgraph UseCases [📋 Прецеденти (Дії в UI)]
+        UC1(("📍 Моніторинг карти вузлів"))
+        UC3(("⚠️ Отримання Alerts сповіщень"))
+        UC2(("📈 Аналіз прогнозів LSTM"))
+        UC4(("🧬 Аналіз Health Score (Здоров'я)"))
+        UC5(("📊 OLAP аналітика (Споживання)"))
+    end
+
+    D_Actor --- UC1
+    D_Actor --- UC3
+    
+    A_Actor --- UC2
+    A_Actor --- UC4
+    A_Actor --- UC5
+
+    classDef actor fill:#121212,stroke:#ffb703,stroke-width:2px,color:#fff;
+    classDef usecase fill:#1c1e22,stroke:#00ff88,stroke-width:1.5px,color:#fff,stroke-dasharray: 2 2;
+    
+    D_Actor:::actor
+    A_Actor:::actor
+    UC1:::usecase
+    UC2:::usecase
+    UC3:::usecase
+    UC4:::usecase
+    UC5:::usecase
+```
+
+---
+
 ## 🌳 Структура Проєкту (Файлове дерево)
 
 ```text
