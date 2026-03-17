@@ -50,8 +50,8 @@
 **Циклічне кодування періодичності:**
 Для усунення розривів неперервності (наприклад, $23:59 \rightarrow 00:00$) та збереження сезонності, часові ознаки $h \in [0, 23]$ (година) та $d \in [0, 6]$ (день тижня) переносяться на тригонометричне коло:
 
-$$\text{hour\_sin}(t) = \sin\left(\frac{2\pi \cdot h(t)}{24}\right), \quad \text{hour\_cos}(t) = \cos\left(\frac{2\pi \cdot h(t)}{24}\right)$$
-$$\text{day\_sin}(t) = \sin\left(\frac{2\pi \cdot d(t)}{7}\right), \quad \text{day\_cos}(t) = \cos\left(\frac{2\pi \cdot d(t)}{7}\right)$$
+$$\text{hour}_{sin}(t) = \sin\left(\frac{2\pi \cdot h(t)}{24}\right), \quad \text{hour}_{cos}(t) = \cos\left(\frac{2\pi \cdot h(t)}{24}\right)$$
+$$\text{day}_{sin}(t) = \sin\left(\frac{2\pi \cdot d(t)}{7}\right), \quad \text{day}_{cos}(t) = \cos\left(\frac{2\pi \cdot d(t)}{7}\right)$$
 
 **Нормалізація ознак ($MinMaxScaler$):**
 Масштабування вхідного простору в діапазон $[0, 1]$ призначене для вирівнювання масштабів різних фізичних величин (МВт, % здоров'я, $\text{ppm}$) за формулою:
@@ -71,7 +71,7 @@ x_{t-W+2} \\
 x_t 
 \end{pmatrix} \in \mathbb{R}^{W \times N}$$
 
-Вектор ознак: $x_t = [\text{load}, \text{temp}, \text{h2}, \text{health}, \text{air}, \text{h\_sin}, \text{h\_cos}, \text{d\_sin}, \text{d\_cos}]^T$.  
+Вектор ознак: $x_t = [\text{load}, \text{temp}, \text{h2}, \text{health}, \text{air}, \text{h}_{sin}, \text{h}_{cos}, \text{d}_{sin}, \text{d}_{cos}]^T$.  
 Цільовий вектор наступної точки ($t+1$):
 $$\mathbf{Y}_{t+1} = \begin{bmatrix} y^{load}_{t+1} \\ y^{health}_{t+1} \end{bmatrix} \in \mathbb{R}^2$$
 
