@@ -107,54 +107,59 @@ $$\mathcal{L} = \frac{1}{M \cdot K} \sum_{i=1}^{M} \sum_{k=1}^{K} (Y_{i,k} - \ha
 
 ---
 
-## 🗺️ UML Діаграма Компонентів (Архітектура)
+## 🗺️ UML Діаграма Компонентів (Багаторівнева Архітектура)
 
-Візуалізація взаємозв'язків між локальною симуляцією та хмарною інфраструктурою Render:
+Архітектура системи базується на 4-рівневій структурі (Layers), яка розподілена між локальним симуляційним середовищем та хмарним Production-сервером:
 
 ```mermaid
-%%{init: {'theme': 'dark', 'themeVariables': { 'primaryColor': '#00ff88', 'edgeLabelBackground':'#1e1e1e', 'clusterBkg':'#2d2d2d', 'clusterBorder':'#00ff88'}}}%%
+%%{init: {'theme': 'dark', 'themeVariables': { 'primaryColor': '#00ff88', 'edgeLabelBackground':'#1e1e1e', 'clusterBkg':'#181c20', 'clusterBorder':'#00ff88'}}}%%
 graph TD
-    classDef cloud fill:#232f3e,stroke:#00a4df,stroke-width:2px,color:#fff;
-    classDef db fill:#1e1e1e,stroke:#33b5e5,stroke-width:2px,color:#fff;
-    classDef ml fill:#1e1e1e,stroke:#ffbb33,stroke-width:2px,color:#fff;
-    classDef local fill:#2d353c,stroke:#9933cc,stroke-width:2px,color:#fff;
+    %% Стилізація вузлів (ClassDef)
+    classDef edge fill:#121212,stroke:#ff3366,stroke-width:2px,color:#fff;
+    classDef db fill:#0e1726,stroke:#00a4df,stroke-width:2px,color:#fff,stroke-dasharray: 5 5;
+    classDef ml fill:#0b1320,stroke:#ffb703,stroke-width:2px,color:#fff;
+    classDef ui fill:#1c1e22,stroke:#00ff88,stroke-width:1px,color:#fff;
 
-    subgraph Local ["💻 Локальна симуляція (Local)"]
-        DG["data_generator.py<br/>(Digital Twin)"]:::local
-        Phys["physics.py<br/>(Фізика мережі)"]:::local
-        DG -->|Розрахунок| Phys
+    subgraph Local ["💻 LOCAL (Digital Twin Environment)"]
+        subgraph Layer_Edge ["⚙️ PHYSICAL / EDGE LAYER"]
+            DG["data_generator.py<br/>(Telemetry Simulator)"]:::edge
+            Phys["physics.py<br/>(Network Physics)"]:::edge
+            DG -->|Розрахунок фізики| Phys
+        end
     end
 
-    subgraph Render ["☁️ Хмара Render (Cloud Infrastructure)"]
-        DB[(PostgreSQL 18<br/>OLAP Database)]:::db
-
-        subgraph ML ["🧠 AI/ML Модуль"]
-            Vect["vectorizer.py<br/>(Віконне перетворення)"]:::ml
-            Pred["predict_v2.py<br/>(LSTM Контролер)"]:::ml
-            Models["LSTM Models<br/>(v1/v2/v3)"]:::ml
-            
-            Vect -->|Вхідний тензор| Pred
-            Pred -.->|Завантаження| Models
+    subgraph Render ["☁️ CLOUD RENDER (SaaS Infrastructure)"]
+        subgraph Layer_Data ["📊 DATA LAYER (OLAP Cube)"]
+            DB[(PostgreSQL 18<br/>OLAP Database)]:::db
         end
 
-        subgraph APP ["🌐 Інтерфейс & СППР"]
-            Main["main.py<br/>(Streamlit Dash)"]:::cloud
-            Alerts["alerts.py<br/>(Система Alerts)"]:::cloud
-            Map["map.py<br/>(Карта)"]:::cloud
+        subgraph Layer_Intelligence ["🧠 INTELLIGENCE LAYER (AI Pipeline)"]
+            Vect["vectorizer.py<br/>(Sliding Window)"]:::ml
+            Pred["predict_v2.py<br/>(Forecast Controller)"]:::ml
+            Models{{"LSTM Weights<br/>(v1 / v2 / v3)"}}:::ml
+            
+            Vect -->|3D Тензор| Pred
+            Pred -.->|Load Weights| Models
+        end
+
+        subgraph Layer_Presentation ["🌐 PRESENTATION LAYER (СППР)"]
+            Main["main.py<br/>(Streamlit Core)"]:::ui
+            Alerts["alerts.py<br/>(Alerting System)"]:::ui
+            Map["map.py<br/>(Geo-Visualizer)"]:::ui
             
             Main --> Alerts
             Main --> Map
         end
     end
 
-    %% Потоки даних
-    DG ==>|1. PUSH: Телеметрія| DB
-    DB ==>|2. PULL: Історія даних| Vect
-    Pred ==>|3. SAVE: Предикції| DB
-    DB ==>|4. Query / Візуалізація| Main
+    %% Критичні потоки даних (Arrows)
+    DG ==>|Telemetry PUSH (SQL Insert)| DB
+    DB <-->|Bidirectional OLAP Query| Vect
+    Pred ==>|Save Forecast (SQL Upsert Node)| DB
+    DB <-->|Real-time Analytics PULL| Main
 
-    style Local fill:#2d353c,stroke:#9933cc,color:#fff
-    style Render fill:#1e252b,stroke:#00a4df,color:#fff
+    style Local fill:#14171a,stroke:#ff3366,color:#fff
+    style Render fill:#111418,stroke:#00a4df,color:#fff
 ```
 
 ---
