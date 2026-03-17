@@ -153,10 +153,10 @@ graph TD
     end
 
     %% Критичні потоки даних (Arrows)
-    DG ==>|Telemetry PUSH (SQL Insert)| DB
-    DB <-->|Bidirectional OLAP Query| Vect
-    Pred ==>|Save Forecast (SQL Upsert Node)| DB
-    DB <-->|Real-time Analytics PULL| Main
+    DG ==>|"Telemetry PUSH (SQL Insert)"| DB
+    DB <-->|"Bidirectional OLAP Query"| Vect
+    Pred ==>|"Save Forecast (SQL Upsert Node)"| DB
+    DB <-->|"Real-time Analytics PULL"| Main
 
     style Local fill:#14171a,stroke:#ff3366,color:#fff
     style Render fill:#111418,stroke:#00a4df,color:#fff
