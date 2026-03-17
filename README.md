@@ -373,7 +373,9 @@ graph LR
     end
 
     D_Actor --- UC1
----
+    D_Actor --- UC3
+    
+    A_Actor --- UC2
     A_Actor --- UC4
     A_Actor --- UC5
 
