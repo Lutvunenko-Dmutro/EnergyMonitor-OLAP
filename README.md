@@ -212,24 +212,24 @@ graph TD
     classDef data fill:#0e1726,stroke:#00a4df,stroke-width:2px,color:#fff;
     classDef model fill:#0b1320,stroke:#ffb703,stroke-width:2px,color:#fff;
 
-    Start([Сирі дані з DB]):::data --> SQL[DATE_TRUNC & LIMIT 24]:::step
-    SQL --> Rev[Хронологічний реверс & ffill()]:::step
-    Rev --> FE[Додавання гармонік часу <br/> (sin/cos година & день)]:::step
+    Start(["Сирі дані з DB"]):::data --> SQL["DATE_TRUNC & LIMIT 24"]:::step
+    SQL --> Rev["Хронологічний реверс & ffill()"]:::step
+    Rev --> FE["Додавання гармонік часу <br/> (sin/cos година & день)"]:::step
     
-    FE --> Scale[get_local_scalers(): <br/> MinMaxScaler(0,1)]:::step
-    Scale --> Window[Матриця Window форми (24, 9)]:::data
+    FE --> Scale["get_local_scalers(): <br/> MinMaxScaler(0,1)"]:::step
+    Scale --> Window["Матриця Window форми (24, 9)"]:::data
 
-    Window --> LSTM[LSTM Model v3 <br/> (64 -> 32 nodes)]:::model
+    Window --> LSTM["LSTM Model v3 <br/> (64 -> 32 nodes)"]:::model
     
     subgraph Loop [Рекурсивна Екстраполяція]
-        LSTM --> Pred[model.predict()]:::step
-        Pred --> Upd[Зсув вікна: <br/> Виштовхування t-24, вставка t+1]:::step
+        LSTM --> Pred["model.predict()"]:::step
+        Pred --> Upd["Зсув вікна: <br/> Виштовхування t-24, вставка t+1"]:::step
         Upd --> LSTM
     end
 
-    Upd --> InvScale[inverse_scale_predictions()]:::step
-    InvScale --> Stitch[Smart Stitching: <br/> Gap Damping & Clip Bounds]:::step
-    Stitch --> End([df_forecast зі <br/> інтервалами надійності]):::data
+    Upd --> InvScale["inverse_scale_predictions()"]:::step
+    InvScale --> Stitch["Smart Stitching: <br/> Gap Damping & Clip Bounds"]:::step
+    Stitch --> End(["df_forecast зі <br/> інтервалами надійності"]):::data
 ```
 
 ---
