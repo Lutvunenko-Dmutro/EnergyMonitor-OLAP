@@ -313,12 +313,12 @@ erDiagram
 ```mermaid
 %%{init: {'theme': 'dark', 'themeVariables': { 'primaryColor': '#00ff88', 'edgeLabelBackground':'#1e1e1e', 'clusterBkg':'#181c20'}}}%%
 graph LR
-    subgraph Actors [👥 Користувачі]
+    subgraph Actors ["👥 Користувачі"]
         D_Actor["👷 Диспетчер мережі"]
         A_Actor["📊 Аналітик (Енергетик)"]
     end
 
-    subgraph UseCases [📋 Прецеденти (Дії в UI)]
+    subgraph UseCases ["📋 Прецеденти (Дії в UI)"]
         UC1(("📍 Моніторинг карти вузлів"))
         UC3(("⚠️ Отримання Alerts сповіщень"))
         UC2(("📈 Аналіз прогнозів LSTM"))
