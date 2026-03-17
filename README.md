@@ -50,30 +50,30 @@
 **Циклічне кодування періодичності:**
 Для усунення розривів неперервності (наприклад, $23:59 \rightarrow 00:00$) та збереження сезонності, часові ознаки $h \in [0, 23]$ (година) та $d \in [0, 6]$ (день тижня) переносяться на тригонометричне коло:
 
-$$\text{hour}\sb{sin}(t) = \sin\left(\frac{2\pi \cdot h(t)}{24}\right), \quad \text{hour}\sb{cos}(t) = \cos\left(\frac{2\pi \cdot h(t)}{24}\right)$$
-$$\text{day}\sb{sin}(t) = \sin\left(\frac{2\pi \cdot d(t)}{7}\right), \quad \text{day}\sb{cos}(t) = \cos\left(\frac{2\pi \cdot d(t)}{7}\right)$$
+$$\text{hour}_{sin}(t) = \sin\left(\frac{2\pi \cdot h(t)}{24}\right), \quad \text{hour}_{cos}(t) = \cos\left(\frac{2\pi \cdot h(t)}{24}\right)$$
+$$\text{day}_{sin}(t) = \sin\left(\frac{2\pi \cdot d(t)}{7}\right), \quad \text{day}_{cos}(t) = \cos\left(\frac{2\pi \cdot d(t)}{7}\right)$$
 
 **Нормалізація ознак ($MinMaxScaler$):**
 Масштабування вхідного простору в діапазон $[0, 1]$ призначене для вирівнювання масштабів різних фізичних величин (МВт, % здоров'я, $\text{ppm}$) за формулою:
 
-$$x'\sb{i,j} = \frac{x\sb{i,j} - x\sb{j}^{min}}{x\sb{j}^{max} - x\sb{j}^{min}}$$
+$$x'_{i,j} = \frac{x_{i,j} - x_{j}^{min}}{x_{j}^{max} - x_{j}^{min}}$$
 
 ---
 
 ### 📦 2. Віконне перетворення простору (Sliding Window)
 
-Для навчання рекурентної моделі вхідний вектор $x\sb{t} \in \mathbb{R}^N$ ($N=9$ для версії v3) трансформується у 3D-тензор $\mathbf{X}\sb{t}$ з глибиною пам'яті $W = 24$ (таймстепів):
+Для навчання рекурентної моделі вхідний вектор $x_t \in \mathbb{R}^N$ ($N=9$ для версії v3) трансформується у 3D-тензор $\mathbf{X}_t$ з глибиною пам'яті $W = 24$ (таймстепів):
 
-$$\mathbf{X}\sb{t} = \begin{pmatrix} 
-x\sb{t-W+1} \\ 
-x\sb{t-W+2} \\ 
+$$\mathbf{X}_t = \begin{pmatrix} 
+x_{t-W+1} \\ 
+x_{t-W+2} \\ 
 \vdots \\ 
-x\sb{t} 
+x_t 
 \end{pmatrix} \in \mathbb{R}^{W \times N}$$
 
-Вектор ознак: $x\sb{t} = [\text{load}, \text{temp}, \text{h2}, \text{health}, \text{air}, \text{h}\sb{sin}, \text{h}\sb{cos}, \text{d}\sb{sin}, \text{d}\sb{cos}]^T$.  
+Вектор ознак: $x_t = [\text{load}, \text{temp}, \text{h2}, \text{health}, \text{air}, \text{h}_{sin}, \text{h}_{cos}, \text{d}_{sin}, \text{d}_{cos}]^T$.  
 Цільовий вектор наступної точки ($t+1$):
-$$\mathbf{Y}\sb{t+1} = \begin{bmatrix} y^{load}\sb{t+1} \\ y^{health}\sb{t+1} \end{bmatrix} \in \mathbb{R}^2$$
+$$\mathbf{Y}_{t+1} = \begin{bmatrix} y^{load}_{t+1} \\ y^{health}_{t+1} \end{bmatrix} \in \mathbb{R}^2$$
 
 ---
 
@@ -82,22 +82,22 @@ $$\mathbf{Y}\sb{t+1} = \begin{bmatrix} y^{load}\sb{t+1} \\ y^{health}\sb{t+1} \e
 Предиктивний модуль будується на базі LSTM (Long Short-Term Memory) шарів. Внутрішня динаміка комірки на кроці $t$ визначається такою автономно-диференційною логікою:
 
 **1. Forget Gate (Вентіль забування):** Очищує застарілу інформацію.
-$$f\sb{t} = \sigma(W\sb{f} \cdot [h\sb{t-1}, x\sb{t}] + b\sb{f})$$
+$$f_t = \sigma(W_f \cdot [h_{t-1}, x_t] + b_f)$$
 
 **2. Input Gate & Candidate State:** Формує нову дохідну інформацію.
-$$i\sb{t} = \sigma(W\sb{i} \cdot [h\sb{t-1}, x\sb{t}] + b\sb{i})$$
-$$\tilde{C}\sb{t} = \tanh(W\sb{C} \cdot [h\sb{t-1}, x\sb{t}] + b\sb{C})$$
+$$i_t = \sigma(W_i \cdot [h_{t-1}, x_t] + b_i)$$
+$$\tilde{C}_t = \tanh(W_C \cdot [h_{t-1}, x_t] + b_C)$$
 
 **3. Cell State UPDATE (Стан комірки):** Оновлює довготривалу пам'ять.
-$$C\sb{t} = f\sb{t} \odot C\sb{t-1} + i\sb{t} \odot \tilde{C}\sb{t}$$
+$$C_t = f_t \odot C_{t-1} + i_t \odot \tilde{C}_t$$
 
 **4. Output Gate & Hidden State:** Обчислює вихідний сигнал.
-$$o\sb{t} = \sigma(W\sb{o} \cdot [h\sb{t-1}, x\sb{t}] + b\sb{o})$$
-$$h\sb{t} = o\sb{t} \odot \tanh(C\sb{t})$$
+$$o_t = \sigma(W_o \cdot [h_{t-1}, x_t] + b_o)$$
+$$h_t = o_t \odot \tanh(C_t)$$
 
 де:
-* $x\sb{t}$ — вхідний вектор;
-* $h\sb{t-1}$ — прихований стан попереднього кроку;
+* $x_t$ — вхідний вектор;
+* $h_{t-1}$ — прихований стан попереднього кроку;
 * $W, b$ — матриці ваг та зсуву що навчаються;
 * $\sigma$ — логістична сигмоїда, $\odot$ — добуток Адамара.
 
@@ -107,7 +107,7 @@ $$h\sb{t} = o\sb{t} \odot \tanh(C\sb{t})$$
 
 Мінімізується **багатовимірна Середньоквадратична Помилка (MSE)** для батчу розміром $M$:
 
-$$\mathcal{L} = \frac{1}{M \cdot 2} \sum_{i=1}^{M} \left((Y\sb{i}^{load} - \hat{Y}\sb{i}^{load})^2 + (Y\sb{i}^{health} - \hat{Y}\sb{i}^{health})^2\right) \rightarrow \min$$
+$$\mathcal{L} = \frac{1}{M \cdot 2} \sum_{i=1}^{M} \left((Y_{i}^{load} - \hat{Y}_{i}^{load})^2 + (Y_{i}^{health} - \hat{Y}_{i}^{health})^2\right) \rightarrow \min$$
 
 Оновлення ваг матриць виконується за алгоритмом **Adam** (Adaptive Moment Estimation) через зворотне поширення помилки в часі (**BPTT - Backpropagation Through Time**). Він автоматично адаптує швидкість навчання (Learning Rate), забезпечуючи стабільну збіжність до локального мінімуму втрат.
 
