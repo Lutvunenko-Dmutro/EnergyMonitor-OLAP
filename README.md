@@ -107,9 +107,12 @@ $$\mathcal{L} = \frac{1}{M \cdot K} \sum_{i=1}^{M} \sum_{k=1}^{K} (Y_{i,k} - \ha
 
 ---
 
-## 🗺️ UML Діаграма Компонентів (Багаторівнева Архітектура)
+## 📊 Візуальні Моделі та Предиктивні Конвеєри (Diagrams)
 
-Архітектура системи базується на 4-рівневій структурі (Layers), яка розподілена між локальним симуляційним середовищем та хмарним Production-сервером:
+Для легкого занурення в архітектуру системи та логіку обробки даних розроблено серію UML та Flowchart-діаграм.
+
+### 🗺️ 1. UML Схема Компонентів (Component Diagram)
+*Архітектура 4-шарової структури (Layers) з розділенням середовищ (Local/Render):*
 
 ```mermaid
 %%{init: {'theme': 'dark', 'themeVariables': { 'primaryColor': '#00ff88', 'edgeLabelBackground':'#1e1e1e', 'clusterBkg':'#181c20', 'clusterBorder':'#00ff88'}}}%%
@@ -152,7 +155,6 @@ graph TD
         end
     end
 
-    %% Критичні потоки даних (Arrows)
     DG ==>|"Telemetry PUSH (SQL Insert)"| DB
     DB <-->|"Bidirectional OLAP Query"| Vect
     Pred ==>|"Save Forecast (SQL Upsert Node)"| DB
@@ -160,6 +162,97 @@ graph TD
 
     style Local fill:#14171a,stroke:#ff3366,color:#fff
     style Render fill:#111418,stroke:#00a4df,color:#fff
+```
+
+---
+
+### ⏱️ 2. Діаграма Послідовності (Sequence Diagram: Data Lifecycle)
+*Життєвий цикл телеметрії: від генерації до предиктивного аналізу в UI:*
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant DG as data_generator.py
+    participant DB as PostgreSQL (Render)
+    participant Vect as vectorizer.py
+    participant Pred as predict_v2.py
+    participant UI as main.py (Dashboard)
+
+    Note over DG, DB: ⏱️ Генерація в реальному часі
+    DG->>DG: calculate_substation_load()
+    DG->>DB: SQL INSERT: load_mw, health_score
+
+    Note over DB, UI: 📊 При запиті користувача
+    UI->>Vect: get_latest_window(substation)
+    Vect->>DB: SQL SELECT last 24 rows
+    DB-->>Vect: DataFrame (Raw Data)
+    Vect->>Vect: ffill().bfill() + Time Harmonics
+    Vect-->>UI: Normalized matrix, constants
+
+    UI->>Pred: get_ai_forecast(hours_ahead=24)
+    Pred->>Pred: load_resources(version)
+    loop Для кожної години H (24 рази)
+        Pred->>Pred: model.predict(current_window)
+        Pred->>Pred: Update window (Recursive shift)
+    end
+    Pred->>Pred: inverse_scale_predictions()
+    Pred-->>UI: df_forecast (timestamp, predicted_load_mw)
+
+    UI->>UI: render_charts() & trigger_alerts()
+```
+
+---
+
+### 🧠 3. Конвеєр Машинного Навчання (ML Pipeline Flowchart)
+*Докладна схема роботи модуля предиктивної аналітики:*
+
+```mermaid
+graph TD
+    classDef step fill:#121212,stroke:#00ff88,stroke-width:2px,color:#fff;
+    classDef data fill:#0e1726,stroke:#00a4df,stroke-width:2px,color:#fff;
+    classDef model fill:#0b1320,stroke:#ffb703,stroke-width:2px,color:#fff;
+
+    Start([Сирі дані з DB]):::data --> SQL[DATE_TRUNC & LIMIT 24]:::step
+    SQL --> Rev[Хронологічний реверс & ffill()]:::step
+    Rev --> FE[Додавання гармонік часу <br/> (sin/cos година & день)]:::step
+    
+    FE --> Scale[get_local_scalers(): <br/> MinMaxScaler(0,1)]:::step
+    Scale --> Window[Матриця Window форми (24, 9)]:::data
+
+    Window --> LSTM[LSTM Model v3 <br/> (64 -> 32 nodes)]:::model
+    
+    subgraph Loop [Рекурсивна Екстраполяція]
+        LSTM --> Pred[model.predict()]:::step
+        Pred --> Upd[Зсув вікна: <br/> Виштовхування t-24, вставка t+1]:::step
+        Upd --> LSTM
+    end
+
+    Upd --> InvScale[inverse_scale_predictions()]:::step
+    InvScale --> Stitch[Smart Stitching: <br/> Gap Damping & Clip Bounds]:::step
+    Stitch --> End([df_forecast зі <br/> інтервалами надійності]):::data
+```
+
+---
+
+### 🛡️ 4. Діаграма Станів системи Alerts (State Diagram)
+*Логіка спрацювання тригерів та переходів при аналізі перевантажень:*
+
+```mermaid
+stateDiagram-v2
+    direction LR
+
+    [*] --> NORMAL : Система моніторингу активна
+
+    NORMAL --> HIGH_LOAD_PREDICTED : Прогноз > Поріг (load_mw)
+    NORMAL --> HEATING_PREDICTED : Прогноз Health < 80%
+
+    HIGH_LOAD_PREDICTED --> CRITICAL_ALERT : Навантаження > Capacity
+    HEATING_PREDICTED --> CRITICAL_ALERT : Крит. деградація ізоляції
+
+    CRITICAL_ALERT --> INCIDENT_LOGGED : Генерація сповіщення (UI)
+    
+    INCIDENT_LOGGED --> NORMAL : Навантаження стабілізовано
+    CRITICAL_ALERT --> NORMAL : Показники в межах норми
 ```
 
 ---
