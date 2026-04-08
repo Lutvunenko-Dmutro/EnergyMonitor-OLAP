@@ -11,18 +11,17 @@ def setup_logger(module_name):
 
     # Запобігаємо дублюванню логів у Streamlit (бо він часто перезапускає скрипти)
     if not logger.handlers:
-        logger.setLevel(logging.INFO)  # Рівень за замовчуванням
+        logger.setLevel(logging.INFO)
 
-        # Формат повідомлення: [2026-03-13 12:00:00] | INFO | database -> Все ок
         formatter = logging.Formatter(
-            fmt="[%(asctime)s] | %(levelname)-8s | %(name)s -> %(message)s",
-            datefmt="%Y-%m-%d %H:%M:%S",
+            fmt="[%(asctime)s] ⚡ %(levelname)-5s | %(name)s -> %(message)s",
+            datefmt="%H:%M:%S",
         )
 
-        # 1. Вивід у консоль
         console_handler = logging.StreamHandler(sys.stdout)
         console_handler.setFormatter(formatter)
         logger.addHandler(console_handler)
+        logger.propagate = False
 
         # 2. Вивід у файл (історія)
         file_handler = logging.FileHandler("system.log", encoding="utf-8")

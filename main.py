@@ -3,34 +3,47 @@ import os
 import sys
 import warnings
 
-# Відключення надлишкового логування сторонніх бібліотек (TensorFlow, Streamlit)
+# Відключення надлишкового логування та обмеження пам'яті TensorFlow
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1" # Примусово використовуємо лише CPU
+os.environ["TF_FORCE_GPU_ALLOW_GROWTH"] = "true"
+os.environ["TF_NUM_INTEROP_THREADS"] = "1"
+os.environ["TF_NUM_INTRAOP_THREADS"] = "1"
+
+import logging
 logging.getLogger("tensorflow").setLevel(logging.ERROR)
 logging.getLogger("streamlit").setLevel(logging.ERROR)
 warnings.filterwarnings("ignore")
 
+import threading
+
 # Ініціалізація синглтон-логера для системи моніторингу
 log = logging.getLogger("ENERGY_MONITOR")
+INITIALIZATION_LOCK = threading.Lock()
 
 if not getattr(log, "initialized", False):
-    log.propagate = False
-    log.setLevel(logging.INFO)
-    log.handlers = []
+    with INITIALIZATION_LOCK:
+        # Перевірка всередині блокування (Double-checked locking pattern)
+        if not getattr(log, "initialized", False):
+            log.propagate = False
+            log.setLevel(logging.INFO)
+            # Очищуємо старі обробники, якщо вони є (напр. від минулих запусків у тому самому процесі)
+            log.handlers = []
 
-    handler = logging.StreamHandler(sys.stdout)
-    handler.setFormatter(
-        logging.Formatter(
-            "[%(asctime)s] ⚡ %(levelname)-5s | %(message)s", datefmt="%H:%M:%S"
-        )
-    )
-    log.addHandler(handler)
+            handler = logging.StreamHandler(sys.stdout)
+            handler.setFormatter(
+                logging.Formatter(
+                    "[%(asctime)s] ⚡ %(levelname)-5s | %(message)s", datefmt="%H:%M:%S"
+                )
+            )
+            log.addHandler(handler)
 
-    log.info("=" * 60)
-    log.info("🚀 ENERGY MONITOR ULTIMATE: SYSTEM STARTUP")
-    log.info("=" * 60)
-    log.info("📦 Load modules...")
+            log.info("=" * 60)
+            log.info("🚀 ENERGY MONITOR ULTIMATE: SYSTEM STARTUP")
+            log.info("=" * 60)
+            log.info("📦 Load modules...")
 
-    log.initialized = True
+            log.initialized = True
 
 logger = log
 

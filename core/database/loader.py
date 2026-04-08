@@ -1,3 +1,4 @@
+import gc
 import logging
 import time
 
@@ -63,6 +64,8 @@ def get_active_boot_data_generator():
             chunk = fetch_granular_data(key)
             if isinstance(chunk, dict): final_data.update(chunk)
             else: final_data["real_load"] = chunk
+            # Примусове очищення пам'яті після кожного кроку завантаження
+            gc.collect()
         
         # Log to terminal ONLY ONCE per unique message to avoid clutter
         clean_msg = msg.replace(">", "").strip()
@@ -74,20 +77,33 @@ def get_active_boot_data_generator():
 
 # --- UPDATED ENTRY POINTS ---
 
+@st.cache_data(max_entries=5, ttl=3600)
+def fetch_database_data():
+    """
+    Повне завантаження даних (резервний варіант).
+    Використовує memory_diet та gc для економії RAM.
+    """
+    generator = get_active_boot_data_generator()
+    last_data = {}
+    for _, _, chunk in generator:
+        last_data = chunk
+    
+    gc.collect()
+    return last_data
+
 def get_verified_data():
     """
-    Updated entry point that ensures data exists, 
-    falling back to manual verification if boot sequence was skipped.
+    Головна точка входу для отримання даних з валідацією та відновленням.
     """
-    # 1. Check if data already in session state (provided by splash)
+    # 1. Перевіряємо сесію (дані від заставки)
     if "boot_data" in st.session_state:
         data = st.session_state["boot_data"]
     else:
-        # Fallback to standard fetch if directly accessing
+        # Резервне завантаження, якщо заставка була пропущена
         data = fetch_database_data()
 
-    # 2. Validation & Recovery (Keep existing logic)
-    is_empty = (data is None or data.get("load") is None or data["load"].empty)
+    # 2. Перевірка на порожнечу та відновлення
+    is_empty = (data is None or not data or data.get("load") is None or data["load"].empty)
     
     if is_empty:
         st.warning("⚠️ База даних порожня або недоступна!")

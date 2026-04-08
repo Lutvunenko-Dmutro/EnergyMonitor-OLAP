@@ -4,14 +4,8 @@ import os
 
 from dotenv import load_dotenv
 
-# --- 1. CONFIGURATION & LOGGING ---
+# --- 1. CONFIGURATION ---
 load_dotenv()
-
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s",
-    datefmt="%H:%M:%S",
-)
 
 logger = logging.getLogger("data_generator")
 

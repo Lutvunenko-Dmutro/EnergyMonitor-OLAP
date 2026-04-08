@@ -10,3 +10,4 @@ streamlit
 tensorflow
 statsmodels
 scipy
+onnxruntime

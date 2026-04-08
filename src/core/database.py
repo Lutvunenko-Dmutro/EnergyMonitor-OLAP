@@ -12,9 +12,29 @@ from sqlalchemy import create_engine, text
 from src.core.config import DB_CONFIG
 from src.core.logger import setup_logger
 
+import numpy as np
+
 load_dotenv()
 
 log = setup_logger(__name__)
+
+def memory_diet(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Оптимізує споживання пам'яті DataFrame:
+    1. Переводить float64 у float32 (економія 50%).
+    2. Переводить int64 у int32.
+    """
+    if df.empty: return df
+    
+    # Оптимізація Float
+    floats = df.select_dtypes(include=['float64']).columns
+    df[floats] = df[floats].astype(np.float32)
+    
+    # Оптимізація Integer
+    ints = df.select_dtypes(include=['int64']).columns
+    df[ints] = df[ints].astype(np.int32)
+    
+    return df
 
 # --- 1. CONFIGURATION ---
 @st.cache_resource
@@ -29,7 +49,11 @@ def get_engine():
     port = os.getenv("DB_PORT", "5432")
     dbname = os.getenv("DB_NAME", "postgres")
 
-    ssl_mode = os.getenv("DB_SSL", "require")
+    ssl_mode = os.getenv("DB_SSL")
+    if not ssl_mode:
+        ssl_mode = "prefer" if host in ["localhost", "127.0.0.1", "::1"] else "require"
+        
+    log.info(f"🔌 Connecting to {host}:{port} (SSL: {ssl_mode})")
     url = f"postgresql+psycopg2://{user}:{password}@{host}:{port}/{dbname}?sslmode={ssl_mode}"
     return create_engine(url, pool_pre_ping=True)
 
@@ -88,7 +112,7 @@ def run_query(query_text: str, params: Optional[dict] = None) -> pd.DataFrame:
         try:
             engine = get_engine()
             with engine.connect() as conn:
-                df = pd.read_sql(text(query_text), conn, params=params)
+                df = memory_diet(pd.read_sql(text(query_text), conn, params=params))
                 
                 if not df.empty:
                     df.to_parquet(cache_path, index=False)
