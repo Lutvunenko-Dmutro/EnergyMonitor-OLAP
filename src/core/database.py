@@ -112,7 +112,12 @@ def run_query(query_text: str, params: Optional[dict] = None) -> pd.DataFrame:
         try:
             engine = get_engine()
             with engine.connect() as conn:
-                df = memory_diet(pd.read_sql(text(query_text), conn, params=params))
+                # ЗАВАНТАЖЕННЯ ШМАТОЧКАМИ (Chunks) ДЛЯ ЕКОНОМІЇ ПАМ'ЯТІ
+                chunks = []
+                for chunk in pd.read_sql(text(query_text), conn, params=params, chunksize=2000):
+                    chunks.append(memory_diet(chunk))
+                
+                df = pd.concat(chunks, ignore_index=True) if chunks else pd.DataFrame()
                 
                 if not df.empty:
                     df.to_parquet(cache_path, index=False)

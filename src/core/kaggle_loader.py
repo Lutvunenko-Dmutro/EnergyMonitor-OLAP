@@ -70,9 +70,12 @@ def load_kaggle_data():
                 pretty_name  # Забезпечення підтримки фільтрації регіонів
             )
 
-            # 5. Прибираємо зайве та NaN
             df = df[["timestamp", "actual_load_mw", "substation_name", "region_name"]]
             df = df.dropna(subset=["timestamp", "actual_load_mw"])
+            
+            # РАДИКАЛЬНА ОПТИМІЗАЦІЯ: Обрізаємо дані ОДРАЗУ після завантаження одного файлу,
+            # до того як вони потраплять у великий загальний масив
+            df = df.sort_values("timestamp").tail(5000)
 
             all_dfs.append(df)
 
@@ -85,15 +88,8 @@ def load_kaggle_data():
             columns=["timestamp", "actual_load_mw", "substation_name", "region_name"]
         )
 
-    # Об'єднуємо
+    # Об'єднуємо (тепер масив вже маленький)
     full_df = pd.concat(all_dfs, ignore_index=True)
     
-    # "Дієта" для пам'яті: беремо лише останні 5000 записів для компактності 
-    # та конвертуємо типи даних
     from src.core.database import memory_diet
-    
-    # Використовуємо sampling або tail для економії місця
-    # На Render 512MB ми не можемо зберігати повну історію за 10 років
-    full_df = full_df.sort_values("timestamp").groupby("substation_name").tail(5000).reset_index(drop=True)
-    
     return memory_diet(full_df)
