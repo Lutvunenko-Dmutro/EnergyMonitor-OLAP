@@ -26,17 +26,21 @@ def _render_comparative_audit(substation_name, source_type):
     results = {}
     metrics_list = []
     
-    with st.status(f"🚀 Запуск комплексного порівняльного аудиту для {substation_name}...") as status:
-        for v in versions:
-            status.update(label=f"🧠 Аналіз архітектури {v.upper()}...")
+    with st.status(f"🚀 Запуск комплексного порівняльного аудиту для {substation_name}...", expanded=True) as status:
+        p_bar = st.progress(0, text="Підготовка до аналізу...")
+        total = len(versions)
+        
+        for idx, v in enumerate(versions):
+            progress_pct = (idx + 1) / total
+            status.update(label=f"🧠 Аналіз архітектури {v.upper()} ({idx+1}/{total})...")
+            p_bar.progress(progress_pct, text=f"Обчислення: Модель {v.upper()}...")
+            
             # Викликаємо кешований бектест (168 годин)
             res = _cached_fast_backtest(substation_name, v, source_type)
             if res:
-                # Структура res: (rmse, mae, mape, r2, error, df_bt)
                 rmse, mae, mape, r2, error, df_bt = res
                 results[v] = df_bt
                 
-                # Підготовка метрик для таблиці
                 row = {
                     "Модель": MODEL_LABELS.get(v, v.upper()).split("  ")[0],
                     "Версія": v.upper(),
@@ -47,6 +51,7 @@ def _render_comparative_audit(substation_name, source_type):
                 }
                 metrics_list.append(row)
         
+        p_bar.empty()
         status.update(label="✅ Порівняльний аудит завершено успішно!", state="complete")
 
     if not metrics_list:

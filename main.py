@@ -86,13 +86,15 @@ def main():
     # Налаштування параметрів сторінки
     setup_streamlit_page()
 
-    # --- BOOT SEQUENCE (SPLASH SCREEN) ---
+    # --- BOOT SEQUENCE (ACTIVE SPLASH SCREEN) ---
     if "booted" not in st.session_state:
-        show_boot_sequence()
+        # Pass real work into the splash screen
+        boot_data = show_boot_sequence()
+        st.session_state["boot_data"] = boot_data
         st.session_state["booted"] = True
         st.rerun()
 
-    # Отримання джерел даних (Data Access Layer)
+    # Oтримуємо дані (вони вже завантажені заставкою або кешовані)
     data = get_verified_data()
 
     # Регулювання фільтрів бічної панелі (Input Layer)

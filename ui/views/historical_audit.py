@@ -168,57 +168,6 @@ def render(
         )
     )
 
-    # ── Таблиця: Raw Data ────────────────────────────────────────────────────────
-    st.divider()
-    st.subheader("📋 Детальні дані (Raw Data)")
-
-    # Форматуємо DataFrame: перейменовуємо, заповнюємо NaN
-    # 📋 Детальні дані (Raw Data) Bulletproof Стовпці
-    valid_cols = []
-    headers = []
-
-    mapping = {
-        "ts": "Дата / Час",
-        "substation": "Підстанція",
-        "load_mw": "Навантаження (МВт)",
-        "air_temp": "Повітря (°C)",
-        "oil_temp": "Масло (°C)",
-        "h2_ppm": "H₂ (ppm)",
-        "health": "Health (%)",
-    }
-
-    for orig, pretty in mapping.items():
-        if orig in df.columns:
-            valid_cols.append(orig)
-            headers.append(pretty)
-
-    df_display = df[valid_cols].copy()
-    df_display.columns = headers
-
-    # Замінюємо NaN на 0 для числових стовпців
-    num_cols = [
-        c
-        for c in [
-            "Навантаження (МВт)",
-            "Повітря (°C)",
-            "Масло (°C)",
-            "H₂ (ppm)",
-            "Health (%)",
-        ]
-        if c in df_display.columns
-    ]
-    df_display[num_cols] = df_display[num_cols].fillna(0)
-
-    st.dataframe(
-        df_display.style.format({col: "{:.2f}" for col in num_cols}),
-        width="stretch",
-        height=350,
-    )
-
-    csv_bytes = df_display.to_csv(index=False).encode("utf-8")
-    st.download_button(
-        label="⬇️ Скачати CSV",
-        data=csv_bytes,
-        file_name=f"archive_{start_date}_{end_date}.csv",
-        mime="text/csv",
-    )
+    # ── Таблиця: Raw Data (Винесено в компонент) ──────────────────────────────────
+    from ui.views.historical_audit_components.data_table import render_raw_data_table
+    render_raw_data_table(df, start_date, end_date)
