@@ -13,17 +13,7 @@ os.environ["NUMEXPR_NUM_THREADS"] = "1"
 import sys
 import warnings
 
-# --- OS-LEVEL HARD RAM LIMIT (RENDER SURVIVAL) ---
-try:
-    import resource
-    # Встановлюємо жорсткий ліміт на 480 MB (Render limit: 512MB)
-    # Якщо Python спробує взяти більше, він отримає MemoryError (без крашу сервера 503)
-    HARD_LIMIT_MB = 480
-    limit_bytes = HARD_LIMIT_MB * 1024 * 1024
-    resource.setrlimit(resource.RLIMIT_AS, (limit_bytes, limit_bytes))
-except ImportError:
-    # Modul resource доступний лише на Unix/Linux, на Windows він просто проігнорується
-    pass
+
 
 # Блокуємо шум від сторонніх бібліотек
 import logging
