@@ -7,7 +7,7 @@ psycopg2-binary
 python-dotenv
 scikit-learn
 streamlit
-tensorflow
 statsmodels
 scipy
 onnxruntime
+psutil

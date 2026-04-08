@@ -107,7 +107,7 @@ def run_query(query_text: str, params: Optional[dict] = None) -> pd.DataFrame:
     cache_path = os.path.join("data", "fallback", f"query_{query_id}.parquet")
     os.makedirs(os.path.dirname(cache_path), exist_ok=True)
 
-    retries = 3
+    retries = 5
     for i in range(retries):
         try:
             engine = get_engine()
@@ -120,17 +120,28 @@ def run_query(query_text: str, params: Optional[dict] = None) -> pd.DataFrame:
                 
         except Exception as e:
             err_msg = str(e).lower()
-            if ("503" in err_msg or "connection" in err_msg) and i < retries - 1:
+            err_type = type(e).__name__
+            
+            # Обробка розширеного списку мережевих помилок
+            recoverable_patterns = [
+                "503", "502", "504", "service unavailable", 
+                "connection", "timeout", "reset by peer", "broken pipe"
+            ]
+            is_recoverable = any(x in err_msg for x in recoverable_patterns)
+            
+            if is_recoverable and i < retries - 1:
+                wait_time = (i * 6) + 4 # Продвинуті паузи: 4, 10, 16, 22...
+                log.warning(f"🔌 [{err_type}] БД Neon прокидається... Спроба {i+1}/{retries}. Чекаємо {wait_time}с.")
                 import time
-                log.warning(f"🔌 БД Neon прокидається... Спроба {i+1}/{retries}")
-                time.sleep(4) # Даємо Neon час підняти інстанс
+                time.sleep(wait_time)
                 continue
                 
-            log.warning(f"⚠️ БД Neon недоступна. Офлайн-режим: {e}")
+            log.error(f"❌ КРИТИЧНА ПОМИЛКА БАЗИ [{err_type}]: {e}")
+            
+            log.warning(f"⚠️ Активуємо Офлайн-режим (локальний кеш).")
             if os.path.exists(cache_path):
                 return pd.read_parquet(cache_path)
             
-            log.error(f"❌ Критична помилка SQL: {e}")
             return pd.DataFrame()
 
 

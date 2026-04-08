@@ -168,4 +168,17 @@ def render_sidebar(data):
                 except Exception as e:
                     st.error(f"Помилка: {e}")
 
+    from utils.memory_helper import get_resource_status
+    status, usage, color, top_objs = get_resource_status()
+    
+    st.sidebar.markdown("---")
+    st.sidebar.subheader("📊 Render Health")
+    st.sidebar.write(f"RAM Usage: :{color}[**{usage:.1f} MB**]")
+    st.sidebar.caption(f"Status: {status} (Limit: 512MB)")
+
+    if top_objs:
+        with st.sidebar.expander("🔍 Top Objects"):
+            for name, size in top_objs:
+                st.caption(f"{name}: {size:.1f} MB")
+
     return selected_region, date_range, data_source, selected_substation

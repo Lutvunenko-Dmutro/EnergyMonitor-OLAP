@@ -4,7 +4,6 @@ import pandas as pd
 import scipy.stats as stats
 from typing import Dict, Any, Optional, Tuple
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
-import tensorflow as tf
 
 from src.core.database import run_query
 from utils.error_handlers import robust_ml_handler
@@ -143,7 +142,6 @@ def finalize_backtest_metrics(version: str, all_preds_scaled: np.ndarray, shared
     mape = float(np.mean(np.abs((a_m - p_m) / a_m)) * 100)
     r2 = float(r2_score(a_m, p_m))
     
-    tf.keras.backend.clear_session()
     gc.collect()
 
     return rmse, mae, mape, r2, None, merged

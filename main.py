@@ -3,15 +3,8 @@ import os
 import sys
 import warnings
 
-# Відключення надлишкового логування та обмеження пам'яті TensorFlow
-os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
-os.environ["CUDA_VISIBLE_DEVICES"] = "-1" # Примусово використовуємо лише CPU
-os.environ["TF_FORCE_GPU_ALLOW_GROWTH"] = "true"
-os.environ["TF_NUM_INTEROP_THREADS"] = "1"
-os.environ["TF_NUM_INTRAOP_THREADS"] = "1"
-
+# Блокуємо шум від сторонніх бібліотек
 import logging
-logging.getLogger("tensorflow").setLevel(logging.ERROR)
 logging.getLogger("streamlit").setLevel(logging.ERROR)
 warnings.filterwarnings("ignore")
 

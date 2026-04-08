@@ -60,12 +60,16 @@ def get_active_boot_data_generator():
     final_data = {}
     
     for msg, p, key in steps:
-        if key:
-            chunk = fetch_granular_data(key)
-            if isinstance(chunk, dict): final_data.update(chunk)
-            else: final_data["real_load"] = chunk
-            # Примусове очищення пам'яті після кожного кроку завантаження
-            gc.collect()
+        try:
+            if key:
+                chunk = fetch_granular_data(key)
+                if isinstance(chunk, dict): final_data.update(chunk)
+                else: final_data["real_load"] = chunk
+                # Примусове очищення пам'яті після кожного кроку завантаження
+                gc.collect()
+        except Exception as e:
+            logger.error(f"⚠️ Помилка на кроці '{msg}': {e}")
+            # Продовжуємо навіть при помилці окремого кроку
         
         # Log to terminal ONLY ONCE per unique message to avoid clutter
         clean_msg = msg.replace(">", "").strip()
