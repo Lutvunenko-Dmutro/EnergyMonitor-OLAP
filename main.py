@@ -67,6 +67,8 @@ from core.database.loader import get_verified_data
 from ui.components.styles import setup_streamlit_page
 from ui.segments.dashboard import render_dashboard_ui
 from ui.segments.sidebar import render_sidebar
+from ui.segments.splash import show_boot_sequence
+import streamlit as st
 
 
 def select_data_source(data, data_source):
@@ -81,18 +83,14 @@ def select_data_source(data, data_source):
 
 # Головний оркестратор додатка (Application Entry Point)
 def main():
-    """
-    Головна функція-оркестратор додатка (Application Entry Point).
-
-    Вона реалізує класичний пайплайн обробки даних (Data Pipeline):
-    1. Setup: Налаштування параметрів сторінки.
-    2. Data Ingestion: Отримання "сирих" даних з бази (get_verified_data).
-    3. User Input: Отримання параметрів фільтрації від користувача (render_sidebar).
-    4. Data Processing: Застосування фільтрів до всіх наборів даних (filter_dataframe).
-    5. UI Rendering: Відображення фінального інтерфейсу (render_dashboard_ui).
-    """
     # Налаштування параметрів сторінки
     setup_streamlit_page()
+
+    # --- BOOT SEQUENCE (SPLASH SCREEN) ---
+    if "booted" not in st.session_state:
+        show_boot_sequence()
+        st.session_state["booted"] = True
+        st.rerun()
 
     # Отримання джерел даних (Data Access Layer)
     data = get_verified_data()

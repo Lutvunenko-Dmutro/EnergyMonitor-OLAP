@@ -2,6 +2,8 @@ import datetime
 from datetime import timedelta
 import subprocess
 import sys
+import time
+from pathlib import Path
 
 import streamlit as st
 
@@ -25,6 +27,11 @@ def render_sidebar(data):
     Returns:
         tuple: (selected_region, date_range, data_source, selected_substation)
     """
+    # --- HEARTBEAT SIGNAL ---
+    heartbeat_path = Path("logs/heartbeat.txt")
+    heartbeat_path.parent.mkdir(exist_ok=True)
+    heartbeat_path.touch() # Оновлюємо час модифікації файлу
+
     if st.sidebar.button("🔄 Оновити дані", type="primary"):
         st.cache_data.clear()
         st.rerun()
@@ -123,20 +130,30 @@ def render_sidebar(data):
     st.sidebar.markdown("---")
     st.sidebar.subheader("📡 Керування телеметрією")
     
-    if "sensor_proc" not in st.session_state:
-        st.session_state.sensor_proc = None
+    lock_file = Path("logs/sensors.lock")
+    is_running = lock_file.exists()
 
-    if st.session_state.sensor_proc is None or st.session_state.sensor_proc.poll() is not None:
+    if not is_running:
         if st.sidebar.button("▶️ Запустити Live Датчики", type="primary", use_container_width=True):
-            proc = subprocess.Popen([sys.executable, "-m", "src.services.sensors_db"])
-            st.session_state.sensor_proc = proc
+            # Запускаємо процес
+            subprocess.Popen([sys.executable, "-m", "src.services.sensors_db"])
             st.rerun()
     else:
         st.sidebar.success("✅ Датчики генерують дані (Фон)")
         if st.sidebar.button("🛑 Зупинити Датчики", type="secondary", use_container_width=True):
-            st.session_state.sensor_proc.terminate()
-            st.session_state.sensor_proc.wait()
-            st.session_state.sensor_proc = None
+            # Примусово видаляємо замок і даємо процесу самому зупинитись або вбиваємо (тут краще вбити, якщо ми маємо доступ)
+            # Але в Singleton моделі з Heartbeat процес сам побачить відсутність активності.
+            # Для миттєвої зупинки надішлемо сигнал або видалимо замок (якщо процес перевіряє замок).
+            if lock_file.exists():
+                try:
+                    with open(lock_file, "r") as f:
+                        pid = int(f.read())
+                    import os
+                    import signal
+                    os.kill(pid, signal.SIGTERM)
+                except:
+                    pass
+                if lock_file.exists(): lock_file.unlink()
             st.rerun()
 
     with st.sidebar.expander("⚙️ Системні Дії (Data Generator)"):

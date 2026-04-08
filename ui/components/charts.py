@@ -421,3 +421,55 @@ def _generate_forecast_figure(df_hist, df_fc, title, version_lbl):
     )
     return fig
 
+
+def _generate_multi_forecast_figure(df_hist, results: dict, title):
+    """
+    Генерує порівняльний графік (Одна історія + декілька ліній прогнозу V1, V2, V3).
+    """
+    fig = go.Figure()
+    
+    # 1. Історія (Факт)
+    if not df_hist.empty:
+        fig.add_trace(go.Scatter(
+            x=df_hist["timestamp"], y=df_hist["actual_load_mw"],
+            name="Історія (Факт)", line=dict(color="#3498db", width=3)
+        ))
+        
+    # 2. Моделі
+    styles = {
+        "v1": dict(color="#00cec9", width=2, dash="dot"),
+        "v2": dict(color="#0984e3", width=2, dash="dash"),
+        "v3": dict(color="#d63031", width=3.5, dash="solid")
+    }
+    labels = {
+        "v1": "Прогноз V1 (Basic)", 
+        "v2": "Прогноз V2 (Diagnostic)", 
+        "v3": "Прогноз V3 (Hybrid AI) 🎯"
+    }
+
+    # Знаходимо останню точку історії для зшивання візуального початку
+    last_hist_ts = df_hist["timestamp"].iloc[-1] if not df_hist.empty else None
+    
+    for version, df_fc in results.items():
+        if df_fc is None or df_fc.empty:
+            continue
+            
+        fig.add_trace(go.Scatter(
+            x=df_fc["timestamp"], y=df_fc["predicted_load_mw"],
+            name=labels.get(version, f"Модель {version.upper()}"),
+            line=styles.get(version, dict(color="#fff", width=1))
+        ))
+
+    fig.update_layout(
+        template="plotly_dark", 
+        height=550, 
+        title=dict(text=f"🧪 {title}", font=dict(size=20)),
+        margin=dict(l=10, r=10, t=60, b=10),
+        legend=dict(orientation="h", y=1.08, x=0.5, xanchor="center"),
+        hovermode="x unified"
+    )
+    
+    fig.update_yaxes(title_text="Потужність, МВт", gridcolor="rgba(255,255,255,0.05)")
+    return fig
+
+

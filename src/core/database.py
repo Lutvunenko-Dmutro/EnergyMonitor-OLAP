@@ -1,4 +1,5 @@
 import os
+import hashlib
 from contextlib import contextmanager
 from typing import Optional
 
@@ -67,13 +68,34 @@ def execute_sql_file(cursor, filename):
 
 # --- 3. SQLALCHEMY CORE (For Streamlit App) ---
 def run_query(query_text: str, params: Optional[dict] = None) -> pd.DataFrame:
-    """Виконує SELECT запит і повертає DataFrame."""
+    """
+    Виконує SELECT запит з підтримкою офлайн-кешування (Circuit Breaker).
+    Якщо БД недоступна, завантажує дані з локального Parquet-файлу.
+    """
+    # Створюємо унікальний хеш для запиту для кешування
+    query_id = hashlib.md5(f"{query_text}_{params}".encode()).hexdigest()
+    cache_path = os.path.join("data", "fallback", f"query_{query_id}.parquet")
+    os.makedirs(os.path.dirname(cache_path), exist_ok=True)
+
     try:
         engine = get_engine()
         with engine.connect() as conn:
-            return pd.read_sql(text(query_text), conn, params=params)
+            df = pd.read_sql(text(query_text), conn, params=params)
+            
+            # Дзеркалюємо успішний запит у локальний кеш
+            if not df.empty:
+                df.to_parquet(cache_path, index=False)
+            return df
+            
     except Exception as e:
-        log.error(f"Помилка SQL: {e}", exc_info=True)
+        log.warning(f"⚠️ БД Neon недоступна. Спроба активувати Офлайн-режим: {e}")
+        
+        # Спроба завантажити з локального кешу
+        if os.path.exists(cache_path):
+            st.warning(f"🔌 **Офлайн-режим активовано.** Використовуються локальні дані (запит: {query_id[:8]})")
+            return pd.read_parquet(cache_path)
+        
+        log.error(f"❌ Критична помилка SQL (кеш відсутній): {e}", exc_info=True)
         return pd.DataFrame()
 
 

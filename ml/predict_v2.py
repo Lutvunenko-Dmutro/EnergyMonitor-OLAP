@@ -130,17 +130,43 @@ def get_ai_forecast(
         load_fc = unscaled_raw[:, 0] / scale_factor
         health_fc = unscaled_raw[:, 3] if n_sc > 3 else np.full(hours_ahead, 100.0)
 
+        # --- SEAMLESS STITCHING LOGIC (Zero-Lag Bias Correction) ---
+        first_pred_val = load_fc[0]
+        initial_bias = original_last_load - first_pred_val
+        
+        decay_steps = min(8, hours_ahead)
+        decay_curve = np.ones(hours_ahead)
+        for step in range(decay_steps):
+            decay_curve[step] = 1.0 - (step / decay_steps)
+        if hours_ahead > decay_steps:
+            decay_curve[decay_steps:] = 0
+            
+        load_fc = load_fc + (initial_bias * decay_curve)
+
+        # --- SEASONS BLENDING (Continuity) ---
         raw_vals = values[:, 0] / scale_factor  
         if len(raw_vals) >= hours_ahead:
             template = raw_vals[-hours_ahead:].copy()
-            template_ratio = original_last_load / template[0] if template[0] > 0 else 1.0
-            template_ratio = np.clip(template_ratio, 0.7, 1.3)
+            template_ratio = original_last_load / template[0] if (len(template) > 0 and template[0] > 0) else 1.0
+            template_ratio = np.clip(template_ratio, 0.8, 1.25)
             seasonal_fc = np.clip(template * template_ratio, 0, None)
-            ALPHA = 0.50  
+            
+            # --- AI SANITY CHECKER (Safety Guard) ---
+            # Визначаємо фізичну межу для підстанції
+            safe_limit = (loc_max * 1.5) if 'loc_max' in locals() and loc_max > 1.0 else (original_last_load * 3.0)
+            
+            # Якщо ШІ "галюцинує" (прогноз > 1.5x від потужності ПС)
+            if np.any(load_fc > safe_limit):
+                logger.warning(f"🛡️ Sanity Checker triggered for {substation_name}. AI hallucination detected (> {safe_limit:.1f} MW). Falling back to Seasonal Naive.")
+                # Агресивне вирівнювання: 95% сезонності, 5% ШІ
+                ALPHA = 0.05 
+            else:
+                # Стандартне безшовне зшивання (20% ШІ / 80% сезонності)
+                ALPHA = 0.20
+            
             load_fc = ALPHA * load_fc + (1 - ALPHA) * seasonal_fc
-            logger.info(f"📅 Seasonal Naive Blend applied for {substation_name}")
-
-        load_fc = np.clip(load_fc, 0, original_last_load * 3.0 if original_last_load > 0 else 10000)
+            
+        load_fc = np.clip(load_fc, 0, None)
         load_stitched = np.insert(load_fc, 0, original_last_load)
         health_stitched = np.insert(health_fc, 0, constants.get("health", 100.0) if constants else 100.0)
         

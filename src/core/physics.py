@@ -127,6 +127,47 @@ def calculate_substation_load(
     return round(actual_load, 2), alert
 
 
+def calculate_transformer_health(
+    actual_load: float,
+    capacity: float,
+    prev_health: float = 100.0
+) -> Tuple[float, float, float]:
+    """
+    Розраховує діагностичні показники (температура масла, H2, здоров'я) 
+    на основі поточного навантаження.
+    """
+    factor = actual_load / capacity if capacity > 0 else 0.5
+    
+    # 1. Температура масла (база 50 C + приріст від навантаження)
+    base_temp = 50.0 + (factor * 30.0)
+    temperature_c = round(base_temp + random.uniform(-2.0, 2.0), 1)
+
+    # 2. Вміст водню H2 (ppm)
+    base_h2 = 10.0 + (factor * 20.0)
+    if factor > 1.1: # Перевантаження
+        base_h2 += random.uniform(10.0, 25.0)
+    h2_ppm = round(base_h2 + random.uniform(-1.0, 1.0), 1)
+
+    # 3. Health Score (0-100)
+    target_health = 100.0
+    if temperature_c > 75.0:
+        target_health -= (temperature_c - 75.0) * 0.5
+    if h2_ppm > 50.0:
+        target_health -= (h2_ppm - 50.0) * 0.1
+    if factor > 1.0:
+        target_health -= (factor - 1.0) * 5.0
+
+    # Плавне відновлення/деградація здоров'я
+    if target_health > prev_health:
+        new_h = min(target_health, prev_health + 5.0)
+    else:
+        new_h = target_health
+
+    final_health = max(0.0, min(round(new_h, 1), 100.0))
+    
+    return temperature_c, h2_ppm, final_health
+
+
 def calculate_generator_output(
     gen_type: str, max_mw: float, ts: datetime.datetime
 ) -> float:

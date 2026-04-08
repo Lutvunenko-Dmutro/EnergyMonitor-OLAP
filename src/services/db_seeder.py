@@ -10,6 +10,7 @@ from src.core.physics import (
     calculate_energy_price,
     calculate_generator_output,
     calculate_substation_load,
+    calculate_transformer_health,
     calculate_weather,
 )
 from src.services.generator_constants import BASE_CAPACITY_MAP
@@ -92,32 +93,12 @@ def generate_professional_data():
 
                 cap_f = float(cap) if cap else 100.0
                 previous_factors[sid] = actual_load / cap_f if cap_f > 0 else 0.5
-                factor = previous_factors[sid]
-
-                base_temp = 50.0 + (factor * 30.0)
-                temperature_c = round(base_temp + random.uniform(-2.0, 2.0), 1)
-
-                base_h2 = 10.0 + (factor * 20.0)
-                if factor > 1.1:
-                    base_h2 += random.uniform(10.0, 25.0)
-                h2_ppm = round(base_h2 + random.uniform(-1.0, 1.0), 1)
-
-                target_health = 100.0
-                if temperature_c > 75.0:
-                    target_health -= (temperature_c - 75.0) * 0.5
-                if h2_ppm > 50.0:
-                    target_health -= (h2_ppm - 50.0) * 0.1
-                if factor > 1.0:
-                    target_health -= (factor - 1.0) * 5.0
-
-                prev_h = current_health[sid]
-                if target_health > prev_h:
-                    new_h = min(target_health, prev_h + 5.0)
-                else:
-                    new_h = target_health
-
-                current_health[sid] = max(0.0, min(round(new_h, 1), 100.0))
-                health_score = current_health[sid]
+                
+                # Використовуємо уніфіковану фізику здоров'я
+                temperature_c, h2_ppm, health_score = calculate_transformer_health(
+                    actual_load, cap_f, current_health[sid]
+                )
+                current_health[sid] = health_score
 
                 data_loads.append((ts, actual_load, sid, temperature_c, h2_ppm, health_score))
 
