@@ -1,5 +1,15 @@
 import logging
 import os
+
+# --- OPENBLAS & NUMPY MEMORY SPIKE PREVENTION ---
+# Забороняємо математичним бібліотекам створювати зайві потоки,
+# які дублюють пам'ять і вбивають Render (OpenBLAS Memory allocation failed).
+os.environ["OPENBLAS_NUM_THREADS"] = "1"
+os.environ["MKL_NUM_THREADS"] = "1"
+os.environ["OMP_NUM_THREADS"] = "1"
+os.environ["VECLIB_MAXIMUM_THREADS"] = "1"
+os.environ["NUMEXPR_NUM_THREADS"] = "1"
+
 import sys
 import warnings
 
