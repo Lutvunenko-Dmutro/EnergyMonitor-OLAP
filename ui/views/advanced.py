@@ -1,6 +1,7 @@
 import pandas as pd
 import plotly.express as px
 import streamlit as st
+from utils.ui_helpers import safe_plotly_render
 from statsmodels.tsa.seasonal import seasonal_decompose
 
 from core.analytics.clustering import cluster_substations
@@ -81,7 +82,7 @@ def render_advanced_analysis(df, selected_substation):
                             "max_load": "Пікове навантаження (МВт)",
                         },
                     )
-                    st.plotly_chart(fig, use_container_width=True)
+                    safe_plotly_render(fig)
 
                 with col_stats:
                     st.write("### 📋 Статистика")
@@ -212,7 +213,7 @@ def render_advanced_analysis(df, selected_substation):
                     fig_decomp.for_each_annotation(
                         lambda a: a.update(text=a.text.split("=")[-1])
                     )
-                    st.plotly_chart(fig_decomp, use_container_width=True)
+                    safe_plotly_render(fig_decomp)
 
                 except Exception as e:
                     st.warning(f"Помилка розрахунку тренду: {e}")

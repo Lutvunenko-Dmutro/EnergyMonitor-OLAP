@@ -1,174 +1,226 @@
+"""
+🔮 UNIFIED FORECAST VIEW — AI Energy Monitor Ultimate
+Integrated dispatcher-style UI for the main Dashboard tab.
+"""
 import os
-
+import numpy as np
+import pandas as pd
+import plotly.graph_objects as go
 import streamlit as st
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 
-from src.core.database import run_query
+from utils.ui_helpers import safe_plotly_render
+from ui.views.forecast_components.constants import MODEL_LABELS, MODEL_COLORS
+from ui.views.forecast_components.audits import _render_comparative_audit, _render_group_comparison
+from ui.views.forecast_components.layouts import render_single_forecast_results, render_backtest_execution_loop
 
-# Визначення шляхів до збережених моделей та скейлерів
-_BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-_MODEL_PATH = os.path.join(_BASE_DIR, "models", "substation_model_v2.h5")
-_SCALER_PATH = os.path.join(_BASE_DIR, "models", "scaler_v2.pkl")
+from ml.forecast_controller import cached_ai_forecast as _cached_ai_forecast
+from ml.forecast_controller import get_cached_history as _get_history
+from ui.components.charts import _generate_mega_hybrid_figure, _generate_forecast_figure
 
-from ui.segments.forecast_segments import render_comparison, render_forecast_results
-
-
-def render(
-    selected_substation: str = "Усі підстанції",
-    data_source: str = "Синтетична модель (Smart City)",
-):
+def render(selected_substation="Усі підстанції", data_source="Live"):
     """
-    Точка входу для рендерингу інтерфейсу прогнозування ШІ.
-
-    :param selected_substation: Обрана підстанція або перелік.
-    :param data_source: Джерело даних ('Live' / 'CSV').
+    Main entry point from dashboard.py
     """
-    try:
-        _render_inner(selected_substation, data_source)
-    except Exception as exc:
-        st.error(f"❌ Критична помилка вкладки Прогноз ШІ: {exc}")
-        with st.expander("🔍 Stack trace"):
-            import traceback
-
-            st.code(traceback.format_exc())
-
-
-def _render_inner(selected_substation: str, data_source: str):
-    """
-    Внутрішній метод рендерингу логіки прогнозування.
-
-    :param selected_substation: Назва обраної підстанції.
-    :param data_source: Тип джерела даних.
-    """
-    st.subheader("🔮 ШІ-прогноз споживання (Batch Analysis)")
-    st.markdown(
-        "Ця вкладка використовує нейронну мережу **LSTM**, щоб передбачити "
-        "навантаження на мережу на основі історичних даних за останні 24 години. "
-        "Ви можете обрати кілька підстанцій для масового аналізу."
-    )
-
-    # Перевірка наявності файлів моделей в директорії
-    model_v3 = os.path.join(_BASE_DIR, "models", "substation_model_v3.h5")
-    model_v2 = os.path.join(_BASE_DIR, "models", "substation_model_v2.h5")
-    model_v1 = os.path.join(_BASE_DIR, "models", "substation_model_v1.h5")
-    scaler_v3 = os.path.join(_BASE_DIR, "models", "scaler_v3.pkl")
-    scaler_v2 = os.path.join(_BASE_DIR, "models", "scaler_v2.pkl")
-    scaler_v1 = os.path.join(_BASE_DIR, "models", "scaler_v1.pkl")
-
-    with st.sidebar.expander("🛠️ AI Diagnostics", expanded=False):
-        st.write("**Weights Checklist:**")
-        st.write(
-            f"- **V1** Model: {'🟢 Знайдено' if os.path.exists(model_v1) else '🔴 Відсутній'}"
-        )
-        st.write(
-            f"- **V1** Scaler: {'🟢 Знайдено' if os.path.exists(scaler_v1) else '🔴 Відсутній'}"
-        )
-        st.markdown("---")
-        st.write(
-            f"- **V2** Model: {'🟢 Знайдено' if os.path.exists(model_v2) else '🔴 Відсутній'}"
-        )
-        st.write(
-            f"- **V2** Scaler: {'🟢 Знайдено' if os.path.exists(scaler_v2) else '🔴 Відсутній'}"
-        )
-        st.markdown("---")
-        st.write(
-            f"- **V3** Model: {'🟢 Знайдено' if os.path.exists(model_v3) else '🔴 Відсутній'}"
-        )
-        st.write(
-            f"- **V3 Scaler**: {'🟢 Знайдено' if os.path.exists(scaler_v3) else '🔴 Відсутній'}"
-        )
-
-    # Перевірка для відсікання
-    if (
-        not os.path.exists(model_v3)
-        and not os.path.exists(_MODEL_PATH)
-        and not os.path.exists(model_v1)
-    ):
-        st.warning("⚠️ Жодна модель LSTM ще не навчена. Прогноз недоступний.")
-        st.info(
-            "Натренуйте V1: `python ml/train_v1.py` або V3 `python -m ml.train_lstm --version v3`"
-        )
-        return
-
-    # Налаштування параметрів прогнозування
-    st.markdown("### ⚙️ Налаштування параметрів")
-
-    is_kaggle = data_source == "Еталонні дані (Kaggle)"
-    model_options = (
-        ["V1 (Базова - тільки МВт)"]
-        if is_kaggle
-        else ["V1 (Базова - тільки МВт)", "V2 (Мультимодальна)", "V3 (Advanced + Час)"]
-    )
-
-    # Вибір версії моделі для аналізу
-    model_version_name = st.sidebar.selectbox(
-        "🧠 Інтелект моделі",
-        options=model_options,
-        index=0 if is_kaggle else 2,
-        disabled=is_kaggle,
-        help="Для Kaggle даних доступна лише базова модель V1 (тільки навантаження)."
-        if is_kaggle
-        else None,
-    )
-    version_map = {
-        "V1 (Базова - тільки МВт)": "v1",
-        "V2 (Мультимодальна)": "v2",
-        "V3 (Advanced + Час)": "v3",
-    }
-    selected_version = version_map[model_version_name]
-
-    # Починаємо з порожнього списку
-    if "default_idx" not in locals():
-        default_idx = 0
-
-    source_type = "CSV" if is_kaggle else "Live"
-
-    # Визначаємо список підстанцій заздалегідь для Live-режиму
-    sub_list = ["AEP Region"]
-    if source_type == "CSV":
-        from src.core.kaggle_loader import load_kaggle_data
-
-        df_all = load_kaggle_data()
-        sub_all_list = ["Усі підстанції"] + df_all["substation_name"].unique().tolist()
+    is_multi = isinstance(selected_substation, list) and len(selected_substation) > 1
+    
+    if is_multi:
+        sub_name = selected_substation  
+        sub_label = f"Група ({len(sub_name)} ПС)"
     else:
-        try:
-            sub_res = run_query(
-                "SELECT substation_name FROM Substations ORDER BY substation_name"
-            )
-            sub_names = [
-                s for s in sub_res["substation_name"].tolist() if s != "AEP Region"
-            ]
-            sub_all_list = (
-                ["Усі підстанції"] + sub_names
-                if not sub_res.empty
-                else ["Усі підстанції"]
-            )
-        except Exception:
-            sub_all_list = ["Усі підстанції"]
-
-    # Визначення переліку об'єктів для аналізу
-    use_aggregate = (
-        "Усі підстанції" in selected_substation or not selected_substation
-        if isinstance(selected_substation, list)
-        else selected_substation == "Усі підстанції"
-    )
-
-    if use_aggregate:
-        st.info(
-            f"🌍 Обрано для аналізу: **Вся мережа** ({len(sub_all_list) - 1} локальних підстанцій)."
-        )
-        if source_type == "CSV":
-            selected_subs = [s for s in sub_all_list if s != "Усі підстанції"]
+        if isinstance(selected_substation, list):
+            sub_name = selected_substation[0] if selected_substation else "Усі підстанції"
         else:
-            clean_subs = [
-                s for s in sub_all_list if s not in ["Усі підстанції", "AEP Region"]
-            ]
-            selected_subs = ["Усі підстанції"] + clean_subs
+            sub_name = selected_substation or "Усі підстанції"
+        sub_label = sub_name
+
+    src_type = "CSV" if "Kaggle" in data_source or "CSV" in data_source else "Live"
+
+    st.markdown("### ⚡ Оперативний прогноз та аудит точності")
+    col_cfg1, col_cfg2 = st.columns([2, 3])
+    
+    if src_type == "CSV":
+        available_models = {"v1": "LSTM-v1 (1 ознака - Базова)"}
+        model_notice = "💡 Для еталонних даних (Kaggle) використовується архітектура V1, оскільки CSV не містить телеметрії датчиків."
     else:
-        st.success(f"🎯 Обрано для аналізу: **{', '.join(selected_substation)}**")
-        selected_subs = selected_substation
+        available_models = MODEL_LABELS
+        model_notice = None
 
-    st.markdown("<br>", unsafe_allow_html=True)
+    with col_cfg1:
+        ver_label = st.selectbox(
+            "🧠 Архітектура моделі", list(available_models.items()), 
+            index=0, format_func=lambda x: x[1], key="tab_model_select"
+        )
+        version = ver_label[0]
+    
+    with col_cfg2:
+        st.info(f"📍 Об'єкт: **{sub_label}** | 📡 Джерело: **{src_type}**")
+        if model_notice: st.caption(model_notice)
+        elif sub_name == "Усі підстанції": st.success("🌍 Режим: Мульти-Дашборд (Прогноз для всіх об'єктів системи)")
+        elif is_multi: st.warning(f"⚖️ Режим: Груповий аналіз ({len(sub_name)} об'єктів)")
 
-    # Викликаємо фрагменти
-    render_comparison(selected_subs, source_type, sub_all_list)
-    render_forecast_results(selected_subs, source_type, selected_version)
+    if src_type != "CSV":
+        with st.expander("⚙️ Параметри симуляції сценарію (Температура, Стан ПС)", expanded=False):
+            s1, s2, s3 = st.columns(3)
+            sim_temp   = s1.slider("🌡️ Температура (°C)", -20, 45, 15, key="tab_s_temp")
+            sim_h2     = s2.slider("💨 H₂ (ppm)",          0, 500, 20, 5, key="tab_s_h2")
+            sim_health = s3.slider("🩺 Стан обладн. (%)",   0, 100, 100, key="tab_s_health")
+        scenario = {"air_temp": sim_temp, "h2_ppm": sim_h2, "health_score": sim_health}
+    else:
+        st.info("💡 Інтерактивна симуляція сценаріїв недоступна для еталонних даних (відсутні датчики).")
+        scenario = {"air_temp": 15, "h2_ppm": 5, "health_score": 100}
+
+    st.divider()
+
+    c1, c2 = st.columns(2)
+    btn_forecast = c1.button("⚡ Отримати прогноз", type="primary", use_container_width=True, key="tab_btn_fc")
+    
+    if sub_name == "Усі підстанції":
+        bt_label = "🌍 Глобальний аудит системи (Всі ПС)"
+        bt_help = "Запускає масовий перерахунок точності для кожної підстанції в базі даних для комплексного аналізу мережі."
+    elif is_multi:
+        bt_label = f"⚖️ Груповий аналіз ({len(sub_name)} ПС)"
+        bt_help = "Порівнює навантаження обраних станцій на одному графіку для виявлення дисбалансів."
+    else:
+        if src_type == "CSV":
+            bt_label = f"🎯 Детальний аудит точності V1 ({sub_name})"
+            bt_help = f"Запускає глибоку перевірку базової моделі V1 на еталонних даних {sub_name}."
+        else:
+            bt_label = f"📊 Порівняти моделі для {sub_name}"
+            bt_help = f"Виконує паралельний запуск V1, V2 та V3 для {sub_name}, щоб визначити найефективнішу архітектуру ШІ."
+        
+    btn_backtest = c2.button(bt_label, type="secondary", use_container_width=True, key="tab_btn_bt", help=bt_help)
+
+    if btn_forecast:
+        st.session_state["tab_active_mode"] = "forecast"
+        st.session_state["bt_status"] = "stopped"
+        for k in ["tab_metrics", "tab_sigma", "tab_bt_df", "tab_fc_df", "tab_hist_df"]:
+            if k in st.session_state: del st.session_state[k]
+            
+        with st.spinner("🧠 Генерація прогнозу для групи..."):
+            from src.core import database as db
+            
+            if sub_name == "Усі підстанції":
+                if src_type == "CSV":
+                    from src.core.kaggle_loader import load_kaggle_data
+                    k_df = load_kaggle_data()
+                    stations_to_process = k_df["substation_name"].unique().tolist() if not k_df.empty else []
+                else:
+                    sub_df = db.run_query("SELECT substation_name FROM Substations ORDER BY substation_name")
+                    stations_to_process = sub_df["substation_name"].tolist() if not sub_df.empty else []
+                
+                hero_title = f"⚡ ГЛОБАЛЬНА СИСТЕМА — Сумарний прогноз ({version.upper()})"
+                sub_id_for_hero = "Усі підстанції"
+            elif is_multi:
+                stations_to_process = sub_name 
+                hero_title = f"⚖️ ГРУПА {len(sub_name)} ПС — Сумарний прогноз ({version.upper()})"
+                sub_id_for_hero = sub_name 
+            else:
+                stations_to_process = [] 
+                hero_title = f"📍 {sub_name} — Оперативний прогноз ({version.upper()})"
+                sub_id_for_hero = sub_name
+
+            if sub_name == "Усі підстанції" or is_multi:
+                st.markdown(f"#### 🌍 {hero_title.split(' — ')[0]}")
+                res_global = _cached_ai_forecast(
+                    hours_ahead=24, substation_name=sub_id_for_hero, 
+                    source_type=src_type, version=version, scenario=scenario
+                )
+                if res_global:
+                    df_fc_g, _ = res_global
+                    df_hist_g = _get_history(sub_id_for_hero, src_type)
+                    fig_g = _generate_forecast_figure(
+                        df_hist_g, df_fc_g, hero_title, version.upper()
+                    )
+                    safe_plotly_render(fig_g, key="hero_group_fc")
+                
+                if stations_to_process:
+                    st.divider()
+                    st.markdown("#### 🏢 Деталізація по об'єктах")
+                    g_cols = st.columns(2)
+                    for i, station in enumerate(stations_to_process):
+                        res_s = _cached_ai_forecast(
+                            hours_ahead=24, substation_name=station, 
+                            source_type=src_type, version=version, scenario=scenario
+                        )
+                        if res_s:
+                            df_f, _ = res_s
+                            df_h = _get_history(station, src_type)
+                            if not df_f.empty:
+                                with g_cols[i % 2]:
+                                    fig_s = _generate_forecast_figure(
+                                        df_h, df_f, f"📍 {station}", version.upper()
+                                    )
+                                    fig_s.update_layout(height=350)
+                                    safe_plotly_render(fig_s, key=f"grid_fc_{station}")
+                                    st.divider()
+                st.session_state["tab_active_mode"] = "multi_mode_finished"
+            else:
+                res_fc = _cached_ai_forecast(
+                    hours_ahead=24, substation_name=sub_name, 
+                    source_type=src_type, version=version, scenario=scenario
+                )
+                if res_fc:
+                    df_fc, err = res_fc
+                    df_hist = _get_history(sub_name, src_type)
+                    if not err and not df_fc.empty:
+                        st.session_state["tab_fc_df"] = df_fc
+                        st.session_state["tab_hist_df"] = df_hist
+                        st.session_state["tab_ver"] = version
+                        st.session_state["tab_sub_lbl"] = sub_name
+                    elif err: st.error(f"❌ {err}")
+
+    if sub_name != "Усі підстанції" and st.session_state.get("tab_active_mode") == "forecast" and "tab_fc_df" in st.session_state:
+        df_fc = st.session_state["tab_fc_df"]
+        df_hist = st.session_state["tab_hist_df"]
+        ver_lbl = st.session_state["tab_ver"].upper()
+        sub_lbl = st.session_state["tab_sub_lbl"]
+        
+        render_single_forecast_results(df_fc, df_hist, ver_lbl, sub_lbl, src_type, version)
+
+    if btn_backtest:
+        from src.core import database as db
+        from ml.forecast_controller import cached_fast_backtest
+        st.session_state["tab_active_mode"] = "backtest"
+        
+        if sub_name == "Усі підстанції" or is_multi:
+            st.session_state["bt_status"] = "multi_running"
+            st.session_state["multi_bt_results"] = {}
+            
+            if sub_name == "Усі підстанції":
+                if src_type == "CSV":
+                    from src.core.kaggle_loader import load_kaggle_data
+                    k_df = load_kaggle_data()
+                    stations = k_df["substation_name"].unique().tolist() if not k_df.empty else []
+                else:
+                    sub_df = db.run_query("SELECT substation_name FROM Substations ORDER BY substation_name")
+                    stations = sub_df["substation_name"].tolist() if not sub_df.empty else []
+                pr_text = "🌍 Глобальний аудит системи..."
+            else:
+                stations = sub_name 
+                pr_text = f"⚖️ Груповий аудит ({len(stations)} об'єктів)..."
+            
+            progress_bar = st.progress(0, text=pr_text)
+            try:
+                for i, station in enumerate(stations):
+                    progress_bar.progress((i+1)/len(stations), text=f"📊 Аналіз точності: {station} ({i+1}/{len(stations)})")
+                    res = cached_fast_backtest(station, version, src_type)
+                    if res:
+                        st.session_state["multi_bt_results"][station] = res
+            except Exception as e:
+                st.error(f"⚠️ Помилка виконання Аудиту: {e}")
+            
+            st.session_state["bt_status"] = "multi_finished"
+            st.rerun()
+        else:
+            st.session_state["tab_active_mode"] = "comparison_audit"
+            if "bt_status" in st.session_state: del st.session_state["bt_status"]
+            st.rerun()
+
+    if st.session_state.get("tab_active_mode") == "comparison_audit":
+        _render_comparative_audit(sub_name, src_type)
+        if st.button("⬅️ Повернутись до прогнозу"):
+            st.session_state["tab_active_mode"] = "forecast"
+            st.rerun()
+
+    render_backtest_execution_loop(sub_name, version, src_type)

@@ -1,8 +1,10 @@
 import datetime
 
+import streamlit as st
 from src.core.database import run_query
 
 
+@st.cache_data(ttl=3600)
 def get_archive_bounds():
     """Отримує часові межі даних з бази."""
     return run_query(
@@ -11,6 +13,7 @@ def get_archive_bounds():
     )
 
 
+@st.cache_data(ttl=600)
 def load_archive_data(start: datetime.date, end: datetime.date, region: str):
     """Агрегує погодинні дані: завантаження + погода + стан залiза."""
     filter_clause = ""
@@ -51,6 +54,7 @@ def load_archive_data(start: datetime.date, end: datetime.date, region: str):
     return run_query(sql, params)
 
 
+@st.cache_data(ttl=600)
 def load_rhythm_data(start: datetime.date, end: datetime.date, region: str):
     """Середнє навантаження по годині доби для кожного дня тижня."""
     filter_clause = ""

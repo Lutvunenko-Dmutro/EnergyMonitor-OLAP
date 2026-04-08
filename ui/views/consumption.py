@@ -1,6 +1,7 @@
 import pandas as pd
 import plotly.express as px
 import streamlit as st
+from utils.ui_helpers import safe_plotly_render
 
 from core.analytics.aggregator import add_relative_load, aggregate_consumption
 
@@ -120,7 +121,7 @@ def render(df_load: pd.DataFrame, group_by_col: str):
         fig.for_each_annotation(lambda a: a.update(text=a.text.split("=")[-1]))
         fig.update_yaxes(matches=None, showticklabels=True)
 
-    st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": True})
+    safe_plotly_render(fig)
     st.markdown("---")
 
     # Аналіз статистичного розподілу (Boxplot + Scatter)
@@ -148,9 +149,7 @@ def render(df_load: pd.DataFrame, group_by_col: str):
             legend=dict(orientation="h", y=1.1),
             margin=dict(l=10, r=10, t=30, b=10),
         )
-        st.plotly_chart(
-            fig_box, use_container_width=True, config={"displayModeBar": False}
-        )
+        safe_plotly_render(fig_box)
 
     with col2:
         if "temperature" in df_plot.columns and df_plot["temperature"].notna().any():
@@ -171,8 +170,6 @@ def render(df_load: pd.DataFrame, group_by_col: str):
                 title=f"{y_label} vs Температура",
             )
             fig_scat.update_layout(margin=dict(l=10, r=10, t=40, b=10))
-            st.plotly_chart(
-                fig_scat, use_container_width=True, config={"displayModeBar": False}
-            )
+            safe_plotly_render(fig_scat)
         else:
             st.info("🌡️ Аналіз температури недоступний для Kaggle даних.")

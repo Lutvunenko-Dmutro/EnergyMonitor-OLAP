@@ -4,6 +4,7 @@ import streamlit as st
 
 from src.core import database as db
 from ui.views import kpi as tab_kpi
+from src.services.db_services import get_latest_measurements
 
 logger = logging.getLogger("ENERGY_MONITOR")
 
@@ -17,7 +18,7 @@ def live_telemetry_wrapper():
     region_filter = st.session_state.get("selected_region", None)
 
     try:
-        telemetry_data = db.get_latest_measurements()
+        telemetry_data = get_latest_measurements()
 
         if telemetry_data is None or telemetry_data.empty:
             st.warning("🔌 СИСТЕМА МОНІТОРИНГУ В ОЧІКУВАННІ ДАНИХ")

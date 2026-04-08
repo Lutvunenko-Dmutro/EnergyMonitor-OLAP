@@ -30,25 +30,20 @@ from ui.views import (
 def sync_nav():
     """
     Синхронізує стан навігації між елементами інтерфейсу.
+    Запобігає 'розсипанню' індексів при завантаженні/зміні джерела даних.
     """
-    options = st.session_state.get(
-        "current_options",
-        [
-            "🗺️ Карта мережі",
-            "📉 Споживання",
-            "🏭 Генерація",
-            "🚨 Журнал аварій",
-            "💰 Економіка",
-            "🤖 AI Аналітика",
-            "🔮 Прогноз ШІ",
-            "📜 Цифровий архів",
-        ],
-    )
+    options = st.session_state.get("current_options", [])
+    if not options:
+        return
+
     if "top_navigation" in st.session_state:
         try:
             st.session_state.nav_index = options.index(st.session_state.top_navigation)
         except ValueError:
             st.session_state.nav_index = 0
+            # Скидаємо ключ, якщо стара назва вкладки зникла з нового списку опцій
+            if "top_navigation" in st.session_state:
+                del st.session_state["top_navigation"]
 
 
 def render_dashboard_ui(
@@ -106,62 +101,60 @@ def render_dashboard_ui(
         label_visibility="collapsed",
     )
 
-    # Вкладка 1: Карта мережі
-    if current_page == "🗺️ Карта мережі":
+    # 🛒 DEBUG NAVIGATION (Hidden in production)
+    # st.write(f"DEBUG: Selected={current_page} | Index={st.session_state.nav_index}")
 
+    # ─── NAVIGATION ROUTING ───
+    # Використовуємо явну перевірку рядка для надійності рендерингу
+
+    # Вкладка 1: Карта мережі (Live Map Dispatcher)
+    if current_page == "🗺️ Карта мережі":
         @st.fragment(run_every=5)
         def live_map():
             if not processed_data["load"].empty:
                 tab_map.render(processed_data["load"])
             else:
-                st.info("Завантаження геоданих...")
-
+                st.info("🌐 Завантаження геоданих... Очікуйте синхронізації.")
         live_map()
 
-    # Вкладка 2: Споживання
+    # Вкладка 2: Споживання (Consumption Analytics)
     elif current_page == "📉 Споживання":
-
         @st.fragment(run_every=5)
         def live_consumption():
             tab_consumption.render(processed_data["load"], group_col)
-
         live_consumption()
 
-    # Вкладка 3: Генерація
+    # Вкладка 3: Генерація (Generation Multi-Source)
     elif current_page == "🏭 Генерація":
         tab_generation.render(processed_data["gen"])
 
-    # Вкладка 4: Журнал аварій
+    # Вкладка 4: Журнал аварій (Alerts & Incident Log)
     elif current_page == "🚨 Журнал аварій":
-
         @st.fragment(run_every=5)
         def live_alerts():
             tab_alerts.render(processed_data["alerts"])
-
         live_alerts()
 
-    # Вкладка 5: Економіка
+    # Вкладка 5: Економіка (Finance & Energy Flow)
     elif current_page == "💰 Економіка":
         tab_finance.render(processed_data["fin"], processed_data["lines"])
 
-    # Вкладка 6: AI Аналітика
+    # Вкладка 6: AI Аналітика (Advanced AI & Clustering)
     elif current_page == "🤖 AI Аналітика":
-
         @st.fragment(run_every=10)
         def live_ai():
             tab_advanced.render_advanced_analysis(
                 processed_data["load"], selected_substation
             )
-
         live_ai()
 
-    # Вкладка 7: Прогноз ШІ
+    # Вкладка 7: Прогноз ШІ (Neural Forecasting Engine)
     elif current_page == "🔮 Прогноз ШІ":
         tab_forecast.render(
             selected_substation=selected_substation, data_source=data_source
         )
 
-    # Вкладка 8: Цифровий архів
+    # Вкладка 8: Цифровий архів (Historical Audit)
     elif current_page == "📜 Цифровий архів":
         tab_audit.render(
             selected_region=selected_region,

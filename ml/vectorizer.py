@@ -1,249 +1,219 @@
+import logging
+from typing import Tuple, Optional, Dict, List, Any
+
 import numpy as np
 import pandas as pd
-
 from src.core.database import run_query
 
-WINDOW_SIZE = 24
+# --- CONSTANTS ---
+DEFAULT_WINDOW_SIZE = 48  # Unified 48h horizon for all V3+ models
+logger = logging.getLogger(__name__)
+
+
+def select_features_v2(data: Any, version: str = "v3") -> np.ndarray:
+    """Standardized feature selection for LSTM input tensors.
+
+    Args:
+        data: Input data as pd.DataFrame or np.ndarray.
+        version: Model version ('v1', 'v2', 'v3').
+
+    Returns:
+        NumPy array containing only relevant features in the correct order.
+    """
+    if data is None:
+        return np.array([])
+    
+    # Feature Map Definition (Stable Order)
+    v1_features = ["actual_load_mw"]
+    v2_features = v1_features + ["temperature_c", "h2_ppm", "health_score", "air_temp"]
+    v3_features = v2_features + ["hour_sin", "hour_cos", "day_sin", "day_cos"]
+    
+    target_f = v3_features if version == "v3" else (v2_features if version == "v2" else v1_features)
+    
+    if isinstance(data, pd.DataFrame):
+        # Ensure all required columns exist, fill with 0 if missing (Safety Layer)
+        for col in target_f:
+            if col not in data.columns:
+                data[col] = 0.0
+        return data[target_f].values
+    
+    # For NumPy arrays, assume the first N columns match the registry
+    expected_len = len(target_f)
+    if data.shape[1] < expected_len:
+        # Pad with zeros if coming from a raw source that missed columns
+        padding = np.zeros((data.shape[0], expected_len - data.shape[1]))
+        return np.hstack([data, padding])
+    
+    return data[:, :expected_len]
 
 
 def get_latest_window(
-    substation_name: str | None, source_type: str = "Live", version="v3"
-):
-    """
-    Формує вектор вхідних даних (Window) за останні 24 години для прогнозування.
+    substation_name: Optional[str],
+    source_type: str = "Live",
+    version: str = "v3",
+    offset_hours: int = 0,
+    window_size: int = DEFAULT_WINDOW_SIZE
+) -> Tuple[Optional[np.ndarray], Optional[Dict[str, float]], Optional[pd.Timestamp], Optional[List[str]]]:
+    """Fetches and prepares the most recent data window for forecasting.
 
-    :param substation_name: Назва підстанції.
-    :param source_type: Джерело даних ('Live' / 'CSV').
-    :param version: Версія архітектури моделі ('v1', 'v2', 'v3').
-    :return: Кортеж (np.ndarray, dict, pd.Timestamp, list).
+    Args:
+        substation_name: Substation identifier (None for global).
+        source_type: 'Live' (DB) or 'CSV' (Kaggle).
+        version: Model version for feature selection.
+        offset_hours: Rolling offset for backtesting.
+        window_size: Number of hours to look back.
+
+    Returns:
+        Tuple: (Input array, Last observed constants, Last timestamp, Feature names).
     """
+    # Unified Normalization to handle lists, strings, and "All"
+    is_all = not substation_name or substation_name in ["Усі підстанції", "Всі об'єкти", "Всі", "All", "Усі"]
+    if is_all:
+        substation_name = None
+
+    # Branch A: CSV Data Extraction (Backtest/Kaggle)
     if source_type == "CSV":
         from src.core.kaggle_loader import load_kaggle_data
-
         df_all = load_kaggle_data()
+        
         if substation_name:
-            df_all = df_all[df_all["substation_name"] == substation_name]
-
-        df = df_all.sort_values("timestamp", ascending=False).head(WINDOW_SIZE)
-        if df.empty:
-            return None, None, None, None
-        df = df.iloc[::-1].reset_index(drop=True)
-        df["oil_temp"] = 70.0
-        df["h2_ppm"] = 20.0
-        df["health"] = 100.0
-        df["air_temp"] = 15.0
-
-        df["ts"] = pd.to_datetime(df["timestamp"])
-        df["hour"] = df["ts"].dt.hour
-        df["day"] = df["ts"].dt.weekday
-        df["hour_sin"] = np.sin(2 * np.pi * df["hour"] / 24)
-        df["hour_cos"] = np.cos(2 * np.pi * df["hour"] / 24)
-        df["day_sin"] = np.sin(2 * np.pi * df["day"] / 7)
-        df["day_cos"] = np.cos(2 * np.pi * df["day"] / 7)
-
-        if version == "v1":
-            cols = ["actual_load_mw"]
-        elif version == "v2":
-            cols = ["actual_load_mw", "oil_temp", "h2_ppm", "health", "air_temp"]
+            if isinstance(substation_name, list):
+                df_all = df_all[df_all["substation_name"].isin(substation_name)]
+            else:
+                df_all = df_all[df_all["substation_name"] == substation_name]
+        
+        # Bulletproof Aggregation for CSV (Only 'actual_load_mw' is guaranteed)
+        if "actual_load_mw" in df_all.columns:
+            df_all = df_all.groupby("timestamp")["actual_load_mw"].sum().reset_index()
+        elif "load" in df_all.columns:
+            df_all = df_all.groupby("timestamp")["load"].sum().reset_index()
+            df_all.rename(columns={"load": "actual_load_mw"}, inplace=True)
         else:
-            cols = [
-                "actual_load_mw",
-                "oil_temp",
-                "h2_ppm",
-                "health",
-                "air_temp",
-                "hour_sin",
-                "hour_cos",
-                "day_sin",
-                "day_cos",
-            ]
+            # Fallback if somehow load column survived but namesake is wrong
+            load_col = [c for c in df_all.columns if "load" in c.lower() or "mw" in c.lower()]
+            if load_col:
+                df_all = df_all.groupby("timestamp")[load_col[0]].sum().reset_index()
+                df_all.rename(columns={load_col[0]: "actual_load_mw"}, inplace=True)
 
-        values = df[cols].values
-        constants = {"oil": 70.0, "h2": 20.0, "air": 15.0}
-        return values, constants, pd.to_datetime(df["timestamp"].iloc[-1]), cols
+        # Inject default sensors after aggregation for ML stability
+        df_all["temperature_c"] = 25.0
+        df_all["h2_ppm"] = 20.0
+        df_all["health_score"] = 100.0
+        df_all["air_temp"] = 15.0
 
-    # Live режим
-    if substation_name:
-        sql = """
+        df = df_all.sort_values("timestamp", ascending=False).iloc[offset_hours : offset_hours + window_size]
+        if len(df) < window_size:
+            return None, None, None, None
+            
+        df = df.iloc[::-1].reset_index(drop=True)
+        df["ts"] = pd.to_datetime(df["timestamp"])
+        
+        # Robust Imputation
+        df.interpolate(method='linear', limit_direction='both', inplace=True)
+        df.ffill().bfill(inplace=True)
+
+        return _prepare_features(df, version, last_ts_col="timestamp")
+
+    # Branch B: Live Database Extraction
+    params = {"sub": substation_name, "limit": window_size, "offset": offset_hours}
+    
+    # Unified Normalization to handle lists, strings, and "All"
+    all_indicators = ["Усі підстанції", "Всі об'єкти", "Всі", "All", "Усі"]
+    is_all = not substation_name or (isinstance(substation_name, list) and any(x in all_indicators for x in substation_name)) or substation_name in all_indicators
+    
+    params = {"limit": window_size, "offset": offset_hours}
+    
+    if not is_all:
+        if isinstance(substation_name, str):
+            sub_filter = "s.substation_name = :sub"
+            params["sub"] = substation_name
+        else:
+            # Multi-select support for PostgreSQL
+            sub_filter = "s.substation_name = ANY(:sub)"
+            params["sub"] = list(substation_name)
+
+        sql = f"""
         SELECT
-            AVG(lm.actual_load_mw) AS actual_load_mw,
+            SUM(lm.actual_load_mw) AS actual_load_mw,
             AVG(lm.temperature_c) AS temperature_c,
             AVG(lm.h2_ppm) AS h2_ppm,
             AVG(lm.health_score) AS health_score,
             AVG(COALESCE(wr.temperature, 15.0)) AS air_temp,
-            DATE_TRUNC('hour', lm.timestamp) AS ts
+            DATE_TRUNC('hour', lm.timestamp) AS timestamp
         FROM LoadMeasurements lm
         JOIN Substations s ON lm.substation_id = s.substation_id
         JOIN Regions r     ON s.region_id = r.region_id
         LEFT JOIN WeatherReports wr 
                ON DATE_TRUNC('hour', wr.timestamp) = DATE_TRUNC('hour', lm.timestamp)
                AND wr.region_id = r.region_id
-        WHERE s.substation_name = :sub
-        GROUP BY DATE_TRUNC('hour', lm.timestamp)
-        ORDER BY ts DESC LIMIT :limit
+        WHERE {sub_filter}
+        GROUP BY 6 ORDER BY timestamp DESC LIMIT :limit OFFSET :offset
         """
-        df = run_query(sql, {"sub": substation_name, "limit": WINDOW_SIZE})
     else:
+        # Aggregated System-Wide View
         sql = """
-            SELECT 
-                SUM(avg_load) AS actual_load_mw,
-                AVG(avg_temp) AS temperature_c,
-                AVG(avg_h2) AS h2_ppm,
-                AVG(avg_health) AS health_score,
-                AVG(avg_air) AS air_temp,
-                ts
-            FROM (
-                SELECT 
-                    DATE_TRUNC('hour', lm.timestamp) AS ts,
-                    lm.substation_id,
-                    AVG(lm.actual_load_mw)           AS avg_load,
-                    AVG(lm.temperature_c)            AS avg_temp,
-                    AVG(lm.h2_ppm)                   AS avg_h2,
-                    AVG(lm.health_score)             AS avg_health,
-                    AVG(COALESCE(wr.temperature, 15.0)) AS avg_air
-                FROM LoadMeasurements lm
-                LEFT JOIN WeatherReports wr 
-                       ON DATE_TRUNC('hour', wr.timestamp) = DATE_TRUNC('hour', lm.timestamp)
-                GROUP BY DATE_TRUNC('hour', lm.timestamp), lm.substation_id
-            ) s
-            GROUP BY ts
-            ORDER BY ts DESC LIMIT :limit
+        SELECT SUM(avg_load) AS actual_load_mw, AVG(avg_temp) AS temperature_c,
+               AVG(avg_h2) AS h2_ppm, AVG(avg_health) AS health_score,
+               AVG(avg_air) AS air_temp, ts
+        FROM (
+            SELECT DATE_TRUNC('hour', lm.timestamp) AS ts, lm.substation_id,
+                   AVG(lm.actual_load_mw) AS avg_load, AVG(lm.temperature_c) AS avg_temp,
+                   AVG(lm.h2_ppm) AS avg_h2, AVG(lm.health_score) AS avg_health,
+                   AVG(COALESCE(wr.temperature, 15.0)) AS avg_air
+            FROM LoadMeasurements lm
+            LEFT JOIN WeatherReports wr ON DATE_TRUNC('hour', wr.timestamp) = DATE_TRUNC('hour', lm.timestamp)
+            GROUP BY 1, 2
+        ) sub_agg GROUP BY ts ORDER BY ts DESC LIMIT :limit OFFSET :offset
         """
-        df = run_query(sql, {"limit": WINDOW_SIZE})
-
-    if df.empty or len(df) < WINDOW_SIZE:
+        
+    df = run_query(sql, params)
+    
+    if df.empty or len(df) < window_size:
         return None, None, None, None
 
     df = df.iloc[::-1].reset_index(drop=True)
-    df = df.ffill().bfill()
+    df.rename(columns={"ts": "timestamp"}, inplace=True) if "ts" in df.columns else None
+    df["ts"] = pd.to_datetime(df["timestamp"] if "timestamp" in df.columns else df["ts"])
 
-    df["ts"] = pd.to_datetime(df["ts"])
-    df["hour"] = df["ts"].dt.hour
-    df["day"] = df["ts"].dt.weekday
+    # High-performance imputation
+    if df.isna().any().any():
+        df.interpolate(method='linear', limit_direction='both', inplace=True)
+        df.ffill().bfill(inplace=True)
 
-    df["hour_sin"] = np.sin(2 * np.pi * df["hour"] / 24)
-    df["hour_cos"] = np.cos(2 * np.pi * df["hour"] / 24)
-    df["day_sin"] = np.sin(2 * np.pi * df["day"] / 7)
-    df["day_cos"] = np.cos(2 * np.pi * df["day"] / 7)
+    return _prepare_features(df, version, last_ts_col="ts")
 
-    try:
-        if substation_name:
-            cap_res = run_query(
-                "SELECT capacity_mw FROM Substations WHERE substation_name = :sub",
-                {"sub": substation_name},
-            )
-            capacity_mw = (
-                float(cap_res["capacity_mw"].iloc[0]) if not cap_res.empty else 1000.0
-            )
-        else:
-            cap_res = run_query(
-                "SELECT SUM(capacity_mw) as capacity_mw FROM Substations WHERE substation_name != 'AEP Region'"
-            )
-            capacity_mw = (
-                float(cap_res["capacity_mw"].iloc[0]) if not cap_res.empty else 10000.0
-            )
-    except Exception:
-        capacity_mw = 1000.0
 
+def _prepare_features(df: pd.DataFrame, version: str, last_ts_col: str) -> Tuple[np.ndarray, Dict[str, float], pd.Timestamp, List[str]]:
+    """Internal helper to calculate periodic signals and metadata.
+
+    Args:
+        df: Processed DataFrame.
+        version: Architecture version.
+        last_ts_col: Name of the timestamp column.
+
+    Returns:
+        Same tuple format as get_latest_window.
+    """
+    # Vectorized Periodic Features
+    hours = df["ts"].dt.hour
+    days = df["ts"].dt.weekday
+    df["hour_sin"] = np.sin(2 * np.pi * hours / 24)
+    df["hour_cos"] = np.cos(2 * np.pi * hours / 24)
+    df["day_sin"] = np.sin(2 * np.pi * days / 7)
+    df["day_cos"] = np.cos(2 * np.pi * days / 7)
+
+    # State Metadata
     constants = {
-        "oil": float(df["temperature_c"].iloc[-1]),
-        "h2": float(df["h2_ppm"].iloc[-1]),
-        "air": float(df["air_temp"].iloc[-1]),
-        "capacity": capacity_mw,
+        "oil": float(df["temperature_c"].iloc[-1]) if "temperature_c" in df.columns else 70.0,
+        "h2": float(df["h2_ppm"].iloc[-1]) if "h2_ppm" in df.columns else 20.0,
+        "air": float(df["air_temp"].iloc[-1]) if "air_temp" in df.columns else 15.0,
+        "health": float(df["health_score"].iloc[-1]) if "health_score" in df.columns else 100.0,
     }
 
-    if version == "v1":
-        features = ["actual_load_mw"]
-    elif version == "v2":
-        features = [
-            "actual_load_mw",
-            "temperature_c",
-            "h2_ppm",
-            "health_score",
-            "air_temp",
-        ]
-    else:
-        features = [
-            "actual_load_mw",
-            "temperature_c",
-            "h2_ppm",
-            "health_score",
-            "air_temp",
-            "hour_sin",
-            "hour_cos",
-            "day_sin",
-            "day_cos",
-        ]
-
-    values = df[features].values
-    last_ts = pd.to_datetime(df["ts"].iloc[-1])
-
-    return values, constants, last_ts, features
-
-
-def get_local_scalers(version: str, values: np.ndarray):
-    """
-    Ініціалізує та навчає локальні скалери для ізоляції даних відповідно до версії.
-    """
-    from sklearn.preprocessing import MinMaxScaler
-
-    local_scaler = MinMaxScaler(feature_range=(0, 1))
-    scaled_window = local_scaler.fit_transform(values)
-
-    target_scaler = None
-    if version in ["v2", "v3"]:
-        target_scaler = MinMaxScaler(feature_range=(0, 1))
-        target_scaler.fit(values[:, 0].reshape(-1, 1))
-
-    return local_scaler, target_scaler, scaled_window
-
-
-def inverse_scale_predictions(
-    predictions: np.ndarray,
-    version: str,
-    local_scaler,
-    target_scaler,
-    scaler,
-    hours_ahead: int,
-):
-    """
-    Розмасштабовує передбачення назад у фізичні одиниці (МВт, % Health).
-    """
-    if version == "v1":
-        predictions_array = predictions[:, 0].reshape(-1, 1)
-        unscaled_fc = local_scaler.inverse_transform(predictions_array)
-        load_fc = unscaled_fc[:, 0]
-        health_fc = np.full(hours_ahead, 100.0)
-    elif version == "v3":
-        predictions_array = predictions[:, 0].reshape(-1, 1)
-        load_fc = target_scaler.inverse_transform(predictions_array)[:, 0]
-        placeholder = np.zeros((hours_ahead, 9))
-        placeholder[:, 0] = predictions[:, 0]
-        if predictions.shape[1] > 1:
-            placeholder[:, 3] = predictions[:, 1]
-        unscaled_fc = local_scaler.inverse_transform(placeholder)
-        health_fc = unscaled_fc[:, 3]
-    elif version == "v2":
-        predictions_array = predictions[:, 0].reshape(-1, 1)
-        load_fc = target_scaler.inverse_transform(predictions_array)[:, 0]
-        placeholder = np.zeros((hours_ahead, 5))
-        placeholder[:, 0] = predictions[:, 0]
-        if predictions.shape[1] > 1:
-            placeholder[:, 3] = predictions[:, 1]
-        unscaled_fc = local_scaler.inverse_transform(placeholder)
-        health_fc = unscaled_fc[:, 3]
-    else:
-        num_features = scaler.n_features_in_ if hasattr(scaler, "n_features_in_") else 1
-        placeholder = np.zeros((hours_ahead, num_features))
-        placeholder[:, 0] = predictions[:, 0]
-        if predictions.shape[1] > 1:
-            placeholder[:, 3] = predictions[:, 1]
-        unscaled_fc = scaler.inverse_transform(placeholder)
-        load_fc = unscaled_fc[:, 0]
-        health_fc = (
-            unscaled_fc[:, 3]
-            if predictions.shape[1] > 1
-            else np.full(hours_ahead, 100.0)
-        )
-
-    return load_fc, health_fc
+    values = select_features_v2(df, version)
+    last_ts = pd.to_datetime(df[last_ts_col].iloc[-1])
+    
+    f_names = ["actual_load_mw", "temperature_c", "h2_ppm", "health_score", "air_temp", "hour_sin", "hour_cos", "day_sin", "day_cos"]
+    f_limit = 9 if version == "v3" else (5 if version == "v2" else 1)
+    
+    return values, constants, last_ts, f_names[:f_limit]

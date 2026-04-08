@@ -7,6 +7,7 @@ import datetime
 
 import pandas as pd
 import streamlit as st
+from utils.ui_helpers import safe_plotly_render
 
 from core.database.archive import (
     get_archive_bounds as _get_archive_bounds,
@@ -123,7 +124,7 @@ def render(
     if not df_rhythm.empty:
         from ui.components.charts import render_rhythm_chart
 
-        st.plotly_chart(render_rhythm_chart(df_rhythm), use_container_width=True)
+        safe_plotly_render(render_rhythm_chart(df_rhythm))
     else:
         st.info("Недостатньо даних для побудови ритмічного графіку за обраний період.")
 
@@ -131,7 +132,7 @@ def render(
 
     # Кореляція навантаження та температури повітря
     st.markdown("#### 🌤️ Термодинамічний Баланс: Вплив Погоди")
-    st.plotly_chart(
+    safe_plotly_render(
         render_dual_axis_chart(
             df,
             "load_mw",
@@ -140,14 +141,13 @@ def render(
             "air_temp",
             "Повітря (°C)",
             "#38bdf8",
-        ),
-        use_container_width=True,
+        )
     )
     st.divider()
 
     # Кореляція навантаження та температури масла
     st.markdown("#### 🛢️ Теплова Діагностика: Трансформаторне Масло")
-    st.plotly_chart(
+    safe_plotly_render(
         render_dual_axis_chart(
             df,
             "load_mw",
@@ -156,18 +156,16 @@ def render(
             "oil_temp",
             "Масло (°C)",
             "#f43f5e",
-        ),
-        use_container_width=True,
+        )
     )
     st.divider()
 
     # Кореляція показників роботи та концентрації газів H2
     st.markdown("#### 🛡️ Моніторинг Здоров'я: Ресурс Обладнання")
-    st.plotly_chart(
+    safe_plotly_render(
         render_dual_axis_chart(
             df, "health", "Health Score (%)", "#22c55e", "h2_ppm", "H₂ (ppm)", "#a855f7"
-        ),
-        use_container_width=True,
+        )
     )
 
     # ── Таблиця: Raw Data ────────────────────────────────────────────────────────
