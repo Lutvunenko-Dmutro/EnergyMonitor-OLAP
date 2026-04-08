@@ -29,8 +29,8 @@ def render(selected_substation="Усі підстанції", data_source="Live"
 
     # 3. Control Buttons
     c1, c2 = st.columns(2)
-    btn_forecast = c1.button("⚡ Отримати прогноз", type="primary", use_container_width=True, key="tab_btn_fc")
-    btn_backtest = c2.button("📊 Аудит точності", type="secondary", use_container_width=True, key="tab_btn_bt")
+    btn_forecast = c1.button("⚡ Отримати прогноз", type="primary", width='stretch', key="tab_btn_fc")
+    btn_backtest = c2.button("📊 Аудит точності", type="secondary", width='stretch', key="tab_btn_bt")
 
     if btn_forecast:
         st.session_state["tab_active_mode"] = "forecast"

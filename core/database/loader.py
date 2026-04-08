@@ -11,6 +11,10 @@ from src.services.db_services import get_latest_measurements
 
 logger = logging.getLogger(__name__)
 
+# Глобальний фільтр для уникнення дублювання логів у терміналі при перезапусках Streamlit
+# Працює на рівні процесу Python, що надійніше за session_state для стартових логів.
+LOGGED_BOOT_MESSAGES = set()
+
 
 # --- ACTIVE LOADING EXTENSIONS ---
 
@@ -60,8 +64,12 @@ def get_active_boot_data_generator():
             if isinstance(chunk, dict): final_data.update(chunk)
             else: final_data["real_load"] = chunk
         
-        # Log to terminal as well
-        logger.info(msg.replace(">", "").strip())
+        # Log to terminal ONLY ONCE per unique message to avoid clutter
+        clean_msg = msg.replace(">", "").strip()
+        if clean_msg not in LOGGED_BOOT_MESSAGES:
+            logger.info(clean_msg)
+            LOGGED_BOOT_MESSAGES.add(clean_msg)
+            
         yield msg, p, final_data
 
 # --- UPDATED ENTRY POINTS ---

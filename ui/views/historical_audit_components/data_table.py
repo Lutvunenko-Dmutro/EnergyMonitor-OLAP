@@ -32,7 +32,7 @@ def render_raw_data_table(df, start_date, end_date):
 
     st.dataframe(
         df_display.style.format({col: "{:.2f}" for col in num_cols}),
-        use_container_width=True,
+        width='stretch',
         height=400,
     )
 
@@ -45,7 +45,7 @@ def render_raw_data_table(df, start_date, end_date):
             data=csv_bytes,
             file_name=f"archive_{start_date}_{end_date}.csv",
             mime="text/csv",
-            use_container_width=True
+            width='stretch'
         )
     
     # Гарантований відступ внизу для скролінгу

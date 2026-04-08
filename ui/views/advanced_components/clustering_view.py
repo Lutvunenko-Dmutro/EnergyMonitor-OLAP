@@ -44,7 +44,7 @@ def render_clustering_segment(df, use_log, selected_substation):
                 st.divider()
                 st.markdown("**Топ навантажених:**")
                 top_loaded = df_grouped.sort_values("avg_load", ascending=False).head(5)
-                st.dataframe(top_loaded[["substation_name", "avg_load"]], hide_index=True, use_container_width=True)
+                st.dataframe(top_loaded[["substation_name", "avg_load"]], hide_index=True, width='stretch')
         else:
             st.info("Недостатньо даних для кластеризації.")
     except Exception as e:

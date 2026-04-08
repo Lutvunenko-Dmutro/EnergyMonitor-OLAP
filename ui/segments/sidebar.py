@@ -134,13 +134,13 @@ def render_sidebar(data):
     is_running = lock_file.exists()
 
     if not is_running:
-        if st.sidebar.button("▶️ Запустити Live Датчики", type="primary", use_container_width=True):
+        if st.sidebar.button("▶️ Запустити Live Датчики", type="primary", width='stretch'):
             # Запускаємо процес
             subprocess.Popen([sys.executable, "-m", "src.services.sensors_db"])
             st.rerun()
     else:
         st.sidebar.success("✅ Датчики генерують дані (Фон)")
-        if st.sidebar.button("🛑 Зупинити Датчики", type="secondary", use_container_width=True):
+        if st.sidebar.button("🛑 Зупинити Датчики", type="secondary", width='stretch'):
             # Примусово видаляємо замок і даємо процесу самому зупинитись або вбиваємо (тут краще вбити, якщо ми маємо доступ)
             # Але в Singleton моделі з Heartbeat процес сам побачить відсутність активності.
             # Для миттєвої зупинки надішлемо сигнал або видалимо замок (якщо процес перевіряє замок).
@@ -158,7 +158,7 @@ def render_sidebar(data):
 
     with st.sidebar.expander("⚙️ Системні Дії (Data Generator)"):
         st.caption("Ця дія повністю видалить поточну телеметрію та засіє 'ідеальний' початковий набір даних для тестування ML.")
-        if st.button("♻️ Перегенерувати Базу Даних", type="primary", use_container_width=True):
+        if st.button("♻️ Перегенерувати Базу Даних", type="primary", width='stretch'):
             with st.spinner("⏳ Генерація (ETL)... триває 1-2 хвилини"):
                 try:
                     generate_professional_data()

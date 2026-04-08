@@ -53,9 +53,6 @@ def system_startup():
     # 3. ГЛУШИМО, ЩО МОЖЕМО
     warnings.filterwarnings("ignore")
     # Додатковий глушник для streamlit (можеш дописати, якщо хочеш)
-    warnings.filterwarnings(
-        "ignore", category=UserWarning, message=".*use_container_width.*"
-    )
 
 
 # Database & Queries

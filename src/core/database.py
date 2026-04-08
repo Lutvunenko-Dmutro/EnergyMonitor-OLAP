@@ -29,7 +29,7 @@ def get_engine():
     port = os.getenv("DB_PORT", "5432")
     dbname = os.getenv("DB_NAME", "postgres")
 
-    ssl_mode = os.getenv("DB_SSL", "prefer")
+    ssl_mode = os.getenv("DB_SSL", "require")
     url = f"postgresql+psycopg2://{user}:{password}@{host}:{port}/{dbname}?sslmode={ssl_mode}"
     return create_engine(url, pool_pre_ping=True)
 
@@ -37,20 +37,28 @@ def get_engine():
 # --- 2. psycopg2 CORE (For Data Generator) ---
 @contextmanager
 def get_db_cursor():
-    """Контекстний менеджер для безпечної роботи з базою даних через psycopg2."""
+    """Контекстний менеджер для безпечної роботи з базою даних через psycopg2 з ретраями."""
     conn = None
-    try:
-        conn = psycopg2.connect(**DB_CONFIG)
-        yield conn, conn.cursor()
-        conn.commit()
-    except Exception as e:
-        log.error(f"Database operation failed: {e}")
-        if conn:
-            conn.rollback()
-        raise e
-    finally:
-        if conn:
-            conn.close()
+    retries = 3
+    for i in range(retries):
+        try:
+            conn = psycopg2.connect(**DB_CONFIG)
+            yield conn, conn.cursor()
+            conn.commit()
+            break
+        except Exception as e:
+            if i < retries - 1:
+                log.warning(f"🔄 Спроба підключення до БД {i+1}/{retries} (база прокидається)...")
+                import time
+                time.sleep(3)
+                continue
+            log.error(f"Database operation failed: {e}")
+            if conn:
+                conn.rollback()
+            raise e
+        finally:
+            if conn:
+                conn.close()
 
 
 def execute_sql_file(cursor, filename):
@@ -69,43 +77,52 @@ def execute_sql_file(cursor, filename):
 # --- 3. SQLALCHEMY CORE (For Streamlit App) ---
 def run_query(query_text: str, params: Optional[dict] = None) -> pd.DataFrame:
     """
-    Виконує SELECT запит з підтримкою офлайн-кешування (Circuit Breaker).
-    Якщо БД недоступна, завантажує дані з локального Parquet-файлу.
+    Виконує SELECT запит з ретраями для холодного старту Neon DB.
     """
-    # Створюємо унікальний хеш для запиту для кешування
     query_id = hashlib.md5(f"{query_text}_{params}".encode()).hexdigest()
     cache_path = os.path.join("data", "fallback", f"query_{query_id}.parquet")
     os.makedirs(os.path.dirname(cache_path), exist_ok=True)
 
-    try:
-        engine = get_engine()
-        with engine.connect() as conn:
-            df = pd.read_sql(text(query_text), conn, params=params)
+    retries = 3
+    for i in range(retries):
+        try:
+            engine = get_engine()
+            with engine.connect() as conn:
+                df = pd.read_sql(text(query_text), conn, params=params)
+                
+                if not df.empty:
+                    df.to_parquet(cache_path, index=False)
+                return df
+                
+        except Exception as e:
+            err_msg = str(e).lower()
+            if ("503" in err_msg or "connection" in err_msg) and i < retries - 1:
+                import time
+                log.warning(f"🔌 БД Neon прокидається... Спроба {i+1}/{retries}")
+                time.sleep(4) # Даємо Neon час підняти інстанс
+                continue
+                
+            log.warning(f"⚠️ БД Neon недоступна. Офлайн-режим: {e}")
+            if os.path.exists(cache_path):
+                return pd.read_parquet(cache_path)
             
-            # Дзеркалюємо успішний запит у локальний кеш
-            if not df.empty:
-                df.to_parquet(cache_path, index=False)
-            return df
-            
-    except Exception as e:
-        log.warning(f"⚠️ БД Neon недоступна. Спроба активувати Офлайн-режим: {e}")
-        
-        # Спроба завантажити з локального кешу
-        if os.path.exists(cache_path):
-            st.warning(f"🔌 **Офлайн-режим активовано.** Використовуються локальні дані (запит: {query_id[:8]})")
-            return pd.read_parquet(cache_path)
-        
-        log.error(f"❌ Критична помилка SQL (кеш відсутній): {e}", exc_info=True)
-        return pd.DataFrame()
+            log.error(f"❌ Критична помилка SQL: {e}")
+            return pd.DataFrame()
 
 
 def execute_update(query_text: str, params: Optional[dict] = None) -> bool:
-    """Виконує INSERT/UPDATE/DELETE з автоматичним комітом."""
-    try:
-        engine = get_engine()
-        with engine.begin() as conn:
-            conn.execute(text(query_text), params or {})
-        return True
-    except Exception as e:
-        log.error(f"Помилка запису: {e}", exc_info=True)
-        return False
+    """Виконує INSERT/UPDATE/DELETE з ретраями."""
+    retries = 2
+    for i in range(retries):
+        try:
+            engine = get_engine()
+            with engine.begin() as conn:
+                conn.execute(text(query_text), params or {})
+            return True
+        except Exception as e:
+            if i < retries - 1:
+                import time
+                time.sleep(2)
+                continue
+            log.error(f"Помилка запису: {e}")
+            return False

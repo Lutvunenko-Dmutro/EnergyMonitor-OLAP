@@ -21,14 +21,14 @@ def render_advanced_analysis(df, selected_substation):
     @st.fragment
     def render_tab1():
         _, col_tools = st.columns([4, 1])
-        with col_tools.popover("⚙️ Налаштування", use_container_width=True):
+        with col_tools.popover("⚙️ Налаштування", width='stretch'):
             use_log = st.toggle("🪵 Логарифмічна шкала", value=False, key="adv_use_log")
         render_clustering_segment(df, use_log, selected_substation)
 
     @st.fragment
     def render_tab2():
         _, col_tools = st.columns([4, 1])
-        with col_tools.popover("⚙️ Налаштування", use_container_width=True):
+        with col_tools.popover("⚙️ Налаштування", width='stretch'):
             use_rel = st.toggle("📈 Відносне навантаження (%)", value=False, key="adv_use_rel")
         render_trend_decomposition(df, selected_substation, use_rel)
 
