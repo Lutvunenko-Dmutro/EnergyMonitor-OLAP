@@ -6,7 +6,8 @@ import streamlit as st
 
 from src.core import database as db
 from src.core import queries as q
-from src.services import data_generator as generator
+from src.services.db_seeder import generate_professional_data
+from src.services.db_services import get_latest_measurements
 
 logger = logging.getLogger(__name__)
 
@@ -36,7 +37,7 @@ def fetch_database_data():
         "alerts": db.run_query(q.QUERY_ALERTS),
         "lines": db.run_query(q.QUERY_LINES),
         "fin": db.run_query(q.QUERY_FINANCE),
-        "telemetry": db.get_latest_measurements(),
+        "telemetry": get_latest_measurements(),
         "real_load": real_load_df,
     }
 
@@ -79,7 +80,7 @@ def get_verified_data():
             if st.button("🚀 Згенерувати тестові дані", type="primary"):
                 with st.spinner("⏳ Генерація даних (ETL Process)..."):
                     try:
-                        generator.generate_professional_data()
+                        generate_professional_data()
 
                         st.success("✅ Дані згенеровано!")
                         st.cache_data.clear()

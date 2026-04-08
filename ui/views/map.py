@@ -1,5 +1,6 @@
 import plotly.express as px
 import streamlit as st
+from utils.ui_helpers import safe_plotly_render
 
 
 def render(df_load):
@@ -134,4 +135,4 @@ def render(df_load):
     fig.update_layout(height=600, margin={"r": 0, "t": 0, "l": 0, "b": 0})
 
     # Рендер
-    st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
+    safe_plotly_render(fig)

@@ -1,10 +1,13 @@
 import datetime
 from datetime import timedelta
+import subprocess
+import sys
 
 import streamlit as st
 
 from app.config import DataKeys
 from src.core import database as db
+from src.services.db_seeder import generate_professional_data
 
 
 def render_sidebar(data):
@@ -116,5 +119,36 @@ def render_sidebar(data):
         max_value=max_date,
         help="Фільтрація графіків за часом.",
     )
+
+    st.sidebar.markdown("---")
+    st.sidebar.subheader("📡 Керування телеметрією")
+    
+    if "sensor_proc" not in st.session_state:
+        st.session_state.sensor_proc = None
+
+    if st.session_state.sensor_proc is None or st.session_state.sensor_proc.poll() is not None:
+        if st.sidebar.button("▶️ Запустити Live Датчики", type="primary", use_container_width=True):
+            proc = subprocess.Popen([sys.executable, "-m", "src.services.sensors_db"])
+            st.session_state.sensor_proc = proc
+            st.rerun()
+    else:
+        st.sidebar.success("✅ Датчики генерують дані (Фон)")
+        if st.sidebar.button("🛑 Зупинити Датчики", type="secondary", use_container_width=True):
+            st.session_state.sensor_proc.terminate()
+            st.session_state.sensor_proc.wait()
+            st.session_state.sensor_proc = None
+            st.rerun()
+
+    with st.sidebar.expander("⚙️ Системні Дії (Data Generator)"):
+        st.caption("Ця дія повністю видалить поточну телеметрію та засіє 'ідеальний' початковий набір даних для тестування ML.")
+        if st.button("♻️ Перегенерувати Базу Даних", type="primary", use_container_width=True):
+            with st.spinner("⏳ Генерація (ETL)... триває 1-2 хвилини"):
+                try:
+                    generate_professional_data()
+                    st.success("✅ Базу відновлено!")
+                    st.cache_data.clear()
+                    st.rerun()
+                except Exception as e:
+                    st.error(f"Помилка: {e}")
 
     return selected_region, date_range, data_source, selected_substation

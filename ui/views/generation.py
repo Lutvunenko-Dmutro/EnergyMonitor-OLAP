@@ -1,6 +1,7 @@
 import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
+from utils.ui_helpers import safe_plotly_render
 
 # Координація кольорової схеми для всіх візуалізацій
 MASTER_COLORS = {
@@ -106,7 +107,7 @@ def render(df_gen):
         paper_bgcolor="rgba(0,0,0,0)",
         font=dict(color="white"),
     )
-    st.plotly_chart(fig_sankey, use_container_width=True)
+    safe_plotly_render(fig_sankey)
 
     st.markdown("---")
 
@@ -132,9 +133,7 @@ def render(df_gen):
         )
         fig_pie.update_traces(textposition="inside", textinfo="percent+label")
         fig_pie.update_layout(showlegend=False, margin=dict(l=20, r=20, t=30, b=20))
-        st.plotly_chart(
-            fig_pie, use_container_width=True, config={"displayModeBar": False}
-        )
+        safe_plotly_render(fig_pie)
 
     with c2:
         st.markdown("##### 🌊 Динаміка генерації")
@@ -179,6 +178,4 @@ def render(df_gen):
             ),
             margin=dict(l=20, r=20, t=30, b=20),
         )
-        st.plotly_chart(
-            fig_area, use_container_width=True, config={"displayModeBar": False}
-        )
+        safe_plotly_render(fig_area)

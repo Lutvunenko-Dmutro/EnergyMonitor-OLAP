@@ -38,4 +38,9 @@ def render_gauge(value):
         paper_bgcolor="rgba(0,0,0,0)",
         font={"color": "white"},
     )
-    st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
+    try:
+        from utils.ui_helpers import safe_plotly_render
+    except ImportError:
+        safe_plotly_render = st.plotly_chart
+
+    safe_plotly_render(fig)

@@ -21,6 +21,7 @@ DB_CONFIG = {
     "password": os.getenv("DB_PASSWORD", "password"),
     "host": os.getenv("DB_HOST", "localhost"),
     "port": os.getenv("DB_PORT", "5432"),
+    "sslmode": os.getenv("DB_SSL", "prefer"),
 }
 
 # --- 2. CONSTANTS & SIMULATION PARAMETERS ---

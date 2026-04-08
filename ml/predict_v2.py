@@ -1,222 +1,166 @@
+import gc
 import logging
-import os
+from typing import Tuple, Optional
 
-import joblib
 import numpy as np
 import pandas as pd
-import tensorflow as tf
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - [%(funcName)s] - %(message)s",
-)
+from ml.vectorizer import get_latest_window, select_features_v2
+from utils.error_handlers import robust_ml_handler
+
+from ml.model_loader import load_resources, _get_substation_peak_automated, DEFAULT_WINDOW_SIZE
+
 logger = logging.getLogger(__name__)
 
-from ml.vectorizer import (
-    get_latest_window,
-    get_local_scalers,
-    inverse_scale_predictions,
-)
-
-# Конфігурація моделювання
-WINDOW_SIZE = 24
-V1_DIPLOMA_FREEZE_LOCKED = (
-    True  # Блокування модифікацій базової версії V1 для забезпечення стабільності
-)
-
-# Шляхи до збережених ваг моделей
-MODEL_PATH = "models/substation_model_v2.h5"
-SCALER_PATH = "models/scaler_v2.pkl"
-
-
-def load_resources(version: str = "v3") -> tuple:
-    """
-    Завантажує оптимізовані ваги ШІ-моделі та відповідний скалер ознак.
-
-    :param version: Версія архітектури моделі ('v1', 'v2', 'v3').
-    :return: Кортеж (tf.keras.Model, MinMaxScaler).
-    """
-    m = f"models/substation_model_{version}.h5"
-    s = f"models/scaler_{version}.pkl"
-    if not os.path.exists(m) or not os.path.exists(s):
-        raise FileNotFoundError(
-            f"Файли для версії {version} не знайдено. Потрібно виконати тренування моделі."
-        )
-    return tf.keras.models.load_model(m, compile=False), joblib.load(s)
-
-
+@robust_ml_handler
 def get_ai_forecast(
     hours_ahead: int = 24,
-    substation_name: str | None = None,
+    substation_name: Optional[str] = None,
     source_type: str = "Live",
     version: str = "v3",
-) -> tuple[pd.DataFrame, str | None]:
-    """
-    Основна точка входу для генерації прогнозу навантаження на N годин вперед.
+    offset_hours: int = 0,
+    temp_shift: float = 0.0,
+    constants: dict = None,
+    **kwargs
+) -> Tuple[pd.DataFrame, Optional[str]]:
+    """Generates high-fidelity energy forecasts with architectural rigor."""
+    if substation_name is None:
+        return pd.DataFrame(), "Substation name must be provided."
 
-    :param hours_ahead: Горизонт прогнозування (годин).
-    :param substation_name: Назва підстанції.
-    :param source_type: Джерело даних ('Live' / 'CSV').
-    :param version: Версія ШІ-моделі.
-    :return: Кортеж (pd.DataFrame, str | None) — прогноз та помилка.
-    """
     try:
         model, scaler = load_resources(version)
-        values, constants, last_ts, features = get_latest_window(
-            substation_name, source_type, version
+        if model is None or scaler is None:
+            return pd.DataFrame(), "Model resources unavailable."
+
+        try:
+            window_size = int(model.get_inputs()[0].shape[1]) if model.get_inputs()[0].shape[1] else DEFAULT_WINDOW_SIZE
+        except Exception:
+            window_size = DEFAULT_WINDOW_SIZE
+            
+        values, constants_res, last_ts, _ = get_latest_window(
+            substation_name, source_type, version, offset_hours=offset_hours, window_size=window_size
         )
+        # Use merged defaults (prefer passed constants)
+        if hasattr(constants_res, "copy"):
+            merged_consts = constants_res.copy() if constants_res else {}
+            if constants: merged_consts.update(constants)
+            constants = merged_consts
+        
         if values is None:
-            return pd.DataFrame(), "Недостатньо історичних даних для аналізу."
+            return pd.DataFrame(), "Input telemetry window is empty or insufficient."
 
-        logger.info(
-            f"🔄 Запуск прогнозу (Версія: {version}, Об'єкт: {substation_name})"
-        )
-        formatted_data = (
-            np.array2string(
-                values[-1].flatten(), precision=2, separator=", ", suppress_small=True
-            )
-            if values is not None
-            else "None"
-        )
-        logger.info(f"🧠 Вхідний вектор: [{formatted_data}]")
+        values = select_features_v2(values, version)
+        n_features = values.shape[1]
+        
+        scale_factor = 1.0
+        original_last_load = float(values[-1, 0])
+        glb_max = float(getattr(scaler, "data_max_", [5269])[0])
 
-        local_scaler, target_scaler, scaled_window = get_local_scalers(version, values)
-        logger.debug(f"Дані після scaler.transform: {scaled_window[-1]}")
-        current_window = scaled_window.copy()
-        predictions = []
-        n_features = 9 if version == "v3" else (1 if version == "v1" else 5)
+        if substation_name and substation_name not in ["Усі підстанції", "Всі об'єкти", "Всі", "All", "Усі"]:
+            if source_type == "CSV":
+                loc_max = float(np.max(values[:, 0]))
+            else:
+                loc_max = _get_substation_peak_automated(substation_name)
+                
+            if loc_max > 1.0:
+                if glb_max > loc_max * 1.5:
+                    scale_factor = np.clip(glb_max / loc_max, 1.0, 100.0)
+                elif loc_max > glb_max:
+                    scale_factor = glb_max / loc_max
+                    
+                if scale_factor != 1.0:
+                    values[:, 0] *= scale_factor
+                    logger.info(f"⚖️ Applied Domain Adaptation Scale (x{scale_factor:.4f}) for {substation_name}")
 
+        current_window = scaler.transform(values)
+        
+        future_ts = [last_ts + pd.Timedelta(hours=i+1) for i in range(hours_ahead)]
+        if n_features >= 9:
+            h_idx = np.array([ts.hour for ts in future_ts])
+            d_idx = np.array([ts.weekday() for ts in future_ts])
+            sin_h, cos_h = np.sin(2 * np.pi * h_idx / 24), np.cos(2 * np.pi * h_idx / 24)
+            sin_d, cos_d = np.sin(2 * np.pi * d_idx / 7), np.cos(2 * np.pi * d_idx / 7)
+
+        all_stage_predictions = []
+        
+        norm_temp_shift = 0.0
+        norm_health = None
+        target_norm_temp = None
+        if n_features > 4:
+            t_range = scaler.data_max_[4] - scaler.data_min_[4]
+            norm_temp_shift = temp_shift / t_range if t_range > 0 else 0.0
+            target_norm_temp = np.clip(current_window[-1, 4] + norm_temp_shift, 0.0, 1.0)
+            
+            if constants and "health" in constants:
+                h_val = float(constants["health"])
+                h_min, h_max = scaler.data_min_[3], scaler.data_max_[3]
+                h_range = h_max - h_min
+                norm_health = (h_val - h_min) / h_range if h_range > 0 else 0.8
+        
+        input_name = model.get_inputs()[0].name
         for i in range(hours_ahead):
-            x_input = current_window.reshape(1, WINDOW_SIZE, n_features)
-            pred_s = model.predict(x_input, verbose=0)[0]
-            pred_s[0] = np.clip(pred_s[0], 0, 1.1)  # Захист від розгону
-            predictions.append(pred_s)
+            x_input = current_window.reshape(1, window_size, n_features).astype(np.float32)
+            # ONNX Inference: model.run([output_names], {input_name: input_data})
+            ort_outs = model.run(None, {input_name: x_input})
+            pred_s = ort_outs[0][0]  # First output, first batch element
+            pred_s[0] = np.clip(pred_s[0], 0, 1.1)
+            all_stage_predictions.append(pred_s)
 
-            placeholder = np.zeros((1, n_features))
-            placeholder[0, 0] = pred_s[0]  # Load
+            new_row = current_window[-1].copy()
+            new_row[0] = pred_s[0]
+            
+            if n_features > 4 and target_norm_temp is not None:
+                new_row[4] = target_norm_temp 
+                if norm_health is not None:
+                    new_row[3] = norm_health 
+            
+            if n_features >= 9:
+                new_row[5:9] = [sin_h[i], cos_h[i], sin_d[i], cos_d[i]]
+            
+            current_window = np.append(current_window[1:], [new_row], axis=0)
 
-            if version == "v1":
-                unscaled = local_scaler.inverse_transform([[pred_s[0]]])[0]
-                load_u, health_u = unscaled[0], 100.0
-            elif version == "v3":
-                load_u = target_scaler.inverse_transform([[pred_s[0]]])[0, 0]
-                p_inside = np.zeros((1, 9))
-                p_inside[0, 0] = pred_s[0]
-                p_inside[0, 3] = pred_s[1]
-                health_u = local_scaler.inverse_transform(p_inside)[0][3]
-            elif version == "v2":
-                load_u = target_scaler.inverse_transform([[pred_s[0]]])[0, 0]
-                p_inside = np.zeros((1, 5))
-                p_inside[0, 0] = pred_s[0]
-                p_inside[0, 3] = pred_s[1]
-                health_u = local_scaler.inverse_transform(p_inside)[0][3]
-            else:
-                unscaled = scaler.inverse_transform(placeholder)[0]
-                load_u = unscaled[0]
-                placeholder[0, 3] = pred_s[1]
-                unscaled = scaler.inverse_transform(placeholder)[0]
-                health_u = unscaled[3]
+        n_sc = scaler.n_features_in_
+        dummy = np.zeros((hours_ahead, n_sc))
+        preds_p = np.array(all_stage_predictions)
+        dummy[:, 0] = preds_p[:, 0]
+        if preds_p.shape[1] > 1 and n_sc > 3:
+            dummy[:, 3] = preds_p[:, 1]
 
-            # Корекція прогнозного значення відповідно до останнього історичного показника
-            damping = 0.95
-            last_load = values[-1, 0]
-            load_u = last_load + (load_u - last_load) * (damping ** (i + 1))
+        unscaled_raw = scaler.inverse_transform(dummy)
+        load_fc = unscaled_raw[:, 0] / scale_factor
+        health_fc = unscaled_raw[:, 3] if n_sc > 3 else np.full(hours_ahead, 100.0)
 
-            # Динамічний час для наступного кроку
-            next_ts = last_ts + pd.Timedelta(hours=i + 1)
-            h_n = next_ts.hour
-            d_n = next_ts.weekday()
+        raw_vals = values[:, 0] / scale_factor  
+        if len(raw_vals) >= hours_ahead:
+            template = raw_vals[-hours_ahead:].copy()
+            template_ratio = original_last_load / template[0] if template[0] > 0 else 1.0
+            template_ratio = np.clip(template_ratio, 0.7, 1.3)
+            seasonal_fc = np.clip(template * template_ratio, 0, None)
+            ALPHA = 0.50  
+            load_fc = ALPHA * load_fc + (1 - ALPHA) * seasonal_fc
+            logger.info(f"📅 Seasonal Naive Blend applied for {substation_name}")
 
-            if version == "v3":
-                new_row_u = np.array(
-                    [
-                        [
-                            load_u,
-                            constants["oil"],
-                            constants["h2"],
-                            health_u,
-                            constants["air"],
-                            np.sin(2 * np.pi * h_n / 24),
-                            np.cos(2 * np.pi * h_n / 24),
-                            np.sin(2 * np.pi * d_n / 7),
-                            np.cos(2 * np.pi * d_n / 7),
-                        ]
-                    ]
-                )
-            elif version == "v1":
-                new_row_u = np.array([[load_u]])
-            else:
-                new_row_u = np.array(
-                    [
-                        [
-                            load_u,
-                            constants["oil"],
-                            constants["h2"],
-                            health_u,
-                            constants["air"],
-                        ]
-                    ]
-                )
+        load_fc = np.clip(load_fc, 0, original_last_load * 3.0 if original_last_load > 0 else 10000)
+        load_stitched = np.insert(load_fc, 0, original_last_load)
+        health_stitched = np.insert(health_fc, 0, constants.get("health", 100.0) if constants else 100.0)
+        
+        all_ts_stitched = [last_ts] + future_ts
+        error_band = np.array(load_stitched) * 0.13
+        
+        df_result = pd.DataFrame({
+            "timestamp": all_ts_stitched,
+            "predicted_load_mw": load_stitched,
+            "predicted_health_score": health_stitched,
+            "upper_bond": load_stitched + error_band,
+            "lower_bond": np.maximum(load_stitched - error_band, 0),
+            "is_actual_start": [True] + [False] * hours_ahead
+        })
 
-            if version in ["v1", "v2", "v3"]:
-                new_row_s = local_scaler.transform(new_row_u)
-            else:
-                new_row_s = scaler.transform(new_row_u)
-            current_window = np.vstack([current_window[1:], new_row_s])
+        del values, current_window, dummy, unscaled_raw
+        
+        logger.info(f"🎯 Optimization success: Forecast generated for {substation_name}")
+        return df_result, None
 
-        # ---------------------------------------------------------------------
-        # Секція зворотного масштабування відповідно до версії
-        # ---------------------------------------------------------------------
-        predictions = np.array(predictions)
-
-        load_fc, health_fc = inverse_scale_predictions(
-            predictions, version, local_scaler, target_scaler, scaler, hours_ahead
-        )
-
-        # Запобіжник від помилок екстраполяції для версій V2/V3
-        if version in ["v2", "v3"]:
-            max_historical_load = np.max(values[:, 0])
-            safe_limit = max_historical_load * 1.5
-            load_fc = np.clip(load_fc, a_min=0, a_max=safe_limit)
-            logger.info(
-                f"📊 [Аналіз {substation_name}]: Історія Макс={max_historical_load:.2f} МВт | Ліміт={safe_limit:.2f} МВт | Прогноз Макс={np.max(load_fc):.2f} МВт"
-            )
-
-        # Корекція розриву між іст. та прог. значеннями (Smart Stitching)
-        last_real_load = values[-1, 0]
-        gap = last_real_load - load_fc[0]
-
-        logger.info(
-            f"🎯 Прогноз успішно згенеровано. Рядків: {hours_ahead} (Gap: {gap:.2f} МВт)"
-        )
-
-        decay = np.exp(-np.arange(hours_ahead) / 6.0)
-        load_fc = load_fc + (gap * decay)
-
-        # Страховка від від'ємних значень
-        load_fc = np.maximum(load_fc, 0)
-
-        # Розрахунок довірчих інтервалів
-        std_dev = np.std(values[:, 0]) if len(values) > 0 else 10.0
-        upper_bond = load_fc + (std_dev * (1 + np.arange(hours_ahead) / 24))
-        lower_bond = np.maximum(
-            load_fc - (std_dev * (1 + np.arange(hours_ahead) / 24)), 0
-        )
-
-        # Генеруємо таймстемпи вперед
-        forecast_ts = [last_ts + pd.Timedelta(hours=i + 1) for i in range(hours_ahead)]
-
-        df_forecast = pd.DataFrame(
-            {
-                "timestamp": forecast_ts,
-                "predicted_load_mw": load_fc,
-                "predicted_health_score": health_fc,
-                "upper_bond": upper_bond,
-                "lower_bond": lower_bond,
-            }
-        )
-        return df_forecast, None
-
-    except Exception as e:
-        logger.error(f"Помилка в get_ai_forecast: {str(e)}", exc_info=True)
-        return pd.DataFrame(), str(e)
+    except Exception as exc:
+        logger.error(f"Prediction Pipeline Failure: {str(exc)}", exc_info=True)
+        return pd.DataFrame(), f"System Error: {str(exc)}"

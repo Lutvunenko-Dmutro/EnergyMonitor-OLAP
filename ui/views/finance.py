@@ -1,6 +1,7 @@
 import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
+from utils.ui_helpers import safe_plotly_render
 
 from core.analytics.physics import calculate_line_losses
 
@@ -61,9 +62,7 @@ def render(df_fin, df_lines):
                 margin=dict(l=0, r=0, t=10, b=0),
             )
             fig_fin.update_xaxes(title_text="Дата")
-            st.plotly_chart(
-                fig_fin, use_container_width=True, config={"displayModeBar": False}
-            )
+            safe_plotly_render(fig_fin)
 
     with c2:
         st.markdown("##### 📈 Середньодобове завантаження ліній")
@@ -84,9 +83,7 @@ def render(df_fin, df_lines):
             fig_lines.add_hline(y=100, line_dash="solid", line_color=COLOR_ALERT)
             fig_lines.update_layout(height=350, margin=dict(l=0, r=0, t=10, b=0))
             fig_lines.update_xaxes(title_text="Дата")
-            st.plotly_chart(
-                fig_lines, use_container_width=True, config={"displayModeBar": False}
-            )
+            safe_plotly_render(fig_lines)
 
     st.markdown("---")
 
@@ -122,9 +119,7 @@ def render(df_fin, df_lines):
                 height=400,
                 margin=dict(l=0, r=0, t=10, b=0),
             )
-            st.plotly_chart(
-                fig_heat, use_container_width=True, config={"displayModeBar": False}
-            )
+            safe_plotly_render(fig_heat)
 
     with c4:
         st.markdown("##### ⚖️ Характеристика втрат")
@@ -144,6 +139,4 @@ def render(df_fin, df_lines):
                 height=400,
                 margin=dict(l=0, r=0, t=10, b=0),
             )
-            st.plotly_chart(
-                fig_scat, use_container_width=True, config={"displayModeBar": False}
-            )
+            safe_plotly_render(fig_scat)

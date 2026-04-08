@@ -1,4 +1,3 @@
-import datetime
 import os
 from contextlib import contextmanager
 from typing import Optional
@@ -16,7 +15,6 @@ load_dotenv()
 
 log = setup_logger(__name__)
 
-
 # --- 1. CONFIGURATION ---
 @st.cache_resource
 def get_engine():
@@ -30,21 +28,17 @@ def get_engine():
     port = os.getenv("DB_PORT", "5432")
     dbname = os.getenv("DB_NAME", "postgres")
 
-    url = f"postgresql+psycopg2://{user}:{password}@{host}:{port}/{dbname}"
+    ssl_mode = os.getenv("DB_SSL", "prefer")
+    url = f"postgresql+psycopg2://{user}:{password}@{host}:{port}/{dbname}?sslmode={ssl_mode}"
     return create_engine(url, pool_pre_ping=True)
 
 
 # --- 2. psycopg2 CORE (For Data Generator) ---
-
-
 @contextmanager
 def get_db_cursor():
-    """
-    Контекстний менеджер для безпечної роботи з базою даних через psycopg2.
-    """
+    """Контекстний менеджер для безпечної роботи з базою даних через psycopg2."""
     conn = None
     try:
-        # DB_CONFIG беремо з config.py
         conn = psycopg2.connect(**DB_CONFIG)
         yield conn, conn.cursor()
         conn.commit()
@@ -72,8 +66,6 @@ def execute_sql_file(cursor, filename):
 
 
 # --- 3. SQLALCHEMY CORE (For Streamlit App) ---
-
-
 def run_query(query_text: str, params: Optional[dict] = None) -> pd.DataFrame:
     """Виконує SELECT запит і повертає DataFrame."""
     try:
@@ -89,151 +81,9 @@ def execute_update(query_text: str, params: Optional[dict] = None) -> bool:
     """Виконує INSERT/UPDATE/DELETE з автоматичним комітом."""
     try:
         engine = get_engine()
-        with engine.begin() as conn:  # Автоматичний COMMIT
+        with engine.begin() as conn:
             conn.execute(text(query_text), params or {})
         return True
     except Exception as e:
         log.error(f"Помилка запису: {e}", exc_info=True)
-        return False
-
-
-def get_latest_measurements() -> pd.DataFrame:
-    """
-    Отримує останній запис телеметрії для кожної підстанції.
-    Автоматично розраховує віртуальні показники (voltage, health, temp),
-    оскільки вони більше не зберігаються в базі (згідно з 3-колонковою схемою).
-    """
-    import random
-
-    query = """
-        SELECT DISTINCT ON (m.substation_id) 
-            m.timestamp, 
-            m.substation_id, 
-            s.substation_name,
-            s.capacity_mw,
-            m.actual_load_mw,
-            m.temperature_c,
-            m.h2_ppm,
-            m.health_score
-        FROM LoadMeasurements m
-        JOIN Substations s ON m.substation_id = s.substation_id
-        ORDER BY m.substation_id, m.timestamp DESC
-    """
-    df = run_query(query)
-
-    if df.empty:
-        return df
-
-    # --- DIGITAL TWIN: Реконструкція упущених електричних показників (вольтаж/частота) ---
-    def calculate_synthetic_electrical(row):
-        cap = float(row["capacity_mw"]) if row["capacity_mw"] else 100.0
-
-        # 1. Вольтаж (залежить від класу напруги підстанції)
-        voltage = round(
-            random.uniform(325.0, 335.0)
-            if cap > 1000
-            else random.uniform(108.0, 112.0),
-            1,
-        )
-
-        # 2. Частота (стабільна)
-        freq = round(random.uniform(49.95, 50.05), 2)
-
-        return pd.Series([voltage, freq])
-
-    cols = ["voltage_kv", "frequency_hz"]
-    df[cols] = df.apply(calculate_synthetic_electrical, axis=1)
-
-    return df
-
-
-# --- 3. BUSINESS LOGIC (ALERTS) ---
-
-
-def create_custom_alert(
-    sub_name: str, alert_type: str, description: str
-) -> tuple[bool, str]:
-    """
-    Створює нову аварію.
-    Повертає кортеж: (Успіх [True/False], Повідомлення).
-    """
-    engine = get_engine()
-
-    try:
-        with engine.begin() as conn:
-            # 1. Знаходимо ID підстанції за назвою
-            res = conn.execute(
-                text(
-                    "SELECT substation_id FROM Substations WHERE substation_name = :name"
-                ),
-                {"name": sub_name},
-            ).fetchone()
-
-            if not res:
-                return False, f"Підстанцію '{sub_name}' не знайдено!"
-
-            sub_id = res[0]
-
-            # 2. Вставляємо запис про аварію
-            sql = """
-                INSERT INTO Alerts (timestamp, alert_type, description, substation_id, status)
-                VALUES (:ts, :type, :desc, :sub_id, 'NEW')
-            """
-            params = {
-                "ts": datetime.datetime.now(),
-                "type": alert_type,
-                "desc": description,
-                "sub_id": sub_id,
-            }
-            conn.execute(text(sql), params)
-
-        return True, "Інцидент успішно створено!"
-
-    except Exception as e:
-        log.error(f"Помилка бази даних: {e}", exc_info=True)
-        return False, f"Помилка бази даних: {e}"
-
-
-def update_alert_status(alert_id, new_status: str):
-    """Оновлює статус існуючої аварії."""
-    sql = "UPDATE Alerts SET status = :status WHERE alert_id = :id"
-    execute_update(sql, {"status": new_status, "id": int(alert_id)})
-
-
-def delete_alert(alert_id: int):
-    """Видаляє конкретний запис за ID."""
-    sql = "DELETE FROM Alerts WHERE alert_id = :id"
-    execute_update(sql, {"id": int(alert_id)})
-
-
-def cleanup_old_alerts(keep_last: int = 10) -> bool:
-    """
-    Розумна очистка: видаляє всі старі записи, залишаючи N останніх.
-    Використовує безпечний підхід через SELECT -> DELETE NOT IN.
-    """
-    engine = get_engine()
-    try:
-        # Крок 1: Знаходимо ID, які треба залишити
-        with engine.connect() as conn:
-            res = conn.execute(
-                text("SELECT alert_id FROM Alerts ORDER BY alert_id DESC LIMIT :lim"),
-                {"lim": keep_last},
-            ).fetchall()
-
-            keep_ids = [row[0] for row in res]
-
-        if not keep_ids:
-            return True  # Таблиця вже пуста або майже пуста
-
-        # Крок 2: Видаляємо все зайве
-        with engine.begin() as conn:
-            conn.execute(
-                text("DELETE FROM Alerts WHERE alert_id NOT IN :ids"),
-                {"ids": tuple(keep_ids)},
-            )
-
-        return True
-
-    except Exception as e:
-        log.error(f"Помилка очищення: {e}", exc_info=True)
         return False
