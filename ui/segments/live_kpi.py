@@ -11,7 +11,14 @@ from ui.views import kpi as tab_kpi
 logger = logging.getLogger("ENERGY_MONITOR")
 LIVE_STATE_FILE = Path("logs/live_state.json")
 
-@st.fragment
+# Захист від застарілих версій бібліотеки в хмарних середовищах
+def safe_fragment(func):
+    """Декоратор-запобіжник для st.fragment"""
+    if hasattr(st, "fragment"):
+        return st.fragment(func)
+    return func
+
+@safe_fragment
 def live_telemetry_wrapper(active=False):
     """
     Автономний фрагмент для живого оновлення показників (KPI).
