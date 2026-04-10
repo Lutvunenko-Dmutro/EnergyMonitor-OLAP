@@ -53,7 +53,7 @@ def render(df_load: pd.DataFrame, group_by_col: str):
     col_title, col_tools = st.columns([4, 1])
     col_title.markdown(f"### 📊 Динаміка: {y_label}")
 
-    with col_tools.popover("⚙️ Налаштування", width='stretch'):
+    with col_tools.popover("⚙️ Налаштування"):
         use_relative = st.toggle(
             "📈 Відносні показники (%)", value=False, key="cons_rel"
         )

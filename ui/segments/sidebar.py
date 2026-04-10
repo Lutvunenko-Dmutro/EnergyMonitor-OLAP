@@ -163,7 +163,7 @@ def render_sidebar(data):
 
     with st.sidebar.expander("⚙️ Системні Дії (Data Generator)"):
         st.caption("Ця дія повністю видалить поточну телеметрію та засіє 'ідеальний' початковий набір даних для тестування ML.")
-        if st.button("♻️ Перегенерувати Базу Даних", type="primary", width='stretch'):
+        if st.button("♻️ Перегенерувати Базу Даних", type="primary", use_container_width=True):
             with st.spinner("⏳ Генерація (ETL)... триває 1-2 хвилини"):
                 try:
                     generate_professional_data()
