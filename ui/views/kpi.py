@@ -149,7 +149,7 @@ def render(df_latest, region_filter: str | None = None):
             ),
         },
         hide_index=True,
-        width="stretch",
+        use_container_width=True,
     )
 
     # [FIX]: Spacer для скролінгу в самому низу
