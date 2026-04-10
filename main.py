@@ -101,6 +101,12 @@ def main():
     # Налаштування параметрів сторінки
     setup_streamlit_page()
 
+    # --- EARLY FRAGMENT REGISTRATION (GHOST-BUSTING) ---
+    # Реєструємо фрагменти на самому початку, щоб стабілізувати їхні ID
+    # та уникнути помилок при зміні стану додатку (напр. під час заставки).
+    from ui.segments.dashboard import register_all_fragments_stably
+    register_all_fragments_stably()
+
     # --- BOOT SEQUENCE (ACTIVE SPLASH SCREEN) ---
     if "booted" not in st.session_state:
         # Pass real work into the splash screen

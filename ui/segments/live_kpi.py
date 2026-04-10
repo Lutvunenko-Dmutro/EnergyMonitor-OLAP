@@ -12,11 +12,13 @@ logger = logging.getLogger("ENERGY_MONITOR")
 LIVE_STATE_FILE = Path("logs/live_state.json")
 
 @st.fragment(run_every=5)
-def live_telemetry_wrapper():
+def live_telemetry_wrapper(active=False):
     """
     Автономний фрагмент для живого оновлення показників (KPI).
     Пріоритетно зчитує дані з живого JSON-стейту симуляції.
     """
+    if not active:
+        return
     region_filter = st.session_state.get("selected_region", None)
 
     try:

@@ -53,7 +53,9 @@ def get_engine():
     if not ssl_mode:
         ssl_mode = "prefer" if host in ["localhost", "127.0.0.1", "::1"] else "require"
         
-    log.info(f"🔌 Connecting to {host}:{port} (SSL: {ssl_mode})")
+    # Маскуємо технічну адресу для "охайного" виводу в консоль
+    display_name = "Neon Cloud Cluster" if "neon.tech" in host.lower() else host
+    log.info(f"🔌 База даних -> Підключення до {display_name} (DB: {dbname})")
     url = f"postgresql+psycopg2://{user}:{password}@{host}:{port}/{dbname}?sslmode={ssl_mode}"
     return create_engine(url, pool_pre_ping=True)
 

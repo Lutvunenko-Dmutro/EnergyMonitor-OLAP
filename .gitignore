@@ -19,6 +19,7 @@ backup_local.sql
 logs/
 system.log
 data/*.csv
+data/fallback/
 results/
 
 # Documentation site

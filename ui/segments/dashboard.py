@@ -27,6 +27,63 @@ from ui.views import (
 )
 
 
+@st.fragment(run_every=5)
+def fragment_live_map(data, active=False):
+    """Фрагмент для живого оновлення карти."""
+    if not active:
+        return
+    if not data.empty:
+        tab_map.render(data)
+    else:
+        st.info("🌐 Завантаження геоданих... Очікуйте синхронізації.")
+
+
+@st.fragment(run_every=5)
+def fragment_live_consumption(data, group_col, active=False):
+    """Фрагмент для живого оновлення графіка споживання."""
+    if not active:
+        return
+    tab_consumption.render(data, group_col)
+
+
+@st.fragment(run_every=5)
+def fragment_live_alerts(data, active=False):
+    """Фрагмент для живого оновлення журналу аварій."""
+    if not active:
+        return
+    tab_alerts.render(data)
+
+
+@st.fragment(run_every=10)
+def fragment_live_ai(data, selected_substation, active=False):
+    """Фрагмент для живого оновлення AI аналітики."""
+    if not active:
+        return
+    tab_advanced.render_advanced_analysis(data, selected_substation)
+
+
+def register_all_fragments_stably():
+    """
+    Технічна функція для 'Ghost-Busting'.
+    Реєструє ВСІ фрагменти проекту на самому початку роботи програми.
+    """
+    import pandas as pd
+    from ui.views.advanced import fragment_advanced_tab1, fragment_advanced_tab2
+    
+    dummy_df = pd.DataFrame()
+    
+    # Реєстрація через виклик з active=False
+    live_telemetry_wrapper(active=False)
+    fragment_live_map(dummy_df, active=False)
+    fragment_live_consumption(dummy_df, "substation_name", active=False)
+    fragment_live_alerts(dummy_df, active=False)
+    fragment_live_ai(dummy_df, "Усі підстанції", active=False)
+    
+    # Фрагменти з вкладки AI-аналітики
+    fragment_advanced_tab1(dummy_df, "Усі підстанції", active=False)
+    fragment_advanced_tab2(dummy_df, "Усі підстанції", active=False)
+
+
 def sync_nav():
     """
     Синхронізує стан навігації між елементами інтерфейсу.
@@ -66,7 +123,7 @@ def render_dashboard_ui(
 
     st.session_state["selected_region"] = selected_region
     with st.expander("📊 Деталізація по підстанціях (Live)", expanded=False):
-        live_telemetry_wrapper()
+        live_telemetry_wrapper(active=True)
 
     if "nav_index" not in st.session_state:
         st.session_state.nav_index = 0
@@ -107,55 +164,44 @@ def render_dashboard_ui(
     # ─── NAVIGATION ROUTING ───
     # Використовуємо явну перевірку рядка для надійності рендерингу
 
-    # Вкладка 1: Карта мережі (Live Map Dispatcher)
-    if current_page == "🗺️ Карта мережі":
-        @st.fragment(run_every=5)
-        def live_map():
-            if not processed_data["load"].empty:
-                tab_map.render(processed_data["load"])
-            else:
-                st.info("🌐 Завантаження геоданих... Очікуйте синхронізації.")
-        live_map()
-
-    # Вкладка 2: Споживання (Consumption Analytics)
-    elif current_page == "📉 Споживання":
-        @st.fragment(run_every=5)
-        def live_consumption():
-            tab_consumption.render(processed_data["load"], group_col)
-        live_consumption()
-
-    # Вкладка 3: Генерація (Generation Multi-Source)
-    elif current_page == "🏭 Генерація":
+    # ─── NAVIGATION CONTENT (STABLE FRAGMENT REGISTRATION) ───
+    # Викликаємо всі фрагменти послідовно. Ті, що не активні, просто нічого не рендерить.
+    # Це гарантує стабільність Fragment ID для Streamlit.
+    
+    fragment_live_map(
+        processed_data["load"], 
+        active=(current_page == "🗺️ Карта мережі")
+    )
+    
+    fragment_live_consumption(
+        processed_data["load"], 
+        group_col, 
+        active=(current_page == "📉 Споживання")
+    )
+    
+    if current_page == "🏭 Генерація":
         tab_generation.render(processed_data["gen"])
 
-    # Вкладка 4: Журнал аварій (Alerts & Incident Log)
-    elif current_page == "🚨 Журнал аварій":
-        @st.fragment(run_every=5)
-        def live_alerts():
-            tab_alerts.render(processed_data["alerts"])
-        live_alerts()
-
-    # Вкладка 5: Економіка (Finance & Energy Flow)
-    elif current_page == "💰 Економіка":
+    fragment_live_alerts(
+        processed_data["alerts"], 
+        active=(current_page == "🚨 Журнал аварій")
+    )
+    
+    if current_page == "💰 Економіка":
         tab_finance.render(processed_data["fin"], processed_data["lines"])
 
-    # Вкладка 6: AI Аналітика (Advanced AI & Clustering)
-    elif current_page == "🤖 AI Аналітика":
-        @st.fragment(run_every=10)
-        def live_ai():
-            tab_advanced.render_advanced_analysis(
-                processed_data["load"], selected_substation
-            )
-        live_ai()
+    fragment_live_ai(
+        processed_data["load"], 
+        selected_substation, 
+        active=(current_page == "🤖 AI Аналітика")
+    )
 
-    # Вкладка 7: Прогноз ШІ (Neural Forecasting Engine)
-    elif current_page == "🔮 Прогноз ШІ":
+    if current_page == "🔮 Прогноз ШІ":
         tab_forecast.render(
             selected_substation=selected_substation, data_source=data_source
         )
 
-    # Вкладка 8: Цифровий архів (Historical Audit)
-    elif current_page == "📜 Цифровий архів":
+    if current_page == "📜 Цифровий архів":
         tab_audit.render(
             selected_region=selected_region,
             date_range=date_range,
