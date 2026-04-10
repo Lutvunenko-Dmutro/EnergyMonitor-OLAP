@@ -141,7 +141,7 @@ def render_sidebar(data):
     is_running = lock_file.exists()
 
     if not is_running:
-        if st.sidebar.button("▶️ Запустити Симуляцію Датчиків", type="primary", width="stretch"):
+        if st.sidebar.button("▶️ Запустити Симуляцію Датчиків", type="primary", use_container_width=True):
             # [NUCLEAR OPTIMIZATION]: Локальні імпорти для уникнення UnboundLocalError
             import os
             import sys
@@ -162,7 +162,7 @@ def render_sidebar(data):
             st.rerun()
     else:
         st.sidebar.success("✅ Симуляція активна (15 хв)")
-        if st.sidebar.button("🛑 Зупинити Датчики", type="secondary", width="stretch"):
+        if st.sidebar.button("🛑 Зупинити Датчики", type="secondary", use_container_width=True):
             if lock_file.exists():
                 try:
                     import os
