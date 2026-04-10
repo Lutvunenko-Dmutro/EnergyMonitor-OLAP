@@ -114,8 +114,20 @@ jobs:
         env:
           PGPASSWORD: testpass
         run: |
-          psql -h localhost -U testuser -d neondb -f sql/01_create_schema.sql
-          psql -h localhost -U testuser -d neondb -f sql/02_insert_static_data.sql
+          echo "Waiting for PostgreSQL to be ready..."
+          until pg_isready -h localhost -U testuser -d neondb; do
+            echo "PostgreSQL is unavailable - sleeping"
+            sleep 2
+          done
+          
+          echo "Applying schema..."
+          psql -h localhost -U testuser -d neondb -v ON_ERROR_STOP=1 -f sql/01_create_schema.sql
+          
+          echo "Seeding static data..."
+          psql -h localhost -U testuser -d neondb -v ON_ERROR_STOP=1 -f sql/02_insert_static_data.sql
+          
+          echo "Verifying tables..."
+          psql -h localhost -U testuser -d neondb -c "\dt"
       
       - name: Run unit tests
         env:
