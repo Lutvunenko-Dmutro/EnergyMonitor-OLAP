@@ -106,8 +106,16 @@ jobs:
       
       - name: Install dependencies
         run: |
+          sudo apt-get update && sudo apt-get install -y postgresql-client
           pip install -r requirements.txt
           pip install -r requirements-dev.txt
+      
+      - name: Initialize Test Database
+        env:
+          PGPASSWORD: testpass
+        run: |
+          psql -h localhost -U testuser -d neondb -f sql/01_create_schema.sql
+          psql -h localhost -U testuser -d neondb -f sql/02_insert_static_data.sql
       
       - name: Run unit tests
         env:
@@ -116,6 +124,7 @@ jobs:
           DB_PASSWORD: testpass
           DB_HOST: localhost
           DB_PORT: 5432
+          PYTHONPATH: .
         run: |
           mkdir -p junit
           pytest tests/ -v --cov=src --cov=core --cov=ml --cov-report=xml --junitxml=junit/test-results.xml
