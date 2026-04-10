@@ -15,7 +15,6 @@ def safe_plotly_render(fig, container=st, **kwargs):
     # Використовуємо лише базові та найнадійніші аргументи
     container.plotly_chart(
         fig, 
-        use_container_width=True, 
         config=config,
         key=kwargs.get("key")
     )

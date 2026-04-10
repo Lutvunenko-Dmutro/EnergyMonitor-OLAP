@@ -24,7 +24,7 @@ LOGS_DIR.mkdir(exist_ok=True)
 HEARTBEAT_FILE = LOGS_DIR / "heartbeat.txt"
 LOCK_FILE = LOGS_DIR / "sensors.lock"
 LIVE_STATE_FILE = LOGS_DIR / "live_state.json"
-TIMEOUT_SECONDS = 120  # Авто-вимкнення
+TIMEOUT_SECONDS = 900  # Авто-вимкнення (15 хвилин для презентації)
 
 def run_cosmetic_collector():
     """

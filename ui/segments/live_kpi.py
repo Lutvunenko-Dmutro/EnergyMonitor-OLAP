@@ -12,18 +12,20 @@ logger = logging.getLogger("ENERGY_MONITOR")
 LIVE_STATE_FILE = Path("logs/live_state.json")
 
 # Захист від застарілих версій бібліотеки в хмарних середовищах
-def safe_fragment(func):
-    """Декоратор-запобіжник для st.fragment"""
-    if hasattr(st, "fragment"):
-        return st.fragment(func)
-    return func
+def safe_fragment(run_every=None):
+    """Декоратор-запобіжник для st.fragment з підтримкою таймера"""
+    def decorator(func):
+        if hasattr(st, "fragment"):
+            return st.fragment(run_every=run_every)(func)
+        return func
+    return decorator
 
-@safe_fragment
+@safe_fragment(run_every=5)
 def live_telemetry_wrapper(active=False):
     """
     Автономний фрагмент для живого оновлення показників (KPI).
     Пріоритетно зчитує дані з живого JSON-стейту симуляції.
-    Оновлюється при клавіші Refresh або зміні фільтрів.
+    Оновлюється автоматично кожні 5 секунд.
     """
     if not active:
         return

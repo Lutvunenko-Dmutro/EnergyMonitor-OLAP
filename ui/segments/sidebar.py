@@ -1,8 +1,10 @@
-import datetime
-from datetime import timedelta
-import subprocess
+import os
 import sys
 import time
+import signal
+import datetime
+import subprocess
+from datetime import timedelta
 from pathlib import Path
 
 import pandas as pd
@@ -133,30 +135,42 @@ def render_sidebar(data):
 
     st.sidebar.markdown("---")
     st.sidebar.subheader("📡 Керування телеметрією")
+    st.sidebar.warning("🚧 МОДУЛЬ В РОЗРОБЦІ (Симуляція)")
     
     lock_file = Path("logs/sensors.lock")
     is_running = lock_file.exists()
 
     if not is_running:
-        if st.sidebar.button("▶️ Запустити Live Датчики", type="primary", use_container_width=True):
-            # Запускаємо процес
-            subprocess.Popen([sys.executable, "-m", "src.services.sensors_db"])
+        if st.sidebar.button("▶️ Запустити Симуляцію Датчиків", type="primary", width="stretch"):
+            # [NUCLEAR OPTIMIZATION]: Локальні імпорти для уникнення UnboundLocalError
+            import os
+            import sys
+            import subprocess
+            
+            # Запускаємо процес (Windows-safe з прихованим вікном)
+            cwd = os.getcwd()
+            env = os.environ.copy()
+            env["PYTHONPATH"] = cwd
+            
+            subprocess.Popen(
+                [sys.executable, "-m", "src.services.sensors_db"],
+                cwd=cwd,
+                env=env,
+                # Додаємо прапори, щоб на Windows не вискакувало зайве вікно консолі
+                creationflags=subprocess.CREATE_NO_WINDOW if os.name == 'nt' else 0
+            )
             st.rerun()
     else:
-        st.sidebar.success("✅ Датчики генерують дані (Фон)")
-        if st.sidebar.button("🛑 Зупинити Датчики", type="secondary", use_container_width=True):
-            # Примусово видаляємо замок і даємо процесу самому зупинитись або вбиваємо (тут краще вбити, якщо ми маємо доступ)
-            # Але в Singleton моделі з Heartbeat процес сам побачить відсутність активності.
-            # Для миттєвої зупинки надішлемо сигнал або видалимо замок (якщо процес перевіряє замок).
+        st.sidebar.success("✅ Симуляція активна (15 хв)")
+        if st.sidebar.button("🛑 Зупинити Датчики", type="secondary", width="stretch"):
             if lock_file.exists():
                 try:
-                    with open(lock_file, "r") as f:
-                        pid = int(f.read())
                     import os
                     import signal
+                    with open(lock_file, "r") as f:
+                        pid = int(f.read())
                     os.kill(pid, signal.SIGTERM)
                 except (ProcessLookupError, ValueError, OSError):
-                    # Процес вже завершено або PID некоректний — це нормально
                     pass
                 if lock_file.exists(): lock_file.unlink()
             st.rerun()

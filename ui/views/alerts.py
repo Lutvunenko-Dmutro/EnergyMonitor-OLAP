@@ -148,7 +148,7 @@ def render(df_alerts):
             "description",
         ],
         hide_index=True,
-        use_container_width=True,
+        width="stretch",
         key="alerts_table",
         on_change=lambda: save_changes(
             st.session_state["alerts_table"]["edited_rows"], df_alerts

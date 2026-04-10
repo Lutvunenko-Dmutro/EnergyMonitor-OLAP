@@ -32,7 +32,7 @@ def render_raw_data_table(df, start_date, end_date):
 
     st.dataframe(
         df_display.style.format({col: "{:.2f}" for col in num_cols}),
-        use_container_width=True,
+        width="stretch",
         height=400,
     )
 

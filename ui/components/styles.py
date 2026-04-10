@@ -28,8 +28,17 @@ def setup_streamlit_page():
     <style>
         /* 1. Загальний контейнер */
         .block-container { padding-top: 1.5rem; }
-        [data-testid="stMetricValue"] { font-size: 1.4rem; }
+        [data-testid="stMetricValue"] { font-size: 1.8rem; }
         footer {visibility: hidden;}
+
+        /* [NEW]: ПРОЗОРІСТЬ ШАПКИ ТА ПРИХОВУВАННЯ ВЕРХНЬОЇ СМУЖКИ */
+        header[data-testid="stHeader"] {
+            background-color: transparent !important;
+            background: transparent !important;
+        }
+        div[data-testid="stDecoration"] {
+            display: none !important;
+        }
 
         /* 2. ГАРНИЙ САЙДБАР */
         [data-testid="stSidebar"] {
