@@ -171,3 +171,6 @@ def render(
     # ── Таблиця: Raw Data (Винесено в компонент) ──────────────────────────────────
     from ui.views.historical_audit_components.data_table import render_raw_data_table
     render_raw_data_table(df, start_date, end_date)
+
+    # Відступ знизу для можливості прокрутки сторінки до кінця
+    st.markdown('<div style="height: 300px;"></div>', unsafe_allow_html=True)

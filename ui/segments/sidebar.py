@@ -5,11 +5,13 @@ import sys
 import time
 from pathlib import Path
 
+import pandas as pd
 import streamlit as st
 
 from app.config import DataKeys
 from src.core import database as db
 from src.services.db_seeder import generate_professional_data
+from core.database.loader import load_kaggle_lazy
 
 
 def render_sidebar(data):
@@ -45,10 +47,12 @@ def render_sidebar(data):
         index=0,
     )
 
-    # Визначаємо, з яким датасетом працюємо зараз
-    active_load_df = (
-        data["load"] if data_source == "Локальна БД (Симуляція)" else data["real_load"]
-    )
+    # Визначаємо, з яким датасетом працюємо зараз для відображення фільтрів
+    if data_source == "Еталонні дані (Kaggle)":
+        # Ліниво підтягуємо Kaggle дані для отримання правильних дат
+        active_load_df = load_kaggle_lazy()
+    else:
+        active_load_df = data.get("load", pd.DataFrame())
 
     if data_source == "Еталонні дані (Kaggle)":
         selected_region = st.sidebar.selectbox(
@@ -151,7 +155,8 @@ def render_sidebar(data):
                     import os
                     import signal
                     os.kill(pid, signal.SIGTERM)
-                except:
+                except (ProcessLookupError, ValueError, OSError):
+                    # Процес вже завершено або PID некоректний — це нормально
                     pass
                 if lock_file.exists(): lock_file.unlink()
             st.rerun()

@@ -179,3 +179,6 @@ def render(df_gen):
             margin=dict(l=20, r=20, t=30, b=20),
         )
         safe_plotly_render(fig_area)
+
+    # [FIX]: Spacer для скролінгу в самому низу
+    st.markdown('<div style="height: 300px;"></div>', unsafe_allow_html=True)

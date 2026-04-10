@@ -3,6 +3,7 @@ import sys
 import time
 import json
 import random
+import logging
 from datetime import datetime
 from pathlib import Path
 
@@ -14,6 +15,8 @@ from src.core.config import DB_CONFIG
 from src.core.physics import calculate_substation_load, calculate_transformer_health
 
 load_dotenv()
+
+logger = logging.getLogger(__name__)
 
 # Шляхи до службових файлів
 LOGS_DIR = Path("logs")
@@ -29,7 +32,7 @@ def run_cosmetic_collector():
     БЕЗ ШІ, БЕЗ запису в БД. Тільки "живий" транслятор стану.
     """
     if LOCK_FILE.exists():
-        print(f"🛑 Error: Lock exists at {LOCK_FILE}")
+        logger.error(f"🛑 Lock exists at {LOCK_FILE}. Ймовірно вже запущено.")
         sys.exit(0)
 
     with open(LOCK_FILE, "w") as f:
@@ -53,15 +56,14 @@ def run_cosmetic_collector():
             previous_factors[sid] = 0.7
             sub_profiles[sid] = "RESIDENTIAL" if sid % 3 == 0 else ("INDUSTRIAL" if sid % 3 == 1 else "COMMERCIAL")
 
-        print("-" * 50)
-        print("🚀 LIVE MONITORING: COSMETIC MODE ACTIVE (No DB Writes)")
-        print("-" * 50)
+        logger.info("-" * 50)
+        logger.info("🚀 LIVE MONITORING: COSMETIC MODE ACTIVE (No DB Writes)")
+        logger.info("-" * 50)
 
         while True:
             now = datetime.now()
             
             # Розрахунок глобальних метрик
-            # Запит користувача: Health ~95.4%, Freq ~49.96 Hz, Total ~30,000 MW
             total_load = 0.0
             substation_states = []
             
@@ -72,8 +74,6 @@ def run_cosmetic_collector():
                 p_type = sub_profiles[sub_id]
                 cap = float(capacity) if capacity else 100.0
                 
-                # Потужна "промислова" версія (множимо на коефіцієнт, щоб вийти на 30к МВт)
-                # Сумарна потужність 12 підстанцій ~26.9к. Щоб мати стабільні 30к, множимо на 1.35
                 boost_factor = 1.35
                 actual_load, _ = calculate_substation_load(cap * boost_factor, p_type, now, 15.0, False, previous_factors[sub_id])
                 
@@ -108,11 +108,11 @@ def run_cosmetic_collector():
             with open(LIVE_STATE_FILE, "w", encoding="utf-8") as f:
                 json.dump(live_state, f, ensure_ascii=False, indent=2)
 
-            print(f"[{now.strftime('%H:%M:%S')}] Глобальне навантаження: {total_load:.2f} MW | Freq: {frequency:.2f} Hz | JSON оновлено.")
+            logger.info(f"[{now.strftime('%H:%M:%S')}] Глобальне навантаження: {total_load:.2f} MW | Freq: {frequency:.2f} Hz | JSON оновлено.")
 
             # Heartbeat check
             if HEARTBEAT_FILE.exists() and (time.time() - HEARTBEAT_FILE.stat().st_mtime) > TIMEOUT_SECONDS:
-                print("💤 [AUTO-SHUTDOWN] Користувачі не активні. Вимикаюсь...")
+                logger.info("💤 [AUTO-SHUTDOWN] Користувачі не активні. Вимикаюсь...")
                 break
             elif not HEARTBEAT_FILE.exists():
                 HEARTBEAT_FILE.touch()
@@ -120,12 +120,12 @@ def run_cosmetic_collector():
             time.sleep(5)
 
     except Exception as e:
-        print(f"❌ Error: {e}")
+        logger.error(f"❌ Collector error: {e}", exc_info=True)
     finally:
         if conn: conn.close()
         if LOCK_FILE.exists(): LOCK_FILE.unlink()
         if LIVE_STATE_FILE.exists(): LIVE_STATE_FILE.unlink() # Очищуємо стан при виході
-        print("🛑 Collector stopped.")
+        logger.info("🛑 Collector stopped.")
 
 if __name__ == "__main__":
     run_cosmetic_collector()

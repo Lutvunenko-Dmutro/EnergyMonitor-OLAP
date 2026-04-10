@@ -1,0 +1,68 @@
+# ═══════════════════════════════════════════════════════════════
+# Docker Build Context Exclusions
+# ═══════════════════════════════════════════════════════════════
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Dependencies & Virtual Environments
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+env/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# IDE & Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment
+.env
+.env.local
+.env.local_bak
+.env.*_bak
+
+# Logs & Data
+*.log
+logs/
+system.log
+data/fallback/
+results/
+cache/
+
+# Documentation site (build output)
+site/
+docs/_build/
+
+# Database dumps
+*.sql
+backup_local.sql
+*.db
+*.sqlite3
+
+# Heavy files
+*.zip
+*.tar.gz
+*.tar
+
+# Misc
+.streamlit/
+.pytest_cache/
+diagnostics_report.html

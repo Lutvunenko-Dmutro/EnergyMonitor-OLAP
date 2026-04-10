@@ -136,3 +136,6 @@ def render(df_load):
 
     # Рендер
     safe_plotly_render(fig)
+
+    # [FIX]: Spacer для скролінгу в самому низу
+    st.markdown('<div style="height: 300px;"></div>', unsafe_allow_html=True)

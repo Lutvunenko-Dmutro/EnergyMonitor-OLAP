@@ -11,15 +11,23 @@ from ui.views import kpi as tab_kpi
 logger = logging.getLogger("ENERGY_MONITOR")
 LIVE_STATE_FILE = Path("logs/live_state.json")
 
-@st.fragment(run_every=5)
+@st.fragment
 def live_telemetry_wrapper(active=False):
     """
     Автономний фрагмент для живого оновлення показників (KPI).
     Пріоритетно зчитує дані з живого JSON-стейту симуляції.
+    Оновлюється при клавіші Refresh або зміні фільтрів.
     """
     if not active:
         return
+        
     region_filter = st.session_state.get("selected_region", None)
+    active_source = st.session_state.get("active_source", "Локальна БД (Симуляція)")
+
+    if active_source == "Еталонні дані (Kaggle)":
+        st.info("📊 **Режим історичного аналізу активний**")
+        st.caption("Жива телеметрія сенсорів вимкнена для еталонного датасету.")
+        return
 
     try:
         # ПЕРЕВІРКА ЖИВОГО СТАНУ (Сocmetic Monitoring)

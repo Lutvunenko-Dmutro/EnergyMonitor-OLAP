@@ -76,6 +76,7 @@ def _get_substation_peak_automated(name: Union[str, List[str]]) -> float:
 @st_cache_resource_fallback(show_spinner="⏳ Loading AI Models...")
 @robust_ml_handler
 def load_resources(version: str = "v3") -> Tuple[Optional[ort.InferenceSession], Optional[Any]]:
+    """Loads ONNX model and Joblib scaler with integrity checks."""
     m_path = MODEL_REGISTRY.get(version)
     s_path = SCALER_REGISTRY.get(version)
 
@@ -83,17 +84,30 @@ def load_resources(version: str = "v3") -> Tuple[Optional[ort.InferenceSession],
         if version == "v3": 
             m_path = MODEL_REGISTRY["v3_checkpoint"]
         else:
-            logger.error(f"Critical Resource Missing for {version}")
+            logger.error(f"❌ Critical Model Path Missing for {version}")
             return None, None
 
     if not os.path.exists(m_path) or not os.path.exists(s_path):
-        logger.error(f"Critical Resource Missing: {m_path} or {s_path}")
+        logger.error(f"❌ Model or Scaler file not found: {m_path}")
         return None, None
 
-    sess_options = ort.SessionOptions()
-    sess_options.graph_optimization_level = ort.GraphOptimizationLevel.ORT_ENABLE_ALL
-    model = ort.InferenceSession(m_path, sess_options)
-    scaler = joblib.load(s_path)
-    
-    logger.info(f"✅ Resources loaded for {version} (ARCH: 48h)")
-    return model, scaler
+    try:
+        sess_options = ort.SessionOptions()
+        sess_options.graph_optimization_level = ort.GraphOptimizationLevel.ORT_ENABLE_ALL
+        sess_options.intra_op_num_threads = 1
+        sess_options.inter_op_num_threads = 1
+        
+        model = ort.InferenceSession(m_path, sess_options)
+        scaler = joblib.load(s_path)
+        
+        # Verify scaler integrity (Check for expected attributes)
+        if not hasattr(scaler, "mean_") and not hasattr(scaler, "data_max_"):
+             logger.error("❌ Scaler object is corrupted or invalid.")
+             return None, None
+
+        logger.info(f"✅ AI Resources validated for {version}")
+        return model, scaler
+        
+    except Exception as e:
+        logger.error(f"❌ Failed to initialize AI session: {e}")
+        return None, None

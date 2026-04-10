@@ -42,7 +42,7 @@ def render(df_latest, region_filter: str | None = None):
     ]
     for col in numeric_cols:
         if col in df_clean.columns:
-            df_clean[col] = pd.to_numeric(df_clean[col], errors="coerce").fillna(0)
+            df_clean[col] = pd.to_numeric(df_clean[col], errors="coerce").fillna(0.0)
 
     # Розрахунок середнього здоров'я
     avg_health = (
@@ -151,6 +151,9 @@ def render(df_latest, region_filter: str | None = None):
         hide_index=True,
         width="stretch",
     )
+
+    # [FIX]: Spacer для скролінгу в самому низу
+    st.markdown('<div style="height: 300px;"></div>', unsafe_allow_html=True)
 
 
 # render_gauge винесено в ui.components.cards

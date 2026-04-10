@@ -115,4 +115,4 @@ def render(selected_substation="Усі підстанції", data_source="Live"
     render_backtest_execution_loop(sub_name, version, src_type)
     
     # Гарантований відступ внизу для скролінгу всього дашборду
-    st.markdown('<div style="height: 300px;"></div>', unsafe_allow_html=True)
+    st.markdown('<div style="height: 400px;"></div>', unsafe_allow_html=True)

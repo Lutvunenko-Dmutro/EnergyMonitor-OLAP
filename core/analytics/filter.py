@@ -1,18 +1,58 @@
+from typing import Optional, Union, List, Tuple
+from datetime import date
+import pandas as pd
+import logging
+
 from app.config import DataKeys
+from utils.validators import (
+    validate_region_name,
+    validate_substation_name,
+    validate_date_range,
+    ValidationError
+)
+
+logger = logging.getLogger(__name__)
 
 
-def filter_dataframe(df, region, dates, dataset_name, substation="Усі підстанції"):
+def filter_dataframe(
+    df: pd.DataFrame,
+    region: str,
+    dates: Optional[Tuple[date, date]],
+    dataset_name: str,
+    substation: Union[str, List[str]] = "Усі підстанції"
+) -> pd.DataFrame:
     """
-    Фільтрує вхідний DataFrame на основі обраних критеріїв.
+    Фільтрує вхідний DataFrame на основі обраних критеріїв (з валідацією вводу).
 
-    :param df: Вхідний DataFrame.
-    :param region: Обраний регіон для аналізу.
-    :param dates: Кортеж дат (start_date, end_date).
-    :param dataset_name: Ідентифікатор типу даних.
-    :param substation: Назва підстанції або перелік.
-    :return: Відфільтрований DataFrame.
+    Args:
+        df: Вхідний DataFrame.
+        region: Обраний регіон для аналізу (valided vs whitelist).
+        dates: Кортеж дат (start_date, end_date).
+        dataset_name: Ідентифікатор типу даних.
+        substation: Назва підстанції або перелік (valueded vs whitelist).
+
+    Returns:
+        Відфільтрований DataFrame.
+
+    Raises:
+        TypeError: Якщо df не є DataFrame.
+        ValidationError: Якщо input містить підозрілі паттерни.
     """
+    # ✅ ВАЛІДАЦІЯ ВХОДЖЕННЯ
+    if not isinstance(df, pd.DataFrame):
+        raise TypeError(f"Expected pd.DataFrame, got {type(df)}")
+    
+    try:
+        validate_region_name(region)
+        validate_substation_name(substation)
+        if isinstance(dates, tuple) and len(dates) == 2:
+            validate_date_range(dates[0], dates[1])
+    except ValidationError as e:
+        logger.error(f"Input validation failed: {e}")
+        raise
+    
     if df.empty:
+        logger.debug("Empty DataFrame provided, returning as-is")
         return df
 
     df_filtered = df.copy()

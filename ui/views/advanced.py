@@ -8,6 +8,7 @@ def fragment_advanced_tab1(df, selected_substation, active=False):
     """Фрагмент для вкладки кластеризації."""
     if not active:
         return
+    
     _, col_tools = st.columns([4, 1])
     with col_tools.popover("⚙️ Налаштування", width='stretch'):
         use_log = st.toggle("🪵 Логарифмічна шкала", value=False, key="adv_use_log")
@@ -19,6 +20,7 @@ def fragment_advanced_tab2(df, selected_substation, active=False):
     """Фрагмент для вкладки аналізу трендів."""
     if not active:
         return
+    
     _, col_tools = st.columns([4, 1])
     with col_tools.popover("⚙️ Налаштування", width='stretch'):
         use_rel = st.toggle("📈 Відносне навантаження (%)", value=False, key="adv_use_rel")
@@ -46,3 +48,6 @@ def render_advanced_analysis(df, selected_substation):
         fragment_advanced_tab1(df, selected_substation, active=True)
     with tab2:
         fragment_advanced_tab2(df, selected_substation, active=True)
+
+    # [FIX]: Spacer для скролінгу в самому низу
+    st.markdown('<div style="height: 300px;"></div>', unsafe_allow_html=True)

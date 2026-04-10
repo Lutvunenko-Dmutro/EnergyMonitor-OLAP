@@ -18,23 +18,53 @@ load_dotenv()
 
 log = setup_logger(__name__)
 
+
+# Колонки з малою кількістю унікальних значень — конвертуємо у Category
+_KNOWN_CATEGORICAL_COLS = {
+    "region_name", "substation_name", "alert_type", "status",
+    "conditions", "generator_type", "day_type", "source_type",
+}
+
 def memory_diet(df: pd.DataFrame) -> pd.DataFrame:
     """
-    Оптимізує споживання пам'яті DataFrame:
-    1. Переводить float64 у float32 (економія 50%).
-    2. Переводить int64 у int32.
+    Агресивна оптимізація пам'яті DataFrame (5 рівнів):
+    1. float64 → float32  (економія ~50% числових даних)
+    2. int64 → int32       (економія ~50% цілочисельних)
+    3. object → Category   (економія ~80% для рядкових повторюваних значень)
+    4. datetime64[ns] → datetime64[s]  (нам мікросекунди не потрібні)
+    5. bool залишається bool (вже оптимально)
     """
-    if df.empty: return df
-    
-    # Оптимізація Float
-    floats = df.select_dtypes(include=['float64']).columns
-    df[floats] = df[floats].astype(np.float32)
-    
-    # Оптимізація Integer
-    ints = df.select_dtypes(include=['int64']).columns
-    df[ints] = df[ints].astype(np.int32)
-    
+    if df.empty:
+        return df
+
+    for col in df.columns:
+        col_type = df[col].dtype
+
+        if col_type == np.float64:
+            df[col] = df[col].astype(np.float32)
+
+        elif col_type == np.int64:
+            col_min, col_max = df[col].min(), df[col].max()
+            if col_min >= np.iinfo(np.int16).min and col_max <= np.iinfo(np.int16).max:
+                df[col] = df[col].astype(np.int16)
+            elif col_min >= np.iinfo(np.int32).min and col_max <= np.iinfo(np.int32).max:
+                df[col] = df[col].astype(np.int32)
+
+        elif col_type == object:
+            # ⚠️ Category ТІЛЬКИ для відомих статичних колонок з whitelist!
+            # НЕ використовуємо unique_ratio — це ламає код, що присвоює нові значення.
+            if col in _KNOWN_CATEGORICAL_COLS:
+                df[col] = df[col].astype("category")
+
+        elif hasattr(col_type, 'tz') or str(col_type).startswith("datetime64"):
+            # Знижуємо точність з ns до s (економить 4x пам'яті для часових рядів)
+            try:
+                df[col] = df[col].astype("datetime64[s]")
+            except Exception:
+                pass  # Не критично якщо не вдалося
+
     return df
+
 
 # --- 1. CONFIGURATION ---
 @st.cache_resource
@@ -114,13 +144,17 @@ def run_query(query_text: str, params: Optional[dict] = None) -> pd.DataFrame:
         try:
             engine = get_engine()
             with engine.connect() as conn:
-                # ЗАВАНТАЖЕННЯ ШМАТОЧКАМИ (Chunks) ДЛЯ ЕКОНОМІЇ ПАМ'ЯТІ
                 chunks = []
-                for chunk in pd.read_sql(text(query_text), conn, params=params, chunksize=2000):
+                for chunk in pd.read_sql(text(query_text), conn, params=params, chunksize=5000):
                     chunks.append(memory_diet(chunk))
-                
-                df = pd.concat(chunks, ignore_index=True) if chunks else pd.DataFrame()
-                
+
+                if not chunks:
+                    return pd.DataFrame()
+
+                df = pd.concat(chunks, ignore_index=True)
+                del chunks          # Явне звільнення chunks з пам'яті
+                import gc; gc.collect()
+
                 if not df.empty:
                     df.to_parquet(cache_path, index=False)
                 return df

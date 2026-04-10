@@ -1,0 +1,203 @@
+# ═══════════════════════════════════════════════════════════════
+# GitHub Actions CI/CD Pipeline
+# ═══════════════════════════════════════════════════════════════
+# 
+# Triggers on: push & pull requests
+# Tests, lints, builds, and deploys
+
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  # ─────────────────────────────────────────────────────────────
+  # CODE QUALITY CHECKS
+  # ─────────────────────────────────────────────────────────────
+  quality:
+    runs-on: ubuntu-latest
+    name: Code Quality Checks
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install -r requirements-dev.txt
+      
+      - name: Lint with flake8
+        run: |
+          flake8 src/ core/ ml/ ui/ --count --select=E9,F63,F7,F82 --show-source --statistics
+          flake8 src/ core/ ml/ ui/ --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+      
+      - name: Check with pylint
+        run: |
+          pylint src/ core/ ml/ --fail-under=7.0 --disable=C0111,C0103 --exit-zero || true
+      
+      - name: Format check with black
+        run: |
+          black --check src/ core/ ml/ ui/ --line-length=120 || true
+  
+  # ─────────────────────────────────────────────────────────────
+  # TYPE CHECKING
+  # ─────────────────────────────────────────────────────────────
+  typing:
+    runs-on: ubuntu-latest
+    name: Type Checking
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install mypy
+      
+      - name: Type check with mypy
+        run: mypy src/ core/ ml/ ui/ --ignore-missing-imports || true
+  
+  # ─────────────────────────────────────────────────────────────
+  # UNIT TESTS
+  # ─────────────────────────────────────────────────────────────
+  test:
+    runs-on: ubuntu-latest
+    name: Unit Tests
+    
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_DB: neondb
+          POSTGRES_USER: testuser
+          POSTGRES_PASSWORD: testpass
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install -r requirements-dev.txt
+      
+      - name: Run unit tests
+        env:
+          DB_NAME: neondb
+          DB_USER: testuser
+          DB_PASSWORD: testpass
+          DB_HOST: localhost
+          DB_PORT: 5432
+        run: |
+          pytest tests/ -v --cov=src --cov=core --cov=ml --cov-report=xml --junitxml=junit/test-results.xml
+      
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./coverage.xml
+          flags: unittests
+          fail_ci_if_error: false
+
+  # ─────────────────────────────────────────────────────────────
+  # SECURITY SCAN
+  # ─────────────────────────────────────────────────────────────
+  security:
+    runs-on: ubuntu-latest
+    name: Security Scan
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Check for hardcoded secrets
+        run: |
+          pip install detect-secrets
+          detect-secrets scan --baseline .secrets.baseline || true
+      
+      - name: Run Bandit security scan
+        run: |
+          pip install bandit
+          bandit -r src/ core/ ml/ ui/ -f json -o bandit-report.json || true
+  
+  # ─────────────────────────────────────────────────────────────
+  # BUILD & PUSH DOCKER IMAGE
+  # ─────────────────────────────────────────────────────────────
+  docker:
+    runs-on: ubuntu-latest
+    name: Build Docker Image
+    needs: [quality, test]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_USERNAME }}/energy-monitor:latest
+            ${{ secrets.DOCKER_USERNAME }}/energy-monitor:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+  
+  # ─────────────────────────────────────────────────────────────
+  # DEPLOY TO PRODUCTION
+  # ─────────────────────────────────────────────────────────────
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy to Production
+    needs: [docker]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Deploy to Render (or your hosting)
+        run: |
+          curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }} \
+            -H "Content-Type: application/json" \
+            -d '{"clearCache":"clear"}'
+        continue-on-error: true

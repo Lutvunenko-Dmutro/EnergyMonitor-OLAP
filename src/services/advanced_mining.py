@@ -72,7 +72,10 @@ def run_clustering_analysis():
     LEFT JOIN Alerts a ON s.substation_id = a.substation_id
     GROUP BY s.substation_name;
     """
-    df = get_data(sql).fillna(0)
+    df = get_data(sql)
+    # [FIX]: Використовуємо replace для числових колонок, щоб не тригерети діагностику Categorical
+    num_cols = df.select_dtypes(include=['number']).columns
+    df[num_cols] = df[num_cols].replace({np.nan: 0, None: 0})
 
     if df.empty:
         logger.warning("Немає даних для кластеризації.")

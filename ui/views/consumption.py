@@ -22,17 +22,21 @@ _LABELS = {
 
 def render(df_load: pd.DataFrame, group_by_col: str):
     """
-    Вкладка споживання з повним набором інструментів аналізу:
-      - Multiselect для фільтрації регіонів/підстанцій
-      - Нормалізація до відносних значень (%)
-      - Facet-сітка з незалежними осями Y
-      - Логарифмічна шкала
-      - Scatter з окремими лініями регресії per-region
+    Вкладка споживання з повним набором інструментів аналізу.
     """
     st.subheader("📈 Динаміка споживання")
 
     if df_load is None or df_load.empty:
-        st.info("Дані про споживання відсутні.")
+        source_name = st.session_state.get("active_source", "Поточне джерело")
+        st.warning(f"⚠️ **Дані про споживання відсутні для обраного періоду.**")
+        
+        # [UX]: Даємо підказку юзеру, що робити
+        st.info(f"""
+        **Що можна зробити?**
+        1. Перевірте **календар** у боковій панелі (Sidebar). 
+        2. Для джерела **{source_name}** оберіть період, що містить валідні записи.
+        3. Якщо ви щойно перемкнули джерело — календар має підлаштуватись автоматично, за потреби скоригуйте його вручну.
+        """)
         return
 
     df_load = df_load.copy()
@@ -173,3 +177,6 @@ def render(df_load: pd.DataFrame, group_by_col: str):
             safe_plotly_render(fig_scat)
         else:
             st.info("🌡️ Аналіз температури недоступний для Kaggle даних.")
+
+    # [FIX]: Spacer для скролінгу в самому низу
+    st.markdown('<div style="height: 300px;"></div>', unsafe_allow_html=True)

@@ -1,5 +1,7 @@
 import logging
 import os
+import sys
+import warnings
 
 # --- OPENBLAS & NUMPY MEMORY SPIKE PREVENTION ---
 # Забороняємо математичним бібліотекам створювати зайві потоки,
@@ -10,46 +12,14 @@ os.environ["OMP_NUM_THREADS"] = "1"
 os.environ["VECLIB_MAXIMUM_THREADS"] = "1"
 os.environ["NUMEXPR_NUM_THREADS"] = "1"
 
-import sys
-import warnings
-
-
-
 # Блокуємо шум від сторонніх бібліотек
-import logging
 logging.getLogger("streamlit").setLevel(logging.ERROR)
 warnings.filterwarnings("ignore")
 
-import threading
+# ✨ Використовуємо централізовану конфігурацію логування
+from utils.logging_config import setup_logging
 
-# Ініціалізація синглтон-логера для системи моніторингу
-log = logging.getLogger("ENERGY_MONITOR")
-INITIALIZATION_LOCK = threading.Lock()
-
-if not getattr(log, "initialized", False):
-    with INITIALIZATION_LOCK:
-        # Перевірка всередині блокування (Double-checked locking pattern)
-        if not getattr(log, "initialized", False):
-            log.propagate = False
-            log.setLevel(logging.INFO)
-            # Очищуємо старі обробники, якщо вони є (напр. від минулих запусків у тому самому процесі)
-            log.handlers = []
-
-            handler = logging.StreamHandler(sys.stdout)
-            handler.setFormatter(
-                logging.Formatter(
-                    "[%(asctime)s] ⚡ %(levelname)-5s | %(message)s", datefmt="%H:%M:%S"
-                )
-            )
-            log.addHandler(handler)
-
-            log.info("=" * 60)
-            log.info("🚀 ENERGY MONITOR ULTIMATE: SYSTEM STARTUP")
-            log.info("=" * 60)
-            log.info("📦 Load modules...")
-
-            log.initialized = True
-
+log = setup_logging(log_level=os.getenv("STREAMLIT_LOGGER_LEVEL", "INFO"))
 logger = log
 
 
@@ -83,67 +53,65 @@ from ui.components.styles import setup_streamlit_page
 from ui.segments.dashboard import render_dashboard_ui
 from ui.segments.sidebar import render_sidebar
 from ui.segments.splash import show_boot_sequence
+from utils.memory_helper import auto_gc
 import streamlit as st
 
-
-def select_data_source(data, data_source):
-    """
-    Адаптує набір даних відповідно до обраного джерела (Live/Kaggle).
-    """
-    res_data = data.copy()
-    if data_source == "Еталонні дані (Kaggle)":
-        res_data["load"] = res_data["real_load"]
-    return res_data
 
 
 # Головний оркестратор додатка (Application Entry Point)
 def main():
+    # --- MEMORY WATCHDOG (AUTO-GC) ---
+    # Якщо RAM > 380 MB, автоматично очищаємо кеш + gc.collect()
+    auto_gc(threshold_mb=380)
+
     # Налаштування параметрів сторінки
     setup_streamlit_page()
 
-    # --- EARLY FRAGMENT REGISTRATION (GHOST-BUSTING) ---
-    # Реєструємо фрагменти на самому початку, щоб стабілізувати їхні ID
-    # та уникнути помилок при зміні стану додатку (напр. під час заставки).
-    from ui.segments.dashboard import register_all_fragments_stably
-    register_all_fragments_stably()
-
     # --- BOOT SEQUENCE (ACTIVE SPLASH SCREEN) ---
     if "booted" not in st.session_state:
-        # Pass real work into the splash screen
         boot_data = show_boot_sequence()
         st.session_state["boot_data"] = boot_data
         st.session_state["booted"] = True
-        st.rerun()
+        # [ОПТИМІЗОВАНО]: Замість st.rerun(), продовжуємо з даними
+        # Це дозволяє уникнути додаткового перезавантаження та фрагмент-помилок
+        data = boot_data
+    else:
+        # Отримуємо дані (вже завантажені заставкою або кешовані)
+        data = get_verified_data()
 
-    # Oтримуємо дані (вони вже завантажені заставкою або кешовані)
-    data = get_verified_data()
-
-    # Регулювання фільтрів бічної панелі (Input Layer)
+    # Регулювання фільтрів бічної панелі
     selected_region, date_range, data_source, selected_substation = render_sidebar(data)
+    st.session_state["active_source"] = data_source
 
-    # Винесення логіки вибору джерела даних користувача (Data Source Switching)
-    data = select_data_source(data, data_source)
-
-    # Застосування бізнес-логіки фільтрації (Filtering Layer)
-    filtered_data = {
-        key: filter_dataframe(df, selected_region, date_range, key, selected_substation)
-        for key, df in data.items()
-    }
+    # Data source switching (Kaggle — lazy)
+    if data_source == "Еталонні дані (Kaggle)":
+        from core.database.loader import load_kaggle_lazy
+        kaggle_df = load_kaggle_lazy()
+        if not kaggle_df.empty:
+            data = data.copy()
+            data["real_load"] = kaggle_df
+            data["load"] = kaggle_df
+            # [STABILITY]: Оновлюємо активні дані, щоб фрагменти бачили Kaggle
+            st.session_state["active_data"] = data
+    else:
+        # [STABILITY]: Повертаємо оригінальні дані для симуляції
+        st.session_state["active_data"] = data
 
     # Визначення рівнів агрегації
     group_by_col = (
         "substation_name" if selected_region != DataKeys.ALL_REGIONS else "region_name"
     )
 
-    # Рендеринг головного екрану (Presentation Layer)
+    # [ОПТИМІЗОВАНО v2]: filtered_data НЕ формується заздалегідь для всіх ключів.
+    # Кожна вкладка сама фільтрує тільки потрібний DF у момент рендеру.
     render_dashboard_ui(
         data,
-        filtered_data,
         group_by_col,
         data_source,
         selected_region,
         date_range,
         selected_substation,
+        filter_fn=filter_dataframe,
     )
 
 

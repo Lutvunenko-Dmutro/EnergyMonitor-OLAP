@@ -34,8 +34,9 @@ def add_relative_load(df: pd.DataFrame, group_by_col: str) -> pd.DataFrame:
         return df
 
     df_res = df.copy()
+    # [SAFETY]: Використовуємо .replace замість .fillna(0), щоб не тригерети помилку статусів (Categorical)
     df_res["relative_load"] = df_res.groupby(group_by_col)["actual_load_mw"].transform(
-        lambda x: (x / x.max() * 100) if x.max() > 0 else x.fillna(0)
+        lambda x: (x / x.max() * 100) if x.max() > 0 else x.replace({pd.NA: 0, None: 0})
     )
     return df_res
 

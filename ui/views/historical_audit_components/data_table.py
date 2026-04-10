@@ -28,7 +28,7 @@ def render_raw_data_table(df, start_date, end_date):
     df_display.columns = headers
 
     num_cols = [c for c in ["Навантаження (МВт)", "Повітря (°C)", "Масло (°C)", "H₂ (ppm)", "Health (%)"] if c in df_display.columns]
-    df_display[num_cols] = df_display[num_cols].fillna(0)
+    df_display[num_cols] = df_display[num_cols].fillna(0.0)
 
     st.dataframe(
         df_display.style.format({col: "{:.2f}" for col in num_cols}),

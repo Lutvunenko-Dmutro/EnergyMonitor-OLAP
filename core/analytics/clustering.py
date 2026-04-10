@@ -26,8 +26,11 @@ def cluster_substations(df: pd.DataFrame, n_clusters: int = 3):
         agg_dict["avg_temp"] = ("temperature_c", "mean")
 
     df_grouped = (
-        df_cluster.groupby("substation_name").agg(**agg_dict).reset_index().fillna(0)
+        df_cluster.groupby("substation_name").agg(**agg_dict).reset_index()
     )
+    # [FIX]: fillna(0.0) тільки для числових колонок, щоб не зламати Categorical
+    numeric_cols = df_grouped.select_dtypes(include=['number']).columns
+    df_grouped[numeric_cols] = df_grouped[numeric_cols].fillna(0.0)
     if "avg_temp" not in df_grouped.columns:
         df_grouped["avg_temp"] = 20.0  # Фіксований замінник
 

@@ -19,6 +19,15 @@ def render(df_alerts):
     2. Інтерактивна таблиця для зміни статусів аварій.
     """
     st.subheader("🚨 Центр керування аваріями")
+    
+    # [SAFE FEEDBACK]: Відображення сповіщень з сесії (unblocks fragment UI warnings)
+    if "alerts_feedback" in st.session_state:
+        msg, icon, type_ = st.session_state.alerts_feedback
+        if type_ == "toast":
+            st.toast(msg, icon=icon)
+        elif type_ == "error":
+            st.error(msg)
+        del st.session_state.alerts_feedback
 
     # Панель адміністрування (Admin Tools)
     # Згорнутий блок для економії місця на екрані
@@ -47,7 +56,7 @@ def render(df_alerts):
                 input_desc = c2.text_input("Короткий опис", "Фіксація інциденту")
 
                 if st.form_submit_button("Створити", type="primary"):
-                    success, msg = db.create_custom_alert(
+                    success, msg = create_custom_alert(
                         selected_sub, selected_type, input_desc
                     )
                     if success:
@@ -62,7 +71,7 @@ def render(df_alerts):
         with tab_clean:
             st.caption("Інструмент для видалення старих тестових даних.")
             if st.button("🧹 Залишити тільки 10 останніх записів"):
-                db.cleanup_old_alerts(keep_last=10)
+                cleanup_old_alerts(keep_last=10)
                 st.toast("База очищена!", icon="🗑️")
                 st.cache_data.clear()
                 time.sleep(0.5)
@@ -104,10 +113,13 @@ def render(df_alerts):
         "IN PROGRESS": "🟡 IN PROGRESS",
     }
 
-    df_display["alert_type"] = df_display["alert_type"].apply(
+    # [ОПТИМІЗАЦІЯ]: Перетворення в String для уникнення "Cannot setitem on a Categorical"
+    df_display["alert_type"] = df_display["alert_type"].astype(str).apply(
         lambda x: type_emoji.get(x, x)
     )
-    df_display["status"] = df_display["status"].apply(lambda x: status_emoji.get(x, x))
+    df_display["status"] = df_display["status"].astype(str).apply(
+        lambda x: status_emoji.get(x, x)
+    )
 
     # Інтерактивний редактор даних
     st.data_editor(
@@ -143,6 +155,9 @@ def render(df_alerts):
         ),
     )
 
+    # [FIX]: Гарантований відступ внизу для скролінгу (перенесено з callback)
+    st.markdown('<div style="height: 300px;"></div>', unsafe_allow_html=True)
+
 
 def save_changes(changes, df):
     """Обробник подій: зберігає зміни статусів у БД, очищаючи емодзі."""
@@ -156,9 +171,9 @@ def save_changes(changes, df):
             try:
                 alert_id = df.iloc[int(idx)]["alert_id"]
                 raw_status = clean_map.get(change["status"], change["status"])
-                db.update_alert_status(alert_id, raw_status)
+                update_alert_status(alert_id, raw_status)
             except Exception as e:
-                st.error(f"Помилка оновлення: {e}")
+                st.session_state.alerts_feedback = (f"Помилка оновлення: {e}", None, "error")
 
-    st.toast("Статус оновлено!")
+    st.session_state.alerts_feedback = ("Статус оновлено!", "✅", "toast")
     st.cache_data.clear()
