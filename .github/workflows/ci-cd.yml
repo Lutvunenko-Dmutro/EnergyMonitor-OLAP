@@ -117,6 +117,7 @@ jobs:
           DB_HOST: localhost
           DB_PORT: 5432
         run: |
+          mkdir -p junit
           pytest tests/ -v --cov=src --cov=core --cov=ml --cov-report=xml --junitxml=junit/test-results.xml
       
       - name: Upload coverage to Codecov

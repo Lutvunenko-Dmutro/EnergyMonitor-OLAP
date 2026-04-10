@@ -6,6 +6,7 @@ from sqlalchemy.orm import sessionmaker
 import pandas as pd
 from datetime import datetime, timedelta
 
+from core.database.loader import fetch_granular_data
 from src.core.database import get_engine
 from src.core.config import DB_CONFIG
 

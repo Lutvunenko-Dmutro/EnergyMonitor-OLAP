@@ -2,7 +2,7 @@ import pytest
 import datetime
 import numpy as np
 import pandas as pd
-from src.core.physics import calculate_generator_output
+from core.analytics.physics import calculate_generator_output
 from ml.vectorizer import get_latest_window
 
 def test_solar_physics_nighttime():

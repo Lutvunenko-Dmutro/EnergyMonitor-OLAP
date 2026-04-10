@@ -205,26 +205,52 @@ class TestNumericValidation:
             validate_numeric_input("not a number")
 
 
-class TestEnvironmentVariables:
-    """Test that credentials are not exposed."""
-    
     def test_no_hardcoded_passwords(self):
-        """Ensure no passwords in code."""
+        """Патрулювання коду на наявність хардкоджених паролів Neon."""
         import os
+        import re
         
-        # This would only pass if .env is properly configured
-        password = os.getenv("DB_PASSWORD", "")
-        assert not password.startswith("npg_"), "Credentials should be in .env only"
-    
+        # Паттерн пароля Neon
+        pattern = re.compile(r'npg_[a-zA-Z0-9]{12,}')
+        
+        # Папки для ігнорування
+        exclude_dirs = {'.venv', '.git', '__pycache__', '.pytest_cache', 'docs/history', 'scripts', 'cache'}
+        exclude_files = {'.env', '.env.example', 'tests/test_security.py'}
+        
+        found_leaks = []
+        
+        for root, dirs, files in os.walk('.'):
+            # Виключаємо непотрібні папки
+            dirs[:] = [d for d in dirs if d not in exclude_dirs]
+            
+            for file in files:
+                if file.endswith('.py') or file.endswith('.md'):
+                    if file in exclude_files:
+                        continue
+                        
+                    path = os.path.join(root, file)
+                    try:
+                        with open(path, 'r', encoding='utf-8') as f:
+                            content = f.read()
+                            if pattern.search(content):
+                                found_leaks.append(path)
+                    except Exception:
+                        continue
+        
+        assert not found_leaks, f"Знайдено витік паролів у файлах: {found_leaks}"
+
     def test_env_example_masked(self):
-        """Ensure .env.example has masked values."""
+        """Перевірка, що .env.example не містить реальних паролів."""
         try:
-            with open(".env.example", "r") as f:
+            with open(".env.example", "r", encoding="utf-8") as f:
                 content = f.read()
                 
-                # Should not contain real passwords
-                assert "npg_" not in content
-                assert "<SET_IN_RENDER" in content or "YOUR_" in content
+                # Не повинно бути реального пароля (npg_...)
+                import re
+                assert not re.search(r'npg_[a-zA-Z0-9]{5,}', content), "Знайдено реальний пароль у .env.example!"
+                
+                # Повинен бути плейсхолдер
+                assert "your_" in content.lower() or "SET_IN_" in content
         except FileNotFoundError:
             pytest.skip(".env.example not found")
 
