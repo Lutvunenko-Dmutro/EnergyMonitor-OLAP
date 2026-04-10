@@ -63,6 +63,5 @@ backup_local.sql
 *.tar
 
 # Misc
-.streamlit/
 .pytest_cache/
 diagnostics_report.html
