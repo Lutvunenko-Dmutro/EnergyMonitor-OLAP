@@ -138,13 +138,13 @@ def render_sidebar(data):
     is_running = lock_file.exists()
 
     if not is_running:
-        if st.sidebar.button("▶️ Запустити Live Датчики", type="primary", width='stretch'):
+        if st.sidebar.button("▶️ Запустити Live Датчики", type="primary", use_container_width=True):
             # Запускаємо процес
             subprocess.Popen([sys.executable, "-m", "src.services.sensors_db"])
             st.rerun()
     else:
         st.sidebar.success("✅ Датчики генерують дані (Фон)")
-        if st.sidebar.button("🛑 Зупинити Датчики", type="secondary", width='stretch'):
+        if st.sidebar.button("🛑 Зупинити Датчики", type="secondary", use_container_width=True):
             # Примусово видаляємо замок і даємо процесу самому зупинитись або вбиваємо (тут краще вбити, якщо ми маємо доступ)
             # Але в Singleton моделі з Heartbeat процес сам побачить відсутність активності.
             # Для миттєвої зупинки надішлемо сигнал або видалимо замок (якщо процес перевіряє замок).
