@@ -311,6 +311,25 @@
   
   
     <li class="md-tabs__item">
+      <a href="../SECURITY/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Звіт з безпеки
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
       <a href="../USER_MANUAL/" class="md-tabs__link">
         
   
@@ -337,6 +356,25 @@
     
   
   Обслуговування
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../GLOSSARY/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Глосарій та FAQ
 
       </a>
     </li>
@@ -592,22 +630,50 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#devops-layer" class="md-nav__link">
+  <a href="#data-flows" class="md-nav__link">
     <span class="md-ellipsis">
       
-        DevOps Layer
+        🧬 Потоки даних (Data Flows)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="DevOps Layer">
+    <nav class="md-nav" aria-label="🧬 Потоки даних (Data Flows)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#forecasting-sequence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Послідовність прогнозування (Forecasting Sequence)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#devops-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚙️ DevOps Layer
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚙️ DevOps Layer">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#cicd-pipeline" class="md-nav__link">
     <span class="md-ellipsis">
       
-        CI/CD Pipeline
+        Детальний CI/CD Pipeline
       
     </span>
   </a>
@@ -781,6 +847,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../SECURITY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Звіт з безпеки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../USER_MANUAL/" class="md-nav__link">
         
   
@@ -816,6 +909,33 @@
     
   
     Обслуговування
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GLOSSARY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Глосарій та FAQ
   
 
     
@@ -981,22 +1101,50 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#devops-layer" class="md-nav__link">
+  <a href="#data-flows" class="md-nav__link">
     <span class="md-ellipsis">
       
-        DevOps Layer
+        🧬 Потоки даних (Data Flows)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="DevOps Layer">
+    <nav class="md-nav" aria-label="🧬 Потоки даних (Data Flows)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#forecasting-sequence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Послідовність прогнозування (Forecasting Sequence)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#devops-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚙️ DevOps Layer
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚙️ DevOps Layer">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#cicd-pipeline" class="md-nav__link">
     <span class="md-ellipsis">
       
-        CI/CD Pipeline
+        Детальний CI/CD Pipeline
       
     </span>
   </a>
@@ -1218,17 +1366,56 @@ flowchart LR
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">startup_cache_cleanup</span><span class="p">(</span><span class="n">ttl_hours</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>  <span class="c1"># викликається з main.py</span>
 </code></pre></div>
 <hr />
-<h2 id="devops-layer">DevOps Layer</h2>
-<h3 id="cicd-pipeline">CI/CD Pipeline</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>git push main
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    │
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    ├─ 🧹 flake8 + pylint (Lint)
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    ├─ 🔍 mypy (Type Check)
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    ├─ 🧪 pytest 74 tests (Unit Tests)
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    ├─ 🛡️ bandit + detect-secrets (Security)
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    ├─ 🐳 Docker build &amp; push
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    └─ 🚀 Render.com auto-deploy
-</code></pre></div>
+<h2 id="data-flows">🧬 Потоки даних (Data Flows)</h2>
+<h3 id="forecasting-sequence">Послідовність прогнозування (Forecasting Sequence)</h3>
+<p>Наступна діаграма демонструє шлях даних від запиту користувача до візуалізації ШІ-прогнозу.</p>
+<pre class="mermaid"><code>%%{init: {'theme': 'dark'}}%%
+sequenceDiagram
+    participant U as 👤 Користувач
+    participant UI as 🖥️ UI (Streamlit)
+    participant V as 🧪 Vectorizer
+    participant DB as 💾 PostgreSQL
+    participant ML as 🧠 LSTM Model
+    participant S as 📉 Scaler (Domain Adaptation)
+
+    U-&gt;&gt;UI: Вибір підстанції
+    UI-&gt;&gt;DB: Запит вікна 48 год.
+    DB--&gt;&gt;UI: df_history (raw)
+    UI-&gt;&gt;V: get_latest_window(df)
+    V-&gt;&gt;V: FE: sin/cos, normalization
+    V--&gt;&gt;UI: model_input_tensor
+    UI-&gt;&gt;ML: model.predict(input)
+    ML--&gt;&gt;UI: raw_forecast (0..1)
+    UI-&gt;&gt;S: inverse_transform() + scale_factor
+    S--&gt;&gt;UI: final_forecast (MW)
+    UI-&gt;&gt;U: Відображення графіка</code></pre>
+<hr />
+<h2 id="devops-layer">⚙️ DevOps Layer</h2>
+<h3 id="cicd-pipeline">Детальний CI/CD Pipeline</h3>
+<pre class="mermaid"><code>%%{init: {'theme': 'dark'}}%%
+flowchart TD
+    Build[Build Phase] --&gt; Test[Test Phase]
+    Test --&gt; Security[Security Phase]
+    Security --&gt; Deploy[Deploy Phase]
+
+    subgraph Build
+        B1["Docker build\n(Multi-stage)"]
+    end
+
+    subgraph Test
+        T1["pytest\n(74 tests)"]
+        T2["mypy\n(Type check)"]
+    end
+
+    subgraph Security
+        S1["bandit\n(SAST)"]
+        S2["detect-secrets"]
+    end
+
+    subgraph Deploy
+        D1["Push to Registry\n(Docker Hub)"]
+        D2["Render.com\nWebHook"]
+    end</code></pre>
 <h3 id="_2">Ключові конфіги</h3>
 <table>
 <thead>

@@ -11,10 +11,10 @@
       
       
       
-        <link rel="prev" href="../SECURITY/">
+        <link rel="prev" href="../database/">
       
       
-        <link rel="next" href="../MAINTENANCE/">
+        <link rel="next" href="../USER_MANUAL/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>Інструкція користувача - ⚡ Energy Monitor Ultimate</title>
+        <title>Звіт з безпеки - ⚡ Energy Monitor Ultimate</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#user-manual" class="md-skip">
+        <a href="#security-audit-report" class="md-skip">
           Skip to content
         </a>
       
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Інструкція користувача
+              Звіт з безпеки
             
           </span>
         </div>
@@ -307,9 +307,11 @@
   
   
   
+    
   
-    <li class="md-tabs__item">
-      <a href="../SECURITY/" class="md-tabs__link">
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
         
   
   
@@ -326,11 +328,9 @@
   
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="./" class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href="../USER_MANUAL/" class="md-tabs__link">
         
   
   
@@ -630,33 +630,6 @@
       
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../SECURITY/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Звіт з безпеки
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
     
   
   
@@ -676,7 +649,7 @@
   <span class="md-ellipsis">
     
   
-    Інструкція користувача
+    Звіт з безпеки
   
 
     
@@ -694,7 +667,7 @@
   <span class="md-ellipsis">
     
   
-    Інструкція користувача
+    Звіт з безпеки
   
 
     
@@ -720,22 +693,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#defense-in-depth" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Сайдбар: Керування та Фільтри
+        🏗️ Стратегія захисту (Defense in Depth)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🛠️ Сайдбар: Керування та Фільтри">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sql-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔒 Захист від SQL Injection
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔒 Захист від SQL Injection">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Вибір джерела даних
+        1. Параметризовані запити
       
     </span>
   </a>
@@ -743,21 +727,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
+  <a href="#2-whitelisting" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Глобальні фільтри
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Керування симуляцією
+        2. Whitelisting (Білі списки)
       
     </span>
   </a>
@@ -770,107 +743,24 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#8" class="md-nav__link">
+  <a href="#xss-ui" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🗂️ Навігація сторінками (8 Вкладок)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="🗂️ Навігація сторінками (8 Вкладок)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. 🗺️ Карта мережі
+        🩹 Захист від XSS та маніпуляцій UI
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#2_1" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. 📉 Споживання
+        💂 Управління секретами та доступом
       
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. 🏭 Генерація
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. 🚨 Журнал аварій
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. 💰 Економіка
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#6-ai" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6. 🤖 AI Аналітика
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#7" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        7. 🔮 Прогноз ШІ (Найголовніше)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#8-olap" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        8. 📜 Цифровий архів (OLAP)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -878,7 +768,35 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💡 Поради щодо інтерпретації
+        📊 Результати автоматичного аудиту
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Результати автоматичного аудиту">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sast" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Статичний аналіз (SAST)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#owasp-top-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚀 Відповідність OWASP Top 10
       
     </span>
   </a>
@@ -886,10 +804,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#troubleshooting" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🆘 Troubleshooting для користувача
+        🛠️ Використання інструментів аудиту
       
     </span>
   </a>
@@ -900,6 +818,33 @@
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../USER_MANUAL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Інструкція користувача
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1039,22 +984,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#defense-in-depth" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Сайдбар: Керування та Фільтри
+        🏗️ Стратегія захисту (Defense in Depth)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🛠️ Сайдбар: Керування та Фільтри">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sql-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔒 Захист від SQL Injection
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔒 Захист від SQL Injection">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Вибір джерела даних
+        1. Параметризовані запити
       
     </span>
   </a>
@@ -1062,21 +1018,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
+  <a href="#2-whitelisting" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Глобальні фільтри
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Керування симуляцією
+        2. Whitelisting (Білі списки)
       
     </span>
   </a>
@@ -1089,107 +1034,24 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#8" class="md-nav__link">
+  <a href="#xss-ui" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🗂️ Навігація сторінками (8 Вкладок)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="🗂️ Навігація сторінками (8 Вкладок)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. 🗺️ Карта мережі
+        🩹 Захист від XSS та маніпуляцій UI
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#2_1" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. 📉 Споживання
+        💂 Управління секретами та доступом
       
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. 🏭 Генерація
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. 🚨 Журнал аварій
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. 💰 Економіка
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#6-ai" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6. 🤖 AI Аналітика
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#7" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        7. 🔮 Прогноз ШІ (Найголовніше)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#8-olap" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        8. 📜 Цифровий архів (OLAP)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1197,7 +1059,35 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💡 Поради щодо інтерпретації
+        📊 Результати автоматичного аудиту
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Результати автоматичного аудиту">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sast" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Статичний аналіз (SAST)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#owasp-top-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚀 Відповідність OWASP Top 10
       
     </span>
   </a>
@@ -1205,10 +1095,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#troubleshooting" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🆘 Troubleshooting для користувача
+        🛠️ Використання інструментів аудиту
       
     </span>
   </a>
@@ -1235,75 +1125,133 @@
   
 
 
-<h1 id="user-manual">📱 Інструкція Користувача (User Manual)</h1>
-<p>Ласкаво просимо до інтерфейсу <strong>Energy Monitor ULTIMATE</strong>. Цей гід допоможе вам ефективно керувати дашбордом та інтерпретувати дані.</p>
+<h1 id="security-audit-report">🛡️ Звіт про безпеку (Security Audit Report)</h1>
+<p>Проект <strong>Energy Monitor ULTIMATE</strong> розроблений із пріоритетом на безпеку даних та стійкість до атак. У цьому документі описано стратегію захисту та результати аудиту.</p>
 <hr />
-<h2 id="_1">🛠️ Сайдбар: Керування та Фільтри</h2>
-<p>Сайдбар — це ваш центр управління. Він розділений на три логічні зони:</p>
-<h3 id="1">1. Вибір джерела даних</h3>
-<ul>
-<li><strong>Синтетична модель (Smart City)</strong>: Режим у реальному часі (Digital Twin). Дані генеруються симулятором.</li>
-<li><strong>Еталонні дані (Kaggle)</strong>: Режим дослідження історичних даних великих енергомереж.</li>
-</ul>
-<h3 id="2">2. Глобальні фільтри</h3>
-<ul>
-<li><strong>Регіон</strong>: Масштабування всієї аналітики до конкретного регіону (наприклад, Київ).</li>
-<li><strong>Діапазон дат</strong>: Вибір часового вікна для історичного аналізу.</li>
-<li><strong>Підстанція</strong>: Фокусування на конкретному об'єкті для ML-прогнозу.</li>
-</ul>
-<h3 id="3">3. Керування симуляцією</h3>
-<ul>
-<li><strong>Кнопка "▶️ Запустити Симуляцію"</strong>: Активує фоновий процес Digital Twin на 15 хвилин.</li>
-<li><strong>Чекбокс "Жива карта"</strong>: Вмикає auto-refresh для гео-візуалізації.</li>
-</ul>
+<h2 id="defense-in-depth">🏗️ Стратегія захисту (Defense in Depth)</h2>
+<p>Система використовує багатошаровий підхід до безпеки:</p>
+<ol>
+<li><strong>Транспортний рівень (SSL/TLS)</strong>: Весь трафік до БД Neon Cloud шифрується (режим <code>require</code>).</li>
+<li><strong>Прикладний рівень (Validation)</strong>: Сувора валідація всіх вхідних параметрів через регулярні вирази.</li>
+<li><strong>Рівень БД (Parametrization)</strong>: Виключення динамічної збірки SQL-запитів.</li>
+<li><strong>Рівень операцій (Secrets)</strong>: Відсутність захардкоджених паролів у коді.</li>
+</ol>
 <hr />
-<h2 id="8">🗂️ Навігація сторінками (8 Вкладок)</h2>
-<p>Дашборд розділений на спеціалізовані вкладки для різних ролей (від оператора до фінансового директора).</p>
-<h3 id="1_1">1. 🗺️ Карта мережі</h3>
-<p>Візуалізація енергомережі на карті.
-*   <strong>Точки</strong>: Підстанції. Розмір залежить від навантаження.
-*   <strong>Лінії</strong>: Магістралі. Колір вказує на відсоток завантаженості (Зелений → Жовтий → Червоний).</p>
-<h3 id="2_1">2. 📉 Споживання</h3>
-<p>Основний аналітичний блок споживання.
-*   <strong>Групування</strong>: Можливість змінювати агрегацію (По регіонах / По підстанціях).
-*   <strong>Графіки</strong>: Динаміка MW у часі.</p>
-<h3 id="3_1">3. 🏭 Генерація</h3>
-<p>Огляд джерел енергії.
-*   <strong>Структура</strong>: Розподіл (Атомна/Теплова/Відновлювана) у вигляді кругових діаграм.
-*   <strong>Баланс</strong>: Співвідношення виробленої та спожитої енергії.</p>
-<h3 id="4">4. 🚨 Журнал аварій</h3>
-<p>Оперативне управління інцидентами.
-*   <strong>Smart Editor</strong>: Можливість змінювати статус аварії прямо в таблиці (Pending → Processing → Resolved).
-*   <strong>Пріоритезація</strong>: Автоматичне сортування за критичністю (Critical/Warning).</p>
-<h3 id="5">5. 💰 Економіка</h3>
-<p>Фінансові показники мережі.
-*   <strong>Виторг</strong>: Розрахунок потенційного доходу на базі поточних тарифів.
-*   <strong>Втрати</strong>: Фінансова оцінка енерговтрат у лініях.</p>
-<h3 id="6-ai">6. 🤖 AI Аналітика</h3>
-<p>Глибокий аналіз даних за допомогою ШІ.
-*   <strong>Кластеризація</strong>: Групування об'єктів за поведінковими характеристиками (K-Means).
-*   <strong>Anomaly detection</strong>: Виявлення нетипової активності.</p>
-<h3 id="7">7. 🔮 Прогноз ШІ (Найголовніше)</h3>
-<p>LSTM-прогнозування на наступні 24 години.
-*   <strong>Графік</strong>: Поєднує реальну історію (синя лінія) та ШІ-прогноз (оранжева пунктирна лінія).
-*   <strong>Довірчий інтервал</strong>: Напівпрозоре поле, що вказує на ймовірну похибку моделі.</p>
-<h3 id="8-olap">8. 📜 Цифровий архів (OLAP)</h3>
-<p>Доступ до історичних зрізів даних.
-*   <strong>Експорт</strong>: Можливість завантажити відфільтровані дані у CSV/Excel для стороннього аналізу.</p>
+<h2 id="sql-injection">🔒 Захист від SQL Injection</h2>
+<p>Це найбільш критична вразливість для OLAP-систем. У проекті реалізовано:</p>
+<h3 id="1">1. Параметризовані запити</h3>
+<p>Всі запити до БД використовують токени (<code>:param</code>), що робить ін'єкцію коду технічно неможливою на рівні драйвера.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># src/core/database.py</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">run_query</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM LoadMeasurements WHERE id = :id&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">123</span><span class="p">})</span>
+</code></pre></div></p>
+<h3 id="2-whitelisting">2. Whitelisting (Білі списки)</h3>
+<p>Для динамічних частин запиту (наприклад, назв колонок), які не можна параметризувати, використовуються валідатори з <code>utils/validators.py</code>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">VALID_COLUMNS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;actual_load_mw&quot;</span><span class="p">,</span> <span class="s2">&quot;health_score&quot;</span><span class="p">,</span> <span class="s2">&quot;timestamp&quot;</span><span class="p">}</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">if</span> <span class="n">col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">VALID_COLUMNS</span><span class="p">:</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Illegal column access detected!&quot;</span><span class="p">)</span>
+</code></pre></div></p>
 <hr />
-<h2 id="_2">💡 Поради щодо інтерпретації</h2>
+<h2 id="xss-ui">🩹 Захист від XSS та маніпуляцій UI</h2>
 <ul>
-<li><strong>Health Score &lt; 20%</strong>: Критичний стан трансформатора. Потребує негайної перевірки у вкладці "Аварії".</li>
-<li><strong>H2 PPM &gt; 500</strong>: Ознака перегріву або деградації масла.</li>
-<li><strong>Gaps у прогнозі</strong>: Якщо оранжева лінія занадто відхиляється від синьої, зверніть увагу на <strong>Mean Absolute Error (MAE)</strong> у підписі графіка.</li>
+<li><strong>Streamlit Sanitization</strong>: Весь текст, що відображається, автоматично екранується Streamlit. </li>
+<li><strong>Markdown safety</strong>: <code>unsafe_allow_html=True</code> використовується лише у перевірених футерах, де немає вводу користувача.</li>
 </ul>
 <hr />
-<h2 id="troubleshooting">🆘 Troubleshooting для користувача</h2>
+<h2 id="_1">💂 Управління секретами та доступом</h2>
 <ul>
-<li><strong>Немає даних на карті?</strong> Переконайтеся, що вибрано "Синтетична модель" та запущено симуляцію.</li>
-<li><strong>Помилка прогнозу?</strong> Перевірте, чи вибрана конкретна підстанція (прогноз не працює для режиму "Усі").</li>
-<li><strong>Інтерфейс "тупить"?</strong> Спробуйте натиснути <code>R</code> для повного перезавантаження кешу Streamlit.</li>
+<li><strong>Environment Variables</strong>: Всі чутливі дані (паролі, хости) завантажуються виключно через <code>os.getenv</code>.</li>
+<li><strong>Git Safety</strong>: Файл <code>.env</code> занесений до <code>.gitignore</code>.</li>
+<li><strong>GitHub Secrets</strong>: Для CI/CD пайплайнів використовуються зашифровані секрети GitHub.</li>
+<li><strong>Redacted Logging</strong>: Логер проекту автоматично перехоплює credentials та не виводить їх у консоль.</li>
 </ul>
+<hr />
+<h2 id="_2">📊 Результати автоматичного аудиту</h2>
+<p>Система пройшла 26 цільових тестів безпеки (<code>tests/test_security.py</code>):</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Категорія тесту</th>
+<th style="text-align: left;">Результат</th>
+<th style="text-align: left;">Опис</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>SQLi Protection</strong></td>
+<td style="text-align: left;">✅ Passed</td>
+<td style="text-align: left;">5 сценаріїв зловмисного вводу заблоковано</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>XSS Payload Test</strong></td>
+<td style="text-align: left;">✅ Passed</td>
+<td style="text-align: left;">Скрипти <code>&lt;script&gt;</code> заблоковані або екрановані</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Whitelist Validation</strong></td>
+<td style="text-align: left;">✅ Passed</td>
+<td style="text-align: left;">Спроби доступу до системних таблиць заблоковані</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Path Traversal</strong></td>
+<td style="text-align: left;">✅ Passed</td>
+<td style="text-align: left;">Спроби читання файлів поза межами <code>/app</code> заблоковані</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Credential Redaction</strong></td>
+<td style="text-align: left;">✅ Passed</td>
+<td style="text-align: left;">Паролі не потрапляють у логи при помилках підключення</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sast">Статичний аналіз (SAST)</h3>
+<p>Використовується інструмент <strong>Bandit</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>bandit<span class="w"> </span>-r<span class="w"> </span>src/<span class="w"> </span>core/<span class="w"> </span>ml/<span class="w"> </span>ui/<span class="w"> </span>-x<span class="w"> </span>tests/
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1"># Результат: Low Severity (0 critical issues)</span>
+</code></pre></div></p>
+<hr />
+<h2 id="owasp-top-10">🚀 Відповідність OWASP Top 10</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Ризик OWASP</th>
+<th style="text-align: left;">Статус</th>
+<th style="text-align: left;">Реалізація в проекті</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>A01: Broken Access Control</strong></td>
+<td style="text-align: left;">✅ Захищено</td>
+<td style="text-align: left;">Валідація ролей при запитах до БД</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>A02: Cryptographic Failures</strong></td>
+<td style="text-align: left;">✅ Захищено</td>
+<td style="text-align: left;">SSL/TLS обов'язковий (Neon Cloud)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>A03: Injection</strong></td>
+<td style="text-align: left;">✅ Захищено</td>
+<td style="text-align: left;">100% параметризація запитів</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>A05: Security Misconfig</strong></td>
+<td style="text-align: left;">✅ Захищено</td>
+<td style="text-align: left;">Безпечні дефолтні налаштування у Docker</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>A09: Monitoring Failures</strong></td>
+<td style="text-align: left;">✅ Захищено</td>
+<td style="text-align: left;">Ведення детальних аудит-логів (<code>energy-monitor.log</code>)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_3">🛠️ Використання інструментів аудиту</h2>
+<p>Користувач може запустити повний аудит безпеки однією командою:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>python<span class="w"> </span>diagnose.py
+</code></pre></div>
+Він перевірить цілісність конфігурацій, права доступу до файлів та наявність потенційно небезпечних конструкцій у коді.</p>
 
 
 

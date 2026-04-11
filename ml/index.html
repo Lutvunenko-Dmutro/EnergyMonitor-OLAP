@@ -311,6 +311,25 @@
   
   
     <li class="md-tabs__item">
+      <a href="../SECURITY/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Звіт з безпеки
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
       <a href="../USER_MANUAL/" class="md-tabs__link">
         
   
@@ -337,6 +356,25 @@
     
   
   Обслуговування
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../GLOSSARY/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Глосарій та FAQ
 
       </a>
     </li>
@@ -668,6 +706,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#smart-stitching-exponential-decay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📈 Smart Stitching (Exponential Decay)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -814,6 +863,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../SECURITY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Звіт з безпеки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../USER_MANUAL/" class="md-nav__link">
         
   
@@ -849,6 +925,33 @@
     
   
     Обслуговування
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GLOSSARY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Глосарій та FAQ
   
 
     
@@ -1030,6 +1133,17 @@
     <span class="md-ellipsis">
       
         Ітеративний прогноз (Recursive Forecasting)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smart-stitching-exponential-decay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📈 Smart Stitching (Exponential Decay)
       
     </span>
   </a>
@@ -1254,6 +1368,13 @@
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="n">prediction</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>   <span class="c1"># LSTM.predict → (load_t+1, health_t+1)</span>
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="n">window</span> <span class="o">=</span> <span class="n">roll</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">prediction</span><span class="p">)</span>    <span class="c1"># Зсув вікна: викидаємо t-48, додаємо t+1</span>
 </code></pre></div>
+<h3 id="smart-stitching-exponential-decay">📈 Smart Stitching (Exponential Decay)</h3>
+<p>При переході від останнього відомого факту <span class="arithmatex">\(y_{t}\)</span> до першого кроку прогнозу <span class="arithmatex">\(\hat{y}_{t+1}\)</span> часто виникає розрив (step-jump) через похибку моделі. Для візуальної та логічної цілісності використовується експоненціальне згладжування помилки:</p>
+<p><strong>Помилка початкового кроку</strong>:
+<span class="arithmatex">\(<span class="arithmatex">\(\delta = y_t - \hat{y}_t\)</span>\)</span></p>
+<p><strong>Корекція для k-го кроку прогнозу</strong>:
+<span class="arithmatex">\(<span class="arithmatex">\(\hat{y}_{t+k}^{corr} = \hat{y}_{t+k} + \delta \cdot \lambda^k\)</span>\)</span></p>
+<p>Де <span class="arithmatex">\(\lambda\)</span> — коефіцієнт затухання (<span class="arithmatex">\(\approx 0.85\)</span>). Це забезпечує плавний старт прогнозної кривої без втрати точності моделі на довгій дистанції.</p>
 <hr />
 <h2 id="metrics_enginepy">metrics_engine.py</h2>
 <h3 id="_4">Метрики точності</h3>
