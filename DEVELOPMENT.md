@@ -167,7 +167,7 @@ EnergyMonitor-OLAP/
 # tests/test_core_analytics.py
 import pytest
 import pandas as pd
-from core.analytics.filter import filter_dataframe
+from src.core.analytics.filter import filter_dataframe
 
 class TestFilterDataframe:
     """Test suite for filter_dataframe function."""
@@ -286,7 +286,7 @@ except Exception as e:
     raise
 
 # ✅ Використовуй готові декоратори проекту
-from utils.error_handlers import robust_ml_handler, robust_database_handler
+from src.utils.error_handlers import robust_ml_handler, robust_database_handler
 
 @robust_ml_handler
 def predict(window: np.ndarray) -> np.ndarray:
@@ -389,7 +389,7 @@ MODEL_REGISTRY = {
 # Запустити через UI: вкладка "Аналітика" → "Бектест"
 # Або вручну:
 python -c "
-from ml.backtest import run_backtest
+from src.ml.backtest import run_backtest
 run_backtest(version='v4', substation='Київська ТЕЦ-5')
 "
 ```
@@ -485,13 +485,13 @@ Get-Content logs/live_state.json
 python -c "from src.core.database import run_query; print(run_query('SELECT 1'))"
 
 # Запустити TTL-очищення кешу вручну
-python -c "from utils.cache_manager import clean_cache, get_cache_stats; print(get_cache_stats()); clean_cache(ttl_hours=0)"
+python -c "from src.utils.cache_manager import clean_cache, get_cache_stats; print(get_cache_stats()); clean_cache(ttl_hours=0)"
 
 # Запустити автодіагностику
 python diagnose.py
 
 # Перевірити memory watchdog
-python -c "from utils.memory_helper import auto_gc; auto_gc(threshold_mb=0)"
+python -c "from src.utils.memory_helper import auto_gc; auto_gc(threshold_mb=0)"
 ```
 
 ---

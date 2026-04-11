@@ -7,7 +7,7 @@ import pytest
 # Додаємо корінь проекту до PATH, щоб імпорти працювали правильно
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from core.analytics.physics import (
+from src.core.physics import (
     calculate_energy_price,
     calculate_generator_output,
     calculate_substation_load,

@@ -2,8 +2,8 @@ import pytest
 import datetime
 import numpy as np
 import pandas as pd
-from core.analytics.physics import calculate_generator_output
-from ml.vectorizer import get_latest_window
+from src.core.physics import calculate_generator_output
+from src.ml.vectorizer import get_latest_window
 
 def test_solar_physics_nighttime():
     """Перевірка фізичної моделі: генерація СЕС вночі має бути 0.0."""
@@ -40,7 +40,7 @@ def test_lstm_vectorizer_window_integrity():
 
 def test_vectorizer_v3_features_count():
     """Перевірка кількості ознак для моделі V3."""
-    from ml.vectorizer import get_latest_window
+    from src.ml.vectorizer import get_latest_window
     # Перевіряємо список фіч, який повертає векторизатор для v3
     # Ми можемо викликати внутрішню логіку або просто звірити зі специфікацією
     expected_count = 9

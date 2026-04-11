@@ -6,7 +6,7 @@ import numpy as np
 # Додаємо корінь проєкту до PATH
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from ml.train_lstm import load_data_from_db
+from src.ml.train_lstm import load_data_from_db
 
 def audit_v3_data():
     print("📊 Запуск аудиту даних для моделi v3...")

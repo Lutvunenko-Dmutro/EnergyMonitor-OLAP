@@ -72,7 +72,7 @@ PROBLEM:
 IMPACT: Confusion about where logic belongs. Tests fail with import errors.
 
 EXAMPLE PROBLEM:
-from core.database import run_query        # ❌ vs
+from src.core.database import run_query        # ❌ vs
 from src.core.database import run_query    # Which one?
 
 RECOMMENDATION:
@@ -213,7 +213,7 @@ def _run_onnx_inference(model, current_window, window_size, n_features, hours_ah
         all_stage_predictions.append(pred_s)
     return all_stage_predictions  # Unclear return type
 
-# ✅ GOOD EXAMPLE (from app/types.py):
+# ✅ GOOD EXAMPLE (from src.app/types.py):
 PredictionResult = Dict[str, Union[pd.DataFrame, float, dict]]
 MetricsDict = Dict[str, float]
 ```
@@ -283,7 +283,7 @@ df_c = df.copy()              # "df_c"? Why not "df_copy"?
 ort_outs = model.run(...)     # "ort_outs"? Means ONNX Runtime outputs
 hv_dc = "HVDC"                # Inconsistent with "HVDC" constant
 
-# ✅ GOOD EXAMPLES (from core/analytics/filter.py)
+# ✅ GOOD EXAMPLES (from src.core/analytics/filter.py)
 def filter_dataframe(
     df: pd.DataFrame,
     region: str,
@@ -394,7 +394,7 @@ def _run_onnx_inference(...) -> list:
 ```python
 # ❌ PROBLEM: Adding new data source requires modifying multiple files
 if data_source == "Еталонні дані (Kaggle)":
-    from core.database.loader import load_kaggle_lazy
+    from src.core.database.loader import load_kaggle_lazy
     kaggle_df = load_kaggle_lazy()
 
 # Should use Strategy pattern instead:
@@ -897,7 +897,7 @@ Current: 8-10%
 # tests/test_ml_model.py: 5 tests estimated
 def test_model_initialization(self):          # ✅ Exists
     """Модель інітіалізується без помилок."""
-    from ml.predict_v2 import LSTMPredictor
+    from src.ml.predict_v2 import LSTMPredictor
     model = LSTMPredictor()
     assert model is not None               # ❌ Trivial test
 
@@ -2136,7 +2136,7 @@ def fetch_granular_data(step_key: str):
     # ... silently returns {} if key doesn't match
 
 # ✅ AFTER
-from app.config import VALID_STEP_KEYS  # Whitelist
+from src.app.config import VALID_STEP_KEYS  # Whitelist
 from typing import Dict, Optional
 import pandas as pd
 
@@ -2173,7 +2173,7 @@ def fetch_granular_data(step_key: str) -> Dict[str, Optional[pd.DataFrame]]:
     try:
         if query is None:
             # Special handling for telemetry
-            from src.services.db_services import get_latest_measurements
+            from src.services.data.db_services import get_latest_measurements
             return {"telemetry": get_latest_measurements()}
         
         result = db.run_query(query)
@@ -2197,7 +2197,7 @@ def fetch_granular_data(step_key: str) -> Dict[str, Optional[pd.DataFrame]]:
 
 from typing import Optional, Union, List
 from datetime import date
-from app.config import BUILTIN_NAMES
+from src.app.config import BUILTIN_NAMES
 import logging
 
 logger = logging.getLogger(__name__)

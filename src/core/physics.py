@@ -3,8 +3,54 @@ import random
 from typing import Dict, Optional, Tuple
 
 import numpy as np
+import pandas as pd
 
 from src.core.config import LOAD_PROFILES
+
+
+def calculate_line_losses(df_lines: pd.DataFrame) -> pd.DataFrame:
+    """
+    Розраховує втрати потужності в мережі для AC та HVDC ліній.
+    Математична модель: 
+    - AC: Losses ~ I^2 * R (квадратична залежність від навантаження)
+    - HVDC: Losses ~ I * R (більш лінійна, менші втрати на дистанції)
+    """
+    if df_lines.empty:
+        return df_lines
+
+    df = df_lines.copy()
+
+    # Визначення типу ліній (HVDC для магістралей > 3000 МВт)
+    if "line_type" not in df.columns and "max_load_mw" in df.columns:
+        df["line_type"] = df["max_load_mw"].apply(
+            lambda x: "HVDC" if x >= 3000 else "AC"
+        )
+
+    if "line_type" not in df.columns:
+        df["line_type"] = "AC"
+
+    is_hvdc = df["line_type"] == "HVDC"
+    # Базис втрат: 1.5% для DC, 3.5% для AC при піку
+    loss_dc = (df["actual_load_mw"] * 0.015) * (df["load_pct"] / 100)
+    loss_ac = (df["actual_load_mw"] * 0.035) * (df["load_pct"] / 100) ** 2
+    
+    df["losses_mw"] = np.where(is_hvdc, loss_dc, loss_ac)
+
+    return df
+
+
+def estimate_grid_stability(load_mw: float, gen_mw: float) -> str:
+    """
+    Оцінює стабільність енергосистеми на основі балансу генерації та споживання.
+    """
+    if gen_mw <= 0: return "Критично"
+    ratio = load_mw / gen_mw
+    
+    if ratio > 1.2: return "Критично"  # Дефіцит > 20%
+    if ratio > 1.05: return "Попередження" # Ризик каскадного відключення
+    if ratio < 0.8: return "Попередження"  # Надлишок (ризик зростання частоти)
+    
+    return "Стабільно"
 
 
 def calculate_weather(

@@ -111,19 +111,66 @@ startup_cache_cleanup(ttl_hours=24)  # викликається з main.py
 
 ---
 
-## DevOps Layer
+## 🧬 Потоки даних (Data Flows)
 
-### CI/CD Pipeline
+### Послідовність прогнозування (Forecasting Sequence)
 
+Наступна діаграма демонструє шлях даних від запиту користувача до візуалізації ШІ-прогнозу.
+
+```mermaid
+%%{init: {'theme': 'dark'}}%%
+sequenceDiagram
+    participant U as 👤 Користувач
+    participant UI as 🖥️ UI (Streamlit)
+    participant V as 🧪 Vectorizer
+    participant DB as 💾 PostgreSQL
+    participant ML as 🧠 LSTM Model
+    participant S as 📉 Scaler (Domain Adaptation)
+
+    U->>UI: Вибір підстанції
+    UI->>DB: Запит вікна 48 год.
+    DB-->>UI: df_history (raw)
+    UI->>V: get_latest_window(df)
+    V->>V: FE: sin/cos, normalization
+    V-->>UI: model_input_tensor
+    UI->>ML: model.predict(input)
+    ML-->>UI: raw_forecast (0..1)
+    UI->>S: inverse_transform() + scale_factor
+    S-->>UI: final_forecast (MW)
+    UI->>U: Відображення графіка
 ```
-git push main
-    │
-    ├─ 🧹 flake8 + pylint (Lint)
-    ├─ 🔍 mypy (Type Check)
-    ├─ 🧪 pytest 74 tests (Unit Tests)
-    ├─ 🛡️ bandit + detect-secrets (Security)
-    ├─ 🐳 Docker build & push
-    └─ 🚀 Render.com auto-deploy
+
+---
+
+## ⚙️ DevOps Layer
+
+### Детальний CI/CD Pipeline
+
+```mermaid
+%%{init: {'theme': 'dark'}}%%
+flowchart TD
+    Build[Build Phase] --> Test[Test Phase]
+    Test --> Security[Security Phase]
+    Security --> Deploy[Deploy Phase]
+
+    subgraph Build
+        B1["Docker build\n(Multi-stage)"]
+    end
+
+    subgraph Test
+        T1["pytest\n(74 tests)"]
+        T2["mypy\n(Type check)"]
+    end
+
+    subgraph Security
+        S1["bandit\n(SAST)"]
+        S2["detect-secrets"]
+    end
+
+    subgraph Deploy
+        D1["Push to Registry\n(Docker Hub)"]
+        D2["Render.com\nWebHook"]
+    end
 ```
 
 ### Ключові конфіги
@@ -137,6 +184,24 @@ git push main
 
 ---
 
-## Файлова структура
+---
 
-Детальну структуру з коментарями до кожного файлу дивись у [DEVELOPMENT.md](../DEVELOPMENT.md).
+## 📐 Математичний додаток (Academic Appendix)
+
+### 1. Кластеризація підстанцій (K-Means)
+
+Для сегментації об'єктів (вкладка AI Аналітика) використовується алгоритм K-Means. Математична мета полягає у мінімізації сумарного квадратичного відхилення точок кластерів від їх центроїдів:
+
+$$J = \sum_{j=1}^{k} \sum_{x \in C_j} \|x - \mu_j\|^2$$
+
+Де:
+- $k$ — кількість кластерів (визначається методом ліктя).
+- $C_j$ — множина точок $j$-го кластера.
+- $\mu_j$ — центроїд (середнє значення) кластера $C_j$.
+
+**Вектор ознак для кластеризації:**
+- $\bar{L}$: Середнє навантаження за період.
+- $\sigma_L$: Стандартне відхилення (показник волатильності).
+- $H$: Середній показник Health Score.
+
+Це дозволяє автоматично виділяти «вузлові», «промислові» та «критичні» підстанції без втручання оператора.

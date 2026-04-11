@@ -3,7 +3,7 @@ Security tests - SQL injection prevention, input validation, credential protecti
 """
 
 import pytest
-from utils.validators import (
+from src.utils.validators import (
     ValidationError,
     validate_substation_name,
     validate_region_name,
@@ -176,7 +176,7 @@ class TestNumericValidation:
     
     def test_valid_numeric_inputs(self):
         """Accept valid numbers."""
-        from utils.validators import validate_numeric_input
+        from src.utils.validators import validate_numeric_input
         
         assert validate_numeric_input(42)
         assert validate_numeric_input(3.14)
@@ -185,21 +185,21 @@ class TestNumericValidation:
     
     def test_numeric_bounds(self):
         """Enforce bounds on numeric inputs."""
-        from utils.validators import validate_numeric_input
+        from src.utils.validators import validate_numeric_input
         
         # Valid within bounds
         assert validate_numeric_input(50, min_val=0, max_val=100)
     
     def test_numeric_out_of_bounds(self):
         """Reject out-of-bounds numbers."""
-        from utils.validators import validate_numeric_input
+        from src.utils.validators import validate_numeric_input
         
         with pytest.raises(ValidationError):
             validate_numeric_input(150, min_val=0, max_val=100)
     
     def test_non_numeric_input(self):
         """Reject non-numeric inputs."""
-        from utils.validators import validate_numeric_input
+        from src.utils.validators import validate_numeric_input
         
         with pytest.raises(ValidationError):
             validate_numeric_input("not a number")
@@ -260,14 +260,14 @@ class TestRecoveryStrategies:
     
     def test_error_context_manager(self):
         """Test ErrorContext logging."""
-        from utils.error_handlers import ErrorContext
+        from src.utils.error_handlers import ErrorContext
         
         with ErrorContext("test_operation"):
             pass  # Should log successfully
     
     def test_error_context_on_exception(self):
         """Test ErrorContext handles exceptions."""
-        from utils.error_handlers import ErrorContext
+        from src.utils.error_handlers import ErrorContext
         
         try:
             with ErrorContext("failing_operation"):

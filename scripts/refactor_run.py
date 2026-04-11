@@ -37,11 +37,11 @@ forecast_fig_code = "".join(fc_lines[forecast_fig_idx:render_idx])
 
 # Now construct the new forecast.py
 new_fc_lines = fc_lines[:cache_idx]
-new_fc_lines.append("from ml.forecast_controller import cached_ai_forecast as _cached_ai_forecast\n")
-new_fc_lines.append("from ml.forecast_controller import cached_fast_backtest as _cached_fast_backtest\n")
-new_fc_lines.append("from ml.forecast_controller import get_cached_history as _get_history\n")
-new_fc_lines.append("from ml.forecast_controller import calculate_instant_metrics as _calculate_instant_metrics\n")
-new_fc_lines.append("from ui.components.charts import _generate_mega_hybrid_figure, _generate_forecast_figure\n\n")
+new_fc_lines.append("from src.ml.forecast_controller import cached_ai_forecast as _cached_ai_forecast\n")
+new_fc_lines.append("from src.ml.forecast_controller import cached_fast_backtest as _cached_fast_backtest\n")
+new_fc_lines.append("from src.ml.forecast_controller import get_cached_history as _get_history\n")
+new_fc_lines.append("from src.ml.forecast_controller import calculate_instant_metrics as _calculate_instant_metrics\n")
+new_fc_lines.append("from src.ui.components.charts import _generate_mega_hybrid_figure, _generate_forecast_figure\n\n")
 
 new_fc_lines.extend(fc_lines[render_comp_idx:forecast_fig_idx])
 new_fc_lines.extend(fc_lines[render_idx:])
@@ -73,7 +73,7 @@ with open("ui/components/charts.py", "a", encoding="utf-8") as f:
     f.write("import numpy as np\n")
     f.write("from typing import Tuple, Optional\n")
     f.write("from sklearn.metrics import r2_score\n")
-    f.write("from ml.backtest import perform_statistical_audit\n\n")
+    f.write("from src.ml.backtest import perform_statistical_audit\n\n")
     f.write(plots_code)
     f.write("\n")
     f.write(mega_code)

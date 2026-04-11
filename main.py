@@ -17,7 +17,7 @@ logging.getLogger("streamlit").setLevel(logging.ERROR)
 warnings.filterwarnings("ignore")
 
 # ✨ Використовуємо централізовану конфігурацію логування
-from utils.logging_config import setup_logging
+from src.utils.logging_config import setup_logging
 
 log = setup_logging(log_level=os.getenv("STREAMLIT_LOGGER_LEVEL", "INFO"))
 logger = log
@@ -44,7 +44,7 @@ def system_startup():
 
     # 4. TTL CACHE CLEANUP: Видаляємо JSON-файли кешу старіші за 24 години
     try:
-        from utils.cache_manager import startup_cache_cleanup
+        from src.utils.cache_manager import startup_cache_cleanup
         startup_cache_cleanup(ttl_hours=24)
     except Exception:
         pass  # Ніколи не ламаємо запуск через помилку в очищенні
@@ -53,14 +53,14 @@ def system_startup():
 # Database & Queries
 
 
-from app.config import DataKeys
-from core.analytics.filter import filter_dataframe
-from core.database.loader import get_verified_data
-from ui.components.styles import setup_streamlit_page
-from ui.segments.dashboard import render_dashboard_ui
-from ui.segments.sidebar import render_sidebar
-from ui.segments.splash import show_boot_sequence
-from utils.memory_helper import auto_gc
+from src.app.config import DataKeys
+from src.core.analytics.filter import filter_dataframe
+from src.core.database.loader import get_verified_data
+from src.ui.components.styles import setup_streamlit_page
+from src.ui.segments.dashboard import render_dashboard_ui
+from src.ui.segments.sidebar import render_sidebar
+from src.ui.segments.splash import show_boot_sequence
+from src.utils.memory_helper import auto_gc
 import streamlit as st
 
 
@@ -92,7 +92,7 @@ def main():
 
     # Data source switching (Kaggle — lazy)
     if data_source == "Еталонні дані (Kaggle)":
-        from core.database.loader import load_kaggle_lazy
+        from src.core.database.loader import load_kaggle_lazy
         kaggle_df = load_kaggle_lazy()
         if not kaggle_df.empty:
             data = data.copy()

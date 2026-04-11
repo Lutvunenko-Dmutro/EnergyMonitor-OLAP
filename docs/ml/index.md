@@ -98,6 +98,18 @@ for step in range(hours_ahead):          # 24 кроки вперед
     window = roll(window, prediction)    # Зсув вікна: викидаємо t-48, додаємо t+1
 ```
 
+### 📈 Smart Stitching (Exponential Decay)
+
+При переході від останнього відомого факту $y_{t}$ до першого кроку прогнозу $\hat{y}_{t+1}$ часто виникає розрив (step-jump) через похибку моделі. Для візуальної та логічної цілісності використовується експоненціальне згладжування помилки:
+
+**Помилка початкового кроку**:
+$$\delta = y_t - \hat{y}_t$$
+
+**Корекція для k-го кроку прогнозу**:
+$$\hat{y}_{t+k}^{corr} = \hat{y}_{t+k} + \delta \cdot \lambda^k$$
+
+Де $\lambda$ — коефіцієнт затухання ($\approx 0.85$). Це забезпечує плавний старт прогнозної кривої без втрати точності моделі на довгій дистанції.
+
 ---
 
 ## metrics_engine.py
@@ -139,7 +151,7 @@ TEST_SIZE_HOURS = 168  # 7 днів
 
 # Запуск через UI: "Аналітика" → "Бектест"
 # Або вручну:
-from ml.backtest import run_backtest
+from src.ml.backtest import run_backtest
 run_backtest(version="v3", substation="Київська ТЕЦ-5")
 ```
 

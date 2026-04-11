@@ -10,8 +10,8 @@ import pytest
 import pandas as pd
 from datetime import datetime, timedelta, date
 
-from core.analytics.filter import filter_dataframe
-from app.config import DataKeys
+from src.core.analytics.filter import filter_dataframe
+from src.app.config import DataKeys
 
 
 class TestFilterDataframe:

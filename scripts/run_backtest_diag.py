@@ -2,7 +2,7 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from ml.backtest import get_backtest_metrics
+from src.ml.backtest import get_backtest_metrics
 from src.core.logger import setup_logger
 
 logger = setup_logger(__name__)

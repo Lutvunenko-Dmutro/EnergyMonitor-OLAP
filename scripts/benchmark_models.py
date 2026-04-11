@@ -12,8 +12,8 @@ from tensorflow.keras.models import load_model
 # Додаємо корінь проєкту до шляху пошуку модулів
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from ml.train_lstm import load_data_from_db
-from ml.baseline_arima import run_arima_baseline
+from src.ml.train_lstm import load_data_from_db
+from src.ml.baseline_arima import run_arima_baseline
 
 # ==============================================================================
 # 1. SETUP

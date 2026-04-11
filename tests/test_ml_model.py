@@ -18,7 +18,7 @@ class TestLSTMPredictor:
     def test_model_initialization(self):
         """Тест: модель інітіалізується без помилок."""
         try:
-            from ml.predict_v2 import LSTMPredictor
+            from src.ml.predict_v2 import LSTMPredictor
             model = LSTMPredictor()
             assert model is not None
         except ImportError:
@@ -27,7 +27,7 @@ class TestLSTMPredictor:
     def test_forecast_output_shape(self, sample_forecast_data):
         """Тест: forecast повинен повертати правильний shape."""
         try:
-            from ml.predict_v2 import LSTMPredictor
+            from src.ml.predict_v2 import LSTMPredictor
             model = LSTMPredictor()
             
             # Prepare input
@@ -46,7 +46,7 @@ class TestLSTMPredictor:
     def test_forecast_values_in_range(self, sample_forecast_data):
         """Тест: forecasted values повинні бути в розумному діапазоні."""
         try:
-            from ml.predict_v2 import LSTMPredictor
+            from src.ml.predict_v2 import LSTMPredictor
             model = LSTMPredictor()
             
             X_test = sample_forecast_data.reshape(1, 24, 9)
@@ -65,7 +65,7 @@ class TestLSTMPredictor:
     def test_batch_prediction(self, sample_forecast_data):
         """Тест: модель повинна обробляти batch predictions."""
         try:
-            from ml.predict_v2 import LSTMPredictor
+            from src.ml.predict_v2 import LSTMPredictor
             model = LSTMPredictor()
             
             # Create batch of 5 samples
@@ -82,7 +82,7 @@ class TestLSTMPredictor:
     def test_domain_adaptation(self):
         """Тест: модель повинна підтримувати domain adaptation."""
         try:
-            from ml.predict_v2 import LSTMPredictor
+            from src.ml.predict_v2 import LSTMPredictor
             model = LSTMPredictor()
             
             # Спробуємо адаптуватися до різних регіонів

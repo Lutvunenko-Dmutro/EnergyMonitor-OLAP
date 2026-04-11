@@ -58,7 +58,7 @@ core/analytics/filter.py (додав: Union, Optional, Tuple type hints)
 
 **Використання:**
 ```python
-from app.types import FilterParams, DataDict, DateRange
+from src.app.types import FilterParams, DataDict, DateRange
 
 def render_dashboard_ui(
     data: DataDict,
@@ -311,7 +311,7 @@ utils/logging_config.py (новий: centralized logging setup)
 
 **Usage:**
 ```python
-from utils.logging_config import setup_logging
+from src.utils.logging_config import setup_logging
 
 # Initialize once
 log = setup_logging(log_level="DEBUG")

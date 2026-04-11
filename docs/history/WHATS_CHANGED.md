@@ -396,7 +396,7 @@ docker push yourusername/energy-monitor:latest
 **Integration Required:**
 ```python
 # Add to main.py (lines ~17-20):
-from utils.logging_config import setup_logging
+from src.utils.logging_config import setup_logging
 
 log = setup_logging(log_level=os.getenv("STREAMLIT_LOGGER_LEVEL", "INFO"))
 logger = log  # For backward compatibility
@@ -452,7 +452,7 @@ Open `main.py` and replace lines 17-49 with:
 
 ```python
 import os
-from utils.logging_config import setup_logging
+from src.utils.logging_config import setup_logging
 
 log = setup_logging(log_level=os.getenv("STREAMLIT_LOGGER_LEVEL", "INFO"))
 logger = log  # For backward compatibility

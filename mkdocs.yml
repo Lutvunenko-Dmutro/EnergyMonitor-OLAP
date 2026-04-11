@@ -21,9 +21,14 @@ theme:
 nav:
   - Home: index.md
   - Архітектура: architecture.md
+  - План документації: DOCS_PLAN.md
   - ML Pipeline: ml/index.md
   - Digital Twin: digital_twin.md
   - База даних: database.md
+  - Звіт з безпеки: SECURITY.md
+  - Інструкція користувача: USER_MANUAL.md
+  - Обслуговування: MAINTENANCE.md
+  - Глосарій та FAQ: GLOSSARY.md
   - Тестування: testing.md
   - Дипломна робота: DIPLOMA_PLAN.md
 
@@ -37,6 +42,10 @@ plugins:
             - sys.path.append(".")
 
 markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+  - tables
+  - attr_list
   - admonition
   - pymdownx.details
   - pymdownx.superfences:
@@ -49,10 +58,6 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.tabbed:
       alternate_style: true
-  - tables
-  - attr_list
-  - arithmatex:
-      generic: true
 
 extra_javascript:
   - https://polyfill.io/v3/polyfill.min.js?features=es6

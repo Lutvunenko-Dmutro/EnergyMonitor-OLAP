@@ -327,7 +327,7 @@ OMP_NUM_THREADS=1
 
 ```bash
 # Запустити TTL-очищення вручну (видалить JSON старші 0 год)
-python -c "from utils.cache_manager import clean_cache; print(clean_cache(ttl_hours=0))"
+python -c "from src.utils.cache_manager import clean_cache; print(clean_cache(ttl_hours=0))"
 
 # Або при наступному запуску очищення відбудеться автоматично (TTL=24h)
 ```
