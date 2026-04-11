@@ -1,0 +1,195 @@
+# 🏗️ Architecture Overview — Energy Monitor ULTIMATE
+
+> Версія: 3.0 GOLD · Python 3.13 · PostgreSQL (Neon Cloud) · Streamlit · LSTM
+
+Цей документ — швидкий технічний огляд архітектури для нових розробників і академічної комісії.
+
+---
+
+## 🗂️ Шари архітектури (Layered Architecture)
+
+```mermaid
+%%{init: {'theme': 'dark'}}%%
+graph TB
+    subgraph UI["🌐 Presentation Layer (Streamlit)"]
+        direction LR
+        A1["📊 KPI Dashboard"]
+        A2["📈 ML Forecast"]
+        A3["🗺️ Geo Map"]
+        A4["⚠️ Alerts"]
+        A5["📜 Archive"]
+    end
+
+    subgraph CORE["🧠 Intelligence Layer"]
+        direction LR
+        B1["LSTM v3\npredict_v2.py"]
+        B2["ARIMA Fallback\nbaseline_arima.py"]
+        B3["Physics Engine\nphysics.py"]
+        B4["Vectorizer\n(Sliding Window)"]
+    end
+
+    subgraph DATA["💾 Data Layer (OLAP)"]
+        direction LR
+        C1[("PostgreSQL\nNeon Cloud")]
+        C2["Cache\n(TTL 24h)"]
+        C3["Digital Twin\nSensor Sim"]
+    end
+
+    subgraph DEVOPS["⚙️ DevOps Layer"]
+        direction LR
+        D1["GitHub Actions\nCI/CD"]
+        D2["Docker\nContainer"]
+        D3["Render.com\nSaaS Deploy"]
+    end
+
+    UI -->|"Запит даних"| CORE
+    CORE -->|"SQL SELECT"| DATA
+    C3 -->|"SQL INSERT telemetry"| C1
+    B1 & B2 -->|"Fallback chain"| UI
+    DEVOPS -->|"Auto Deploy"| UI
+
+    style UI fill:#0d1117,stroke:#58a6ff
+    style CORE fill:#0d1117,stroke:#ffb703
+    style DATA fill:#0d1117,stroke:#00ff88
+    style DEVOPS fill:#0d1117,stroke:#ff6b6b
+```
+
+---
+
+## 🤖 ML Pipeline
+
+| Крок | Модуль | Дія |
+|------|--------|-----|
+| 1. Збір даних | `vectorizer.py` | SQL SELECT → DataFrame (24 рядки) |
+| 2. Інженерія ознак | `vectorizer.py` | sin/cos кодування часу, ffill/bfill |
+| 3. Нормалізація | `vectorizer.py` | MinMaxScaler → матриця (24, 9) |
+| 4. Предикція | `predict_v2.py` | LSTM.predict() × 24 кроки |
+| 5. Domain Adaptation | `predict_v2.py` | Автоскейлінг під підстанцію |
+| 6. Fallback | `baseline_arima.py` | Seasonal Naive якщо LSTM недоступний |
+| 7. Бектест | `backtest.py` | RMSE / MAE / MAPE / R² + Shapiro-Wilk |
+
+---
+
+## 📦 Структура модулів
+
+```text
+Energy Monitor ULTIMATE
+│
+├── main.py                    ← Точка входу (Streamlit orchestrator)
+│
+├── core/                      ← Аналітичне ядро
+│   ├── analytics/
+│   │   ├── physics.py         ← Фізика мереж (AC/HVDC, теплові моделі)
+│   │   ├── aggregator.py      ← OLAP агрегація
+│   │   ├── clustering.py      ← K-Means кластеризація підстанцій
+│   │   └── filter.py          ← Фільтрація DataFrame
+│   └── database/
+│       └── loader.py          ← Верифікований загрузчик даних
+│
+├── ml/                        ← AI Pipeline
+│   ├── predict_v2.py          ← LSTM контролер + Domain Adaptation
+│   ├── vectorizer.py          ← Sliding Window + Feature Engineering
+│   ├── metrics_engine.py      ← RMSE/MAE/MAPE/R² + Statistical Audit
+│   ├── backtest.py            ← Бектест на historical даних
+│   ├── baseline_arima.py      ← Seasonal Naive Fallback
+│   └── train_lstm.py          ← Навчання моделі
+│
+├── src/                       ← Серверні сервіси
+│   ├── core/
+│   │   ├── database.py        ← Підключення до Neon PostgreSQL
+│   │   └── physics.py         ← Серверна фізика
+│   └── services/
+│       ├── sensors_db.py      ← Digital Twin сенсорна симуляція (15 хв)
+│       ├── db_seeder.py       ← Генерація тестових даних
+│       ├── data_generator.py  ← ETL симулятор навантаження
+│       └── advanced_mining.py ← Аналіз трендів і патернів
+│
+├── ui/                        ← Інтерфейс (Streamlit)
+│   ├── components/            ← Спільні компоненти (styles, cards)
+│   ├── segments/              ← Структурні блоки (sidebar, dashboard)
+│   └── views/                 ← Сторінки (kpi, forecast, alerts, map...)
+│
+├── utils/                     ← Утиліти
+│   ├── cache_manager.py       ← TTL-кеш автоочищення (24h)
+│   ├── error_handlers.py      ← Декоратори (robust_ml, robust_db)
+│   ├── memory_helper.py       ← Auto-GC watchdog
+│   └── logging_config.py     ← Централізований логер
+│
+└── tests/                     ← Автоматичне тестування
+    ├── test_physics.py        ← Фізична валідація (5 тестів)
+    ├── test_ml_model.py       ← ML Pipeline тести
+    ├── test_core_analytics.py ← OLAP аналітика (11 тестів)
+    ├── test_security.py       ← Security тести (26 тестів)
+    ├── test_utils.py          ← Утиліти (19 тестів)
+    ├── test_pipeline.py       ← Інтеграційні тести (3)
+    └── test_database.py       ← DB тести (4)
+```
+
+---
+
+## ⚙️ CI/CD Pipeline (GitHub Actions)
+
+```mermaid
+%%{init: {'theme': 'dark'}}%%
+flowchart LR
+    Push["git push\nmain"] --> Lint["🧹 Lint\nflake8 + pylint"]
+    Lint --> Types["🔍 Type Check\nmypy"]
+    Types --> Tests["🧪 Unit Tests\npytest (74 tests)"]
+    Tests --> Security["🛡️ Security\nbandit + detect-secrets"]
+    Security --> Docker["🐳 Docker Build\n& Push"]
+    Docker --> Deploy["🚀 Deploy\nRender.com"]
+
+    style Push fill:#1f2937,stroke:#58a6ff
+    style Deploy fill:#065f46,stroke:#00ff88
+```
+
+---
+
+## 🔒 Модель безпеки
+
+| Загроза | Захист | Модуль |
+|---------|--------|--------|
+| SQL Injection | Параметризовані запити + whitelist | `utils/validators.py` |
+| Витік секретів | `.env` + GitHub Secrets | `.env.example` |
+| Hardcoded creds | `detect-secrets` в CI | `.github/workflows` |
+| Вразливий код | Bandit SAST scan | CI Pipeline |
+| XSS | Streamlit sandbox + sanitization | `test_security.py` |
+
+---
+
+## 📊 Метрики якості (Квітень 2026)
+
+| Метрика | Значення |
+|---------|----------|
+| **Тести** | ✅ 74 passed, 5 skipped, 0 failed |
+| **Тестовий час** | 13.71s |
+| **Покриття гілок** | ~65% (ціль: >90%) |
+| **Type Coverage** | ~60% (ціль: >90%) |
+| **Кеш (TTL 24h)** | 10 файлів (316 МБ, тільки .graphml карти) |
+| **Розгортання** | Render.com + Docker (auto-deploy) |
+| **Uptime** | 99%+ (Seasonal Naive fallback) |
+
+---
+
+## 🚀 Швидкий старт
+
+```bash
+# Клонувати репозиторій
+git clone https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP.git
+cd EnergyMonitor-OLAP
+
+# Встановити залежності
+python -m venv .venv && .venv\Scripts\activate
+pip install -r requirements.txt
+
+# Налаштувати середовище
+cp .env.example .env  # заповнити своїми DB credentials
+
+# Запустити тести
+pytest tests/ -v
+
+# Запустити дашборд
+streamlit run main.py
+```
+
+**Live Demo:** [energymonitor-olap.onrender.com](https://energymonitor-olap.onrender.com/)

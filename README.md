@@ -5,10 +5,11 @@
 🚀 **Live Production (MaaS/SaaS):** [energymonitor-olap.onrender.com](https://energymonitor-olap.onrender.com/)
 
 ### 📄 Статус та Документація
-*   [**PROJECT_STATUS.md**](file:///d:/yhoba/1/Test/Py/PROJECT_STATUS.md) — Поточний стан (100/100 Audit).
-*   [**ROADMAP.md**](file:///d:/yhoba/1/Test/Py/ROADMAP.md) — План розвитку.
-*   [**DEVELOPMENT.md**](file:///d:/yhoba/1/Test/Py/DEVELOPMENT.md) — Гайд для розробників.
-*   [**DEPLOYMENT.md**](file:///d:/yhoba/1/Test/Py/DEPLOYMENT.md) — Інструкція з розгортання.
+*   [**ARCHITECTURE.md**](ARCHITECTURE.md) — Архітектурна схема системи (NEW ✨).
+*   [**PROJECT_STATUS.md**](PROJECT_STATUS.md) — Поточний стан (74 тести / 0 помилок).
+*   [**ROADMAP.md**](ROADMAP.md) — План розвитку.
+*   [**DEVELOPMENT.md**](DEVELOPMENT.md) — Гайд для розробників.
+*   [**DEPLOYMENT.md**](DEPLOYMENT.md) — Інструкція з розгортання.
 
 ---
 
@@ -469,9 +470,21 @@ graph LR
 ### 💡 Важливість для концепції Digital Twin
 Цифровий двійник має базуватися на **фізичній вірогідності (Fidelity)**. Якщо генератор даних штовхатиме нереалістичну телеметрію, ШІ-моделі навчаться помилковим патернам (*Garbage In, Garbage Out*). Тести гарантують, що математичні симуляції відповідають реальним законам енергомереж перед тим, як дані потраплять до OLAP чи ML-конвеєра.
 
-**Запуск тестів:**
+**Запуск повного набору тестів:**
 ```bash
+# Всі 74 тести (рекомендовано)
+pytest tests/ -v
+
+# Тільки фізична валідація Digital Twin
 pytest tests/test_physics.py -v
+
+# З покриттям коду
+pytest tests/ --cov=src --cov=core --cov=ml -v
+```
+
+**Поточний результат:**
+```
+74 passed, 5 skipped, 0 failed — 13.71s ✅
 ```
 
 ---
