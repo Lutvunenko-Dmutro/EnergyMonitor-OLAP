@@ -1,326 +1,235 @@
-# 👨‍💻 DEVELOPMENT GUIDE
+# 👨‍💻 DEVELOPMENT GUIDE — Energy Monitor ULTIMATE
 
-## 🚀 Quick Start
+> Цей гайд для розробників, які хочуть зрозуміти проект і розширити його функціонал.
 
-### 1. Setup Environment
+---
+
+## 📋 Зміст
+
+1. [Швидкий старт](#-швидкий-старт)
+2. [Структура проекту](#️-структура-проекту)
+3. [Тестування](#-тестування)
+4. [Кодові стандарти](#-кодові-стандарти)
+5. [Digital Twin & Симуляція](#-digital-twin--симуляція)
+6. [ML Pipeline](#-ml-pipeline)
+7. [Docker](#-docker)
+8. [Git-воркфлоу](#-git-воркфлоу)
+9. [Дебагінг](#-дебагінг)
+10. [FAQ](#-faq)
+
+---
+
+## 🚀 Швидкий старт
+
+### 1. Налаштування середовища
 
 ```bash
-# Clone repository
-git clone <repository-url>
-cd Energy-Monitor-Ultimate
+# 1. Клонувати репозиторій
+git clone https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP.git
+cd EnergyMonitor-OLAP
 
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+# 2. Створити та активувати venv
+python -m venv .venv
+.venv\Scripts\activate          # Windows
+# source .venv/bin/activate     # Linux / macOS
 
-# Install dependencies
+# 3. Встановити залежності
 pip install -r requirements.txt
 pip install -r requirements-dev.txt
 
-# Setup environment variables
+# 4. Налаштувати середовище
 cp .env.example .env
-# ⚠️ Edit .env with your credentials (DO NOT commit!)
+# Відредагувати .env — вставити DB credentials від Neon Cloud
 ```
 
-### 2. Run Application Locally
+### 2. Запустити локально
 
 ```bash
-# Start Streamlit app
+# Запустити дашборд
 python -m streamlit run main.py
-
-# App will be at http://localhost:8501
+# Відкриється: http://localhost:8501
 ```
 
-### 3. Run Tests
+### 3. Запустити тести
 
 ```bash
-# All tests
+# Всі тести
 pytest tests/ -v
+# Очікуваний результат: 74 passed, 5 skipped, 0 failed
 
-# With coverage report
+# З покриттям коду
 pytest tests/ --cov=src --cov=core --cov=ml --cov-report=html
+# Відкрити: htmlcov/index.html
 
-# Run specific test file
-pytest tests/test_core_analytics.py -v
-
-# Run specific test
+# Конкретний файл або тест
+pytest tests/test_physics.py -v
 pytest tests/test_core_analytics.py::TestFilterDataframe::test_filter_dataframe_empty_input -v
 ```
 
 ---
 
-## 📋 Code Quality Checks
+## 🏗️ Структура проекту
 
-### Linting & Code Style
-
-```bash
-# Check with flake8
-flake8 src/ core/ ml/ ui/
-
-# Format with black
-black src/ core/ ml/ ui/ --line-length=120
-
-# Check imports
-isort src/ core/ ml/ ui/ --check-only
-
-# Static analysis with pylint
-pylint src/ core/ ml/
 ```
-
-### Type Checking
-
-```bash
-# Run mypy
-mypy src/ core/ ml/ ui/ --ignore-missing-imports
-
-# Strict mode (recommended for new code)
-mypy src/ --strict
-```
-
-### Security Scan
-
-```bash
-# Check for hardcoded secrets
-detect-secrets scan
-
-# Security vulnerability scan
-bandit -r src/ core/ ml/ ui/
+EnergyMonitor-OLAP/
+│
+├── main.py                        # Точка входу (Streamlit orchestrator)
+│
+├── app/                           # Глобальні конфігурації
+│   └── config.py                  # Constants, DataKeys enum
+│
+├── core/                          # Аналітичне ядро (бізнес-логіка)
+│   ├── analytics/
+│   │   ├── physics.py             # Фізика мереж (AC/HVDC втрати, теплова деградація)
+│   │   ├── aggregator.py          # OLAP агрегація
+│   │   ├── clustering.py          # K-Means кластеризація підстанцій
+│   │   └── filter.py              # Фільтрація DataFrame за регіоном/датою
+│   └── database/
+│       └── loader.py              # Верифікований завантажувач (get_verified_data)
+│
+├── ml/                            # AI Pipeline
+│   ├── predict_v2.py              # LSTM контролер + Domain Adaptation
+│   ├── vectorizer.py              # Sliding Window + Feature Engineering (9 ознак)
+│   ├── metrics_engine.py          # RMSE/MAE/MAPE/R² + Shapiro-Wilk audit
+│   ├── backtest.py                # Бектест на historical даних
+│   ├── baseline_arima.py          # Seasonal Naive Fallback (Zero-Fail)
+│   ├── model_loader.py            # ONNX/H5 завантажувач моделей
+│   └── train_lstm.py              # Навчання LSTM (запускати окремо)
+│
+├── src/                           # Серверні сервіси
+│   ├── core/
+│   │   ├── database.py            # PostgreSQL підключення (Neon Cloud)
+│   │   ├── config.py              # DB_CONFIG, LOAD_PROFILES
+│   │   └── physics.py             # Фізика (серверний варіант)
+│   └── services/
+│       ├── sensors_db.py          # Digital Twin симуляція датчиків (run_cosmetic_collector)
+│       ├── data_generator.py      # ETL генератор навантаження
+│       ├── db_seeder.py           # Первинне заповнення БД тестовими даними
+│       ├── advanced_mining.py     # Аналіз трендів і патернів
+│       └── sensors.py            # Об'єктна модель сенсора
+│
+├── ui/                            # Інтерфейс (Streamlit)
+│   ├── components/
+│   │   ├── styles.py              # CSS + st.set_page_config (точка входу стилів)
+│   │   └── cards.py               # Типові UI-компоненти (метрики, бейджі)
+│   ├── segments/
+│   │   ├── dashboard.py           # Головний оркестратор сторінок (fragments)
+│   │   ├── sidebar.py             # Сайдбар: фільтри + керування симуляцією
+│   │   ├── live_kpi.py            # Живий KPI блок (@st.fragment run_every=5s)
+│   │   └── splash.py              # Заставка завантаження (boot sequence)
+│   ├── views/
+│   │   ├── kpi.py                 # Телеметрія в реальному часі
+│   │   ├── forecast.py            # LSTM прогноз на 24 год.
+│   │   ├── alerts.py              # Управління аваріями (data_editor)
+│   │   ├── historical_audit.py    # OLAP архів + аналітика
+│   │   ├── generation.py          # Генерація і ресурси (кругові діаграми)
+│   │   └── map.py                 # Гео-карта вузлів
+│   └── common.py                  # Спільні хелпери UI
+│
+├── utils/                         # Утиліти
+│   ├── cache_manager.py           # TTL-кеш (auto-cleanup, 24h)
+│   ├── error_handlers.py          # Декоратори (robust_ml_handler, robust_db_handler)
+│   ├── memory_helper.py           # Auto-GC watchdog (threshold_mb=380)
+│   ├── logging_config.py          # Централізований логер (Rich + File)
+│   └── validators.py              # SQL whitelist-валідатори (SQL injection protection)
+│
+├── tests/                         # Автоматичні тести (74 штуки)
+│   ├── conftest.py                # Pytest fixtures (db_session, sample_dataframe...)
+│   ├── test_physics.py            # Фізична валідація Digital Twin
+│   ├── test_ml_model.py           # ML Pipeline тести
+│   ├── test_core_analytics.py     # OLAP аналітика
+│   ├── test_security.py           # Security (26 тестів: SQL inject, XSS, validation)
+│   ├── test_utils.py              # Утиліти (19 тестів)
+│   ├── test_pipeline.py           # Інтеграційні тести
+│   └── test_database.py           # DB тести
+│
+├── models/                        # Навчені моделі (не комітити у git!)
+│   ├── substation_model_v3.h5
+│   └── substation_scaler_v3.pkl
+│
+├── logs/                          # Логи (автогенерація)
+│   ├── energy-monitor.log
+│   ├── sensors.lock               # Singleton lock для Digital Twin
+│   ├── live_state.json            # Поточний стан симуляції
+│   └── heartbeat.txt              # Heartbeat від sensors_db.py
+│
+└── cache/                         # TTL кеш (auto-cleans JSON > 24h)
+    └── *.graphml                  # Карти (захищено від видалення)
 ```
 
 ---
 
-## 🏗️ Project Structure
+## 🧪 Тестування
 
-```
-Energy-Monitor-Ultimate/
-├── app/                    # Application configuration
-│   ├── config.py          # Constants & configs
-│   └── types.py           # Type definitions
-├── core/                  # Business logic
-│   ├── analytics/         # Data processing & filtering
-│   ├── database/          # Database operations
-│   └── services/          # Business services
-├── ml/                    # Machine learning
-│   ├── predict_v2.py      # LSTM inference
-│   └── models/            # Trained models
-├── src/                   # Source code (legacy)
-├── ui/                    # Streamlit UI components
-│   ├── components/        # Reusable UI elements
-│   ├── views/             # Page views
-│   └── segments/          # Dashboard segments
-├── tests/                 # Unit tests
-│   ├── conftest.py        # Pytest configuration
-│   ├── test_core_analytics.py
-│   ├── test_ml_model.py
-│   └── test_utils.py
-├── utils/                 # Utilities
-│   ├── helpers.py         # Common functions
-│   └── logging_config.py  # Logging setup
-├── logs/                  # Log files (generated)
-├── .github/workflows/     # CI/CD pipelines
-├── Dockerfile             # Docker configuration
-├── requirements.txt       # Production dependencies
-├── requirements-dev.txt   # Development dependencies
-└── .env.example           # Environment template
-```
-
----
-
-## 🧪 Testing Guide
-
-### Writing Tests
+### Написання тестів
 
 ```python
 # tests/test_core_analytics.py
-
 import pytest
 import pandas as pd
 from core.analytics.filter import filter_dataframe
 
 class TestFilterDataframe:
-    """Test suite for filter_dataframe."""
-    
+    """Test suite for filter_dataframe function."""
+
     def test_filter_by_region(self, sample_dataframe):
-        """Test: filtering by region works correctly."""
+        """Filtering by region returns only matching rows."""
         result = filter_dataframe(
             sample_dataframe,
             region="Київ",
             dates=None,
             dataset_name="load"
         )
-        
         assert all(result['region_name'] == 'Київ')
         assert len(result) > 0
+
+    def test_filter_empty_input_returns_empty(self):
+        """Empty DataFrame input returns empty DataFrame."""
+        result = filter_dataframe(pd.DataFrame(), region="Київ", dates=None, dataset_name="load")
+        assert result.empty
 ```
 
-### Test Fixtures
+### Фікстури (conftest.py)
 
 ```python
-# Available fixtures in conftest.py
-
 @pytest.fixture
 def sample_dataframe():
-    """Returns a sample DataFrame with mock data."""
-    return pd.DataFrame({...})
-
-@pytest.fixture
-def sample_forecast_data():
-    """Returns sample data for ML model."""
-    return np.random.randn(24, 9)
-
-@pytest.fixture
-def date_range():
-    """Returns a date range tuple."""
-    return (date(2024, 1, 1), date(2024, 1, 31))
+    """DataFrame з реалістичними тестовими даними."""
+    return pd.DataFrame({
+        "region_name": ["Київ", "Харків"],
+        "actual_load_mw": [150.0, 200.0],
+        "timestamp": pd.date_range("2024-01-01", periods=2, freq="h")
+    })
 
 @pytest.fixture
 def db_session(db_engine):
-    """Returns isolated database session (auto-rollback)."""
+    """Ізольована DB-сесія з авто-rollback після тесту."""
     ...
 ```
 
----
-
-## 🐳 Docker Development
-
-### Build Docker Image
+### Покриття коду
 
 ```bash
-# Development build
-docker build -t energy-monitor:dev -f Dockerfile .
+# Генерувати HTML-звіт
+pytest tests/ --cov=src --cov=core --cov=ml --cov-report=html
+# Відкрити: htmlcov/index.html
 
-# Production build with optimizations
-docker build -t energy-monitor:latest \
-  --build-arg ENVIRONMENT=production \
-  .
-
-# Build with specific Python version
-docker build \
-  --build-arg BASE_IMAGE=python:3.11-slim \
-  -t energy-monitor:py311 \
-  .
-```
-
-### Run Docker Container
-
-```bash
-# Basic run
-docker run -p 8501:8501 energy-monitor:latest
-
-# With environment file
-docker run -p 8501:8501 --env-file .env energy-monitor:latest
-
-# With volume mount (for development)
-docker run -p 8501:8501 \
-  -v $(pwd):/app \
-  energy-monitor:dev
-
-# With port forwarding and log output
-docker run -p 8501:8501 \
-  --env-file .env \
-  --log-driver=json-file \
-  --log-opt max-size=10m \
-  energy-monitor:latest
-```
-
-### Docker Compose (Optional)
-
-```yaml
-# docker-compose.yml
-version: '3.8'
-
-services:
-  app:
-    build: .
-    ports:
-      - "8501:8501"
-    environment:
-      - DB_HOST=postgres
-      - STREAMLIT_LOGGER_LEVEL=debug
-    depends_on:
-      - postgres
-    volumes:
-      - ./logs:/app/logs
-  
-  postgres:
-    image: postgres:15
-    environment:
-      POSTGRES_DB: neondb
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
-volumes:
-  postgres_data:
-```
-
-```bash
-# Start everything
-docker-compose up
-
-# Stop everything
-docker-compose down
-
-# View logs
-docker-compose logs -f app
+# Текстовий звіт у термінал
+pytest tests/ --cov=src --cov=core --cov=ml --cov-report=term-missing
 ```
 
 ---
 
-## 🔄 Git Workflow
-
-### Create Feature Branch
-
-```bash
-# Pull latest
-git pull origin develop
-
-# Create feature branch
-git checkout -b feature/my-feature
-
-# Make changes...
-git add .
-git commit -m "feat: add new feature"
-```
-
-### Before Push
-
-```bash
-# Run tests
-pytest tests/ -v
-
-# Run linting
-flake8 src/ core/ ml/
-black src/ core/ ml/ --check
-
-# Type check
-mypy src/ core/ ml/ --ignore-missing-imports
-```
-
-### Push & Create PR
-
-```bash
-# Push to feature branch
-git push origin feature/my-feature
-
-# Create Pull Request on GitHub
-# - Add description
-# - Link related issues
-# - Wait for CI/CD to pass
-```
-
----
-
-## 📝 Coding Standards
+## 📝 Кодові стандарти
 
 ### Type Hints
 
 ```python
-# ❌ Bad
+# ❌ Погано — без типів
 def filter_data(df, region, dates):
     return df
 
-# ✅ Good
+# ✅ Добре — з типами
 from typing import Optional, Tuple
 from datetime import date
 import pandas as pd
@@ -328,35 +237,34 @@ import pandas as pd
 def filter_data(
     df: pd.DataFrame,
     region: str,
-    dates: Optional[Tuple[date, date]]
+    dates: Optional[Tuple[date, date]] = None
 ) -> pd.DataFrame:
+    """Filter dataframe by region and date range."""
     return df
 ```
 
-### Docstrings
+### Google-style Docstrings
 
 ```python
-# ✅ Google-style docstring
-def normalize_substation(substation: Union[str, List[str]]) -> str:
-    """Normalize substation selection to single string.
-    
-    Converts a list of substations into a single string,
-    or returns the input if already a string.
-    
+def calculate_line_losses(df_lines: pd.DataFrame) -> pd.DataFrame:
+    """Розраховує втрати потужності для AC та HVDC ліній.
+
+    Використовує квадратичну модель для AC (I²R) і лінійну для HVDC.
+
     Args:
-        substation: Single substation name or list of names.
-    
+        df_lines: DataFrame з колонками actual_load_mw, load_pct, max_load_mw.
+
     Returns:
-        Single substation name as string.
-    
+        DataFrame з додатковими колонками 'losses_mw' та 'line_type'.
+
     Raises:
-        TypeError: If substation is not str or list.
-    
-    Examples:
-        >>> normalize_substation("Київ ТЕС")
-        'Київ ТЕС'
-        >>> normalize_substation(["Київ ТЕС"])
-        'Київ ТЕС'
+        ValueError: Якщо відсутні обов'язкові колонки.
+
+    Example:
+        >>> df = pd.DataFrame({"actual_load_mw": [100], "load_pct": [80], "max_load_mw": [200]})
+        >>> result = calculate_line_losses(df)
+        >>> "losses_mw" in result.columns
+        True
     """
     ...
 ```
@@ -364,92 +272,263 @@ def normalize_substation(substation: Union[str, List[str]]) -> str:
 ### Error Handling
 
 ```python
-# ✅ Good error handling
-from contextlib import suppress
-
+# ✅ Специфічні винятки замість bare except
 try:
-    result = fetch_data()
+    result = fetch_data_from_db()
 except ConnectionError as e:
-    logger.error(f"Connection failed: {e}")
+    logger.warning(f"DB connection failed, using cache: {e}")
     result = get_cached_data()
 except ValueError as e:
-    logger.exception(f"Invalid data format: {e}")
+    logger.error(f"Data validation error: {e}")
     raise
 except Exception as e:
-    logger.exception(f"Unexpected error: {e}")
+    logger.exception(f"Unexpected error in fetch_data: {e}")
     raise
+
+# ✅ Використовуй готові декоратори проекту
+from utils.error_handlers import robust_ml_handler, robust_database_handler
+
+@robust_ml_handler
+def predict(window: np.ndarray) -> np.ndarray:
+    ...
+
+@robust_database_handler(default_value=pd.DataFrame())
+def get_substations() -> pd.DataFrame:
+    ...
+```
+
+### Логування
+
+```python
+import logging
+logger = logging.getLogger(__name__)  # Завжди __name__, не рядок
+
+# ✅ Рівні: DEBUG < INFO < WARNING < ERROR < CRITICAL
+logger.debug("Детальна інформація для розробки")
+logger.info("✅ Завдання виконано успішно")
+logger.warning("⚠️ Щось підозріле, але не критичне")
+logger.error("❌ Помилка, яку можна пережити")
+logger.exception("🔥 Критична помилка (логує traceback)")
 ```
 
 ---
 
-## 🐛 Debugging
+## 🤖 Digital Twin & Симуляція
 
-### Enable Debug Mode
+### Архітектура симуляції
 
-```python
-# In main.py or your app
-import logging
-import os
-
-# Set to DEBUG
-os.environ["STREAMLIT_LOGGER_LEVEL"] = "DEBUG"
-
-from utils.logging_config import setup_logging
-log = setup_logging(log_level="DEBUG")
+```
+Sidebar button "▶️ Запустити"
+         │
+         ▼
+  subprocess.Popen()  ← Фоновий процес (без вікна)
+         │
+         ▼
+  sensors_db.py → run_cosmetic_collector()
+         │
+         ├── logs/sensors.lock   ← Singleton guard
+         ├── logs/heartbeat.txt  ← Timestamp "я живий"
+         └── logs/live_state.json ← Поточний стан (MW, Health, H2...)
+         │
+         ▼ (кожні 5 секунд)
+  live_kpi.py (@st.fragment run_every=5)
+         │
+         ▼
+  Читає live_state.json → Відображає в UI
 ```
 
-### Use Breakpoints (VS Code)
-
-```python
-# Add breakpoint
-import pdb; pdb.set_trace()
-
-# Or use VS Code built-in debugger
-# Place break in .vscode/launch.json
-```
-
-### View Logs
+### Запуск симуляції вручну
 
 ```bash
-# Tail logs
-tail -f logs/energy-monitor.log
+# Запустити фоновий колектор напряму
+python -m src.services.sensors_db
 
-# Watch errors only
-tail -f logs/energy-monitor.error.log
+# Перевірити стан
+Get-Content logs/live_state.json  # Windows
+cat logs/live_state.json          # Linux
 
-# Search logs
-grep "ERROR" logs/energy-monitor.log
+# Зупинити — видалити lock-файл
+Remove-Item logs/sensors.lock     # Windows
+rm logs/sensors.lock              # Linux
+```
 
-# Real-time monitoring
-watch -n 1 'wc -l logs/*.log'
+### Таймаут симуляції
+
+```python
+# src/services/sensors_db.py
+TIMEOUT_SECONDS = 900  # 15 хвилин — для захисту диплому
+# Змінити для production: 3600 (1 год) або 0 (нескінченно)
 ```
 
 ---
 
-## 📚 Additional Resources
+## 🧠 ML Pipeline
 
-- [Streamlit Docs](https://docs.streamlit.io)
-- [Pytest Documentation](https://docs.pytest.org)
-- [Type Hints (PEP 484)](https://www.python.org/dev/peps/pep-0484)
-- [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html)
-- [Docker Docs](https://docs.docker.com)
+### Додати нову версію моделі
+
+```python
+# 1. У vectorizer.py — додати нові ознаки до v4_features
+v4_features = v3_features + ["new_feature"]
+
+# 2. У train_lstm.py — вибрати нову архітектуру
+model = build_lstm_model(input_shape=(window_size, len(v4_features)))
+
+# 3. Натренувати
+python ml/train_lstm.py --version v4
+
+# 4. Зареєструвати у model_loader.py
+MODEL_REGISTRY = {
+    "v3": {...},
+    "v4": {"path": "models/substation_model_v4.h5", ...}
+}
+```
+
+### Бектест нової моделі
+
+```bash
+# Запустити через UI: вкладка "Аналітика" → "Бектест"
+# Або вручну:
+python -c "
+from ml.backtest import run_backtest
+run_backtest(version='v4', substation='Київська ТЕЦ-5')
+"
+```
+
+---
+
+## 🐳 Docker
+
+```bash
+# Зібрати образ
+docker build -t energy-monitor:dev .
+
+# Запустити з .env файлом
+docker run -p 10000:10000 --env-file .env energy-monitor:dev
+
+# Логи контейнера
+docker logs -f <container_id>
+
+# Зайти в контейнер
+docker exec -it <container_id> /bin/bash
+```
+
+---
+
+## 🔄 Git-воркфлоу
+
+```bash
+# 1. Оновити main
+git pull origin main
+
+# 2. Створити feature гілку
+git checkout -b feat/my-feature
+
+# 3. Перевірити перед комітом
+pytest tests/ -v          # 74 passed!
+flake8 src/ core/ ml/ ui/
+mypy src/ core/ ml/ --ignore-missing-imports
+
+# 4. Коміт (Conventional Commits)
+git commit -m "feat: add transformer temperature alert"
+git commit -m "fix: correct HVDC loss calculation"
+git commit -m "docs: update ARCHITECTURE.md"
+git commit -m "refactor: extract DB helpers to utils"
+
+# 5. Push і PR
+git push origin feat/my-feature
+# Створити Pull Request → CI/CD прогонить 74 тести автоматично
+```
+
+### Conventional Commits
+
+| Prefix | Коли використовувати |
+|--------|---------------------|
+| `feat:` | Нова функція |
+| `fix:` | Виправлення помилки |
+| `docs:` | Документація |
+| `refactor:` | Рефакторинг без зміни поведінки |
+| `test:` | Тести |
+| `chore:` | Залежності, CI, конфіги |
+
+---
+
+## 🐛 Дебагінг
+
+### Активувати DEBUG-режим
+
+```python
+# У .env або Render Environment:
+STREAMLIT_LOGGER_LEVEL=debug
+
+# Або тимчасово в коді:
+import logging
+logging.getLogger("src.core.database").setLevel(logging.DEBUG)
+```
+
+### Перегляд логів (Windows)
+
+```powershell
+# Слідкувати за логами в реальному часі
+Get-Content logs/energy-monitor.log -Wait -Tail 50
+
+# Тільки помилки
+Select-String "ERROR" logs/energy-monitor.log
+
+# Стан Digital Twin
+Get-Content logs/live_state.json
+```
+
+### Корисні однострічники
+
+```bash
+# Перевірити DB підключення
+python -c "from src.core.database import run_query; print(run_query('SELECT 1'))"
+
+# Запустити TTL-очищення кешу вручну
+python -c "from utils.cache_manager import clean_cache, get_cache_stats; print(get_cache_stats()); clean_cache(ttl_hours=0)"
+
+# Запустити автодіагностику
+python diagnose.py
+
+# Перевірити memory watchdog
+python -c "from utils.memory_helper import auto_gc; auto_gc(threshold_mb=0)"
+```
 
 ---
 
 ## ❓ FAQ
 
-**Q: How do I add a new test?**
-A: Create `test_*.py` in `tests/` folder, inherit from `Test*` class, use `test_*` naming.
+**Q: Де зберігаються навчені моделі?**  
+A: `models/` — папка не трекається Git (`.gitignore`). Необхідно або натренувати локально (`ml/train_lstm.py`), або скопіювати з Render.
 
-**Q: How do I update dependencies?**
-A: Edit `requirements.txt`, then `pip install -r requirements.txt`. Pin versions!
+**Q: Як додати новий тест?**  
+A: Створити `test_*.py` у `tests/`, успадкувати від `Test*` класу, іменувати методи `test_*`. Запустити `pytest tests/ -v` — CI підхопить автоматично.
 
-**Q: How do I deploy locally?**
-A: Run `docker-compose up` or `streamlit run main.py`
+**Q: Як запустити симуляцію без UI?**  
+A: `python -m src.services.sensors_db` — запустить фоновий колектор напряму на 15 хвилин.
 
-**Q: How do I see code coverage?**
-A: `pytest --cov=src --cov-report=html`, then open `htmlcov/index.html`
+**Q: Що робить `diagnose.py`?**  
+A: Перевіряє 20+ параметрів: наявність файлів, імпорти, DB підключення, якість коду. Видає звіт у HTML.
+
+**Q: Чому є два `core/`?**  
+A: `core/` (root) — аналітика для UI. `src/core/` — серверна логіка (DB, physics). Консолідація заплановано після захисту (ROADMAP Phase 5).
+
+**Q: Як оновити залежності безпечно?**  
+A: `pip list --outdated` → `pip-audit` (security) → оновити `requirements.txt` → `pytest tests/ -v` → якщо 74 passed — `git push`.
 
 ---
 
-Happy coding! 🚀
+## 📚 Корисні ресурси
+
+| Ресурс | URL |
+|--------|-----|
+| Streamlit Docs | [docs.streamlit.io](https://docs.streamlit.io) |
+| Pytest | [docs.pytest.org](https://docs.pytest.org) |
+| Neon PostgreSQL | [neon.tech/docs](https://neon.tech/docs) |
+| Google Python Style | [google.github.io/styleguide/pyguide.html](https://google.github.io/styleguide/pyguide.html) |
+| ARCHITECTURE.md | [./ARCHITECTURE.md](ARCHITECTURE.md) |
+| DEPLOYMENT.md | [./DEPLOYMENT.md](DEPLOYMENT.md) |
+
+---
+
+**Happy coding! 🚀✨**
