@@ -233,6 +233,25 @@
   
   
     <li class="md-tabs__item">
+      <a href="../DOCS_PLAN/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  План документації
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
       <a href="../ml/" class="md-tabs__link">
         
   
@@ -280,6 +299,44 @@
     
   
   База даних
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../USER_MANUAL/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Інструкція користувача
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../MAINTENANCE/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Обслуговування
 
       </a>
     </li>
@@ -411,6 +468,33 @@
     
   
     Архітектура
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DOCS_PLAN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    План документації
   
 
     
@@ -573,10 +657,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#coreanalyticsphysicspy" class="md-nav__link">
+  <a href="#joule-lenz-law" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Модель втрат у мережі (core/analytics/physics.py)
+        Модель втрат у мережі (Joule-Lenz Law)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arrhenius-law" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Модель деградації (Arrhenius Law)
       
     </span>
   </a>
@@ -683,6 +778,60 @@
     
   
     База даних
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../USER_MANUAL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Інструкція користувача
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MAINTENANCE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обслуговування
   
 
     
@@ -832,10 +981,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#coreanalyticsphysicspy" class="md-nav__link">
+  <a href="#joule-lenz-law" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Модель втрат у мережі (core/analytics/physics.py)
+        Модель втрат у мережі (Joule-Lenz Law)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arrhenius-law" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Модель деградації (Arrhenius Law)
       
     </span>
   </a>
@@ -1005,29 +1165,41 @@
 <a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="c1"># Health Score спадає з часом:</span>
 <a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="n">health</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">health</span> <span class="o">-</span> <span class="n">degradation_rate</span> <span class="o">*</span> <span class="n">delta_time</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="coreanalyticsphysicspy">Модель втрат у мережі (core/analytics/physics.py)</h3>
+<h3 id="joule-lenz-law">Модель втрат у мережі (Joule-Lenz Law)</h3>
+<p>Втрати у магістральних лініях моделюються на основі закону Джоуля-Ленца, адаптованого до відносного навантаження:</p>
+<div class="arithmatex">\[P_{loss} = I^2 R \approx P_{nom} \cdot K_{loss} \cdot \left(\frac{P_{actual}}{P_{nom}}\right)^2\]</div>
 <table>
 <thead>
 <tr>
 <th>Тип лінії</th>
-<th>Формула втрат</th>
-<th>Коефіцієнт</th>
+<th>Емпірична модель</th>
+<th>Коефіцієнт (<span class="arithmatex">\(K_{loss}\)</span>)</th>
+<th>Природа</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><strong>AC</strong></td>
-<td><span class="arithmatex">\(P_{loss} = P \cdot 0.035 \cdot (load\%)^2\)</span></td>
-<td>Квадратична (I²R)</td>
+<td><span class="arithmatex">\(P \cdot 0.035 \cdot (L\%)^2\)</span></td>
+<td><span class="arithmatex">\(0.035\)</span></td>
+<td>Квадратична (Омічні втрати)</td>
 </tr>
 <tr>
 <td><strong>HVDC</strong></td>
-<td><span class="arithmatex">\(P_{loss} = P \cdot 0.015 \cdot load\%\)</span></td>
-<td>Лінійна</td>
+<td><span class="arithmatex">\(P \cdot 0.015 \cdot L\%\)</span></td>
+<td><span class="arithmatex">\(0.015\)</span></td>
+<td>Лінійна (Конверторні втрати)</td>
 </tr>
 </tbody>
 </table>
-<p>HVDC &gt; 3000 МВт — класифікується автоматично.</p>
+<hr />
+<h3 id="arrhenius-law">Модель деградації (Arrhenius Law)</h3>
+<p>Розрахунок концентрації водню (H₂) базується на спрощеному законі Арреніуса, де швидкість хімічної реакції деградації ізоляції експоненціально залежить від температури:</p>
+<div class="arithmatex">\[k = A \cdot e^{-\frac{E_a}{RT}}\]</div>
+<p>У нашій симуляції:
+- <span class="arithmatex">\(E_a\)</span>: Енергія активації (моделюється через <code>degradation_rate</code>).
+- <span class="arithmatex">\(T\)</span>: Поточна температура масла (<code>oil_temp</code>).
+- Результат: Приріст <code>h2_ppm</code> при перевищенні порогу <span class="arithmatex">\(85°C\)</span>.</p>
 <hr />
 <h2 id="_6">Файли стану</h2>
 <h3 id="logslive_statejson"><code>logs/live_state.json</code></h3>

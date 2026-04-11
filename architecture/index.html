@@ -14,7 +14,7 @@
         <link rel="prev" href="..">
       
       
-        <link rel="next" href="../ml/">
+        <link rel="next" href="../DOCS_PLAN/">
       
       
         
@@ -235,6 +235,25 @@
   
   
     <li class="md-tabs__item">
+      <a href="../DOCS_PLAN/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  План документації
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
       <a href="../ml/" class="md-tabs__link">
         
   
@@ -280,6 +299,44 @@
     
   
   База даних
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../USER_MANUAL/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Інструкція користувача
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../MAINTENANCE/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Обслуговування
 
       </a>
     </li>
@@ -574,13 +631,30 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#academic-appendix" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Файлова структура
+        📐 Математичний додаток (Academic Appendix)
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="📐 Математичний додаток (Academic Appendix)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-k-means" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Кластеризація підстанцій (K-Means)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -588,6 +662,33 @@
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DOCS_PLAN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    План документації
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -661,6 +762,60 @@
     
   
     База даних
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../USER_MANUAL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Інструкція користувача
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MAINTENANCE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обслуговування
   
 
     
@@ -865,13 +1020,30 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#academic-appendix" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Файлова структура
+        📐 Математичний додаток (Academic Appendix)
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="📐 Математичний додаток (Academic Appendix)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-k-means" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Кластеризація підстанцій (K-Means)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1085,8 +1257,20 @@ flowchart LR
 </tbody>
 </table>
 <hr />
-<h2 id="_3">Файлова структура</h2>
-<p>Детальну структуру з коментарями до кожного файлу дивись у <a href="../DEVELOPMENT.md">DEVELOPMENT.md</a>.</p>
+<hr />
+<h2 id="academic-appendix">📐 Математичний додаток (Academic Appendix)</h2>
+<h3 id="1-k-means">1. Кластеризація підстанцій (K-Means)</h3>
+<p>Для сегментації об'єктів (вкладка AI Аналітика) використовується алгоритм K-Means. Математична мета полягає у мінімізації сумарного квадратичного відхилення точок кластерів від їх центроїдів:</p>
+<div class="arithmatex">\[J = \sum_{j=1}^{k} \sum_{x \in C_j} \|x - \mu_j\|^2\]</div>
+<p>Де:
+- <span class="arithmatex">\(k\)</span> — кількість кластерів (визначається методом ліктя).
+- <span class="arithmatex">\(C_j\)</span> — множина точок <span class="arithmatex">\(j\)</span>-го кластера.
+- <span class="arithmatex">\(\mu_j\)</span> — центроїд (середнє значення) кластера <span class="arithmatex">\(C_j\)</span>.</p>
+<p><strong>Вектор ознак для кластеризації:</strong>
+- <span class="arithmatex">\(\bar{L}\)</span>: Середнє навантаження за період.
+- <span class="arithmatex">\(\sigma_L\)</span>: Стандартне відхилення (показник волатильності).
+- <span class="arithmatex">\(H\)</span>: Середній показник Health Score.</p>
+<p>Це дозволяє автоматично виділяти «вузлові», «промислові» та «критичні» підстанції без втручання оператора.</p>
 
 
 
