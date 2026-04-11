@@ -38,16 +38,16 @@ jobs:
       
       - name: Lint with flake8
         run: |
-          flake8 src/ core/ ml/ ui/ --count --select=E9,F63,F7,F82 --show-source --statistics
-          flake8 src/ core/ ml/ ui/ --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+          flake8 src/ tests/ scripts/ --count --select=E9,F63,F7,F82 --show-source --statistics
+          flake8 src/ tests/ scripts/ --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
       
       - name: Check with pylint
         run: |
-          pylint src/ core/ ml/ --fail-under=7.0 --disable=C0111,C0103 --exit-zero || true
+          pylint src/ scripts/ --fail-under=7.0 --disable=C0111,C0103 --exit-zero || true
       
       - name: Format check with black
         run: |
-          black --check src/ core/ ml/ ui/ --line-length=120 || true
+          black --check src/ tests/ scripts/ --line-length=120 || true
   
   # ─────────────────────────────────────────────────────────────
   # TYPE CHECKING
@@ -71,7 +71,7 @@ jobs:
           pip install mypy
       
       - name: Type check with mypy
-        run: mypy src/ core/ ml/ ui/ --ignore-missing-imports || true
+        run: mypy src/ scripts/ --ignore-missing-imports || true
   
   # ─────────────────────────────────────────────────────────────
   # UNIT TESTS
@@ -139,7 +139,7 @@ jobs:
           PYTHONPATH: .
         run: |
           mkdir -p junit
-          pytest tests/ -v --cov=src --cov=core --cov=ml --cov-report=xml --junitxml=junit/test-results.xml
+          pytest tests/ -v --cov=src --cov-report=xml --junitxml=junit/test-results.xml
       
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
@@ -171,7 +171,7 @@ jobs:
       - name: Run Bandit security scan
         run: |
           pip install bandit
-          bandit -r src/ core/ ml/ ui/ -f json -o bandit-report.json || true
+          bandit -r src/ scripts/ -f json -o bandit-report.json || true
   
   # ─────────────────────────────────────────────────────────────
   # BUILD & PUSH DOCKER IMAGE

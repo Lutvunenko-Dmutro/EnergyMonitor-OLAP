@@ -141,7 +141,7 @@ def main():
     xl = np.linspace(min(lstm_errors), max(lstm_errors), 100)
     # Пунктирна червона лінія для розподілу LSTM + Peak
     peak_l = max(norm.pdf(xl, mu_l, std_l))
-    plt.plot(xl, norm.pdf(xl, mu_l, std_l), color='red', linestyle='--', linewidth=2.5, label=f'LSTM: $\mu$={mu_l:.2f}, $\sigma$={std_l:.2f}, peak={peak_l:.2f}')
+    plt.plot(xl, norm.pdf(xl, mu_l, std_l), color='red', linestyle='--', linewidth=2.5, label=rf'LSTM: $\mu$={mu_l:.2f}, $\sigma$={std_l:.2f}, peak={peak_l:.2f}')
     
     # Histogram for Baseline (Зелений колір)
     _, bins_b, _ = plt.hist(base_errors, bins=50, density=True, alpha=0.4, color='green', label='Baseline Errors')
@@ -149,7 +149,7 @@ def main():
     xb = np.linspace(min(base_errors), max(base_errors), 100)
     # Пунктирна зелена лінія для розподілу Baseline + Peak
     peak_b = max(norm.pdf(xb, mu_b, std_b))
-    plt.plot(xb, norm.pdf(xb, mu_b, std_b), color='green', linestyle='--', linewidth=2.5, label=f'Baseline: $\mu$={mu_b:.2f}, $\sigma$={std_b:.2f}, peak={peak_b:.2f}')
+    plt.plot(xb, norm.pdf(xb, mu_b, std_b), color='green', linestyle='--', linewidth=2.5, label=rf'Baseline: $\mu$={mu_b:.2f}, $\sigma$={std_b:.2f}, peak={peak_b:.2f}')
     
     plt.title('Histogram of forecast errors with fitted normal distributions')
     plt.xlabel('Forecast Error (MW)')

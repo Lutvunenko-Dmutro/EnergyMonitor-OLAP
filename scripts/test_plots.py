@@ -21,9 +21,9 @@ def plot_error_distribution(errors_lstm, errors_arima, mu_lstm, std_lstm, mu_ari
 
     # Лінії Гауса (червона та зелена пунктирні)
     ax.plot(x, p_lstm, color='red', linestyle='--', linewidth=2, 
-            label=f'LSTM Gauss\n$\mu={mu_lstm:.2f}, \sigma={std_lstm:.2f}$')
+            label=f'LSTM Gauss\n' + rf'$\mu={mu_lstm:.2f}, \sigma={std_lstm:.2f}$')
     ax.plot(x, p_arima, color='green', linestyle='--', linewidth=2, 
-            label=f'ARIMA Gauss\n$\mu={mu_arima:.2f}, \sigma={std_arima:.2f}$')
+            label=f'ARIMA Gauss\n' + rf'$\mu={mu_arima:.2f}, \sigma={std_arima:.2f}$')
 
     # Оформлення
     ax.set_title(f'Normal distribution of forecast errors (LSTM vs ARIMA - {version})', color='black')
