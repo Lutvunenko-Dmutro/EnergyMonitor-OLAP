@@ -30,3 +30,9 @@ site/
 .idea/
 .vscode/
 cache/
+
+# Test artifacts and reports
+.coverage
+coverage.xml
+diagnostics_report.html
+junit/
