@@ -42,6 +42,13 @@ def system_startup():
     warnings.filterwarnings("ignore")
     # Додатковий глушник для streamlit (можеш дописати, якщо хочеш)
 
+    # 4. TTL CACHE CLEANUP: Видаляємо JSON-файли кешу старіші за 24 години
+    try:
+        from utils.cache_manager import startup_cache_cleanup
+        startup_cache_cleanup(ttl_hours=24)
+    except Exception:
+        pass  # Ніколи не ламаємо запуск через помилку в очищенні
+
 
 # Database & Queries
 
