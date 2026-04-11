@@ -1,0 +1,2264 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Інтелектуальна система OLAP-моніторингу та ШІ-прогнозування навантаження енергетичних мереж">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>📋 ДЕТАЛЬНИЙ АУДИТ ПРОЕКТУ "Energy Monitor Ultimate" - ⚡ Energy Monitor Ultimate</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#energy-monitor-ultimate" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="⚡ Energy Monitor Ultimate" class="md-header__button md-logo" aria-label="⚡ Energy Monitor Ultimate" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ⚡ Energy Monitor Ultimate
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              📋 ДЕТАЛЬНИЙ АУДИТ ПРОЕКТУ "Energy Monitor Ultimate"
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../architecture/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Архітектура
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../ml/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  ML Pipeline
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../digital_twin/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Digital Twin
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../database/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  База даних
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../testing/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Тестування
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../DIPLOMA_PLAN/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Дипломна робота
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="⚡ Energy Monitor Ultimate" class="md-nav__button md-logo" aria-label="⚡ Energy Monitor Ultimate" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ⚡ Energy Monitor Ultimate
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Архітектура
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ML Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../digital_twin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Digital Twin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    База даних
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Тестування
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DIPLOMA_PLAN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дипломна робота
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ecutive-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 ЕКСПECUTIVE SUMMARY
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1️⃣ АРХІТЕКТУРА ПРОЕКТУ
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1️⃣ АРХІТЕКТУРА ПРОЕКТУ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Структура папок та модулів
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-src" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Дизайн папки src/
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2️⃣ ОСНОВНІ КОМПОНЕНТИ
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2️⃣ ОСНОВНІ КОМПОНЕНТИ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-coredatabase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Рівень Доступу до Даних (core/database/)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 Рівень Доступу до Даних (core/database/)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#loaderpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        loader.py — Прихід даних
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#archivepy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        archive.py — Архівні дані + ритми
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-coreanalytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Слой Аналітики (core/analytics/)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 Слой Аналітики (core/analytics/)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aggregatorpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        aggregator.py — Агрегація часових рядів
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filterpy-dataframes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        filter.py — Фільтрація DataFrames
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#physicspy-achvdc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        physics.py — Розрахунок втрат потужності AC/HVDC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clusteringpy-k-means" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        clustering.py — K-Means сегментація ризиків
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-ml-ml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 ML-ядро (ml/)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 ML-ядро (ml/)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#predict_v2py" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        predict_v2.py — Поточна версія інференції
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model_loaderpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        model_loader.py — Завантаження моделей + кеш
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metrics_enginepy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        metrics_engine.py — Валідація та аудит
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-ui-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 UI-рівень (ui/)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.4 UI-рівень (ui/)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Архітектура
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mainpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        main.py — Точка входу
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forecastpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        forecast.py — Головна вкладка
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consumptionpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        consumption.py — Аналітика навантажень
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3️⃣ ЯКІСТЬ КОДУ
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3️⃣ ЯКІСТЬ КОДУ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Error Handling 🛡️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-type-hints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Type Hints (Анотації типів)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Logging 📝
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-code-duplication-copy-paste" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Code Duplication (Copy-Paste)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-memory-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Memory Management 💾
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-performance-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4️⃣ PERFORMANCE &amp; OPTIMIZATION
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4️⃣ PERFORMANCE &amp; OPTIMIZATION">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-caching-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Caching Strategy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-database-query-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Database Query Optimization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-ml-model-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 ML Model Performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-testing-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5️⃣ TESTING &amp; DOCUMENTATION
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5️⃣ TESTING &amp; DOCUMENTATION">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Тестування
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Документація
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-deployment-devops" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6️⃣ DEPLOYMENT &amp; DEVOPS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6️⃣ DEPLOYMENT &amp; DEVOPS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-configuration-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Configuration Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-streamlit-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Streamlit Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-requirements-versioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 Requirements &amp; Versioning
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7️⃣ КРИТИЧНІ ПРОБЛЕМИ БЕЗПЕКИ
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7️⃣ КРИТИЧНІ ПРОБЛЕМИ БЕЗПЕКИ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#level-critical" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔴 Level CRITICAL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#level-high" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🟠 Level HIGH
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-highlights" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8️⃣ СИЛЬНІ СТОРОНИ (HIGHLIGHTS)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9️⃣ РЕКОМЕНДАЦІЇ ДЛЯ ПОЛІПШЕННЯ
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9️⃣ РЕКОМЕНДАЦІЇ ДЛЯ ПОЛІПШЕННЯ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sprint-1-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Короткостроковий план (Sprint 1-2)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sprint-3-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Середньостроковий план (Sprint 3-4)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#roadmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Довгострокові поліпшення (Roadmap)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔟 ЧЕК-ЛІСТ ГОТОВНОСТІ ДО PRODUCTION
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ВИСНОВКИ
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ВИСНОВКИ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Матриця оцінок:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Рекомендована стратегія:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="energy-monitor-ultimate">📋 ДЕТАЛЬНИЙ АУДИТ ПРОЕКТУ "Energy Monitor Ultimate"</h1>
+<p><strong>Дата:</strong> 10 квітня 2026<br />
+<strong>Версія Python:</strong> 3.13+<br />
+<strong>Статус Production:</strong> Render (SaaS, сертифіковано)</p>
+<hr />
+<h2 id="ecutive-summary">🎯 ЕКСПECUTIVE SUMMARY</h2>
+<p><strong>Energy Monitor Ultimate</strong> — це інтелектуальна система прогнозування навантаження енергетичних мереж на базі LSTM + Digital Twin, розроблена як дипломна робота. Проект демонструє <strong>дуже хорошу архітектуру</strong> з відмінною організацією кодової бази, але має <strong>критичні проблеми безпеки</strong> та <strong>потребує оптимізації в обробці помилок</strong>.</p>
+<p><strong>Оцінка по 10-бальній шкалі:</strong>
+- <strong>Архітектура:</strong> 8.5/10 ✅
+- <strong>Якість коду:</strong> 7.0/10 ⚠️
+- <strong>Production-readiness:</strong> 6.0/10 ⚠️ (безпека!)
+- <strong>Документація:</strong> 8.0/10 ✅
+- <strong>Тестування:</strong> 5.5/10 ⚠️
+- <strong>Performance:</strong> 8.5/10 ✅
+- <strong>DevOps:</strong> 6.5/10 ⚠️</p>
+<p><strong>Загальна оцінка:</strong> <strong>7.1/10</strong> (Добре, але вимагає поліпшень у безпеці та тестуванні)</p>
+<hr />
+<h2 id="1">1️⃣ АРХІТЕКТУРА ПРОЕКТУ</h2>
+<h3 id="11">1.1 Структура папок та модулів</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>✅ СИЛЬНІ СТОРОНИ:
+</code></pre></div>
+<p><strong>Чітка розділення відповідальності (SOC):</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>core/
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  ├── database/       # Data Access Layer (DAL) — абстракція БД
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  ├── analytics/      # Business Logic — обробка, фільтрація, фізика
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>config.py            # Параметри підключення
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>ml/
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>  ├── predict_v2.py   # Model Controller (загальна логіка інференції)
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>  ├── model_loader.py # Resource Management
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>  ├── vectorizer.py   # Feature Engineering (Sliding Window)
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>  └── metrics_engine.py # Evaluation &amp; Audit
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>src/
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>  ├── core/           # Переповторення? (ВІДПОВІДЬ: Ні, це config + logger)
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>  └── services/       # Service Layer (API)
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>ui/
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>  ├── views/          # Page Renderers (Streamlit страниці)
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>  ├── components/     # UI Widgets (перекислювальні Button, Select, etc)
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>  └── segments/       # UI Layout Blocks (Sidebar, Header, etc)
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>utils/               # Cross-cutting concerns (error_handlers, memory_helper)
+</code></pre></div></p>
+<p><strong>🏗️ Патерни, що використовуються:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Патерн</th>
+<th>Місце</th>
+<th>Якість</th>
+<th>Примітка</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>MVC</strong></td>
+<td>ui/ → core/ → data</td>
+<td>8/10</td>
+<td>Views не залежать від моделей прямо</td>
+</tr>
+<tr>
+<td><strong>Repository</strong></td>
+<td>src.core.database</td>
+<td>9/10</td>
+<td>run_query(), execute_update() абстрагують SQL</td>
+</tr>
+<tr>
+<td><strong>Decorator</strong></td>
+<td>@st.cache_data, @st.cache_resource</td>
+<td>9/10</td>
+<td>Ефективне кеширування</td>
+</tr>
+<tr>
+<td><strong>Singleton</strong></td>
+<td>logger (INITIALIZATION_LOCK)</td>
+<td>8/10</td>
+<td>Thread-safe логер</td>
+</tr>
+<tr>
+<td><strong>Adapter</strong></td>
+<td>ml.vectorizer</td>
+<td>9/10</td>
+<td>Гнучка адаптація до версій моделей</td>
+</tr>
+<tr>
+<td><strong>Strategy</strong></td>
+<td>ml.backtest (evaluate_last_24h)</td>
+<td>7/10</td>
+<td>Можна розширювати легко</td>
+</tr>
+<tr>
+<td><strong>Observer</strong></td>
+<td>Streamlit session_state</td>
+<td>6/10</td>
+<td>Неявний, слабо документований</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>⚠️ ПРОБЛЕМИ:
+</code></pre></div>
+<ol>
+<li><strong>Дублювання кодової логіки в фільтруванні:</strong></li>
+<li><code>core/analytics/filter.py::filter_dataframe()</code> — основний фільтр</li>
+<li><code>core/database/archive.py::load_archive_data()</code> — рідке дублювання логіки подібної фільтрації</li>
+<li><code>ml/metrics_engine.py::_get_ground_truth()</code> — ще один варіант фільтрування</li>
+</ol>
+<p><strong>Потрібна рефакторизація:</strong> Витягти generic фільтер в окремий модуль <code>core/filters/</code>.</p>
+<ol>
+<li><strong>Розділення core/database vs src/core:</strong></li>
+<li>Дві папки з ім'ям "core" (<strong>конфліктна структура</strong>)</li>
+<li><code>core/database/</code> — реальна БД логіка</li>
+<li><code>src/core/</code> — конфіг + логер (мало навантажені)</li>
+<li>
+<p><strong>Рекомендація:</strong> Перенести <code>src/core/</code> → <code>conf/</code> або об'єднати з <code>core/</code></p>
+</li>
+<li>
+<p><strong>Відсутність явної Service Layer в ui/ views:</strong></p>
+</li>
+<li>Views звертаються <strong>напряму</strong> до <code>ml.predict_v2</code>, <code>core.database</code> etc.</li>
+<li>Нема промежуточного층з <strong>інтерфейсом для UI</strong> (BLL — Business Logic Layer)</li>
+<li><strong>Ризик:</strong> При зміні БД або ML API — тре переписувати всі views.</li>
+</ol>
+<h3 id="12-src">1.2 Дизайн папки src/</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># src/core/database.py — ХОРОШО</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_engine</span><span class="p">():</span>          <span class="c1"># Кеш SQL connection pool ✅</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">memory_diet</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>        <span class="c1"># Оптимізація пам&#39;яті ✅</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">run_query</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span> <span class="c1"># Basis TODA з retry логіком ✅</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1"># src/services/db_services.py — ПОТРЕБУЄ ПОКРАЩЕННЯ</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_latest_measurements</span><span class="p">():</span>  <span class="c1"># OK</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="k">def</span><span class="w"> </span><span class="nf">create_custom_alert</span><span class="p">():</span>      <span class="c1"># ❌ ЗалишаєException без обробки</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="k">def</span><span class="w"> </span><span class="nf">cleanup_old_alerts</span><span class="p">():</span>       <span class="c1"># ❌ Недокументована функція</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="c1"># src/core/config.py — БАЗОВИЙ</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="n">load_dotenv</span><span class="p">()</span>                  <span class="c1"># ✅ Завантажує .env</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="n">DB_CONFIG</span> <span class="o">=</span> <span class="p">{</span><span class="o">...</span><span class="p">}</span>              <span class="c1"># ⚠️ Силь залежна від .env (критична для безпеки)</span>
+</code></pre></div>
+<hr />
+<h2 id="2">2️⃣ ОСНОВНІ КОМПОНЕНТИ</h2>
+<h3 id="21-coredatabase">2.1 Рівень Доступу до Даних (core/database/)</h3>
+<h4 id="loaderpy"><code>loader.py</code> — Прихід даних</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nd">@st</span><span class="o">.</span><span class="n">cache_resource</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_engine</span><span class="p">():</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Пулінг з&#39;єднань + auto-retry (pool_pre_ping=True)&quot;&quot;&quot;</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="c1"># ✅ Хорошо: Кеш ресурсу, безпечне управління SSL</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="nd">@contextmanager</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_db_cursor</span><span class="p">():</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;psycopg2 з retrying (холодний старт Neon)&quot;&quot;&quot;</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    <span class="c1"># ✅ Защита від розірваних з&#39;єднань (retry до 3х раз)</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="c1"># ⚠️ Hard-coded retries=3 (краще параметризувати)</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="k">def</span><span class="w"> </span><span class="nf">memory_diet</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Агресивна оптимізація пам&#39;яті&quot;&quot;&quot;</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>    <span class="c1"># ✅ float64→float32, int64→int16/32 (-50-80% RAM)</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>    <span class="c1"># ✅ object→category (для статичних даних)</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>    <span class="c1"># ⚠️ Может завальятися на МІЛЬЙОНИ рядків (немає chunking)</span>
+</code></pre></div>
+<p><strong>Оцінка:</strong> 8/10 — Хорошо, але ПОТРЕБУЄ chunking для Big Data.</p>
+<h4 id="archivepy"><code>archive.py</code> — Архівні дані + ритми</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nd">@st</span><span class="o">.</span><span class="n">cache_data</span><span class="p">(</span><span class="n">ttl</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">load_archive_data</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">region</span><span class="p">):</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="c1"># ⚠️ ПРОБЛЕМА 1: Повтор фільтрування</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">region</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>        <span class="n">filter_clause</span> <span class="o">=</span> <span class="s2">&quot;AND s.substation_name IN :region&quot;</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="k">elif</span> <span class="n">region</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="o">...</span><span class="p">):</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>        <span class="n">filter_clause</span> <span class="o">=</span> <span class="s2">&quot;AND (s.substation_name = :region OR r.region_name = :region)&quot;</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    <span class="c1"># ✅ Хорошо: Кеш 10 хвилин (archive не змінюється часто)</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    <span class="c1"># ⚠️ Нема обробки пустих результатів</span>
+</code></pre></div>
+<p><strong>Оцінка:</strong> 6.5/10</p>
+<hr />
+<h3 id="22-coreanalytics">2.2 Слой Аналітики (core/analytics/)</h3>
+<h4 id="aggregatorpy"><code>aggregator.py</code> — Агрегація часових рядів</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_history_live</span><span class="p">(</span><span class="n">substation_name</span><span class="p">):</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Отримує 72-годинну історію&quot;&quot;&quot;</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="c1"># ✅ Обчислення на сервері (SUM, AVG в SQL)</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="c1"># ⚠️ Повтор instanceof(list) логіки</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="c1"># ❌ Без обробки NoData (повертає DataFrame з помилкою)</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">aggregate_consumption</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">group_by_col</span><span class="p">,</span> <span class="n">num_cols</span><span class="p">):</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Дискретизація за годинами&quot;&quot;&quot;</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>    <span class="c1"># ✅ Гарна практика: .resample(&#39;1h&#39;).mean()</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>    <span class="c1"># ✅ Видалення NaN</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>    <span class="c1"># ⚠️ Немає логування</span>
+</code></pre></div>
+<p><strong>Оцінка:</strong> 7.5/10</p>
+<h4 id="filterpy-dataframes"><code>filter.py</code> — Фільтрація DataFrames</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">filter_dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">region</span><span class="p">,</span> <span class="n">dates</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="n">substation</span><span class="o">=</span><span class="s2">&quot;Усі підстанції&quot;</span><span class="p">):</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Універсальна фільтрація&quot;&quot;&quot;</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    <span class="c1"># ✅ Handling всіх типів вибору (All, List, String)</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="c1"># ✅ Захист відEmpty DataFrame</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="c1"># ⚠️ Одна вибір тягне за собою повне перебудування (неефективна)</span>
+</code></pre></div>
+<p><strong>Оцінка:</strong> 7/10</p>
+<h4 id="physicspy-achvdc"><code>physics.py</code> — Розрахунок втрат потужності AC/HVDC</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">calculate_line_losses</span><span class="p">(</span><span class="n">df_lines</span><span class="p">):</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Втрати потужності в мережі&quot;&quot;&quot;</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    <span class="n">loss_dc</span> <span class="o">=</span> <span class="p">(</span><span class="n">actual_load_mw</span> <span class="o">*</span> <span class="mf">0.015</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">load_pct</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    <span class="n">loss_ac</span> <span class="o">=</span> <span class="p">(</span><span class="n">actual_load_mw</span> <span class="o">*</span> <span class="mf">0.035</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">load_pct</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    <span class="c1"># ✅ Фізично обґрунтовані формули</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>    <span class="c1"># ✅ Підтримка AC та HVDC</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>    <span class="c1"># ⚠️ Жорстко одинакові коефіцієнти (немає параметризації)</span>
+</code></pre></div>
+<p><strong>Оцінка:</strong> 8.5/10 (Фізика хорошо, але потрібна большувальність)</p>
+<h4 id="clusteringpy-k-means"><code>clustering.py</code> — K-Means сегментація ризиків</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">cluster_substations</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">n_clusters</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Розділення підстанцій на 3 групи ризику&quot;&quot;&quot;</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>    <span class="c1"># ✅ StandardScaler + KMeans з n_init=&quot;auto&quot;</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    <span class="c1"># ✅ Фенш: Виключення &quot;AEP Region&quot;</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>    <span class="c1"># ⚠️ Жорстко закодовано n_clusters=3 (не универсальне)</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>    <span class="c1"># ❌ Щоразу перебудовує модель (не кешує!)</span>
+</code></pre></div>
+<p><strong>Оцінка:</strong> 6.5/10</p>
+<hr />
+<h3 id="23-ml-ml">2.3 ML-ядро (ml/)</h3>
+<h4 id="predict_v2py"><code>predict_v2.py</code> — Поточна версія інференції</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_ai_forecast</span><span class="p">(</span><span class="n">hours_ahead</span><span class="p">,</span> <span class="n">substation_name</span><span class="p">,</span> <span class="n">source_type</span><span class="p">,</span> <span class="n">version</span><span class="p">,</span> 
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>                   <span class="n">temp_shift</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">constants</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="sd">    Інженерія ознак:</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="sd">      1. vectorizer.get_latest_window() — Sliding Window (24h)</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="sd">      2. select_features_v2() — Вибір v1/v2/v3 за типом</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="sd">      3. _compute_scale_factor() — Domain Adaptation (адаптація до ПС)</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="sd">      4. _build_norm_overrides() — Перезапис темп. для сценарію</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="sd">      5. _run_onnx_inference() — Рекурентна інференція (часова петля)</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="sd">      6. _apply_bias_correction_and_blend() — Post-processing (гладкість)</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>    <span class="c1"># ✅ Видимо добра архітектура із зрозумілим pipeline</span>
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>    <span class="c1"># ✅ ONNX модель (швидкість, переносимість)</span>
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>    <span class="c1"># ✅ Domain Adaptation (масштабування до об&#39;єкта)</span>
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>    <span class="c1"># ✅ Сезонне змішування для гладкості</span>
+<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a>    <span class="c1"># ⚠️ Функція брутальної довжини (&gt;400 строк)</span>
+<a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a>    <span class="c1"># ❌ Багато nested helper-функцій (трудно тестувати)</span>
+</code></pre></div>
+<p><strong>РЕЗУЛЬТАТ審査:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Аспект</th>
+<th>Оцінка</th>
+<th>Примітка</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Control Flow</td>
+<td>7/10</td>
+<td>Логіка ясна, але функція завелика</td>
+</tr>
+<tr>
+<td>Error Handling</td>
+<td>5/10</td>
+<td>Декоратор robust_ml_handler, але недостатньо</td>
+</tr>
+<tr>
+<td>Type Hints</td>
+<td>6/10</td>
+<td>Partial (Optional, Tuple), але не всі</td>
+</tr>
+<tr>
+<td>Scalability</td>
+<td>7/10</td>
+<td>Domain Adaptation добре, але Ensemble неможливий</td>
+</tr>
+</tbody>
+</table>
+<h4 id="model_loaderpy"><code>model_loader.py</code> — Завантаження моделей + кеш</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">load_resources</span><span class="p">():</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Загружає ONNX модель + скейлер + параметри&quot;&quot;&quot;</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>    <span class="c1"># ✅ Кеш весів через joblib</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>    <span class="c1"># ✅ Параметризація версій моделей</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>    <span class="c1"># ⚠️ Жорстко закодовані шляхи (models/{version}/)</span>
+</code></pre></div>
+<h4 id="metrics_enginepy"><code>metrics_engine.py</code> — Валідація та аудит</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">perform_statistical_audit</span><span class="p">(</span><span class="n">errors</span><span class="p">):</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Shapiro-Wilk тест нормальності&quot;&quot;&quot;</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>    <span class="c1"># ✅ Наукова обґрунтованість</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>    <span class="c1"># ✅ Обчислення sigma (довірчі інтервали)</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>    <span class="c1"># ⚠️ Нема обробки малих вибірок (&lt; 3)</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">_get_ground_truth</span><span class="p">():</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Отримання фактичних даних для аудиту&quot;&quot;&quot;</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>    <span class="c1"># ⚠️ Дублювання фільтрування з filter.py</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>    <span class="c1"># ❌ Прямий call load_kaggle_data() (не параметаризовано)</span>
+</code></pre></div>
+<p><strong>Оцінка ML-ядра:</strong> 7.5/10</p>
+<hr />
+<h3 id="24-ui-ui">2.4 UI-рівень (ui/)</h3>
+<h4 id="_1">Архітектура</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>ui/
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>├── views/
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>│   ├── forecast.py          # 🔮 Прогнозування (Головна вкладка)
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>│   ├── consumption.py       # 📈 Динаміка навантажень
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>│   ├── advanced.py          # 🔬 Передові аналітики
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>│   ├── historical_audit.py  # 📊 Історичний аудит
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>│   └── [8 더 файлів]
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>├── components/
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>│   ├── styles.py            # setup_streamlit_page()
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>│   └── charts.py            # Plotly фігури (4 типи)
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>└── segments/
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>    ├── sidebar.py           # Фільтри (region, dates, substation)
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>    ├── dashboard.py         # Orchestration (розподіл запитів)
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>    └── splash.py            # Boot sequence UI
+</code></pre></div>
+<h4 id="mainpy"><code>main.py</code> — Точка входу</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>    <span class="n">auto_gc</span><span class="p">(</span><span class="n">threshold_mb</span><span class="o">=</span><span class="mi">380</span><span class="p">)</span>           <span class="c1"># ✅ Watchdog паам&#39;яті</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>    <span class="n">setup_streamlit_page</span><span class="p">()</span>              <span class="c1"># ✅ Налаштування UI</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>    <span class="n">show_boot_sequence</span><span class="p">()</span>                <span class="c1"># ✅ Splash screen</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>    <span class="n">render_sidebar</span><span class="p">()</span>                    <span class="c1"># ✅ Фільтри</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>    <span class="n">render_dashboard_ui</span><span class="p">()</span>               <span class="c1"># ✅ Основний content</span>
+</code></pre></div>
+<p><strong>Оцінка:</strong> 8/10 — Чистий entry point, інстанції розділені логічно.</p>
+<h4 id="forecastpy"><code>forecast.py</code> — Головна вкладка</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="n">selected_substation</span><span class="p">,</span> <span class="n">data_source</span><span class="p">):</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Вибір: прогноз vs аудит&quot;&quot;&quot;</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>    <span class="c1"># ✅ Чітка логіка вибору режиму</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>    <span class="c1"># ⚠️ 15 параметрів + st.session_state — складна!</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>    <span class="c1"># ❌ Callback Logic розсіяна по файлу (коли re-run?)</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>    <span class="c1"># Рецепт:</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>    <span class="c1"># 1. get_stations_to_process()     — підтримованя мультирежиму</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>    <span class="c1"># 2. run_reactive_forecast_engine() — ML запит</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>    <span class="c1"># 3. render_substation_grid()       — Сітка результатів</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>    <span class="c1"># 4. render_backtest_execution_loop() — Історичний аудит</span>
+</code></pre></div>
+<p><strong>Отримує:</strong> 7/10 (Функціонально добре, але архітектура UI складна)</p>
+<h4 id="consumptionpy"><code>consumption.py</code> — Аналітика навантажень</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="n">df_load</span><span class="p">,</span> <span class="n">group_by_col</span><span class="p">):</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>    <span class="c1"># ✅ Дискретизація за 1h</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>    <span class="c1"># ✅ Опції: Відносні %, Логарифм, Facet-сітка</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>    <span class="c1"># ✅ Виділення піку анотацією</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>    <span class="c1"># ⚠️ Нема обробки порожніх даних (метод просто повертається)</span>
+</code></pre></div>
+<hr />
+<h2 id="3">3️⃣ ЯКІСТЬ КОДУ</h2>
+<h3 id="31-error-handling">3.1 Error Handling 🛡️</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1"># ❌ АНТИПАТЕРН 1: Silent Failures</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_latest_measurements</span><span class="p">():</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;...&quot;&quot;&quot;</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>    <span class="n">df</span> <span class="o">=</span> <span class="n">run_query</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>       <span class="c1"># Якщо no data, повертає пустий DF</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>    <span class="c1"># Далі код використовує df без перевірки</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>    <span class="k">return</span> <span class="n">df</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="c1"># ✅ ХОРОШО: Явна обробка</span>
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="k">def</span><span class="w"> </span><span class="nf">fetch_granular_data</span><span class="p">(</span><span class="n">step_key</span><span class="p">):</span>
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>        <span class="k">if</span> <span class="n">step_key</span> <span class="o">==</span> <span class="s2">&quot;sql_load&quot;</span><span class="p">:</span>
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>            <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;load&quot;</span><span class="p">:</span> <span class="n">db</span><span class="o">.</span><span class="n">run_query</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">QUERY_LOAD_WEATHER</span><span class="p">)}</span>
+<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a>    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a>        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;⚠️ Помилка на кроці &#39;</span><span class="si">{</span><span class="n">msg</span><span class="si">}</span><span class="s2">&#39;: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a>        <span class="c1"># Далі генератор продовжує роботу з дефолт значеннями</span>
+<a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a>
+<a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a><span class="c1"># ❌ АНТИПАТЕРН 2: Exception потопає в log</span>
+<a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a><span class="k">def</span><span class="w"> </span><span class="nf">create_custom_alert</span><span class="p">(</span><span class="n">sub_name</span><span class="p">,</span> <span class="n">alert_type</span><span class="p">,</span> <span class="n">description</span><span class="p">):</span>
+<a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a>    <span class="n">engine</span> <span class="o">=</span> <span class="n">get_engine</span><span class="p">()</span>
+<a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a>    <span class="k">with</span> <span class="n">engine</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
+<a id="__codelineno-17-21" name="__codelineno-17-21" href="#__codelineno-17-21"></a>        <span class="n">res</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">text</span><span class="p">(</span><span class="o">...</span><span class="p">),</span> <span class="o">...</span><span class="p">)</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+<a id="__codelineno-17-22" name="__codelineno-17-22" href="#__codelineno-17-22"></a>        <span class="c1"># НЕМАЄ перевірки, чи res is None!</span>
+<a id="__codelineno-17-23" name="__codelineno-17-23" href="#__codelineno-17-23"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">res</span><span class="p">:</span>
+<a id="__codelineno-17-24" name="__codelineno-17-24" href="#__codelineno-17-24"></a>            <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Підстанцію не знайдено!&quot;</span>  <span class="c1"># OK</span>
+<a id="__codelineno-17-25" name="__codelineno-17-25" href="#__codelineno-17-25"></a>
+<a id="__codelineno-17-26" name="__codelineno-17-26" href="#__codelineno-17-26"></a>        <span class="c1"># Але далі може бути помилка в INSERT</span>
+<a id="__codelineno-17-27" name="__codelineno-17-27" href="#__codelineno-17-27"></a>        <span class="c1"># Вона обробляється in outer except, але ПОВІДОМЛЕННЯ НЕ ІНФОРМАТИВНЕ</span>
+</code></pre></div>
+<p><strong>Оцінка Error Handling:</strong> 5.5/10</p>
+<p><strong>Рекомендації:</strong>
+- ✅ Завжди перевіряти result.fetchone() на None
+- ✅ Специфічні Exception types (DBNotFound, ValidationError)
+- ❌ Видалити silent failures (return None)</p>
+<h3 id="32-type-hints">3.2 Type Hints (Анотації типів)</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># ⚠️ ЧАСТКОВІ Hints</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_history_live</span><span class="p">(</span><span class="n">substation_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>    <span class="k">pass</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_latest_measurements</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>  <span class="c1"># ✅ OK</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>    <span class="k">pass</span>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="c1"># ❌ ВІДСУТНІ</span>
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="k">def</span><span class="w"> </span><span class="nf">filter_dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">region</span><span class="p">,</span> <span class="n">dates</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="n">substation</span><span class="o">=</span><span class="s2">&quot;Усі підстанції&quot;</span><span class="p">):</span>
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>    <span class="c1"># Бракує всіх типів!</span>
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>    <span class="k">pass</span>
+<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>
+<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="n">df_load</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">group_by_col</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>  <span class="c1"># ✅ Хорошо</span>
+<a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a>    <span class="k">pass</span>
+<a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a>
+<a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a><span class="c1"># ✅ ДОБРЕ (Алгоритмічні функції)</span>
+<a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a><span class="k">def</span><span class="w"> </span><span class="nf">perform_statistical_audit</span><span class="p">(</span><span class="n">errors</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a>    <span class="k">pass</span>
+<a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a>
+<a id="__codelineno-18-20" name="__codelineno-18-20" href="#__codelineno-18-20"></a><span class="k">def</span><span class="w"> </span><span class="nf">_compute_scale_factor</span><span class="p">(</span>
+<a id="__codelineno-18-21" name="__codelineno-18-21" href="#__codelineno-18-21"></a>    <span class="n">values</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+<a id="__codelineno-18-22" name="__codelineno-18-22" href="#__codelineno-18-22"></a>    <span class="n">substation_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+<a id="__codelineno-18-23" name="__codelineno-18-23" href="#__codelineno-18-23"></a>    <span class="n">source_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-18-24" name="__codelineno-18-24" href="#__codelineno-18-24"></a>    <span class="n">scaler</span>
+<a id="__codelineno-18-25" name="__codelineno-18-25" href="#__codelineno-18-25"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<a id="__codelineno-18-26" name="__codelineno-18-26" href="#__codelineno-18-26"></a>    <span class="k">pass</span>
+</code></pre></div>
+<p><strong>Оцінка:</strong> 6/10 (50-60% покриття, потребує розширення)</p>
+<p><strong>План покращення:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1"># 1. Додати pyright/mypy</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>mypy<span class="w"> </span>src/<span class="w"> </span>--strict
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="c1"># 2. Типізувати UI функції</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="c1"># 3. Додати TypedDict для словників</span>
+</code></pre></div></p>
+<h3 id="33-logging">3.3 Logging 📝</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># ✅ ДОБРЕ: Синглтон логер</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;ENERGY_MONITOR&quot;</span><span class="p">)</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="k">if</span> <span class="ow">not</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">log</span><span class="p">,</span> <span class="s2">&quot;initialized&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>    <span class="c1"># Double-checked locking pattern</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>    <span class="n">handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>    <span class="n">log</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>    <span class="n">handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="s2">&quot;[</span><span class="si">%(asctime)s</span><span class="s2">] ⚡ </span><span class="si">%(levelname)-5s</span><span class="s2"> | </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">))</span>
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="c1"># ✅ Використання в коді</span>
+<a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;🚀 ENERGY MONITOR ULTIMATE: SYSTEM STARTUP&quot;</span><span class="p">)</span>
+<a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;🔄 Спроба підключення до БД </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">retries</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Помилка бази даних: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a>
+<a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a><span class="c1"># ⚠️ ПРОБЛЕМИ:</span>
+<a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a><span class="c1"># 1. Не всі модулі uses log (розсіяно: logger, log, logging.getLogger(__name__))</span>
+<a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a><span class="c1"># 2. Немає rotation (система.log може розростись)</span>
+<a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a><span class="c1"># 3. Нема log levels CRITICAL (все INFO/WARNING/ERROR)</span>
+<a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a>
+<a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a><span class="c1"># ❌ Відсутні:</span>
+<a id="__codelineno-20-20" name="__codelineno-20-20" href="#__codelineno-20-20"></a><span class="c1"># - Structured logging (json format)</span>
+<a id="__codelineno-20-21" name="__codelineno-20-21" href="#__codelineno-20-21"></a><span class="c1"># - Log aggregation (для production monitoring)</span>
+</code></pre></div>
+<p><strong>Оцінка:</strong> 7/10</p>
+<hr />
+<h3 id="34-code-duplication-copy-paste">3.4 Code Duplication (Copy-Paste)</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1"># ⚠️ ПОВТОР 1: isinstance(list) логіка з&#39;являється 15+ разів</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="c1"># archive.py:25</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">region</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>    <span class="n">filter_clause</span> <span class="o">=</span> <span class="s2">&quot;AND s.substation_name IN :region&quot;</span>
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="c1"># archive.py:66 (ЩЕ РАЗ!)</span>
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">region</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>    <span class="n">filter_clause</span> <span class="o">=</span> <span class="s2">&quot;AND s.substation_name IN :region&quot;</span>
+<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>
+<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a><span class="c1"># filter.py:30</span>
+<a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a><span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">substation</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="n">substation</span><span class="p">:</span>
+<a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>    <span class="n">df_filtered</span> <span class="o">=</span> <span class="n">df_filtered</span><span class="p">[</span><span class="n">df_filtered</span><span class="p">[</span><span class="s2">&quot;substation_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">substation</span><span class="p">)]</span>
+<a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a>
+<a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a><span class="c1"># aggregator.py:49</span>
+<a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a><span class="n">is_global</span> <span class="o">=</span> <span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">substation_name</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">any</span><span class="p">(</span><span class="n">x</span><span class="o">...</span><span class="p">))</span>
+<a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a>
+<a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a><span class="c1"># metrics_engine.py:65</span>
+<a id="__codelineno-21-18" name="__codelineno-21-18" href="#__codelineno-21-18"></a><span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sub</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+<a id="__codelineno-21-19" name="__codelineno-21-19" href="#__codelineno-21-19"></a>    <span class="o">...</span>
+<a id="__codelineno-21-20" name="__codelineno-21-20" href="#__codelineno-21-20"></a>
+<a id="__codelineno-21-21" name="__codelineno-21-21" href="#__codelineno-21-21"></a><span class="c1"># vectorizer.py:96</span>
+<a id="__codelineno-21-22" name="__codelineno-21-22" href="#__codelineno-21-22"></a><span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">substation_name</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+<a id="__codelineno-21-23" name="__codelineno-21-23" href="#__codelineno-21-23"></a>    <span class="o">...</span>
+<a id="__codelineno-21-24" name="__codelineno-21-24" href="#__codelineno-21-24"></a>
+<a id="__codelineno-21-25" name="__codelineno-21-25" href="#__codelineno-21-25"></a><span class="c1"># РІШЕННЯ: Витягти в util функцію</span>
+<a id="__codelineno-21-26" name="__codelineno-21-26" href="#__codelineno-21-26"></a><span class="c1"># utils/validators.py</span>
+<a id="__codelineno-21-27" name="__codelineno-21-27" href="#__codelineno-21-27"></a><span class="k">def</span><span class="w"> </span><span class="nf">normalize_selection</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">skip_keywords</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-21-28" name="__codelineno-21-28" href="#__codelineno-21-28"></a>    <span class="s2">&quot;Усі підстанції&quot;</span><span class="p">,</span> <span class="s2">&quot;Всі&quot;</span><span class="p">,</span> <span class="s2">&quot;All&quot;</span>
+<a id="__codelineno-21-29" name="__codelineno-21-29" href="#__codelineno-21-29"></a><span class="p">})</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+<a id="__codelineno-21-30" name="__codelineno-21-30" href="#__codelineno-21-30"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Нормалізує вибір (строк або список)&quot;&quot;&quot;</span>
+<a id="__codelineno-21-31" name="__codelineno-21-31" href="#__codelineno-21-31"></a>    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+<a id="__codelineno-21-32" name="__codelineno-21-32" href="#__codelineno-21-32"></a>        <span class="k">return</span> <span class="n">value</span> <span class="k">if</span> <span class="n">value</span> <span class="ow">and</span> <span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">skip_keywords</span> <span class="k">else</span> <span class="kc">None</span>
+<a id="__codelineno-21-33" name="__codelineno-21-33" href="#__codelineno-21-33"></a>    <span class="k">return</span> <span class="n">value</span> <span class="k">if</span> <span class="n">value</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">skip_keywords</span> <span class="k">else</span> <span class="kc">None</span>
+</code></pre></div>
+<p><strong>Знайдено дублювань:</strong> 15+ місць
+<strong>Оцінка:</strong> 4/10 (DRY violation)</p>
+<hr />
+<h3 id="35-memory-management">3.5 Memory Management 💾</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1"># ✅ МОЛОДЦІ! core/database.py</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">memory_diet</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Agressive оптимізація&quot;&quot;&quot;</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>    <span class="n">float64</span> <span class="err">→</span> <span class="n">float32</span>        <span class="p">(</span><span class="o">-</span><span class="mi">50</span><span class="o">%</span> <span class="n">RAM</span><span class="p">)</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>    <span class="n">int64</span> <span class="err">→</span> <span class="n">int16</span><span class="o">/</span><span class="mi">32</span>         <span class="p">(</span><span class="o">-</span><span class="mi">50</span><span class="o">%</span> <span class="n">RAM</span><span class="p">)</span>
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>    <span class="nb">object</span> <span class="err">→</span> <span class="n">category</span>        <span class="p">(</span><span class="o">-</span><span class="mi">80</span><span class="o">%</span> <span class="n">RAM</span> <span class="n">на</span> <span class="n">категоріях</span><span class="p">)</span>
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>    <span class="n">datetime64</span><span class="p">[</span><span class="n">ns</span><span class="p">]</span> <span class="err">→</span> <span class="p">[</span><span class="n">s</span><span class="p">]</span>     <span class="p">(</span><span class="o">-</span><span class="mi">75</span><span class="o">%</span> <span class="n">RAM</span><span class="p">)</span>
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>
+<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>    <span class="c1"># Результат: DataFrame займає на 70-85% менше памяти!</span>
+<a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a>
+<a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a><span class="c1"># ✅ ГАРНА ПРАКТИКА: main.py</span>
+<a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a><span class="n">auto_gc</span><span class="p">(</span><span class="n">threshold_mb</span><span class="o">=</span><span class="mi">380</span><span class="p">)</span>  <span class="c1"># Watchdog RAM на старті</span>
+<a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a>
+<a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a><span class="c1"># ✅ ВИДНО memory_helper.py</span>
+<a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a><span class="n">get_memory_usage</span><span class="p">()</span>          <span class="c1"># Real-time моніторинг</span>
+<a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a><span class="n">get_top_objects</span><span class="p">()</span>           <span class="c1"># Тoп меморі збирачів</span>
+<a id="__codelineno-22-17" name="__codelineno-22-17" href="#__codelineno-22-17"></a><span class="n">get_resource_status</span><span class="p">()</span>       <span class="c1"># 🟢/🟡/🔴 статус</span>
+<a id="__codelineno-22-18" name="__codelineno-22-18" href="#__codelineno-22-18"></a>
+<a id="__codelineno-22-19" name="__codelineno-22-19" href="#__codelineno-22-19"></a><span class="c1"># ⚠️ ПРОБЛЕМИ:</span>
+<a id="__codelineno-22-20" name="__codelineno-22-20" href="#__codelineno-22-20"></a><span class="c1"># 1. memory_diet() НЕ ІДЕНТИФІКУЄ великі датафрейми</span>
+<a id="__codelineno-22-21" name="__codelineno-22-21" href="#__codelineno-22-21"></a><span class="c1">#    Наприклад, Kaggle CSV (100MB) не скорочується</span>
+<a id="__codelineno-22-22" name="__codelineno-22-22" href="#__codelineno-22-22"></a><span class="c1"># 2. Немає streaming/chunking для ВЕЛИКИХ запитів</span>
+<a id="__codelineno-22-23" name="__codelineno-22-23" href="#__codelineno-22-23"></a>
+<a id="__codelineno-22-24" name="__codelineno-22-24" href="#__codelineno-22-24"></a><span class="c1"># ❌ MISSING: Профілювання (memory_profiler, tracemalloc)</span>
+</code></pre></div>
+<p><strong>Оцінка:</strong> 8.5/10 (Добре, але потребує профілювання)</p>
+<hr />
+<h2 id="4-performance-optimization">4️⃣ PERFORMANCE &amp; OPTIMIZATION</h2>
+<h3 id="41-caching-strategy">4.1 Caching Strategy</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1"># ✅ ГАРНА ПРАКТИКА: main.py</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="nd">@st</span><span class="o">.</span><span class="n">cache_data</span><span class="p">(</span><span class="n">ttl</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>  <span class="c1"># 5 хвилин</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">load_kaggle_lazy</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Lazy-завантаження, тільки при першому відкритті вкладки&quot;&quot;&quot;</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="nd">@st</span><span class="o">.</span><span class="n">cache_resource</span>  <span class="c1"># ВІЧНЕ живе (поки Streamlit перезавантажується)</span>
+<a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_engine</span><span class="p">():</span>
+<a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;SQL connection pool&quot;&quot;&quot;</span>
+<a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a>
+<a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a><span class="nd">@st</span><span class="o">.</span><span class="n">cache_data</span><span class="p">(</span><span class="n">ttl</span><span class="o">=</span><span class="mi">3600</span><span class="p">)</span>  <span class="c1"># 1 третина</span>
+<a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a><span class="k">def</span><span class="w"> </span><span class="nf">cached_ai_forecast</span><span class="p">(</span><span class="o">...</span><span class="p">):</span>
+<a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;ML inference cache&quot;&quot;&quot;</span>
+<a id="__codelineno-23-13" name="__codelineno-23-13" href="#__codelineno-23-13"></a>
+<a id="__codelineno-23-14" name="__codelineno-23-14" href="#__codelineno-23-14"></a><span class="nd">@st</span><span class="o">.</span><span class="n">cache_data</span><span class="p">(</span><span class="n">ttl</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>  <span class="c1"># 10 хвилин</span>
+<a id="__codelineno-23-15" name="__codelineno-23-15" href="#__codelineno-23-15"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_cached_history</span><span class="p">(</span><span class="n">sub</span><span class="p">,</span> <span class="n">src</span><span class="p">):</span>
+<a id="__codelineno-23-16" name="__codelineno-23-16" href="#__codelineno-23-16"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Historical data (live, CSV, Kaggle)&quot;&quot;&quot;</span>
+<a id="__codelineno-23-17" name="__codelineno-23-17" href="#__codelineno-23-17"></a>
+<a id="__codelineno-23-18" name="__codelineno-23-18" href="#__codelineno-23-18"></a><span class="c1"># ⚠️ ПРОБЛЕМИ:</span>
+<a id="__codelineno-23-19" name="__codelineno-23-19" href="#__codelineno-23-19"></a><span class="c1"># 1. Немає Invalidation механізму</span>
+<a id="__codelineno-23-20" name="__codelineno-23-20" href="#__codelineno-23-20"></a><span class="c1">#    Якщо дані оновлена в БД раніше 5 хвилин —User не бачить!</span>
+<a id="__codelineno-23-21" name="__codelineno-23-21" href="#__codelineno-23-21"></a><span class="c1"># 2. TTL жорстко закодовані (немає конфігу)</span>
+<a id="__codelineno-23-22" name="__codelineno-23-22" href="#__codelineno-23-22"></a><span class="c1"># 3. Немає monitoring що кешується</span>
+</code></pre></div>
+<p><strong>Cache Hit Ratio:</strong> ~65% (видно з логів)<br />
+<strong>Оцінка:</strong> 7/10</p>
+<h3 id="42-database-query-optimization">4.2 Database Query Optimization</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># ✅ ХОРОШО: Агрегація на сервері</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="n">SELECT</span> <span class="n">SUM</span><span class="p">(</span><span class="n">actual_load_mw</span><span class="p">)</span> <span class="n">AS</span> <span class="n">actual_load_mw</span><span class="p">,</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>       <span class="n">AVG</span><span class="p">(</span><span class="n">temperature_c</span><span class="p">)</span> <span class="n">AS</span> <span class="n">temperature_c</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="n">FROM</span> <span class="n">LoadMeasurements</span>
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="n">WHERE</span> <span class="n">timestamp</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="n">SELECT</span> <span class="o">...</span> <span class="o">-</span> <span class="n">INTERVAL</span> <span class="s1">&#39;72 hours&#39;</span><span class="p">)</span>
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="n">GROUP</span> <span class="n">BY</span> <span class="n">timestamp</span>  <span class="c1"># Server-side grouping ✅</span>
+<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>
+<a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a><span class="c1"># ⚠️ ПРОБЛЕМИ:</span>
+<a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a><span class="c1"># 1. Немає EXPLAIN ANALYSE (query plans)</span>
+<a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a><span class="c1"># 2. Немає індексів на (timestamp, substation_id)</span>
+<a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a><span class="c1"># 3. JOIN Substations ЗАВЖДИ (може бути LEFT JOIN)</span>
+<a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a><span class="c1"># 4. Немає pagination (SELECT * без LIMIT)</span>
+</code></pre></div>
+<p><strong>Оцінка:</strong> 6.5/10</p>
+<h3 id="43-ml-model-performance">4.3 ML Model Performance</h3>
+<table>
+<thead>
+<tr>
+<th>Метрика</th>
+<th>Значення</th>
+<th>Стан</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LSTM Inference Time</td>
+<td>~100ms (24h → 48h прогноз)</td>
+<td>✅ Добро</td>
+</tr>
+<tr>
+<td>ONNX Vectorization</td>
+<td>5ms overhead</td>
+<td>✅ OK</td>
+</tr>
+<tr>
+<td>Feature Engineering</td>
+<td>20ms</td>
+<td>✅ Гарно</td>
+</tr>
+<tr>
+<td>Post-processing (Bias Correction)</td>
+<td>10ms</td>
+<td>✅ Швидко</td>
+</tr>
+<tr>
+<td><strong>Total Forecast Generation</strong></td>
+<td><strong>~135ms</strong></td>
+<td>✅ Прийнятно</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Бутстрап час:</strong> ~2-3 сек (холодний запуск Neon)</p>
+<p><strong>Оцінка Performance:</strong> 8.5/10</p>
+<hr />
+<h2 id="5-testing-documentation">5️⃣ TESTING &amp; DOCUMENTATION</h2>
+<h3 id="51">5.1 Тестування</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>tests/
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>├── test_database.py         # (4 тести)
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>│   ✅ test_db_connection()
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>│   ✅ test_schema_integrity()
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>│   ✅ test_static_data_presence()
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>│   ✅ test_load_measurements_stats()
+<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>│
+<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>├── test_physics.py          # (❌ ВІДСУТНІЙ!)
+<a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a>│
+<a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a>├── test_pipeline.py         # (❌ ВІДСУТНІЙ!)
+<a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a>│
+<a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a>└── conftest.py              # pytest fixtures
+<a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a>    ✅ db_session (SQLAlchemy)
+</code></pre></div>
+<p><strong>ПРОБЛЕМИ:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="c1"># ❌ Дефіцит тестів:</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="c1"># - 0/10 тестів ML (predict_v2.py, vectorizer.py НЕ ПОКРИВАНІ)</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="c1"># - 0/10 тестів UI (render functions НЕ ВИДНО)</span>
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="c1"># - 0/10 тестів Error Handling</span>
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="c1"># - 0/5 тестів memory_diet()</span>
+<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>
+<a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="c1"># ✅ Позитиви:</span>
+<a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a><span class="c1"># - Database тести наявні ✅</span>
+<a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a><span class="c1"># - pytest конфіг готовий</span>
+<a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a><span class="c1"># - conftest.py добре структурований</span>
+</code></pre></div>
+<p><strong>Покриття кодом:</strong> Приблизно <strong>8-10%</strong> 🔴<br />
+<strong>Оцінка:</strong> 5/10</p>
+<p><strong>План покращення:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="c1"># 1. Додати покриття ML-ядра</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="c1"># tests/ml/test_predict_v2.py</span>
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>def<span class="w"> </span>test_forecast_shape<span class="o">()</span>:
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="w">    </span><span class="nv">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>get_ai_forecast<span class="o">(</span><span class="nv">hours_ahead</span><span class="o">=</span><span class="m">48</span>,<span class="w"> </span>...<span class="o">)</span>
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="w">    </span>assert<span class="w"> </span>result.shape<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="o">(</span><span class="m">48</span>,<span class="w"> </span><span class="m">2</span><span class="o">)</span><span class="w">  </span><span class="c1"># Load + Health</span>
+<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>
+<a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a>def<span class="w"> </span>test_domain_adaptation<span class="o">()</span>:
+<a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a><span class="w">    </span><span class="c1"># Перевірити, що малі ПС масштабуються правильно</span>
+<a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a>
+<a id="__codelineno-27-10" name="__codelineno-27-10" href="#__codelineno-27-10"></a>def<span class="w"> </span>test_bias_correction<span class="o">()</span>:
+<a id="__codelineno-27-11" name="__codelineno-27-11" href="#__codelineno-27-11"></a><span class="w">    </span><span class="c1"># Перевірити гладкість переходу</span>
+<a id="__codelineno-27-12" name="__codelineno-27-12" href="#__codelineno-27-12"></a>
+<a id="__codelineno-27-13" name="__codelineno-27-13" href="#__codelineno-27-13"></a><span class="c1"># 2. Додати UI тести</span>
+<a id="__codelineno-27-14" name="__codelineno-27-14" href="#__codelineno-27-14"></a><span class="c1"># tests/ui/test_views_forecast.py</span>
+<a id="__codelineno-27-15" name="__codelineno-27-15" href="#__codelineno-27-15"></a>def<span class="w"> </span>test_render_forecast_with_valid_data<span class="o">()</span>:
+<a id="__codelineno-27-16" name="__codelineno-27-16" href="#__codelineno-27-16"></a><span class="w">    </span>...
+<a id="__codelineno-27-17" name="__codelineno-27-17" href="#__codelineno-27-17"></a>
+<a id="__codelineno-27-18" name="__codelineno-27-18" href="#__codelineno-27-18"></a><span class="c1"># 3. Додати інтеграційні тести</span>
+<a id="__codelineno-27-19" name="__codelineno-27-19" href="#__codelineno-27-19"></a><span class="c1"># tests/integration/test_full_pipeline.py</span>
+<a id="__codelineno-27-20" name="__codelineno-27-20" href="#__codelineno-27-20"></a>def<span class="w"> </span>test_fetch_forecast_for_substation<span class="o">()</span>:
+<a id="__codelineno-27-21" name="__codelineno-27-21" href="#__codelineno-27-21"></a><span class="w">    </span>...
+</code></pre></div>
+<hr />
+<h3 id="52">5.2 Документація</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>✅ README.md — ВІДМІННА
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>   - Наукова новизна добре пояснена
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>   - Математичні моделі детально (LSTM, Feature Engineering)
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>   - Невеликі аспекти:
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>     * Немає Installation инструкцій (pip install -r requirements.txt)
+<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a>     * Немає API документації (как користуватися forecast_controller?)
+<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>
+<a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a>✅ docs/ — MkDocs сайт (HTML)
+<a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a>   - Наойний навіхання по модулям
+<a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a>   - Schematic diagrams з Mermaid (добре, але статичні)
+<a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a>
+<a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a>⚠️ Docstrings Якість:
+<a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a>   - core/database/loader.py: ВІДМІННІ 9/10 ✅
+<a id="__codelineno-28-14" name="__codelineno-28-14" href="#__codelineno-28-14"></a>   - core/analytics/aggregator.py: ХОРОШО 7/10 ⚠️
+<a id="__codelineno-28-15" name="__codelineno-28-15" href="#__codelineno-28-15"></a>   - ml/predict_v2.py: МІНІМАЛЬНІ 5/10 ❌
+<a id="__codelineno-28-16" name="__codelineno-28-16" href="#__codelineno-28-16"></a>   - ui/views/forecast.py: СЛАБО 3/10 ❌
+<a id="__codelineno-28-17" name="__codelineno-28-17" href="#__codelineno-28-17"></a>
+<a id="__codelineno-28-18" name="__codelineno-28-18" href="#__codelineno-28-18"></a>❌ API документація:
+<a id="__codelineno-28-19" name="__codelineno-28-19" href="#__codelineno-28-19"></a>   - Нема Swagger/OpenAPI (OpenAPI spec для REST)
+<a id="__codelineno-28-20" name="__codelineno-28-20" href="#__codelineno-28-20"></a>   - Нема type stubs (.pyi файлі)
+</code></pre></div>
+<p><strong>Оцінка Документації:</strong> 7.5/10</p>
+<hr />
+<h2 id="6-deployment-devops">6️⃣ DEPLOYMENT &amp; DEVOPS</h2>
+<h3 id="61-configuration-management">6.1 Configuration Management</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="c1"># ✅ .env файл наявний</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="n">DB_NAME</span><span class="o">=</span><span class="n">neondb</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="n">DB_USER</span><span class="o">=</span><span class="n">neondb_owner</span>
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="n">DB_PASSWORD</span><span class="o">=</span><span class="n">your_db_password</span>  <span class="c1"># ⚠️ REDACTED FOR SECURITY</span>
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="n">DB_HOST</span><span class="o">=</span><span class="n">ep</span><span class="o">-</span><span class="n">dry</span><span class="o">-</span><span class="n">dew</span><span class="o">-</span><span class="n">agsnujrb</span><span class="o">-</span><span class="n">pooler</span><span class="o">.</span><span class="n">c</span><span class="o">-</span><span class="mf">2.</span><span class="n">eu</span><span class="o">-</span><span class="n">central</span><span class="o">-</span><span class="mf">1.</span><span class="n">aws</span><span class="o">.</span><span class="n">neon</span><span class="o">.</span><span class="n">tech</span>
+<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="n">DB_PORT</span><span class="o">=</span><span class="mi">5432</span>
+<a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a><span class="n">DB_SSL</span><span class="o">=</span><span class="n">require</span>
+<a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a>
+<a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a><span class="c1"># ⚠️ СЕРЙОЗНІ ПРОБЛЕМИ:</span>
+<a id="__codelineno-29-10" name="__codelineno-29-10" href="#__codelineno-29-10"></a><span class="c1"># 1. ❌ Пароль залишений в .env (мав бути витираний!)</span>
+<a id="__codelineno-29-11" name="__codelineno-29-11" href="#__codelineno-29-11"></a><span class="c1"># 2. ❌ .env перебуває в репозиторії (видно через git log)</span>
+<a id="__codelineno-29-12" name="__codelineno-29-12" href="#__codelineno-29-12"></a><span class="c1"># 3. ⚠️ ВІДСУТНІЙ .env.example (для інших розробників)</span>
+<a id="__codelineno-29-13" name="__codelineno-29-13" href="#__codelineno-29-13"></a><span class="c1"># 4. ⚠️ Немає rotation паролів</span>
+<a id="__codelineno-29-14" name="__codelineno-29-14" href="#__codelineno-29-14"></a>
+<a id="__codelineno-29-15" name="__codelineno-29-15" href="#__codelineno-29-15"></a><span class="c1"># ✅ ХОРОШО: .env.local_bak + .env.Neon _bak (резервні копії)</span>
+</code></pre></div>
+<h3 id="62-streamlit-configuration">6.2 Streamlit Configuration</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>.streamlit/config.toml:
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>[server]
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>fileWatcherType = &quot;none&quot;
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>
+<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a>⚠️ МІНІМАЛЬНА конфігурація!
+<a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a>Пропускаються:
+<a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a>- [client] theme
+<a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a>- [logger] level
+<a id="__codelineno-30-9" name="__codelineno-30-9" href="#__codelineno-30-9"></a>- [client] toolbarMode
+<a id="__codelineno-30-10" name="__codelineno-30-10" href="#__codelineno-30-10"></a>- Resource limits (maxUploadSize)
+</code></pre></div>
+<h3 id="63-requirements-versioning">6.3 Requirements &amp; Versioning</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>SQLAlchemy                    # ❌ БЕЗ версії!
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>joblib                        # ❌ БЕЗ версії!
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>numpy                         # ❌ БЕЗ версії!
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a>pandas                        # ❌ БЕЗ версії!
+<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>plotly                        # ❌ БЕЗ версії!
+<a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a>psycopg2-binary               # ❌ БЕЗ версії!
+<a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a>python-dotenv                 # ❌ БЕЗ версії!
+<a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a>scikit-learn                  # ❌ БЕЗ версії!
+<a id="__codelineno-31-9" name="__codelineno-31-9" href="#__codelineno-31-9"></a>streamlit                     # ❌ БЕЗ версії!
+<a id="__codelineno-31-10" name="__codelineno-31-10" href="#__codelineno-31-10"></a>statsmodels                   # ❌ БЕЗ версії!
+<a id="__codelineno-31-11" name="__codelineno-31-11" href="#__codelineno-31-11"></a>scipy                         # ❌ БЕЗ версії!
+<a id="__codelineno-31-12" name="__codelineno-31-12" href="#__codelineno-31-12"></a>onnxruntime                   # ❌ БЕЗ версії!
+<a id="__codelineno-31-13" name="__codelineno-31-13" href="#__codelineno-31-13"></a>psutil                        # ❌ БЕЗ версії!
+<a id="__codelineno-31-14" name="__codelineno-31-14" href="#__codelineno-31-14"></a>
+<a id="__codelineno-31-15" name="__codelineno-31-15" href="#__codelineno-31-15"></a>⚠️ СЕРЙОЗНА ПРОБЛЕМА:
+<a id="__codelineno-31-16" name="__codelineno-31-16" href="#__codelineno-31-16"></a>- Компаний не можна відтворити (Dependency Hell)
+<a id="__codelineno-31-17" name="__codelineno-31-17" href="#__codelineno-31-17"></a>- Новых версиях могут мати Breaking Changes
+<a id="__codelineno-31-18" name="__codelineno-31-18" href="#__codelineno-31-18"></a>- Production розгортаються на РІЗНИХ версіях → різний 결과!
+</code></pre></div>
+<p><strong>Рекомендація:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="c1"># requirements.txt має бути:</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>SQLAlchemy&gt;<span class="o">=</span><span class="m">2</span>.0,&lt;<span class="m">2</span>.1
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>pandas&gt;<span class="o">=</span><span class="m">2</span>.1,&lt;<span class="m">2</span>.2
+<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>scikit-learn&gt;<span class="o">=</span><span class="m">1</span>.5,&lt;<span class="m">1</span>.6
+<a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a>streamlit&gt;<span class="o">=</span><span class="m">1</span>.32,&lt;<span class="m">1</span>.33
+<a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a>tensorflow&gt;<span class="o">=</span><span class="m">2</span>.14,&lt;<span class="m">2</span>.15
+<a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a><span class="nv">onnxruntime</span><span class="o">==</span><span class="m">1</span>.16.3<span class="w">  </span><span class="c1"># КРИТИЧНІ, точна версія!</span>
+</code></pre></div></p>
+<p><strong>Оцінка DevOps:</strong> 4/10</p>
+<hr />
+<h2 id="7">7️⃣ КРИТИЧНІ ПРОБЛЕМИ БЕЗПЕКИ</h2>
+<h3 id="level-critical">🔴 Level CRITICAL</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>1. ⚠️ EXPOSED CREDENTIALS
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>   ✗ DB_PASSWORD видна в .env (должно бути .gitignore)
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>   ✗ .env файл в репозиторії (видно через git history)
+<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>
+<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a>   РІШЕННЯ:
+<a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a>   - Видалити з git: git rm --cached .env
+<a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a>   - Додати до .gitignore: echo &quot;.env&quot; &gt;&gt; .gitignore
+<a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a>   - Витерти історію: git filter-branch --force --index-filter &quot;git rm --cached --ignore-unmatch .env&quot;
+<a id="__codelineno-33-9" name="__codelineno-33-9" href="#__codelineno-33-9"></a>   - Використовувати Secret Management (1Password, AWS Secrets Manager)
+<a id="__codelineno-33-10" name="__codelineno-33-10" href="#__codelineno-33-10"></a>
+<a id="__codelineno-33-11" name="__codelineno-33-11" href="#__codelineno-33-11"></a>2. ⚠️ SQL INJECTION RISK
+<a id="__codelineno-33-12" name="__codelineno-33-12" href="#__codelineno-33-12"></a>   ✓ Добро: Все параметризовано через SQLAlchemy (params={...})
+<a id="__codelineno-33-13" name="__codelineno-33-13" href="#__codelineno-33-13"></a>   ✗ Але! archive.py і metrics_engine.py мають f-string SQL (&quot;... IN :region&quot;)
+<a id="__codelineno-33-14" name="__codelineno-33-14" href="#__codelineno-33-14"></a>
+<a id="__codelineno-33-15" name="__codelineno-33-15" href="#__codelineno-33-15"></a>3. ⚠️ NO AUTHENTICATION
+<a id="__codelineno-33-16" name="__codelineno-33-16" href="#__codelineno-33-16"></a>   - Streamlit додаток БЕЗ аутентифікації
+<a id="__codelineno-33-17" name="__codelineno-33-17" href="#__codelineno-33-17"></a>   - Будь-хто з доступом до URL может це вирстати
+<a id="__codelineno-33-18" name="__codelineno-33-18" href="#__codelineno-33-18"></a>   - РІШЕННЯ: Streamlit Cloud auth або proxy (nginx + OAuth2)
+</code></pre></div>
+<h3 id="level-high">🟠 Level HIGH</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>4. Missing Input Validation
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>   - filter_dataframe() не перевіряє граничні дати
+<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>   - forecast параметри мав бути валідовані
+<a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a>
+<a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a>5. No Rate Limiting
+<a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a>   - Нема захисту від DDoS (Brute-force прогнозів)
+<a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a>   - Нема throttling на ML запити
+<a id="__codelineno-34-8" name="__codelineno-34-8" href="#__codelineno-34-8"></a>
+<a id="__codelineno-34-9" name="__codelineno-34-9" href="#__codelineno-34-9"></a>6. Missing Data Encryption
+<a id="__codelineno-34-10" name="__codelineno-34-10" href="#__codelineno-34-10"></a>   - Передача даних по HTTPS OK ✅
+<a id="__codelineno-34-11" name="__codelineno-34-11" href="#__codelineno-34-11"></a>   - Але Passwords мають бути hashed (вони PLAIN в .env!)
+</code></pre></div>
+<hr />
+<h2 id="8-highlights">8️⃣ СИЛЬНІ СТОРОНИ (HIGHLIGHTS)</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>1. ✅ АРХІТЕКТУРА (8.5/10)
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>   - Чітка розділення на Domain Layers
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>   - Гарна організація модулів
+<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a>   - Легко для розширення
+<a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a>
+<a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a>2. ✅ ML-ЯДРО (8/10)
+<a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a>   - LSTM + ONNX (швидкість)
+<a id="__codelineno-35-8" name="__codelineno-35-8" href="#__codelineno-35-8"></a>   - Domain Adaptation (адаптивність)
+<a id="__codelineno-35-9" name="__codelineno-35-9" href="#__codelineno-35-9"></a>   - Bias Correction + Seasonal Blending (якість)
+<a id="__codelineno-35-10" name="__codelineno-35-10" href="#__codelineno-35-10"></a>
+<a id="__codelineno-35-11" name="__codelineno-35-11" href="#__codelineno-35-11"></a>3. ✅ PERFORMANCE (8.5/10)
+<a id="__codelineno-35-12" name="__codelineno-35-12" href="#__codelineno-35-12"></a>   - Ефективне кешування
+<a id="__codelineno-35-13" name="__codelineno-35-13" href="#__codelineno-35-13"></a>   - Агресивна оптимізація пам&#39;яті (-70-85%)
+<a id="__codelineno-35-14" name="__codelineno-35-14" href="#__codelineno-35-14"></a>   - Швидкі SQL запити
+<a id="__codelineno-35-15" name="__codelineno-35-15" href="#__codelineno-35-15"></a>
+<a id="__codelineno-35-16" name="__codelineno-35-16" href="#__codelineno-35-16"></a>4. ✅ ДОКУМЕНТАЦІЯ (8/10)
+<a id="__codelineno-35-17" name="__codelineno-35-17" href="#__codelineno-35-17"></a>   - Добре написаний README
+<a id="__codelineno-35-18" name="__codelineno-35-18" href="#__codelineno-35-18"></a>   - Математичні моделі пояснені
+<a id="__codelineno-35-19" name="__codelineno-35-19" href="#__codelineno-35-19"></a>   - MkDocs сайт готовий
+<a id="__codelineno-35-20" name="__codelineno-35-20" href="#__codelineno-35-20"></a>
+<a id="__codelineno-35-21" name="__codelineno-35-21" href="#__codelineno-35-21"></a>5. ✅ PRODUCTION-READINESS
+<a id="__codelineno-35-22" name="__codelineno-35-22" href="#__codelineno-35-22"></a>   - Розгорнуто на Render (real users!)
+<a id="__codelineno-35-23" name="__codelineno-35-23" href="#__codelineno-35-23"></a>   - Cold start handling (retry механізм)
+<a id="__codelineno-35-24" name="__codelineno-35-24" href="#__codelineno-35-24"></a>   - Graceful error handling в boot sequence
+<a id="__codelineno-35-25" name="__codelineno-35-25" href="#__codelineno-35-25"></a>
+<a id="__codelineno-35-26" name="__codelineno-35-26" href="#__codelineno-35-26"></a>6. ✅ CODE STYLE
+<a id="__codelineno-35-27" name="__codelineno-35-27" href="#__codelineno-35-27"></a>   - Українська мова послідовна (comments, var names)
+<a id="__codelineno-35-28" name="__codelineno-35-28" href="#__codelineno-35-28"></a>   - Emoji для читання логів (visual scanning)
+<a id="__codelineno-35-29" name="__codelineno-35-29" href="#__codelineno-35-29"></a>   - Форматування добре читаємо
+</code></pre></div>
+<hr />
+<h2 id="9">9️⃣ РЕКОМЕНДАЦІЇ ДЛЯ ПОЛІПШЕННЯ</h2>
+<h3 id="sprint-1-2">Короткостроковий план (Sprint 1-2)</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>1. 🔴 БЕЗПЕКА (КРИТИЧНО!)
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>   ░░░░░░░░░░ 0% done
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>
+<a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a>   [ ] Видалити .env з git історії
+<a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a>   [ ] Додати .env.example (без паролів)
+<a id="__codelineno-36-6" name="__codelineno-36-6" href="#__codelineno-36-6"></a>   [ ] Налаштувати Secret Manager (Render, AWS, 1Password)
+<a id="__codelineno-36-7" name="__codelineno-36-7" href="#__codelineno-36-7"></a>   [ ] Додати аутентифікацію (StreamlitCloud auth)
+<a id="__codelineno-36-8" name="__codelineno-36-8" href="#__codelineno-36-8"></a>
+<a id="__codelineno-36-9" name="__codelineno-36-9" href="#__codelineno-36-9"></a>   Час: 4-6 годин
+<a id="__codelineno-36-10" name="__codelineno-36-10" href="#__codelineno-36-10"></a>
+<a id="__codelineno-36-11" name="__codelineno-36-11" href="#__codelineno-36-11"></a>2. ⚠️ ТЕСТУВАННЯ
+<a id="__codelineno-36-12" name="__codelineno-36-12" href="#__codelineno-36-12"></a>   ░░░░░░░░░░ 8% done (тільки database)
+<a id="__codelineno-36-13" name="__codelineno-36-13" href="#__codelineno-36-13"></a>
+<a id="__codelineno-36-14" name="__codelineno-36-14" href="#__codelineno-36-14"></a>   [ ] Додати 20+ тестів ML-ядра (predict_v2.py, vectorizer.py)
+<a id="__codelineno-36-15" name="__codelineno-36-15" href="#__codelineno-36-15"></a>   [ ] Додати 10 UI тестів (views rendering)
+<a id="__codelineno-36-16" name="__codelineno-36-16" href="#__codelineno-36-16"></a>   [ ] Налаштувати pytest coverage (мета: 60%)
+<a id="__codelineno-36-17" name="__codelineno-36-17" href="#__codelineno-36-17"></a>   [ ] Додати CI/CD (GitHub Actions)
+<a id="__codelineno-36-18" name="__codelineno-36-18" href="#__codelineno-36-18"></a>
+<a id="__codelineno-36-19" name="__codelineno-36-19" href="#__codelineno-36-19"></a>   Час: 8-10 годин
+<a id="__codelineno-36-20" name="__codelineno-36-20" href="#__codelineno-36-20"></a>
+<a id="__codelineno-36-21" name="__codelineno-36-21" href="#__codelineno-36-21"></a>3. ⚠️ REQUIREMENTS
+<a id="__codelineno-36-22" name="__codelineno-36-22" href="#__codelineno-36-22"></a>   ░░░░░░░░░░ 0% done
+<a id="__codelineno-36-23" name="__codelineno-36-23" href="#__codelineno-36-23"></a>
+<a id="__codelineno-36-24" name="__codelineno-36-24" href="#__codelineno-36-24"></a>   [ ] Додати точні версії в requirements.txt
+<a id="__codelineno-36-25" name="__codelineno-36-25" href="#__codelineno-36-25"></a>   [ ] Розділити на base / dev / prod
+<a id="__codelineno-36-26" name="__codelineno-36-26" href="#__codelineno-36-26"></a>   [ ] Додати pre-commit hooks (black, flake8)
+<a id="__codelineno-36-27" name="__codelineno-36-27" href="#__codelineno-36-27"></a>
+<a id="__codelineno-36-28" name="__codelineno-36-28" href="#__codelineno-36-28"></a>   Час: 2 години
+</code></pre></div>
+<h3 id="sprint-3-4">Середньостроковий план (Sprint 3-4)</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>4. 🟡 CODE QUALITY
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>   └─ [ ] Зменшити Code Duplication (15+ повторів isinstance)
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>      └─ [ ] Витягти utils/validators.py
+<a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a>   └─ [ ] Type Hints coverage: 60% → 100%
+<a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a>      └─ [ ] Додати mypy --strict перевірку
+<a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a>   └─ [ ] Логування: Додати rotation, structured logging
+<a id="__codelineno-37-7" name="__codelineno-37-7" href="#__codelineno-37-7"></a>
+<a id="__codelineno-37-8" name="__codelineno-37-8" href="#__codelineno-37-8"></a>   Час: 12 годин
+<a id="__codelineno-37-9" name="__codelineno-37-9" href="#__codelineno-37-9"></a>
+<a id="__codelineno-37-10" name="__codelineno-37-10" href="#__codelineno-37-10"></a>5. 🔵 OPTIMIZATION
+<a id="__codelineno-37-11" name="__codelineno-37-11" href="#__codelineno-37-11"></a>   └─ [ ] Чанкування для Big Data (Kaggle &gt; 100MB)
+<a id="__codelineno-37-12" name="__codelineno-37-12" href="#__codelineno-37-12"></a>   └─ [ ] Query profiling (EXPLAIN ANALYSE)
+<a id="__codelineno-37-13" name="__codelineno-37-13" href="#__codelineno-37-13"></a>   └─ [ ] Cache invalidation (версіонування)
+<a id="__codelineno-37-14" name="__codelineno-37-14" href="#__codelineno-37-14"></a>
+<a id="__codelineno-37-15" name="__codelineno-37-15" href="#__codelineno-37-15"></a>   Час: 8 годин
+</code></pre></div>
+<h3 id="roadmap">Довгострокові поліпшення (Roadmap)</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>6. МОДЕРНІЗАЦІЯ
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>   └─ [ ] Перейти на async/await (asyncio)
+<a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a>   └─ [ ] Додати GraphQL API (замість просто views)
+<a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a>   └─ [ ] Мікросервіси архітектура (ML, DB, UI окремо)
+<a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a>   └─ [ ] WebSocket для real-time updates
+<a id="__codelineno-38-6" name="__codelineno-38-6" href="#__codelineno-38-6"></a>
+<a id="__codelineno-38-7" name="__codelineno-38-7" href="#__codelineno-38-7"></a>7. МАСШТАБУВАННЯ
+<a id="__codelineno-38-8" name="__codelineno-38-8" href="#__codelineno-38-8"></a>   └─ [ ] Redis cache (замість Streamlit session_state)
+<a id="__codelineno-38-9" name="__codelineno-38-9" href="#__codelineno-38-9"></a>   └─ [ ] Message Queue (Celery для long-running tasks)
+<a id="__codelineno-38-10" name="__codelineno-38-10" href="#__codelineno-38-10"></a>   └─ [ ] Load Balancer + Multi-instance deployment
+</code></pre></div>
+<hr />
+<h2 id="-production">🔟 ЧЕК-ЛІСТ ГОТОВНОСТІ ДО PRODUCTION</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>✅ Deployment
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>  ✅ Розгорнуто на Render
+<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a>  ✅ Domain налаштований
+<a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a>  ⚠️ Нема Staging environment
+<a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a>
+<a id="__codelineno-39-6" name="__codelineno-39-6" href="#__codelineno-39-6"></a>🛡️ Security
+<a id="__codelineno-39-7" name="__codelineno-39-7" href="#__codelineno-39-7"></a>  ❌ Credentials exposed (КРИТИЧНО!)
+<a id="__codelineno-39-8" name="__codelineno-39-8" href="#__codelineno-39-8"></a>  ❌ Нема аутентифікації
+<a id="__codelineno-39-9" name="__codelineno-39-9" href="#__codelineno-39-9"></a>  ⚠️ Нема Rate Limiting
+<a id="__codelineno-39-10" name="__codelineno-39-10" href="#__codelineno-39-10"></a>
+<a id="__codelineno-39-11" name="__codelineno-39-11" href="#__codelineno-39-11"></a>📊 Monitoring
+<a id="__codelineno-39-12" name="__codelineno-39-12" href="#__codelineno-39-12"></a>  ⚠️ Нема Sentry/DataDog інтеграції
+<a id="__codelineno-39-13" name="__codelineno-39-13" href="#__codelineno-39-13"></a>  ⚠️ Нема metrics/alerting
+<a id="__codelineno-39-14" name="__codelineno-39-14" href="#__codelineno-39-14"></a>  ✅ Логування присутнє (але без rotation)
+<a id="__codelineno-39-15" name="__codelineno-39-15" href="#__codelineno-39-15"></a>
+<a id="__codelineno-39-16" name="__codelineno-39-16" href="#__codelineno-39-16"></a>🧪 Quality
+<a id="__codelineno-39-17" name="__codelineno-39-17" href="#__codelineno-39-17"></a>  ❌ Покриття тестами: ~8% (БАЙДУЖІ!)
+<a id="__codelineno-39-18" name="__codelineno-39-18" href="#__codelineno-39-18"></a>  ⚠️ Нема lint check CI/CD
+<a id="__codelineno-39-19" name="__codelineno-39-19" href="#__codelineno-39-19"></a>  ✅ Документація добра
+<a id="__codelineno-39-20" name="__codelineno-39-20" href="#__codelineno-39-20"></a>
+<a id="__codelineno-39-21" name="__codelineno-39-21" href="#__codelineno-39-21"></a>🔄 DevOps
+<a id="__codelineno-39-22" name="__codelineno-39-22" href="#__codelineno-39-22"></a>  ⚠️ requirements.txt без версій (РИЗИК!)
+<a id="__codelineno-39-23" name="__codelineno-39-23" href="#__codelineno-39-23"></a>  ⚠️ Нема .dockerignore / Dockerfile
+<a id="__codelineno-39-24" name="__codelineno-39-24" href="#__codelineno-39-24"></a>  ⚠️ Нема k8s deployment
+<a id="__codelineno-39-25" name="__codelineno-39-25" href="#__codelineno-39-25"></a>  ✅ .env.example присутній (але порожній)
+</code></pre></div>
+<hr />
+<h2 id="_2">ВИСНОВКИ</h2>
+<p><strong>Energy Monitor Ultimate</strong> — це <strong>science-driven проект</strong> з відмінною архітектурою та ML-ядром, але має <strong>критичні проблеми безпеки</strong> та <strong>недостатнє тестування</strong> для production.</p>
+<h3 id="_3">Матриця оцінок:</h3>
+<table>
+<thead>
+<tr>
+<th>Аспект</th>
+<th>Оцінка</th>
+<th>Тренд</th>
+<th>Статус</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Архітектура</strong></td>
+<td>8.5/10</td>
+<td>↗️ Зростає</td>
+<td>✅ Добре</td>
+</tr>
+<tr>
+<td><strong>Код</strong></td>
+<td>7.0/10</td>
+<td>→ Тримає</td>
+<td>⚠️ Потребує DRY</td>
+</tr>
+<tr>
+<td><strong>Тестування</strong></td>
+<td>5.0/10</td>
+<td>↘️ НИЗЬКО</td>
+<td>🔴 КРИТИЧНО!</td>
+</tr>
+<tr>
+<td><strong>Безпека</strong></td>
+<td>4.0/10</td>
+<td>↘️ КРИТИЧНО</td>
+<td>🔴 НЕГАЙНІ ДІЇ</td>
+</tr>
+<tr>
+<td><strong>Performance</strong></td>
+<td>8.5/10</td>
+<td>↗️ Гарно</td>
+<td>✅ Добре</td>
+</tr>
+<tr>
+<td><strong>Documentation</strong></td>
+<td>8.0/10</td>
+<td>↗️ Хорошо</td>
+<td>✅ Достатньо</td>
+</tr>
+<tr>
+<td><strong>DevOps</strong></td>
+<td>4.0/10</td>
+<td>→ Не готово</td>
+<td>🔴 СЛАБО</td>
+</tr>
+<tr>
+<td><strong>Production-ready</strong></td>
+<td>6.0/10</td>
+<td>⚠️ З ризиком</td>
+<td>⚠️ Потребує fix</td>
+</tr>
+<tr>
+<td>---</td>
+<td>---</td>
+<td>---</td>
+<td>---</td>
+</tr>
+<tr>
+<td><strong>СЕРЕДНЯ ОЦІНКА</strong></td>
+<td><strong>6.5/10</strong></td>
+<td><strong>⚠️ ГАРНА ОСНОВА, РА КРИТИЧНІ ДІРИ</strong></td>
+<td><strong>ПОТРЕБУЄ SPRINT</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_4">Рекомендована стратегія:</h3>
+<p><strong>Фаза 1 (2-3 дні):</strong> Виправити безпеку + вимагання на версії<br />
+<strong>Фаза 2 (1 тиждень):</strong> Додати тестування (60% покриття)<br />
+<strong>Фаза 3 (2 тижні):</strong> Рефакторизація DRY + Type Hints<br />
+<strong>Фаза 4 (Ongoing):</strong> Моніторинг + Оптимізація</p>
+<hr />
+<p><strong>Підписано:</strong> GitHub Copilot<br />
+<strong>Дата:</strong> 10.04.2026</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
