@@ -107,32 +107,9 @@ $$
 
 ---
 
-## 🖼️ Галерея інтерфейсу (Energy Monitor ULTIMATE)
-
-### 🚀 Системна ініціалізація
-Екран вибору вузла підключення та процес завантаження «Energy Core Bootloader».
-![Ініціалізація](docs/images/boot_1.png)
-![Bootloader](docs/images/boot_loader.png)
-
-### 📊 Моніторинг та Аналітика
-Оперативний контроль стану мережі та детальне вивчення показників споживання, генерації та економіки.
-![Загальний моніторинг](docs/images/monitoring_overview.png)
-![Карта мережі](docs/images/map.png)
-![Генерація](docs/images/generation.png)
-![Фінанси](docs/images/finance.png)
-
-### 🧠 ШІ-прогнозування та Ризики (LSTM v3.1)
-Кластеризація об'єктів за рівнем ризику та оперативне прогнозування навантаження.
-![Кластеризація](docs/images/clustering.png)
-![ШІ Прогноз](docs/images/ai_forecast.png)
-
-### 🔍 Детальний аудит об'єктів
-Індивідуальні прогнози для кожної підстанції з візуалізацією довірчих інтервалів.
-![Глобальна мережа](docs/images/multi_forecast.png)
-![Деталізація 1](docs/images/substation_1.png)
-![Деталізація 2](docs/images/substation_2.png)
 
 ---
+
 
 ## 👥 Ролі користувачів (User Personas)
 
