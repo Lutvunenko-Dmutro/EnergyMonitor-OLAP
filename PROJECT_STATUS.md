@@ -1,4 +1,4 @@
-# 📊 PROJECT STATUS — Energy Monitor ULTIMATE (Квітень 2026)
+# 📊 PROJECT STATUS — Energy Monitor ULTIMATE (Версія 3.1 STABLE)
 
 Актуальний, верифікований стан платформи після фінального аудиту сесії.
 
@@ -44,6 +44,14 @@
 - Full CI/CD: lint → type check → 74 тести → security scan → Docker build → Render deploy.
 - Log rotation + memory watchdog для довгострокової стабільності.
 - TTL-кеш менеджер — авто-очищення JSON-файлів старіших 24 годин (`utils/cache_manager.py`).
+### 6. Zero-Flicker Fragment Engine (New 3.1)
+- **Granular Updates**: Перехід на фрагментарний рендеринг (`@st.fragment`) дозволив оновлювати карту та KPI без повного перезавантаження сторінки.
+- **Data Pass Optimization**: Фрагменти отримують параметри фільтрації замість копіювання цілих DataFrame, що критично зменшило навантаження на RAM.
+- **Rerun Resilience**: Повне усунення `RerunData` помилок через правильну обробку системних винятків Streamlit у DB-драйверах.
+
+### 7. Global Data Orchestration
+- **Kaggle Sync**: Система автоматично підлаштовує календар під часові рамки еталонних даних при перемиканні режимів.
+- **Source Hot-Swap**: Миттєве перемикання між Live-симуляцією та Kaggle без втрати стану фільтрів.
 
 ---
 
@@ -86,4 +94,4 @@ Total: 74 passed, 5 skipped, 0 failed — 13.71s
 > Для авто-аудиту якості коду запустіть: `python diagnose.py`
 
 > [!IMPORTANT]
-> Версія 3.0 GOLD — production-ready стан. Не вносьте архітектурні зміни до захисту.
+> Версія 3.1 STABLE — фінальний верифікований стан. Система стабілізована проти runtime-винятків та готова до захисту.

@@ -56,6 +56,15 @@ graph TB
 
 ---
 
+## ⚡ UI Synchronization Strategy (Fragments)
+В системі реалізовано **Granular Rendering Pattern** на основі `@st.fragment`.
+
+- **Orchestration**: `dashboard.py` виступає як диспетчер, який передає у вкладки не величезні DataFrame, а легкі словники параметрів фільтрації.
+- **Independence**: Карта (`tab_map`) та KPI (`live_telemetry`) оновлюються у фоні кожні 5-15 секунд, не перериваючи роботу користувача з налаштуваннями чи AI-моделями.
+- **Rerun Safety**: Спеціальна обробка `RerunException` та `StopException` у завантажувачах даних гарантує, що автоматичні оновлення не конфліктують з операціями запису в базу даних.
+
+---
+
 ## 🤖 ML Pipeline
 
 | Крок | Модуль | Дія |

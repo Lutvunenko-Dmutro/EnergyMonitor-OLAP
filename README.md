@@ -1,4 +1,4 @@
-# ⚡ Energy Monitor Ultimate (OLAP & AI Forecasting System)
+# ⚡ Energy Monitor Ultimate (v3.1 STABLE)
 
 **Інтелектуальна система аналітики та предиктивного моделювання навантаження енергетичних мереж на базі концепції Digital Twin та рекурентних нейромереж LSTM.**
 
