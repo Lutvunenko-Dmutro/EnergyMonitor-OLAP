@@ -24,4 +24,8 @@ Aim of the work: development and implementation of the EnergyMonitor-OLAP cloud 
 
 Obtained results: a functional 4-level system has been implemented, providing energy consumption forecasting accuracy with MAPE in the range of 1.5–3.1 percent. The designed analytical database on PostgreSQL allows complex real-time telemetry queries. A full cycle of system testing and deployment in the cloud environment has been conducted.
 
+
 Key words: NEURAL NETWORKS, LSTM, SMART CITY, ENERGY CONSUMPTION, FORECASTING, DIGITAL TWIN, OLAP, POSTGRESQL, SAAS, PREDICTIVE MAINTENANCE, SOFTWARE ENGINEERING.
+
+---
+[Далі: ВСТУП](THESIS_0_INTRODUCTION.md)

@@ -95,4 +95,4 @@ CREATE INDEX idx_load_time ON LoadMeasurements (timestamp DESC);
 ```
 
 ---
-[⬅️ Назад до Списку джерел](BIBLIOGRAPHY.md) | [Вихід до головного меню](../../README.md)
+[Назад до Списку джерел](BIBLIOGRAPHY.md)

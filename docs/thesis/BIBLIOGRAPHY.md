@@ -32,4 +32,4 @@
 30. Zheng J., Xu C., Zhang Z., Li X. Electric Load Forecasting in Smart Grids Using Long-Short-Term Memory Recurrent Neural Networks. Annual Conference on Information Science and Systems (CISS). 2017. P. 1—6.
 
 ---
-[⬅️ Назад до Висновків](THESIS_FINAL_CONCLUSIONS.md) | [Вихід до головного меню](../../README.md)
+[Назад до Висновків](THESIS_FINAL_CONCLUSIONS.md) | [Далі: ДОДАТКИ](APPENDICES.md)
