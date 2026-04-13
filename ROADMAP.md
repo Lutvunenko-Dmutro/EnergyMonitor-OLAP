@@ -1,38 +1,38 @@
-# 🗺️ PROJECT ROADMAP (Energy Monitor Ultimate)
+# 🗺️ ПЛАН РОЗВИТКУ ПРОЄКТУ (Energy Monitor Ultimate)
 
-This roadmap outlines the future evolution of the platform.
+Цей план окреслює майбутню еволюцію платформи та ключові етапи її вдосконалення.
 
-## ✅ Completed Milestones
+## ✅ Виконані етапи
 
-- [x] **Phase 1: Security Hardening** (SQL-injection protection, validation layer, redacted credentials).
-- [x] **Phase 2: Hybrid Resilience** (Seasonal Naive AI Fallback, automatic retries).
-- [x] **Phase 3: Digital Twin Integration** (Physics engine for losses and health).
-- [x] **Phase 4: Production DevOps** (Docker, Render.com optimization, CI/CD pipelines).
-
----
-
-## 🚀 Future Development (Next Steps)
-
-### Phase 5: Type Safety & 100% Coverage
-- **Goal**: Reach >90% type coverage across the entire codebase.
-- **Action**: Add strict type hints to `ml/` and `core/` modules.
-- **Validation**: Pass `mypy --strict` without warnings.
-
-### Phase 6: Advanced Testing (Scientific Audit)
-- **Goal**: Implement complex stress tests for the ML pipeline.
-- **Action**: Add monte-carlo simulations for error distribution testing in `tests/ml`.
-- **Validation**: Maintain >95% test success rate across 100+ tests.
-
-- [x] **Phase 7: Real-Time Performance** (Zero-Flicker Fragments, latency reduction).
-- [ ] **Action**: Implement a Redis-based caching layer for historical data segments.
-- **Action**: Optimize SQL indexes for the `LoadMeasurements` table.
-
-### Phase 8: Expanded Core
-- **Goal**: Add Transformer-based forecasting alongside LSTM.
-- **Action**: Implement Model Ensembling to blend multiple AI architectures.
-- **Action**: Expand regional coverage to include renewable energy sources (Solar/Wind).
+- [x] **Фаза 1: Укріплення безпеки** (захист від SQL-ін'єкцій, рівень валідації, маскування конфіденційних даних).
+- [x] **Фаза 2: Гібридна відмовостійкість** (AI Fallback на основі Seasonal Naive, автоматичні повторні спроби DB).
+- [x] **Фаза 3: Інтеграція Цифрового Двійника** (фізичний двигун для розрахунку втрат та показників здоров'я обладнання).
+- [x] **Фаза 4: Production DevOps** (Docker, оптимізація для Render.com, конвеєри CI/CD).
 
 ---
 
-**Last Update**: April 13, 2026
-**Current Status**: Verified Stable (Version 3.1 STABLE)
+## 🚀 Майбутній розвиток (Наступні кроки)
+
+### Фаза 5: Типобезпека та 100% покриття
+- **Мета**: Досягти >90% покриття типами у всьому коді.
+- **Дія**: Додати суворі підказки типів (type hints) у модулі `ml/` та `core/`.
+- **Валідація**: Проходження `mypy --strict` без попереджень.
+
+### Фаза 6: Поглиблене тестування (Науковий аудит)
+- **Мета**: Впровадити складні стрес-тести для ML-пайплайну.
+- **Дія**: Додати симуляції Монте-Карло для тестування розподілу похибок у `tests/ml`.
+- **Валідація**: Підтримка успішності тестів >95% при понад 100 тестах.
+
+- [x] **Фаза 7: Продуктивність у реальному часі** (Фрагменти Zero-Flicker, зниження затримок інтерфейсу).
+- [ ] **Дія**: Впровадити рівень кешування на базі Redis для сегментів історичних даних.
+- [ ] **Дія**: Оптимізувати SQL-індекси для таблиці `LoadMeasurements`.
+
+### Фаза 8: Розширення аналітичного ядра
+- **Мета**: Додати прогнозування на основі Transformer разом із LSTM.
+- **Дія**: Впровадити ансамблювання моделей для поєднання кількох архітектур ШІ.
+- **Дія**: Розширити регіональне охоплення, включивши відновлювані джерела енергії (Сонце/Вітер).
+
+---
+
+**Останнє оновлення**: 13 квітня 2026 р.
+**Поточний статус**: Верифіковано (Версія 3.1 STABLE)
