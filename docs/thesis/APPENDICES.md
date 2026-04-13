@@ -1,70 +1,98 @@
-# ДОДАТКИ
+<p align="center">Додаток А</p>
+<p align="center">лістинги програмного коду</p>
 
-### ДОДАТОК А. Фрагменти програмного коду інтелектуального ядра
+Нижче наведено фрагменти вихідного коду ключових модулів інтелектуальної системи EnergyMonitor-OLAP.
+
+А.1. Модуль фізичного моделювання та цифрового двійника (physics.py)
+Цей модуль відповідає за розрахунок енергетичних характеристик у реальному часі та симуляцію стану обладнання підстанції.
 
 ```python
-def build_lstm_model(input_shape):
-    model = Sequential([
-        LSTM(128, input_shape=input_shape, return_sequences=True),
-        Dropout(0.2),
-        LSTM(64, return_sequences=False),
-        Dropout(0.1),
-        Dense(32, activation='relu'),
-        Dense(2)
-    ])
-    model.compile(optimizer='adam', loss='huber')
-    return model
+import numpy as np
+
+def calculate_physics_telemetry(actual_load, capacity_mw):
+    """
+    Розрахунок фізичних параметрів на основі навантаження
+    та стану обладнання підстанції.
+    """
+    # 1. Розрахунок термічної деградації (наближена модель)
+    temp_factor = actual_load / capacity_mw
+    oil_temp = 40 + (temp_factor * 50) + np.random.normal(0, 2)
+    
+    # 2. Розрахунок втрат у лінії електропередачі (ЛЕП)
+    # Формула втрат P = I^2 * R
+    resistance = 0.05  # Опір (Ом)
+    line_losses = (actual_load ** 2) * resistance * 0.001
+    
+    # 3. Інтегральний показник здоров'я (Health Score)
+    health_score = 100 - (temp_factor * 15) - (oil_temp / 10)
+    
+    return {
+        "oil_temp": round(oil_temp, 2),
+        "line_losses": round(line_losses, 4),
+        "health_score": round(max(0, health_score), 2)
+    }
 ```
 
-### ДОДАТОК Б. Протокол автоматизованого тестування
+А.2. Модуль інтелектуального прогнозування (predict_v2.py)
+Реалізація логіки інференсу нейронної мережі LSTM із попередньою векторизацією даних.
 
-| Група тестів | Кількість | Результат | Опис |
-| :--- | :---: | :---: | :--- |
-| Security (SQLi, XSS) | 26 | Passed | Перевірка захищеності від ін'єкцій |
-| Database Layer | 4 | Passed | Коректність OLAP-запитів |
-| ML Pipeline | 3 | Passed | Цілісність вхідних тензорів |
-| Physics Engine | 5 | Passed | Верифікація фізичних законів |
-| Core Analytics | 11 | Passed | Розрахунок KPI та здоров'я |
-| Utilities | 19 | Passed | Обробка кешу та конфігурацій |
+```python
+import tensorflow as tf
+import numpy as np
 
-### ДОДАТОК В. Специфікація середовища розгортання (Dockerfile)
+def generate_lstm_forecast(model, input_window):
+    """
+    Генерація прогнозу на 24 години на основі look-back вікна.
+    input_window shape: (1, 24, 9)
+    """
+    # Виконання інференсу (Single step ahead)
+    prediction = model.predict(input_window, verbose=0)
+    
+    # Денормалізація (приклад зворотного MinMaxScaler)
+    # actual_val = prediction * (max_val - min_val) + min_val
+    
+    return prediction
 
-```dockerfile
-FROM python:3.13-slim
-WORKDIR /app
-RUN apt-get update && apt-get install -y build-essential libpq-dev && rm -rf /var/lib/apt/lists/*
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-COPY . .
-ENTRYPOINT ["streamlit", "run", "main.py", "--server.port=8501", "--server.address=0.0.0.0"]
+def encode_time_cyclic(hour, day_of_week):
+    """
+    Тригонометричне кодування часу (Sin/Cos Encoding)
+    """
+    hr_sin = np.sin(2 * np.pi * hour / 24)
+    hr_cos = np.cos(2 * np.pi * hour / 24)
+    
+    day_sin = np.sin(2 * np.pi * day_of_week / 7)
+    day_cos = np.cos(2 * np.pi * day_of_week / 7)
+    
+    return hr_sin, hr_cos, day_sin, day_cos
 ```
 
-### ДОДАТОК Г. Ілюстративні матеріали програмного комплексу
+А.3. Опис структури об'єктів бази даних (schema.sql)
+Схема таблиць для зберігання телеметрії та результатів аналітики.
 
-Нижче наведено повну серію контрольних знімків екрана, що демонструють функціональні можливості системи EnergyMonitor-OLAP.
+```sql
+-- Таблиця фактів навантаження
+CREATE TABLE LoadMeasurements (
+    measurement_id SERIAL PRIMARY KEY,
+    substation_id INTEGER REFERENCES Substations(substation_id),
+    actual_load_mw FLOAT NOT NULL,
+    oil_temp FLOAT,
+    line_losses FLOAT,
+    health_score FLOAT,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
-#### 1. Системні компоненти та завантаження
-![Рисунок Г.1. Екран ініціалізації системи](../../docs/images/boot_1.png)
-![Рисунок Г.2. Процес завантаження та автентифікації](../../docs/images/boot_loader.png)
+-- Таблиця регіонів та метеоумов
+CREATE TABLE WeatherReports (
+    report_id SERIAL PRIMARY KEY,
+    region_id INTEGER REFERENCES Regions(region_id),
+    temperature FLOAT,
+    humidity FLOAT,
+    timestamp TIMESTAMP
+);
 
-#### 2. Моніторинг та ГІС-аналітика
-![Рисунок Г.3. Глобальна карта енергосистеми](../../docs/images/map.png)
-![Рисунок Г.4. Панель моніторингу споживання за регіонами](../../docs/images/consumption.png)
-![Рисунок Г.5. Розподіл генерації за джерелами енергії](../../docs/images/generation.png)
-
-#### 3. Інтелектуальний аналіз та прогнозування
-![Рисунок Г.6. Інтерфейс ШІ-прогнозування (LSTM v3)](../../docs/images/ai_forecast.png)
-![Рисунок Г.7. Порівняльний аудит моделей прогнозування](../../docs/images/audit_comparison.png)
-![Рисунок Г.8. Кластеризація споживачів методом K-Means](../../docs/images/clustering.png)
-
-#### 4. Цифровий двійник та фізичний стан
-![Рисунок Г.9. Моніторинг здоров'я трансформаторів](../../docs/images/health_monitoring.png)
-![Рисунок Г.10. Аналіз впливу погодних умов](../../docs/images/weather_impact.png)
-![Рисунок Г.11. Динаміка добових циклів навантаження](../../docs/images/day_cycle_raw.png)
-
-#### 5. Верифікація на еталонних даних (Kaggle PJM)
-![Рисунок Г.12. Робота системи на великих даних PJM](../../docs/images/kaggle_consumption.png)
-![Рисунок Г.13. Глобальний прогноз для мережі Kaggle](../../docs/images/kaggle_global_forecast.png)
+-- OLAP індекс для швидкого пошуку за часом
+CREATE INDEX idx_load_time ON LoadMeasurements (timestamp DESC);
+```
 
 ---
-[⬅️ Назад до Списку джерел](BIBLIOGRAPHY.md) | [На головну сторінку системи](../../README.md)
+[⬅️ Назад до Списку джерел](BIBLIOGRAPHY.md) | [Вихід до головного меню](../../README.md)
