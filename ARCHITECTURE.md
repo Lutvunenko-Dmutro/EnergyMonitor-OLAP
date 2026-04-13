@@ -1,6 +1,6 @@
-# 🏗️ Architecture Overview — Energy Monitor ULTIMATE
+# 🏗️ Архітектурний огляд — Energy Monitor ULTIMATE
 
-> Версія: 3.0 GOLD · Python 3.13 · PostgreSQL (Neon Cloud) · Streamlit · LSTM
+> Версія: 3.1 STABLE · Python 3.13 · PostgreSQL (Neon Cloud) · Streamlit · LSTM
 
 Цей документ — швидкий технічний огляд архітектури для нових розробників і академічної комісії.
 
@@ -11,42 +11,42 @@
 ```mermaid
 %%{init: {'theme': 'dark'}}%%
 graph TB
-    subgraph UI["🌐 Presentation Layer (Streamlit)"]
+    subgraph UI["🌐 Рівень представлення (Streamlit)"]
         direction LR
-        A1["📊 KPI Dashboard"]
-        A2["📈 ML Forecast"]
-        A3["🗺️ Geo Map"]
-        A4["⚠️ Alerts"]
-        A5["📜 Archive"]
+        A1["📊 KPI Панель"]
+        A2["📈 ML Прогноз"]
+        A3["🗺️ ГІС Карта"]
+        A4["⚠️ Аварії"]
+        A5["📜 Архів"]
     end
 
-    subgraph CORE["🧠 Intelligence Layer"]
+    subgraph CORE["🧠 Інтелектуальний шар"]
         direction LR
         B1["LSTM v3\npredict_v2.py"]
         B2["ARIMA Fallback\nbaseline_arima.py"]
-        B3["Physics Engine\nphysics.py"]
-        B4["Vectorizer\n(Sliding Window)"]
+        B3["Фізичний двигун\nphysics.py"]
+        B4["Векторизатор\n(Sliding Window)"]
     end
 
-    subgraph DATA["💾 Data Layer (OLAP)"]
+    subgraph DATA["💾 Шар даних (OLAP)"]
         direction LR
         C1[("PostgreSQL\nNeon Cloud")]
-        C2["Cache\n(TTL 24h)"]
-        C3["Digital Twin\nSensor Sim"]
+        C2["Кеш\n(TTL 24h)"]
+        C3["Цифровий двійник\nСимуляція сенсорів"]
     end
 
-    subgraph DEVOPS["⚙️ DevOps Layer"]
+    subgraph DEVOPS["⚙️ DevOps Шар"]
         direction LR
         D1["GitHub Actions\nCI/CD"]
-        D2["Docker\nContainer"]
-        D3["Render.com\nSaaS Deploy"]
+        D2["Docker\nКонтейнер"]
+        D3["Render.com\nSaaS Розгортання"]
     end
 
     UI -->|"Запит даних"| CORE
     CORE -->|"SQL SELECT"| DATA
-    C3 -->|"SQL INSERT telemetry"| C1
-    B1 & B2 -->|"Fallback chain"| UI
-    DEVOPS -->|"Auto Deploy"| UI
+    C3 -->|"SQL INSERT телеметрія"| C1
+    B1 & B2 -->|"Ланцюг Fallback"| UI
+    DEVOPS -->|"Авто-розгортання"| UI
 
     style UI fill:#0d1117,stroke:#58a6ff
     style CORE fill:#0d1117,stroke:#ffb703
@@ -56,16 +56,16 @@ graph TB
 
 ---
 
-## ⚡ UI Synchronization Strategy (Fragments)
+## ⚡ Стратегія синхронізації UI (Фрагменти)
 В системі реалізовано **Granular Rendering Pattern** на основі `@st.fragment`.
 
-- **Orchestration**: `dashboard.py` виступає як диспетчер, який передає у вкладки не величезні DataFrame, а легкі словники параметрів фільтрації.
-- **Independence**: Карта (`tab_map`) та KPI (`live_telemetry`) оновлюються у фоні кожні 5-15 секунд, не перериваючи роботу користувача з налаштуваннями чи AI-моделями.
-- **Rerun Safety**: Спеціальна обробка `RerunException` та `StopException` у завантажувачах даних гарантує, що автоматичні оновлення не конфліктують з операціями запису в базу даних.
+- **Оркестрація**: `dashboard.py` виступає як диспетчер, який передає у вкладки не масивні DataFrame, а легкі словники параметрів фільтрації.
+- **Незалежність**: Карта (`tab_map`) та KPI (`live_telemetry`) оновлюються у фоні кожні 5-15 секунд, не перериваючи роботу користувача з налаштуваннями чи AI-моделями.
+- **Безпека перезавантажень**: Спеціальна обробка `RerunException` та `StopException` у завантажувачах даних гарантує, що автоматичні оновлення не конфліктують з операціями запису в базу даних.
 
 ---
 
-## 🤖 ML Pipeline
+## 🤖 ML Pipeline (Конвеєр МН)
 
 | Крок | Модуль | Дія |
 |------|--------|-----|
@@ -84,7 +84,7 @@ graph TB
 ```text
 Energy Monitor ULTIMATE
 │
-├── main.py                    ← Точка входу (Streamlit orchestrator)
+├── main.py                    ← Точка входу (Streamlit оркестратор)
 │
 ├── core/                      ← Аналітичне ядро
 │   ├── analytics/
@@ -93,12 +93,12 @@ Energy Monitor ULTIMATE
 │   │   ├── clustering.py      ← K-Means кластеризація підстанцій
 │   │   └── filter.py          ← Фільтрація DataFrame
 │   └── database/
-│       └── loader.py          ← Верифікований загрузчик даних
+│       └── loader.py          ← Верифікований завантажувач даних
 │
 ├── ml/                        ← AI Pipeline
 │   ├── predict_v2.py          ← LSTM контролер + Domain Adaptation
 │   ├── vectorizer.py          ← Sliding Window + Feature Engineering
-│   ├── metrics_engine.py      ← RMSE/MAE/MAPE/R² + Statistical Audit
+│   ├── metrics_engine.py      ← RMSE/MAE/MAPE/R² + Статистичний аудит
 │   ├── backtest.py            ← Бектест на historical даних
 │   ├── baseline_arima.py      ← Seasonal Naive Fallback
 │   └── train_lstm.py          ← Навчання моделі
@@ -108,30 +108,30 @@ Energy Monitor ULTIMATE
 │   │   ├── database.py        ← Підключення до Neon PostgreSQL
 │   │   └── physics.py         ← Серверна фізика
 │   └── services/
-│       ├── sensors_db.py      ← Digital Twin сенсорна симуляція (15 хв)
+│       ├── sensors_db.py      ← Digital Twin симуляція сенсорів (15 хв)
 │       ├── db_seeder.py       ← Генерація тестових даних
 │       ├── data_generator.py  ← ETL симулятор навантаження
 │       └── advanced_mining.py ← Аналіз трендів і патернів
 │
 ├── ui/                        ← Інтерфейс (Streamlit)
-│   ├── components/            ← Спільні компоненти (styles, cards)
+│   ├── components/            ← Спільні компоненти (стилі, картки)
 │   ├── segments/              ← Структурні блоки (sidebar, dashboard)
-│   └── views/                 ← Сторінки (kpi, forecast, alerts, map...)
+│   └── views/                 ← Сторінки (kpi, прогноз, аварії, карта...)
 │
 ├── utils/                     ← Утиліти
 │   ├── cache_manager.py       ← TTL-кеш автоочищення (24h)
 │   ├── error_handlers.py      ← Декоратори (robust_ml, robust_db)
-│   ├── memory_helper.py       ← Auto-GC watchdog
-│   └── logging_config.py     ← Централізований логер
+│   ├── memory_helper.py       ← Auto-GC спостереження
+│   └── logging_config.py      ← Централізований логер
 │
 └── tests/                     ← Автоматичне тестування
     ├── test_physics.py        ← Фізична валідація (5 тестів)
     ├── test_ml_model.py       ← ML Pipeline тести
     ├── test_core_analytics.py ← OLAP аналітика (11 тестів)
-    ├── test_security.py       ← Security тести (26 тестів)
+    ├── test_security.py       ← Тести безпеки (26 тестів)
     ├── test_utils.py          ← Утиліти (19 тестів)
     ├── test_pipeline.py       ← Інтеграційні тести (3)
-    └── test_database.py       ← DB тести (4)
+    └── test_database.py       ← Тести БД (4)
 ```
 
 ---
@@ -158,20 +158,20 @@ flowchart LR
 
 | Загроза | Захист | Модуль |
 |---------|--------|--------|
-| SQL Injection | Параметризовані запити + whitelist | `utils/validators.py` |
+| SQL ін'єкції | Параметризовані запити + whitelist | `utils/validators.py` |
 | Витік секретів | `.env` + GitHub Secrets | `.env.example` |
 | Hardcoded creds | `detect-secrets` в CI | `.github/workflows` |
-| Вразливий код | Bandit SAST scan | CI Pipeline |
-| XSS | Streamlit sandbox + sanitization | `test_security.py` |
+| Вразливий код | Bandit SAST сканування | CI Pipeline |
+| XSS | Streamlit sandbox + санітизація | `test_security.py` |
 
 ---
 
-## 📊 Метрики якості (Квітень 2026)
+## 📊 Метрики якості (Версія 3.1)
 
 | Метрика | Значення |
 |---------|----------|
-| **Тести** | ✅ 74 passed, 5 skipped, 0 failed |
-| **Тестовий час** | 13.71s |
+| **Тести** | ✅ 74 пройдено, 5 пропущено, 0 помилок |
+| **Час тестування** | 13.71s |
 | **Покриття гілок** | ~65% (ціль: >90%) |
 | **Type Coverage** | ~60% (ціль: >90%) |
 | **Кеш (TTL 24h)** | 10 файлів (316 МБ, тільки .graphml карти) |
