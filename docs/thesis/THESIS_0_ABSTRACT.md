@@ -1,6 +1,6 @@
 РЕФЕРАТ
 
-Відомості про обсяг роботи: пояснювальна записка містить 60 сторінок, 25 ілюстрацій, 5 таблиць, 30 джерел.
+Відомості про обсяг роботи: пояснювальна записка містить 60 сторінок, 15 ілюстрацій, 5 таблиць, 30 джерел.
 
 Об’єкт проєктування: процеси інтелектуального моніторингу та предиктивного аналізу часових рядів енергоспоживання в інфраструктурі Розумного міста (Smart City).
 
@@ -11,3 +11,17 @@
 Рекомендації щодо використання: результати проєкту доцільно впроваджувати у муніципальних диспетчерських центрах управління та в системах предиктивного обслуговування (Predictive Maintenance) для оптимізації енергоспоживання та запобігання аварійним ситуаціям у мережах Smart Grid.
 
 Перелік ключових слів: НЕЙРОННІ МЕРЕЖІ, LSTM, SMART CITY, ЕНЕРГОСПОЖИВАННЯ, ПРОГНОЗУВАННЯ, ЦИФРОВИЙ ДВІЙНИК, OLAP, POSTGRESQL, SAAS, ПРЕДИКТИВНЕ ОБСЛУГОВУВАННЯ, ІНЖЕНЕРІЯ ПРОГРАМНОГО ЗАБЕЗПЕЧЕННЯ.
+
+---
+
+ABSTRACT
+
+Thesis volume: 60 pages, 15 illustrations, 5 tables, 30 references.
+
+Object of design: processes of intelligent monitoring and predictive analysis of energy consumption time series in the Smart City infrastructure.
+
+Aim of the work: development and implementation of the EnergyMonitor-OLAP cloud SaaS platform to ensure high accuracy of short-term energy load forecasting and simulation of the technical state of power system objects. The work uses deep learning methods based on recurrent neural networks (LSTM v3 architecture), Digital Twin technology for physical modeling, and Online Analytical Processing (OLAP) tools.
+
+Obtained results: a functional 4-level system has been implemented, providing energy consumption forecasting accuracy with MAPE in the range of 1.5–3.1 percent. The designed analytical database on PostgreSQL allows complex real-time telemetry queries. A full cycle of system testing and deployment in the cloud environment has been conducted.
+
+Key words: NEURAL NETWORKS, LSTM, SMART CITY, ENERGY CONSUMPTION, FORECASTING, DIGITAL TWIN, OLAP, POSTGRESQL, SAAS, PREDICTIVE MAINTENANCE, SOFTWARE ENGINEERING.
