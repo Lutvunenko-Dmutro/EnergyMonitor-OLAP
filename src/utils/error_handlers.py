@@ -21,6 +21,8 @@ def robust_ml_handler(func: Callable) -> Callable:
     def wrapper(*args, **kwargs) -> Optional[Any]:
         try:
             return func(*args, **kwargs)
+        except (st.runtime.scriptrunner.StopException, st.errors.StreamlitAPIException):
+            raise
         except (FileNotFoundError, IOError) as e:
             logger.error(f"File error: {e}")
             st.error(f"📁 Модель не знайдена: {e}")
@@ -52,6 +54,8 @@ def robust_database_handler(func: Callable = None, default_value: Any = None) ->
         def wrapper(*args, **kwargs) -> Optional[Any]:
             try:
                 return f(*args, **kwargs)
+            except (st.runtime.scriptrunner.StopException, st.errors.StreamlitAPIException):
+                raise
             except ConnectionError as e:
                 logger.warning(f"DB connection failed: {e}")
                 return default_value
@@ -89,15 +93,17 @@ class ErrorContext:
     """Context manager для логування операцій."""
     def __init__(self, operation: str):
         self.operation = operation
-        self.start = __import__("datetime").datetime.now()
+        self.start = datetime.now()
     
     def __enter__(self):
         logger.info(f"▶️ {self.operation}")
         return self
     
     def __exit__(self, exc_type, exc_val, exc_tb):
-        elapsed = (__import__("datetime").datetime.now() - self.start).total_seconds()
+        elapsed = (datetime.now() - self.start).total_seconds()
         if exc_type:
+            if exc_type in [st.runtime.scriptrunner.StopException, st.errors.StreamlitAPIException]:
+                return False
             logger.error(f"❌ {self.operation} failed: {exc_type.__name__}")
             return False
         logger.info(f"✅ {self.operation} ({elapsed:.2f}s)")

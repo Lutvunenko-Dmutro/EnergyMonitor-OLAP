@@ -14,6 +14,10 @@ from src.ui.components.charts import _generate_forecast_figure, _generate_multi_
 
 def render(selected_substation="Усі підстанції", data_source="Live"):
     """Main entry point for the Forecast & Audit tab."""
+    # 0. Interruption Monitor
+    if st.session_state.get("engine_active"):
+        st.toast("ℹ️ Попередня операція була перервана вашою дією", icon="ℹ️")
+        st.session_state["engine_active"] = False
     # 1. Normalize Substation Selection
     is_multi = isinstance(selected_substation, list) and len(selected_substation) > 1
     if is_multi:
@@ -46,9 +50,18 @@ def render(selected_substation="Усі підстанції", data_source="Live"
             sub_id_hero = "Усі підстанції" if sub_name == "Усі підстанції" else sub_name
             hero_title = f"⚡ ГЛОБАЛЬНА СИСТЕМА ({version.upper()})" if sub_name == "Усі підстанції" else f"📍 {sub_label}"
 
-            multi_hero, res_fc, multi_results = run_reactive_forecast_engine(
-                sub_name, sub_id_hero, version, src_type, scenario, is_multi_model
-            )
+            try:
+                st.session_state["engine_active"] = True
+                multi_hero, res_fc, multi_results = run_reactive_forecast_engine(
+                    sub_name, sub_id_hero, version, src_type, scenario, is_multi_model
+                )
+            except Exception as e:
+                from streamlit.runtime.scriptrunner.exceptions import StopException, RerunException
+                if isinstance(e, (StopException, RerunException)): raise e
+                st.error(f"❌ Помилка двигуна: {e}")
+                multi_hero, res_fc, multi_results = {}, None, None
+            finally:
+                st.session_state["engine_active"] = False
 
             if sub_name == "Усі підстанції" or is_multi:
                 st.markdown(f"#### 🌍 {hero_title}")
@@ -76,7 +89,15 @@ def render(selected_substation="Усі підстанції", data_source="Live"
     
     if current_mode == "comparison_audit":
         # Render Audit first to show 'how it counts' on a clean slate
-        _render_comparative_audit(sub_name, src_type)
+        try:
+            st.session_state["engine_active"] = True
+            _render_comparative_audit(sub_name, src_type)
+        except Exception as e:
+            from streamlit.runtime.scriptrunner.exceptions import StopException, RerunException
+            if isinstance(e, (StopException, RerunException)): raise e
+            st.error(f"❌ Помилка аудиту: {e}")
+        finally:
+            st.session_state["engine_active"] = False
         
     elif current_mode == "multi_forecast_view" and "tab_multi_fc_results" in st.session_state:
         fig_m = _generate_multi_forecast_figure(st.session_state["tab_hist_df"], st.session_state["tab_multi_fc_results"], f"Порівняння: {sub_name}")
@@ -93,21 +114,34 @@ def render(selected_substation="Усі підстанції", data_source="Live"
         for k in ["tab_fc_df", "tab_multi_fc_results", "tab_hist_df", "tab_metrics"]:
             if k in st.session_state: del st.session_state[k]
 
-        if sub_name == "Усі підстанції" or is_multi:
+        if is_multi_model:
+            # Спеціальний режим: Порівняння архітектур V1, V2, V3 для обраного об'єкта (або мережі)
+            st.session_state["tab_active_mode"] = "comparison_audit"
+        elif sub_name == "Усі підстанції" or is_multi:
+            # Глобальний режим: Один обраний ШІ для всіх об'єктів
             stations = get_stations_to_process(sub_name, src_type)
             results = {}
-            with st.status("🌍 Глобальний аудит мережі...", expanded=True) as status:
-                p_bar = st.progress(0, text="Ініціалізація...")
-                for i, s in enumerate(stations):
-                    p_bar.progress((i + 1) / len(stations), text=f"Аналіз об'єкта: {s}...")
-                    results[s] = cached_fast_backtest(s, version, src_type)
-                status.update(label="✅ Глобальний аудит завершено!", state="complete")
-                p_bar.empty()
+            try:
+                st.session_state["engine_active"] = True
+                with st.status("🌍 Глобальний аудит мережі...", expanded=True) as status:
+                    p_bar = st.progress(0, text="Ініціалізація...")
+                    for i, s in enumerate(stations):
+                        p_bar.progress((i + 1) / len(stations), text=f"Аналіз об'єкта: {s}...")
+                        results[s] = cached_fast_backtest(s, version, src_type)
+                    status.update(label="✅ Глобальний аудит завершено!", state="complete")
+                    p_bar.empty()
+            except Exception as e:
+                from streamlit.runtime.scriptrunner.exceptions import StopException, RerunException
+                if isinstance(e, (StopException, RerunException)): raise e
+                st.error(f"❌ Перервано під час аудиту: {e}")
+            finally:
+                st.session_state["engine_active"] = False
             
             st.session_state["multi_bt_results"] = results
             st.session_state["bt_status"] = "multi_finished"
             st.session_state["tab_active_mode"] = "multi_audit_view"
         else:
+            # Детальний режим: Покроковий аудит однієї підстанції (академічний звіт)
             st.session_state["tab_active_mode"] = "comparison_audit"
         st.rerun()
 

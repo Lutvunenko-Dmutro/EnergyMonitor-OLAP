@@ -12,6 +12,7 @@ import streamlit as st
 
 from src.app.config import DataKeys
 from src.core import database as db
+from src.ui.components.styles import apply_custom_css
 from src.services.data.db_seeder import generate_professional_data
 from src.core.database.loader import load_kaggle_lazy
 
@@ -31,6 +32,9 @@ def render_sidebar(data):
     Returns:
         tuple: (selected_region, date_range, data_source, selected_substation)
     """
+    # --- APPLY STYLES (Global persistent injection) ---
+    apply_custom_css()
+
     # --- HEARTBEAT SIGNAL ---
     heartbeat_path = Path("logs/heartbeat.txt")
     heartbeat_path.parent.mkdir(exist_ok=True)
@@ -43,10 +47,20 @@ def render_sidebar(data):
     st.sidebar.header("🎛️ Фільтрація")
 
     # --- 0. Джерело Даних ---
+    data_source_options = ["Локальна БД (Симуляція)", "Еталонні дані (Kaggle)"]
+    
+    # Визначаємо початковий індекс з session_state, якщо він там є
+    current_source = st.session_state.get("active_source", data_source_options[0])
+    try:
+        start_index = data_source_options.index(current_source)
+    except ValueError:
+        start_index = 0
+
     data_source = st.sidebar.radio(
         "📂 Джерело даних:",
-        ["Локальна БД (Симуляція)", "Еталонні дані (Kaggle)"],
-        index=0,
+        data_source_options,
+        index=start_index,
+        key="active_source"
     )
 
     # Визначаємо, з яким датасетом працюємо зараз для відображення фільтрів
@@ -125,12 +139,16 @@ def render_sidebar(data):
 
     default_start = max(min_date, max_date - timedelta(days=30))
 
+    # [ОПТІМІЗАЦІЯ v2.1]: Динамічний ключ для календаря, щоб він скидався при зміні джерела даних
+    date_key = f"date_filter_{data_source.split(' ')[0]}"
+    
     date_range = st.sidebar.date_input(
         "📅 Період:",
         value=(default_start, max_date),
         min_value=min_date,
         max_value=max_date,
         help="Фільтрація графіків за часом.",
+        key=date_key
     )
 
     st.sidebar.markdown("---")
@@ -185,6 +203,8 @@ def render_sidebar(data):
                     st.cache_data.clear()
                     st.rerun()
                 except Exception as e:
+                    from streamlit.runtime.scriptrunner.exceptions import StopException, RerunException
+                    if isinstance(e, (StopException, RerunException)): raise e
                     st.error(f"Помилка: {e}")
 
     from src.utils.memory_helper import get_resource_status

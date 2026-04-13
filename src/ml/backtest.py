@@ -147,6 +147,11 @@ def get_fast_backtest(substation_name: str, version: str, source_type: str = "Li
         
         return results
     except Exception as e:
+        # Ігноруємо сигнали керування Streamlit (щоб не смітити в логах при перемиканні вкладок)
+        from streamlit.runtime.scriptrunner.exceptions import StopException, RerunException
+        if isinstance(e, (StopException, RerunException)):
+            raise e
+            
         logger.error(f"Critical Failure in Fast Backtest for {substation_name}: {e}", exc_info=True)
         return None
 

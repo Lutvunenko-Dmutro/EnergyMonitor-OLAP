@@ -63,6 +63,9 @@ def fetch_granular_data(step_key: str) -> Dict[str, pd.DataFrame]:
             else:
                 return {}
     
+    except (st.runtime.scriptrunner.StopException, st.errors.StreamlitAPIException):
+        raise # Прокидаємо системні сигнали Streamlit далі
+    
     except ConnectionError as e:
         logger.warning(f"Connection error on {step_key}: {e}")
         BOOT_ERRORS[step_key] = "connection_failed"
@@ -79,12 +82,14 @@ def fetch_granular_data(step_key: str) -> Dict[str, pd.DataFrame]:
         return {}
     
     except Exception as e:
+        from streamlit.runtime.scriptrunner.exceptions import RerunException
+        if isinstance(e, RerunException): raise e
         logger.exception(f"Unexpected error on {step_key}: {e}")
         BOOT_ERRORS[step_key] = type(e).__name__
         return {}
 
 
-@st.cache_data(ttl=300)  # 5 хвилин — Kaggle дані завантажуються lazy при першому відкритті вкладки
+@st.cache_data(show_spinner=False, ttl=300)  # 5 хвилин — Kaggle дані завантажуються lazy при першому відкритті вкладки
 def load_kaggle_lazy() -> pd.DataFrame:
     """
     Lazy-завантаження Kaggle CSV з кешем 5 хвилин.
@@ -110,13 +115,13 @@ def get_active_boot_data_generator():
     """
     steps = [
         ("> Initializing Kernel & Handshake protocol...",         10,  None),
-        ("> Connecting to Neon DB (PostgreSQL v15)...",           20,  "sql_load"),
-        ("> Synchronizing Historical Load Data...",               35,  "sql_gen"),
-        ("> Fetching Generation Metrics & Asset Capacity...",     50,  "sql_fin"),
-        ("> Pulling Strategic Financial OLAP Cube...",            62,  "sql_alerts"),
-        ("> Checking System Alerts & Anomaly Buffers...",         74,  "sql_lines"),
-        ("> Establishing Real-time Telemetry Stream...",          87,  "telemetry"),
-        ("> UI ORCHESTRATOR READY.",                              100, None),
+        ("> 🔌 [CHANNEL 0] Connecting to Neon Cloud Cluster...",  20,  "sql_load"),
+        ("> 🧬 Synchronizing Neural Historical Data...",          35,  "sql_gen"),
+        ("> ⚡ Calibrating Asset Capacity Buffers...",             50,  "sql_fin"),
+        ("> 🛡️ Pulling Strategic Alert Matrices (SAM)...",        62,  "sql_alerts"),
+        ("> ⚖️ Validating Grid Topology & Line Vectors...",       74,  "sql_lines"),
+        ("> 🌌 Establishing Real-time Telemetry Stream...",        87,  "telemetry"),
+        ("> 🎯 ENERGY CORE ONLINE. WELCOME, OPERATOR.",           100, None),
     ]
 
     final_data = {}
@@ -128,6 +133,8 @@ def get_active_boot_data_generator():
                 if isinstance(chunk, dict):
                     final_data.update(chunk)
                 gc.collect()
+        except (st.runtime.scriptrunner.StopException, st.errors.StreamlitAPIException):
+            raise
         except (ConnectionError, TimeoutError) as e:
             # Network/connection errors - skip and continue
             logger.error(f"⚠️ Connection error on step '{msg}': {e}")
@@ -150,7 +157,7 @@ def get_active_boot_data_generator():
         yield msg, p, final_data
 
 
-@st.cache_data(max_entries=1, ttl=1800)  # [ОПТИМІЗОВАНО]: 1 копія замість 5
+@st.cache_data(show_spinner=False, max_entries=1, ttl=1800)  # [ОПТ]
 def fetch_database_data():
     """
     Повне завантаження даних (резервний варіант).
@@ -174,10 +181,17 @@ def get_verified_data() -> dict:
     """
     from src.services.data.db_seeder import generate_professional_data
 
-    if "boot_data" in st.session_state:
+    # [ОПТІМІЗАЦІЯ v2.3]: Повертаємо Kaggle-override ТІЛЬКИ якщо обрано цей режим
+    is_kaggle = st.session_state.get("active_source") == "Еталонні дані (Kaggle)"
+    if is_kaggle and "active_data" in st.session_state and st.session_state["active_data"]:
+        return st.session_state["active_data"]
+
+    # В усіх інших випадках (Live) — читаємо свіжі дані з кешу/БД
+    data = fetch_database_data()
+    
+    # Якщо кеш порожній, але є дані в сесії (boot_data), використовуємо їх як fallback.
+    if not data and "boot_data" in st.session_state:
         data = st.session_state["boot_data"]
-    else:
-        data = fetch_database_data()
 
     is_empty = (data is None or not data or data.get("load") is None or data["load"].empty)
 

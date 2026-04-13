@@ -56,7 +56,7 @@ def system_startup():
 from src.app.config import DataKeys
 from src.core.analytics.filter import filter_dataframe
 from src.core.database.loader import get_verified_data
-from src.ui.components.styles import setup_streamlit_page
+from src.ui.components.styles import init_page_config, apply_custom_css
 from src.ui.segments.dashboard import render_dashboard_ui
 from src.ui.segments.sidebar import render_sidebar
 from src.ui.segments.splash import show_boot_sequence
@@ -67,12 +67,15 @@ import streamlit as st
 
 # Головний оркестратор додатка (Application Entry Point)
 def main():
+    # --- PAGE CONFIG (MUST BE FIRST) ---
+    init_page_config()
+    
     # --- MEMORY WATCHDOG (AUTO-GC) ---
     # Якщо RAM > 380 MB, автоматично очищаємо кеш + gc.collect()
     auto_gc(threshold_mb=380)
 
-    # Налаштування параметрів сторінки
-    setup_streamlit_page()
+    # --- APPLY STYLES ---
+    apply_custom_css()
 
     # --- BOOT SEQUENCE (ACTIVE SPLASH SCREEN) ---
     if "booted" not in st.session_state:
@@ -86,23 +89,22 @@ def main():
         # Отримуємо дані (вже завантажені заставкою або кешовані)
         data = get_verified_data()
 
-    # Регулювання фільтрів бічної панелі
-    selected_region, date_range, data_source, selected_substation = render_sidebar(data)
-    st.session_state["active_source"] = data_source
-
-    # Data source switching (Kaggle — lazy)
-    if data_source == "Еталонні дані (Kaggle)":
+    # --- DATA SOURCE ORCHESTRATION ---
+    active_source = st.session_state.get("active_source", "Локальна БД (Симуляція)")
+    
+    # Data source switching (Kaggle — lazy loading)
+    if active_source == "Еталонні дані (Kaggle)":
         from src.core.database.loader import load_kaggle_lazy
         kaggle_df = load_kaggle_lazy()
         if not kaggle_df.empty:
             data = data.copy()
-            data["real_load"] = kaggle_df
             data["load"] = kaggle_df
-            # [STABILITY]: Оновлюємо активні дані, щоб фрагменти бачили Kaggle
             st.session_state["active_data"] = data
     else:
-        # [STABILITY]: Повертаємо оригінальні дані для симуляції
         st.session_state["active_data"] = data
+
+    # Регулювання фільтрів бічної панелі (Тепер отримує вже правильні дані для меж дат)
+    selected_region, date_range, data_source, selected_substation = render_sidebar(data)
 
     # Визначення рівнів агрегації
     group_by_col = (

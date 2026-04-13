@@ -2,28 +2,26 @@ import plotly.io as pio
 import streamlit as st
 
 
-def setup_streamlit_page():
+def init_page_config():
     """
-    Виконує глобальне налаштування візуального стилю додатка (UI/UX Configuration).
-
-    Ця функція об'єднує всі параметри відображення в одному місці:
-    1. Конфігурація сторінки (Page Config)
-    2. Тема графіків (Plotly)
-    3. CSS-ін'єкція (Custom Styles)
+    Ініціалізація параметрів сторінки. 
+    МАЄ БУТИ ВИКЛИКАНА ПЕРШОЮ серед усіх команд Streamlit.
     """
-    # 1. Сторінка
     st.set_page_config(
         page_title="Energy Monitor ULTIMATE",
         layout="wide",
         page_icon="⚡",
         initial_sidebar_state="expanded",
     )
-
-    # 2. Тема
+    # Налаштування теми Plotly (глобально)
     pio.templates.default = "plotly_dark"
 
-    # 3. CSS (Тонке налаштування стилів)
-    st.markdown(
+
+def apply_custom_css():
+    """
+    Ін'єкція кастомних стилів CSS за допомогою st.html (більш стабільно для фрагментів).
+    """
+    st.html(
         """
     <style>
         /* 1. Загальний контейнер */
@@ -31,7 +29,7 @@ def setup_streamlit_page():
         [data-testid="stMetricValue"] { font-size: 1.8rem; }
         footer {visibility: hidden;}
 
-        /* [NEW]: ПРОЗОРІСТЬ ШАПКИ ТА ПРИХОВУВАННЯ ВЕРХНЬОЇ СМУЖКИ */
+        /* ПРОЗОРІСТЬ ШАПКИ ТА ПРИХОВУВАННЯ ВЕРХНЬОЇ СМУЖКИ */
         header[data-testid="stHeader"] {
             background-color: transparent !important;
             background: transparent !important;
@@ -109,7 +107,16 @@ def setup_streamlit_page():
             font-weight: bold !important;
             box-shadow: 0 5px 20px rgba(31, 111, 235, 0.4) !important;
         }
-    </style>
-    """,
-        unsafe_allow_html=True,
+        /* ПРИХОВУВАННЯ СТАНДАРТНОГО СПІНЕРА (щоб не псувати заставку) */
+    [data-testid="stSpinner"] {
+        display: none !important;
+    }
+</style>
+    """
     )
+
+
+def setup_streamlit_page():
+    """Збережено для зворотної сумісності (Legacy Wrapper)."""
+    init_page_config()
+    apply_custom_css()

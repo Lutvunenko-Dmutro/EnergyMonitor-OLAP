@@ -67,10 +67,16 @@ def render(df_fin, df_lines):
     with c2:
         st.markdown("##### 📈 Середньодобове завантаження ліній")
         if not df_lines.empty:
-            df_l_mean = (
-                df_lines.groupby(["day", "line_type"])["load_pct"].mean().reset_index()
-            )
+            # 1. Агрегація середнього завантаження по днях
+            df_daily = df_lines.groupby(["day", "line_type"]).agg({
+                "load_pct": ["mean", "count"]
+            }).reset_index()
+            df_daily.columns = ["day", "line_type", "load_pct", "sample_count"]
+            
+            # 2. Фільтрація: прибираємо неповні дні (менше 20 годин даних), щоб не було "падіння" в кінці
+            df_l_mean = df_daily[df_daily["sample_count"] >= 20].copy()
 
+            # 3. Побудова графіка
             fig_lines = px.line(
                 df_l_mean,
                 x="day",
@@ -79,9 +85,24 @@ def render(df_fin, df_lines):
                 color_discrete_map={"AC": "#3b82f6", "HVDC": COLOR_HVDC},
                 labels=labels_ua,
                 markers=True,
+                line_shape="spline", # Плавні лінії
+                render_mode="svg"
             )
-            fig_lines.add_hline(y=100, line_dash="solid", line_color=COLOR_ALERT)
-            fig_lines.update_layout(height=350, margin=dict(l=0, r=0, t=10, b=0))
+            
+            # Додаємо зони ризику (підсвітка)
+            fig_lines.add_hrect(y0=80, y1=95, fillcolor="orange", opacity=0.1, line_width=0, annotation_text="WARNING ZONE")
+            fig_lines.add_hrect(y0=95, y1=100, fillcolor="red", opacity=0.15, line_width=0, annotation_text="CRITICAL")
+            
+            # Лінія ліміту
+            fig_lines.add_hline(y=100, line_dash="solid", line_color=COLOR_ALERT, annotation_text="LIMIT 100%")
+            
+            fig_lines.update_layout(
+                height=400, 
+                margin=dict(l=10, r=10, t=30, b=80),
+                legend=dict(orientation="h", yanchor="bottom", y=-0.4, xanchor="center", x=0.5),
+                hovermode="x unified",
+                template="plotly_dark"
+            )
             fig_lines.update_xaxes(title_text="Дата")
             safe_plotly_render(fig_lines)
 

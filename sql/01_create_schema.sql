@@ -122,7 +122,7 @@ CREATE TABLE Alerts (
     alert_type VARCHAR(100) NOT NULL,
     description TEXT,
     substation_id INT,
-    status VARCHAR(20) NOT NULL DEFAULT 'NEW' CHECK (status IN ('NEW', 'ACKNOWLEDGED', 'RESOLVED')),
+    status VARCHAR(20) NOT NULL DEFAULT 'NEW' CHECK (status IN ('NEW', 'ACKNOWLEDGED', 'RESOLVED', 'IN PROGRESS')),
     FOREIGN KEY (substation_id) REFERENCES Substations(substation_id) ON DELETE SET NULL
 );
 CREATE INDEX idx_alert_ts_sub ON Alerts(timestamp, substation_id);

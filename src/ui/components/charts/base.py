@@ -29,7 +29,13 @@ def render_dual_axis_chart(df, left_col, left_label, left_color, right_col, righ
 
     fig.update_yaxes(title_text=left_label, secondary_y=False)
     fig.update_yaxes(title_text=right_label, secondary_y=True, showgrid=False)
-    fig.update_layout(hovermode="x unified", margin=dict(l=0, r=0, t=10, b=0), legend=dict(orientation="h", y=-0.18))
+    fig.update_layout(
+        height=400,
+        hovermode="x unified",
+        margin=dict(l=10, r=10, t=30, b=80), 
+        legend=dict(orientation="h", yanchor="bottom", y=-0.4, xanchor="center", x=0.5),
+        template="plotly_dark"
+    )
     return fig
 
 def render_rhythm_chart(df_rhythm: pd.DataFrame) -> go.Figure:
@@ -45,5 +51,13 @@ def render_rhythm_chart(df_rhythm: pd.DataFrame) -> go.Figure:
     if not df_sat.empty:
         fig_r.add_trace(go.Scatter(x=df_sat["hour_of_day"], y=df_sat["avg_load"], name="Субота", line=dict(color="#38bdf8", width=2, dash="dash")))
 
-    fig_r.update_layout(xaxis_title="Година (0–23)", yaxis_title="МВт", hovermode="x unified", template="plotly_dark")
+    fig_r.update_layout(
+        height=400,
+        xaxis_title="Година (0–23)", 
+        yaxis_title="МВт", 
+        hovermode="x unified", 
+        margin=dict(l=10, r=10, t=30, b=80),
+        legend=dict(orientation="h", yanchor="bottom", y=-0.4, xanchor="center", x=0.5),
+        template="plotly_dark"
+    )
     return fig_r

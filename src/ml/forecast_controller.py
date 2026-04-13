@@ -6,6 +6,10 @@ from src.ml.backtest import get_fast_backtest, evaluate_last_24h
 @st.cache_data(ttl=3600, show_spinner="🧠 Neural Inference (Vectorized)...")
 def cached_ai_forecast(hours_ahead, substation_name, source_type, version, scenario):
     """Cached wrapper for ML inference to prevent redundant re-computation."""
+    # Захист від некоректного типу даних сценарію
+    if not isinstance(scenario, dict):
+        scenario = {"air_temp": 15, "health_score": 100}
+        
     temp_s = scenario.get("air_temp", 15) - 15 # Зсув відносно норми (15C)
     consts = {"health": scenario.get("health_score", 100)}
     

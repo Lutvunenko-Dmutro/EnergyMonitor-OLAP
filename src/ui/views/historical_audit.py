@@ -115,21 +115,6 @@ def render(
 
     st.divider()
 
-    # Візуалізація динаміки навантаження (Доріжки): Будні vs Вихідні
-    st.markdown("#### ⏳ Енергетичний Пульс: Будні vs Вихідні")
-    st.caption(
-        "Наочна демонстрація `day_multiplier`: у будній день заводи працюють, у вихідні — навантаження падає."
-    )
-    df_rhythm = _load_rhythm_data(start_date, end_date, active_target)
-    if not df_rhythm.empty:
-        from src.ui.components.charts import render_rhythm_chart
-
-        safe_plotly_render(render_rhythm_chart(df_rhythm))
-    else:
-        st.info("Недостатньо даних для побудови ритмічного графіку за обраний період.")
-
-    st.divider()
-
     # Кореляція навантаження та температури повітря
     st.markdown("#### 🌤️ Термодинамічний Баланс: Вплив Погоди")
     safe_plotly_render(
@@ -167,6 +152,19 @@ def render(
             df, "health", "Health Score (%)", "#22c55e", "h2_ppm", "H₂ (ppm)", "#a855f7"
         )
     )
+    st.divider()
+
+    # Візуалізація динаміки навантаження (Доріжки): Будні vs Вихідні
+    st.markdown("#### ⏳ Енергетичний Пульс: Будні vs Вихідні")
+    st.caption(
+        "Наочна демонстрація `day_multiplier`: у будній день заводи працюють, у вихідні — навантаження падає."
+    )
+    df_rhythm = _load_rhythm_data(start_date, end_date, active_target)
+    if not df_rhythm.empty:
+        from src.ui.components.charts import render_rhythm_chart
+        safe_plotly_render(render_rhythm_chart(df_rhythm))
+    else:
+        st.info("Недостатньо даних для побудови ритмічного графіку за обраний період.")
 
     # ── Таблиця: Raw Data (Винесено в компонент) ──────────────────────────────────
     from src.ui.views.historical_audit_components.data_table import render_raw_data_table

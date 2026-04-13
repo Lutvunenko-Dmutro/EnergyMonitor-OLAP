@@ -29,53 +29,58 @@ def render(df_alerts):
             st.error(msg)
         del st.session_state.alerts_feedback
 
-    # Панель адміністрування (Admin Tools)
-    # Згорнутий блок для економії місця на екрані
-    with st.expander("🛠️ Панель дій (Додати / Очистити)", expanded=False):
-        tab_add, tab_clean = st.tabs(["➕ Додати запис", "🗑️ Очистка бази"])
+    # [MODULIZED CONTROLS]: Винесення форми за межі розгортки для стабільності Streamlit
+    c_form, c_clean = st.columns([3, 1])
 
-        # Вкладка 1: Форма додавання
-        with tab_add:
-            with st.form("quick_add_form"):
-                c1, c2 = st.columns(2)
+    with c_form:
+        # Секція додавання - ТЕПЕР ІЗОЛЬОВАНА ТА ПРЯМА
+        # [SAFETY]: Завантаження списку об'єктів
+        subs_df = db.run_query(
+            "SELECT substation_name FROM Substations ORDER BY substation_name"
+        )
+        sub_options = (
+            subs_df["substation_name"].tolist()
+            if not subs_df.empty
+            else ["Немає даних"]
+        )
 
-                # Завантаження актуального списку підстанцій
-                subs_df = db.run_query(
-                    "SELECT substation_name FROM Substations ORDER BY substation_name"
-                )
-                sub_options = (
-                    subs_df["substation_name"].tolist()
-                    if not subs_df.empty
-                    else ["Немає даних"]
-                )
+        with st.container(border=True):
+            st.caption("➕ Додати новий запис про інцидент")
+            f1, f2, f3 = st.columns([1, 1, 2])
+            selected_sub = f1.selectbox("Об'єкт", sub_options)
+            selected_type = f2.selectbox(
+                "Тип", ["Перевантаження", "Аварія", "Кібер-атака", "Пожежа"]
+            )
+            input_desc = f3.text_input("Короткий опис", "Фіксація інциденту")
+            
+            submitted = st.button("📢 Зареєструвати аварію", type="primary", use_container_width=True)
 
-                selected_sub = c1.selectbox("Об'єкт", sub_options)
-                selected_type = c1.selectbox(
-                    "Тип", ["Перевантаження", "Аварія", "Кібер-атака", "Пожежа"]
-                )
-                input_desc = c2.text_input("Короткий опис", "Фіксація інциденту")
-
-                if st.form_submit_button("Створити", type="primary"):
-                    success, msg = create_custom_alert(
-                        selected_sub, selected_type, input_desc
-                    )
-                    if success:
-                        st.toast("✅ Додано! Перевірте таблицю нижче.", icon="📅")
-                        st.cache_data.clear()
-                        time.sleep(0.5)
-                        st.rerun()
-                    else:
-                        st.error(msg)
-
-        # Вкладка 2: Інструменти очистки
-        with tab_clean:
-            st.caption("Інструмент для видалення старих тестових даних.")
-            if st.button("🧹 Залишити тільки 10 останніх записів"):
-                cleanup_old_alerts(keep_last=10)
-                st.toast("База очищена!", icon="🗑️")
+        if submitted:
+            success, msg = create_custom_alert(
+                selected_sub, selected_type, input_desc
+            )
+            if success:
+                st.toast("✅ Додано! Перевірте таблицю нижче.", icon="📅")
                 st.cache_data.clear()
+                if "boot_data" in st.session_state: del st.session_state["boot_data"]
+                if "active_data" in st.session_state: del st.session_state["active_data"]
                 time.sleep(0.5)
                 st.rerun()
+            else:
+                st.error(msg)
+
+    with c_clean:
+        # Секція очистки - Швидка дія
+        st.write("") # Вирівнювання
+        st.write("") 
+        if st.button("🧹 Очистка (TOP-10)", use_container_width=True, help="Залишити тільки 10 останніх записів"):
+            cleanup_old_alerts(keep_last=10)
+            st.toast("База очищена!", icon="🗑️")
+            st.cache_data.clear()
+            if "boot_data" in st.session_state: del st.session_state["boot_data"]
+            if "active_data" in st.session_state: del st.session_state["active_data"]
+            time.sleep(0.5)
+            st.rerun()
 
     # Журнал подій (Incident Log)
 
@@ -163,7 +168,7 @@ def save_changes(changes, df):
     """Обробник подій: зберігає зміни статусів у БД, очищаючи емодзі."""
     clean_map = {
         "🔴 NEW": "NEW",
-        "🟡 IN PROGRESS": "IN PROGRESS",
+        "🟡 IN PROGRESS": "ACKNOWLEDGED",
         "🟢 RESOLVED": "RESOLVED",
     }
     for idx, change in changes.items():
@@ -177,3 +182,5 @@ def save_changes(changes, df):
 
     st.session_state.alerts_feedback = ("Статус оновлено!", "✅", "toast")
     st.cache_data.clear()
+    if "boot_data" in st.session_state: del st.session_state["boot_data"]
+    if "active_data" in st.session_state: del st.session_state["active_data"]

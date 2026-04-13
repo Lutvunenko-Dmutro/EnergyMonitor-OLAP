@@ -3,6 +3,8 @@ import gc
 import pandas as pd
 import streamlit as st
 
+from src.ui.components.styles import apply_custom_css
+from src.core.database.loader import get_verified_data
 from src.ui.segments.live_kpi import live_telemetry_wrapper
 from src.ui.views import advanced as tab_advanced
 from src.ui.views import alerts as tab_alerts
@@ -25,9 +27,19 @@ def fragment_live_map(data_key, filter_params: dict, active=False):
     if not active:
         return
     
-    data = st.session_state.get("active_data", st.session_state.get("boot_data", {}))
+    apply_custom_css()
+    
+    data = get_verified_data()
     df = data.get(data_key, pd.DataFrame())
     if not df.empty:
+        from src.core.analytics.filter import filter_dataframe
+        df = filter_dataframe(
+            df,
+            filter_params.get("region"),
+            filter_params.get("dates"),
+            data_key,
+            filter_params.get("substation", "Усі підстанції")
+        )
         tab_map.render(df)
     else:
         st.info("🌐 Завантаження геоданих... Очікуйте синхронізації.")
@@ -40,7 +52,9 @@ def fragment_live_consumption(data_key, group_col: str, filter_params: dict, act
     if not active:
         return
         
-    data = st.session_state.get("active_data", st.session_state.get("boot_data", {}))
+    apply_custom_css()
+        
+    data = get_verified_data()
     df = data.get(data_key, pd.DataFrame())
     if not df.empty:
         from src.core.analytics.filter import filter_dataframe
@@ -61,7 +75,9 @@ def fragment_live_alerts(data_key, filter_params: dict, active=False):
     if not active:
         return
         
-    data = st.session_state.get("active_data", st.session_state.get("boot_data", {}))
+    apply_custom_css()
+        
+    data = get_verified_data()
     df = data.get(data_key, pd.DataFrame())
     tab_alerts.render(df)
     del df; gc.collect()
@@ -73,8 +89,19 @@ def fragment_live_ai(data_key, selected_substation: str, filter_params: dict, ac
     if not active:
         return
     
-    data = st.session_state.get("active_data", st.session_state.get("boot_data", {}))
+    apply_custom_css()
+    
+    data = get_verified_data()
     df = data.get(data_key, pd.DataFrame())
+    if not df.empty:
+        from src.core.analytics.filter import filter_dataframe
+        df = filter_dataframe(
+            df,
+            filter_params.get("region"),
+            filter_params.get("dates"),
+            data_key,
+            filter_params.get("substation", "Усі підстанції")
+        )
     tab_advanced.render_advanced_analysis(df, selected_substation)
     del df; gc.collect()
 
@@ -189,12 +216,12 @@ def render_dashboard_ui(
         active=(current_page == "📉 Споживання")
     )
 
-    # 3. Alerts
-    fragment_live_alerts(
-        "alerts",
-        filter_params,
-        active=(current_page == "🚨 Журнал аварій")
-    )
+    # 3. Alerts (Винесено з фрагментів для стабільності редактора статусів)
+    # fragment_live_alerts(
+    #     "alerts",
+    #     filter_params,
+    #     active=(current_page == "🚨 Журнал аварій")
+    # )
 
     # 4. Advanced AI Orchestrator
     fragment_live_ai(
@@ -219,6 +246,13 @@ def render_dashboard_ui(
             gen_df = filter_fn(gen_df, selected_region, date_range, "gen", selected_substation)
         tab_generation.render(gen_df)
         del gen_df; gc.collect()
+
+    elif current_page == "🚨 Журнал аварій":
+        alerts_df = data.get("alerts", pd.DataFrame())
+        if filter_fn:
+            alerts_df = filter_fn(alerts_df, selected_region, date_range, "alerts", selected_substation)
+        tab_alerts.render(alerts_df)
+        del alerts_df; gc.collect()
 
     elif current_page == "💰 Економіка":
         fin_df = data.get("fin", pd.DataFrame())

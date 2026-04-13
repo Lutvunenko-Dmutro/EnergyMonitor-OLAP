@@ -49,7 +49,7 @@ def load_archive_data(start: datetime.date, end: datetime.date, region: str):
         WHERE lm.timestamp >= :start
           AND lm.timestamp <  :end
           {filter_clause}
-        ORDER BY ts DESC, s.substation_name ASC
+        ORDER BY ts ASC, s.substation_name ASC
     """
     return run_query(sql, params)
 

@@ -14,71 +14,88 @@ def _render_comparative_audit(substation_name, source_type):
     """
     from src.ml.backtest import get_fast_backtest
     from src.ui.components.charts import generate_comparison_plot
+    from src.ui.views.forecast_components.engine import get_stations_to_process # Імпортуємо напряму з двигуна
     
-    # Optimization for CSV/Benchmark sources: V2/V3 are not suitable due to missing sensors
-    if source_type == "CSV":
+    # Перевіряємо, чи ввімкнено режим порівняння моделей в UI
+    is_multi_requested = st.session_state.get("tab_multi_model_toggle", False)
+    
+    # Визначаємо версії
+    if source_type == "CSV" and not is_multi_requested:
         versions = ["v1"]
-        audit_title = f"🎯 Детальний аудит точності для {substation_name} (Базова архітектура V1)"
     else:
         versions = ["v1", "v2", "v3"]
-        audit_title = f"🏆 Рейтинг ефективності нейромережевих архітектур для {substation_name}"
-    
-    results = {}
-    metrics_list = []
-    
-    with st.status(f"🚀 Запуск комплексного порівняльного аудиту для {substation_name}...", expanded=True) as status:
-        p_bar = st.progress(0, text="Підготовка до аналізу...")
-        total = len(versions)
-        
-        for idx, v in enumerate(versions):
-            progress_pct = (idx + 1) / total
-            status.update(label=f"🧠 Аналіз архітектури {v.upper()} ({idx+1}/{total})...")
-            p_bar.progress(progress_pct, text=f"Обчислення: Модель {v.upper()}...")
-            
-            # Викликаємо кешований бектест (168 годин)
-            res = _cached_fast_backtest(substation_name, v, source_type)
+
+    def _execute_audit_flow(target_name, title_prefix=""):
+        res_dict = {}
+        mlist = []
+        for v in versions:
+            res = _cached_fast_backtest(target_name, v, source_type)
             if res:
                 rmse, mae, mape, r2, error, df_bt = res
-                results[v] = df_bt
-                
-                row = {
+                res_dict[v] = df_bt
+                mlist.append({
                     "Модель": MODEL_LABELS.get(v, v.upper()).split("  ")[0],
                     "Версія": v.upper(),
                     "R² (Точність)": r2 if r2 is not None else 0.0,
                     "RMSE (МВт)": rmse if rmse is not None else 0.0,
                     "MAE (МВт)": mae if mae is not None else 0.0,
-                    "MAPE (%)": mape if mape is not None else 0.0
-                }
-                metrics_list.append(row)
+                    "MAPE (%)": mape if mape is not None else 0.0,
+                    "df": df_bt
+                })
         
-        p_bar.empty()
-        status.update(label="✅ Порівняльний аудит завершено успішно!", state="complete")
+        if not mlist: 
+            st.warning(f"⚠️ Не вдалося отримати дані для {target_name}")
+            return
+        
+        st.markdown(f"#### {title_prefix}")
+        
+        # Створюємо вкладки для чистоти інтерфейсу
+        tb_comp, tb_academic, tb_metrics = st.tabs(["📈 Порівняння", "📊 Діагностика (Best)", "📋 Метрики"])
+        
+        with tb_comp:
+            f_comp = generate_comparison_plot(res_dict, target_name)
+            safe_plotly_render(f_comp, key=f"comp_audit_p_{target_name}")
+            
+        with tb_academic:
+            from src.ui.components.charts.academic import generate_academic_plots
+            _, f_dist, f_scat = generate_academic_plots(res_dict, target_name)
+            
+            if f_dist and f_scat:
+                # Виводимо тільки Figure 7 та 8, щоб уникнути повторів з першою вкладкою
+                safe_plotly_render(f_dist, key=f"acad_dist_multi_{target_name}")
+                st.divider()
+                safe_plotly_render(f_scat, key=f"acad_scat_multi_{target_name}")
+            else:
+                st.warning("⚠️ Недостатньо даних для побудови порівняльної діагностики.")
+            
+        with tb_metrics:
+            df_m = pd.DataFrame(mlist).drop(columns=["df"]).sort_values("R² (Точність)", ascending=False)
+            st.table(df_m.style.format({
+                "R² (Точність)": "{:.4f}", "RMSE (МВт)": "{:.2f}",
+                "MAE (МВт)": "{:.2f}", "MAPE (%)": "{:.2f}%"
+            }).highlight_max(subset=["R² (Точність)"], color="#10ac84"))
 
-    if not metrics_list:
-        st.error("⚠️ Дані для порівняння недоступні. Перевірте наявність моделей у папці /models")
-        return
+    # --- 1. АУДИТ ВИБРАНОГО ОБ'ЄКТА ---
+    # Якщо вибрано конкретну станцію - показуємо аудит відразу.
+    # Якщо вибрано "Усі підстанції" - не показуємо загальний блок, щоб уникнути дублювання.
+    if substation_name != "Усі підстанції":
+        st.markdown(f"### 🧪 Комплексний аудит: {substation_name}")
+        with st.status(f"🚀 Розрахунок аудиту для {substation_name}...", expanded=True) as status:
+            _execute_audit_flow(substation_name, "Результати аналізу об'єкта")
+            status.update(label="✅ Аудит завершено!", state="complete")
 
-    # 1. Leaderboard Table
-    st.markdown(f"#### {audit_title}")
-    df_metrics = pd.DataFrame(metrics_list)
-    df_metrics = df_metrics.sort_values("R² (Точність)", ascending=False)
-    
-    st.table(df_metrics.style.format({
-        "R² (Точність)": "{:.4f}",
-        "RMSE (МВт)": "{:.2f}",
-        "MAE (МВт)": "{:.2f}",
-        "MAPE (%)": "{:.2f}%"
-    }).highlight_max(subset=["R² (Точність)"], color="#10ac84")
-      .highlight_min(subset=["RMSE (МВт)", "MAE (МВт)"], color="#10ac84"))
+    # --- 2. ДЕТАЛІЗАЦІЯ ПO СТАНЦІЯХ (якщо обрано 'Усі') ---
+    if substation_name == "Усі підстанції":
+        st.markdown("### 📍 Деталізація по об'єктах мережі")
+        st.caption("Оберіть підстанцію нижче для перегляду індивідуальної точності нейромоделей.")
+        
+        stations = get_stations_to_process(substation_name, source_type)
+        
+        for s in stations:
+            with st.expander(f"📊 ПС: {s}", expanded=False):
+                _execute_audit_flow(s, f"Аналітика точності: {s}")
 
-    # 2. Multi-Model Comparison Chart
-    fig_comp = generate_comparison_plot(results, substation_name)
-    safe_plotly_render(fig_comp, key=f"comp_audit_plot_{substation_name}")
-    
-    if source_type == "CSV":
-         st.info("💡 **Пояснення для диплома:** Для еталонних даних використовується базова модель V1, яка демонструє високу стійкість до відсутності телеметрії погодних датчиків, фокусуючись на періодичності енергоспоживання.")
-    else:
-         st.info("💡 **Пояснення для диплома:** Версія V3 показує найкращий результат завдяки інтеграції погодних факторів та добових часових гармонік, що дозволяє моделі 'розуміти' періодичність навантаження.")
+    st.info("💡 **Пояснення для диплома:** Порівняння архітектур дозволяє оцінити стабільність прогнозів. V3 інтегрує погодні фактори, що критично для сонячних днів та пікових навантажень.")
 
 def _render_group_comparison(stations_list, source_type, version):
     """

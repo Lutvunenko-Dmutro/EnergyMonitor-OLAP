@@ -66,39 +66,65 @@ def memory_diet(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-# --- 1. CONFIGURATION ---
 @st.cache_resource
 def get_engine():
     """
     Створює та кешує пул з'єднань з базою даних.
-    Використовує pool_pre_ping=True для автоматичного відновлення розірваних з'єднань.
+    Підтримує динамічне перемикання між Local та Cloud.
     """
-    user = os.getenv("DB_USER", "postgres")
-    password = os.getenv("DB_PASSWORD", "password")
-    host = os.getenv("DB_HOST", "localhost")
-    port = os.getenv("DB_PORT", "5432")
-    dbname = os.getenv("DB_NAME", "postgres")
+    db_mode = st.session_state.get("db_mode", "local")
+    
+    if db_mode == "cloud":
+        user = os.getenv("CLOUD_DB_USER")
+        password = os.getenv("CLOUD_DB_PASSWORD")
+        host = os.getenv("CLOUD_DB_HOST")
+        port = os.getenv("CLOUD_DB_PORT", "5432")
+        dbname = os.getenv("CLOUD_DB_NAME")
+        ssl_mode = os.getenv("CLOUD_DB_SSL", "require")
+        display_name = "Neon Cloud Cluster"
+    else:
+        user = os.getenv("DB_USER")
+        password = os.getenv("DB_PASSWORD")
+        host = os.getenv("DB_HOST", "localhost")
+        port = os.getenv("DB_PORT", "5432")
+        dbname = os.getenv("DB_NAME")
+        ssl_mode = os.getenv("DB_SSL", "prefer")
+        display_name = f"Local Server ({host})"
 
-    ssl_mode = os.getenv("DB_SSL")
-    if not ssl_mode:
-        ssl_mode = "prefer" if host in ["localhost", "127.0.0.1", "::1"] else "require"
-        
-    # Маскуємо технічну адресу для "охайного" виводу в консоль
-    display_name = "Neon Cloud Cluster" if "neon.tech" in host.lower() else host
     log.info(f"🔌 База даних -> Підключення до {display_name} (DB: {dbname})")
     url = f"postgresql+psycopg2://{user}:{password}@{host}:{port}/{dbname}?sslmode={ssl_mode}"
     return create_engine(url, pool_pre_ping=True)
 
 
-# --- 2. psycopg2 CORE (For Data Generator) ---
 @contextmanager
 def get_db_cursor():
     """Контекстний менеджер для безпечної роботи з базою даних через psycopg2 з ретраями."""
+    db_mode = st.session_state.get("db_mode", "local")
+    
+    if db_mode == "cloud":
+        config = {
+            "dbname": os.getenv("CLOUD_DB_NAME"),
+            "user": os.getenv("CLOUD_DB_USER"),
+            "password": os.getenv("CLOUD_DB_PASSWORD"),
+            "host": os.getenv("CLOUD_DB_HOST"),
+            "port": os.getenv("CLOUD_DB_PORT", "5432"),
+            "sslmode": os.getenv("CLOUD_DB_SSL", "require")
+        }
+    else:
+        config = {
+            "dbname": os.getenv("DB_NAME"),
+            "user": os.getenv("DB_USER"),
+            "password": os.getenv("DB_PASSWORD"),
+            "host": os.getenv("DB_HOST", "localhost"),
+            "port": os.getenv("DB_PORT", "5432"),
+            "sslmode": os.getenv("DB_SSL", "prefer")
+        }
+
     conn = None
     retries = 3
     for i in range(retries):
         try:
-            conn = psycopg2.connect(**DB_CONFIG)
+            conn = psycopg2.connect(**config)
             yield conn, conn.cursor()
             conn.commit()
             break
@@ -159,7 +185,12 @@ def run_query(query_text: str, params: Optional[dict] = None) -> pd.DataFrame:
                     df.to_parquet(cache_path, index=False)
                 return df
                 
+        except (st.runtime.scriptrunner.StopException, st.errors.StreamlitAPIException):
+            from streamlit.runtime.scriptrunner.exceptions import RerunException
+            raise # Прокидаємо системні сигнали Streamlit (наприклад, rerun)
         except Exception as e:
+            from streamlit.runtime.scriptrunner.exceptions import RerunException
+            if isinstance(e, RerunException): raise e
             err_msg = str(e).lower()
             err_type = type(e).__name__
             
@@ -196,6 +227,8 @@ def execute_update(query_text: str, params: Optional[dict] = None) -> bool:
                 conn.execute(text(query_text), params or {})
             return True
         except Exception as e:
+            from streamlit.runtime.scriptrunner.exceptions import StopException, RerunException
+            if isinstance(e, (StopException, RerunException)): raise e
             if i < retries - 1:
                 import time
                 time.sleep(2)

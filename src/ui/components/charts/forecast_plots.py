@@ -37,7 +37,13 @@ def _generate_multi_forecast_figure(df_hist, results: dict, title):
         if df_fc is not None and not df_fc.empty:
             fig.add_trace(go.Scatter(x=df_fc["timestamp"], y=df_fc["predicted_load_mw"], name=f"Прогноз {version.upper()}", line=styles.get(version, {})))
 
-    fig.update_layout(template="plotly_dark", height=550, title=title, legend=dict(orientation="h", y=1.08))
+    fig.update_layout(
+        template="plotly_dark", 
+        height=550, 
+        title=dict(text=title, x=0.5, xanchor="center"),
+        legend=dict(orientation="h", y=-0.15, x=0.5, xanchor="center"),
+        margin=dict(l=10, r=10, t=60, b=80)
+    )
     return fig
 
 def generate_comparison_plot(results: dict, substation_name: str) -> go.Figure:
@@ -70,9 +76,13 @@ def generate_comparison_plot(results: dict, substation_name: str) -> go.Figure:
         ))
         
     fig.update_layout(
-        template="plotly_dark", title=f"📊 Порівняльна відповідність нейромереж ({substation_name})",
-        xaxis_title="Час (Last 7 Days)", yaxis_title="МВт", hovermode="x unified",
-        legend=dict(orientation="h", y=1.1, x=0.5, xanchor="center")
+        template="plotly_dark", 
+        title=dict(text=f"📊 Порівняльна відповідність нейромереж ({substation_name})", x=0.5, xanchor="center"),
+        xaxis_title="Час (Last 7 Days)", 
+        yaxis_title="МВт", 
+        hovermode="x unified",
+        margin=dict(l=10, r=10, t=80, b=100),
+        legend=dict(orientation="h", y=-0.2, x=0.5, xanchor="center")
     )
     return fig
 

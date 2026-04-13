@@ -3,22 +3,26 @@ import joblib
 import logging
 import onnxruntime as ort
 from typing import Tuple, Optional, Any, Union, List
+from pathlib import Path
 
 DEFAULT_WINDOW_SIZE = 48  # Unified 48h look-back for final V3 stability
 V1_DIPLOMA_FREEZE_LOCKED = True
 
-# Standardized Model Architecture Registry
+# Динамічне визначення базового шляху до моделей (всередині src/ml/models)
+BASE_MODELS_PATH = Path(__file__).parent / "models"
+
+# Standardized Model Architecture Registry (Абсолютні шляхи)
 MODEL_REGISTRY = {
-    "v1": "models/substation_model_v1.onnx",
-    "v2": "models/substation_model_v2.onnx",
-    "v3": "models/substation_model_v3_final.onnx",
-    "v3_checkpoint": "models/checkpoints/best_v3.onnx"
+    "v1": str(BASE_MODELS_PATH / "substation_model_v1.onnx"),
+    "v2": str(BASE_MODELS_PATH / "substation_model_v2.onnx"),
+    "v3": str(BASE_MODELS_PATH / "substation_model_v3_final.onnx"),
+    "v3_checkpoint": str(BASE_MODELS_PATH / "checkpoints/best_v3.onnx")
 }
 
 SCALER_REGISTRY = {
-    "v1": "models/scaler_v1.pkl",
-    "v2": "models/scaler_v2.pkl",
-    "v3": "models/scaler_v3_final.pkl"
+    "v1": str(BASE_MODELS_PATH / "scaler_v1.pkl"),
+    "v2": str(BASE_MODELS_PATH / "scaler_v2.pkl"),
+    "v3": str(BASE_MODELS_PATH / "scaler_v3_final.pkl")
 }
 
 # Substation Identity Mapping
