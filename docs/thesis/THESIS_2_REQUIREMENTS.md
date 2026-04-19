@@ -62,29 +62,31 @@
 Діаграма використання ілюструє основні функціональні блоки, доступні користувачу.
 
 ```mermaid
-usecaseDiagram
-    actor Диспетчер
-    actor "Digital Twin (Система)" as System
+flowchart LR
+    User(["👨‍💻 Диспетчер"])
+    System(["⚙️ Digital Twin (Система)"])
     
-    package "Моніторинг мережі" {
-        usecase "Перегляд карти підстанцій" as UC1
-        usecase "Аналіз KPI та Health Score" as UC2
-        usecase "Моніторинг температури/втрат" as UC3
-    }
+    subgraph Monitoring ["Моніторинг мережі"]
+        direction TB
+        UC1(["Перегляд карти підстанцій"])
+        UC2(["Аналіз KPI та Health Score"])
+        UC3(["Моніторинг температури/втрат"])
+    end
     
-    package "AI Прогнозування" {
-        usecase "Генерація LSTM прогнозу" as UC4
-        usecase "Аналіз довірчого інтервалу" as UC5
-        usecase "Панель ML Метрик" as UC6
-    }
+    subgraph AI ["AI Прогнозування"]
+        direction TB
+        UC4(["Генерація LSTM прогнозу"])
+        UC5(["Аналіз довірчого інтервалу"])
+        UC6(["Панель ML Метрик"])
+    end
 
-    Диспетчер --> UC1
-    Диспетчер --> UC2
-    Диспетчер --> UC4
-    Диспетчер --> UC6
+    User --> UC1
+    User --> UC2
+    User --> UC4
+    User --> UC6
     
-    System --> UC3 : Генерує телеметрію
-    UC4 ..> UC5 : <<include>>
+    System --> UC3
+    UC4 -. "<<include>>" .-> UC5
 ```
 
 ### Діаграма активності (Activity Diagram)
