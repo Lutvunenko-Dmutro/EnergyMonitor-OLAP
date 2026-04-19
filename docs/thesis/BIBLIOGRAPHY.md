@@ -30,6 +30,11 @@
 28. VanderPlas J. Python Data Science Handbook. O'Reilly Media, 2016. 548 p.
 29. Werbos P. J. Backpropagation through time: what it does and how to do it. Proceedings of the IEEE. 1990. Vol. 78, No. 10. P. 1550—1560.
 30. Zheng J., Xu C., Zhang Z., Li X. Electric Load Forecasting in Smart Grids Using Long-Short-Term Memory Recurrent Neural Networks. Annual Conference on Information Science and Systems (CISS). 2017. P. 1—6.
+31. Бутенко О. С. Інтелектуальні мережі Smart Grid: стан та перспективи впровадження в Україні. Енергетика: економіка, технології, екологія. 2019. № 2. С. 34—42.
+32. Зайченко Ю. П. Математичні основи інтелектуальних систем. Київ : Видавничий дім «Слово», 2011. 452 с.
+33. SQLAlchemy Documentation. Unified Tutorial (Version 2.0). URL: https://docs.sqlalchemy.org/en/20/tutorial/ (дата звернення: 12.04.2026).
+34. GitHub Actions Documentation. Understanding GitHub Actions. URL: https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions (дата звернення: 05.04.2026).
+35. Vasiliev V., Gurevich Y. Digital Twins for Smart Grid Infrastructure: Challenges and Opportunities. International Journal of Energy Research. 2021. Vol. 45. P. 12050—12065.
 
 ---
 [Назад до Висновків](THESIS_FINAL_CONCLUSIONS.md) | [Далі: ДОДАТКИ](APPENDICES.md)
