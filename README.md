@@ -61,11 +61,14 @@
 
 ### 📚 Структура та Документація
 *   📋 [**KANBAN_THESIS.md**](docs/thesis/KANBAN_THESIS.md) — Повний план виконання (за методичкою).
-*   📄 [**РЕФЕРАТ ТА ВСТУП**](docs/thesis/THESIS_0_ABSTRACT.md) — Мета та об'єкт.
+*   🗺️ [**DIPLOMA_PLAN.md**](docs/thesis/DIPLOMA_PLAN.md) — Затверджений план-структура роботи.
+*   📄 [**РЕФЕРАТ ТА ВСТУП**](docs/thesis/THESIS_0_ABSTRACT.md) — Мета та об'єкт дослідження.
 *   📘 [**РОЗДІЛ 1. ТЕОРЕТИЧНИЙ АНАЛІЗ**](docs/thesis/THESIS_1_THEORY.md) — Огляд Digital Twin та ML.
-*   📙 [**РОЗДІЛ 2. ТЕХНІЧНЕ ЗАВДАННЯ**](docs/thesis/THESIS_2_REQUIREMENTS.md) — Формальні вимоги.
+*   📙 [**РОЗДІЛ 2. ТЕХНІЧНЕ ЗАВДАННЯ**](docs/thesis/THESIS_2_REQUIREMENTS.md) — Формальні вимоги до системи.
 *   📗 [**РОЗДІЛ 3. ПРОЄКТНІ РІШЕННЯ**](docs/thesis/THESIS_3_DESIGN_AND_IMPLEMENTATION.md) — Математика LSTM та UI.
-*   🏁 [**ВИСНОВКИ**](docs/thesis/THESIS_FINAL_CONCLUSIONS.md) та [**ДОДАТКИ**](docs/thesis/APPENDICES.md).
+*   🏁 [**ВИСНОВКИ**](docs/thesis/THESIS_FINAL_CONCLUSIONS.md) — Підсумок наукової новизни.
+*   📚 [**СПИСОК ЛІТЕРАТУРИ**](docs/thesis/BIBLIOGRAPHY.md) — Перелік використаних джерел.
+*   📎 [**ДОДАТКИ**](docs/thesis/APPENDICES.md) — Код та додаткові матеріали.
 
 ### 🧬 Наукова новизна та практичне значення
 1. **Гібридне моделювання (Digital Twin + ML):** Система поєднує стохастичний прогноз (LSTM-мережі) з детермінованими фізичними моделями мережі (розрахунок втрат потужності, температурна деградація).
