@@ -34,6 +34,7 @@ nav:
   - 📗 Плани та Статус:
       - План документації: DOCS_PLAN.md
       - План розробки: ROADMAP.md
+      - Поточний статус: PROJECT_STATUS.md
   - 🛠️ Інструкції та Безпека:
       - Інструкція користувача: guides/USER_MANUAL.md
       - Звіт з безпеки: guides/SECURITY.md
@@ -42,7 +43,16 @@ nav:
   - 📚 Довідка:
       - Референс модулів (API): api/index.md
       - Глосарій: GLOSSARY.md
-  - Дипломна робота: DIPLOMA_PLAN.md
+
+exclude_docs:
+  - history/**
+  - thesis/THESIS_FULL_FINAL_PRELIM.md
+  - thesis/PRACTICE_REPORT_SECTION*
+  - thesis/PRACTICE_REPORT_FULL_DRAFT.md
+  - thesis/PRACTICE_PRESENTATION_DRAFT.md
+  - thesis/KANBAN_THESIS.md
+  - "*.bak"
+  - Дипломна робота: thesis/DIPLOMA_PLAN.md
 
 plugins:
   - search

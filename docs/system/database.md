@@ -13,18 +13,18 @@
 ## 1️⃣ **DIGITAL TWIN** — Цифровий двійник енергосистеми
 
 ### 📁 Файли реалізації:
-- **[src/core/physics.py](src/core/physics.py)** — Фізична симуляція (220+ рядків)
+- **[src/core/physics.py](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/src/core/physics.py)** — Фізична симуляція (220+ рядків)
   - `calculate_line_losses()` — втрати потужності (AC/HVDC)
   - `calculate_substation_load()` — навантаження підстанції з температурною корекцією
   - `calculate_transformer_health()` — деградація ізоляції (Arrhenius модель)
   - `calculate_weather()` — погодна симуляція з інерцією
 
-- **[src/services/simulation/sensors_db.py](src/services/simulation/sensors_db.py)** — Фоновий збирач телеметрії
+- **[src/services/simulation/sensors_db.py](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/src/services/simulation/sensors_db.py)** — Фоновий збирач телеметрії
   - `run_cosmetic_collector()` — 15-хвилинна сесія симуляції
   - Singleton-захист через `logs/sensors.lock`
   - Запис стану у `logs/live_state.json`
 
-- **[src/services/simulation/data_generator.py](src/services/simulation/data_generator.py)** — Генератор реального часу
+- **[src/services/simulation/data_generator.py](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/src/services/simulation/data_generator.py)** — Генератор реального часу
   - `run_realtime_sensors()` — неперервна симуляція
 
 ### 🔧 Що реалізовано: Гібридна архітектура (Digital Twin + ML)
@@ -80,23 +80,23 @@
 ## 2️⃣ **LSTM-МОДЕЛЬ ПРОГНОЗУВАННЯ** — Нейромережа глибокого навчання
 
 ### 📁 Файли реалізації:
-- **[src/ml/train_lstm.py](src/ml/train_lstm.py)** — Тренування моделі (200+ рядків)
+- **[src/ml/train_lstm.py](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/src/ml/train_lstm.py)** — Тренування моделі (200+ рядків)
   - `load_data_from_db()` — витяг даних з PostgreSQL
   - `create_dataset()` — sliding window (48-годинне вікно → прогноз на 1 годину)
   - `train_lstm(version="v3")` — 3 версії архітектури (v1, v2, v3)
   - LSTM(128) + LSTM(64) + Dense шари
   - Callbacks: EarlyStopping, ModelCheckpoint, TensorBoard
 
-- **[src/ml/predict_v2.py](src/ml/predict_v2.py)** — Інференс моделі (180+ рядків)
+- **[src/ml/predict_v2.py](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/src/ml/predict_v2.py)** — Інференс моделі (180+ рядків)
   - `LSTMPredictor` клас для прогнозування
   - Domain Adaptation — масштабування під конкретну підстанцію
   - Statistical audit (Shapiro-Wilk тест для помилок)
 
-- **[src/ml/train_v1.py](src/ml/train_v1.py)** — Базова архітектура
-- **[src/ml/baseline_arima.py](src/ml/baseline_arima.py)** — Статистичний baseline
-- **[src/ml/backtest.py](src/ml/backtest.py)** — Бектест-піпелайн
-- **[src/ml/vectorizer.py](src/ml/vectorizer.py)** — Feature engineering
-- **[src/ml/metrics_engine.py](src/ml/metrics_engine.py)** — MAPE, RMSE, R² розрахунки
+- **[src/ml/train_v1.py](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/src/ml/train_v1.py)** — Базова архітектура
+- **[src/ml/baseline_arima.py](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/src/ml/baseline_arima.py)** — Статистичний baseline
+- **[src/ml/backtest.py](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/src/ml/backtest.py)** — Бектест-піпелайн
+- **[src/ml/vectorizer.py](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/src/ml/vectorizer.py)** — Feature engineering
+- **[src/ml/metrics_engine.py](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/src/ml/metrics_engine.py)** — MAPE, RMSE, R² розрахунки
 
 ### 🔧 Що реалізовано:
 ✅ **LSTM v3 архітектура** (9 ознак на вході, 48-годинна пам'ять)  
@@ -120,27 +120,27 @@
 ## 3️⃣ **OLAP-АНАЛІТИКА НА PostgreSQL** — Online Analytical Processing
 
 ### 📁 Файли реалізації:
-- **[src/core/database/__init__.py](src/core/database/__init__.py)** — Ядро БД (280+ рядків)
+- **[src/core/database/__init__.py](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/src/core/database/__init__.py)** — Ядро БД (280+ рядків)
   - `get_engine()` — SQLAlchemy engine з connection pooling
   - `run_query()` — SELECT запити з ретраями для Neon DB
   - `execute_update()` — INSERT/UPDATE/DELETE розпорядження
   - `memory_diet()` — оптимізація DataFrame (kategorical типи)
 
-- **[src/core/queries.py](src/core/queries.py)** — SQL шаблони (200+ рядків)
+- **[src/core/queries.py](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/src/core/queries.py)** — SQL шаблони (200+ рядків)
   - `QUERY_LOAD_WEATHER` — JOIN Substations + Regions + WeatherReports
   - `QUERY_GENERATION` — агрегація генерації за останні 50K записів
   - `QUERY_ALERTS` — журнал kritichno подій
   - `QUERY_LINES` — навантаженість силових ліній
 
-- **[src/core/analytics/aggregator.py](src/core/analytics/aggregator.py)** — Агрегації часових рядів
+- **[src/core/analytics/aggregator.py](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/src/core/analytics/aggregator.py)** — Агрегації часових рядів
   - `aggregate_consumption()` — дискретизація за годинами
   - `get_history_live()` — 72-годинна історія з SQL-агрегацією (SUM, AVG)
   - `add_relative_load()` — нормалізація до % від пікової потужності
 
-- **[src/core/database/archive.py](src/core/database/archive.py)** — Historique архивирование
+- **[src/core/database/archive.py](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/src/core/database/archive.py)** — Historique архивирование
   - `load_archive_data()` — DATE_TRUNC для години + інтерполяція
 
-- **[sql/01_create_schema.sql](sql/01_create_schema.sql)** — DDL схеми
+- **[sql/01_create_schema.sql](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/sql/01_create_schema.sql)** — DDL схеми
   - 8 основних таблиць (Regions, Substations, PowerLines, LoadMeasurements, GenerationMeasurements та інші)
   - Індекси на `(timestamp, substation_id)` та `(region_id)`
   - Constraints чистoти даних
@@ -167,41 +167,41 @@
 ## 4️⃣ **STREAMLIT-ІНТЕРФЕЙС** — Web Dashboard
 
 ### 📁 Файли реалізації:
-- **[main.py](main.py)** — Точка входу додатку (400+ рядків)
+- **[main.py](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/main.py)** — Точка входу додатку (400+ рядків)
   - `init_page_config()` — конфігурація сторінки + favicon
   - `show_boot_sequence()` — splash screen з синхронізацією
   - `render_sidebar()` — навігація та керування
   - `render_dashboard_ui()` — головний орхестратор вкладок
 
-- **[src/ui/segments/dashboard.py](src/ui/segments/dashboard.py)** — Компоновка вкладок (200+ рядків)
+- **[src/ui/segments/dashboard.py](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/src/ui/segments/dashboard.py)** — Компоновка вкладок (200+ рядків)
   - `@st.fragment` для фрагментарного оновлення (map, consumption, KPI без перезавантаження)
   - Інтеграція 9 основних views
 
-- **[src/ui/views/](src/ui/views/)** — 9 основних представлень:
-  - **[forecast.py](src/ui/views/forecast.py)** — LSTM прогноз на 24 години
-  - **[map.py](src/ui/views/map.py)** — Folium/Plotly географічна карта підстанцій
-  - **[consumption.py](src/ui/views/consumption.py)** — Динаміка споживання (line чарти)
-  - **[generation.py](src/ui/views/generation.py)** — Структура генерації (pie/stacked bar)
-  - **[alerts.py](src/ui/views/alerts.py)** — Журнал критичних подій
-  - **[finance.py](src/ui/views/finance.py)** — Фінансова аналітика (costs, losses)
-  - **[advanced.py](src/ui/views/advanced.py)** — Кластеризація + поглиблена аналітика
-  - **[historical_audit.py](src/ui/views/historical_audit.py)** — Науковий аудит моделей
-  - **[kpi.py](src/ui/views/kpi.py)** — Ліві KPI (live telemetry)
+- **[src/ui/views/](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/src/ui/views/)** — 9 основних представлень:
+  - **[forecast.py](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/src/ui/views/forecast.py)** — LSTM прогноз на 24 години
+  - **[map.py](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/src/ui/views/map.py)** — Folium/Plotly географічна карта підстанцій
+  - **[consumption.py](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/src/ui/views/consumption.py)** — Динаміка споживання (line чарти)
+  - **[generation.py](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/src/ui/views/generation.py)** — Структура генерації (pie/stacked bar)
+  - **[alerts.py](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/src/ui/views/alerts.py)** — Журнал критичних подій
+  - **[finance.py](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/src/ui/views/finance.py)** — Фінансова аналітика (costs, losses)
+  - **[advanced.py](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/src/ui/views/advanced.py)** — Кластеризація + поглиблена аналітика
+  - **[historical_audit.py](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/src/ui/views/historical_audit.py)** — Науковий аудит моделей
+  - **[kpi.py](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/src/ui/views/kpi.py)** — Ліві KPI (live telemetry)
 
-- **[src/ui/segments/sidebar.py](src/ui/segments/sidebar.py)** — Бокова навігація та керування
+- **[src/ui/segments/sidebar.py](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/src/ui/segments/sidebar.py)** — Бокова навігація та керування
   - Вибір джерела даних (Локальна БД vs Kaggle)
   - Запуск Digital Twin симуляції
   - Фільтри регіону/часу
 
-- **[src/ui/segments/live_kpi.py](src/ui/segments/live_kpi.py)** — Live KPI обнователь
+- **[src/ui/segments/live_kpi.py](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/src/ui/segments/live_kpi.py)** — Live KPI обнователь
   - Автооновлення кожні 5 сек з `logs/live_state.json`
 
-- **[src/ui/components/charts/](src/ui/components/charts/)** — Чарти та графіки
+- **[src/ui/components/charts/](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/src/ui/components/charts/)** — Чарти та графіки
   - `forecast_plots.py` — лінійні прогнози
   - `academic.py` — наукові діаграми (error distribution)
   - `base.py` — базові функції Plotly
 
-- **[src/ui/components/styles.py](src/ui/components/styles.py)** — CSS/Theming
+- **[src/ui/components/styles.py](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/src/ui/components/styles.py)** — CSS/Theming
   - Custom CSS для дизайну
   - RGBA кольорові палітри
 
@@ -229,7 +229,7 @@
 ## 5️⃣ **DOCKER-РОЗГОРТАННЯ** — Контейнеризація
 
 ### 📁 Файли розгортання:
-- **[Dockerfile](Dockerfile)** — Production контейнер (60+ рядків)
+- **[Dockerfile](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/Dockerfile)** — Production контейнер (60+ рядків)
   ```docker
   FROM python:3.11-slim
   WORKDIR /app
@@ -243,7 +243,7 @@
 
 - **Відсутній** `docker-compose.yml` ❌ (див. примітки нижче)
 
-- **[.dockerignore](з implied структури)** — вказує на виключення `__pycache__`, `.pytest_cache` і т.д.
+- **[.dockerignore](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/з implied структури)** — вказує на виключення `__pycache__`, `.pytest_cache` і т.д.
 
 ### 🔧 Що реалізовано:
 ✅ **Python 3.11-slim базовий образ** (21 МБ замість ~900 МБ ubuntu)  

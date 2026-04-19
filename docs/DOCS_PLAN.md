@@ -8,7 +8,7 @@
 
 | Документ | Цільова аудиторія | Пов'язані модулі коду | Розділ диплому |
 | :--- | :--- | :--- | :--- |
-| **[README.md](../README.md)** | Всі користувачі | Весь проект | Вступ, 4.1 |
+| **[README.md](index.md)** | Всі користувачі | Весь проект | Вступ, 4.1 |
 | **[ARCHITECTURE.md](system/architecture.md)** | Архітектори, RE | `core/`, `app/`, `ui/segments/` | 2.1, 2.2, 5.2 |
 | **[ML Pipeline](ml/index.md)** | Data Scientists | `ml/`, `ml/vectorizer.py` | 1.4, Розділ 3 |
 | **[Digital Twin](system/digital_twin.md)** | Інженери, DevOps | `src/services/sensors_db.py`, `src/core/physics.py` | 2.3, 4.2 |
@@ -18,7 +18,7 @@
 | **[User Manual](guides/USER_MANUAL.md)** | Кінцеві користувачі | `ui/views/`, `ui/segments/dashboard.py` | 5.2 |
 | **[Maintenance](guides/MAINTENANCE.md)** | DevOps, Admin | `utils/cache_manager.py`, `utils/memory_helper.py` | 4.4 |
 | **[Glossary & FAQ](GLOSSARY.md)** | Всі (особливо комісія) | Всі модулі | Вступ, 7.3 |
-| **[Development](../DEVELOPMENT.md)** | Розробники | Весь проект | — |
+| **[Development](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/DEVELOPMENT.md)** | Розробники | Весь проект | — |
 
 ---
 
