@@ -20,16 +20,28 @@ theme:
 
 nav:
   - Home: index.md
-  - Архітектура: architecture.md
-  - План документації: DOCS_PLAN.md
-  - ML Pipeline: ml/index.md
-  - Digital Twin: digital_twin.md
-  - База даних: database.md
-  - Звіт з безпеки: SECURITY.md
-  - Інструкція користувача: USER_MANUAL.md
-  - Обслуговування: MAINTENANCE.md
-  - Глосарій та FAQ: GLOSSARY.md
-  - Тестування: testing.md
+  - 🏗️ Архітектура:
+      - Загальний огляд: system/architecture.md
+      - Digital Twin: system/digital_twin.md
+      - База даних: system/database.md
+      - ML Pipeline: ml/index.md
+  - 🗺️ Атлас Проєкту:
+      - 📍 Головна Карта: system/atlas.md
+      - ⚙️ Ядро (Core): system/map/core_map.md
+      - 🧠 ШІ-Конвеєр (ML): system/map/ml_map.md
+      - 🎨 Інтерфейс (UI): system/map/ui_map.md
+      - 🏭 Сервіси (Services): system/map/services_map.md
+  - 📗 Плани та Статус:
+      - План документації: DOCS_PLAN.md
+      - План розробки: ROADMAP.md
+  - 🛠️ Інструкції та Безпека:
+      - Інструкція користувача: guides/USER_MANUAL.md
+      - Звіт з безпеки: guides/SECURITY.md
+      - Тестування: guides/TESTING_GUIDE.md
+      - Обслуговування: guides/MAINTENANCE.md
+  - 📚 Довідка:
+      - Референс модулів (API): api/index.md
+      - Глосарій: GLOSSARY.md
   - Дипломна робота: DIPLOMA_PLAN.md
 
 plugins:
