@@ -3,7 +3,7 @@
 ## Загальний стан
 
 ```
-Platform:  Windows / Python 3.13
+Platform:  Windows / Python 3.11+
 Framework: pytest 7.4.3
 Result:    74 passed, 5 skipped, 0 failed — 13.71s ✅
 ```

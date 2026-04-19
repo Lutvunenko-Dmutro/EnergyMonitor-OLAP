@@ -1,7 +1,7 @@
 # 🚀 ІНСТРУКЦІЯ З РОЗГОРТАННЯ — Energy Monitor ULTIMATE
 
 > **Наживо:** [energymonitor-olap.onrender.com](https://energymonitor-olap.onrender.com/)  
-> Версія: 3.1 STABLE · Python 3.13 · Docker · Render.com
+> Версія: 3.1 STABLE · Python 3.11+ · Docker · Render.com
 
 ---
 

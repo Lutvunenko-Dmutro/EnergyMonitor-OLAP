@@ -1,6 +1,6 @@
 # 🏗️ Архітектурний огляд — Energy Monitor ULTIMATE
 
-> Версія: 3.1 STABLE · Python 3.13 · PostgreSQL (Neon Cloud) · Streamlit · LSTM
+> Версія: 3.1 STABLE · Python 3.11+ · PostgreSQL (Neon Cloud) · Streamlit · LSTM
 
 Цей документ — швидкий технічний огляд архітектури для нових розробників і академічної комісії.
 

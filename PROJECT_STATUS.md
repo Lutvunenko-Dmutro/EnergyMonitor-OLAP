@@ -60,7 +60,7 @@
 
 | Компонент | Технологія |
 | :--- | :--- |
-| **Runtime** | Python 3.13 |
+| **Runtime** | Python 3.11+ |
 | **Database** | PostgreSQL 15 (Neon Cloud) |
 | **AI Inference** | ONNX Runtime + LSTM Keras/TensorFlow |
 | **Web Interface** | Streamlit 1.37+ |

@@ -50,7 +50,7 @@ python -m streamlit run main.py
 
 | Компонент | Технологія |
 |-----------|------------|
-| **Runtime** | Python 3.13 |
+| **Runtime** | Python 3.11+ |
 | **AI/ML** | TensorFlow/Keras LSTM + ONNX Runtime |
 | **Database** | PostgreSQL 15 (Neon Cloud) |
 | **Frontend** | Streamlit 1.37+ |
