@@ -1,83 +1,88 @@
-# 🗺️ Атлас Проєкту: Інтерактивна Карта
+# 🗺️ Інтерактивний Файловий Атлас Проєкту
 
-Ця сторінка є вашим навігатором по архітектурі **Energy Monitor ULTIMATE**. Кожен вузол на схемі нижче є клікабельним — він переведе вас до детального технічного розбору конкретного файлу або модуля.
+Це — повна мапа вашого проєкту. Вона відображає фізичну структуру файлів та їхні взаємозв'язки. Кожен ключовий вузол є **клікабельним**: натисніть на файл, щоб дізнатися, навіщо він потрібен та як він працює.
 
----
-
-## 🏗️ Архітектурна Схема (Інтерактивна)
+> [!TIP]
+> Натисніть на назву папки або файлу в схемі нижче для переходу до детального технічного опису.
 
 ```mermaid
 graph TD
-    %% Стилізація вузлів
-    classDef ui fill:#e1bee7,stroke:#7b1fa2,stroke-width:2px,color:#000
-    classDef ml fill:#fff9c4,stroke:#fbc02d,stroke-width:2px,color:#000
-    classDef core fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
-    classDef services fill:#f1f8e9,stroke:#689f38,stroke-width:2px,color:#000
-    classDef infra fill:#f5f5f5,stroke:#616161,stroke-width:2px,color:#000
+    %% Стилі
+    classDef folder fill:#2d3436,stroke:#f1c40f,stroke-width:2px,color:#fff;
+    classDef file fill:#2d3436,stroke:#3498db,stroke-width:1px,color:#dcdde1;
+    classDef core fill:#0984e3,stroke:#74b9ff,stroke-width:1px,color:#fff;
+    classDef ml fill:#e17055,stroke:#fab1a0,stroke-width:1px,color:#fff;
+    classDef ui fill:#6c5ce7,stroke:#a29bfe,stroke-width:1px,color:#fff;
+    classDef service fill:#00b894,stroke:#55efc4,stroke-width:1px,color:#fff;
 
-    subgraph ENTRY ["🏁 Точка входу"]
-        MAIN["main.py<br/>(Оркестратор)"]:::ui
+    Root["📂 EnergyMonitor-OLAP/"]:::folder
+
+    %% Основні гілки
+    Root --> Src["📂 src/ (Джерело)"]:::folder
+    Root --> Docs["📂 docs/ (Документація)"]:::folder
+    Root --> Config["⚙️ Конфігурація"]:::folder
+
+    %% Код (src)
+    subgraph SystemCode ["💻 Програмний Код"]
+        Src --> Core["📂 core/ (Ядро)"]:::core
+        Src --> ML["📂 ml/ (ШІ)"]:::ml
+        Src --> UI["📂 ui/ (Інтерфейс)"]:::ui
+        Src --> Svc["📂 services/ (Сервіси)"]:::service
+
+        %% Core Files
+        Core --> FC_Phys["📄 physics.py"]:::file
+        Core --> FC_DB["📄 database.py"]:::file
+        Core --> FC_An["📄 analytics/ (Фільтри)"]:::file
+
+        %% ML Files
+        ML --> FM_Prd["📄 predict_v2.py"]:::file
+        ML --> FM_Vec["📄 vectorizer.py"]:::file
+        ML --> FM_Mod["📂 models/ (Ваги)"]:::file
+
+        %% UI Files
+        UI --> FU_Dash["📄 dashboard.py"]:::file
+        UI --> FU_Views["📂 views/ (Вкладки)"]:::file
+
+        %% Services Files
+        Svc --> FS_Sim["📄 data_generator.py"]:::file
+        Svc --> FS_Sens["📄 sensors.py"]:::file
     end
 
-    subgraph UI_LAYER ["🎨 Інтерфейс (Streamlit)"]
-        DASHBOARD["dashboard.py<br/>(UI Logic)"]:::ui
-        VIEWS["views/<br/>(Pages)"]:::ui
-        COMPONENTS["components/<br/>(Design)"]:::ui
+    %% Документація (docs)
+    subgraph DocumentationArea ["📚 База Знань"]
+        Docs --> D_Phys["📖 Фізична модель"]
+        Docs --> D_ML["📖 Опис нейромереж"]
+        Docs --> D_Atlas["🗺️ Карта Системи"]
     end
 
-    subgraph ML_LAYER ["🧠 AI Pipeline (LSTM)"]
-        PREDICT["predict_v2.py<br/>(AI Controller)"]:::ml
-        VECTOR["vectorizer.py<br/>(Data Prep)"]:::ml
-        MODELS["models/<br/>(Weights)"]:::ml
-    end
-
-    subgraph CORE_LAYER ["⚙️ Аналітичне Ядро"]
-        PHYSICS["physics.py<br/>(Grid Physics)"]:::core
-        DB_LOAD["loader.py<br/>(Data Service)"]:::core
-        ANALYTICS["analytics/<br/>(OLAP)"]:::core
-    end
-
-    subgraph SERVICES_LAYER ["🏭 Digital Twin / Services"]
-        SENSORS["sensors_db.py<br/>(Live Sim)"]:::services
-        GEN["data_generator.py<br/>(ETL)"]:::services
-    end
-
-    %% Зв'язки
-    MAIN --> DASHBOARD
-    DASHBOARD --> VIEWS
-    VIEWS --> PREDICT
-    PREDICT --> VECTOR
-    VECTOR --> CORE_LAYER
-    CORE_LAYER --> DB_LOAD
-    SENSORS --> CORE_LAYER
-
-    %% Клікабельні посилання (Anchors)
-    click MAIN "map/ui_map.md#main-py" "Переглянути опис main.py"
-    click DASHBOARD "map/ui_map.md#dashboard-py" "Переглянути опис dashboard.py"
-    click PHYSICS "map/core_map.md#physics-py" "Переглянути опис physics.py"
-    click PREDICT "map/ml_map.md#predict-v2-py" "Переглянути опис predict_v2.py"
-    click SENSORS "map/services_map.md#sensors-db-py" "Переглянути опис sensors_db.py"
-    click DB_LOAD "map/core_map.md#loader-py" "Переглянути опис loader.py"
+    %% Посилання (Click Events)
+    click Core "map/core_map/" "Відкрити мапу ядра"
+    click ML "map/ml_map/" "Відкрити мапу ШІ"
+    click UI "map/ui_map/" "Відкрити мапу інтерфейсу"
+    click Svc "map/services_map/" "Відкрити мапу сервісів"
+    
+    click FC_Phys "map/core_map/#srcphysicspy" "Про фізику розрахунків"
+    click FC_DB "map/core_map/#srcdatabasepy" "Про роботу з БД"
+    click FM_Prd "map/ml_map/#srcmlpredict_v2py" "Про інференс нейромережі"
+    click FU_Dash "map/ui_map/#srcuidashboardpy" "Про архітектуру дашборду"
+    click FS_Sim "map/services_map/#srcservicesdatageneratorpy" "Про цифрового двійника"
 ```
 
 ---
 
-## 🔍 Як користуватися Атласом?
+## 🏗️ Архітектурні Шари (Огляд)
 
-1.  **Натисніть на вузол:** Вас буде перенаправлено до секції з технічним описом.
-2.  **Шари системи:**
-    *   🟣 **UI (Фіолетовий):** Все, що бачить користувач у браузері.
-    *   🟡 **ML (Золотий):** Інтелект системи — прогнози та метрики.
-    *   🔵 **CORE (Синій):** Розрахунки, фізика енергосистем та робота з БД.
-    *   🟢 **SERVICES (Зелений):** Фонова симуляція (Digital Twin).
+Хоча Атлас вище показує файли, система логічно розділена на 4 функціональні рівні:
+
+| Шар | Призначення | Ключові технології |
+| :--- | :--- | :--- |
+| **Ядро (Core)** | Розрахунки, база даних, стабільність | Python, PostgreSQL/SQLite, NumPy |
+| **Аналітика (ML)** | Прогнозування навантаження | LSTM (Keras/TensorFlow), ONNX |
+| **Сервіси (Svc)** | Цифровий двійник, симуляція сенсорів | Background Producers, FastAPI-style logic |
+| **Інтерфейс (UI)** | Візуалізація, OLAP-звіти | Streamlit, Plotly, Altair |
 
 ---
 
-## 🗄️ Швидка навігація по розділах
-
-| Шар | Детальний опис | Ключові технології |
-| :--- | :--- | :--- |
-| **🎨 User Interface** | [Перейти до UI Map](map/ui_map.md) | Streamlit, Plotly, Folium |
-| **🧠 Machine Learning** | [Перейти до ML Map](map/ml_map.md) | TensorFlow, ONNX, Scikit-learn |
-| **⚙️ Core Analytics** | [Перейти до Core Map](map/core_map.md) | NumPy, Pandas, SQLAlchemy |
-| **🏭 System Services** | [Перейти до Services Map](map/services_map.md) | Digital Twin, Real-time Sim |
+## 🔗 Швидкий доступ до файлів
+*   [📂 Переглянути вихідний код проєкту в GitHub](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/tree/main/src)
+*   [📖 Повний технічний звіт](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/docs/thesis/THESIS_FULL_FINAL_UTF8.md)
