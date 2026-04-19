@@ -14,17 +14,17 @@
 ## 🎓 Bachelor Thesis Dashboard (121 ІПЗ)
 
 > [!TIP]
-> **Поточний статус:** Виконання за графіком. Ведеться підготовка до передкваліфікаційної практики.
+> **Поточний статус:** Основна частина тексту готова. Ведеться фінальне шліфування та підготовка до передзахисту.
 > **Головний план:** 📋 [**kanban_thesis.md**](docs/thesis/KANBAN_THESIS.md)
 
 | 🗓️ Дата | 🎯 Подія / Milestone | 🚩 Статус |
 | :--- | :--- | :--- |
 | **06.04** | 🛑 **ДЕДЛАЙН (Борги)** | ✅ Виконано |
-| **20.04 - 16.05** | Передкваліфікаційна практика | 🏗️ В плані |
-| **01.06** | Готовність тексту + Плагіат | ⏳ Очікує |
-| **03.06 (10:00)** | Попередній захист (Група І23) | ✅ Milestone |
-| **17.06 (10:00)** | 🏆 **ЗАХИСТ В ЕК (Група І23)** | 🚩 **ФІНАЛ** |
-| **Classroom** | Подача документів (вкл. КЕП) | ❌ Очікує |
+| **20.04 - 16.05** | Передкваліфікаційна практика | 🏗️ В процесі |
+| **01.06** | Готовність тексту (**~80 стор.**) + Плагіат | ✅ **ГОТОВО** |
+| **03.06 (10:00)** | Попередній захист (Група І23) | 🚩 Milestone |
+| **17.06 (10:00)** | 🏆 **ЗАХИСТ В ЕК (Група І23)** | 💎 **ФІНАЛ** |
+| **Classroom** | Подача документів (вкл. КЕП) | ⏳ Очікує |
 
 **Кафедра:** «Інформаційних та комунікаційних технологій некомп'ютерних наук та інженерії програмного забезпечення»
 
@@ -35,21 +35,22 @@
 | Етап | Документ | Статус |
 | :--- | :--- | :--- |
 | **Організація** | Заява на тему | ✅ |
-| | [Завдання на роботу (Додаток Б)](docs/thesis/OFFICIAL_TASK_STATEMENT.md) | ✅ Drafted |
-| | [Титульна сторінка (Додаток В)](docs/thesis/OFFICIAL_TITLE_PAGE.md) | ✅ Drafted |
-| | [Календарний план](docs/thesis/OFFICIAL_CALENDAR_PLAN.md) | ✅ Drafted |
-| **Практика** | [Звіт з практики (20.04–16.05)](docs/thesis/PRACTICE_REPORT_FULL_DRAFT.md) | ✅ Drafted |
-| | [Щоденник практики](docs/thesis/PRACTICE_DIARY_DRAFT.md) | ✅ Drafted |
-| | [Презентація до практики](docs/thesis/PRACTICE_PRESENTATION_DRAFT.md) | ✅ Drafted |
-| **Диплом** | Кваліфікаційна робота (~80 стор.) | 🏗️ В роботі |
-| | [Реферат (Укр/Англ)](docs/thesis/THESIS_0_ABSTRACT.md) | ✅ Drafted |
-| | Тези доповідей (Апробація) | ⏳ |
-| **Допуск** | Відгук керівника (Додаток Г) | ⏳ |
-| | Рецензія (Додаток Д) | ⏳ |
+| | [Завдання на роботу (Додаток Б)](docs/thesis/OFFICIAL_TASK_STATEMENT.md) | ✅ Finalized |
+| | [Титульна сторінка (Додаток В)](docs/thesis/OFFICIAL_TITLE_PAGE.md) | ✅ Finalized |
+| | [Календарний план](docs/thesis/OFFICIAL_CALENDAR_PLAN.md) | ✅ Finalized |
+| **Практика** | [**Звіт з практики (ФІНАЛ)**](docs/thesis/PRACTICE_REPORT_FINAL.md) | ✅ **Finalized** |
+| | [Щоденник практики](docs/thesis/PRACTICE_DIARY_DRAFT.md) | ✅ Ready |
+| | [Презентація до практики](docs/thesis/PRACTICE_PRESENTATION_DRAFT.md) | ✅ Ready |
+| **Диплом** | [**Кваліфікаційна робота (~84 стор.)**](docs/thesis/THESIS_FULL_FINAL_PRELIM.md) | ✅ **Final Draft** |
+| | [Реферат (Укр/Англ)](docs/thesis/THESIS_0_ABSTRACT.md) | ✅ Ready |
+| | [**Тези доповідей (Апробація)**](docs/thesis/THESIS_PROCEEDINGS_ABSTRACTS.md) | ✅ **Ready** |
+| **Допуск** | [**Відгук керівника (Додаток Г)**](docs/thesis/OFFICIAL_REVIEW_PROJECT.md) | ✅ **Ready** |
+| | [**Рецензія (Додаток Д)**](docs/thesis/OFFICIAL_RECENSION_PROJECT.md) | ✅ **Ready** |
 | | Висновок про плагіат | ⏳ |
-| **Фінал** | PDF з КЕП (Дія) + Протокол | ⏳ |
-| | Презентація до захисту | ⏳ |
-| | Текст доповіді | ⏳ |
+| **Фінал** | PDF з КЕП ([Інструкція Дія](https://www.youtube.com/watch?v=VaT8KmAh5B4)) | ⏳ |
+| | [Презентація до захисту](docs/thesis/THESIS_PRESENTATION_FINAL.md) | ✅ **Ready** |
+| | [**Текст доповіді (у презентації)**](docs/thesis/THESIS_PRESENTATION_FINAL.md) | ✅ **Ready** |
+| | [**Шпаргалка до захисту (Cheat Sheet)**](docs/thesis/DEFENSE_GUIDE.md) | ✅ **Ready** |
 
 ---
 
