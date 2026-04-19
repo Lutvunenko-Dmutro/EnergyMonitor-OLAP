@@ -100,7 +100,7 @@ $$
 
 ### 📦 2. Віконне перетворення простору (Sliding Window)
 
-Для навчання рекурентної моделі вхідний вектор $x_t \in \mathbb{R}^N$ ($N=9$ для версії v3.1) трансформується у 3D-тензор $\mathbf{X}_t$ з глибиною пам'яті $W = 24$ (таймстепів):
+Для навчання рекурентної моделі вхідний вектор $x_t \in \mathbb{R}^N$ ($N=9$ для версії v3.1) трансформується у 3D-тензор $\mathbf{X}_t$ з глибиною пам'яті $W = 48$ (таймстепів):
 
 $$
 \mathbf{X}_t = \begin{pmatrix} 
@@ -118,8 +118,10 @@ $$
 
 Цільовий вектор наступної точки ($t+1$):
 $$
-\mathbf{Y}_{t+1} = \begin{bmatrix} y^{load}_{t+1} \\ y^{health}_{t+1} \end{bmatrix} \in \mathbb{R}^2
+\mathbf{Y}_{t+1} = y^{load}_{t+1} \in \mathbb{R}^1
 $$
+
+> **Примітка:** Health Score розраховується окремо фізичним рушієм Digital Twin (`physics.py`), а не нейронною мережею.
 
 ---
 
@@ -145,10 +147,10 @@ $$h_t = o_t \odot \tanh(C_t)$$
 
 ### 📉 4. Функція втрат та оптимізація
 
-Мінімізується **багатовимірна Середньоквадратична Помилка (MSE)** для батчу розміром $M$:
+Мінімізується **Huber Loss** (δ=1.0) — адаптивна функція, що поводиться як MSE для малих помилок та MAE для великих (стійкість до викидів у телеметрії):
 
 $$
-\mathcal{L} = \frac{1}{M \cdot 2} \sum_{i=1}^{M} \left((Y_{i}^{load} - \hat{Y}_{i}^{load})^2 + (Y_{i}^{health} - \hat{Y}_{i}^{health})^2\right) \rightarrow \min
+\mathcal{L}_{\delta}(y, \hat{y}) = \begin{cases} \frac{1}{2}(y - \hat{y})^2, & |y - \hat{y}| \leq \delta \\ \delta \cdot |y - \hat{y}| - \frac{1}{2}\delta^2, & |y - \hat{y}| > \delta \end{cases} \rightarrow \min
 $$
 
 Оновлення ваг виконується за алгоритмом **Adam** через зворотне поширення помилки в часі (**BPTT**).
@@ -178,7 +180,7 @@ $$
 
 | Рівень (Layer) | Технології |
 | :--- | :--- |
-| **Backend & Core** | `Python 3.13`, `SQLAlchemy`, `Psycopg2` |
+| **Backend & Core** | `Python 3.11+`, `SQLAlchemy`, `Psycopg2` |
 | **СУБД (Data)** | `PostgreSQL 15` (Агрегація: `DATE_TRUNC`) |
 | **Штучний Інтелект** | `TensorFlow/Keras` (LSTM), `scikit-learn`, `ONNX` |
 | **Frontend UI** | `Streamlit 1.37+` (Модульний інтерфейс) |
