@@ -126,12 +126,12 @@ Energy Monitor ULTIMATE
 │
 └── tests/                     ← Автоматичне тестування
     ├── test_physics.py        ← Фізична валідація (5 тестів)
-    ├── test_ml_model.py       ← ML Pipeline тести
+    ├── test_ml_model.py       ← ML Pipeline тести (11 тестів)
     ├── test_core_analytics.py ← OLAP аналітика (11 тестів)
     ├── test_security.py       ← Тести безпеки (26 тестів)
     ├── test_utils.py          ← Утиліти (19 тестів)
-    ├── test_pipeline.py       ← Інтеграційні тести (3)
-    └── test_database.py       ← Тести БД (4)
+    ├── test_pipeline.py       ← Інтеграційні тести (3 тести)
+    └── test_database.py       ← Тести БД (4 тести)
 ```
 
 ---

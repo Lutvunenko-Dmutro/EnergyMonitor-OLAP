@@ -158,7 +158,7 @@ flowchart TD
     end
 
     subgraph Test
-        T1["pytest\n(74 tests)"]
+        T1["pytest\n(79 tests)"]
         T2["mypy\n(Type check)"]
     end
 

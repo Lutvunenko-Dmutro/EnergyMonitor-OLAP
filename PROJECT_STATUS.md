@@ -41,7 +41,7 @@
 - Маскування облікових даних у логах системи.
 
 ### 5. Production DevOps
-- Full CI/CD: lint → type check → 74 тести → security scan → Docker build → Render deploy.
+- Full CI/CD: lint → type check → 79 тестів → security scan → Docker build → Render deploy.
 - Log rotation + memory watchdog для довгострокової стабільності.
 - TTL-кеш менеджер — авто-очищення JSON-файлів старіших 24 годин.
 

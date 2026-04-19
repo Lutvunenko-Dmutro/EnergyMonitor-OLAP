@@ -133,7 +133,7 @@ EnergyMonitor-OLAP/
 │   ├── logging_config.py          # Конфігурація логів (Rich + File)
 │   └── validators.py              # Валідатори SQL (захист від ін'єкцій)
 │
-├── tests/                         # Автоматичне тестування (74 тести)
+├── tests/                         # Автоматичне тестування (79 тестів)
 │   ├── conftest.py                # Фікстури Pytest (сесії БД, тестові DF)
 │   ├── test_physics.py            # Валідація фізики Digital Twin
 │   ├── test_ml_model.py           # Тести ML Pipeline

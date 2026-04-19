@@ -26,7 +26,7 @@ Energy Monitor ULTIMATE — це production-ready SaaS-дашборд для м�
 | **[API Reference](api/index.md)** | Автодокументація модулів |
 | **[Digital Twin](digital_twin.md)** | Фізична симуляція, сенсори, lifecycle |
 | **[Database](database.md)** | Схема БД, SQL запити, OLAP |
-| **[Testing](testing.md)** | 74 тести, coverage, стратегія |
+| **[Testing](testing.md)** | 79 тестів, coverage, стратегія |
 | **[Security](security.md)** | SQL injection, секрети, Bandit |
 | **[Diploma Plan](DIPLOMA_PLAN.md)** | Структура дипломної роботи |
 
