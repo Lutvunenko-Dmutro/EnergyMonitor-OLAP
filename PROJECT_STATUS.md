@@ -88,7 +88,7 @@ tests/test_utils.py           .......... (19 пройдено)
 ## 📜 Аудит документації
 
 > [!TIP]
-> Архітектурна схема системи розміщена в [ARCHITECTURE.md](ARCHITECTURE.md).
+> Архітектурна схема системи розміщена в [ARCHITECTURE.md](docs/system/architecture.md).
 
 > [!NOTE]
 > Для авто-аудиту якості коду запустіть: `python diagnose.py`

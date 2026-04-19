@@ -6,7 +6,7 @@
 
 ### 📄 Статус та Документація
 *   [**PROJECT_STATUS.md**](PROJECT_STATUS.md) — Поточний стан (79 тестів / 0 помилок).
-*   [**ARCHITECTURE.md**](ARCHITECTURE.md) — Архітектурна схема системи.
+*   [**ARCHITECTURE.md**](docs/system/architecture.md) — Архітектурна схема системи.
 *   [**ROADMAP.md**](ROADMAP.md) — План розвитку.
 
 ---
@@ -15,7 +15,7 @@
 
 > [!TIP]
 > **Поточний статус:** Виконання за графіком. Ведеться підготовка до передкваліфікаційної практики.
-> **Головний план:** 📋 [**kanban_thesis.md**](docs/kanban_thesis.md)
+> **Головний план:** 📋 [**kanban_thesis.md**](docs/thesis/KANBAN_THESIS.md)
 
 | 🗓️ Дата | 🎯 Подія / Milestone | 🚩 Статус |
 | :--- | :--- | :--- |
@@ -59,7 +59,7 @@
 **"Прогнозування часових рядів енергоспоживання для вдосконалення технологій Smart City на основі рекурентних нейронних мереж"**
 
 ### 📚 Структура та Документація
-*   📋 [**KANBAN_THESIS.md**](docs/kanban_thesis.md) — Повний план виконання (за методичкою).
+*   📋 [**KANBAN_THESIS.md**](docs/thesis/KANBAN_THESIS.md) — Повний план виконання (за методичкою).
 *   📄 [**РЕФЕРАТ ТА ВСТУП**](docs/thesis/THESIS_0_ABSTRACT.md) — Мета та об'єкт.
 *   📘 [**РОЗДІЛ 1. ТЕОРЕТИЧНИЙ АНАЛІЗ**](docs/thesis/THESIS_1_THEORY.md) — Огляд Digital Twin та ML.
 *   📙 [**РОЗДІЛ 2. ТЕХНІЧНЕ ЗАВДАННЯ**](docs/thesis/THESIS_2_REQUIREMENTS.md) — Формальні вимоги.
