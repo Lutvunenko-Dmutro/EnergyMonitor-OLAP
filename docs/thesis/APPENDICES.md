@@ -7,63 +7,59 @@
 Цей модуль відповідає за розрахунок енергетичних характеристик у реальному часі та симуляцію стану обладнання підстанції.
 
 ```python
-import numpy as np
+def calculate_line_losses(df_lines: pd.DataFrame) -> pd.DataFrame:
+    """
+    Розраховує втрати потужності в мережі для AC та HVDC ліній.
+    Математична модель: 
+    - AC: Losses ~ I^2 * R (квадратична залежність від навантаження)
+    - HVDC: Losses ~ I * R (більш лінійна, менші втрати на дистанції)
+    """
+    if df_lines.empty:
+        return df_lines
+    df = df_lines.copy()
+    
+    if "line_type" not in df.columns:
+        df["line_type"] = "AC"
 
-def calculate_physics_telemetry(actual_load, capacity_mw):
-    """
-    Розрахунок фізичних параметрів на основі навантаження
-    та стану обладнання підстанції.
-    """
-    # 1. Розрахунок термічної деградації (наближена модель)
-    temp_factor = actual_load / capacity_mw
-    oil_temp = 40 + (temp_factor * 50) + np.random.normal(0, 2)
+    is_hvdc = df["line_type"] == "HVDC"
     
-    # 2. Розрахунок втрат у лінії електропередачі (ЛЕП)
-    # Формула втрат P = I^2 * R
-    resistance = 0.05  # Опір (Ом)
-    line_losses = (actual_load ** 2) * resistance * 0.001
+    # Базис втрат: 1.5% для DC, 3.5% для AC при піку
+    loss_dc = (df["actual_load_mw"] * 0.015) * (df["load_pct"] / 100)
+    loss_ac = (df["actual_load_mw"] * 0.035) * (df["load_pct"] / 100) ** 2
     
-    # 3. Інтегральний показник здоров'я (Health Score)
-    health_score = 100 - (temp_factor * 15) - (oil_temp / 10)
-    
-    return {
-        "oil_temp": round(oil_temp, 2),
-        "line_losses": round(line_losses, 4),
-        "health_score": round(max(0, health_score), 2)
-    }
+    df["losses_mw"] = np.where(is_hvdc, loss_dc, loss_ac)
+    return df
 ```
 
 А.2. Модуль інтелектуального прогнозування (predict_v2.py)
 Реалізація логіки інференсу нейронної мережі LSTM із попередньою векторизацією даних.
 
 ```python
-import tensorflow as tf
-import numpy as np
-
-def generate_lstm_forecast(model, input_window):
-    """
-    Генерація прогнозу на 24 години на основі look-back вікна.
-    input_window shape: (1, 48, 9)
-    """
-    # Виконання інференсу (Single step ahead)
-    prediction = model.predict(input_window, verbose=0)
-    
-    # Денормалізація (приклад зворотного MinMaxScaler)
-    # actual_val = prediction * (max_val - min_val) + min_val
-    
-    return prediction
-
-def encode_time_cyclic(hour, day_of_week):
-    """
-    Тригонометричне кодування часу (Sin/Cos Encoding)
-    """
-    hr_sin = np.sin(2 * np.pi * hour / 24)
-    hr_cos = np.cos(2 * np.pi * hour / 24)
-    
-    day_sin = np.sin(2 * np.pi * day_of_week / 7)
-    day_cos = np.cos(2 * np.pi * day_of_week / 7)
-    
-    return hr_sin, hr_cos, day_sin, day_cos
+def generate_lstm_forecast():
+    """Фрагмент реалізації інтелектуального передбачення з ковзним вікном."""
+    for i in range(24):
+        # 1. Прогноз на 1 крок вперед
+        pred_scaled = model.predict(current_window, verbose=0)[0][0]
+        
+        # 2. Денормалізація та Доменна Адаптація
+        pred_val = float(pred_scaled * (max_val - min_val) + min_val)
+        pred_val = adaptive_scaling_v3(pred_val, context_mean, scaler)
+        
+        predictions.append(pred_val)
+        
+        # 3. Формування нового вектора ознак для T+1
+        next_dt = start_dt + timedelta(hours=i+1)
+        next_hr_sin = np.sin(2 * np.pi * next_dt.hour / 24)
+        next_hr_cos = np.cos(2 * np.pi * next_dt.hour / 24)
+        next_day_sin = np.sin(2 * np.pi * next_dt.dayofweek / 7)
+        next_day_cos = np.cos(2 * np.pi * next_dt.dayofweek / 7)
+        
+        # 4. Зсув вікна (Rolling Window)
+        current_window = np.roll(current_window, -1, axis=1)
+        current_window[0, -1] = [pred_scaled, next_temp_scaled, next_cloud_scaled,
+                                 next_hr_sin, next_hr_cos, next_day_sin, next_day_cos,
+                                 next_is_weekend_scaled, next_demand_scaled]
+    return predictions
 ```
 
 А.3. Опис структури об'єктів бази даних (schema.sql)
