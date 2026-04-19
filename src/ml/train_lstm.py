@@ -87,7 +87,7 @@ def load_data_from_db(version="v3"):
 
     return pd.concat(processed_dfs)
 
-def create_dataset(dataset, look_back=24):
+def create_dataset(dataset, look_back=48):
     """Створює x, y на основі масиву. Тепер УСІ версії роблять 1 крок вперед."""
     x, y = [], []
     forecast_horizon = 1 
@@ -98,7 +98,7 @@ def create_dataset(dataset, look_back=24):
             
     return np.array(x), np.array(y)
 
-def train_lstm(version="v3", look_back=24):
+def train_lstm(version="v3", look_back=48):
     """Підготовка даних та навчання УНІВЕРСАЛЬНОЇ моделі."""
     os.makedirs("models", exist_ok=True)
     model_path, scaler_path = get_paths(version)
