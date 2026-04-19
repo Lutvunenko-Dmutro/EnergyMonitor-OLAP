@@ -8,6 +8,7 @@ on:
       - 'docs/**'
       - 'mkdocs.yml'
       - 'README.md'
+      - 'requirements-dev.txt'
   workflow_dispatch: # Дозволяє запуск вручну кнопкою на GitHub
 
 permissions:
