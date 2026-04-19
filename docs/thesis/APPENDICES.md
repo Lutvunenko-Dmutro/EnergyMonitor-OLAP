@@ -43,7 +43,7 @@ import numpy as np
 def generate_lstm_forecast(model, input_window):
     """
     Генерація прогнозу на 24 години на основі look-back вікна.
-    input_window shape: (1, 24, 9)
+    input_window shape: (1, 48, 9)
     """
     # Виконання інференсу (Single step ahead)
     prediction = model.predict(input_window, verbose=0)

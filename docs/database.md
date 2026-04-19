@@ -82,7 +82,7 @@
 ### 📁 Файли реалізації:
 - **[src/ml/train_lstm.py](src/ml/train_lstm.py)** — Тренування моделі (200+ рядків)
   - `load_data_from_db()` — витяг даних з PostgreSQL
-  - `create_dataset()` — sliding window (24-годинне вікно → прогноз на 1 час)
+  - `create_dataset()` — sliding window (48-годинне вікно → прогноз на 1 годину)
   - `train_lstm(version="v3")` — 3 версії архітектури (v1, v2, v3)
   - LSTM(128) + LSTM(64) + Dense шари
   - Callbacks: EarlyStopping, ModelCheckpoint, TensorBoard
@@ -284,7 +284,7 @@
 ### Метрика | Оцінка | Анаміс
 - **Кількість реалізованих компонентів** | 5/5 | ✅ **100%**
 - **Функціональність компонентів** | 4.8/5 | 🟢 **96%** (Docker мінімальний)
-- **Код якість** | 74/74 тестів ✅ | 🟢 **EXCELLENT**
+- **Код якість** | 79/79 тестів ✅ | 🟢 **EXCELLENT**
 - **Безпека** | Bandit + detect-secrets ✅ | 🟢 **VERIFIED**
 - **Документація** | 50+ МБ (docs/ + thesis/) | 🟢 **ДУЖЕ ДОБРА**
 - **Production готовність** | CI/CD + Render.com | 🟢 **LIVE**

@@ -5,7 +5,7 @@
 🚀 **Live Production (MaaS/SaaS):** [energymonitor-olap.onrender.com](https://energymonitor-olap.onrender.com/)
 
 ### 📄 Статус та Документація
-*   [**PROJECT_STATUS.md**](PROJECT_STATUS.md) — Поточний стан (74 тести / 0 помилок).
+*   [**PROJECT_STATUS.md**](PROJECT_STATUS.md) — Поточний стан (79 тестів / 0 помилок).
 *   [**ARCHITECTURE.md**](ARCHITECTURE.md) — Архітектурна схема системи.
 *   [**ROADMAP.md**](ROADMAP.md) — План розвитку.
 
@@ -302,12 +302,12 @@ graph TD
 
 **Запуск тестів:**
 ```bash
-# Всі 74 тести
+# Всі 79 тесті
 pytest tests/ -v
 ```
 
 **Поточний результат:**
-`74 passed, 0 failed — 13.71s ✅`
+`79 passed, 0 failed — 13.71s ✅`
 
 ---
 

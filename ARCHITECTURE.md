@@ -69,9 +69,9 @@ graph TB
 
 | Крок | Модуль | Дія |
 |------|--------|-----|
-| 1. Збір даних | `vectorizer.py` | SQL SELECT → DataFrame (24 рядки) |
+| 1. Збір даних | `vectorizer.py` | SQL SELECT → DataFrame (48 рядки) |
 | 2. Інженерія ознак | `vectorizer.py` | sin/cos кодування часу, ffill/bfill |
-| 3. Нормалізація | `vectorizer.py` | MinMaxScaler → матриця (24, 9) |
+| 3. Нормалізація | `vectorizer.py` | MinMaxScaler → матриця (48, 9) |
 | 4. Предикція | `predict_v2.py` | LSTM.predict() × 24 кроки |
 | 5. Domain Adaptation | `predict_v2.py` | Автоскейлінг під підстанцію |
 | 6. Fallback | `baseline_arima.py` | Seasonal Naive якщо LSTM недоступний |
@@ -143,7 +143,7 @@ Energy Monitor ULTIMATE
 flowchart LR
     Push["git push\nmain"] --> Lint["🧹 Lint\nflake8 + pylint"]
     Lint --> Types["🔍 Type Check\nmypy"]
-    Types --> Tests["🧪 Unit Tests\npytest (74 tests)"]
+    Types --> Tests["🧪 Unit Tests\npytest (79 tests)"]
     Tests --> Security["🛡️ Security\nbandit + detect-secrets"]
     Security --> Docker["🐳 Docker Build\n& Push"]
     Docker --> Deploy["🚀 Deploy\nRender.com"]
@@ -170,7 +170,7 @@ flowchart LR
 
 | Метрика | Значення |
 |---------|----------|
-| **Тести** | ✅ 74 пройдено, 5 пропущено, 0 помилок |
+| **Тести** | ✅ 79 пройдено, 0 помилок |
 | **Час тестування** | 13.71s |
 | **Покриття гілок** | ~65% (ціль: >90%) |
 | **Type Coverage** | ~60% (ціль: >90%) |
