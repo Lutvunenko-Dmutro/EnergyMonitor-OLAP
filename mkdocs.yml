@@ -45,14 +45,6 @@ nav:
       - Глосарій: GLOSSARY.md
   - Дипломна робота: thesis/DIPLOMA_PLAN.md
 
-exclude_docs: |
-  history/**
-  thesis/THESIS_FULL_FINAL_PRELIM.md
-  thesis/PRACTICE_REPORT_SECTION*
-  thesis/PRACTICE_REPORT_FULL_DRAFT.md
-  thesis/PRACTICE_PRESENTATION_DRAFT.md
-  thesis/KANBAN_THESIS.md
-  *.bak
 
 plugins:
   - search
