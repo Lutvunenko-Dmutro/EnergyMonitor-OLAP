@@ -335,7 +335,7 @@ pytest tests/ -v
 ### 1. Тренування ШІ-моделей
 ```bash
 # Тренування версії V3
-python ml/train_lstm.py --version v3
+python src/ml/train_lstm.py --version v3
 ```
 
 ### 2. Запуск локально

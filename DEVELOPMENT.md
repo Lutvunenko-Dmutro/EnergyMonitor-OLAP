@@ -144,8 +144,8 @@ EnergyMonitor-OLAP/
 │   └── test_database.py           # Тести взаємодії з БД
 │
 ├── models/                        # Збережені ваги моделей
-│   ├── substation_model_v3.h5
-│   └── substation_scaler_v3.pkl
+│   ├── substation_model_v3_final.keras
+│   └── scaler_v3_final.pkl
 │
 ├── logs/                          # Системні логи (автогенерація)
 │   ├── energy-monitor.log
@@ -363,7 +363,7 @@ rm logs/sensors.lock              # Linux
 
 1.  У `vectorizer.py` додайте нові ознаки до списку `v4_features`.
 2.  У `train_lstm.py` налаштуйте нову архітектуру моделі.
-3.  Запустіть навчання: `python ml/train_lstm.py --version v4`.
+3.  Запустіть навчання: `python src/ml/train_lstm.py --version v3`.
 4.  Зареєструйте шлях до нової моделі у `MODEL_REGISTRY` у файлі `model_loader.py`.
 
 ### Тестування якості моделі (Backtest)
@@ -425,7 +425,7 @@ python diagnose.py
 ## ❓ FAQ (Часті запитання)
 
 **Q: Чому папка `models/` порожня в репозиторії?**
-A: Ваги нейромереж мають великий обсяг і не зберігаються в Git. Їх потрібно згенерувати локально (`ml/train_lstm.py`) або отримати з хмарного сто сховища.
+A: Ваги нейромереж мають великий обсяг і не зберігаються в Git. Їх потрібно згенерувати локально (`src/ml/train_lstm.py`) або отримати з хмарного сховища.
 
 **Q: Як додати новий тест у систему?**
 A: Створіть файл `test_*.py` в папці `tests/`. Всі функції, що починаються з `test_`, будуть автоматично знайдені Pytest.

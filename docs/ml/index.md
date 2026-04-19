@@ -179,9 +179,9 @@ run_backtest(version="v3", substation="Київська ТЕЦ-5")
 
 ```bash
 # Версія v3 (рекомендована)
-python ml/train_lstm.py --version v3
+python src/ml/train_lstm.py --version v3
 
-# Результат: models/substation_model_v3.h5 + substation_scaler_v3.pkl
+# Результат: models/substation_model_v3_final.keras + scaler_v3_final.pkl
 ```
 
 Функція втрат — **Huber Loss** (стійка до викидів у телеметрії):
