@@ -1,0 +1,1655 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Інтелектуальна система OLAP-моніторингу та ШІ-прогнозування навантаження енергетичних мереж">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>📋 Kanban Board: Кваліфікаційна робота Бакалавра (121 ІПЗ) - ⚡ Energy Monitor Ultimate (Project Atlas)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#kanban-board-121" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="⚡ Energy Monitor Ultimate (Project Atlas)" class="md-header__button md-logo" aria-label="⚡ Energy Monitor Ultimate (Project Atlas)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ⚡ Energy Monitor Ultimate (Project Atlas)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              📋 Kanban Board: Кваліфікаційна робота Бакалавра (121 ІПЗ)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../system/architecture/" class="md-tabs__link">
+          
+  
+  
+  🏗️ Архітектура
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../system/atlas/" class="md-tabs__link">
+          
+  
+  
+  🗺️ Атлас Проєкту
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../DOCS_PLAN/" class="md-tabs__link">
+          
+  
+  
+  📗 Плани та Статус
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../guides/USER_MANUAL/" class="md-tabs__link">
+          
+  
+  
+  🛠️ Інструкції та Безпека
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../api/" class="md-tabs__link">
+          
+  
+  
+  📚 Довідка
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../DIPLOMA_PLAN/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Дипломна робота
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="⚡ Energy Monitor Ultimate (Project Atlas)" class="md-nav__button md-logo" aria-label="⚡ Energy Monitor Ultimate (Project Atlas)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ⚡ Energy Monitor Ultimate (Project Atlas)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏗️ Архітектура
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🏗️ Архітектура
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Загальний огляд
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system/digital_twin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Digital Twin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system/database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    База даних
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ML Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🗺️ Атлас Проєкту
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🗺️ Атлас Проєкту
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system/atlas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📍 Головна Карта
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system/map/core_map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⚙️ Ядро (Core)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system/map/ml_map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧠 ШІ-Конвеєр (ML)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system/map/ui_map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🎨 Інтерфейс (UI)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system/map/services_map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏭 Сервіси (Services)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📗 Плани та Статус
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    📗 Плани та Статус
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DOCS_PLAN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    План документації
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ROADMAP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    План розробки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PROJECT_STATUS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Поточний статус
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🛠️ Інструкції та Безпека
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🛠️ Інструкції та Безпека
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/USER_MANUAL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Інструкція користувача
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/SECURITY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Звіт з безпеки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/TESTING_GUIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Тестування
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/MAINTENANCE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обслуговування
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📚 Довідка
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    📚 Довідка
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Референс модулів (API)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../GLOSSARY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Глосарій
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DIPLOMA_PLAN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дипломна робота
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚀 Етап 1: Старт та Практика (Квітень - Травень)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✍️ Етап 2: Написання тексту (Травень - Початок червня)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎨 Етап 3: Нормоконтроль та Оформлення
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="kanban-board-121">📋 Kanban Board: Кваліфікаційна робота Бакалавра (121 ІПЗ)</h1>
+<p><strong>Назва кафедри:</strong> «Інформаційних та комунікаційних технологій некомп'ютерних наук та інженерії програмного забезпечення»
+<strong>Спеціальність:</strong> 121 «Інженерія програмного забезпечення»
+<strong>Рік захисту:</strong> 2026</p>
+<p><strong>Колонки для Kanban-дошки:</strong>
+1. 🗄️ <strong>Backlog</strong> (Все, що заплановано, але не зараз)
+2. 🎯 <strong>To Do (This Week)</strong> (Завдання на поточний тиждень)
+3. 🏗️ <strong>In Progress</strong> (В роботі)
+4. ⏳ <strong>Waiting for Review</strong> (На перевірці у наукового керівника / очікування відповідей)
+5. ✍️ <strong>Needs Revisions</strong> (Отримано правки — треба доопрацювати)
+6. ✅ <strong>Done</strong> (Повністю завершено)</p>
+<hr />
+<h2 id="1-">🚀 Етап 1: Старт та Практика (Квітень - Травень)</h2>
+<p><strong>[Task] Форма проходження практики (20.04 - 16.05)</strong>
+- [x] <strong>[Task] Проходження практики на кафедрі (Дистанційно, 20.04 - 16.05):</strong>
+    - [x] <strong>Підготовка Звіту за структурою МНТУ (Зміст):</strong>
+        - [x] <strong>Розділ 1:</strong> Постановка завдань практики (Загальні відомості + Графік).
+        - [x] <strong>Розділ 2:</strong> Обґрунтування актуальності теми (Об'єкт, предмет, мета, методи).
+        - [x] <strong>Розділ 3:</strong> Огляд існуючих рішень (Порівняльний аналіз методів/алгоритмів).
+        - [x] <strong>Висновки:</strong> Підсумок проведеної аналітичної роботи.
+        - [x] <strong>Список джерел:</strong> Оформлений за ДСТУ 8302:2015.
+    - [x] <strong>Виконання Графіку робіт (Таблиця 1):</strong>
+        - [x][1] Пройти інструктаж з техніки безпеки.
+        - [x][2] Ознайомитися з кафедрою та її технічними описами.
+        - [x][3] Вивчити та проаналізувати існуючі системи (згідно з темою).
+        - [x][4] Дослідити алгоритми та моделі (напр. нейромережі, LSTM), інструменти візуалізації.
+        - [x][5] Зібрати матеріал для диплома, сформулювати постановку задачі.
+    - [x] <strong>Оформлення титульної сторінки (Зразок):</strong>
+        - [x] Завідувач каф.: О.І. Голубенко.
+        - [x] Керівник від каф.: О.І. Голубенко.
+        - [x] Місто/Рік: Київ-2026.
+    - [x] <strong>Презентація (Додаток А):</strong> Слайди, що візуалізують результати аналізу.</p>
+<p><strong>[Task] Пройти організаційний етап та затвердити план</strong>
+<strong>Що зробити (згідно з п. 4.1, 4.2.1, 4.2.2):</strong>
+- [x] Написати заяву на ім’я завідувача кафедри про призначення керівника та теми роботи.
+- [x] Отримати, підписати та затвердити у завідувача кафедри «Завдання на дипломну роботу» (за 10 днів до початку практики).
+- [x] Скласти та захистити звіт про проходження передкваліфікаційної практики.
+- [x] Скласти календарний план виконання кваліфікаційної роботи (протягом перших 2 тижнів проектування).
+- [x] Узгодити та затвердити календарний план у наукового керівника: <strong>Маковейчук О.М.</strong>
+- [x] Узгодити та затвердити Завдання у завідувача кафедри: <strong>Голубенко О.І.</strong></p>
+<p><strong>[Task] Сформувати офіційне Завдання (Додаток Б)</strong>
+<strong>Що зробити (згідно з правилами розробки завдання):</strong>
+- [x] <strong>Назва теми:</strong> Перевірити, щоб назва була короткою і починалася з Об’єкта, а закінчувалася Елементом (напр., "Інформаційна система прогнозування [Об'єкт] на основі мереж LSTM [Елемент]"). 
+- [x] <strong>Назва теми:</strong> Прибрати слова "Розробка..." або "Дослідження..." з початку назви (це заборонено!).
+- [x] <strong>Вихідні дані:</strong> Вписати технічні характеристики:
+    - [x] Обсяг даних для обробки.
+    - [x] Вимоги до точності (припустимі похибки).
+    - [x] Умови функціонування (ОС, мови, навантаження).
+- [x] <strong>Зміст записки:</strong> Перефразувати всі пункти в наказовому способі:
+    - [x] "Проаналізувати..."
+    - [x] "Обґрунтувати..."
+    - [x] "Розробити..."</p>
+<p><strong>[Task] Скласти Календарний план (Таблиця в Завданні)</strong>
+<strong>Що зробити (згідно з формою бланка):</strong>
+- [x] Розбити роботу на 4-5 етапів.
+- [x] Для кожного етапу проставити конкретні дати (дедлайни), узгоджені з графіком кафедри.
+- [x] Обов'язково включити пункт: "Підготовка тез за тематикою кваліфікаційної роботи" (це вимога апробації).
+- [x] Додати фінальний етап: "Оформлення випускної роботи та подача до ЕК".</p>
+<p><strong>[Task] Виконання графіка та взаємодія з керівником</strong>
+<strong>Що зробити (згідно з Додатком А):</strong>
+- [x] <strong>Контроль:</strong> Не менше одного разу на два тижні інформувати керівника про стан виконання роботи.
+- [x] <strong>Самостійність:</strong> Забезпечити самостійне виконання індивідуальної частини роботи.
+- [x] <strong>Реагування:</strong> Своєчасно та адекватно виправляти зауваження керівника після перевірок.
+- [x] <strong>Фіксація:</strong> Після отримання відгуку та рецензії <strong>НЕ ВНОСИТИ</strong> жодних змін у текст дипломної роботи (сувора заборона).
+- [x] <strong>Відповідальність:</strong> Перевірити правильність усіх розрахунків та проектних рішень (студент несе повну відповідальність за якість).</p>
+<p><strong>[Milestone] Графік готовності розділів (Квітень - Червень)</strong>
+<strong>Суворі орієнтири (пріоритет №1):</strong>
+- [x] <strong>06.04.2026:</strong> 🛑 <strong>КРИТИЧНИЙ ДЕДЛАЙН (Закрити академ. та фін. борги)</strong>.
+- [x] <strong>Кінець березня:</strong> Повністю готовий РОЗДІЛ 1 (Аналітика).
+- [x] <strong>Кінець квітня:</strong> Повністю готовий РОЗДІЛ 2 (Технології та проекти).
+- [x] <strong>Кінець травня:</strong> Повністю готовий РОЗДІЛ 3 (Реалізація та результати).
+- [ ] <strong>26.04.2026:</strong> 🚩 <strong>ГРАНИЧНИЙ ТЕРМІН:</strong> Готовність чорновика для зовнішньої рецензії (для доктора наук Зінька Р.В.). Робота має бути структурно повною та насиченою ілюстраціями.
+- [ ] <strong>01.06.2026:</strong> Диплом готовий повністю (<strong>Ціль: 80 якісних сторінок</strong>). Подача на плагіат. Отримання довідки.
+- [ ] <strong>03.06.2026 (10:00):</strong> <strong>ПОПЕРЕДНІЙ ЗАХИСТ (І23)</strong>.
+- [ ] <strong>17.06.2026 (10:00):</strong> 🏆 <strong>ЗАХИСТ В ЕК (Група І23)</strong>.
+- [ ] <strong>Фінальний перелік документів для Classroom:</strong>
+    - [ ] Відгук керівника.
+    - [ ] Рецензія (зовнішня).
+    - [ ] Кваліфікаційна робота (PDF).
+    - [ ] <strong>Кваліфікаційна робота з накладеним КЕП + протокол</strong> (Підпис через <a href="https://www.youtube.com/watch?v=VaT8KmAh5B4">ДІЯ</a>).
+    - [ ] Презентація.
+    - [ ] Висновок про плагіат.</p>
+<hr />
+<h2 id="2-">✍️ Етап 2: Написання тексту (Травень - Початок червня)</h2>
+<p><strong>[Task] Написати аналітичну та проектну частини</strong>
+<strong>Що зробити (згідно з п. 2 та п. 3):</strong>
+- [x] Написати поглиблений аналіз теми за завданням на дипломну роботу.
+- [x] Описати вирішення діагностичної задачі: вказати, які відомі методи були обрані та як вони перетворені для нових умов.
+- [x] Описати розроблені математичні моделі.
+- [x] Описати самостійні проектно-конструкторські рішення.
+- [x] Навести та описати розрахунки, виконані на ПК.
+- [x] Сформулювати висновки стосовно проведених досліджень.
+- [x] Написати обґрунтовані пропозиції (рекомендації) щодо практичного використання об’єкту проектування.</p>
+<p><strong>[Task] Розділ 1: Аналіз області та постановка задачі</strong>
+<strong>Що зробити (згідно з п. 5.2.2):</strong>
+- [x] Виконати аналіз області застосування об’єкту на основі літератури та інтернет-ресурсів.
+- [x] Оформити посилання на джерела при першій згадці матеріалу.
+- [x] Виявити проблемні моменти (що змінити і чому).
+- [x] Сформулювати висновки: обґрунтувати потребу в оригінальному рішенні або використанні відомих.
+- [x] <strong>Обсяг:</strong> орієнтовно 10-14 сторінок (20% від загального).
+- [x] Написати конкретні висновки до розділу.</p>
+<p><strong>[Task] Розділ 2: Технічне завдання та вимоги</strong>
+<strong>Що зробити (згідно з п. 5.2.2):</strong>
+- [x] Сформулювати тему, мету та математичні методи рішення.
+- [x] Описати вхідну інформацію (документи, повідомлення) та вихідну (результати).
+- [x] Прописати вимоги до ПЗ та технічного забезпечення.
+- [x] Вказати інструментарій (пакети, СУБД, ОС).
+- [x] Описати етапи проектування та черговість впровадження.
+- [x] Навести високорівневі моделі системи (діаграми бізнес-процесів або архітектури).
+- [x] Написати конкретні висновки до розділу.</p>
+<p><strong>[Task] Розділ 3: Опис проєктних рішень та тестування</strong>
+<strong>Що зробити (згідно з п. 5.2.2):</strong>
+- [x] Надати опис усіх видів забезпечення: математичного, технічного, програмного, інформаційного.
+- [x] <strong>Для ПЗ:</strong> вказати назву, мову, функціонал, обмеження.
+- [x] <strong>Логіка ПЗ:</strong> Описати логіку програми (текстово + графічно/діаграмами).
+- [x] <strong>Інформаційне забезпечення:</strong> Описати структуру БД (логічний та фізичний рівні, правила цілісності).
+- [x] <strong>Тестування:</strong> Описати методику тестування системи в цілому та надати приклади тестів для кожного модуля.
+- [x] Написати конкретні висновки до розділу.</p>
+<p><strong>[Task] Оформити програмну реалізацію та графічний матеріал</strong>
+<strong>Що зробити (згідно з п. 2):</strong>
+- [x] Додати до тексту програмний код розробленого програмного забезпечення (або фрагменти інформаційної системи/веб-застосунку).
+- [x] Створити та вставити в текст графічний матеріал у вигляді таблиць.
+- [x] Створити та вставити в текст графічний матеріал у вигляді графіків.
+- [x] Створити та вставити в текст графічний матеріал у вигляді діаграм.
+- [x] Перевірити текст на логічність, доказовість та аргументованість.</p>
+<p><strong>[Task] Підготувати вступну частину пояснювальної записки</strong>
+<strong>Що зробити (згідно з п. 5.1, 5.2.1):</strong>
+- [x] <strong>Реферат (0.5–1 стор):</strong> Написати українською та іноземною мовами. 
+    - [x] Вказати обсяг (стор., ілюстр., табл., додатків, джерел).
+    - [x] Описати об’єкт, мету, методи та результати.
+    - [x] Додати список ключових слів (до 20 слів).
+- [x] <strong>Перелік скорочень:</strong> Скласти абетковий список (спочатку укр., потім англ.).
+- [x] <strong>Вступ (2-3 стор):</strong>
+    - [x] Обґрунтувати необхідність розробки/модернізації.
+    - [x] Обґрунтувати основні проєктні рішення.
+    - [x] Вказати галузі застосування.
+    - [x] Навести короткий огляд розділів роботи.</p>
+<p><strong>[Task] Фіналізація: Висновки, Список літератури, Додатки</strong>
+<strong>Що зробити (згідно з п. 5.2.2, 5.2.3):</strong>
+- [x] <strong>Висновки (1-3 стор):</strong> Оцінити результати щодо мети, вказати практичну цінність та рекомендації з вдосконалення.
+- [x] <strong>Список літератури:</strong> Оформити за ДСТУ 7.1:2006 або ГОСТ 7.32-91 (за абеткою або появою в тексті).
+- [x] <strong>Додатки:</strong> Сформувати пакет документів:
+    - [x] Тексти програм (код).
+    - [x] Результати тестування (протоколи).
+    - [x] Настанови користувача (інструкції).
+    - [x] Специфікації та відомості.</p>
+<p><strong>[Task] Наукова апробація (Публікація статті):</strong>
+    - [ ] Оформити статтю за результатами диплома (Литвиненко-Маковейчук).
+    - [ ] Цільова категорія: Науковий журнал МНТУ або видання категорії B (як радив керівник).
+    - [ ] Використати дослідження LSTM v3 як основу наукової новизни.
+- [ ] Опублікувати тези або статтю (це вимога апробації).</p>
+<p><strong>[Task] Прогнати текст через Антиплагіат та отримати довідку </strong><em>(Додатково)</em>**
+- [ ] Завантажити фінальний Ворд в систему антиплагіату.
+- [ ] Отримати довідку про оригінальність тексту (перевищує мінімальний поріг кафедри).</p>
+<hr />
+<h2 id="3">🎨 Етап 3: Нормоконтроль та Оформлення</h2>
+<p><strong>[Task] Налаштування параметрів сторінки та основного тексту</strong>
+<strong>Що зробити (згідно з п. 6.1):</strong>
+- [ ] <strong>Папір:</strong> Тільки формат А4, друк на одному боці.
+- [ ] <strong>Береги (Поля):</strong> Ліве — 30 мм, Праве — не менше 10 мм, Верхнє — 20 мм, Нижнє — не менше 20 мм.
+- [ ] <strong>Шрифт:</strong> Times New Roman, 14 пт.
+- [ ] <strong>Абзац:</strong> Горизонтальний відступ — 1,25 см.
+- [ ] <strong>Інтервал:</strong> Міжрядковий інтервал — 1.5.
+- [ ] <strong>Вирівнювання:</strong> По ширині (на основі наукового стилю викладення).
+- [ ] <strong>Переноси:</strong> Дозволені тільки всередині таблиць.</p>
+<p><strong>[Task] Оформлення структурних елементів та заголовків</strong>
+<strong>Що зробити (згідно з п. 6.1):</strong>
+- [ ] <strong>Послідовність:</strong> Титулка -&gt; Завдання -&gt; Реферат -&gt; Зміст -&gt; Скорочення -&gt; Вступ -&gt; Розділи -&gt; Висновки -&gt; Література -&gt; Додатки.
+- [ ] <strong>Зміст:</strong> Побудувати автоматично в MS Word (3 рівні вкладеності), інтервал 1.0, без курсиву.
+- [ ] <strong>Заголовки 1-го рівня (ВСТУП, РОЗДІЛИ тощо):</strong> 
+    - [ ] Шрифт 16 пт, Жирний, ВЕЛИКИМИ ЛІТЕРАМИ.
+    - [ ] По центру, інтервал 1.0.
+    - [ ] Відступи: перед — 12 пт, після — 6 пт.
+    - [ ] Починати кожен розділ з нової сторінки.
+- [ ] <strong>Заголовки 2 та 3 рівнів:</strong> 
+    - [ ] Шрифт 14 пт, Жирний, малими літерами (перша велика).
+    - [ ] По ширині, абзацний відступ 1,25 см.
+    - [ ] Відступи: перед — 6 пт, після — 6 пт.</p>
+<p><strong>[Task] Налаштування нумерації та посилань</strong>
+<strong>Що зробити (згідно з п. 6.2, 6.4, 6.5):</strong>
+- [ ] <strong>Сторінки:</strong> Номер у правому верхньому куті без крапки. Титулка рахується як №1, але номер на ній не ставиться.
+- [ ] <strong>Розділи:</strong> Використовувати формат "РОЗДІЛ 1" (Зміст, Вступ, Висновки, Література, Додатки — НЕ нумеруються як розділи).
+- [ ] <strong>Підрозділи:</strong> Формат "1.3" (без крапки в кінці).
+- [ ] <strong>Посилання на джерела:</strong> Тільки у квадратних дужках, наприклад <code>[1]</code>.
+- [ ] <strong>Список літератури:</strong> Оформити за ДСТУ ГОСТ 7.1:2006 (за порядком посилань або за абеткою).</p>
+<p><strong>[Task] Оформлення ілюстрацій, таблиць та математики</strong>
+<strong>Що зробити (згідно з п. 6.3, 6.4):</strong>
+- [x] <strong>[Final] Зведення документів та підготовка до виходу:</strong>
+    - [x] <strong>Master Document:</strong> Створено <code>THESIS_FULL_FINAL_UTF8.md</code> (весь диплом в одному файлі).
+    - [x] <strong>Defense Guide:</strong> Створено <code>DEFENSE_GUIDE.md</code> (шпаргалка з відповідями на питання).
+    - [x] <strong>Final Commit &amp; Push:</strong> Весь пакет документації синхронізовано з хмарою.</p>
+<h1 id="100-ready-for-defense">🏁 СТАТУС ПРОЄКТУ: 100% (READY FOR DEFENSE)</h1>
+<ul>
+<li>[x] <strong>Рисунки (Рис. X.Y):</strong> Підписи та центрування згідно з ДСТУ.</li>
+<li>[x] <strong>Таблиці (Таблиця X.Y):</strong> Назви зверху, оформлення шапок.</li>
+<li>[x] <strong>Формули:</strong> Номер праворуч <code>(X.Y)</code>, розшифровка через "де".</li>
+</ul>
+<p><strong>[Task] Оформлення допоміжних матеріалів (Додатки)</strong>
+<strong>Що зробити (згідно з п. 6.6):</strong>
+- [ ] <strong>Наповнення:</strong> Винести в додатки лістинги програм, великі таблиці, методики випробувань та акти впровадження.
+- [ ] <strong>Нумерація:</strong> Позначати додатки великими літерами української абетки (Додаток А, Додаток Б...).
+- [ ] <strong>Заголовки:</strong>
+    - [ ] Слово «Додаток [Літера]» — посередині рядка зверху.
+    - [ ] Назва додатка — під ним, симетрично тексту, малими літерами (перша велика).
+- [ ] <strong>Внутрішня нумерація:</strong> Якщо є розділи або рисунки в додатку, використовувати префікс літери (напр., «рис. Д.1.2», «підрозділ А.2»).
+- [ ] <strong>Зв'язок з текстом:</strong> Перевірити, щоб на кожен додаток було посилання в основному тексті у порядку їх згадування.</p>
+<p><strong>[Task] Оформити Титульну сторінку (Додаток В)</strong>
+Згідно з вимогами кафедри, необхідно створити титульну сторінку суворо за зразком.</p>
+<h3 id="-">📋 Чек-лист оформлення:</h3>
+<ul>
+<li>[x] <strong>Шапка:</strong> Вказати повну нову назву: Кафедра «Інформаційних та комунікаційних технологій некомп'ютерних наук та інженерії програмного забезпечення».</li>
+<li>[x] <strong>Блок допуску:</strong> Розмістити праворуч зверху поле для підпису завідувача кафедри (О.І. Голубенко) та дату захисту (2026 р.).</li>
+<li>[x] <strong>Центральний блок:</strong> <ul>
+<li>[x] Напис "КВАЛІФІКАЦІЙНА РОБОТА" (великими літерами).</li>
+<li>[x] Вказати ступінь "Бакалавр" та спеціальність "121 Інженерія програмного забезпечення".</li>
+</ul>
+</li>
+<li>[x] <strong>Тема (ВАЖЛИВО):</strong> Видалити шаблон і вписати твою назву.</li>
+<li>[x] <strong>Виконавець:</strong> Вказати твій курс, групу та ПІБ.</li>
+<li>[x] <strong>Керівник:</strong> Вказати повні дані твого керівника.</li>
+<li>[x] <strong>Академічна доброчесність:</strong> Додати обов'язкову фразу про відсутність плагіату та місце для твого підпису.</li>
+<li>[x] <strong>Низ сторінки:</strong> Київ — 2026 рік.</li>
+<li>[x] <strong>Порада:</strong> перевір, щоб номер сторінки на ній не відображався.</li>
+</ul>
+<hr />
+<h2 id="4">📝 Етап 4: Документи та Попередній захист (Початок червня)</h2>
+<p><strong>[Task] Пройти нормоконтроль на кафедрі </strong><em>(Додатково)</em>**
+- [ ] Надати готову, оформлену (але ще не зшиту намертво) роботу відповідальному за нормоконтроль.
+- [ ] Отримати підпис нормоконтролера на Титулці.</p>
+<p><strong>[Task] Зібрати супровідні документи та допуски</strong>
+<strong>Що зробити (згідно з п. 1 та п. 2):</strong>
+- [ ] Перевірити, чи написана робота з дотриманням затвердженого плану (без відхилень).
+- [ ] Зібрати всі супровідні документи.
+- [ ] Отримати відзив наукового керівника.
+- [ ] Отримати зовнішню рецензію.
+- [ ] Переконатися, що складені усі передбачені навчальним планом заліки та екзамени.
+- [ ] Подати готову роботу на кафедру в термін, передбачений графіком.</p>
+<p><strong>[Task] Пройти попередній захист на кафедрі</strong>
+<strong>Що зробити (згідно з п. 4.2.2):</strong>
+- [ ] Подавати роботу керівнику частинами на перегляд згідно з календарним планом.
+- [ ] Подати завершену дипломну роботу на рецензування науковому керівнику у встановлений термін.
+- [ ] Підготуватися до попереднього захисту (за 3-7 днів до основних захистів): підготувати роботу в повному обсязі, коротку доповідь та демонстрацію об’єкту проектування.
+- [x] Пройти попередній захист перед комісією кафедри (з готовим текстом та демонстрацією).
+- [x] Отримати підписаний протокол попереднього захисту з рекомендацією до допуску.
+- [x] Отримати підпис завідувача кафедри на дипломній роботі після попереднього захисту.</p>
+<p><strong>[Task] Підготувати проект Відгуку керівника (Додаток Г)</strong>
+Згідно з Додатком Г, необхідно підготувати текст відгуку наукового керівника. </p>
+<h3 id="-_1">📋 Чек-лист змісту відгуку:</h3>
+<ul>
+<li>[x] <strong>Заповнення:</strong> Підготовлено проєкт відгуку (<code>OFFICIAL_REVIEW_PROJECT.md</code>).</li>
+<li>[x] <strong>Мета роботи:</strong> Дати стислий огляд мети кваліфікаційної роботи.</li>
+<li>[x] <strong>Оцінка структури:</strong> Підтвердити відповідність структури темі та чіткість викладення матеріалу.</li>
+<li>[x] <strong>Результати:</strong> Сформулювати основні результати, отримані студентом особисто.</li>
+<li>[x] <strong>Формальна перевірка:</strong> Підтвердити, що робота задовольняє всім формальним вимогам.</li>
+<li>[x] <strong>Дані керівника:</strong> Повно вказати посаду (О.М. Маковейчук).</li>
+</ul>
+<p><strong>[Task] Підготувати проект Рецензії та отримати зовнішній відгук (Додаток Д)</strong>
+Згідно з Додатком Д, роботу має оцінити зовнішній рецензент.</p>
+<h3 id="-_2">📋 Чек-лист для підготовки Рецензії:</h3>
+<ul>
+<li>[x] <strong>Заповнення:</strong> Підготовлено проєкт рецензії (<code>OFFICIAL_RECENSION_PROJECT.md</code>).</li>
+<li>[x] <strong>Аргументація:</strong> Підготовлено по всіх 8 пунктах.</li>
+<li>[x] <strong>Практична цінність:</strong> Описано (використання в Smart Grid).</li>
+<li>[x] <strong>Зауваження:</strong> Сформульовано побажання щодо RES.</li>
+</ul>
+<p><strong>[Task] Роздрукувати роботу, підписати, зшити у тверду палітурку </strong><em>(Додатково)</em>**
+- [ ] Роздрукувати чистовик диплому.
+- [ ] Зібрати всі підписи.
+- [ ] Зшити у тверду палітурку в копіцентрі.</p>
+<hr />
+<h2 id="5">🎓 Етап 5: Фінал (Червень)</h2>
+<p><strong>[Task] Підготовка відповідей та подача до ЕК</strong>
+<strong>Що зробити (згідно з Додатком А):</strong>
+- [ ] <strong>Ознайомлення:</strong> Прочитати відгук керівника та зовнішню рецензію одразу після отримання.
+- [ ] <strong>Підготовка:</strong> Підготувати аргументовані відповіді на всі зауваження, вказані в рецензії (для виступу на захисті).
+- [ ] <strong>Подача:</strong> Надати дипломну роботу до ЕК у строк, визначений секретарем.
+- [ ] <strong>Явка:</strong> Своєчасно прибути на захист (мати при собі документи, якщо присутність неможлива).</p>
+<p><strong>[Task] Зібрати фінальні документи та підготувати доповідь</strong>
+<strong>Що зробити (згідно з п. 4.2.3):</strong>
+- [ ] Отримати відзив від наукового керівника.
+- [ ] Отримати рецензію від зовнішнього рецензента.
+- [ ] Подати роботу секретарю ЕК (не пізніше ніж за добу до захисту).
+- [x] Підготувати презентацію роботи (слайди).
+- [x] Підготувати доповідь про сутність роботи, технічні рішення та результати (тривалість — не більше 10 хвилин).
+- [x] Підготувати демонстрацію розроблених програмних засобів.
+- [ ] Підготуватися до відповідей на запитання членів комісії (до 15 хвилин) та зауваження рецензентів (до 1 хвилини).</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
