@@ -70,7 +70,7 @@ flowchart LR
     LSTM --> ADAPT["Domain Adaptation\n(substation scaling)"]
     ADAPT --> OUT["df_forecast\n24 годин"]
 
-    LSTM -- "Якщо unavailable" --> FALL["Seasonal Naive\nbaseline_arima.py"]
+    LSTM -- "Якщо unavailable" --> FALL["SARIMA\nbaseline_arima.py"]
     FALL --> OUT
 ```
 
@@ -81,7 +81,7 @@ flowchart LR
 | v1 | 1 | 1 | Базова (load_mw) |
 | v2 | 5 | 2 | + Погода + Health |
 | v3 | 9 | 2 | + Часові гармоніки sin/cos |
-| Zero-Fail | — | 2 | Seasonal Naive Fallback |
+| Zero-Fail | — | 2 | SARIMA Fallback |
 
 ---
 

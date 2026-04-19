@@ -74,7 +74,7 @@ graph TB
 | 3. Нормалізація | `vectorizer.py` | MinMaxScaler → матриця (48, 9) |
 | 4. Предикція | `predict_v2.py` | LSTM.predict() × 24 кроки |
 | 5. Domain Adaptation | `predict_v2.py` | Автоскейлінг під підстанцію |
-| 6. Fallback | `baseline_arima.py` | Seasonal Naive якщо LSTM недоступний |
+| 6. Fallback | `baseline_arima.py` | SARIMA якщо LSTM недоступний |
 | 7. Бектест | `backtest.py` | RMSE / MAE / MAPE / R² + Shapiro-Wilk |
 
 ---
@@ -100,7 +100,7 @@ Energy Monitor ULTIMATE
 │   ├── vectorizer.py          ← Sliding Window + Feature Engineering
 │   ├── metrics_engine.py      ← RMSE/MAE/MAPE/R² + Статистичний аудит
 │   ├── backtest.py            ← Бектест на historical даних
-│   ├── baseline_arima.py      ← Seasonal Naive Fallback
+│   ├── baseline_arima.py      ← SARIMA Fallback
 │   └── train_lstm.py          ← Навчання моделі
 │
 ├── src/                       ← Серверні сервіси
@@ -176,7 +176,7 @@ flowchart LR
 | **Type Coverage** | ~60% (ціль: >90%) |
 | **Кеш (TTL 24h)** | 10 файлів (316 МБ, тільки .graphml карти) |
 | **Розгортання** | Render.com + Docker (auto-deploy) |
-| **Uptime** | 99%+ (Seasonal Naive fallback) |
+| **Uptime** | 99%+ (SARIMA fallback) |
 
 ---
 

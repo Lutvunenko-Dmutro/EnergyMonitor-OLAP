@@ -92,7 +92,7 @@ EnergyMonitor-OLAP/
 │   ├── vectorizer.py              # Sliding Window + Feature Engineering (9 ознак)
 │   ├── metrics_engine.py          # RMSE/MAE/MAPE/R² + Статистичний аудит
 │   ├── backtest.py                # Бектест на історичних даних
-│   ├── baseline_arima.py          # Seasonal Naive Fallback (Режим Zero-Fail)
+│   ├── baseline_arima.py          # SARIMA Fallback (Режим Zero-Fail)
 │   ├── model_loader.py            # Завантажувач моделей ONNX/H5
 │   └── train_lstm.py              # Скрипт навчання LSTM
 │

@@ -10,7 +10,7 @@
 | :--- | :---: | :---: |
 | **Тести (pytest)** | 74 пройдено / 0 помилок / 5 пропущено | ✅ ВІДМІННО |
 | **Security Audit** | Чисто (Bandit + detect-secrets) | ✅ ВЕРИФІКОВАНО |
-| **System Resilience** | Висока (Seasonal Naive Fallback) | ✅ FALLBACK АКТИВНИЙ |
+| **System Resilience** | Висока (SARIMA Fallback) | ✅ FALLBACK АКТИВНИЙ |
 | **Оптимізація пам'яті** | Auto-GC watchdog (380 MB поріг) | ✅ ОПТИМІЗОВАНО |
 | **Cache Management** | TTL 24h авто-очищення (257 МБ звільнено) | ✅ АКТИВНО |
 | **CI/CD Pipeline** | GitHub Actions → Docker → Render.com | ✅ ПРАЦЮЄ |
@@ -21,7 +21,7 @@
 ## 🚀 Ключові технічні досягнення
 
 ### 1. Zero-Failure Hybrid Architecture
-- **Seasonal Naive Fallback**: якщо LSTM/ONNX недоступний — система автоматично надає базовий прогноз (24/7 uptime).
+- **SARIMA Fallback**: якщо LSTM/ONNX недоступний — система автоматично надає базовий прогноз (24/7 uptime).
 - **Graceful retry**: автоматичні повторні спроби при тайм-аутах БД у `src/core/database.py`.
 
 ### 2. Digital Twin Physics Engine
