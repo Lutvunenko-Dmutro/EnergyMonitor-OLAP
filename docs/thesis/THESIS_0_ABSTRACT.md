@@ -1,32 +1,29 @@
-РЕФЕРАТ
+# РЕФЕРАТ / ABSTRACT
 
-Відомості про обсяг роботи: пояснювальна записка містить 60 сторінок, 15 ілюстрацій, 5 таблиць, 30 джерел.
+## РЕФЕРАТ
+**Текст роботи:** 80 сторінок, 18 рисунків, 12 таблиць, 35 джерел.
 
-Об’єкт проєктування: процеси інтелектуального моніторингу та предиктивного аналізу часових рядів енергоспоживання в інфраструктурі Розумного міста (Smart City).
+**Об’єкт дослідження** – процеси предиктивного аналізу та моніторингу енергоспоживання в інфраструктурі Smart City.
+**Предмет дослідження** – методи глибокого навчання (LSTM), архітектура OLAP та концепція Цифрових двійників для прогнозування часових рядів.
+**Мета роботи** – розробка інтелектуальної SaaS-платформи EnergyMonitor-OLAP для високоточного прогнозування навантаження та візуалізації енергопотоків у реальному часі.
+**Методи дослідження** – аналітичний огляд, методи глибокого навчання (LSTM нейронні мережі), системний аналіз, математичне та імітаційне моделювання.
 
-Мета роботи: розробка та впровадження хмарної SaaS-платформи EnergyMonitor-OLAP для забезпечення високої точності короткострокового прогнозування енергонавантаження та симуляції технічного стану об’єктів енергосистеми. У роботі використано методи глибокого навчання на базі рекурентних нейронних мереж (архітектура LSTM v3), технологію цифрових двійників (Digital Twin) для фізичного моделювання, а також інструментарій багатовимірного аналітичного оброблення даних (OLAP).
+**Отримані результати:** 
+Розроблено та реалізовано 4-рівневу архітектуру системи. Спроектовано інтелектуальне предиктивне ядро на базі моделі LSTM v3 з використанням тригонометричного кодування часу. Проведена верифікація моделі на еталонних даних підтвердила високу точність прогнозування (MAPE < 3.1%). Практичне значення полягає у можливості впровадження системи для диспетчеризації Smart Grid та впровадження предиктивного обслуговування обладнання.
 
-Отримані результати: реалізовано працездатну 4-рівневу систему, що забезпечує точність прогнозування енергоспоживання з показником MAPE в межах 1,5–3,1 відсотка. Спроєктована аналітична база даних на PostgreSQL дозволяє виконувати складні запити до телеметричних даних у реальному часі. Проведено повний цикл тестування та розгортання системи в хмарному середовищі.
-
-Рекомендації щодо використання: результати проєкту доцільно впроваджувати у муніципальних диспетчерських центрах управління та в системах предиктивного обслуговування (Predictive Maintenance) для оптимізації енергоспоживання та запобігання аварійним ситуаціям у мережах Smart Grid.
-
-Перелік ключових слів: НЕЙРОННІ МЕРЕЖІ, LSTM, SMART CITY, ЕНЕРГОСПОЖИВАННЯ, ПРОГНОЗУВАННЯ, ЦИФРОВИЙ ДВІЙНИК, OLAP, POSTGRESQL, SAAS, ПРЕДИКТИВНЕ ОБСЛУГОВУВАННЯ, ІНЖЕНЕРІЯ ПРОГРАМНОГО ЗАБЕЗПЕЧЕННЯ.
-
----
-
-ABSTRACT
-
-Thesis volume: 60 pages, 15 illustrations, 5 tables, 30 references.
-
-Object of design: processes of intelligent monitoring and predictive analysis of energy consumption time series in the Smart City infrastructure.
-
-Aim of the work: development and implementation of the EnergyMonitor-OLAP cloud SaaS platform to ensure high accuracy of short-term energy load forecasting and simulation of the technical state of power system objects. The work uses deep learning methods based on recurrent neural networks (LSTM v3 architecture), Digital Twin technology for physical modeling, and Online Analytical Processing (OLAP) tools.
-
-Obtained results: a functional 4-level system has been implemented, providing energy consumption forecasting accuracy with MAPE in the range of 1.5–3.1 percent. The designed analytical database on PostgreSQL allows complex real-time telemetry queries. A full cycle of system testing and deployment in the cloud environment has been conducted.
-
-Recommendations for use: the project results should be implemented in municipal dispatch control centers and predictive maintenance systems to optimize energy consumption and prevent emergencies in Smart Grid networks.
-
-Key words: NEURAL NETWORKS, LSTM, SMART CITY, ENERGY CONSUMPTION, FORECASTING, DIGITAL TWIN, OLAP, POSTGRESQL, SAAS, PREDICTIVE MAINTENANCE, SOFTWARE ENGINEERING.
+**Ключові слова:** SMART CITY, SMART GRID, LSTM, НЕЙРОННІ МЕРЕЖІ, ЦИФРОВИЙ ДВІЙНИК, PREDICTIVE MAINTENANCE, ПРОГНОЗУВАННЯ, ЧАСОВІ РЯДИ, SAAS, OLAP, POSTGRESQL.
 
 ---
-[Далі: ВСТУП](THESIS_0_INTRODUCTION.md)
+
+## ABSTRACT
+**Work context:** 80 pages, 18 figures, 12 tables, 35 sources.
+
+**The object of research** is the processes of predictive analysis and monitoring of energy consumption in the Smart City infrastructure.
+**The subject of research** is deep learning methods (LSTM), OLAP architecture, and the concept of Digital Twins for time series forecasting.
+**The goal of the work** is to develop the EnergyMonitor-OLAP intelligent SaaS platform for high-precision load forecasting and real-time energy flow visualization.
+**Research methods** include analytical review, deep learning methods (LSTM neural networks), system analysis, mathematical and simulation modeling.
+
+**Results:** 
+A 4-layer system architecture has been designed and implemented. An intelligent predictive core based on the LSTM v3 model using trigonometric time encoding has been developed. Model verification on reference data confirmed high forecasting accuracy (MAPE < 3.1%). The practical significance lies in the possibility of implementing the system for Smart Grid dispatching and proactive equipment maintenance.
+
+**Key words:** SMART CITY, SMART GRID, LSTM, NEURAL NETWORKS, DIGITAL TWIN, PREDICTIVE MAINTENANCE, FORECASTING, TIME SERIES, SAAS, OLAP, POSTGRESQL.
