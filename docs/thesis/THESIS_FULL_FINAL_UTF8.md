@@ -431,9 +431,6 @@ graph TB
 (Опис: Схема взаємодії шарів представлення, ШІ-ядра, даних та DevOps конвеєра).
 
 ```mermaid
-graph TB
-
-```mermaid
 graph TD
     subgraph Local ["💻 LOCAL ENVIRONMENT"]
         DG["data_generator.py\n(Симулятор)"]
