@@ -4,8 +4,9 @@
 Цей документ є навігаційним центром для рецензування системи **Energy Monitor Ultimate (Project Atlas)**. Тут зібрані всі ключові матеріали, що підтверджують наукову новизну та інженерну якість розробки.
 
 ## 🔗 Головні ресурси
+*   **📄 Фінальна ПЗ (Word):** [**THESIS_FINAL.docx**](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/docs/thesis/THESIS_FINAL.docx) — офіційний документ для захисту (ДСТУ).
 *   **🌐 Інтерактивний Атлас проєкту:** [**lutvunenko-dmutro.github.io/EnergyMonitor-OLAP/**](https://lutvunenko-dmutro.github.io/EnergyMonitor-OLAP/) — повна візуалізація архітектури та логіки кожного модуля.
-*   **📖 Повна пояснювальна записка:** [**THESIS_FULL_FINAL_UTF8.md**](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/docs/thesis/THESIS_FULL_FINAL_UTF8.md) — 80+ сторінок технічного тексту.
+*   **📖 Текстовий Markdown-оригінал:** [**THESIS_FULL_FINAL_UTF8.md**](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/docs/thesis/THESIS_FULL_FINAL_UTF8.md) — 80+ сторінок технічного тексту.
 *   **📊 Поточний статус та тести:** [**PROJECT_STATUS.md**](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/docs/PROJECT_STATUS.md) — звіт про 74 пройдених тести та безпековий аудит.
 
 ## 🔬 Наукова новизна та досягнення

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Museum Tour Platinum v15 | Energy Monitor</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.26.0/cytoscape.min.js"></script>
+    <script src="https://unpkg.com/layout-base/layout-base.js"></script>
+    <script src="https://unpkg.com/cose-base/cose-base.js"></script>
+    <script src="https://unpkg.com/cytoscape-fcose/cytoscape-fcose.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="data.js"></script>
+    <style>
+        :root {
+            --bg: #020406;
+            --side: rgba(9, 11, 16, 0.96);
+            --accent: #00f2ff;
+            --gold: #f59e0b;
+            --border: rgba(0, 242, 255, 0.15);
+            --glass: rgba(255, 255, 255, 0.03);
+        }
+        body, html { margin:0; padding:0; width:100%; height:100%; background:var(--bg); color:#cbd5e1; font-family:'Inter', sans-serif; overflow:hidden; display:flex; }
+        
+        #explorer { width:260px; background:var(--side); border-right:1px solid var(--border); display:flex; flex-direction:column; z-index:300; backdrop-filter:blur(30px); }
+        .head-title { padding:30px; border-bottom:1px solid var(--border); }
+        .head-title h2 { margin:0; font-size:0.7rem; letter-spacing:4px; color:white; text-transform:uppercase; font-weight:300; }
+        #tree-view { flex:1; overflow-y:auto; padding:20px; list-style:none; margin:0; font-size:0.7rem; }
+        .t-node { padding:8px 12px; cursor:pointer; border-radius:6px; display:flex; align-items:center; gap:10px; transition:0.2s; color:#64748b; }
+        .t-node.active { background:rgba(0,242,255,0.1); color:var(--accent); font-weight:700; }
+
+        #viewport { flex:1; position:relative; overflow:hidden; background:#020406; }
+        #cy { width:100%; height:100%; z-index:10; }
+
+        /* TOUR GUIDE CONTROLLER */
+        #tour-guide { position:absolute; bottom:40px; left:50%; transform:translateX(-50%); z-index:1000; background:rgba(13, 17, 23, 0.9); border:1px solid var(--border); border-radius:100px; padding:12px 30px; display:flex; align-items:center; gap:25px; backdrop-filter:blur(20px); box-shadow:0 10px 40px rgba(0,0,0,0.8); }
+        .tour-btn { background:none; border:none; color:white; cursor:pointer; opacity:0.6; transition:0.3s; display:flex; align-items:center; }
+        .tour-btn:hover { opacity:1; color:var(--accent); }
+        #tour-info { font-size:0.75rem; font-weight:800; color:var(--accent); letter-spacing:2px; text-transform:uppercase; min-width:180px; text-align:center; }
+
+        /* INSPECTOR */
+        #inspector { position:absolute; right:-420px; top:0; bottom:0; width:420px; background:rgba(8,10,15,0.99); border-left:1px solid var(--border); z-index:500; transition:0.6s cubic-bezier(0.16, 1, 0.3, 1); padding:60px 45px; box-sizing:border-box; }
+        #inspector.active { right:0; }
+        .type-tag { font-size:0.6rem; font-weight:900; background:var(--accent); color:#000; padding:4px 10px; border-radius:4px; text-transform:uppercase; margin-bottom:25px; display:inline-block; }
+        #i-title { font-size:2rem; color:white; margin:0; font-weight:700; }
+        #i-txt { font-size:1rem; line-height:1.8; color:#94a3b8; margin-top:40px; }
+    </style>
+</head>
+<body>
+    <div id="explorer">
+        <div class="head-title"><h2>Explorer</h2></div>
+        <ul id="tree-view"></ul>
+    </div>
+
+    <div id="viewport">
+        <div id="cy"></div>
+
+        <!-- TOUR CONTROLLER -->
+        <div id="tour-guide">
+            <button class="tour-btn" onclick="tourPrev()"><i data-lucide="chevron-left"></i></button>
+            <div id="tour-info">Museum Tour: Start</div>
+            <button class="tour-btn" onclick="tourNext()"><i data-lucide="chevron-right"></i></button>
+            <div style="border-left:1px solid var(--border); height:20px; margin:0 10px;"></div>
+            <button class="tour-btn" onclick="startTour()"><i data-lucide="play" style="width:16px;"></i></button>
+        </div>
+
+        <div id="inspector">
+            <div style="position:absolute; top:35px; right:35px; cursor:pointer; opacity:0.3;" onclick="hideAll()"><i data-lucide="x"></i></div>
+            <div id="i-badge" class="type-tag">BRANCH_UNIT</div>
+            <h1 id="i-title">SELECT_UNIT</h1>
+            <div id="i-txt">Аналіз архітектури...</div>
+            <a id="i-git" href="#" target="_blank" style="margin-top:50px; display:flex; align-items:center; gap:12px; background:#21262d; color:white; text-decoration:none; font-size:0.8rem; font-weight:700; padding:15px 30px; border-radius:10px; border:1px solid var(--border);">
+                <i data-lucide="github"></i> BROWSE SOURCE
+            </a>
+        </div>
+    </div>
+
+    <script>
+        var currentStep = -1;
+
+        // ІНІЦІАЛІЗАЦІЯ ДЕРЕВА
+        function buildTree(parent, container) {
+            const list = PROJECT_HIERARCHY[parent] || [];
+            list.forEach(name => {
+                const id = parent + (parent.endsWith('/') ? '' : '/') + name;
+                const isF = name.endsWith('/');
+                const li = document.createElement('li');
+                li.className = 't-node';
+                li.id = 'exp-' + id.replace(/[^a-zA-Z0-9]/g, '_');
+                li.innerHTML = `<i data-lucide="${isF ? 'folder' : 'file'}" style="width:14px; color:${isF ? '#f59e0b' : 'var(--accent)'}"></i> <span>${name.replace('/','')}</span>`;
+                li.onclick = (e) => { e.stopPropagation(); focusNode(id); };
+                container.appendChild(li);
+                if (isF && PROJECT_HIERARCHY[id]) {
+                    const ul = document.createElement('ul');
+                    ul.style.listStyle = 'none'; ul.style.paddingLeft = '18px';
+                    li.appendChild(ul);
+                    buildTree(id, ul);
+                }
+            });
+        }
+
+        var cy = cytoscape({
+            container: document.getElementById('cy'),
+            autoungrabify: true,
+            style: [
+                { selector: 'node', style: { 'label': 'data(label)', 'color': '#fff', 'font-family': 'Inter', 'font-size': '10px', 'background-color': '#0f172a', 'border-width': 1.5, 'border-color': 'data(color)', 'shape': 'ellipse', 'width': '8px', 'height': '8px', 'text-halign': 'right', 'text-margin-x': 8, 'text-valign': 'center' } },
+                { selector: 'node[type="folder"]', style: { 'shape': 'round-rectangle', 'background-color': 'rgba(0,242,255,0.01)', 'border-opacity': 0.2, 'padding': 40, 'text-valign': 'top', 'text-margin-y': -12 } },
+                { selector: 'edge', style: { 'width': 1, 'line-color': 'rgba(0,242,255,0.05)', 'curve-style': 'segments', 'opacity': 0.4 } },
+                { selector: '.landmark', style: { 'shape': 'hexagon', 'width': '35px', 'height': '35px', 'background-color': '#000', 'border-width': 3, 'border-color': 'var(--accent)', 'font-size': '12px', 'font-weight': 900, 'text-halign': 'center', 'text-margin-x': 0 } },
+                { selector: '.spotlight', style: { 'opacity': 1, 'z-index': 1000 } },
+                { selector: '.dimmed', style: { 'opacity': 0.1, 'z-index': 1 } },
+                { selector: '.active-line', style: { 'line-color': 'var(--accent)', 'width': 2, 'opacity': 1 } }
+            ]
+        });
+
+        function initMap(parent) {
+            const list = PROJECT_HIERARCHY[parent] || [];
+            list.forEach(name => {
+                const id = parent + (parent.endsWith('/') ? '' : '/') + name;
+                const isF = name.endsWith('/');
+                const isL = TOUR_STEPS.some(s => s.id === id);
+                const br = Object.keys(BRANCH_STYLING).find(b => id.includes(b)) || 'default';
+                
+                cy.add({ group: 'nodes', data: { id, parent: parent === 'ROOT' ? null : parent, label: name.replace('/','').toUpperCase(), type: isF ? 'folder' : 'file', color: BRANCH_STYLING[br].color, sName: name.replace('/','') }, classes: isL ? 'landmark' : '' });
+                if (parent !== 'ROOT') cy.add({ group: 'edges', data: { source: parent, target: id } });
+                if (isF) initMap(id);
+            });
+        }
+
+        // TOUR LOGIC
+        function startTour() { currentStep = 0; runStep(); }
+        function tourNext() { if (currentStep < TOUR_STEPS.length - 1) { currentStep++; runStep(); } }
+        function tourPrev() { if (currentStep > 0) { currentStep--; runStep(); } }
+
+        function runStep() {
+            const step = TOUR_STEPS[currentStep];
+            const node = cy.getElementById(step.id);
+            
+            document.getElementById('tour-info').innerText = `Експонат ${currentStep + 1}/${TOUR_STEPS.length}`;
+            
+            cy.elements().removeClass('spotlight').addClass('dimmed');
+            node.addClass('spotlight').predecessors().addClass('spotlight');
+            
+            cy.animate({ center: { eles: node }, zoom: 1.5, duration: 1000 });
+            
+            // Оновлення інспектора стилем Музею
+            const p = document.getElementById('inspector');
+            document.getElementById('i-title').innerText = step.title;
+            document.getElementById('i-txt').innerText = step.txt;
+            document.getElementById('i-badge').innerText = "MUSEUM_EXHIBIT";
+            p.classList.add('active');
+        }
+
+        function focusNode(id) {
+            const node = cy.getElementById(id);
+            if(node.length > 0) {
+                cy.elements().removeClass('dimmed active-line');
+                node.predecessors().addClass('active-line');
+                cy.animate({ center: { eles: node }, zoom: 2.0, duration: 800 });
+                
+                const d = NODE_DESCRIPTIONS[node.data('sName')] || {};
+                document.getElementById('i-title').innerText = node.data('label');
+                document.getElementById('i-txt').innerText = d.txt || "Системний об'єкт архітектури.";
+                document.getElementById('inspector').classList.add('active');
+            }
+        }
+
+        initMap('ROOT');
+        buildTree('ROOT', document.getElementById('tree-view'));
+        cy.layout({ name:'fcose', quality:'proof', nodeRepulsion:80000, padding:150 }).run();
+        lucide.createIcons();
+
+        function hideAll() { document.getElementById('inspector').classList.remove('active'); cy.elements().removeClass('dimmed spotlight active-line'); }
+    </script>
+</body>
+</html>
