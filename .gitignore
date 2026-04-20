@@ -14,6 +14,9 @@ backup_local.sql
 *.db
 *.sqlite3
 
+# Word Temporary Files
+~$*.docx
+
 # Logs and heavy data
 *.log
 logs/
@@ -30,6 +33,8 @@ site/
 .idea/
 .vscode/
 cache/
+.DS_Store
+Thumbs.db
 
 # Test artifacts and reports
 .coverage
