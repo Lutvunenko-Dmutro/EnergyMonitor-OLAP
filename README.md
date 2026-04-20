@@ -10,6 +10,9 @@
 *   [**ROADMAP.md**](ROADMAP.md) — План розвитку.
 
 ---
+## 👤 Автор / Author
+**Литвиненко Дмитро Сергійович (Lutvunenko Dmutro), бакалавр**  
+*Бакалавр 121 ІПЗ / Bachelor of Software Engineering*
 
 ## 🎓 Bachelor Thesis Dashboard (121 ІПЗ)
 
