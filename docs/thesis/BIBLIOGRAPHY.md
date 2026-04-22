@@ -4,7 +4,7 @@
 2. Billings S. A. Nonlinear System Identification: NARMAX Methods in the Time, Frequency, and Spatio-Temporal Domains. Wiley, 2013. 574 p.
 3. Box G. E., Jenkins G. M., Reinsel G. C., Ljung G. M. Time Series Analysis: Forecasting and Control. 5th ed. Wiley, 2015. 712 p.
 4. Chollet F. Deep Learning with Python. 2nd ed. Manning Publications, 2021. 504 p.
-5. Dockerfile Reference // Docker Documentation. URL: https://docs.docker.com/engine/reference/builder/ (дата звернення: 05.04.2026).
+5. Brockwell P. J., Davis R. A. Introduction to Time Series and Forecasting. 3rd ed. Springer, 2016. 425 p.
 6. DSTU 8302:2015. Information and documentation. Bibliographic reference. General principles and rules of composition. Kyiv : SE "UkrNDNC", 2016. 17 p.
 7. Farhangi H. The path of the smart grid. IEEE Power and Energy Magazine. 2010. Vol. 8, No. 1. P. 18—28.
 8. Geron A. Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow. 2nd ed. O'Reilly Media, 2019. 856 p.
@@ -35,6 +35,9 @@
 33. SQLAlchemy Documentation. Unified Tutorial (Version 2.0). URL: https://docs.sqlalchemy.org/en/20/tutorial/ (дата звернення: 12.04.2026).
 34. GitHub Actions Documentation. Understanding GitHub Actions. URL: https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions (дата звернення: 05.04.2026).
 35. Vasiliev V., Gurevich Y. Digital Twins for Smart Grid Infrastructure: Challenges and Opportunities. International Journal of Energy Research. 2021. Vol. 45. P. 12050—12065.
+36. ISO/ASME 23247:2021. Automation systems and integration — Digital twin framework for manufacturing. Part 1-4. 2021.
+37. IEEE 1547-2018. IEEE Standard for Interconnection and Interoperability of Distributed Energy Resources with Associated Electric Power Systems Interfaces. 2018.
+38. IEEE C57.91-2011. IEEE Guide for Loading Mineral-Oil-Immersed Transformers and Step-Voltage Regulators. 2011.
 
 ---
 [Назад до Висновків](THESIS_FINAL_CONCLUSIONS.md) | [Далі: ДОДАТКИ](APPENDICES.md)

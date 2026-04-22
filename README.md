@@ -17,14 +17,14 @@
 ## 🎓 Bachelor Thesis Dashboard (121 ІПЗ)
 
 > [!TIP]
-> **Поточний статус:** Основна частина тексту готова. Ведеться фінальне шліфування та підготовка до передзахисту.
+> **Поточний статус:** Основна частина тексту готова. Триває фінальне шліфування, виправлення математичного апарату та аудит графічного наповнення.
 > **Головний план:** 📋 [**kanban_thesis.md**](docs/thesis/KANBAN_THESIS.md)
 
 | 🗓️ Дата | 🎯 Подія / Milestone | 🚩 Статус |
 | :--- | :--- | :--- |
 | **06.04** | 🛑 **ДЕДЛАЙН (Борги)** | ✅ Виконано |
 | **20.04 - 16.05** | Передкваліфікаційна практика | 🏗️ В процесі |
-| **26.04** | 🚩 **Чорновик для рецензента (Зінько Р.В.)** | ✅ **ГОТОВО** |
+| **26.04** | 🚩 **Чорновик для рецензента** | ⏳ Очікує |
 | **01.06** | Готовність тексту (**~80 стор.**) + Плагіат | ✅ **ГОТОВО** |
 | **03.06 (10:00)** | Попередній захист (Група І23) | 🚩 Milestone |
 | **17.06 (10:00)** | 🏆 **ЗАХИСТ В ЕК (Група І23)** | 💎 **ФІНАЛ** |
@@ -42,10 +42,10 @@
 | | [Завдання на роботу (Додаток Б)](docs/thesis/OFFICIAL_TASK_STATEMENT.md) | ✅ Finalized |
 | | [Титульна сторінка (Додаток В)](docs/thesis/OFFICIAL_TITLE_PAGE.md) | ✅ Finalized |
 | | [Календарний план](docs/thesis/OFFICIAL_CALENDAR_PLAN.md) | ✅ Finalized |
-| **Практика** | [**Звіт з практики (ФІНАЛ)**](docs/thesis/PRACTICE_REPORT_FINAL.md) | ✅ **Finalized** |
+| **Практика** | [**Звіт з практики (ФІНАЛ)**](docs/thesis/PRACTICE_REPORT_FINAL.md) | 🏗️ **In Progress** |
 | | [Щоденник практики](docs/thesis/PRACTICE_DIARY_DRAFT.md) | ✅ Ready |
 | | [Презентація до практики](docs/thesis/PRACTICE_PRESENTATION_DRAFT.md) | ✅ Ready |
-| **Диплом** | [**Кваліфікаційна робота (~80 стор.)**](docs/thesis/THESIS_FULL_FINAL_UTF8.md) | ✅ **Final Text** |
+| **Диплом** | [**Кваліфікаційна робота (Шліфування)**](docs/thesis/THESIS_FULL_FINAL_UTF8.md) | 🏗️ **In Progress** |
 | | [Реферат (Укр/Англ)](docs/thesis/THESIS_0_ABSTRACT.md) | ✅ Ready |
 | | [**Тези доповідей (Апробація)**](docs/thesis/THESIS_PROCEEDINGS_ABSTRACTS.md) | ✅ **Ready** |
 | **Допуск** | [**Відгук керівника (Додаток Г)**](docs/thesis/OFFICIAL_REVIEW_PROJECT.md) | ✅ **Ready** |
@@ -55,6 +55,19 @@
 | | [Презентація до захисту](docs/thesis/THESIS_PRESENTATION_FINAL.md) | ✅ **Ready** |
 | | [**Текст доповіді (у презентації)**](docs/thesis/THESIS_PRESENTATION_FINAL.md) | ✅ **Ready** |
 | | [**Шпаргалка до захисту (Cheat Sheet)**](docs/thesis/DEFENSE_GUIDE.md) | ✅ **Ready** |
+
+---
+
+## 🛠️ Останні технічні оновлення (Автоматизація)
+
+Для підвищення якості оформлення кваліфікаційної роботи впроваджено такі інструменти:
+
+*   🚀 [**Modular Converter System**](scripts/converter/) — масштабована архітектура конвертації MD -> DOCX.
+*   🛠️ [**convert_thesis.py**](convert_thesis.py) — головний скрипт збірки з підтримкою LaTeX-to-OMML.
+*   🔍 [**IMAGE_AUDIT_REPORT.md**](docs/thesis/IMAGE_AUDIT_REPORT.md) — звіт про цілісність графічного матеріалу.
+*   📐 **Math Engine v2**: Автоматичне виправлення синтаксису та рендеринг у формат Microsoft Equation.
+*   📸 **Image Guard**: Система автоматичного сповіщення в DOCX про відсутність ілюстрацій.
+*   🖼️ **Visual Enrichment**: Додано UML/UI діаграми у Розділи 2 та 3, оновлено нумерацію до 3.10.
 
 ---
 

@@ -1,0 +1,34 @@
+import os
+import win32com.client as win32
+
+def get_stats():
+    folder = os.path.abspath(r"docs\thesis\check_pages")
+    word = win32.Dispatch("Word.Application")
+    word.Visible = False
+    
+    print("\n--- ФІНАЛЬНИЙ ЗВІТ ПОСТОРІНКОВОГО ЗАМІРУ ---")
+    print(f"{'Файл':45} | {'Сторінки'}")
+    print("-" * 60)
+    
+    total = 0
+    # Сортуємо для зручності читання
+    files = sorted([f for f in os.listdir(folder) if f.endswith(".docx")])
+    
+    for f in files:
+        path = os.path.join(folder, f)
+        try:
+            doc = word.Documents.Open(path)
+            pages = doc.ComputeStatistics(2)
+            print(f"{f:45} | {pages} стор.")
+            total += pages
+            doc.Close(False)
+        except Exception as e:
+            print(f"Помилка при читанні {f}: {e}")
+            
+    print("-" * 60)
+    print(f"{'РАЗОМ (Сума частин)':45} | {total} стор.")
+    print("=" * 60)
+    word.Quit()
+
+if __name__ == "__main__":
+    get_stats()
