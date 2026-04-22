@@ -12,6 +12,40 @@
 
 Історично розвиток міст проходив через кілька етапів: від Infrastructure City (фізична розбудова) та Digital City (оцифрування реєстрів) до сучасного Smart City 3.0, де використання систем штучного інтелекту та великих даних (Big Data) дозволяє здійснювати проактивне управління. В основі Smart City лежить розгалужена мережа взаємопов'язаних пристроїв — **Інтернету речей (IoT)**. 
 
+```mermaid
+graph TB
+    subgraph UI["Рівень представлення (Streamlit)"]
+        direction LR
+        A1["KPI Панель"]
+        A2["ML Прогноз"]
+        A3["ГІС Карта"]
+    end
+
+    subgraph CORE["Інтелектуальний шар"]
+        direction LR
+        B1["LSTM v3\npredict_v2.py"]
+        B3["Фізичний двигун\nphysics.py"]
+        B4["Векторизатор\n(Sliding Window)"]
+    end
+
+    subgraph DATA["Шар даних (OLAP)"]
+        direction LR
+        C1[("PostgreSQL\nNeon Cloud")]
+        C3["Цифровий двійник\nСимуляція сенсорів"]
+    end
+
+    subgraph DEVOPS["DevOps Шар"]
+        direction LR
+        D1["GitHub Actions\nCI/CD"]
+        D2["Docker\nКонтейнер"]
+    end
+
+    UI -->|"Запит даних"| CORE
+    CORE -->|"SQL SELECT"| DATA
+    C3 -->|"SQL INSERT телеметрія"| C1
+    B1 -->|"Результати ШІ"| UI
+```
+
 ![Рис. 1.1. Типова багаторівнева архітектура IoT-платформи Smart City](../images/diag_architecture.png)
 *Рис. 1.1. Типова багаторівнева архітектура IoT-платформи Smart City*
 
@@ -24,6 +58,25 @@
 1.  **Advanced Metering Infrastructure (AMI):** системи інтелектуального обліку, що дозволяють отримувати дані про споживання з інтервалом у 15-60 хвилин.
 2.  **Phasor Measurement Units (PMU):** пристрої, що фіксують фазові параметри мережі з високою частотою для запобігання блекаутам.
 3.  **Energy Storage Systems (ESS):** системи накопичення енергії, що дозволяють згладжувати графік навантаження.
+
+```mermaid
+graph TD
+    subgraph Local ["💻 LOCAL ENVIRONMENT"]
+        DG["data_generator.py\n(Симулятор)"]
+    end
+
+    subgraph Cloud ["☁️ CLOUD INFRASTRUCTURE (Render)"]
+        DB[(PostgreSQL\nOLAP Database)]
+        Vect["vectorizer.py"]
+        Pred["predict_v2.py"]
+        UI["main.py\n(Dashboard)"]
+    end
+
+    DG ==>|"Telemetry Push"| DB
+    DB <-->|"Data Exchange"| Vect
+    Vect --> Pred
+    Pred --> UI
+```
 
 ![Рис. 1.2. Концептуальна схема Smart Grid та інфраструктури передачі даних](../images/diag_infra_cloud.png)
 *Рис. 1.2. Концептуальна схема Smart Grid та інфраструктури передачі даних*

@@ -65,9 +65,9 @@
 *   🚀 [**Modular Converter System**](scripts/converter/) — масштабована архітектура конвертації MD -> DOCX.
 *   🛠️ [**convert_thesis.py**](convert_thesis.py) — головний скрипт збірки з підтримкою LaTeX-to-OMML.
 *   🔍 [**IMAGE_AUDIT_REPORT.md**](docs/thesis/IMAGE_AUDIT_REPORT.md) — звіт про цілісність графічного матеріалу.
-*   📐 **Math Engine v2**: Автоматичне виправлення синтаксису та рендеринг у формат Microsoft Equation.
+*   📐 **Math Engine v2** (22.04): Повна корекція LaTeX-синтаксису у Розділі 1 для ідеального рендерингу у Ворді.
 *   📸 **Image Guard**: Система автоматичного сповіщення в DOCX про відсутність ілюстрацій.
-*   🖼️ **Visual Enrichment**: Додано UML/UI діаграми у Розділи 2 та 3, оновлено нумерацію до 3.10.
+*   🖼️ **Hybrid Visuals** (22.04): Впроваджено формат «Mermaid + PNG» для всіх розділів. Оптимізовано Рис. 2.2 (Activity Diagram) шляхом розділення на 2 частини для кращої верстки.
 
 ---
 
