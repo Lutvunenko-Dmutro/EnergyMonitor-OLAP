@@ -133,11 +133,13 @@ x_t
 $$
 
 Вектор ознак:
+
 $$
 x_t = [\text{load}, \text{temp}, \text{h2}, \text{health}, \text{air}, \text{h}_{sin}, \text{h}_{cos}, \text{d}_{sin}, \text{d}_{cos}]^T
 $$
 
 Цільовий вектор наступної точки ($t+1$):
+
 $$
 \mathbf{Y}_{t+1} = y^{load}_{t+1} \in \mathbb{R}^1
 $$
@@ -151,16 +153,20 @@ $$
 Предиктивний модуль будується на базі LSTM (Long Short-Term Memory) шарів. Внутрішня динаміка комірки визначається такою логікою:
 
 **1. Forget Gate (Гейт забуття):** Очищує застарілу інформацію.
+
 $$f_t = \sigma(W_f \cdot [h_{t-1}, x_t] + b_f)$$
 
 **2. Input Gate & Candidate State:** Формує нову дохідну інформацію.
+
 $$i_t = \sigma(W_i \cdot [h_{t-1}, x_t] + b_i)$$
 $$\tilde{C}_t = \tanh(W_C \cdot [h_{t-1}, x_t] + b_C)$$
 
 **3. Cell State UPDATE (Стан комірки):** Оновлює довготривалу пам'ять.
+
 $$C_t = f_t \odot C_{t-1} + i_t \odot \tilde{C}_t$$
 
 **4. Output Gate & Hidden State:** Обчислює вихідний сигнал.
+
 $$o_t = \sigma(W_o \cdot [h_{t-1}, x_t] + b_o)$$
 $$h_t = o_t \odot \tanh(C_t)$$
 

@@ -1,9 +1,12 @@
 import os
 import re
 from docx import Document
-from docx.shared import Cm
+from docx.shared import Cm, Pt
+from docx.oxml import OxmlElement
+from docx.oxml.ns import qn
+from docx.enum.text import WD_ALIGN_PARAGRAPH
 from .config import MERMAID_MAP
-from .styles import add_page_numbers
+from .styles import add_page_numbers, add_formatted_run
 from .handlers import (
     add_h1, add_h2, add_h3, add_h4, add_body, 
     add_list_item, add_image, add_code, add_table
@@ -94,10 +97,44 @@ def run_conversion(input_md, output_docx, include_appendix=True):
                 run.font.color.rgb = RGBColor(255, 0, 0)
             last_was_image = False # Скидаємо після підпису
 
-        if stripped.startswith('#### '): add_h4(doc, process_inline_math(stripped[5:])); last_was_image = False
-        elif stripped.startswith('### '): add_h3(doc, process_inline_math(stripped[4:])); last_was_image = False
-        elif stripped.startswith('## '): add_h2(doc, process_inline_math(stripped[3:])); last_was_image = False
-        elif stripped.startswith('# '): add_h1(doc, process_inline_math(stripped[2:])); last_was_image = False
+        if stripped.startswith('####'): 
+            text = re.sub(r'^####\s*', '', stripped)
+            add_h4(doc, process_inline_math(text))
+            last_was_image = False
+        elif stripped.startswith('###'): 
+            text = re.sub(r'^###\s*', '', stripped)
+            add_h3(doc, process_inline_math(text))
+            last_was_image = False
+        elif stripped.startswith('##'): 
+            text = re.sub(r'^##\s*', '', stripped)
+            add_h2(doc, process_inline_math(text))
+            last_was_image = False
+        elif stripped == "<br>":
+            doc.add_paragraph()
+            continue
+            
+        elif stripped.startswith('#'):
+            text = re.sub(r'^#\s*', '', stripped)
+            # ВСТАВКА ЗМІСТУ ПЕРЕД СКОРОЧЕННЯМИ (Згідно п. 6.1: Реферат -> Зміст -> Скорочення)
+            if "СКОРОЧЕНЬ" in text.upper() or "ПОЗНАЧЕНЬ" in text.upper():
+                doc.add_page_break()
+                p_toc = doc.add_paragraph()
+                p_toc.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                add_formatted_run(p_toc, "ЗМІСТ", size=16, bold_base=True)
+                
+                p_field = doc.add_paragraph()
+                run = p_field.add_run()
+                # Вставка поля TOC (Table of Contents)
+                fldChar1 = OxmlElement('w:fldChar'); fldChar1.set(qn('w:fldCharType'), 'begin')
+                instrText = OxmlElement('w:instrText'); instrText.text = ' TOC \\o "1-3" \\h \\z \\u '
+                fldChar2 = OxmlElement('w:fldChar'); fldChar2.set(qn('w:fldCharType'), 'separate')
+                fldChar3 = OxmlElement('w:fldChar'); fldChar3.set(qn('w:fldCharType'), 'end')
+                run._r.append(fldChar1); run._r.append(instrText); run._r.append(fldChar2); run._r.append(fldChar3)
+                
+                doc.add_page_break()
+
+            add_h1(doc, process_inline_math(text))
+            last_was_image = False
         elif re.match(r'^Додаток\s+[А-Яа-яA-Za-z]', stripped): add_h1(doc, stripped); last_was_image = False
         elif re.search(r'!\[(.*?)\]\((.*?)\)', stripped):
             m = re.search(r'!\[(.*?)\]\((.*?)\)', stripped)

@@ -5,43 +5,109 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 from PIL import Image
 from .styles import set_run_font, para_std, clean_inline, add_formatted_run
 
+def clean_heading_dots(text):
+    # Прибирає крапку після номерів підрозділів (наприклад "1.1. Назва" -> "1.1 Назва")
+    # Але не чіпає "РОЗДІЛ 1." або інші випадки
+    return re.sub(r'^(\d+(\.\d+)+)\.\s+', r'\1 ', text)
+
+def should_be_in_toc(text, level=1):
+    text_up = text.upper().strip()
+    
+    # 1. Специфічні виключення (сміття)
+    trash_keywords = [
+        "НА ТЕМУ:", "ТЕМА:", "ЗАКЛАД ВИЩОЇ", "МІЖНАРОДНИЙ НАУКОВО-ТЕХНІЧНИЙ", 
+        "БАКАЛАВР", "СПЕЦІАЛЬНІСТЮ", "КИЇВ –", "СТУДЕНТУ", "ЛИТВИНЕНКУ", 
+        "ОСВІТНЬОГО СТУПЕНЯ", "ВІДГУК", "РЕЦЕНЗІЯ", "РЕЦЕНЗЕНТА", "КЕРІВНИКА",
+        "КАЛЕНДАРНИЙ ПЛАН"
+    ]
+    if any(tk in text_up for tk in trash_keywords):
+        return False
+
+    # 2. Виключення дублів Реферату (якщо це H2)
+    if level > 1 and text_up == "РЕФЕРАТ":
+        return False
+        
+    # 3. Обов'язкові елементи (H1)
+    must_toc_h1 = ["РЕФЕРАТ / ABSTRACT", "ВСТУП", "ВИСНОВКИ", "ЛІТЕРАТУРА", "ДОДАТКИ", "СКОРОЧЕНЬ", "РОЗДІЛ", "ЗАВДАННЯ", "З А В Д А Н Н Я"]
+    if level == 1:
+        if any(m in text_up for m in must_toc_h1):
+            return True
+        # Якщо це будь-який інший H1 (не сміття), додаємо
+        return True
+
+    # 4. Підрозділи (H2, H3) - додаємо тільки якщо є нумерація (1.1, А.1) або це Додаток
+    if re.match(r'^(\d+\.|[А-Я]\.)', text) or "ДОДАТОК" in text_up:
+        return True
+        
+    return False
+
 def add_h1(doc, text):
-    p = doc.add_paragraph()
+    text_up = text.upper().strip()
+    is_toc = should_be_in_toc(text, level=1)
+    if is_toc:
+        try: p = doc.add_paragraph(style='Heading 1')
+        except: p = doc.add_paragraph()
+    else:
+        p = doc.add_paragraph()
+        
+    # Прибираємо крапку після "РОЗДІЛ 1."
+    text = re.sub(r'^(РОЗДІЛ\s+\d+)\.', r'\1', text, flags=re.IGNORECASE)
+    
     # Універсальний парзер зі стилем H1 (AllCaps + Bold)
     add_formatted_run(p, text.upper(), size=16, bold_base=True)
     pf = p.paragraph_format
     pf.alignment          = WD_ALIGN_PARAGRAPH.CENTER
     pf.space_before       = Pt(12)
     pf.space_after        = Pt(6)
-    pf.line_spacing       = Pt(24)
+    pf.line_spacing       = 1.0 # Одинарний інтервал
     pf.first_line_indent  = Cm(0)
     
-    # ПЕРЕЛІК ВИЙНЯТКІВ ДЛЯ РОЗРИВУ СТОРІНКИ (для офіційних бланків)
-    no_break_keywords = ["КВАЛІФІКАЦІЙНА", "ЗАВДАННЯ", "З А В Д А Н Н Я", "ВІДГУК", "РЕЦЕНЗІЯ"]
-    is_official_blank = any(kw in text.upper() for kw in no_break_keywords)
-    
-    if not is_official_blank:
+    # Розрив сторінки: тільки для головних вузлів. ВІДГУК/РЕЦЕНЗІЯ йдуть після ЗАКЛАД, тому їм не треба розрив.
+    break_keywords = ["РОЗДІЛ", "ЗАКЛАД", "ЗАВДАННЯ", "З А В Д А Н Н Я", "РЕФЕРАТ / ABSTRACT", "ВСТУП", "ВИСНОВКИ", "СПИСОК", "ДОДАТКИ"]
+    if is_toc or any(bk in text_up for bk in break_keywords):
         pf.page_break_before = True
 
 def add_h2(doc, text):
-    p = doc.add_paragraph()
+    text = clean_heading_dots(text)
+    is_toc = should_be_in_toc(text, level=2)
+    if is_toc:
+        try: p = doc.add_paragraph(style='Heading 2')
+        except: p = doc.add_paragraph()
+    else:
+        p = doc.add_paragraph()
     add_formatted_run(p, text, size=14, bold_base=True)
     pf = p.paragraph_format
-    pf.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
-    pf.space_before = Pt(3); pf.space_after = Pt(3)
-    pf.line_spacing = Pt(18)
-    pf.first_line_indent = Cm(1.25)
+    
+    # Центруємо офіційні заголовки
+    if not is_toc: pf.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    else: pf.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+    
+    pf.space_before = Pt(6); pf.space_after = Pt(6)
+    pf.line_spacing = 1.0
+    pf.first_line_indent = Cm(0) if not is_toc else Cm(1.25)
 
 def add_h3(doc, text):
-    p = doc.add_paragraph()
-    add_formatted_run(p, text, size=14, bold_base=True, italic_base=True)
+    text = clean_heading_dots(text)
+    is_toc = should_be_in_toc(text, level=3)
+    if is_toc:
+        try: p = doc.add_paragraph(style='Heading 3')
+        except: p = doc.add_paragraph()
+    else:
+        p = doc.add_paragraph()
+    
+    add_formatted_run(p, text, size=14, bold_base=True)
     pf = p.paragraph_format
-    pf.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    pf.space_before = Pt(3); pf.space_after = Pt(3)
-    pf.line_spacing = Pt(18)
-    pf.first_line_indent = Cm(0)
+    
+    # Центруємо офіційні заголовки
+    if not is_toc: pf.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    else: pf.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+    
+    pf.space_before = Pt(6); pf.space_after = Pt(6)
+    pf.line_spacing = 1.0
+    pf.first_line_indent = Cm(0) if not is_toc else Cm(1.25)
 
 def add_h4(doc, text):
+    text = clean_heading_dots(text)
     p = doc.add_paragraph()
     add_formatted_run(p, text, size=14, italic_base=True)
     pf = p.paragraph_format
@@ -57,7 +123,7 @@ def add_body(doc, text):
     pf = p.paragraph_format
     pf.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
     pf.space_before = Pt(0); pf.space_after = Pt(4)
-    pf.line_spacing = Pt(18)
+    pf.line_spacing = 1.5 # Міжрядковий інтервал 1.5
     pf.first_line_indent = Cm(1.25)
 
 def add_list_item(doc, text, numbered=False):
@@ -70,7 +136,7 @@ def add_list_item(doc, text, numbered=False):
     add_formatted_run(p, text, size=14)
     pf = p.paragraph_format
     pf.alignment = WD_ALIGN_PARAGRAPH.LEFT
-    pf.line_spacing = Pt(18)
+    pf.line_spacing = 1.5 # Міжрядковий інтервал 1.5
     pf.left_indent = Cm(1.25)
     if numbered: pf.first_line_indent = Cm(-0.75)
     pf.space_after = Pt(2)

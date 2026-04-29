@@ -60,8 +60,14 @@ def convert_formulas_to_word_objects(docx_path):
                 print(f"Помилка [{formula}]: {e}")
                 rng.Text = f"[{formula}]"
             word.Selection.Collapse(Direction=0)
+        # Оновлення Змісту та всіх полів (TOC update)
+        print("Оновлення Змісту та номерів сторінок...")
+        for toc in doc_word.TablesOfContents:
+            toc.Update()
+        doc_word.Fields.Update()
+        
         doc_word.Save()
-        print(f"✅ Успішно відформатовано {math_count} формул!")
+        print(f"✅ Успішно відформатовано {math_count} формул та оновлено Зміст!")
     finally:
         try:
             doc_word.Close()

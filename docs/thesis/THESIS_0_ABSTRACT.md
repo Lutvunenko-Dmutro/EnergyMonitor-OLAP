@@ -3,7 +3,7 @@
 ## РЕФЕРАТ
 **Тема:** «Прогнозування часових рядів енергоспоживання для вдосконалення технологій Smart City на основі рекурентних нейронних мереж»
 
-**Текст роботи:** 80 сторінок, 18 рисунків, 12 таблиць, 32 формули, 35 джерел.
+**Текст роботи:** 60 сторінок, 17 рисунків, 15 таблиць, 2 додатки, 38 джерел.
 
 **Об’єкт дослідження** – процеси предиктивного аналізу та моніторингу енергоспоживання в інфраструктурі Smart City.
 **Предмет дослідження** – методи глибокого навчання (LSTM), архітектура OLAP та концепція Цифрових двійників для прогнозування часових рядів.
@@ -20,7 +20,7 @@
 ## ABSTRACT
 **Title:** "Energy consumption time series forecasting for improving Smart City technologies based on recurrent neural networks"
 
-**Work context:** 80 pages, 18 figures, 12 tables, 35 sources.
+**Work context:** 60 pages, 17 figures, 15 tables, 2 appendices, 38 sources.
 
 **The object of research** is the processes of predictive analysis and monitoring of energy consumption in the Smart City infrastructure.
 **The subject of research** is deep learning methods (LSTM), OLAP architecture, and the concept of Digital Twins for time series forecasting.
