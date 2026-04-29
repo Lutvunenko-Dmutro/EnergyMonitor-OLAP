@@ -26,7 +26,7 @@ nav:
       - База даних: system/database.md
       - ML Pipeline: ml/index.md
   - 🗺️ Атлас Проєкту:
-      - 📍 Головна Карта: system/atlas.md
+      - 📍 Інженерний Атлас (SCADA): system/atlas_v4.md
       - ⚙️ Ядро (Core): system/map/core_map.md
       - 🧠 ШІ-Конвеєр (ML): system/map/ml_map.md
       - 🎨 Інтерфейс (UI): system/map/ui_map.md
