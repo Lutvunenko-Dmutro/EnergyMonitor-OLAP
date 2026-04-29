@@ -43,7 +43,41 @@ nav:
   - 📚 Довідка:
       - Референс модулів (API): api/index.md
       - Глосарій: GLOSSARY.md
-  - Дипломна робота: thesis/DIPLOMA_PLAN.md
+  - Дипломна робота:
+      - План та Календар: thesis/DIPLOMA_PLAN.md
+      - Реферат: thesis/THESIS_0_ABSTRACT.md
+      - Вступ: thesis/THESIS_0_INTRODUCTION.md
+      - Розділ 1. Теорія: thesis/THESIS_1_THEORY.md
+      - Розділ 2. Вимоги: thesis/THESIS_2_REQUIREMENTS.md
+      - Розділ 3. Реалізація (v3): thesis/THESIS_3_DESIGN_AND_IMPLEMENTATION_EXPANDED.md
+      - Висновки: thesis/THESIS_FINAL_CONCLUSIONS.md
+      - Список літератури: thesis/BIBLIOGRAPHY.md
+      - Додатки: thesis/APPENDICES.md
+      - Канбан проєкту: thesis/KANBAN_THESIS.md
+      - Тези та апробація: thesis/THESIS_PROCEEDINGS_ABSTRACTS.md
+      - Скорочення: thesis/ABBREVIATIONS.md
+      - Шпаргалка до захисту: thesis/DEFENSE_GUIDE.md
+      - Презентація диплома: thesis/THESIS_PRESENTATION_FINAL.md
+  - 📋 Матеріали практики:
+      - Звіт (ФІНАЛ): thesis/PRACTICE_REPORT_FINAL.md
+      - Щоденник практики: thesis/PRACTICE_DIARY_DRAFT.md
+      - Презентація: thesis/PRACTICE_PRESENTATION_DRAFT.md
+      - Повний чернетка звіту: thesis/PRACTICE_REPORT_FULL_DRAFT.md
+  - 📄 Офіційні бланки:
+      - Титульна сторінка: thesis/OFFICIAL_TITLE_PAGE.md
+      - Завдання на роботу: thesis/OFFICIAL_TASK_STATEMENT.md
+      - Календарний план: thesis/OFFICIAL_CALENDAR_PLAN.md
+      - Відгук керівника: thesis/OFFICIAL_REVIEW_PROJECT.md
+      - Рецензія: thesis/OFFICIAL_RECENSION_PROJECT.md
+  - 🕰️ Архів та Історія:
+      - Для рецензента: FOR_REVIEWER.md
+      - Що змінено (v3): history/WHATS_CHANGED.md
+      - Аудит якості: history/COMPREHENSIVE_CODE_QUALITY_AUDIT.md
+      - Звіт про виправлення: history/FIXES_IMPLEMENTED_REPORT.md
+      - Фінальний звіт імплементації: history/FINAL_IMPLEMENTATION_REPORT.md
+      - Метрики та Дашборд: history/METRICS_AND_DASHBOARD.md
+      - Аудит зображень: thesis/IMAGE_AUDIT_REPORT.md
+      - Повна збірка (Master): thesis/THESIS_FULL_FINAL_UTF8.md
 
 
 plugins:
