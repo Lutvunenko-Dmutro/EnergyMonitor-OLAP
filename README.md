@@ -1,4 +1,10 @@
 # ⚡ Energy Monitor Ultimate (v3.1 STABLE)
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
+![Python](https://img.shields.io/badge/python-3.11-blue)
+![Tests](https://img.shields.io/badge/tests-79%20passed-success)
+![Accuracy](https://img.shields.io/badge/accuracy-MAPE%203.08%25-orange)
+![Thesis Status](https://img.shields.io/badge/thesis-ready%20for%20defense-blueviolet)
+![License](https://img.shields.io/badge/license-MIT-yellow)
 
 **Інтелектуальна система аналітики та предиктивного моделювання навантаження енергетичних мереж на базі концепції Digital Twin та рекурентних нейромереж LSTM.**
 
