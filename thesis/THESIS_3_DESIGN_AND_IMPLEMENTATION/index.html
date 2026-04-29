@@ -1,0 +1,2929 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Інтелектуальна система OLAP-моніторингу та ШІ-прогнозування навантаження енергетичних мереж. Автор - Литвиненко Дмитро Сергійович (Lutvunenko Dmutro), бакалавр 121 ІПЗ.">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Р РћР—Р”Р†Р› 3. РџР РћР„РљРўРќР† Р Р†РЁР•РќРќРЇ РўРђ РџР РћР“Р РђРњРќРђ Р Р•РђР›Р†Р—РђР¦Р†РЇ РЎР�РЎРўР•РњР� - ⚡ Energy Monitor Ultimate (Project Atlas)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#3" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="⚡ Energy Monitor Ultimate (Project Atlas)" class="md-header__button md-logo" aria-label="⚡ Energy Monitor Ultimate (Project Atlas)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ⚡ Energy Monitor Ultimate (Project Atlas)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Р РћР—Р”Р†Р› 3. РџР РћР„РљРўРќР† Р Р†РЁР•РќРќРЇ РўРђ РџР РћР“Р РђРњРќРђ Р Р•РђР›Р†Р—РђР¦Р†РЇ РЎР�РЎРўР•РњР�
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../system/architecture/" class="md-tabs__link">
+          
+  
+  
+  🏗️ Архітектура
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../system/atlas_v4/" class="md-tabs__link">
+          
+  
+  
+  🗺️ Атлас Проєкту
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../DOCS_PLAN/" class="md-tabs__link">
+          
+  
+  
+  📗 Плани та Статус
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../guides/USER_MANUAL/" class="md-tabs__link">
+          
+  
+  
+  🛠️ Інструкції та Безпека
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../api/" class="md-tabs__link">
+          
+  
+  
+  📚 Довідка
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../DIPLOMA_PLAN/" class="md-tabs__link">
+          
+  
+  
+  Дипломна робота
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../PRACTICE_REPORT_FINAL/" class="md-tabs__link">
+          
+  
+  
+  📋 Матеріали практики
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../OFFICIAL_TITLE_PAGE/" class="md-tabs__link">
+          
+  
+  
+  📄 Офіційні бланки
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../FOR_REVIEWER/" class="md-tabs__link">
+          
+  
+  
+  🕰️ Архів та Історія
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="⚡ Energy Monitor Ultimate (Project Atlas)" class="md-nav__button md-logo" aria-label="⚡ Energy Monitor Ultimate (Project Atlas)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ⚡ Energy Monitor Ultimate (Project Atlas)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏗️ Архітектура
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🏗️ Архітектура
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Загальний огляд
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system/digital_twin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Digital Twin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system/database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    База даних
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ML Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🗺️ Атлас Проєкту
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🗺️ Атлас Проєкту
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system/atlas_v4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📍 Інженерний Атлас (SCADA)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system/map/core_map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⚙️ Ядро (Core)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system/map/ml_map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧠 ШІ-Конвеєр (ML)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system/map/ui_map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🎨 Інтерфейс (UI)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system/map/services_map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏭 Сервіси (Services)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📗 Плани та Статус
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    📗 Плани та Статус
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DOCS_PLAN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    План документації
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ROADMAP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    План розробки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PROJECT_STATUS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Поточний статус
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🛠️ Інструкції та Безпека
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🛠️ Інструкції та Безпека
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/USER_MANUAL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Інструкція користувача
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/SECURITY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Звіт з безпеки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/TESTING_GUIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Тестування
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/MAINTENANCE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обслуговування
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📚 Довідка
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    📚 Довідка
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Референс модулів (API)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../GLOSSARY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Глосарій
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дипломна робота
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Дипломна робота
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DIPLOMA_PLAN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    План та Календар
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../THESIS_0_ABSTRACT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Реферат
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../THESIS_0_INTRODUCTION/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Вступ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../THESIS_1_THEORY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Розділ 1. Теорія
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../THESIS_2_REQUIREMENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Розділ 2. Вимоги
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../THESIS_3_DESIGN_AND_IMPLEMENTATION_EXPANDED/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Розділ 3. Реалізація (v3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../THESIS_FINAL_CONCLUSIONS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Висновки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BIBLIOGRAPHY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Список літератури
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../APPENDICES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Додатки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../KANBAN_THESIS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Канбан проєкту
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../THESIS_PROCEEDINGS_ABSTRACTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Тези та апробація
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ABBREVIATIONS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Скорочення
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DEFENSE_GUIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Шпаргалка до захисту
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../THESIS_PRESENTATION_FINAL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Презентація диплома
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📋 Матеріали практики
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    📋 Матеріали практики
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PRACTICE_REPORT_FINAL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Звіт (ФІНАЛ)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PRACTICE_DIARY_DRAFT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Щоденник практики
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PRACTICE_PRESENTATION_DRAFT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Презентація
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PRACTICE_REPORT_FULL_DRAFT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Повний чернетка звіту
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📄 Офіційні бланки
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    📄 Офіційні бланки
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OFFICIAL_TITLE_PAGE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Титульна сторінка
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OFFICIAL_TASK_STATEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Завдання на роботу
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OFFICIAL_CALENDAR_PLAN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Календарний план
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OFFICIAL_REVIEW_PROJECT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Відгук керівника
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OFFICIAL_RECENSION_PROJECT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Рецензія
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🕰️ Архів та Історія
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🕰️ Архів та Історія
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FOR_REVIEWER/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Для рецензента
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../history/WHATS_CHANGED/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Що змінено (v3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../history/COMPREHENSIVE_CODE_QUALITY_AUDIT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Аудит якості
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../history/FIXES_IMPLEMENTED_REPORT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Звіт про виправлення
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../history/FINAL_IMPLEMENTATION_REPORT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Фінальний звіт імплементації
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../history/METRICS_AND_DASHBOARD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Метрики та Дашборд
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../IMAGE_AUDIT_REPORT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Аудит зображень
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../THESIS_FULL_FINAL_UTF8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Повна збірка (Master)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#31-no" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1. Р—Р°РіР°Р»СЊРЅР° Р°СЂС…С–С‚РµРєС‚СѓСЂР° С‚Р° С–РЅС„РѕСЂРјР°С†С–Р№РЅРµ Р·Р°Р±РµР·РїРµС‡РµРЅРЅСЏ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2. РҐР°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё РїСЂРёРєР»Р°РґРЅРѕРіРѕ РџР— С‚Р° Р±РµР·РїРµРєР° СЃРёСЃС‚РµРјРё
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2. РҐР°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё РїСЂРёРєР»Р°РґРЅРѕРіРѕ РџР— С‚Р° Р±РµР·РїРµРєР° СЃРёСЃС‚РµРјРё">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#321" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2.1. РўРµС…РЅС–С‡РЅС– С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё РїСЂРѕРіСЂР°РјРЅРѕРіРѕ Р·Р°Р±РµР·РїРµС‡РµРЅРЅСЏ
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#322" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2.2. Р—Р°Р±РµР·РїРµС‡РµРЅРЅСЏ Р±РµР·РїРµРєРё СЃРёСЃС‚РµРјРё
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-no" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3. РЎС‚СЂСѓРєС‚СѓСЂР° Р±Р°Р·Рё РґР°РЅРёС… С‚Р° С–РЅС„РѕСЂРјР°С†С–Р№РЅРµ РЅР°РїРѕРІРЅРµРЅРЅСЏ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#34-no-digital-twin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4. РђРЅР°Р»С–Р· РІС…С–РґРЅРёС… РґР°РЅРёС… С‚Р° С–РјС–С‚Р°С†С–Р№РЅРµ РјРѕРґРµР»СЋРІР°РЅРЅСЏ Digital Twin
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.4. РђРЅР°Р»С–Р· РІС…С–РґРЅРёС… РґР°РЅРёС… С‚Р° С–РјС–С‚Р°С†С–Р№РЅРµ РјРѕРґРµР»СЋРІР°РЅРЅСЏ Digital Twin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#341-pjm-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4.1. Р”РѕСЃР»С–РґР¶РµРЅРЅСЏ РµС‚Р°Р»РѕРЅРЅРѕРіРѕ РґР°С‚Р°СЃРµС‚Сѓ PJM Comparison
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#351-ai-forecast-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5.1. РђРЅР°Р»С–Р· С‚РѕС‡РЅРѕСЃС‚С– (AI Forecast Verification)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#352-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5.2. РњСѓР»СЊС‚Рё-РїСЂРѕРіРЅРѕР· РґР»СЏ СЂРѕР·РїРѕРґС–Р»РµРЅРёС… РІСѓР·Р»С–РІ
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#353-no-unsupervised-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5.3. РљР»Р°СЃС‚РµСЂРЅРёР№ Р°РЅР°Р»С–Р· СЃРїРѕР¶РёРІР°С‡С–РІ (Unsupervised Learning)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#36-no" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6. Р•РєРѕРЅРѕРјС–С‡РЅРёР№ Р±Р»РѕРє С‚Р° РјРѕРЅС–С‚РѕСЂРёРЅРі СЃС‚Р°Р±С–Р»СЊРЅРѕСЃС‚С–
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.6. Р•РєРѕРЅРѕРјС–С‡РЅРёР№ Р±Р»РѕРє С‚Р° РјРѕРЅС–С‚РѕСЂРёРЅРі СЃС‚Р°Р±С–Р»СЊРЅРѕСЃС‚С–">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#361-no" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6.1. Р¤С–РЅР°РЅСЃРѕРІРёР№ Р°СѓРґРёС‚ С‚Р° РІС‚СЂР°С‚Рё РІ РјРµСЂРµР¶С–
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#362" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6.2. РџРѕС‚РѕРєРѕРІР° Р°РЅР°Р»С–С‚РёРєР° С‚Р° Р±Р°Р»Р°РЅСЃСѓРІР°РЅРЅСЏ РјРµСЂРµР¶С–
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#363-boot-sequence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6.3. РџСЂРѕС†РµСЃ С–РЅС–С†С–Р°Р»С–Р·Р°С†С–С— СЃРёСЃС‚РµРјРё (Boot Sequence)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature-engineering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Р†РЅР¶РµРЅРµСЂС–СЏ РѕР·РЅР°Рє (Feature Engineering) С‚Р° С‚СЂРёРіРѕРЅРѕРјРµС‚СЂРёС‡РЅРµ РєРѕРґСѓРІР°РЅРЅСЏ
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        РњР°СЃС€С‚Р°Р±СѓРІР°РЅРЅСЏ С‚Р° С„РѕСЂРјСѓРІР°РЅРЅСЏ С‡Р°СЃРѕРІРёС… РІС–РєРѕРЅ
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-lstm-v3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        РђСЂС…С–С‚РµРєС‚СѓСЂР° РЅРµР№СЂРѕРЅРЅРѕС— РјРµСЂРµР¶С– LSTM v3
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        РџР°СЂР°РјРµС‚СЂРё РѕРїС‚РёРјС–Р·Р°С†С–С— С‚Р° РЅР°РІС‡Р°РЅРЅСЏ
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-no_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3. РџСЂРѕРіСЂР°РјРЅР° СЂРµР°Р»С–Р·Р°С†С–СЏ С–РЅС‚РµСЂС„РµР№СЃСѓ С‚Р° СЂРѕР·РіРѕСЂС‚Р°РЅРЅСЏ
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3. РџСЂРѕРіСЂР°РјРЅР° СЂРµР°Р»С–Р·Р°С†С–СЏ С–РЅС‚РµСЂС„РµР№СЃСѓ С‚Р° СЂРѕР·РіРѕСЂС‚Р°РЅРЅСЏ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-no-streamlit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Р’РµР±-С–РЅС‚РµСЂС„РµР№СЃ РЅР° Р±Р°Р·С– Streamlit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-cicd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        РљРѕРЅС‚РµР№РЅРµСЂРёР·Р°С†С–СЏ С‚Р° CI/CD РєРѕРЅРІРµС”СЂ
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Р’РµСЂРёС„С–РєР°С†С–СЏ РєРѕРґСѓ С‚Р° РјРµС‚РѕРґРёРєР° С‚РµСЃС‚СѓРІР°РЅРЅСЏ
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="3">Р РћР—Р”Р†Р› 3. РџР РћР„РљРўРќР† Р Р†РЁР•РќРќРЇ РўРђ РџР РћР“Р РђРњРќРђ Р Р•РђР›Р†Р—РђР¦Р†РЇ РЎР�РЎРўР•РњР�</h1>
+<h3 id="31-no">3.1. Р—Р°РіР°Р»СЊРЅР° Р°СЂС…С–С‚РµРєС‚СѓСЂР° С‚Р° С–РЅС„РѕСЂРјР°С†С–Р№РЅРµ Р·Р°Р±РµР·РїРµС‡РµРЅРЅСЏ</h3>
+<p>РЇРє РјРё РїРѕР±СѓРґСѓРІР°Р»Рё Р°СЂС…С–С‚РµРєС‚СѓСЂСѓ СЃРёСЃС‚РµРјРё? РџСЂРѕС”РєС‚СѓРІР°РЅРЅСЏ Р°СЂС…С–С‚РµРєС‚СѓСЂРё С–РЅС‚РµР»РµРєС‚СѓР°Р»СЊРЅРѕС— СЃРёСЃС‚РµРјРё EnergyMonitor-OLAP Р±Р°Р·СѓС”С‚СЊСЃСЏ РЅР° РїСЂРёРЅС†РёРїР°С… РјРѕРґСѓР»СЊРЅРѕСЃС‚С–, РјР°СЃС€С‚Р°Р±РѕРІР°РЅРѕСЃС‚С– С‚Р° СЃСѓРІРѕСЂРѕРіРѕ СЂРѕР·РґС–Р»РµРЅРЅСЏ РІС–РґРїРѕРІС–РґР°Р»СЊРЅРѕСЃС‚С– (Separation of Concerns). Р”Р»СЏ Р·Р°Р±РµР·РїРµС‡РµРЅРЅСЏ СЃС‚Р°Р±С–Р»СЊРЅРѕС— СЂРѕР±РѕС‚Рё Сѓ С…РјР°СЂРЅРѕРјСѓ СЃРµСЂРµРґРѕРІРёС‰С– С‚Р° РІРёСЃРѕРєРѕС— С€РІРёРґРєРѕСЃС‚С– Р°РЅР°Р»С–С‚РёС‡РЅРёС… РѕР±С‡РёСЃР»РµРЅСЊ РјРё РѕР±СЂР°Р»Рё Р±Р°РіР°С‚РѕС€Р°СЂРѕРІСѓ Р°СЂС…С–С‚РµРєС‚СѓСЂСѓ (Layered Architecture), С‰Рѕ СЃРєР»Р°РґР°С”С‚СЊСЃСЏ Р· С‡РѕС‚РёСЂСЊРѕС… С„СѓРЅРєС†С–РѕРЅР°Р»СЊРЅРёС… СЂС–РІРЅС–РІ. Р¦РµР№ РїС–РґС…С–Рґ РґРѕР·РІРѕР»СЏС” С–Р·РѕР»СЋРІР°С‚Рё Р»РѕРіС–РєСѓ Р·Р±РѕСЂСѓ РґР°РЅРёС…, С—С… РјР°С‚РµРјР°С‚РёС‡РЅРѕРіРѕ РѕР±СЂРѕР±Р»РµРЅРЅСЏ С‚Р° РІС–Р·СѓР°Р»С–Р·Р°С†С–С—. РќРёР¶С‡Рµ РЅР°РІРµРґРµРЅРѕ С–С”СЂР°СЂС…С–С‡РЅСѓ СЃС…РµРјСѓ РІР·Р°С”РјРѕРґС–С— РѕСЃРЅРѕРІРЅРёС… РєРѕРјРїРѕРЅРµРЅС‚С–РІ СЃРёСЃС‚РµРјРё (Р РёСЃ. 3.1).</p>
+<p align="center">
+<img src="../../docs/images/diag_architecture.png" width="90%">
+<br>
+<i>Р РёСЃ. 3.0. РђСЂС…С–С‚РµРєС‚СѓСЂРЅР° СЃС…РµРјР° СЃРёСЃС‚РµРјРё EnergyMonitor-OLAP (4-СЂС–РІРЅРµРІР° РјРѕРґРµР»СЊ)</i>
+</p>
+
+<p>РђСЂС…С–С‚РµРєС‚СѓСЂРЅР° РјРѕРґРµР»СЊ, РїСЂРµРґСЃС‚Р°РІР»РµРЅР° РЅР° СЂРёСЃ. 3.0, РґРµРјРѕРЅСЃС‚СЂСѓС” С‡С–С‚РєРёР№ СЂРѕР·РїРѕРґС–Р» РЅР°РІР°РЅС‚Р°Р¶РµРЅРЅСЏ. Р С–РІРµРЅСЊ РїСЂРµРґСЃС‚Р°РІР»РµРЅРЅСЏ (UI) РїРѕР±СѓРґРѕРІР°РЅРёР№ РЅР° Р±Р°Р·С– Streamlit С– РІРёРєРѕСЂРёСЃС‚РѕРІСѓС” СЂРµР°РєС‚РёРІРЅРµ СѓРїСЂР°РІР»С–РЅРЅСЏ СЃС‚Р°РЅРѕРј. Р†РЅС‚РµР»РµРєС‚СѓР°Р»СЊРЅРёР№ С€Р°СЂ С–Р·РѕР»СЋС” Р»РѕРіС–РєСѓ ONNX-С–РЅС„РµСЂРµРЅСЃСѓ, С‰Рѕ РґРѕР·РІРѕР»СЏС” РѕРЅРѕРІР»СЋРІР°С‚Рё РјРѕРґРµР»С– Р±РµР· Р·СѓРїРёРЅРєРё РІСЃСЊРѕРіРѕ СЃРµСЂРІС–СЃСѓ. РЁР°СЂ РґР°РЅРёС… Р±Р°Р·СѓС”С‚СЊСЃСЏ РЅР° С…РјР°СЂРЅС–Р№ С–РЅС„СЂР°СЃС‚СЂСѓРєС‚СѓСЂС– Neon, С‰Рѕ Р·Р°Р±РµР·РїРµС‡СѓС” Р°РІС‚РѕРјР°С‚РёС‡РЅРµ РјР°СЃС€С‚Р°Р±СѓРІР°РЅРЅСЏ (autoscaling) РїСЂРё Р·СЂРѕСЃС‚Р°РЅРЅС– РѕР±СЃСЏРіС–РІ С‚РµР»РµРјРµС‚СЂС–С—.</p>
+<p align="center">
+<img src="../../docs/images/diag_infra_cloud.png" width="90%">
+<br>
+<i>Р РёСЃ. 3.1. РЎС…РµРјР° СЂРѕР·РіРѕСЂС‚Р°РЅРЅСЏ С‚Р° РїРѕС‚РѕРєС–РІ РґР°РЅРёС… СЃРёСЃС‚РµРјРё</i>
+</p>
+
+<p>РќР° СЂРёСЃ. 3.1 РІС–РґРѕР±СЂР°Р¶РµРЅРѕ Р»РѕРіС–РєСѓ РІР·Р°С”РјРѕРґС–С— РјС–Р¶ Р»РѕРєР°Р»СЊРЅРёРј СЃРµСЂРµРґРѕРІРёС‰РµРј СЃРёРјСѓР»СЏС†С–С— С‚Р° С…РјР°СЂРЅРѕСЋ С–РЅС„СЂР°СЃС‚СЂСѓРєС‚СѓСЂРѕСЋ Render. Р”Р°РЅС– РїРµСЂРµРґР°СЋС‚СЊСЃСЏ С‡РµСЂРµР· Р±РµР·РїРµС‡РЅРµ Р·'С”РґРЅР°РЅРЅСЏ SSL, С‰Рѕ РіР°СЂР°РЅС‚СѓС” С†С–Р»С–СЃРЅС–СЃС‚СЊ С‚РµР»РµРјРµС‚СЂРёС‡РЅРёС… РїРѕС‚РѕРєС–РІ Digital Twin.</p>
+<p align="center">
+<img src="../../docs/images/diag_use_case.png" width="80%">
+<br>
+<i>Р РёСЃ. 3.2. Р”С–Р°РіСЂР°РјР° РїСЂРµС†РµРґРµРЅС‚С–РІ (Use Case) СЃРёСЃС‚РµРјРё EnergyMonitor</i>
+</p>
+
+<p>Р”Р»СЏ РіР»РёР±С€РѕРіРѕ СЂРѕР·СѓРјС–РЅРЅСЏ РґРёРЅР°РјС–РєРё РІР·Р°С”РјРѕРґС–С— РєРѕРјРїРѕРЅРµРЅС‚С–РІ РЅРµРѕР±С…С–РґРЅРѕ СЂРѕР·РіР»СЏРЅСѓС‚Рё Р¶РёС‚С‚С”РІРёР№ С†РёРєР» РѕР±СЂРѕР±РєРё Р·Р°РїРёС‚Сѓ РЅР° РѕС‚СЂРёРјР°РЅРЅСЏ РїСЂРѕРіРЅРѕР·Сѓ. РџСЂРѕС†РµСЃ С–РЅС–С†С–СЋС”С‚СЊСЃСЏ РєРѕСЂРёСЃС‚СѓРІР°С‡РµРј С‡РµСЂРµР· РіСЂР°С„С–С‡РЅРёР№ С–РЅС‚РµСЂС„РµР№СЃ С– Р·Р°РїСѓСЃРєР°С” РєР°СЃРєР°РґРЅСѓ РїРѕСЃР»С–РґРѕРІРЅС–СЃС‚СЊ РѕРїРµСЂР°С†С–Р№: РІС–Рґ РІРёР»СѓС‡РµРЅРЅСЏ С–СЃС‚РѕСЂРёС‡РЅРѕРіРѕ РІС–РєРЅР° С‚РµР»РµРјРµС‚СЂС–С— Р· Р±Р°Р·Рё РґР°РЅРёС… РґРѕ РІРµРєС‚РѕСЂРёР·Р°С†С–С— (С–Р· Р·Р°СЃС‚РѕСЃСѓРІР°РЅРЅСЏРј С‚СЂРёРіРѕРЅРѕРјРµС‚СЂРёС‡РЅРѕРіРѕ РєРѕРґСѓРІР°РЅРЅСЏ С‡Р°СЃСѓ), РІРёРєРѕРЅР°РЅРЅСЏ С–РЅС„РµСЂРµРЅСЃСѓ РјРѕРґРµР»Р»СЋ LSTM С‚Р° РїРѕРІРµСЂРЅРµРЅРЅСЏ РґРµРЅРѕСЂРјР°Р»С–Р·РѕРІР°РЅРѕРіРѕ РјР°СЃРёРІСѓ РґР»СЏ РІС–Р·СѓР°Р»С–Р·Р°С†С–С—. Р”РµС‚Р°Р»СЊРЅСѓ РїРѕСЃР»С–РґРѕРІРЅС–СЃС‚СЊ С†РёС… РїСЂРѕС†РµСЃС–РІ РЅР°РІРµРґРµРЅРѕ РЅР° РґС–Р°РіСЂР°РјС– (Р РёСЃ. 3.3).</p>
+<p align="center">
+<img src="../../docs/images/diag_sequence_horizontal.png" width="95%">
+<br>
+<i>Р РёСЃ. 3.3. Р”РµС‚Р°Р»СЊРЅР° РґС–Р°РіСЂР°РјР° РїРѕСЃР»С–РґРѕРІРЅРѕСЃС‚С– РІР·Р°С”РјРѕРґС–С— РєРѕРјРїРѕРЅРµРЅС‚С–РІ С‚Р° РЁР†-С–РЅС„РµСЂРµРЅСЃСѓ</i>
+</p>
+
+<p>Р”С–Р°РіСЂР°РјР° РїРѕСЃР»С–РґРѕРІРЅРѕСЃС‚С– (Р РёСЃ. 3.3) С–Р»СЋСЃС‚СЂСѓС”, СЏРє СЃРёСЃС‚РµРјР° СЃРїСЂР°РІР»СЏС”С‚СЊСЃСЏ Р· Р»Р°С‚РµРЅС‚РЅС–СЃС‚СЋ С…РјР°СЂРЅРёС… Р·Р°РїРёС‚С–РІ. Р’РёРєРѕСЂРёСЃС‚Р°РЅРЅСЏ РјРµС…Р°РЅС–Р·РјСѓ <code>st.cache_data</code> РґРѕР·РІРѕР»СЏС” СѓРЅРёРєРЅСѓС‚Рё РїРѕРІС‚РѕСЂРЅРѕРіРѕ РІРёРєРѕРЅР°РЅРЅСЏ РІР°Р¶РєРѕРіРѕ ONNX-С–РЅС„РµСЂРµРЅСЃСѓ РґР»СЏ С–РґРµРЅС‚РёС‡РЅРёС… РІС…С–РґРЅРёС… РІС–РєРѕРЅ, С‰Рѕ СЃРєРѕСЂРѕС‡СѓС” С‡Р°СЃ РІС–РґРїРѕРІС–РґС– С–РЅС‚РµСЂС„РµР№СЃСѓ Р· 4.5 СЃ РґРѕ 0.2 СЃ.</p>
+<h3 id="32">3.2. РҐР°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё РїСЂРёРєР»Р°РґРЅРѕРіРѕ РџР— С‚Р° Р±РµР·РїРµРєР° СЃРёСЃС‚РµРјРё</h3>
+<h4 id="321">3.2.1. РўРµС…РЅС–С‡РЅС– С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё РїСЂРѕРіСЂР°РјРЅРѕРіРѕ Р·Р°Р±РµР·РїРµС‡РµРЅРЅСЏ</h4>
+<p>Р РѕР·СЂРѕР±Р»РµРЅР° СЃРёСЃС‚РµРјР° <strong>EnergyMonitor-OLAP</strong> РјР°С” С‚Р°РєС– Р±Р°Р·РѕРІС– С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё:
+* <strong>РќР°Р·РІР°:</strong> Р†РЅС„РѕСЂРјР°С†С–Р№РЅР° SaaS-РїР»Р°С‚С„РѕСЂРјР° РїСЂРµРґРёРєС‚РёРІРЅРѕРіРѕ РјРѕРЅС–С‚РѕСЂРёРЅРіСѓ РµРЅРµСЂРіРѕРјРµСЂРµР¶.
+* <strong>РњРѕРІР° РїСЂРѕРіСЂР°РјСѓРІР°РЅРЅСЏ:</strong> Python 3.11 (Р· РІРёРєРѕСЂРёСЃС‚Р°РЅРЅСЏРј Р±С–Р±Р»С–РѕС‚РµРє TensorFlow, Pandas, SQLAlchemy, Streamlit).
+* <strong>РћСЃРЅРѕРІРЅРёР№ С„СѓРЅРєС†С–РѕРЅР°Р»:</strong> Р·Р±С–СЂ С‚РµР»РµРјРµС‚СЂС–С—, С–РјС–С‚Р°С†С–Р№РЅРµ РјРѕРґРµР»СЋРІР°РЅРЅСЏ Digital Twin, РЁР†-РїСЂРѕРіРЅРѕР·СѓРІР°РЅРЅСЏ (LSTM v3), Р±Р°РіР°С‚РѕРІРёРјС–СЂРЅРёР№ Р°РЅР°Р»С–Р· (OLAP).
+* <strong>РћР±РјРµР¶РµРЅРЅСЏ СЃРёСЃС‚РµРјРё:</strong> 
+    1. <strong>Р—Р°Р»РµР¶РЅС–СЃС‚СЊ РІС–Рґ РјРµСЂРµР¶С–:</strong> С‡РµСЂРµР· РІРёРєРѕСЂРёСЃС‚Р°РЅРЅСЏ С…РјР°СЂРЅРёС… СЃРµСЂРІС–СЃС–РІ (Neon PostgreSQL, Render) СЃРёСЃС‚РµРјР° РїРѕС‚СЂРµР±СѓС” СЃС‚Р°Р±С–Р»СЊРЅРѕРіРѕ С–РЅС‚РµСЂРЅРµС‚-Р·'С”РґРЅР°РЅРЅСЏ.
+    2. <strong>Р РµСЃСѓСЂСЃРѕРјС–СЃС‚РєС–СЃС‚СЊ:</strong> Р·Р°РІР°РЅС‚Р°Р¶РµРЅРЅСЏ РІР°Рі РЅРµР№СЂРѕРјРµСЂРµР¶С– LSTM РїРѕС‚СЂРµР±СѓС” РЅРµ РјРµРЅС€Рµ 1 Р“Р‘ РІС–Р»СЊРЅРѕС— РѕРїРµСЂР°С‚РёРІРЅРѕС— РїР°Рј'СЏС‚С– (RAM) РЅР° СЃРµСЂРІРµСЂС–.
+    3. <strong>РћР±СЃСЏРі РґР°РЅРёС…:</strong> РґР»СЏ РєРѕСЂРµРєС‚РЅРѕС— СЂРѕР±РѕС‚Рё Sliding Window (48h) РЅРµРѕР±С…С–РґРЅР° РЅР°СЏРІРЅС–СЃС‚СЊ РЅРµРїРµСЂРµСЂРІРЅРѕРіРѕ С‡Р°СЃРѕРІРѕРіРѕ СЂСЏРґСѓ Р±РµР· Р·РЅР°С‡РЅРёС… РїСЂРѕРїСѓСЃРєС–РІ.</p>
+<h4 id="322">3.2.2. Р—Р°Р±РµР·РїРµС‡РµРЅРЅСЏ Р±РµР·РїРµРєРё СЃРёСЃС‚РµРјРё</h4>
+<p>Р”Р»СЏ Р·Р°С…РёСЃС‚Сѓ РґР°РЅРёС… С‚Р° Р·Р°Р±РµР·РїРµС‡РµРЅРЅСЏ СЃС‚С–Р№РєРѕСЃС‚С– Р°Р»РіРѕСЂРёС‚РјС–РІ РІРїСЂРѕРІР°РґР¶РµРЅРѕ С‡РѕС‚РёСЂРёСЂС–РІРЅРµРІСѓ СЃРёСЃС‚РµРјСѓ Р±РµР·РїРµРєРё:
+1. <strong>РњР°С‚РµРјР°С‚РёС‡РЅР° Р±РµР·РїРµРєР° (Algorithmic Robustness):</strong> РІРёРєРѕСЂРёСЃС‚Р°РЅРЅСЏ С„СѓРЅРєС†С–С— РІС‚СЂР°С‚ <strong>Huber Loss</strong> СЂРѕР±РёС‚СЊ РїСЂРµРґРёРєС‚РёРІРЅРµ СЏРґСЂРѕ СЃС‚С–Р№РєРёРј РґРѕ Р°РЅРѕРјР°Р»СЊРЅРёС… РІРёРєРёРґС–РІ С‚Р° РґР°С‚С‡РёРєРѕРІРёС… С€СѓРјС–РІ, СЏРєС– С‡Р°СЃС‚Рѕ РІРёРЅРёРєР°СЋС‚СЊ РІ РµРЅРµСЂРіРѕРјРµСЂРµР¶Р°С….
+2. <strong>РўРµС…РЅС–С‡РЅР° Р±РµР·РїРµРєР°:</strong> Р·Р°СЃС‚РѕСЃСѓРІР°РЅРЅСЏ С‚РµС…РЅРѕР»РѕРіС–С— РєРѕРЅС‚РµР№РЅРµСЂРёР·Р°С†С–С— <strong>Docker</strong> РґРѕР·РІРѕР»СЏС” С–Р·РѕР»СЋРІР°С‚Рё РџР— РІС–Рґ РІСЂР°Р·Р»РёРІРѕСЃС‚РµР№ С…РѕСЃС‚-СЃРёСЃС‚РµРјРё С‚Р° РіР°СЂР°РЅС‚СѓРІР°С‚Рё С–РґРµРЅС‚РёС‡РЅС–СЃС‚СЊ СЃРµСЂРµРґРѕРІРёС‰ СЂРѕР·СЂРѕР±РєРё С‚Р° РґРµРїР»РѕСЋ.
+3. <strong>РџСЂРѕРіСЂР°РјРЅР° Р±РµР·РїРµРєР° (Software Guard):</strong> РІРёРєРѕСЂРёСЃС‚Р°РЅРЅСЏ РїР°СЂР°РјРµС‚СЂРёР·РѕРІР°РЅРёС… SQL-Р·Р°РїРёС‚С–РІ С‡РµСЂРµР· ORM SQLAlchemy РїРѕРІРЅС–СЃС‚СЋ РЅС–РІРµР»СЋС” СЂРёР·РёРє Р°С‚Р°Рє С‚РёРїСѓ SQL-injection. Р РµР°Р»С–Р·РѕРІР°РЅРѕ РІР°Р»С–РґР°С†С–СЋ РІС…С–РґРЅРёС… РґР°РЅРёС… РЅР° СЂС–РІРЅС– С‚РёРїС–РІ Pydantic/Python.
+4. <strong>Р†РЅС„РѕСЂРјР°С†С–Р№РЅР° Р±РµР·РїРµРєР°:</strong> РІСЃС– РїС–РґРєР»СЋС‡РµРЅРЅСЏ РґРѕ Р±Р°Р·Рё РґР°РЅРёС… Сѓ С…РјР°СЂС– Neon Cloud Р·Р°С…РёС‰РµРЅС– Р·Р° РїСЂРѕС‚РѕРєРѕР»РѕРј <strong>SSL/TLS</strong>. РЎРµРєСЂРµС‚РЅС– РєР»СЋС‡С– С‚Р° РїР°СЂРѕР»С– РІРёРЅРµСЃРµРЅС– Сѓ Р·РјС–РЅРЅС– СЃРµСЂРµРґРѕРІРёС‰Р° (<code>.env</code>), С‰Рѕ СѓРЅРµРјРѕР¶Р»РёРІР»СЋС” С—С… РІРёС‚С–Рє С‡РµСЂРµР· СЃРёСЃС‚РµРјСѓ РєРѕРЅС‚СЂРѕР»СЋ РІРµСЂСЃС–Р№.</p>
+<h3 id="33-no">3.3. РЎС‚СЂСѓРєС‚СѓСЂР° Р±Р°Р·Рё РґР°РЅРёС… С‚Р° С–РЅС„РѕСЂРјР°С†С–Р№РЅРµ РЅР°РїРѕРІРЅРµРЅРЅСЏ</h3>
+<p>Р¦РµРЅС‚СЂР°Р»СЊРЅРёРј РµР»РµРјРµРЅС‚РѕРј С–РЅС„РѕСЂРјР°С†С–Р№РЅРѕРіРѕ Р·Р°Р±РµР·РїРµС‡РµРЅРЅСЏ СЃРёСЃС‚РµРјРё С” СЂРµР»СЏС†С–Р№РЅР° Р±Р°Р·Р° РґР°РЅРёС… PostgreSQL. РџСЂРѕС”РєС‚СѓРІР°РЅРЅСЏ Р·РґС–Р№СЃРЅСЋРІР°Р»РѕСЃСЏ РЅР° РґРІРѕС… СЂС–РІРЅСЏС…:</p>
+<ul>
+<li><strong>Р›РѕРіС–С‡РЅРёР№ СЂС–РІРµРЅСЊ:</strong> Р’РёРєРѕСЂРёСЃС‚Р°РЅРѕ Р°РЅР°Р»С–С‚РёС‡РЅСѓ СЃС…РµРјСѓ В«Р·С–СЂРєР°В» (Star Schema), РґРµ С†РµРЅС‚СЂРѕРј С” С‚Р°Р±Р»РёС†СЏ С„Р°РєС‚С–РІ <code>LoadMeasurements</code>, РїРѕРІвЂ™СЏР·Р°РЅР° Р·РѕРІРЅС–С€РЅС–РјРё РєР»СЋС‡Р°РјРё (Foreign Keys) Р· С‚Р°Р±Р»РёС†СЏРјРё РІРёРјС–СЂС–РІ <code>Substations</code>, <code>Regions</code> С‚Р° <code>WeatherReports</code>. Р¦Рµ РґРѕР·РІРѕР»СЏС” Р·Р±РµСЂС–РіР°С‚Рё С†С–Р»С–СЃРЅС–СЃС‚СЊ РґР°РЅРёС… РЅР° СЂС–РІРЅС– РЎРЈР‘Р” (Constraints).</li>
+<li><strong>Р¤С–Р·РёС‡РЅРёР№ СЂС–РІРµРЅСЊ:</strong> Р”Р»СЏ РїСЂРёСЃРєРѕСЂРµРЅРЅСЏ РІРёР±С–СЂРѕРє Р·Р°СЃС‚РѕСЃРѕРІР°РЅРѕ B-tree С–РЅРґРµРєСЃР°С†С–СЋ Р·Р° СЃС‚РѕРІРїС†СЏРјРё <code>timestamp</code> С‚Р° <code>substation_id</code>. Р”Р°РЅС– СЂРѕР·РјС–С‰СѓСЋС‚СЊСЃСЏ РІ С–С”СЂР°СЂС…С–С‡РЅРѕРјСѓ СЃС…РѕРІРёС‰С– Neon Cloud, С‰Рѕ Р·Р°Р±РµР·РїРµС‡СѓС” Р°РІС‚РѕРјР°С‚РёС‡РЅРµ РјР°СЃС€С‚Р°Р±СѓРІР°РЅРЅСЏ РґРёСЃРєРѕРІРѕРіРѕ РїСЂРѕСЃС‚РѕСЂСѓ.</li>
+</ul>
+<p>Р›РѕРіС–С‡РЅСѓ СЃС‚СЂСѓРєС‚СѓСЂСѓ Р±Р°Р·Рё РґР°РЅРёС… РїСЂРµРґСЃС‚Р°РІР»РµРЅРѕ РЅР° ER-РґС–Р°РіСЂР°РјС– (Р РёСЃ. 3.4).</p>
+<p align="center">
+<img src="../../docs/images/diag_er_db.png" width="90%">
+<br>
+<i>Р РёСЃ. 3.4. РЎС…РµРјР° Р±Р°Р·Рё РґР°РЅРёС… (ER-РґС–Р°РіСЂР°РјР°) СЃРёСЃС‚РµРјРё EnergyMonitor-OLAP</i>
+</p>
+
+<p>Р”Р»СЏ Р·Р°Р±РµР·РїРµС‡РµРЅРЅСЏ РІРёСЃРѕРєРѕС— С€РІРёРґРєРѕРґС–С— С–РЅС‚РµСЂС„РµР№СЃСѓ СЃРёСЃС‚РµРјР° С„РѕСЂРјСѓС” РѕРїС‚РёРјС–Р·РѕРІР°РЅС– SQL-Р·Р°РїРёС‚Рё Р· РѕР±'С”РґРЅР°РЅРЅСЏРј С‚Р°Р±Р»РёС†СЊ (JOIN). РўРёРїРѕРІРёРј РїСЂРёРєР»Р°РґРѕРј С” Р·Р°РїРёС‚ РґР»СЏ РєРѕСЂРµР»СЏС†С–С— С„Р°РєС‚РёС‡РЅРѕРіРѕ РЅР°РІР°РЅС‚Р°Р¶РµРЅРЅСЏ С‚Р° С‚РµРјРїРµСЂР°С‚СѓСЂРё РґРѕРІРєС–Р»Р»СЏ Р·Р° С–СЃС‚РѕСЂРёС‡РЅРёР№ РїРµСЂС–РѕРґ:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">SELECT</span><span class="w"> </span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="n">lm</span><span class="p">.</span><span class="k">timestamp</span><span class="p">,</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="n">r</span><span class="p">.</span><span class="n">region_name</span><span class="p">,</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="n">lm</span><span class="p">.</span><span class="n">actual_load_mw</span><span class="p">,</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="n">wr</span><span class="p">.</span><span class="n">temperature</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">FROM</span><span class="w"> </span><span class="n">LoadMeasurements</span><span class="w"> </span><span class="n">lm</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">JOIN</span><span class="w"> </span><span class="n">Substations</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">lm</span><span class="p">.</span><span class="n">substation_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">substation_id</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">JOIN</span><span class="w"> </span><span class="n">Regions</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">region_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">region_id</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">WeatherReports</span><span class="w"> </span><span class="n">wr</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">lm</span><span class="p">.</span><span class="k">timestamp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wr</span><span class="p">.</span><span class="k">timestamp</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">region_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wr</span><span class="p">.</span><span class="n">region_id</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">lm</span><span class="p">.</span><span class="k">timestamp</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">NOW</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="s1">&#39;30 days&#39;</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">lm</span><span class="p">.</span><span class="k">timestamp</span><span class="w"> </span><span class="k">ASC</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="34-no-digital-twin">3.4. РђРЅР°Р»С–Р· РІС…С–РґРЅРёС… РґР°РЅРёС… С‚Р° С–РјС–С‚Р°С†С–Р№РЅРµ РјРѕРґРµР»СЋРІР°РЅРЅСЏ Digital Twin</h3>
+<p>Р”Р»СЏ Р·Р°Р±РµР·РїРµС‡РµРЅРЅСЏ РІРёСЃРѕРєРѕС— С‚РѕС‡РЅРѕСЃС‚С– РїСЂРѕРіРЅРѕР·СѓРІР°РЅРЅСЏ Р±СѓР»Рѕ РїСЂРѕРІРµРґРµРЅРѕ Т‘СЂСѓРЅС‚РѕРІРЅРёР№ Р°РЅР°Р»С–Р· РІС…С–РґРЅРёС… РґР°РЅРёС… РЅР° РґРІРѕС… СЂС–РІРЅСЏС…: РµС‚Р°Р»РѕРЅРЅРёС… С–СЃС‚РѕСЂРёС‡РЅРёС… РґР°С‚Р°СЃРµС‚С–РІ С‚Р° СЃРёРЅС‚РµР·РѕРІР°РЅРёС… РїРѕС‚РѕРєС–РІ С†РёС„СЂРѕРІРѕРіРѕ РґРІС–Р№РЅРёРєР°.</p>
+<h4 id="341-pjm-comparison">3.4.1. Р”РѕСЃР»С–РґР¶РµРЅРЅСЏ РµС‚Р°Р»РѕРЅРЅРѕРіРѕ РґР°С‚Р°СЃРµС‚Сѓ PJM Comparison</h4>
+<p>РћСЃРЅРѕРІРѕСЋ РґР»СЏ РЅР°РІС‡Р°РЅРЅСЏ РјРѕРґРµР»С– LSTM v3 СЃС‚Р°РІ РґР°С‚Р°СЃРµС### 3.5. Р’РµСЂРёС„С–РєР°С†С–СЏ СЂРµР·СѓР»СЊС‚Р°С‚С–РІ С–РЅС‚РµР»РµРєС‚СѓР°Р»СЊРЅРѕРіРѕ РїСЂРѕРіРЅРѕР·СѓРІР°РЅРЅСЏ</p>
+<p>РџС–СЃР»СЏ СЂРѕР·РіРѕСЂС‚Р°РЅРЅСЏ РјРѕРґРµР»С– LSTM v3 Р±СѓР»Рѕ РїСЂРѕРІРµРґРµРЅРѕ СЃРµСЂС–СЋ РµРєСЃРїРµСЂРёРјРµРЅС‚С–РІ РґР»СЏ РѕС†С–РЅРєРё С‚РѕС‡РЅРѕСЃС‚С– РїСЂРѕРіРЅРѕР·СѓРІР°РЅРЅСЏ РІ СѓРјРѕРІР°С… СЂРµР°Р»СЊРЅРѕРіРѕ С‡Р°СЃСѓ.</p>
+<h4 id="351-ai-forecast-verification">3.5.1. РђРЅР°Р»С–Р· С‚РѕС‡РЅРѕСЃС‚С– (AI Forecast Verification)</h4>
+<p>Р“РѕР»РѕРІРЅРѕСЋ РјРµС‚СЂРёРєРѕСЋ СѓСЃРїС–С€РЅРѕСЃС‚С– С” Р·Р±С–Рі РїСЂРѕРіРЅРѕР·Сѓ (СЃРёРЅСЏ Р»С–РЅС–СЏ РЅР° СЂРёСЃ. 3.9) С–Р· С„Р°РєС‚РёС‡РЅРёРјРё РґР°РЅРёРјРё (С‡РµСЂРІРѕРЅР° РїСѓРЅРєС‚РёСЂРЅР° Р»С–РЅС–СЏ). </p>
+<p align="center">
+<img src="../../docs/images/ai_forecast.png" width="90%">
+<br>
+<i>Р РёСЃ. 3.9. Р РµР·СѓР»СЊС‚Р°С‚Рё AI-РїСЂРѕРіРЅРѕР·СѓРІР°РЅРЅСЏ РЅР° 24 РіРѕРґРёРЅРё Р· РґРѕРІС–СЂС‡РёРјРё С–РЅС‚РµСЂРІР°Р»Р°РјРё (MAE=3.08%)</i>
+</p>
+
+<p>РЎРёСЃС‚РµРјР° РґРµРјРѕРЅСЃС‚СЂСѓС” РІРёСЃРѕРєСѓ С‚РѕС‡РЅС–СЃС‚СЊ РїСЂРё РїСЂРѕРіРЅРѕР·СѓРІР°РЅРЅС– РґРѕР±РѕРІРёС… РїС–РєС–РІ. Р”РѕРІС–СЂС‡РёР№ С–РЅС‚РµСЂРІР°Р» (Shadow Area) Р°РІС‚РѕРјР°С‚РёС‡РЅРѕ СЂРѕР·СЂР°С…РѕРІСѓС”С‚СЊСЃСЏ РЅР° РѕСЃРЅРѕРІС– РїРѕС‚РѕС‡РЅРѕС— РґРёСЃРїРµСЂСЃС–С— РїРѕРјРёР»РѕРє, С‰Рѕ РґРѕР·РІРѕР»СЏС” РѕРїРµСЂР°С‚РѕСЂСѓ РѕС†С–РЅСЋРІР°С‚Рё СЂРёР·РёРєРё РїСЂРё РїСЂРёР№РЅСЏС‚С‚С– СЂС–С€РµРЅСЊ РїСЂРѕ Р·Р°РєСѓРїС–РІР»СЋ РµР»РµРєС‚СЂРѕРµРЅРµСЂРіС–С—.</p>
+<h4 id="352-">3.5.2. РњСѓР»СЊС‚Рё-РїСЂРѕРіРЅРѕР· РґР»СЏ СЂРѕР·РїРѕРґС–Р»РµРЅРёС… РІСѓР·Р»С–РІ</h4>
+<p>Р”Р»СЏ РІРµР»РёРєРёС… РјРµСЂРµР¶ РєСЂРёС‚РёС‡РЅРѕ РІР°Р¶Р»РёРІРѕ Р±Р°С‡РёС‚Рё СЃРёС‚СѓР°С†С–СЋ РІ СЂРѕР·СЂС–Р·С– РѕРєСЂРµРјРёС… РїС–РґСЃС‚Р°РЅС†С–Р№. Р РёСЃ. 3.10 РґРµРјРѕРЅСЃС‚СЂСѓС” РїР°РЅРµР»СЊ РјСѓР»СЊС‚Рё-РїСЂРѕРіРЅРѕР·СѓРІР°РЅРЅСЏ, РґРµ РєРѕР¶РЅР° РјРѕРґРµР»СЊ Р°РґР°РїС‚РѕРІР°РЅР° РїС–Рґ РєРѕРЅРєСЂРµС‚РЅСѓ Р»РѕРєР°Р»СЊРЅСѓ СЃРїРµС†РёС„С–РєСѓ СЃРїРѕР¶РёРІР°РЅРЅСЏ.</p>
+<p align="center">
+<img src="../../docs/images/multi_forecast.png" width="95%">
+<br>
+<i>Р РёСЃ. 3.10. РџРѕСЂС–РІРЅСЏР»СЊРЅР° РїР°РЅРµР»СЊ РїСЂРѕРіРЅРѕР·С–РІ РґР»СЏ СЂС–Р·РЅРёС… РІСѓР·Р»С–РІ РµРЅРµСЂРіРѕСЃРёСЃС‚РµРјРё</i>
+</p>
+
+<h4 id="353-no-unsupervised-learning">3.5.3. РљР»Р°СЃС‚РµСЂРЅРёР№ Р°РЅР°Р»С–Р· СЃРїРѕР¶РёРІР°С‡С–РІ (Unsupervised Learning)</h4>
+<p>Р—Р° РґРѕРїРѕРјРѕРіРѕСЋ Р°Р»РіРѕСЂРёС‚РјСѓ K-Means СЃРёСЃС‚РµРјР° РїСЂРѕРІРѕРґРёС‚СЊ Р°РІС‚РѕРјР°С‚РёС‡РЅРµ РіСЂСѓРїСѓРІР°РЅРЅСЏ РїС–РґСЃС‚Р°РЅС†С–Р№ Р·Р° РїСЂРѕС„С–Р»РµРј РЅР°РІР°РЅС‚Р°Р¶РµРЅРЅСЏ. Р¦Рµ РґРѕР·РІРѕР»СЏС” РІРёРґС–Р»РёС‚Рё РїСЂРѕРјРёСЃР»РѕРІС– С‚Р° Р¶РёС‚Р»РѕРІС– СЂР°Р№РѕРЅРё Р±РµР· СЂСѓС‡РЅРѕРіРѕ РјР°СЂРєСѓРІР°РЅРЅСЏ.</p>
+<p align="center">
+<img src="../../docs/images/clustering.png" width="85%">
+<br>
+<i>Р РёСЃ. 3.11. Р РµР·СѓР»СЊС‚Р°С‚Рё РєР»Р°СЃС‚РµСЂРёР·Р°С†С–С— РїС–РґСЃС‚Р°РЅС†С–Р№ Р·Р° РїР°С‚РµСЂРЅР°РјРё СЃРїРѕР¶РёРІР°РЅРЅСЏ</i>
+</p>
+
+<h3 id="36-no">3.6. Р•РєРѕРЅРѕРјС–С‡РЅРёР№ Р±Р»РѕРє С‚Р° РјРѕРЅС–С‚РѕСЂРёРЅРі СЃС‚Р°Р±С–Р»СЊРЅРѕСЃС‚С–</h3>
+<p>РџСЂРѕРіСЂР°РјРЅР° СЂРµР°Р»С–Р·Р°С†С–СЏ EnergyMonitor-OLAP РІРєР»СЋС‡Р°С” РјРѕРґСѓР»С– РґР»СЏ С„С–РЅР°РЅСЃРѕРІРѕРіРѕ Р°СѓРґРёС‚Сѓ С‚Р° РєРѕРЅС‚СЂРѕР»СЋ С„С–Р·РёС‡РЅРёС… РїРѕС‚РѕРєС–РІ РµРЅРµСЂРіС–С—.</p>
+<h4 id="361-no">3.6.1. Р¤С–РЅР°РЅСЃРѕРІРёР№ Р°СѓРґРёС‚ С‚Р° РІС‚СЂР°С‚Рё РІ РјРµСЂРµР¶С–</h4>
+<p>Р•РєРѕРЅРѕРјС–С‡РЅР° РїР°РЅРµР»СЊ (Р РёСЃ. 3.12) РїРµСЂРµС‚РІРѕСЂСЋС” С‚РµС…РЅС–С‡РЅС– РјРµРіР°РІР°С‚Рё Сѓ РіСЂРѕС€РѕРІРёР№ РµРєРІС–РІР°Р»РµРЅС‚ Р·Р° Р°РєС‚СѓР°Р»СЊРЅРёРјРё С‚Р°СЂРёС„Р°РјРё РџР Р Р•. РЎРёСЃС‚РµРјР° Р°РІС‚РѕРјР°С‚РёС‡РЅРѕ СЂРѕР·СЂР°С…РѕРІСѓС” РІР°СЂС‚С–СЃС‚СЊ С‚РµС…РЅРѕР»РѕРіС–С‡РЅРёС… РІС‚СЂР°С‚ (<code>line_losses</code>), С‰Рѕ РґРѕР·РІРѕР»СЏС” РѕР±Т‘СЂСѓРЅС‚СѓРІР°С‚Рё РЅРµРѕР±С…С–РґРЅС–СЃС‚СЊ РјРѕРґРµСЂРЅС–Р·Р°С†С–С— РєРѕРЅРєСЂРµС‚РЅРёС… Р»С–РЅС–Р№ РµР»РµРєС‚СЂРѕРїРµСЂРµРґР°С‡.</p>
+<p align="center">
+<img src="../../docs/images/finance.png" width="90%">
+<br>
+<i>Р РёСЃ. 3.12. Р†РЅС‚РµСЂС„РµР№СЃ С„С–РЅР°РЅСЃРѕРІРѕРіРѕ РјРѕРЅС–С‚РѕСЂРёРЅРіСѓ С‚Р° СЂРѕР·СЂР°С…СѓРЅРєСѓ РµС„РµРєС‚РёРІРЅРѕСЃС‚С–</i>
+</p>
+
+<h4 id="362">3.6.2. РџРѕС‚РѕРєРѕРІР° Р°РЅР°Р»С–С‚РёРєР° С‚Р° Р±Р°Р»Р°РЅСЃСѓРІР°РЅРЅСЏ РјРµСЂРµР¶С–</h4>
+<p>Р”Р»СЏ РїС–РґС‚СЂРёРјРєРё С‡Р°СЃС‚РѕС‚Рё 50 Р“С† СЃРёСЃС‚РµРјР° РјРѕРЅС–С‚РѕСЂРёС‚СЊ Р±Р°Р»Р°РЅСЃ РјС–Р¶ РіРµРЅРµСЂР°С†С–С”СЋ С‚Р° СЃРїРѕР¶РёРІР°РЅРЅСЏРј. РќР° СЂРёСЃ. 3.13 РїСЂРµРґСЃС‚Р°РІР»РµРЅРѕ РѕРіР»СЏРґ Streaming Analytics, РґРµ РєРѕР»СЊРѕСЂРѕРІР° С–РЅРґРёРєР°С†С–СЏ СЃРёРіРЅР°Р»С–Р·СѓС” РїСЂРѕ РґРµС„С–С†РёС‚ Р°Р±Рѕ РїСЂРѕС„С–С†РёС‚ РїРѕС‚СѓР¶РЅРѕСЃС‚С– РІ РєРѕР¶РЅРѕРјСѓ СЂРµРіС–РѕРЅС–.</p>
+<p align="center">
+<img src="../../docs/images/streaming_analytics.png" width="95%">
+<br>
+<i>Р РёСЃ. 3.13. РџР°РЅРµР»СЊ СЂРµР°Р»СЊРЅРѕРіРѕ С‡Р°СЃСѓ РґР»СЏ РєРѕРЅС‚СЂРѕР»СЋ Р±Р°Р»Р°РЅСЃСѓ РіРµРЅРµСЂР°С†С–С— С‚Р° СЃРїРѕР¶РёРІР°РЅРЅСЏ</i>
+</p>
+
+<h4 id="363-boot-sequence">3.6.3. РџСЂРѕС†РµСЃ С–РЅС–С†С–Р°Р»С–Р·Р°С†С–С— СЃРёСЃС‚РµРјРё (Boot Sequence)</h4>
+<p>Р”Р»СЏ Р·Р°Р±РµР·РїРµС‡РµРЅРЅСЏ РЅР°РґС–Р№РЅРѕСЃС‚С– РїСЂРё СЃС‚Р°СЂС‚С– СЃРёСЃС‚РµРјР° РїСЂРѕС…РѕРґРёС‚СЊ СЂРѕР·С€РёСЂРµРЅРёР№ С†РёРєР» СЃР°РјРѕРґС–Р°РіРЅРѕСЃС‚РёРєРё С‚Р° РїРµСЂРµРІС–СЂРєРё РїС–РґРєР»СЋС‡РµРЅСЊ РґРѕ С…РјР°СЂРЅРёС… СЃРµСЂРІС–СЃС–РІ (Р РёСЃ. 3.14).</p>
+<p align="center">
+<img src="../../docs/images/boot_loader.png" width="80%">
+<br>
+<i>Р РёСЃ. 3.14. Р’С–Р·СѓР°Р»С–Р·Р°С†С–СЏ РїСЂРѕС†РµСЃСѓ СЃРёСЃС‚РµРјРЅРѕС— С–РЅС–С†С–Р°Р»С–Р·Р°С†С–С— С‚Р° РїСЂРѕРіСЂС–РІСѓ РєРµС€Сѓ</i>
+</p>
+
+<p>РљРѕРЅС‚РµР№РЅРµСЂРёР·Р°С†С–СЏ С‚Р° CI/CD РєРѕРЅРІРµС”СЂ РґР»СЏ СЃС‚Р°Р±С–Р»СЊРЅРѕРіРѕ СЂРѕР·РіРѕСЂС‚Р°РЅРЅСЏ СЃРёСЃС‚РµРјРё СЂРµР°Р»С–Р·РѕРІР°РЅРѕ Р·Р° РґРѕРїРѕРјРѕРіРѕСЋ С‚РµС…РЅРѕР»РѕРіС–С— <strong>Docker</strong>. РљРѕРЅС„С–РіСѓСЂР°С†С–СЏ Р±Р°Р·СѓС”С‚СЊСЃСЏ РЅР° Р»РµРіРєРѕРјСѓ РѕР±СЂР°Р·С– <code>python:3.11-slim</code> Р· РѕРїС‚РёРјС–Р·РѕРІР°РЅРёРј РІСЃС‚Р°РЅРѕРІР»РµРЅРЅСЏРј РјР°С‚РµРјР°С‚РёС‡РЅРёС… Р·Р°Р»РµР¶РЅРѕСЃС‚РµР№. РџСЂРѕС†РµСЃ Р°РІС‚РѕРјР°С‚РёР·РѕРІР°РЅРѕС— С–РЅС‚РµРіСЂР°С†С–С— С‚Р° СЂРѕР·РіРѕСЂС‚Р°РЅРЅСЏ (CI/CD) РЅР° РїР»Р°С‚С„РѕСЂРјС– <strong>Render.com</strong> РѕС…РѕРїР»СЋС” РµС‚Р°РїРё Р»С–РЅС‚РёРЅРіСѓ, СЋРЅС–С‚-С‚РµСЃС‚СѓРІР°РЅРЅСЏ (<strong>pytest</strong>) С‚Р° Р°РІС‚РѕРјР°С‚РёС‡РЅРѕРіРѕ РѕРЅРѕРІР»РµРЅРЅСЏ РїСЂРѕРґСѓРєС‚РѕРІРѕРіРѕ РєРѕРЅС‚РµР№РЅРµСЂР° РїСЂРё РєРѕР¶РЅРѕРјСѓ РєРѕРјС–С‚С– РґРѕ GitHub-СЂРµРїРѕР·РёС‚РѕСЂС–СЋ.</p>
+<p align="center">
+<img src="../../docs/images/diag_cicd_pipeline.png" width="90%">
+<br>
+<i>Р РёСЃ. 3.15. РўРµС…РЅРѕР»РѕРіС–С‡РЅР° СЃС…РµРјР° РєРѕРЅРІРµС”СЂР° CI/CD СЃРёСЃС‚РµРјРё</i>
+</p>
+<p>”РєС‚С– EnergyMonitor-OLAP СЂРѕР·СЂРѕР±Р»РµРЅРѕ РјР°С‚РµРјР°С‚РёС‡РЅРµ Р·Р°Р±РµР·РїРµС‡РµРЅРЅСЏ, С‰Рѕ Р±Р°Р·СѓС”С‚СЊСЃСЏ РЅР° РїРѕС”РґРЅР°РЅРЅС– СЃС‚Р°С‚РёСЃС‚РёС‡РЅРѕС— РѕР±СЂРѕР±РєРё РѕР·РЅР°Рє С‚Р° РіР»РёР±РѕРєРѕРіРѕ РЅР°РІС‡Р°РЅРЅСЏ.</p>
+<h4 id="feature-engineering">Р†РЅР¶РµРЅРµСЂС–СЏ РѕР·РЅР°Рє (Feature Engineering) С‚Р° С‚СЂРёРіРѕРЅРѕРјРµС‚СЂРёС‡РЅРµ РєРѕРґСѓРІР°РЅРЅСЏ</h4>
+<p>Р”Р»СЏ РЅР°РІС‡Р°РЅРЅСЏ РјРѕРґРµР»С– Р±СѓР»Рѕ СЃС„РѕСЂРјРѕРІР°РЅРѕ РґРµРІвЂ™СЏС‚РёРІРёРјС–СЂРЅРёР№ РІРµРєС‚РѕСЂ РѕР·РЅР°Рє, С‰Рѕ РІРєР»СЋС‡Р°С” С„С–Р·РёС‡РЅС– РїР°СЂР°РјРµС‚СЂРё РЅР°РІР°РЅС‚Р°Р¶РµРЅРЅСЏ, С‚РµРјРїРµСЂР°С‚СѓСЂРЅС– СѓРјРѕРІРё С‚Р° С‡Р°СЃРѕРІС– РґРµС‚РµСЂРјС–РЅР°РЅС‚Рё. РљР»СЋС‡РѕРІРѕСЋ РѕСЃРѕР±Р»РёРІС–СЃС‚СЋ РїС–РґРіРѕС‚РѕРІРєРё РґР°РЅРёС… С” РІРёРєРѕСЂРёСЃС‚Р°РЅРЅСЏ РіР°СЂРјРѕРЅС–Р№РЅРѕРіРѕ РєРѕРґСѓРІР°РЅРЅСЏ С‡Р°СЃСѓ. РќР° РІС–РґРјС–РЅСѓ РІС–Рґ РїСЂСЏРјРѕРіРѕ РїСЂРµРґСЃС‚Р°РІР»РµРЅРЅСЏ РіРѕРґРёРЅРё СЏРє С†С–Р»РѕРіРѕ С‡РёСЃР»Р° <span class="arithmatex">\([0, 23]\)</span>, С‚СЂРёРіРѕРЅРѕРјРµС‚СЂРёС‡РЅР° С‚СЂР°РЅСЃС„РѕСЂРјР°С†С–СЏ РґРѕР·РІРѕР»СЏС” РІРёРєР»СЋС‡РёС‚Рё РїСЂРѕР±Р»РµРјСѓ СЂРѕР·СЂРёРІСѓ (РЅР°РїСЂРёРєР»Р°Рґ, РјС–Р¶ 23:00 С‚Р° 00:00) С‚Р° Р·Р°Р±РµР·РїРµС‡РёС‚Рё РјР°С‚РµРјР°С‚РёС‡РЅСѓ Р±РµР·РїРµСЂРµСЂРІРЅС–СЃС‚СЊ С†РёРєР»С–С‡РЅРёС… РїСЂРѕС†РµСЃС–РІ. РўСЂР°РЅСЃС„РѕСЂРјР°С†С–СЏ РІРёРєРѕРЅСѓС”С‚СЊСЃСЏ Р·Р° С„РѕСЂРјСѓР»Р°РјРё:
+$<span class="arithmatex">\(x_{sin} = \sin \left( \frac{2\pi \cdot t}{T} \right); \quad x_{cos} = \cos \left( \frac{2\pi \cdot t}{T} \right)\)</span>$
+РґРµ <span class="arithmatex">\(t\)</span> вЂ” РїРѕС‚РѕС‡РЅР° РіРѕРґРёРЅР° Р°Р±Рѕ РґРµРЅСЊ С‚РёР¶РЅСЏ, <span class="arithmatex">\(T\)</span> вЂ” РїРµСЂС–РѕРґ С†РёРєР»С–С‡РЅРѕСЃС‚С– (24 РґР»СЏ РґРѕР±Рё, 7 РґР»СЏ С‚РёР¶РЅСЏ).</p>
+<h4 id="_1">РњР°СЃС€С‚Р°Р±СѓРІР°РЅРЅСЏ С‚Р° С„РѕСЂРјСѓРІР°РЅРЅСЏ С‡Р°СЃРѕРІРёС… РІС–РєРѕРЅ</h4>
+<p>Р’СЂР°С…РѕРІСѓСЋС‡Рё РІРёСЃРѕРєСѓ С‡СѓС‚Р»РёРІС–СЃС‚СЊ СЂРµРєСѓСЂРµРЅС‚РЅРёС… РЅРµР№СЂРѕРЅРЅРёС… РјРµСЂРµР¶ РґРѕ СЂРѕР·РєРёРґСѓ Р·РЅР°С‡РµРЅСЊ, Р·Р°СЃС‚РѕСЃРѕРІР°РЅРѕ Р°Р»РіРѕСЂРёС‚Рј <strong>MinMaxScaler</strong>, СЏРєРёР№ РїСЂРёРІРѕРґРёС‚СЊ СѓСЃС– РѕР·РЅР°РєРё РґРѕ РґС–Р°РїР°Р·РѕРЅСѓ <span class="arithmatex">\([0, 1]\)</span>. РџСЂРѕС†РµСЃ С„РѕСЂРјСѓРІР°РЅРЅСЏ РІРёР±С–СЂРѕРє СЂРµР°Р»С–Р·РѕРІР°РЅРѕ РјРµС‚РѕРґРѕРј РєРѕРІР·РЅРѕРіРѕ РІС–РєРЅР° (<strong>Sliding Window</strong>) Р· РіР»РёР±РёРЅРѕСЋ РїРµСЂРµРіР»СЏРґСѓ (Look-back) В«РґРѕ 48 РіРѕРґРёРЅВ» (РґРІР° РґРѕР±Рё РїРѕС‚РѕС‡РЅРѕРіРѕ РјРѕРјРµРЅС‚Сѓ) РґР»СЏ РєРѕСЂРѕС‚РєРѕСЃС‚СЂРѕРєРѕРІРѕРіРѕ РїСЂРѕРіРЅРѕР·Сѓ.</p>
+<h4 id="no-lstm-v3">РђСЂС…С–С‚РµРєС‚СѓСЂР° РЅРµР№СЂРѕРЅРЅРѕС— РјРµСЂРµР¶С– LSTM v3</h4>
+<p>Р”Р»СЏ РІРёСЏРІР»РµРЅРЅСЏ РЅРµР»С–РЅС–Р№РЅРёС… Р·Р°Р»РµР¶РЅРѕСЃС‚РµР№ Сѓ С‡Р°СЃРѕРІРёС… СЂСЏРґР°С… РѕР±СЂР°РЅРѕ РјРѕРґРёС„С–РєРѕРІР°РЅСѓ Р°СЂС…С–С‚РµРєС‚СѓСЂСѓ <strong>LSTM (Long Short-Term Memory)</strong>. РџСЂРѕС”РєС‚РЅСѓ СЃС‚СЂСѓРєС‚СѓСЂСѓ РјРѕРґРµР»С– РїСЂРµРґСЃС‚Р°РІР»РµРЅРѕ С‚Р°РєРѕСЋ РїРѕСЃР»С–РґРѕРІРЅС–СЃС‚СЋ С€Р°СЂС–РІ:
+1. <strong>Р’С…С–РґРЅРёР№ LSTM-С€Р°СЂ (128 СЋРЅС–С‚С–РІ)</strong>: Р’РёРєРѕРЅСѓС” РІРёР»СѓС‡РµРЅРЅСЏ СЃРєР»Р°РґРЅРёС… С‡Р°СЃРѕРІРёС… РѕР·РЅР°Рє С–Р· РїРѕРІРµСЂРЅРµРЅРЅСЏРј РїРѕРІРЅРѕС— РїРѕСЃР»С–РґРѕРІРЅРѕСЃС‚С– (<code>return_sequences=True</code>).
+2. <strong>РџСЂРѕРјС–Р¶РЅРёР№ LSTM-С€Р°СЂ (64 СЋРЅС–С‚Рё)</strong>: РђРіСЂРµРіСѓС” С–РЅС„РѕСЂРјР°С†С–СЋ С‚Р° С„РѕСЂРјСѓС” РєРѕРјРїР°РєС‚РЅРµ РїСЂРµРґСЃС‚Р°РІР»РµРЅРЅСЏ СЃС‚Р°РЅСѓ СЃРёСЃС‚РµРјРё.
+3. <strong>РџРѕРІРЅРѕР·РІвЂ™СЏР·РЅРёР№ С€Р°СЂ (32 РЅРµР№СЂРѕРЅРё)</strong>: Р’РёРєРѕСЂРёСЃС‚РѕРІСѓС” С„СѓРЅРєС†С–СЋ Р°РєС‚РёРІР°С†С–С— <strong>ReLU</strong> РґР»СЏ РІРЅРµСЃРµРЅРЅСЏ РЅРµР»С–РЅС–Р№РЅРѕСЃС‚С–.
+4. <strong>Р’РёС…С–РґРЅРёР№ С€Р°СЂ (1 РЅРµР№СЂРѕРЅ)</strong>: Р¤РѕСЂРјСѓС” РєС–РЅС†РµРІРµ Р·РЅР°С‡РµРЅРЅСЏ РїСЂРѕРіРЅРѕР·Сѓ.</p>
+<h4 id="_2">РџР°СЂР°РјРµС‚СЂРё РѕРїС‚РёРјС–Р·Р°С†С–С— С‚Р° РЅР°РІС‡Р°РЅРЅСЏ</h4>
+<p>РЇРє С„СѓРЅРєС†С–СЋ РІС‚СЂР°С‚ РѕР±СЂР°РЅРѕ <strong>Huber Loss</strong>, С‰Рѕ С” СЂРѕР±Р°СЃС‚РЅРѕСЋ РєРѕРјР±С–РЅР°С†С–С”СЋ MSE С‚Р° MAE, Р·Р°Р±РµР·РїРµС‡СѓСЋС‡Рё СЃС‚С–Р№РєС–СЃС‚СЊ РјРѕРґРµР»С– РґРѕ РІРёРєРёРґС–РІ С‚Р° РґР°С‚С‡РёРєРѕРІРѕРіРѕ С€СѓРјСѓ. РћРїС‚РёРјС–Р·Р°С†С–СЋ РІР°Рі РЅРµР№СЂРѕРјРµСЂРµР¶С– Р·РґС–Р№СЃРЅСЋС” Р°Р»РіРѕСЂРёС‚Рј <strong>Adam</strong> Р· Р°РґР°РїС‚РёРІРЅРѕСЋ С€РІРёРґРєС–СЃС‚СЋ РЅР°РІС‡Р°РЅРЅСЏ. Р”Р»СЏ Р·Р°РїРѕР±С–РіР°РЅРЅСЏ РїРµСЂРµРЅР°РІС‡Р°РЅРЅСЋ РІРїСЂРѕРІР°РґР¶РµРЅРѕ РјРµС…Р°РЅС–Р·Рј <strong>Early Stopping</strong>, СЏРєРёР№ РїСЂРёРїРёРЅСЏС” РїСЂРѕС†РµСЃ РЅР°РІС‡Р°РЅРЅСЏ, СЏРєС‰Рѕ РїРѕРјРёР»РєР° РЅР° РІР°Р»С–РґР°С†С–Р№РЅС–Р№ РІРёР±С–СЂС†С– РЅРµ РґРµРјРѕРЅСЃС‚СЂСѓС” РїРѕРєСЂР°С‰РµРЅРЅСЏ РїСЂРѕС‚СЏРіРѕРј 15 С–С‚РµСЂР°С†С–Р№.</p>
+<h3 id="33-no_1">3.3. РџСЂРѕРіСЂР°РјРЅР° СЂРµР°Р»С–Р·Р°С†С–СЏ С–РЅС‚РµСЂС„РµР№СЃСѓ С‚Р° СЂРѕР·РіРѕСЂС‚Р°РЅРЅСЏ</h3>
+<p>Р”Р»СЏ СЃС‚РІРѕСЂРµРЅРЅСЏ РїСЂРѕРґСѓРєС‚РёРІРЅРѕРіРѕ СЃРµСЂРµРґРѕРІРёС‰Р° РІР·Р°С”РјРѕРґС–С— РєРѕСЂРёСЃС‚СѓРІР°С‡Р° Р· С–РЅС‚РµР»РµРєС‚СѓР°Р»СЊРЅРѕСЋ РјРѕРґРµР»Р»СЋ СЂРѕР·СЂРѕР±Р»РµРЅРѕ РїСЂРѕРіСЂР°РјРЅРёР№ РєРѕРјРїР»РµРєСЃ РЅР° Р±Р°Р·С– РјРѕРІРё Python С‚Р° СЃСѓС‡Р°СЃРЅРёС… С…РјР°СЂРЅРёС… С‚РµС…РЅРѕР»РѕРіС–Р№.</p>
+<h4 id="-no-streamlit">Р’РµР±-С–РЅС‚РµСЂС„РµР№СЃ РЅР° Р±Р°Р·С– Streamlit</h4>
+<p>РљРѕСЂРёСЃС‚СѓРІР°С†СЊРєРёР№ С–РЅС‚РµСЂС„РµР№СЃ СЂРµР°Р»С–Р·РѕРІР°РЅРѕ Сѓ С„РѕСЂРјР°С‚С– Р±Р°РіР°С‚РѕСЃС‚РѕСЂС–РЅРєРѕРІРѕС— Р°РЅР°Р»С–С‚РёС‡РЅРѕС— РїР°РЅРµР»С– (Dashboard). РљР»СЋС‡РѕРІС– С‚РµС…РЅРѕР»РѕРіС–С‡РЅС– СЂС–С€РµРЅРЅСЏ Frontend-С€Р°СЂСѓ РІРєР»СЋС‡Р°СЋС‚СЊ:
+* <strong>Granular Rendering</strong>: РњРµС‚РѕРґ С„СЂР°РіРјРµРЅС‚Р°СЂРЅРѕРіРѕ СЂРµРЅРґРµСЂРёРЅРіСѓ РІРєР»Р°РґРѕРє, С‰Рѕ РґРѕР·РІРѕР»СЏС” Р·Р°РІР°РЅС‚Р°Р¶СѓРІР°С‚Рё РІР°Р¶РєС– С‡Р°СЃРѕРІС– СЂСЏРґРё С‚Р° РєР°СЂС‚Рё Folium Р»РёС€Рµ Р·Р° Р·Р°РїРёС‚РѕРј, РјС–РЅС–РјС–Р·СѓСЋС‡Рё РЅР°РІР°РЅС‚Р°Р¶РµРЅРЅСЏ РЅР° РѕРїРµСЂР°С‚РёРІРЅСѓ РїР°РјвЂ™СЏС‚СЊ СЃРµСЂРІРµСЂР°.
+* <strong>State Management</strong>: РљРµСЂСѓРІР°РЅРЅСЏ СЃС‚Р°РЅРѕРј РґРѕРґР°С‚РєР° С‡РµСЂРµР· РѕР±вЂ™С”РєС‚ <code>session_state</code>, С‰Рѕ РіР°СЂР°РЅС‚СѓС” Р·Р±РµСЂРµР¶РµРЅРЅСЏ СЂРµР·СѓР»СЊС‚Р°С‚С–РІ С–РЅС„РµСЂРµРЅСЃСѓ РїСЂРё РЅР°РІС–РіР°С†С–С—.
+* <strong>Robust Database Handler</strong>: РЎРёСЃС‚РµРјР° РґРµРєРѕСЂР°С‚РѕСЂС–РІ С–Р· Р»РѕРіС–РєРѕСЋ РїРѕРІС‚РѕСЂРЅРёС… СЃРїСЂРѕР± (Retry logic), СЏРєР° Р·Р°Р±РµР·РїРµС‡СѓС” СЃС‚С–Р№РєС–СЃС‚СЊ РїС–РґРєР»СЋС‡РµРЅРЅСЏ РґРѕ С…РјР°СЂРЅРѕС— Р‘Р” Neon РїСЂРё РјРµСЂРµР¶РµРІРёС… С‚Р°Р№Рј-Р°СѓС‚Р°С….</p>
+<p>[Р Р�РЎРЈРќРћРљ 3.5 вЂ” РЎРљР Р†РќРЁРћРў: Р“РћР›РћР’РќРђ РџРђРќР•Р›Р¬ РњРћРќР†РўРћР Р�РќР“РЈ KPI]
+(РћРїРёСЃ: Р’С–Р·СѓР°Р»С–Р·Р°С†С–СЏ РѕСЃРЅРѕРІРЅРёС… РјРµС‚СЂРёРє СЃРёСЃС‚РµРјРё: РїРѕС‚РѕС‡РЅРµ РЅР°РІР°РЅС‚Р°Р¶РµРЅРЅСЏ, СЃС‚Р°РЅ Р·РґРѕСЂРѕРІ'СЏ РїС–РґСЃС‚Р°РЅС†С–Р№ С‚Р° Health Score).</p>
+<p>[Р Р�РЎРЈРќРћРљ 3.6 вЂ” РЎРљР Р†РќРЁРћРў: РџР Р•Р”Р�РљРўР�Р’РќРђ РџРђРќР•Р›Р¬ (LSTM FORECAST)]
+(РћРїРёСЃ: РџРѕР±СѓРґРѕРІР°РЅРёР№ РіСЂР°С„С–Рє РїСЂРѕРіРЅРѕР·Сѓ РЅР° 24-48 РіРѕРґРёРЅ РЅР° С„РѕРЅС– С„Р°РєС‚РёС‡РЅРёС… РґР°РЅРёС… Р· РґРѕРІС–СЂС‡РёРјРё С–РЅС‚РµСЂРІР°Р»Р°РјРё).</p>
+<p>Р’Р°Р¶Р»РёРІРѕСЋ С‡Р°СЃС‚РёРЅРѕСЋ СЃРёСЃС‚РµРјРё С” РіРµРѕС–РЅС„РѕСЂРјР°С†С–Р№РЅРёР№ С€Р°СЂ Digital Twin, СЏРєРёР№ РґРѕР·РІРѕР»СЏС” РѕРїРµСЂР°С‚РѕСЂСѓ Р±Р°С‡РёС‚Рё С‚РѕРїРѕР»РѕРіС–С‡РЅРµ СЂРѕР·С‚Р°С€СѓРІР°РЅРЅСЏ РѕР±'С”РєС‚С–РІ С‚Р° С—С… РїРѕС‚РѕС‡РЅРёР№ СЃС‚Р°РЅ РЅР° С–РЅС‚РµСЂР°РєС‚РёРІРЅС–Р№ РјР°РїС– (СЂРёСЃ. 3.7).</p>
+<p align="center">
+<img src="../../docs/images/map.png" width="90%">
+<br>
+<i>Р РёСЃ. 3.7. РљР°СЂС‚Р° С†РёС„СЂРѕРІРѕРіРѕ РґРІС–Р№РЅРёРєР° Р· РјР°СЂРєРµСЂР°РјРё СЃС‚Р°РЅСѓ РїС–РґСЃС‚Р°РЅС†С–Р№</i>
+</p>
+
+<p>РЎРёСЃС‚РµРјР° Р°РІС‚РѕРјР°С‚РёС‡РЅРѕРіРѕ РІРёСЏРІР»РµРЅРЅСЏ Р°РЅРѕРјР°Р»С–Р№ С‚Р° С‚РµРјРїРµСЂР°С‚СѓСЂРЅРѕС— РґРµРіСЂР°РґР°С†С–С— РѕР±Р»Р°РґРЅР°РЅРЅСЏ РІРёРІРѕРґРёС‚СЊ РєСЂРёС‚РёС‡РЅС– СЃРїРѕРІС–С‰РµРЅРЅСЏ Сѓ Р¶СѓСЂРЅР°Р»С– Р°РЅРѕРјР°Р»С–Р№, С‰Рѕ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёР№ РЅР° СЂРёСЃ. 3.8.</p>
+<p align="center">
+<img src="../../docs/images/alerts.png" width="90%">
+<br>
+<i>Р РёСЃ. 3.8. Р–СѓСЂРЅР°Р» РјРѕРЅС–С‚РѕСЂРёРЅРіСѓ Р°РЅРѕРјР°Р»С–Р№ С‚Р° РєСЂРёС‚РёС‡РЅРёС… РїРѕРґС–Р№ СЃРёСЃС‚РµРјРё</i>
+</p>
+
+<h4 id="no-cicd">РљРѕРЅС‚РµР№РЅРµСЂРёР·Р°С†С–СЏ С‚Р° CI/CD РєРѕРЅРІРµС”СЂ</h4>
+<p>Р”Р»СЏ СЃС‚Р°Р±С–Р»СЊРЅРѕРіРѕ СЂРѕР·РіРѕСЂС‚Р°РЅРЅСЏ СЃРёСЃС‚РµРјРё Р·Р°СЃС‚РѕСЃРѕРІР°РЅРѕ С‚РµС…РЅРѕР»РѕРіС–СЋ <strong>Docker</strong>. РљРѕРЅС„С–РіСѓСЂР°С†С–СЏ Р±Р°Р·СѓС”С‚СЊСЃСЏ РЅР° Р»РµРіРєРѕРјСѓ РѕР±СЂР°Р·С– <code>python:3.11-slim</code> Р· РѕРїС‚РёРјС–Р·РѕРІР°РЅРёРј РІСЃС‚Р°РЅРѕРІР»РµРЅРЅСЏРј РјР°С‚РµРјР°С‚РёС‡РЅРёС… Р·Р°Р»РµР¶РЅРѕСЃС‚РµР№. РџСЂРѕС†РµСЃ Р°РІС‚РѕРјР°С‚РёР·РѕРІР°РЅРѕС— С–РЅС‚РµРіСЂР°С†С–С— С‚Р° СЂРѕР·РіРѕСЂС‚Р°РЅРЅСЏ (CI/CD) РЅР° РїР»Р°С‚С„РѕСЂРјС– <strong>Render.com</strong> РѕС…РѕРїР»СЋС” РµС‚Р°РїРё Р»С–РЅС‚РёРЅРіСѓ, СЋРЅС–С‚-С‚РµСЃС‚СѓРІР°РЅРЅСЏ (<strong>pytest</strong>) С‚Р° Р°РІС‚РѕРјР°С‚РёС‡РЅРѕРіРѕ РѕРЅРѕРІР»РµРЅРЅСЏ РїСЂРѕРґСѓРєС‚РѕРІРѕРіРѕ РєРѕРЅС‚РµР№РЅРµСЂР° РїСЂРё РєРѕР¶РЅРѕРјСѓ РєРѕРјС–С‚С– РґРѕ GitHub-СЂРµРїРѕР·РёС‚РѕСЂС–СЋ.</p>
+<p><pre class="mermaid"><code>flowchart LR
+    Push["git push"] --&gt; Lint["Linting (flake8)"]
+    Lint --&gt; Tests["Unit Tests (pytest)"]
+    Tests --&gt; Build["Docker Build"]
+    Build --&gt; Deploy["Deploy to Render.com"]</code></pre>
+<em>Р РёСЃ. 3.9. РўРµС…РЅРѕР»РѕРіС–С‡РЅР° СЃС…РµРјР° РєРѕРЅРІРµС”СЂР° CI/CD СЃРёСЃС‚РµРјРё</em></p>
+<h4 id="_3">Р’РµСЂРёС„С–РєР°С†С–СЏ РєРѕРґСѓ С‚Р° РјРµС‚РѕРґРёРєР° С‚РµСЃС‚СѓРІР°РЅРЅСЏ</h4>
+<p>РљРѕРјРїР»РµРєСЃРЅР° РїРµСЂРµРІС–СЂРєР° РїСЂР°С†РµР·РґР°С‚РЅРѕСЃС‚С– СЃРёСЃС‚РµРјРё Р±Р°Р·СѓС”С‚СЊСЃСЏ РЅР° <strong>79 Р°РІС‚РѕРјР°С‚РёР·РѕРІР°РЅРёС… С‚РµСЃС‚Р°С…</strong> (С„СЂРµР№РјРІРѕСЂРє <code>pytest</code>), С‰Рѕ РѕС…РѕРїР»СЋСЋС‚СЊ СѓСЃС– Р°СЂС…С–С‚РµРєС‚СѓСЂРЅС– С€Р°СЂРё. РўРµСЃС‚СѓРІР°РЅРЅСЏ РІРєР»СЋС‡Р°С” РІРµСЂРёС„С–РєР°С†С–СЋ РјР°С‚РµРјР°С‚РёС‡РЅРѕС— РєРѕСЂРµРєС‚РЅРѕСЃС‚С– С„С–Р·РёС‡РЅРёС… СЂРѕР·СЂР°С…СѓРЅРєС–РІ Сѓ <code>physics.py</code> (РІС‚СЂР°С‚Рё, РґРµРіСЂР°РґР°С†С–СЏ), РІР°Р»С–РґР°С†С–СЋ РЅРѕСЂРјР°Р»С–Р·Р°С†С–С— С‡РµСЂРµР· <code>MinMaxScaler</code> С‚Р° РїРµСЂРµРІС–СЂРєСѓ С–РЅС„РµСЂРµРЅСЃСѓ РјРѕРґРµР»С– LSTM. РћС‚СЂРёРјР°РЅС– СЂРµР·СѓР»СЊС‚Р°С‚Рё РїС–РґС‚РІРµСЂРґР¶СѓСЋС‚СЊ РІС–РґРїРѕРІС–РґРЅС–СЃС‚СЊ СЂРѕР·СЂРѕР±Р»РµРЅРѕС— СЃРёСЃС‚РµРјРё РўР— С‚Р° РїРѕРєР°Р·РЅРёРєРё MAPE &lt; 3.1% РЅР° РµС‚Р°Р»РѕРЅРЅРѕРјСѓ РЅР°Р±РѕСЂС– PJM Dayton.</p>
+<p>[Р Р�РЎРЈРќРћРљ 3.9 вЂ” РўР•РҐРќРћР›РћР“Р†Р§РќРђ РЎРҐР•РњРђ CI/CD РљРћРќР’Р•Р„Р Рђ]
+(РћРїРёСЃ: Р•С‚Р°РїРё Р°РІС‚РѕРјР°С‚РёС‡РЅРѕС— Р·Р±С–СЂРєРё С‚Р° РґРµРїР»РѕСЋ: Linting -&gt; Testing -&gt; Docker Build -&gt; Render Deploy).</p>
+<hr />
+<p><a href="../THESIS_2_REQUIREMENTS/">РќР°Р·Р°Рґ РґРѕ Р РѕР·РґС–Р»Сѓ 2</a> | <a href="../THESIS_FINAL_CONCLUSIONS/">Р”Р°Р»С–: Р—Р°РіР°Р»СЊРЅС– РІРёСЃРЅРѕРІРєРё</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

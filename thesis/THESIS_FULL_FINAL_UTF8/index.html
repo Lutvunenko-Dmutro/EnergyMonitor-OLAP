@@ -1,0 +1,3954 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Інтелектуальна система OLAP-моніторингу та ШІ-прогнозування навантаження енергетичних мереж. Автор - Литвиненко Дмитро Сергійович (Lutvunenko Dmutro), бакалавр 121 ІПЗ.">
+      
+      
+      
+      
+        <link rel="prev" href="../IMAGE_AUDIT_REPORT/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Повна збірка (Master) - ⚡ Energy Monitor Ultimate (Project Atlas)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="⚡ Energy Monitor Ultimate (Project Atlas)" class="md-header__button md-logo" aria-label="⚡ Energy Monitor Ultimate (Project Atlas)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ⚡ Energy Monitor Ultimate (Project Atlas)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Повна збірка (Master)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../system/architecture/" class="md-tabs__link">
+          
+  
+  
+  🏗️ Архітектура
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../system/atlas_v4/" class="md-tabs__link">
+          
+  
+  
+  🗺️ Атлас Проєкту
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../DOCS_PLAN/" class="md-tabs__link">
+          
+  
+  
+  📗 Плани та Статус
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../guides/USER_MANUAL/" class="md-tabs__link">
+          
+  
+  
+  🛠️ Інструкції та Безпека
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../api/" class="md-tabs__link">
+          
+  
+  
+  📚 Довідка
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../DIPLOMA_PLAN/" class="md-tabs__link">
+          
+  
+  
+  Дипломна робота
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../PRACTICE_REPORT_FINAL/" class="md-tabs__link">
+          
+  
+  
+  📋 Матеріали практики
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../OFFICIAL_TITLE_PAGE/" class="md-tabs__link">
+          
+  
+  
+  📄 Офіційні бланки
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../FOR_REVIEWER/" class="md-tabs__link">
+          
+  
+  
+  🕰️ Архів та Історія
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="⚡ Energy Monitor Ultimate (Project Atlas)" class="md-nav__button md-logo" aria-label="⚡ Energy Monitor Ultimate (Project Atlas)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ⚡ Energy Monitor Ultimate (Project Atlas)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏗️ Архітектура
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🏗️ Архітектура
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Загальний огляд
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system/digital_twin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Digital Twin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system/database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    База даних
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ML Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🗺️ Атлас Проєкту
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🗺️ Атлас Проєкту
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system/atlas_v4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📍 Інженерний Атлас (SCADA)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system/map/core_map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⚙️ Ядро (Core)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system/map/ml_map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧠 ШІ-Конвеєр (ML)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system/map/ui_map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🎨 Інтерфейс (UI)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system/map/services_map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏭 Сервіси (Services)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📗 Плани та Статус
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    📗 Плани та Статус
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DOCS_PLAN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    План документації
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ROADMAP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    План розробки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PROJECT_STATUS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Поточний статус
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🛠️ Інструкції та Безпека
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🛠️ Інструкції та Безпека
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/USER_MANUAL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Інструкція користувача
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/SECURITY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Звіт з безпеки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/TESTING_GUIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Тестування
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/MAINTENANCE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обслуговування
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📚 Довідка
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    📚 Довідка
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Референс модулів (API)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../GLOSSARY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Глосарій
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дипломна робота
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Дипломна робота
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DIPLOMA_PLAN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    План та Календар
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../THESIS_0_ABSTRACT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Реферат
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../THESIS_0_INTRODUCTION/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Вступ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../THESIS_1_THEORY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Розділ 1. Теорія
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../THESIS_2_REQUIREMENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Розділ 2. Вимоги
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../THESIS_3_DESIGN_AND_IMPLEMENTATION_EXPANDED/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Розділ 3. Реалізація (v3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../THESIS_FINAL_CONCLUSIONS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Висновки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BIBLIOGRAPHY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Список літератури
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../APPENDICES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Додатки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../KANBAN_THESIS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Канбан проєкту
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../THESIS_PROCEEDINGS_ABSTRACTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Тези та апробація
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ABBREVIATIONS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Скорочення
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DEFENSE_GUIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Шпаргалка до захисту
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../THESIS_PRESENTATION_FINAL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Презентація диплома
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📋 Матеріали практики
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    📋 Матеріали практики
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PRACTICE_REPORT_FINAL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Звіт (ФІНАЛ)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PRACTICE_DIARY_DRAFT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Щоденник практики
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PRACTICE_PRESENTATION_DRAFT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Презентація
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PRACTICE_REPORT_FULL_DRAFT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Повний чернетка звіту
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📄 Офіційні бланки
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    📄 Офіційні бланки
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OFFICIAL_TITLE_PAGE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Титульна сторінка
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OFFICIAL_TASK_STATEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Завдання на роботу
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OFFICIAL_CALENDAR_PLAN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Календарний план
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OFFICIAL_REVIEW_PROJECT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Відгук керівника
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OFFICIAL_RECENSION_PROJECT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Рецензія
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🕰️ Архів та Історія
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🕰️ Архів та Історія
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FOR_REVIEWER/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Для рецензента
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../history/WHATS_CHANGED/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Що змінено (v3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../history/COMPREHENSIVE_CODE_QUALITY_AUDIT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Аудит якості
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../history/FIXES_IMPLEMENTED_REPORT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Звіт про виправлення
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../history/FINAL_IMPLEMENTATION_REPORT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Фінальний звіт імплементації
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../history/METRICS_AND_DASHBOARD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Метрики та Дашборд
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../IMAGE_AUDIT_REPORT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Аудит зображень
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Повна збірка (Master)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="_1">Заклад вищої освіти</h1>
+<h1 id="-">«Міжнародний науково-технічний університет імені академіка Юрія Бугая»</h1>
+<p><strong>Кафедра інформаційних та комунікаційних технологій некомп'ютерних наук та інженерії програмного забезпечення</strong></p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><!-- NO_BORDER --></th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><strong>ДОПУСКАЮ ДО ЗАХИСТУ</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Завідувач кафедри</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><strong><em>_</em></strong>___ О.І. Голубенко</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">(підпис)</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">«<strong><em>» </em></strong><strong><em>_</em></strong> 2026 р.</td>
+</tr>
+</tbody>
+</table>
+<p><br><br></p>
+<h1 id="_2">КВАЛІФІКАЦІЙНА РОБОТА</h1>
+<h3 id="_3">На здобуття освітнього ступеня «Бакалавр»</h3>
+<h3 id="121">за спеціальністю 121 «Інженерія програмного забезпечення»</h3>
+<h1 id="smart-city">на тему: «ПРОГНОЗУВАННЯ ЧАСОВИХ РЯДІВ ЕНЕРГОСПОЖИВАННЯ ДЛЯ ВДОСКОНАЛЕННЯ ТЕХНОЛОГІЙ SMART CITY НА ОСНОВІ РЕКУРЕНТНИХ НЕЙРОННИХ МЕРЕЖ»</h1>
+<p><br><br></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><!-- NO_BORDER --></th>
+<th style="text-align: left;"></th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Виконав: студент 4 курсу, групи І-23</strong></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Литвиненко Дмитро Сергійович (Lutvunenko Dmutro), бакалавр</strong></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Науковий керівник:</strong></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><strong><em>_</em></strong><strong><em>_</em></strong>______</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Маковейчук Олександр Миколайович</strong></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">(підпис)</td>
+</tr>
+</tbody>
+</table>
+<p><br><br></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><!-- NO_BORDER --></th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><em>Засвідчую, що у цій кваліфікаційній роботі немає запозичень з праць інших авторів без відповідних посилань.</em></td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><strong>Студент <strong><em>_</em></strong><strong><em>_</em></strong>______ (підпис)</strong></td>
+</tr>
+</tbody>
+</table>
+<p><br><br><br></p>
+<h1 id="2026">Київ – 2026 рік</h1>
+<h1 id="_4">Заклад вищої освіти</h1>
+<h1 id="-_1">«Міжнародний науково-технічний університет імені академіка Юрія Бугая»</h1>
+<p><strong>Кафедра інформаційних та комунікаційних технологій</strong></p>
+<p><br></p>
+<p><strong>Освітній ступінь: <u>бакалавр</u></strong><br />
+<strong>Напрям підготовки: <u>12 Інформаційні технології</u></strong><br />
+<strong>Спеціальність: 121 «<u>Інженерія програмного забезпечення</u>»</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><!-- NO_BORDER --></th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><strong>ЗАТВЕРДЖУЮ</strong><br><strong>Завідувач кафедри</strong><br><br><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em><br></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong>___<br><strong>“<strong><em>_” </em></strong><strong><em>_</em></strong>____2026 року</strong></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<h1 id="_5">З А В Д А Н Н Я</h1>
+<h1 id="_6">НА КВАЛІФІКАЦІЙНУ РОБОТУ СТУДЕНТУ</h1>
+<h2 id="_7">Литвиненку Дмитру Сергійовичу</h2>
+<p><strong>1. Тема проекту (роботи):</strong> «Прогнозування часових рядів енергоспоживання для вдосконалення технологій Smart City на основі рекурентних нейронних мереж»
+<strong>керівник проекту (роботи):</strong> <strong><u>Маковейчук Олександр Миколайович, к.т.н., доцент</u></strong>
+затверджені наказом по університету від «<strong><em>» </em></strong>_____ 2026 р. № ___</p>
+<p><strong>2. Строк подання студентом проекту (роботи):</strong> 01 червня 2026 р.</p>
+<p><strong>3. Вихідні дані до проекту (роботи):</strong> Об’єкт проектування: підсистема предиктивної аналітики Smart City. Обсяг даних для обробки: 500 МБ історичної телеметрії (понад 100 тис. записів). Технологічний стек: Python (TensorFlow/LSTM), PostgreSQL (Neon Cloud), Streamlit. Вимоги до точності: MAPE &lt; 5%. Умови функціонування: цілодобовий моніторинг у хмарному середовищі Render.com.</p>
+<p><strong>4. Зміст розрахунково-пояснювальної записки (перелік питань, які мають бути розроблені):</strong>
+- Проаналізувати концепцію Smart City та цифрових двійників енергосистеми;
+- Обґрунтувати вибір архітектури LSTM та математично описати гейтові механізми;
+- Розробити інтелектуальну модель прогнозування на базі рекурентних мереж;
+- Реалізувати систему візуалізації результатів на базі Streamlit та Neon OLAP;
+- Провести тестування та оцінку точності предиктивної моделі.</p>
+<p><strong>5. Перелік графічного матеріалу:</strong> Схема архітектури системи; Діаграма послідовності ML-конвеєра; ER-діаграма бази даних; Графіки порівняння прогнозу з фактичними даними.</p>
+<h3 id="_8">Календарний план</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">№ з/п</th>
+<th style="text-align: left;">Назва етапів випускної роботи</th>
+<th style="text-align: left;">Строк виконання етапів роботи</th>
+<th style="text-align: left;">Примітка</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Розробка розділу 1 "Огляд сучасних технологій прогнозування"</td>
+<td style="text-align: left;">До 31.03.26</td>
+<td style="text-align: left;">Виконано</td>
+</tr>
+<tr>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">Підготовка тез за тематикою кваліфікаційної роботи</td>
+<td style="text-align: left;">До 20.04.26</td>
+<td style="text-align: left;">Виконано</td>
+</tr>
+<tr>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Розробка розділу 2 "Математичне моделювання системи"</td>
+<td style="text-align: left;">До 30.04.26</td>
+<td style="text-align: left;">Виконано</td>
+</tr>
+<tr>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Розробка розділу 3 "Програмна реалізація та результати"</td>
+<td style="text-align: left;">До 25.05.26</td>
+<td style="text-align: left;">Виконано</td>
+</tr>
+<tr>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Оформлення випускної роботи та подача на нормоконтроль</td>
+<td style="text-align: left;">До 01.06.26</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Студент</strong> <strong><u>Литвиненко Д.С.</u></strong></p>
+<p><strong>Керівник проекту (роботи)</strong> <strong><u>Маковейчук О.М.</u></strong></p>
+<h1 id="_9">Заклад вищої освіти</h1>
+<h1 id="-_2">«Міжнародний науково-технічний університет імені академіка Юрія Бугая»</h1>
+<p><strong>Кафедра інформаційних та комунікаційних технологій</strong></p>
+<p><br></p>
+<h1 id="_10">ВІДГУК</h1>
+<h2 id="_11">Керівника кваліфікаційної роботи</h2>
+<h2 id="_12">Освітній ступінь «Бакалавр»</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><!-- NO_BORDER --></th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Виконаної студентом:</strong></td>
+<td style="text-align: left;"><strong><u>Литвиненком Дмитром Сергійовичем</u></strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Тема:</strong></td>
+<td style="text-align: left;">«Прогнозування часових рядів енергоспоживання для вдосконалення технологій Smart City на основі рекурентних нейронних мереж»</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Спеціальність:</strong></td>
+<td style="text-align: left;">121 «Інженерія програмного забезпечення»</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>Метою кваліфікаційної роботи було створення інтелектуальної системи прогнозування енергоспоживання в рамках концепції Smart City з використанням рекурентних нейронних мереж.</p>
+<p>Структура кваліфікаційної роботи повністю відповідає вимогам до бакалаврських кваліфікаційних робіт, логічно побудована та містить чотири змістовні розділи, вступ, висновки та список використаних джерел. Робота чітко відображає виконання всіх поставлених завдань.</p>
+<p><strong>Основні результати роботи:</strong>
+Студент розробив повноцінний програмний комплекс EnergyMonitor-OLAP - інтегровану систему, яка поєднує фізичне моделювання енергомережі (Digital Twin), прогностичну модель на основі LSTM-мереж, OLAP-аналітику на PostgreSQL, та сучасний веб-інтерфейс на Streamlit.</p>
+<p>Робота виконана на високому інженерному рівні:
+- реалізовано повний цикл - від збору та підготовки даних до розгортання production-версії (live-демо: energymonitor-olap.onrender.com);
+- досягнуто точності прогнозування (MAPE в межах 1,5-3,1%);
+- проведено економічне обґрунтування ефективності системи;
+- код є добре задокументований, якісно написаний, з тестами та CI/CD.</p>
+<p>Хочу зауважити, що студент продемонстрував відмінне володіння сучасними технологіями: Python, TensorFlow/Keras, PostgreSQL, Streamlit, Docker та принципами MLOps. Рівень роботи є вищим за стандартні вимоги бакалаврської кваліфікаційної роботи.</p>
+<p>Вважаю, що кваліфікаційна робота Литвиненка Дмитра Сергійовича повністю відповідає вимогам до робіт освітнього ступеня «Бакалавр» зі спеціальності 121 «Інженерія програмного забезпечення», може бути допущена до захисту і заслуговує на високу позитивну оцінку.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><!-- NO_BORDER --></th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><strong>Науковий керівник:</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">доцент кафедри інформаційних та комунікаційних технологій</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Маковейчук Олександр Миколайович, к.т.н., доцент</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><br><strong><em>_</em></strong><strong><em>_</em></strong>______</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><br>«<strong><em>» </em></strong>_____ 2026 р.</td>
+</tr>
+</tbody>
+</table>
+<h1 id="_13">Заклад вищої освіти</h1>
+<h1 id="-_3">«Міжнародний науково-технічний університет імені академіка Юрія Бугая»</h1>
+<p><strong>Кафедра інформаційних та комунікаційних технологій</strong></p>
+<p><br></p>
+<h1 id="_14">ВІДГУК РЕЦЕНЗЕНТА</h1>
+<h2 id="_15">на кваліфікаційну роботу на здобуття освітнього ступеня бакалавра</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><!-- NO_BORDER --></th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Здобувача вищої освіти:</strong></td>
+<td style="text-align: left;"><strong><u>Литвиненка Дмитра Сергійовича</u></strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Тема:</strong></td>
+<td style="text-align: left;">«Прогнозування часових рядів енергоспоживання для вдосконалення технологій Smart City на основі рекурентних нейронних мереж»</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Спеціальність:</strong></td>
+<td style="text-align: left;">121 «Інженерія програмного забезпечення»</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong>Актуальність.</strong> Сучасні технології Smart City вимагають точного прогнозування навантаження енергетичних мереж для оптимізації споживання, зменшення втрат та запобігання аварійним ситуаціям. Розробка інтелектуальних систем на базі концепції Digital Twin з використанням рекурентних нейронних мереж LSTM та OLAP-аналітики є перспективним напрямком, який дозволяє поєднати фізичне моделювання з методами машинного навчання.</p>
+<p><strong>Позитивні сторони:</strong>
+1. Студент реалізував комплексну систему EnergyMonitor-OLAP на основі концепції Digital Twin, яка поєднує фізичне моделювання енергомереж з LSTM-прогнозуванням, OLAP-аналітикою на PostgreSQL, Streamlit-інтерфейсом. Це значно перевищує типовий рівень бакалаврської роботи.
+2. Робота має практичну цінність: досягнуто MAPE 1,5-3,1 %, проведено економічне обґрунтування, система протестована, є live-демо та повна документація.
+3. Виконано повний цикл інженерії ПЗ: від математичної моделі та інженерії ознак до CI/CD, тестування, розгортання та детальної пояснювальної записки. Код якісний, модульний і добре задокументований.</p>
+<p><strong>Недоліки:</strong>
+1. Теоретична частина містить багато загальної інформації про розвиток нейронних мереж, яка не завжди прямо пов'язана з вирішенням поставленого завдання.
+2. Використана архітектура LSTM є класичною. Можна було б глибше розглянути порівняння з сучаснішими підходами (наприклад, Transformer-based моделями) або запропонувати власні модифікації для підвищення стійкості.</p>
+<p>Зазначені зауваження мають рекомендаційний характер і не впливають на загальну позитивну оцінку роботи.</p>
+<p><strong>Висновок:</strong> Кваліфікаційна робота відповідає вимогам стандарту за спеціальністю 121 «Інженерія програмного забезпечення», заслуговує оцінки «відмінно», а її автор, Литвиненко Дмитро Сергійович, заслуговує на присвоєння освітнього ступеня «Бакалавр».</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><!-- NO_BORDER --></th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><strong>Рецензент:</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Зінько Роман Володимирович,</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">доктор технічних наук, професор,</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">професор кафедри систем автоматизованого проектування</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Національного університету «Львівська політехніка»</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><br><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em>_ (</strong><strong><em>_</em></strong><strong><em>_</em></strong>____)</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><br>«<strong><em>» </em></strong>_____ 2026 р.</td>
+</tr>
+</tbody>
+</table>
+<h1 id="abstract">РЕФЕРАТ / ABSTRACT</h1>
+<h2 id="_16">РЕФЕРАТ</h2>
+<p><strong>Тема:</strong> «Прогнозування часових рядів енергоспоживання для вдосконалення технологій Smart City на основі рекурентних нейронних мереж»</p>
+<p><strong>Текст роботи:</strong> 60 сторінок, 17 рисунків, 15 таблиць, 2 додатки, 38 джерел.</p>
+<p><strong>Об’єкт дослідження</strong> – процеси предиктивного аналізу та моніторингу енергоспоживання в інфраструктурі Smart City.
+<strong>Предмет дослідження</strong> – методи глибокого навчання (LSTM), архітектура OLAP та концепція Цифрових двійників для прогнозування часових рядів.
+<strong>Мета роботи</strong> – розробка інтелектуальної SaaS-платформи EnergyMonitor-OLAP для високоточного прогнозування навантаження та візуалізації енергопотоків у реальному часі.
+<strong>Методи дослідження</strong> – аналітичний огляд, методи глибокого навчання (LSTM нейронні мережі), системний аналіз, математичне та імітаційне моделювання.</p>
+<p><strong>Отримані результати:</strong> 
+Розроблено та реалізовано 4-рівневу архітектуру системи. Спроєктовано інтелектуальне предиктивне ядро на основі модифікованої нейронної мережі LSTM v3 із впровадженням тригонометричного кодування часових детермінант (sin/cos encoding). Експериментальна верифікація моделі на еталонному наборі даних PJM Dayton підтвердила стабільну точність прогнозування (MAPE &lt; 3.1%). Практична цінність роботи полягає у можливості інтеграції розробленої SaaS-платформи у диспетчерські системи Smart Grid для автоматизації предиктивного обслуговування силового обладнання.</p>
+<p><strong>Ключові слова:</strong> SMART CITY, SMART GRID, LSTM, НЕЙРОННІ МЕРЕЖІ, ЦИФРОВИЙ ДВІЙНИК, PREDICTIVE MAINTENANCE, ПРОГНОЗУВАННЯ, ЧАСОВІ РЯДИ, SAAS, OLAP, POSTGRESQL.</p>
+<hr />
+<h2 id="abstract_1">ABSTRACT</h2>
+<p><strong>Title:</strong> "Energy consumption time series forecasting for improving Smart City technologies based on recurrent neural networks"</p>
+<p><strong>Work context:</strong> 60 pages, 17 figures, 15 tables, 2 appendices, 38 sources.</p>
+<p><strong>The object of research</strong> is the processes of predictive analysis and monitoring of energy consumption in the Smart City infrastructure.
+<strong>The subject of research</strong> is deep learning methods (LSTM), OLAP architecture, and the concept of Digital Twins for time series forecasting.
+<strong>The goal of the work</strong> is to develop the EnergyMonitor-OLAP intelligent SaaS platform for high-precision load forecasting and real-time energy flow visualization.
+<strong>Research methods</strong> include analytical review, deep learning methods (LSTM neural networks), system analysis, mathematical and simulation modeling.</p>
+<p><strong>Results:</strong> 
+A 4-layer system architecture has been designed and implemented. An intelligent predictive core based on the LSTM v3 model using trigonometric time encoding has been developed. Model verification on reference data confirmed high forecasting accuracy (MAPE &lt; 3.1%). The practical significance lies in the possibility of implementing the system for Smart Grid dispatching and proactive equipment maintenance.</p>
+<p><strong>Key words:</strong> SMART CITY, SMART GRID, LSTM, NEURAL NETWORKS, DIGITAL TWIN, PREDICTIVE MAINTENANCE, FORECASTING, TIME SERIES, SAAS, OLAP, POSTGRESQL.</p>
+<h1 id="_17">ПЕРЕЛІК УМОВНИХ ПОЗНАЧЕНЬ ТА СКОРОЧЕНЬ</h1>
+<p><strong>БД</strong> — База даних
+<strong>ЕК</strong> — Екзаменаційна комісія
+<strong>ІПЗ</strong> — Інженерія програмного забезпечення
+<strong>МНТУ</strong> — Міжнародний науково-технічний університет ім. акад. Юрія Бугая
+<strong>ПЗ</strong> — Програмне забезпечення
+<strong>ШІ</strong> — Штучний інтелект</p>
+<p><strong>AI</strong> — Artificial Intelligence (Штучний інтелект)
+<strong>API</strong> — Application Programming Interface (Інтерфейс прикладного програмування)
+<strong>BI</strong> — Business Intelligence (Бізнес-аналітика)
+<strong>CSV</strong> — Comma-Separated Values (Текстовий формат даних з розділенням комами)
+<strong>GUI</strong> — Graphical User Interface (Графічний інтерфейс користувача)
+<strong>JSON</strong> — JavaScript Object Notation (Об’єктна нотація JavaScript)
+<strong>LSTM</strong> — Long Short-Term Memory (Довга короткострокова пам'ять — тип рекурентної нейронної мережі)
+<strong>MAE</strong> — Mean Absolute Error (Середня абсолютна помилка)
+<strong>MAPE</strong> — Mean Absolute Percentage Error (Середня абсолютна відсоткова помилка)
+<strong>ML</strong> — Machine Learning (Машинне навчання)
+<strong>OLAP</strong> — Online Analytical Processing (Онлайн аналітична обробка даних)
+<strong>ONNX</strong> — Open Neural Network Exchange (Відкритий формат обміну нейромережами)
+<strong>REST</strong> — Representational State Transfer (Архітектурний стиль взаємодії компонентів)
+<strong>RNN</strong> — Recurrent Neural Network (Рекурентна нейронна мережа)
+<strong>SaaS</strong> — Software as a Service (Програмне забезпечення як послуга)
+<strong>SQL</strong> — Structured Query Language (Мова структурованих запитів)</p>
+<h1 id="_18">ВСТУП</h1>
+<p>Чому ця тема важлива саме зараз? Сучасна парадигма розвитку мегаполісів у межах концепції Розумного міста (Smart City) вимагає перегляду стратегій управління енергетичною інфраструктурою. В умовах стрімкої урбанізації та непередбачуваності навантажень на мережі, традиційні методи моніторингу вичерпують свій ресурс надійності. Критичним завданням стає впровадження проактивних алгоритмів на основі інтелектуального аналізу даних та предиктивного обслуговування (Predictive Maintenance).</p>
+<p>Центральне місце в даній трансформації займає концепція Цифрових двійників (Digital Twin). Застосування рекурентних нейронних мереж з архітектурою довгої короткострокової пам'ятти (LSTM) відкриває нові можливості для високоточного прогнозування енергоспоживання. Впровадження таких рішень у складі хмарних SaaS-платформ дозволяє мінімізувати операційні ризики та створити фундамент для стабільного функціонування розподілених мереж Smart Grid.</p>
+<p>Що ми досліджуємо? Об’єкт дослідження: Процеси моніторингу та предиктивного аналізу споживання електроенергії в інфраструктурі Smart City.</p>
+<p>Що саме ми аналізуємо? Предмет дослідження: Методи глибокого навчання (LSTM), гібридне прогнозування, архітектура OLAP та програмні засоби побудови цифрових двійників енергомереж.</p>
+<p>Яка мета нашої роботи? Створення інтелектуальної SaaS-платформи для високоточного прогнозування, симуляції фізичних процесів та візуалізації енергетичних потоків у реальному часі.</p>
+<p>Що ми плануємо зробити? Завдання дослідження:
+1. Проаналізувати методи математичного моделювання часових рядів енергоспоживання та обґрунтувати вибір рекурентних нейронних мереж архітектури LSTM.
+2. Спроєктувати 4-рівневу архітектуру системи та реалізувати аналітичну базу даних (OLAP) на базі PostgreSQL (Neon Cloud) для агрегації телеметричних даних.
+3. Розробити гібридне предиктивне ядро на базі моделі LSTM v3 та фізичного рушія (Physics Engine) для розрахунку показників надійності обладнання.
+4. Реалізувати інтерактивний користувацький інтерфейс на базі фреймворку Streamlit з використанням паттерну Granular Rendering.
+5. Провести тестування (QA), розгортання через CI/CD конвеєр та оцінку точності моделей (MAPE) на еталонних наборах даних.</p>
+<p>Де можна застосовувати наші результати? Розроблена SaaS-платформа EnergyMonitor-OLAP призначена для використання муніципальними енергетичними компаніями, диспетчерськими службами комунальних підприємств та операторами мікромереж (Microgrids). Застосування системи дозволяє оптимізувати графіки закупівель електроенергії, планувати технічні роботи на основі технічного стану об’єктів та впроваджувати алгоритми енергозбереження на рівні окремих районів міста.</p>
+<p>Що містить наша робота? Робота складається з трьох розділів, вступу, висновків, списку використаних джерел та додатків.
+У першому розділі наведено результати аналітичного огляду предметної області та обґрунтовано доцільність застосування методів глибокого навчання.
+Другий розділ присвячено постановці завдання та розробці загальносистемних рішень (моделей системи).
+У третьому розділі представлено опис проєктних рішень, програмної реалізації 4-рівневої архітектури системи, а також результати комплексного тестування та оцінки ефективності розроблених моделей.</p>
+<hr />
+<p><a href="../THESIS_0_ABSTRACT/">Назад до Реферату</a> | <a href="../THESIS_1_THEORY/">Далі: РОЗДІЛ 1. АНАЛІТИЧНИЙ ОГЛЯД ПРЕДМЕТНОЇ ОБЛАСТІ</a></p>
+<h1 id="1">РОЗДІЛ 1. ОГЛЯД ЛІТЕРАТУРИ ТА АНАЛІЗ ПРЕДМЕТНОЇ ОБЛАСТІ</h1>
+<h3 id="11-smart-city-smart-grid">1.1. Концепція Smart City: роль інтелектуальних енергосистем (Smart Grid)</h3>
+<h4 id="111">1.1.1. Еволюція міських інфраструктур та виклики сучасної урбанізації</h4>
+<p>Чому сучасні міста потребують нових підходів? Сучасна урбанізація вимагає якісно нових підходів до управління міською інфраструктурою [7]. Згідно з прогнозами ООН, до 2050 року понад 68% населення планети проживатиме у містах, що створить безпрецедентне навантаження на енергетичні, транспортні та соціальні системи [17]. Концепція <strong>«Розумного міста» (Smart City)</strong> постає як відповідь на ці виклики, де ефективність функціонування забезпечується глибокою інтеграцією інформаційно-комунікаційних технологій (ІКТ).</p>
+<p>Проблематика сучасних мегаполісів включає:
+*   <strong>Дефіцит енергетичних потужностей:</strong> застарілі мережі не розраховані на різке зростання кількості електромобілів та систем кондиціонування.
+*   <strong>Нерівномірність споживання:</strong> виникнення критичних піків, що змушують тримати в резерві неекологічні потужності (вугільні ТЕС).
+*   <strong>Інформаційна розрізненість:</strong> дані про споживання часто залишаються "закритими" всередині окремих підрозділів, що унеможливлює комплексне планування.</p>
+<p>Історично розвиток міст проходив через кілька етапів: від Infrastructure City (фізична розбудова) та Digital City (оцифрування реєстрів) до сучасного Smart City 3.0, де використання систем штучного інтелекту та великих даних (Big Data) дозволяє здійснювати проактивне управління. В основі Smart City лежить розгалужена мережа взаємопов'язаних пристроїв — <strong>Інтернету речей (IoT)</strong>. </p>
+<pre class="mermaid"><code>graph TB
+    subgraph UI["Рівень представлення (Streamlit)"]
+        direction LR
+        A1["KPI Панель"]
+        A2["ML Прогноз"]
+        A3["ГІС Карта"]
+    end
+
+    subgraph CORE["Інтелектуальний шар"]
+        direction LR
+        B1["LSTM v3\npredict_v2.py"]
+        B3["Фізичний двигун\nphysics.py"]
+        B4["Векторизатор\n(Sliding Window)"]
+    end
+
+    subgraph DATA["Шар даних (OLAP)"]
+        direction LR
+        C1[("PostgreSQL\nNeon Cloud")]
+        C3["Цифровий двійник\nСимуляція сенсорів"]
+    end
+
+    subgraph DEVOPS["DevOps Шар"]
+        direction LR
+        D1["GitHub Actions\nCI/CD"]
+        D2["Docker\nКонтейнер"]
+    end
+
+    UI --&gt;|"Запит даних"| CORE
+    CORE --&gt;|"SQL SELECT"| DATA
+    C3 --&gt;|"SQL INSERT телеметрія"| C1
+    B1 --&gt;|"Результати ШІ"| UI</code></pre>
+<p><img alt="Рис. 1.1. Типова багаторівнева архітектура IoT-платформи Smart City" src="../../images/diag_architecture.png" />
+<em>Рис. 1.1. Типова багаторівнева архітектура IoT-платформи Smart City</em></p>
+<p>Процеси збору та аналізу даних у реальному часі дозволяють трансформувати міське середовище у динамічну екосистему, здатну до самодіагностики та самовідновлення. Світовий досвід (Сінгапур, Барселона), а також локальні дослідження кліматичних параметрів міста Києва [39], підтверджують, що саме цифровізація дозволяє економити до 30% енергоресурсів на рівні муніципалітету.</p>
+<h4 id="112-smart-grid">1.1.2. Smart Grid — енергетичне серце Розумного міста</h4>
+<p>Яке місце займає енергетика в Smart City? <strong>Енергоспоживання</strong> є фундаментом та ключовим показником життєдіяльності будь-якого мегаполісу. У концепції Smart City енергетичний сектор трансформується у <strong>Smart Grid (інтелектуальні мережі)</strong> — системи, що забезпечують двосторонній обмін як електроенергією, так і даними між постачальником та споживачем [7, 31].</p>
+<p>Ключові компоненти Smart Grid:
+1.  <strong>Advanced Metering Infrastructure (AMI):</strong> системи інтелектуального обліку, що дозволяють отримувати дані про споживання з інтервалом у 15-60 хвилин.
+2.  <strong>Phasor Measurement Units (PMU):</strong> пристрої, що фіксують фазові параметри мережі з високою частотою для запобігання блекаутам.
+3.  <strong>Energy Storage Systems (ESS):</strong> системи накопичення енергії, що дозволяють згладжувати графік навантаження.</p>
+<pre class="mermaid"><code>graph TD
+    subgraph Local ["💻 LOCAL ENVIRONMENT"]
+        DG["data_generator.py\n(Симулятор)"]
+    end
+
+    subgraph Cloud ["☁️ CLOUD INFRASTRUCTURE (Render)"]
+        DB[(PostgreSQL\nOLAP Database)]
+        Vect["vectorizer.py"]
+        Pred["predict_v2.py"]
+        UI["main.py\n(Dashboard)"]
+    end
+
+    DG ==&gt;|"Telemetry Push"| DB
+    DB &lt;--&gt;|"Data Exchange"| Vect
+    Vect --&gt; Pred
+    Pred --&gt; UI</code></pre>
+<p><img alt="Рис. 1.2. Концептуальна схема Smart Grid та інфраструктури передачі даних" src="../../images/diag_infra_cloud.png" />
+<em>Рис. 1.2. Концептуальна схема Smart Grid та інфраструктури передачі даних</em></p>
+<p>Чим відрізняються розумні мережі від традиційних? Розумні мережі відрізняються від традиційних наявністю двосторонньої комунікації та здатністю до саморегуляції. Однією з найбільш гострих проблем є так звана <strong>«крива качки» (Duck Curve)</strong> — феномен різкого падіння чистого навантаження вдень та його стрімкого зростання ввечері, що вимагає надзвичайно точного прогнозування.</p>
+<h4 id="113-digital-twin">1.1.3. Технологія Digital Twin (Цифровий двійник) в енергетиці</h4>
+<p>Згідно з міжнародними стандартами ISO 23247 та IEEE 1547, <strong>Цифровий двійник (Digital Twin)</strong> — це динамічна цифрова копія фізичного активу, яка постійно оновлюється на основі даних сенсорів [35, 36, 37]. У контексті енергетики цифровий двійник дозволяє реалізувати перехід від реактивного обслуговування до <strong>предиктивного (Predictive Maintenance)</strong>.</p>
+<p>Рівні зрілості цифрових двійників:
+*   <strong>Описовий (Descriptive):</strong> візуалізація поточного стану активу в реальному часі.
+*   <strong>Діагностичний (Diagnostic):</strong> аналіз причин виникнення аномалій.
+*   <strong>Предиктивний (Predictive):</strong> прогнозування майбутнього стану на основі історичних даних.
+*   <strong>Приписувальний (Prescriptive):</strong> автоматичне прийняття рішень для оптимізації.</p>
+<h3 id="12">1.2. Математичний апарат глибокого навчання для часових рядів</h3>
+<h4 id="121_1">1.2.1. Природа енергетичних часових рядів</h4>
+<p>Математичний опис навантаження як часового ряду базується на декомпозиції його складових [3, 5, 13, 32]:
+$<span class="arithmatex">\(y(t) = T(t) + S_d(t) + S_w(t) + C(t) + \epsilon(t) \quad (1.1)\)</span>$
+де <span class="arithmatex">\(y(t)\)</span> — обсяг навантаження; <span class="arithmatex">\(T(t)\)</span> — тренд; <span class="arithmatex">\(S(t)\)</span> — сезонність; <span class="arithmatex">\(\epsilon(t)\)</span> — шум [2, 13]. У контексті Smart Grid завдання інтелектуального прогнозування полягає у тому, щоб розпізнати ці закономірності серед "шумних" даних телеметрії.</p>
+<h4 id="122-lstm">1.2.2. Обґрунтування вибору архітектури LSTM та її математичний апарат</h4>
+<p>На відміну від традиційних статистичних методів (ARIMA), які вимагають стаціонарності ряду, енергоспоживання у Smart City характеризується нелінійністю та мультисезонністю (добові піки, вихідні дні, вплив погоди) [4, 9, 13]. Для вирішення цієї проблеми обрано рекурентні нейронні мережі з архітектурою LSTM (Long Short-Term Memory) [11].</p>
+<p>Головна перевага LSTM полягає у наявності механізму <strong>гейтів (Gates)</strong>. Щоб зрозуміти, як модель відфільтровує телеметричний шум та виділяє тренди, розглянемо її математичну структуру в контексті нашого цифрового двійника:</p>
+<ol>
+<li>
+<p><strong>Вентиль забування (Forget Gate):</strong> Вирішує, яку частину довгострокової пам'яті слід відкинути. Наприклад, якщо після вихідних починається робочий понеділок, мережа "забуває" патерн вихідного дня:
+    $<span class="arithmatex">\(f_t = \sigma(W_f \cdot [h_{t-1}, x_t] + b_f)\)</span>$
+    де <span class="arithmatex">\(x_t\)</span> — поточний вектор ознак (навантаження, температура, час доби).</p>
+</li>
+<li>
+<p><strong>Вентиль входу (Input Gate):</strong> Визначає, які нові дані (наприклад, раптове похолодання) є достатньо важливими для оновлення поточного стану:
+    $<span class="arithmatex">\(i_t = \sigma(W_i \cdot [h_{t-1}, x_t] + b_i)\)</span>$
+    $<span class="arithmatex">\(\tilde{C}_t = \tanh(W_C \cdot [h_{t-1}, x_t] + b_C)\)</span>$</p>
+</li>
+<li>
+<p><strong>Оновлення стану комірки (Cell State):</strong> Обчислення загального контексту мережі (чи знаходимося ми зараз у ранковому або вечірньому піку споживання):
+    $<span class="arithmatex">\(C_t = f_t * C_{t-1} + i_t * \tilde{C}_t\)</span>$</p>
+</li>
+<li>
+<p><strong>Вентиль виходу (Output Gate):</strong> Формує фінальне значення прогнозу навантаження на наступний період, базуючись на оновленому контексті:
+    $<span class="arithmatex">\(o_t = \sigma(W_o \cdot [h_{t-1}, x_t] + b_o)\)</span>$
+    $<span class="arithmatex">\(h_t = o_t * \tanh(C_t)\)</span>$</p>
+</li>
+</ol>
+<p>У контексті енергетики така здатність до математичного виявлення складних часових залежностей дозволяє моделі прогнозувати навантаження без ручного створення сотень статистичних ознак [16, 29, 10].</p>
+<p>Для підвищення стабільності навчання моделі використовується оптимізатор <strong>Adam</strong> [15], а функцією втрат обрано <strong>Huber Loss</strong>, яка є робастною до аномальних викидів телеметрії [12], що часто виникають в умовах апаратних збоїв реальних електромереж:</p>
+<p>$$
+L_\delta(y, \hat{y}) = \left{ \begin{array}{ll} \frac{1}{2}(y - \hat{y})^2, &amp; \text{if } |y - \hat{y}| \le \delta \ \delta (|y - \hat{y}| - \frac{1}{2}\delta), &amp; \text{otherwise} \end{array} \right.
+$$
+<em>(1.8)</em></p>
+<h3 id="13-big-data-olap-oltp">1.3. Аналіз технологій Big Data: OLAP проти OLTP</h3>
+<p>У проєкті використано архітектуру <strong>Hybrid OLAP</strong> на базі Neon (PostgreSQL). Це дозволяє поєднувати надійність реляційних БД з високою швидкістю аналітичних запитів (Autoscaling), що критично для систем реального часу.</p>
+<h3 id="14">1.4. Порівняльний аналіз сучасних методів прогнозування</h3>
+<h4 id="141">1.4.1. Порівняння архітектурних рішень</h4>
+<p><pre class="mermaid"><code>graph LR
+    subgraph RNN["Simple RNN Cell"]
+        R_in["x(t)"] --&gt; R_tanh["tanh layer"]
+        R_prev["h(t-1)"] --&gt; R_tanh
+        R_tanh --&gt; R_out["h(t)"]
+    end
+
+    subgraph LSTM["LSTM Cell (Gated)"]
+        L_in["x(t)"] --&gt; L_gates["Gates: Forget, Input, Output"]
+        L_prev_h["h(t-1)"] --&gt; L_gates
+        L_prev_c["C(t-1)"] --&gt; L_state["Cell State (Memory)"]
+        L_gates --&gt; L_state
+        L_state --&gt; L_out_h["h(t)"]
+    end</code></pre>
+<em>Схема 1.1. Порівняння архітектур RNN та LSTM (Mermaid-версія)</em></p>
+<p><img alt="Рис. 1.3. Порівняльна характеристика архітектур RNN та LSTM" src="../../images/diag_lstm_compare.png" />
+<em>Рис. 1.3. Порівняльна характеристика архітектур RNN та LSTM (для Ворда)</em></p>
+<h4 id="142-arima">1.4.2. Класичні статистичні методи (ARIMA)</h4>
+<p>Моделі ARIMA демонструють високу точність на стаціонарних рядах, проте не здатні ефективно враховувати нелінійні фактори Smart City без складних перетворень.</p>
+<h4 id="143-xgboost-random-forest">1.4.3. Традиційне машинне навчання (XGBoost, Random Forest)</h4>
+<p>Методи ансамблевого навчання дозволяють враховувати зовнішні фактори, але потребують ручного створення ознак (lag features), що обмежує глибину аналізу контексту.</p>
+<h4 id="144-lstm-transformers">1.4.4. Глибоке навчання (LSTM та Transformers)</h4>
+<p>Рекурентні мережі LSTM мають внутрішні механізми управління пам'яттю (гейти). Це дозволяє їм автоматично виявляти складні патерни. Хоча Transformers демонструють високу точність, для задач локального прогнозування архітектура LSTM залишається найбільш оптимальною.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Критерій</th>
+<th style="text-align: left;">ARIMA</th>
+<th style="text-align: left;">XGBoost / RF</th>
+<th style="text-align: left;">LSTM (Обрано)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Врахування нелінійності</strong></td>
+<td style="text-align: left;">Низьке</td>
+<td style="text-align: left;">Середнє</td>
+<td style="text-align: left;"><strong>Високе</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Робота з контекстом</strong></td>
+<td style="text-align: left;">Відсутня</td>
+<td style="text-align: left;">Обмежена</td>
+<td style="text-align: left;"><strong>Вбудована</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Швидкість навчання</strong></td>
+<td style="text-align: left;">Дуже висока</td>
+<td style="text-align: left;">Висока</td>
+<td style="text-align: left;">Середня</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Стійкість до викидів</strong></td>
+<td style="text-align: left;">Низька</td>
+<td style="text-align: left;">Середня</td>
+<td style="text-align: left;"><strong>Висока</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="15">1.5. Постановка задачі проектування</h3>
+<p>На основі проведеного аналізу встановлено, що сучасні системи моніторингу часто не забезпечують достатньої предиктивної здатності.</p>
+<p><strong>Мета проекту</strong> — розробка інформаційної системи прогнозування часових рядів енергоспоживання для вдосконалення технологій Smart City на основе рекурентних нейронних мереж (LSTM).</p>
+<p><strong>Об'єкт проектування</strong> — процеси інтелектуального моніторингу та предиктивної аналітики у Smart City.
+<strong>Предмет дослідження</strong> — архітектура LSTM, методи OLAP та хмарна візуалізація.</p>
+<h2 id="1_1">ВИСНОВКИ ДО РОЗДІЛУ 1</h2>
+<p>У даному розділі проведено системний огляд проблематики Smart City. Математично обґрунтовано вибір архітектури LSTM як основного інструменту прогнозування. Сформульовано мету та завдання проекту, що є базою для подальшої програмної реалізації.</p>
+<hr />
+<p><a href="../THESIS_0_INTRODUCTION/">Назад до Вступу</a> | <a href="../THESIS_2_REQUIREMENTS/">Далі: Розділ 2. Постановка завдання</a></p>
+<h1 id="2">РОЗДІЛ 2. ПОСТАНОВКА ЗАВДАННЯ ТА ВИМОГИ ДО СИСТЕМИ</h1>
+<h2 id="21">2.1. Формулювання задачі кваліфікаційного проєктування</h2>
+<p>Яка основна задача нашої роботи? Основною задачею виконання даної кваліфікаційної роботи є створення комплексної інтелектуальної SaaS-платформи <strong>EnergyMonitor-OLAP</strong>, яка призначена для глобального моніторингу, симуляції фізичних станів та предиктивного аналізу часових рядів енергоспоживання у сучасній інфраструктурі Smart City.</p>
+<p>Чому існуючі системи недостатні? Існуючі системи SCADA здебільшого забезпечують контроль постфактум, тоді як стрімка урбанізація вимагає переходу до проактивного управління (Predictive Maintenance). Для вирішення цієї проблеми система повинна використовувати комбінацію рекурентних нейронних мереж (архітектури LSTM) та багатовимірного аналізу даних (OLAP).</p>
+<p><strong>Що саме повинна робити система? Розширені функціональні вимоги:</strong>
+1. <strong>Предиктивний моніторинг:</strong> автоматична генерація прогнозів навантаження на глибину 24–48 годин за допомогою каскадних LSTM-моделей. Система повинна підтримувати рекурентний інференс із корекцією зміщення (Bias Correction).
+2. <strong>Фізична симуляція (Digital Twin):</strong> динамічний розрахунок параметрів теплової деградації ізоляції трансформаторів та розрахунок втрат потужності в AC/HVDC лініях на основі математичних моделей, описаних у Розділі 3.
+3. <strong>ГІС-візуалізація:</strong> побудова інтерактивних картографічних шарів із кольоровою індикацією стану вузлів енергосистеми.
+4. <strong>Виявлення аномалій (Anomalies Detection):</strong> автоматична ідентифікація викидів у часових рядах за допомогою статистичного аналізу відхилень від прогнозного фону.
+5. <strong>Система сповіщень:</strong> формування критичних алертів при перевищенні порогів навантаження або критичному рівні показника Health Score (&lt; 40%).</p>
+<p><strong>Нефункціональні вимоги (Якість та Надійність):</strong>
+1. <strong>Масштабованість (Scalability):</strong> архітектура повинна дозволяти горизонтальне масштабування шару даних (PostgreSQL) та безшовне додавання нових предиктивних моделей без перезапуску всієї платформи.
+2. <strong>Відмовостійкість:</strong> забезпечення безперервної роботи інтерфейсу навіть при тимчасовій втраті зв'язку з хмарною БД Neon за рахунок механізмів локального кешування.
+3. <strong>Продуктивність:</strong> час повного циклу інференсу для однієї підстанції (включаючи векторизацію) не повинен перевищувати 350 мс.
+4. <strong>Портативність:</strong> повна контейнеризація за допомогою Docker для гарантованого розгортання в будь-якому Linux-середовищі (Render, AWS, DigitalOcean).
+5. <strong>Точність:</strong> модель LSTM повинна забезпечувати похибку MAPE не більше 4% для еталонних наборів даних.</p>
+<hr />
+<h2 id="22">2.2. Вхідна та вихідна інформація системи</h2>
+<p>Які дані потрібні для роботи системи? Для забезпечення адекватної роботи предиктивних моделей та механізму цифрового двійника система працює з гібридним потоком даних: історичною ретроспективою та агрегованою телеметрією.</p>
+<p><strong>Що надходить в систему (Вхідна інформація):</strong>
+1.  <strong>Історична база даних (PJM Interconnection):</strong> Структуровані <code>CSV</code> та <code>SQL</code> дампи з погодинними обсягами споживання у мегаватах (МВт), що є галузевим стандартом для тестування предиктивних моделей [21].
+2.  <strong>Симульована телеметрія (Real-time Payload):</strong> Віртуальні сенсори (Digital Twin) формують JSON/SQL пакети з частотою оновлення від 15 до 60 хвилин. До них входять:
+    *   Фактичні навантаження (actual_load).
+    *   Температура масла трансформаторів (<code>oil_temp</code>) та фізичні втрати (<code>line_losses</code>).
+3.  <strong>Погодні умови:</strong> Температура навколишнього середовища, вологість, швидкість вітру та індекс хмарності (впливає на освітлення).</p>
+<p><strong>Вимоги до інформаційної безпеки:</strong>
+Відповідно до міжнародного стандарту ISO/IEC 27001, система повинна забезпечувати цілісність та конфіденційність телеметричних даних [14]. Особлива увага приділяється захисту від несанкціонованого доступу до керуючих параметрів енергосистеми та запобіганню атакам на предиктивні алгоритми [16].</p>
+<p><strong>Що система видає (Вихідна інформація):</strong>
+1.  <strong>Предиктивна аналітика:</strong> Динамічні масиви даних, де кожен пункт часу <span class="arithmatex">\(t\)</span> супроводжується значенням прогнозу <span class="arithmatex">\(F_t\)</span> на майбутні 2 доби, а також верхня та нижня межі довірчого інтервалу (Confidence Interval 95%).
+2.  <strong>Аудиторські звіти (System Health):</strong> Інтегральна оцінка стану вузлів енергосистеми (Health Score) від 0 до 100%. Оцінка базується на багатофакторному аналізі температури масла та концентрації газів (H2).
+3.  <strong>Статистичні зведення:</strong> Звіти щодо точності роботи інференсу (тест Шапіро-Вілка з <code>p-value</code> метрикою, абсолютні відхилення, RMSE, MAPE).
+4.  <strong>Економічні показники:</strong> Розрахунок потенційної вартості втраченої енергії на основі поточних тарифів ринку "на добу наперед" (DAM).</p>
+<h2 id="23-swot-energymonitor-olap">2.3. SWOT-аналіз проєкту EnergyMonitor-OLAP</h2>
+<p>Для оцінки стратегічних перспектив розробленої системи проведено SWOT-аналіз, який дозволяє виявити внутрішні сильні та слабкі сторони, а також зовнішні можливості та загрози (Табл. 2.4).</p>
+<p><em>Таблиця 2.4. SWOT-аналіз системи EnergyMonitor-OLAP</em></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Сильні сторони (Strengths)</th>
+<th style="text-align: left;">Слабкі сторони (Weaknesses)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">1. Висока точність прогнозу (MAPE &lt; 3.1%).</td>
+<td style="text-align: left;">1. Залежність від стабільності інтернет-зв'язку.</td>
+</tr>
+<tr>
+<td style="text-align: left;">2. Низька вартість володіння (Serverless Neon).</td>
+<td style="text-align: left;">2. Потреба у значних ресурсах RAM для LSTM.</td>
+</tr>
+<tr>
+<td style="text-align: left;">3. Автоматичне виявлення аномалій.</td>
+<td style="text-align: left;">3. Відсутність мобільного додатку.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Можливості (Opportunities)</strong></td>
+<td style="text-align: left;"><strong>Загрози (Threats)</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">1. Інтеграція з державними системами Smart City.</td>
+<td style="text-align: left;">1. Кібератаки на хмарну інфраструктуру.</td>
+</tr>
+<tr>
+<td style="text-align: left;">2. Вихід на ринок промислових підприємств.</td>
+<td style="text-align: left;">2. Зміна політики ціноутворення хмарних провайдерів.</td>
+</tr>
+<tr>
+<td style="text-align: left;">3. Впровадження моделей для відновлюваної енергії.</td>
+<td style="text-align: left;">3. Поява конкурентних рішень від великих вендорів.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="24">2.4. Порівняльний аналіз хмарних СУБД для предиктивного моніторингу</h2>
+<p>В ході проєктування було проведено порівняння трьох провідних хмарних рішень для зберігання телеметрії (Табл. 2.5).</p>
+<p><em>Таблиця 2.5. Порівняння хмарних СУБД</em></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Параметр</th>
+<th style="text-align: left;"><strong>Neon (Обрано)</strong></th>
+<th style="text-align: left;"><strong>AWS RDS</strong></th>
+<th style="text-align: left;"><strong>Google Cloud SQL</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Тип</strong></td>
+<td style="text-align: left;">Serverless PostgreSQL</td>
+<td style="text-align: left;">Managed Instance</td>
+<td style="text-align: left;">Managed Instance</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Масштабування</strong></td>
+<td style="text-align: left;">Автоматичне (до нуля)</td>
+<td style="text-align: left;">Ручне / Складне</td>
+<td style="text-align: left;">Ручне</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Ціна</strong></td>
+<td style="text-align: left;">Pay-as-you-go</td>
+<td style="text-align: left;">Фіксована щомісячна</td>
+<td style="text-align: left;">Фіксована щомісячна</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Швидкість OLAP</strong></td>
+<td style="text-align: left;">Висока (через індекси)</td>
+<td style="text-align: left;">Середня</td>
+<td style="text-align: left;">Середня</td>
+</tr>
+</tbody>
+</table>
+<p>Вибір Neon обґрунтований можливістю динамічного масштабування обчислювальних ресурсів, що дозволяє системі EnergyMonitor-OLAP ефективно обробляти пікові навантаження підшого штормів або аварій без зайвих витрат у спокійні періоди.</p>
+<hr />
+<h2 id="25">2.5. Математична постановка задачі та метрики якості</h2>
+<p>З математичної точки зору, задача короткострокового прогнозування енергоспоживання формулюється як задача аналізу часового ряду <span class="arithmatex">\(X = \{x_1, x_2, ..., x_t\}\)</span>. Метою є побудова відображення <span class="arithmatex">\(f: X \to Y\)</span>, де <span class="arithmatex">\(Y = \{y_{t+1}, ..., y_{t+n}\}\)</span> — прогноз на <span class="arithmatex">\(n\)</span> кроків вперед. </p>
+<p>Модель має мінімізувати комбінований функціонал похибки. Основними метриками для оцінки якості розробленої системи EnergyMonitor-OLAP визначено:</p>
+<ol>
+<li>
+<p><strong>MAPE (Mean Absolute Percentage Error):</strong>
+$$
+MAPE = \frac{100\%}{n} \sum_{i=1}^{n} \left| \frac{y_i - \hat{y}_i}{y_i} \right|
+$$
+де <span class="arithmatex">\(y_i\)</span> — фактичне значення, <span class="arithmatex">\(\hat{y}_i\)</span> — прогноз. Ця метрика обрана як ключова через її незалежність від масштабу потужності конкретної підстанції.</p>
+</li>
+<li>
+<p><strong>RMSE (Root Mean Square Error):</strong>
+$$
+RMSE = \sqrt{\frac{\sum_{i=1}^{n} (y_i - \hat{y}_i)^2}{n}}
+$$
+Дана метрика дозволяє акцентувати увагу на значних відхиленнях, що є критичним для запобігання перевантаженню мереж.</p>
+</li>
+<li>
+<p><strong>Loss Function (Функція втрат):</strong>
+Для навчання використано робастну функцію <strong>Huber Loss</strong>:
+$$
+L_\delta(a) = \left{ \begin{array}{ll} \frac{1}{2}a^2, &amp; \text{if } |a| \le \delta \ \delta(|a| - \frac{1}{2}\delta), &amp; \text{otherwise} \end{array} \right.
+$$
+що дозволяє стабілізувати градієнти при наявності шумів у телеметрії.</p>
+</li>
+</ol>
+<hr />
+<p><strong>2.2.2. Специфікація форматів обміну даними</strong></p>
+<p>Для забезпечення сумісності з різними IoT-шлюзами, вхідна телеметрія передається у форматі JSON. Приклад структури вхідного пакету (<code>telemetry_payload</code>):
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">&quot;station_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DAYTON_01&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-04-22T15:00:00Z&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">&quot;metrics&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="nt">&quot;actual_load_mw&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1845.2</span><span class="p">,</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="nt">&quot;oil_temperature&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">68.5</span><span class="p">,</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="nt">&quot;ambient_temp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">14.2</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;active&quot;</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="p">}</span>
+</code></pre></div></p>
+<p>Вихідна інформація для візуалізації та зовнішніх API формується як об'єкт предиктивної аналітики:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">&quot;forecast_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;F_20260422_001&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">&quot;prediction_horizon&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;48h&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">&quot;data_points&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="p">{</span><span class="nt">&quot;t&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-04-22T16:00:00Z&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;val&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1910.5</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;ci_low&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1890.2</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;ci_high&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1930.8</span><span class="p">},</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="p">{</span><span class="nt">&quot;t&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-04-22T17:00:00Z&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;val&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1945.0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;ci_low&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1920.5</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;ci_high&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1969.5</span><span class="p">}</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="p">]</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="p">}</span>
+</code></pre></div></p>
+<hr />
+<h2 id="26">2.6. Обґрунтування видів забезпечення системи</h2>
+<p>Згідно з вимогами до інженерного проєктування, система <strong>EnergyMonitor-OLAP</strong> базується на чотирьох взаємопов'язаних видах забезпечення.</p>
+<h4 id="231">2.3.1. Математичне забезпечення</h4>
+<p>Математичне забезпечення включає методи та алгоритми, обрані для вирішення предиктивних задач:
+*   <strong>Архітектура нейромережі:</strong> багатошаровий LSTM (Long Short-Term Memory) з механізмом тригонометричного кодування часових міток (Time2Vec варіація).
+*   <strong>Методи регуляризації:</strong> Dropout (ймовірність 0.2) для запобігання перенавчанню та Early Stopping за метрикою валідаційної втрати.
+*   <strong>Функції втрат:</strong> Huber Loss (<span class="arithmatex">\(\delta=1.0\)</span>) для стійкості до аномалій у телеметрії.</p>
+<h4 id="232">2.3.2. Технічне забезпечення</h4>
+<p>Технічне забезпечення системи базується на хмарній інфраструктурі, що дозволяє уникнути витрат на власні сервери:
+*   <strong>Обчислювальні ресурси:</strong> хмарна платформа <strong>Render.com</strong> (інстанси з підтримкою Python-середовищ).
+*   <strong>Пам'ять:</strong> мінімум 512 МБ RAM (рекомендовано 1 ГБ) для стабільної роботи TensorFlow в режимі інференсу.
+*   <strong>Сховище:</strong> хмарна інфраструктура <strong>Neon</strong>, що забезпечує серверне (serverless) зберігання даних з автоматичним масштабуванням дисків.</p>
+<h4 id="233">2.3.3. Програмне забезпечення</h4>
+<p>Програмне забезпечення системи розділене на системне та прикладне:
+*   <strong>Системне ПЗ:</strong> ОС Linux (Ubuntu 22.04 LTS у Docker-контейнерах).
+*   <strong>Мова розробки:</strong> Python 3.11+.
+*   <strong>Бібліотеки ML:</strong> TensorFlow 2.13, NumPy, Pandas.
+*   <strong>Графічний інтерфейс:</strong> Streamlit 1.25+ (для реалізації SPA-інтерфейсу).</p>
+<h4 id="234">2.3.4. Інформаційне забезпечення</h4>
+<p>Інформаційне забезпечення визначає структуру та організацію даних:
+*   <strong>Модель даних:</strong> реляційна схема PostgreSQL, оптимізована для OLAP-запитів.
+*   <strong>Схема бази даних:</strong> включає таблиці для історичних даних (<code>historical_load</code>), поточних симуляцій (<code>telemetry_stream</code>) та метаданих моделей (<code>model_metadata</code>).
+*   <strong>Протоколи:</strong> HTTP/HTTPS для взаємодії з веб-інтерфейсом та SQL (port 5432) для зв'язку з базою даних.</p>
+<hr />
+<h2 id="27-">2.7. Високорівневі моделі системи (Моделювання бізнес-процесів)</h2>
+<p>Для документування вимог та опису взаємодії акторів із системою доцільно використати методологію UML (Unified Modeling Language). Основним користувачем системи є <strong>Диспетчер-аналітик</strong>, який взаємодіє з дашбордами для прийняття управлінських рішень.</p>
+<p><pre class="mermaid"><code>flowchart LR
+    User(["👨‍💻 Диспетчер"])
+    System(["⚙️ Digital Twin (Система)"])
+
+    subgraph Monitoring ["Моніторинг мережі"]
+        direction TB
+        UC1(["Перегляд карти підстанцій"])
+        UC2(["Аналіз KPI та Health Score"])
+        UC3(["Моніторинг температури/втрат"])
+    end
+
+    subgraph AI ["AI Прогнозування"]
+        direction TB
+        UC4(["Генерація LSTM прогнозу"])
+        UC5(["Аналіз довірчого інтервалу"])
+        UC6(["Панель ML Метрик"])
+    end
+
+    User --&gt; UC1
+    User --&gt; UC2
+    User --&gt; UC4
+    User --&gt; UC6
+
+    System --&gt; UC3
+    UC4 -. "&lt;&lt;include&gt;&gt;" .-&gt; UC5</code></pre>
+<img alt="Рис. 2.1. Діаграма прецедентів системи EnergyMonitor" src="../../images/diag_use_case.png" />
+<em>Рис. 2.1. Діаграма прецедентів системи EnergyMonitor</em></p>
+<p>Діаграма прецедентів (Рис. 2.1) описує межі системи та основні ролі. Головний актор — Диспетчер — має доступ до чотирьох функціональних підсистем: моніторингу в реальному часі, AI-прогнозування, фінансового аудиту та системного адміністрування. Використання такої моделі дозволяє чітко розмежувати відповідальність компонентів на етапі проєктування інтерфейсу (Розділ 3).</p>
+<pre class="mermaid"><code>stateDiagram-v2
+    [*] --&gt; ЗапитАктивовано: Користувач натискає "Generate Forecast"
+    ЗапитАктивовано --&gt; ОтриманняІсторії: Streamlit викликає ML Engine
+    ОтриманняІсторії --&gt; Трансформація: SQL SELECT (Останні 48 годин)
+
+    state Трансформація {
+        [*] --&gt; Нормалізація
+        Нормалізація --&gt; ВекторизаціяЧасу: Вставка Sin/Cos гармонік
+        ВекторизаціяЧасу --&gt; Масштабування: MinMaxScaler
+        Масштабування --&gt; [*]
+    }
+
+    Трансформація --&gt; Інференс: Передача тензора до LSTM
+    Інференс --&gt; Validation
+
+    state Validation &lt;&lt;choice&gt;&gt;
+    Validation --&gt; Денормалізація: Прогноз коректний (Safe)
+    Validation --&gt; Fallback: Виявлено аномалію (Error)
+    Fallback --&gt; Денормалізація: Активація Seasonal Naive
+
+    Денормалізація --&gt; Візуалізація: Побудова Plotly графіка
+    Візуалізація --&gt; [*]: Завершення бізнес-процесу</code></pre>
+<p><img alt="Рис. 2.2а. Процес підготовки та трансформації даних" src="../../images/diag_sequence_1.png" />
+<em>Рис. 2.2а. Процес підготовки та трансформації даних</em></p>
+<p><img alt="Рис. 2.2б. Процес інференсу та валідації прогнозу" src="../../images/diag_sequence_2.png" />
+<em>Рис. 2.2б. Процес інференсу та валідації прогнозу</em></p>
+<p>Діаграма активності (Рис. 2.2) деталізує внутрішній процес обробки даних при отриманні прогнозу. Вона включає критичні етапи нормалізації ознак та активації fallback-алгоритму у разі виявлення пропущених значень у часовому ряді.</p>
+<p>Подальше проєктування вимагає деталізації структури об'єктів даних, що буде розглянуто в наступних розділах через призму ER-діаграм та схем фізичного рівня.</p>
+<hr />
+<h2 id="28">2.8. Етапи проєктування та черговість впровадження</h2>
+<p>Процес розробки платформи відбувається за ітеративною моделлю життєвого циклу ПЗ (Agile-like). Наочно черговість виконання етапів представлена на діаграмі Ганта (Рис. 2.3).</p>
+<pre class="mermaid"><code>gantt
+    title Календарний графік розробки EnergyMonitor-OLAP
+    dateFormat  YYYY-MM-DD
+    section Аналіз та Проектування
+    Збір вимог та аналіз предметної області :active, des1, 2026-04-01, 10d
+    Математичне моделювання (LSTM) : des2, after des1, 7d
+    section Бекенд та БД
+    Проектування схеми БД у Neon Cloud : des3, after des2, 5d
+    Розробка API та генератора телеметрії : des4, after des3, 10d
+    section AI Ядро
+    Навчання та валідація моделі v3 : des5, after des4, 14d
+    section Фронтенд та Деплой
+    Розробка SPA на Streamlit : des6, after des5, 7d
+    Тестування та CI/CD деплой на Render : des7, after des6, 5d</code></pre>
+<p><img alt="Рис. 2.3. Календарний графік етапів розробки системи" src="../../images/diag_gantt_schedule.png" />
+<em>Рис. 2.3. Календарний графік етапів розробки системи</em></p>
+<p>Опис етапів:
+1. <strong>Аналітично-проєктна фаза:</strong> Детальне вивчення поведінкових патернів споживання електромереж, обрання датасету (PJM Dayton), формалізація математичних моделей.
+2. <strong>Фаза побудови бекенду:</strong> Розробка реляційної структури БД у PostgreSQL, налаштування середовища (Neon Cloud) та створення Python-скрипта генерації симулятивної телеметрії (<code>data_generator.py</code>).
+3. <strong>Фаза дослідження AI:</strong> Експерименти над архітектурами мереж. Поступовий розвиток від базової LSTM (v1) до мультифакторної моделі v3 з функцією Huber Loss.
+4. <strong>Інтеграційна фаза:</strong> Створення багатосторінкової веб-панелі на базі Streamlit, об’єднання ML-ядра та інтерфейсу оператора.
+5. <strong>Тестування та інфраструктура:</strong> Написання Unit-тестів на фреймворку <code>pytest</code>, налаштування CI/CD конвеєра в GitHub Actions, контейнеризація за допомогою Docker та деплой на Production (Render).</p>
+<hr />
+<h2 id="2_1">ВИСНОВКИ ДО РОЗДІЛУ 2</h2>
+<p>У другому розділі здійснено формальну постановку завдання на проєктування інтелектуальної SaaS-платформи EnergyMonitor-OLAP. Було встановлено такі ключові результати роботи на даному етапі:
+1.  <strong>Сформульовано функціональні та архітектурні вимоги:</strong> обґрунтовано необхідність використання глибоких нейромереж (LSTM) у поєднанні з реляційним багатовимірним сховищем (PostgreSQL).
+2.  <strong>Визначено межі інформаційного обміну:</strong> конкретизовано формати вхідної телеметрії (Health Score, температурні дані, навантаження) та формати виведення аналітики для підтримки прийняття управлінських рішень.
+3.  <strong>Обрано інструментарій:</strong> обґрунтовано вибір мови Python, фреймворків Streamlit, TensorFlow/Keras для реалізації ефективного технічного рішення.
+4.  <strong>Змодельовано бізнес-процеси:</strong> за допомогою діаграм UML (Use Case та Activity Diagram) візуалізовано алгоритм взаємодії користувача із системою на рівні генерації ШІ-прогнозів.</p>
+<p>Проведене концептуальне проєктування є цілісним технічним завданням (Software Requirements Specification), що слугує надійним каркасом для наступного етапу — детальної реалізації програмного коду та дата-інфраструктури, що буде описана у наступному розділі.</p>
+<h1 id="3">РОЗДІЛ 3. ПРОЄКТНІ РІШЕННЯ ТА ПРОГРАМНА РЕАЛІЗАЦІЯ СИСТЕМИ</h1>
+<h3 id="31">3.1. Загальна архітектура та інформаційне забезпечення</h3>
+<h4 id="311-energymonitor-olap">3.1.1. Багатошарова архітектура EnergyMonitor-OLAP</h4>
+<p>Проєктування архітектури інтелектуальної системи EnergyMonitor-OLAP базується на принципах модульності та масштабованості. Для забезпечення стабільної роботи у хмарному середовищі ми обрали багатошарову архітектуру (Layered Architecture), що складається з чотирьох функціональних рівнів, реалізованих за допомогою фреймворку Streamlit [26] та бібліотек глибокого навчання TensorFlow/Keras [1, 4] (Рис. 3.1).</p>
+<p><pre class="mermaid"><code>graph TB
+    subgraph UI["Рівень представлення (Streamlit)"]
+        direction LR
+        A1["KPI Панель"]
+        A2["ML Прогноз"]
+        A3["ГІС Карта"]
+    end
+
+    subgraph CORE["Інтелектуальний шар"]
+        direction LR
+        B1["LSTM v3\npredict_v2.py"]
+        B3["Фізичний двигун\nphysics.py"]
+        B4["Векторизатор\n(Sliding Window)"]
+    end
+
+    subgraph DATA["Шар даних (OLAP)"]
+        direction LR
+        C1[("PostgreSQL\nNeon Cloud")]
+        C3["Цифровий двійник\nСимуляція сенсорів"]
+    end
+
+    subgraph DEVOPS["DevOps Шар"]
+        direction LR
+        D1["GitHub Actions\nCI/CD"]
+        D2["Docker\nКонтейнер"]
+    end
+
+    UI --&gt;|"Запит даних"| CORE
+    CORE --&gt;|"SQL SELECT"| DATA
+    C3 --&gt;|"SQL INSERT телеметрія"| C1
+    B1 --&gt;|"Результати ШІ"| UI</code></pre>
+<em>Схема 3.1. Логічна архітектура (Mermaid-версія для репозиторію)</em></p>
+<p><img alt="Рис. 3.1. Архітектурна схема системи EnergyMonitor-OLAP" src="../../images/diag_architecture.png" />
+<em>Рис. 3.1. Архітектурна схема системи EnergyMonitor-OLAP</em></p>
+<h4 id="312-digital-twin">3.1.2. Потоки даних та імітаційне моделювання Digital Twin</h4>
+<p>Центральною частиною системи є механізм «Цифрового двійника», який імітує роботу реальних підстанцій. Процес обробки даних включає збір телеметрії, її векторизацію та подачу на вхід нейронної мережі (Рис. 3.2).</p>
+<p><pre class="mermaid"><code>graph TD
+    subgraph Local ["💻 LOCAL ENVIRONMENT"]
+        DG["data_generator.py\n(Симулятор)"]
+    end
+
+    subgraph Cloud ["☁️ CLOUD INFRASTRUCTURE (Render)"]
+        DB[(PostgreSQL\nOLAP Database)]
+        Vect["vectorizer.py"]
+        Pred["predict_v2.py"]
+        UI["main.py\n(Dashboard)"]
+    end
+
+    DG ==&gt;|"Telemetry Push"| DB
+    DB &lt;--&gt;|"Data Exchange"| Vect
+    Vect --&gt; Pred
+    Pred --&gt; UI</code></pre>
+<em>Схема 3.2. Потоки даних (Mermaid-версія)</em></p>
+<p><img alt="Рис. 3.2. Схема розгортання та потоків даних системи" src="../../images/diag_infra_cloud.png" />
+<em>Рис. 3.2. Схема розгортання та потоків даних системи</em></p>
+<h3 id="32">3.2. Програмна реалізація інтерфейсу користувача</h3>
+<h4 id="321-kpi">3.2.1. Головна панель моніторингу KPI</h4>
+<p>Інтерфейс системи розроблено на мові Python за допомогою бібліотеки Streamlit [26] з акцентом на швидке прийняття рішень диспетчером. Головна панель відображає агреговані показники стану всієї міської мережі в реальному часі (Рис. 3.3).</p>
+<p><img alt="Рис. 3.3. Головна панель моніторингу KPI системи" src="../../images/monitoring_overview.png" />
+<em>Рис. 3.3. Головна панель моніторингу KPI системи</em></p>
+<h4 id="322-ai-forecast">3.2.2. Предиктивна панель (AI Forecast)</h4>
+<p>Найважливішим модулем системи є вікно предиктивної аналітики. Користувач може обрати конкретний вузол мережі та отримати детальний прогноз на 24-48 годин (Рис. 3.4).</p>
+<p><img alt="Рис. 3.4. Результати AI-прогнозування на фоні фактичних даних" src="../../images/ai_forecast.png" />
+<em>Рис. 3.4. Результати AI-прогнозування на фоні фактичних даних (MAPE &lt; 3.1%)</em></p>
+<h4 id="323-">3.2.3. ГІС-картографія та геопросторова візуалізація</h4>
+<p>Інтеграція з картографічними сервісами дозволяє диспетчеру бачити територіальний розподіл навантаження. Колірна індикація вузлів автоматично змінюється залежно від рівня завантаженості та наявності аномалій (Рис. 3.5).</p>
+<p><img alt="Рис. 3.5. ГІС-візуалізація стану енергосистеми міського району" src="../../images/map.png" />
+<em>Рис. 3.5. ГІС-візуалізація стану енергосистеми міського району</em></p>
+<h4 id="324-health-score">3.2.4. Моніторинг технічного стану та Health Score</h4>
+<p>Окремий модуль системи відповідає за діагностику фізичних параметрів трансформаторів. На основі розрахованих у фізичному рушії даних (температура, концентрація газів) формується інтегральний показник здоров’я об'єкту (Рис. 3.6).</p>
+<p><img alt="Рис. 3.6. Панель діагностики технічного стану та Health Score" src="../../images/health_monitoring.png" />
+<em>Рис. 3.6. Панель діагностики технічного стану та Health Score</em></p>
+<h3 id="33">3.3. Структура бази даних та хмарна інтеграція</h3>
+<p>Для зберігання телеметрії та результатів прогнозування використано хмарну СУБД Neon PostgreSQL [18, 23, 25], що підтримує архітектуру Serverless. Взаємодія з базою даних здійснюється через ORM SQLAlchemy [33]. Процеси безперервної інтеграції та розгортання (CI/CD) налаштовані за допомогою GitHub Actions [34].</p>
+<h4 id="331-olap">3.3.1. Схема даних OLAP</h4>
+<p>Для забезпечення високої швидкості аналітичних запитів база даних PostgreSQL спроєктована за схемою «зірка» (Рис. 3.7).</p>
+<p><pre class="mermaid"><code>erDiagram
+    REGIONS ||--o{ SUBSTATIONS : "містить"
+    SUBSTATIONS ||--o{ LOADMEASUREMENTS : "генерує навантаження"
+    SUBSTATIONS ||--o{ ALERTS : "генерує аварії"
+    SUBSTATIONS ||--o{ GENERATORS : "має джерела"
+    GENERATORS ||--o{ GENERATIONMEASUREMENTS : "виробляє енергію"
+    REGIONS ||--o{ WEATHERREPORTS : "має погоду"
+
+    REGIONS {
+        int region_id PK
+        string region_name
+    }
+    SUBSTATIONS {
+        int substation_id PK
+        string substation_name
+        float capacity_mw
+    }
+    LOADMEASUREMENTS {
+        int measurement_id PK
+        int substation_id FK
+        float actual_load_mw
+        float health_score
+        timestamp timestamp
+    }</code></pre>
+<em>Схема 3.3. ER-діаграма (Mermaid-версія)</em></p>
+<p><img alt="Рис. 3.7. Схема бази даних (ER-діаграма) системи" src="../../images/diag_er_db.png" />
+<em>Рис. 3.7. Схема бази даних (ER-діаграма) системи</em></p>
+<h4 id="332">3.3.2. Фізична структура та опис атрибутів бази даних</h4>
+<p>Для реалізації фізичного рівня обрано хмарну СУБД PostgreSQL. Повна SQL-схема бази даних наведена у Додатку В. У таблицях 3.1 та 3.2 наведено детальну специфікацію основних сутностей системи.</p>
+<p><em>Таблиця 3.1. Специфікація полів таблиці SUBSTATIONS (Довідник підстанцій)</em>
+| Назва поля | Тип даних | Опис | Обмеження |
+| :--- | :--- | :--- | :--- |
+| <code>substation_id</code> | SERIAL | Унікальний ідентифікатор | PRIMARY KEY |
+| <code>substation_name</code> | VARCHAR(100) | Назва або номер об'єкту | NOT NULL |
+| <code>region_id</code> | INTEGER | Зв'язок з регіоном | FOREIGN KEY |
+| <code>capacity_mw</code> | FLOAT | Номінальна потужність | &gt; 0 |</p>
+<p><em>Таблиця 3.2. Специфікація полів таблиці LOADMEASUREMENTS (Телеметрія)</em>
+| Назва поля | Тип даних | Опис | Обмеження |
+| :--- | :--- | :--- | :--- |
+| <code>measurement_id</code> | BIGSERIAL | Ідентифікатор запису | PRIMARY KEY |
+| <code>substation_id</code> | INTEGER | Ідентифікатор підстанції | FOREIGN KEY |
+| <code>actual_load_mw</code> | FLOAT | Фактичне навантаження | NOT NULL |
+| <code>health_score</code> | FLOAT | Показник стану (0-100) | CHECK (0-100) |</p>
+<h3 id="34-lstm-v3">3.4. Математичне та алгоритмічне забезпечення: LSTM v3</h3>
+<p>Модель використовує Sliding Window розміром 24 години. Для навчання обрано функцію втрат Huber Loss [12]. Архітектура нейронної мережі та вибір гіперпараметрів (64 нейрони, Adam, Dropout) узгоджуються з аналогічними дослідженнями предиктивного аналізу кліматичних та інженерних даних для міста Києва [39]. Метрики якості навчання представлено на рис. 3.8.</p>
+<p><img alt="Рис. 3.8. Метрики якості навчання та розподіл похибок" src="../../images/metrics_table.png" />
+<em>Рис. 3.8. Метрики якості навчання та розподіл похибок</em></p>
+<h3 id="35">3.5. Фінансовий моніторинг та балансування</h3>
+<p>Для розрахунку економічної ефективності та виявлення втрат у мережі використовується спеціалізована панель фінансового моніторингу (Рис. 3.9).</p>
+<p><img alt="Рис. 3.9. Інтерфейс фінансового моніторингу та розрахунку втрат" src="../../images/finance.png" />
+<em>Рис. 3.9. Інтерфейс фінансового моніторингу та розрахунку втрат</em></p>
+<h3 id="36-devops-cicd">3.6. DevOps та CI/CD конвеєр</h3>
+<p>Для автоматизації розгортання системи впроваджено CI/CD конвеєр (Рис. 3.10). Конфігураційні файли Docker та налаштування середовища наведені у Додатку Б.</p>
+<p><pre class="mermaid"><code>flowchart LR
+    Push["git push"] --&gt; Lint["Linting (flake8)"]
+    Lint --&gt; Tests["Unit Tests (pytest)"]
+    Tests --&gt; Build["Docker Build"]
+    Build --&gt; Deploy["Deploy to Render.com"]</code></pre>
+<em>Схема 3.4. Конвеєр CI/CD (Mermaid-версія)</em></p>
+<p><img alt="Рис. 3.10. Технологічна схема конвеєра CI/CD системи" src="../../images/diag_cicd_pipeline.png" />
+<em>Рис. 3.10. Технологічна схема конвеєра CI/CD системи</em></p>
+<h3 id="37">3.7. Програмна реалізація ключових модулів</h3>
+<h4 id="371-lstm-core">3.7.1. Модуль предиктивної аналітики (LSTM Core)</h4>
+<p>В основі інтелектуального ядра лежить архітектура Sequential LSTM, реалізована за допомогою TensorFlow. Модель оптимізована для роботи з нерівномірними часовими рядами енергоспоживання. Вихідний код ключових модулів системи наведено у Додатку А.</p>
+<h3 id="38">3.8. Методика верифікації та тестування системи</h3>
+<p>Для гарантування надійності SaaS-платформи було впроваджено комплексний підхід до тестування. Детальні протоколи тестування наведені у Додатку Д.</p>
+<h4 id="381-unit-testing">3.8.1. Модульне тестування (Unit Testing)</h4>
+<p>Модульне тестування проводилося за допомогою фреймворку <code>pytest</code>. Основна увага приділялася верифікації математичних формул у модулі <code>physics.py</code>.</p>
+<h4 id="382">3.8.2. Інтеграційне тестування</h4>
+<p>Перевірка взаємодії між хмарною базою даних Neon та аналітичним ядром Python.</p>
+<h4 id="383-ml-validation">3.8.3. Валідація точності ШІ-моделі (ML Validation)</h4>
+<p>MAPE = 3.08%, що свідчить про високу предиктивну здатність системи.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Тип тесту</th>
+<th style="text-align: left;">Кількість тест-кейсів</th>
+<th style="text-align: left;">Статус</th>
+<th style="text-align: left;">Інструмент</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Unit Tests</strong></td>
+<td style="text-align: left;">24</td>
+<td style="text-align: left;">Passed</td>
+<td style="text-align: left;"><code>pytest</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Integration</strong></td>
+<td style="text-align: left;">15</td>
+<td style="text-align: left;">Passed</td>
+<td style="text-align: left;"><code>docker-compose</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>ML Validation</strong></td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Passed</td>
+<td style="text-align: left;"><code>TensorFlow</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="3_1">ВИСНОВКИ ДО РОЗДІЛУ 3</h2>
+<p>У третьому розділі було детально описано архітектурні та програмні рішення системи EnergyMonitor-OLAP. Розроблена багатошарова архітектура забезпечує високу масштабованість та точність прогнозування.</p>
+<hr />
+<p><a href="../THESIS_2_REQUIREMENTS/">Назад до Розділу 2</a> | <a href="../THESIS_FINAL_CONCLUSIONS/">Далі: Висновки</a></p>
+<h1 id="_19">ЗАГАЛЬНІ ВИСНОВКИ</h1>
+<p>Що ми досягли в цій роботі? У ході виконання кваліфікаційної роботи бакалавра було розв'язано актуальне науково-технічне завдання — розробку та впровадження інтелектуальної SaaS-платформи <strong>EnergyMonitor-OLAP</strong> для предиктивного аналізу масивів часових рядів енергоспоживання.</p>
+<p>Які основні висновки ми зробили?</p>
+<ol>
+<li>
+<p><strong>Аналітичне обґрунтування</strong>: Встановлено, що перехід від реактивного моніторингу до проактивного управління (Predictive Maintenance) є критичним для стійкості Smart Grid. Рекурентні нейронні мережі архітектури LSTM визначено як оптимальний математичний інструмент для обробки нелінійних енергетичних даних.</p>
+</li>
+<li>
+<p><strong>Архітектурна реалізація</strong>: Впроваджено 4-рівневу архітектуру системи. Поєднання концепції <strong>Digital Twin</strong> із аналітичним сховищем <strong>OLAP</strong> дозволило реалізувати гібридне рішення, яке одночасно прогнозує навантаження та симулює фізичний знос трансформаторного обладнання.</p>
+</li>
+<li>
+<p><strong>Математична надійність</strong>: Розроблено предиктивне ядро на основі моделі <strong>LSTM v3</strong> із робастною функцією втрат <strong>Huber Loss</strong>. Впровадження тригонометричного кодування часових детермінант забезпечило високу стабільність моделі в умовах мультисезонності.</p>
+</li>
+<li>
+<p><strong>Верифікація</strong>: Експериментальна перевірка на еталонному наборі PJM Dayton підтвердила точність прогнозування з показником <strong>MAPE &lt; 3.1%</strong> та коефіцієнтом детермінації <strong>R² = 0.92</strong>. Надійність програмної реалізації підтверджена успішним проходженням <strong>79 автоматизованих тестів</strong>.</p>
+</li>
+<li>
+<p><strong>Практична цінність</strong>: Створена платформа дозволяє енергопостачальним компаніям оптимізувати графіки закупівель потужності та впроваджувати стратегії енергозбереження на рівні окремих районів міста.</p>
+</li>
+</ol>
+<p>Чи досягли ми мети? Мета роботи досягнута у повному обсязі, завдання виконані згідно з календарним планом. Розроблений комплекс є завершеним інженерним продуктом, готовим до практичної експлуатації.</p>
+<hr />
+<p><a href="../THESIS_3_DESIGN_AND_IMPLEMENTATION/">⬅️ Назад до Розділу 3</a> | <a href="../BIBLIOGRAPHY/">Далі: Список використаних джерел</a></p>
+<h1 id="_20">СПИСОК ВИКОРИСТАНИХ ДЖЕРЕЛ</h1>
+<ol>
+<li>Abadi M., Agarwal A., Barham P. et al. TensorFlow: Large-scale machine learning on heterogeneous systems. Proceedings of the 12th USENIX Symposium on Operating Systems Design and Implementation (OSDI). 2016. P. 265—283.</li>
+<li>Billings S. A. Nonlinear System Identification: NARMAX Methods in the Time, Frequency, and Spatio-Temporal Domains. Wiley, 2013. 574 p.</li>
+<li>Box G. E., Jenkins G. M., Reinsel G. C., Ljung G. M. Time Series Analysis: Forecasting and Control. 5th ed. Wiley, 2015. 712 p.</li>
+<li>Chollet F. Deep Learning with Python. 2nd ed. Manning Publications, 2021. 504 p.</li>
+<li>Brockwell P. J., Davis R. A. Introduction to Time Series and Forecasting. 3rd ed. Springer, 2016. 425 p.</li>
+<li>DSTU 8302:2015. Information and documentation. Bibliographic reference. General principles and rules of composition. Kyiv : SE "UkrNDNC", 2016. 17 p.</li>
+<li>Farhangi H. The path of the smart grid. IEEE Power and Energy Magazine. 2010. Vol. 8, No. 1. P. 18—28.</li>
+<li>Geron A. Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow. 2nd ed. O'Reilly Media, 2019. 856 p.</li>
+<li>Goodfellow I., Bengio Y., Courville A. Deep Learning. MIT Press, 2016. 800 p.</li>
+<li>Greff K., Srivastava R. K., Koutník J. et al. LSTM: A Search Space Odyssey. IEEE Transactions on Neural Networks and Learning Systems. 2017. Vol. 28, No. 10. P. 2222—2232.</li>
+<li>Hochreiter S., Schmidhuber J. Long Short-Term Memory. Neural Computation. 1997. Vol. 9, No. 8. P. 1735—1780.</li>
+<li>Huber P. J. Robust Estimation of a Location Parameter. The Annals of Mathematical Statistics. 1964. Vol. 35, No. 1. P. 73—101.</li>
+<li>Hyndman R. J., Athanasopoulos G. Forecasting: Principles and Practice. 2nd ed. OTexts, 2018. 382 p.</li>
+<li>ISO/IEC 27001:2022. Information security, cybersecurity and privacy protection — Information security management systems — Requirements. 2022.</li>
+<li>Kingma D. P., Ba J. Adam: A Method for Stochastic Optimization. arXiv preprint arXiv:1412.6980. 2014.</li>
+<li>Lipton Z. C., Berkowitz J., Elkan C. A Critical Review of Recurrent Neural Networks for Sequence Learning. arXiv preprint arXiv:1506.00019. 2015.</li>
+<li>Majeed U., Khan L. U., Yaqoob I. et al. Blockchain for IoT-based Smart Cities: Recent Advances, Requirements, and Future Challenges. IEEE Access. 2020. Vol. 8. P. 117578—117614.</li>
+<li>Neon Serverless Postgres. Architectural Overview. URL: https://neon.tech/docs/introduction (дата звернення: 09.04.2026).</li>
+<li>Nielsen M. A. Neural Networks and Deep Learning. Determination Press, 2015. URL: http://neuralnetworksanddeeplearning.com (дата звернення: 12.04.2026).</li>
+<li>Pandas Documentation. Data structures for Python. URL: https://pandas.pydata.org/docs/ (дата звернення: 10.04.2026).</li>
+<li>PJM Interconnection. Hourly Load Data Dataset. URL: https://dataminer2.pjm.com/feed/hrl_load_metered (дата звернення: 10.04.2026).</li>
+<li>Plotly Python Graphing Library. Interactive Charts Documentation. URL: https://plotly.com/python/ (дата звернення: 11.04.2026).</li>
+<li>PostgreSQL 15 Documentation // The PostgreSQL Global Development Group. URL: https://www.postgresql.org/docs/15/ (дата звернення: 11.04.2026).</li>
+<li>Render PaaS Documentation // Render Cloud Hosting. URL: https://render.com/docs (дата звернення: 08.04.2026).</li>
+<li>Scikit-learn. Machine Learning in Python. URL: https://scikit-learn.org/ (дата звернення: 11.04.2026).</li>
+<li>Streamlit Documentation. Official Documentation for Version 1.37+. URL: https://docs.streamlit.io/ (дата звернення: 10.04.2026).</li>
+<li>Sutton R. S., Barto A. G. Reinforcement Learning: An Introduction. 2nd ed. MIT Press, 2018. 552 p.</li>
+<li>VanderPlas J. Python Data Science Handbook. O'Reilly Media, 2016. 548 p.</li>
+<li>Werbos P. J. Backpropagation through time: what it does and how to do it. Proceedings of the IEEE. 1990. Vol. 78, No. 10. P. 1550—1560.</li>
+<li>Zheng J., Xu C., Zhang Z., Li X. Electric Load Forecasting in Smart Grids Using Long-Short-Term Memory Recurrent Neural Networks. Annual Conference on Information Science and Systems (CISS). 2017. P. 1—6.</li>
+<li>Бондаренко С. А., Зеркіна О. О. Smart Grid як основа інноваційних трансформацій на ринку електроенергії України в контексті євроінтеграційних процесів. Проблеми системного підходу в економіці. 2019. Вип. 2(70). С. 135—141.</li>
+<li>Зайченко Ю. П. Математичні основи інтелектуальних систем. Київ : Видавничий дім «Слово», 2011. 452 с.</li>
+<li>SQLAlchemy Documentation. Unified Tutorial (Version 2.0). URL: https://docs.sqlalchemy.org/en/20/tutorial/ (дата звернення: 12.04.2026).</li>
+<li>GitHub Actions Documentation. Understanding GitHub Actions. URL: https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions (дата звернення: 05.04.2026).</li>
+<li>Fuller A., Fan Z., Day C., Barlow C. Digital Twin: Enabling Technologies, Challenges and Open Research. IEEE Access. 2020. Vol. 8. P. 108952—108971.</li>
+<li>ISO/ASME 23247:2021. Automation systems and integration — Digital twin framework for manufacturing. Part 1-4. 2021.</li>
+<li>IEEE 1547-2018. IEEE Standard for Interconnection and Interoperability of Distributed Energy Resources with Associated Electric Power Systems Interfaces. 2018.</li>
+<li>IEEE C57.91-2011. IEEE Guide for Loading Mineral-Oil-Immersed Transformers and Step-Voltage Regulators. 2011.</li>
+<li>Makoveichuk O., Golubenko O., Kukhtyk S., Antonenko A., Bereznychenko V. Temperature Forecasting with LSTM: A Case Study on Kyiv Weather Data. CEUR Workshop Proceedings. 2025.</li>
+</ol>
+<hr />
+<p><a href="../THESIS_FINAL_CONCLUSIONS/">Назад до Висновків</a> | <a href="../APPENDICES/">Далі: ДОДАТКИ</a></p>
+<h1 id="_21">ДОДАТКИ</h1>
+<p align="center">Додаток А</p>
+<p align="center"><b>Вихідний код ключових модулів системи</b></p>
+
+<h3 id="1-physicspy">А.1. Модуль математичного моделювання фізичних процесів (physics.py)</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">src.core.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">LOAD_PROFILES</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="k">def</span><span class="w"> </span><span class="nf">calculate_line_losses</span><span class="p">(</span><span class="n">df_lines</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="sd">    Розраховує втрати потужності в мережі для AC та HVDC ліній.</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="sd">    Враховує квадратичну залежність втрат від навантаження для AC.</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    <span class="k">if</span> <span class="n">df_lines</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span> <span class="k">return</span> <span class="n">df_lines</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>    <span class="n">df</span> <span class="o">=</span> <span class="n">df_lines</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>    <span class="k">if</span> <span class="s2">&quot;line_type&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="ow">and</span> <span class="s2">&quot;max_load_mw&quot;</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>        <span class="n">df</span><span class="p">[</span><span class="s2">&quot;line_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;max_load_mw&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s2">&quot;HVDC&quot;</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">3000</span> <span class="k">else</span> <span class="s2">&quot;AC&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>    <span class="n">is_hvdc</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;line_type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;HVDC&quot;</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>    <span class="c1"># Модель втрат: 1.5% для постійного струму, до 3.5% для змінного при номіналі</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>    <span class="n">loss_dc</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;actual_load_mw&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.015</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;load_pct&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>    <span class="n">loss_ac</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;actual_load_mw&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.035</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;load_pct&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;losses_mw&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">is_hvdc</span><span class="p">,</span> <span class="n">loss_dc</span><span class="p">,</span> <span class="n">loss_ac</span><span class="p">)</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;efficiency_pct&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;losses_mw&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;actual_load_mw&quot;</span><span class="p">])</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>    <span class="k">return</span> <span class="n">df</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="k">def</span><span class="w"> </span><span class="nf">calculate_weather</span><span class="p">(</span><span class="n">ts</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">,</span> <span class="n">current_temps</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="sd">    Імітує добовий цикл температури з випадковими флуктуаціями.</span>
+<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="sd">    Використовує синусоїдальну апроксимацію добового ходу.</span>
+<a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a>    <span class="n">weather_map</span> <span class="o">=</span> <span class="p">{}</span>
+<a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a>    <span class="n">time_val</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">hour</span> <span class="o">+</span> <span class="n">ts</span><span class="o">.</span><span class="n">minute</span> <span class="o">/</span> <span class="mf">60.0</span>
+<a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a>
+<a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a>    <span class="k">for</span> <span class="n">region_id</span><span class="p">,</span> <span class="n">base_temp</span> <span class="ow">in</span> <span class="n">current_temps</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a>        <span class="c1"># Добова амплітуда 5-7 градусів, пік о 14:00</span>
+<a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a>        <span class="n">amplitude</span> <span class="o">=</span> <span class="mf">6.0</span>
+<a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a>        <span class="n">peak_hour</span> <span class="o">=</span> <span class="mf">14.0</span>
+<a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a>        <span class="n">daily_cycle</span> <span class="o">=</span> <span class="n">amplitude</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">((</span><span class="n">time_val</span> <span class="o">-</span> <span class="n">peak_hour</span> <span class="o">+</span> <span class="mi">6</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">12</span><span class="p">)</span>
+<a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a>
+<a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a>        <span class="c1"># Додавання випадкового шуму (броунівський рух температури)</span>
+<a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a>        <span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">)</span>
+<a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a>        <span class="n">final_temp</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">base_temp</span> <span class="o">+</span> <span class="n">daily_cycle</span> <span class="o">+</span> <span class="n">noise</span><span class="p">)</span>
+<a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a>
+<a id="__codelineno-2-47" name="__codelineno-2-47" href="#__codelineno-2-47"></a>        <span class="n">condition</span> <span class="o">=</span> <span class="s2">&quot;Ясно&quot;</span> <span class="k">if</span> <span class="n">final_temp</span> <span class="o">&gt;</span> <span class="mi">15</span> <span class="k">else</span> <span class="s2">&quot;Хмарно&quot;</span>
+<a id="__codelineno-2-48" name="__codelineno-2-48" href="#__codelineno-2-48"></a>        <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mf">0.9</span><span class="p">:</span> <span class="n">condition</span> <span class="o">=</span> <span class="s2">&quot;Дощ&quot;</span>
+<a id="__codelineno-2-49" name="__codelineno-2-49" href="#__codelineno-2-49"></a>
+<a id="__codelineno-2-50" name="__codelineno-2-50" href="#__codelineno-2-50"></a>        <span class="n">weather_map</span><span class="p">[</span><span class="n">region_id</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">final_temp</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">condition</span><span class="p">)</span>
+<a id="__codelineno-2-51" name="__codelineno-2-51" href="#__codelineno-2-51"></a>    <span class="k">return</span> <span class="n">weather_map</span>
+<a id="__codelineno-2-52" name="__codelineno-2-52" href="#__codelineno-2-52"></a>
+<a id="__codelineno-2-53" name="__codelineno-2-53" href="#__codelineno-2-53"></a><span class="k">def</span><span class="w"> </span><span class="nf">calculate_substation_load</span><span class="p">(</span><span class="n">capacity</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">profile_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">ts</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">,</span> 
+<a id="__codelineno-2-54" name="__codelineno-2-54" href="#__codelineno-2-54"></a>                              <span class="n">temp</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">is_weekend</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">prev_f</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+<a id="__codelineno-2-55" name="__codelineno-2-55" href="#__codelineno-2-55"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-2-56" name="__codelineno-2-56" href="#__codelineno-2-56"></a><span class="sd">    Розраховує поточне навантаження підстанції з урахуванням профілю, </span>
+<a id="__codelineno-2-57" name="__codelineno-2-57" href="#__codelineno-2-57"></a><span class="sd">    температури та дня тижня.</span>
+<a id="__codelineno-2-58" name="__codelineno-2-58" href="#__codelineno-2-58"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-2-59" name="__codelineno-2-59" href="#__codelineno-2-59"></a>    <span class="n">hour</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">hour</span>
+<a id="__codelineno-2-60" name="__codelineno-2-60" href="#__codelineno-2-60"></a>    <span class="n">hourly_profile</span> <span class="o">=</span> <span class="n">LOAD_PROFILES</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">profile_type</span><span class="p">,</span> <span class="n">LOAD_PROFILES</span><span class="p">[</span><span class="s2">&quot;RESIDENTIAL&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">hour</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+<a id="__codelineno-2-61" name="__codelineno-2-61" href="#__codelineno-2-61"></a>
+<a id="__codelineno-2-62" name="__codelineno-2-62" href="#__codelineno-2-62"></a>    <span class="c1"># Корекція на вихідний день (-20% навантаження)</span>
+<a id="__codelineno-2-63" name="__codelineno-2-63" href="#__codelineno-2-63"></a>    <span class="n">day_mult</span> <span class="o">=</span> <span class="mf">0.85</span> <span class="k">if</span> <span class="n">is_weekend</span> <span class="k">else</span> <span class="mf">1.0</span>
+<a id="__codelineno-2-64" name="__codelineno-2-64" href="#__codelineno-2-64"></a>
+<a id="__codelineno-2-65" name="__codelineno-2-65" href="#__codelineno-2-65"></a>    <span class="c1"># Вплив температури (кондиціювання або опалення)</span>
+<a id="__codelineno-2-66" name="__codelineno-2-66" href="#__codelineno-2-66"></a>    <span class="c1"># Базова комфортна температура 21 градус</span>
+<a id="__codelineno-2-67" name="__codelineno-2-67" href="#__codelineno-2-67"></a>    <span class="n">temp_diff</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">temp</span> <span class="o">-</span> <span class="mf">21.0</span><span class="p">)</span>
+<a id="__codelineno-2-68" name="__codelineno-2-68" href="#__codelineno-2-68"></a>    <span class="n">temp_mult</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">+</span> <span class="p">(</span><span class="n">temp_diff</span> <span class="o">*</span> <span class="mf">0.02</span><span class="p">)</span> <span class="c1"># +2% навантаження на кожний градус відхилення</span>
+<a id="__codelineno-2-69" name="__codelineno-2-69" href="#__codelineno-2-69"></a>
+<a id="__codelineno-2-70" name="__codelineno-2-70" href="#__codelineno-2-70"></a>    <span class="n">final_f</span> <span class="o">=</span> <span class="n">hourly_profile</span> <span class="o">*</span> <span class="n">day_mult</span> <span class="o">*</span> <span class="n">temp_mult</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">)</span>
+<a id="__codelineno-2-71" name="__codelineno-2-71" href="#__codelineno-2-71"></a>
+<a id="__codelineno-2-72" name="__codelineno-2-72" href="#__codelineno-2-72"></a>    <span class="c1"># Ефект інерційності споживання (Smoothing)</span>
+<a id="__codelineno-2-73" name="__codelineno-2-73" href="#__codelineno-2-73"></a>    <span class="n">smoothed_f</span> <span class="o">=</span> <span class="p">(</span><span class="n">final_f</span> <span class="o">*</span> <span class="mf">0.7</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">prev_f</span> <span class="o">*</span> <span class="mf">0.3</span><span class="p">)</span>
+<a id="__codelineno-2-74" name="__codelineno-2-74" href="#__codelineno-2-74"></a>
+<a id="__codelineno-2-75" name="__codelineno-2-75" href="#__codelineno-2-75"></a>    <span class="n">actual_load</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">capacity</span> <span class="o">*</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">smoothed_f</span><span class="p">)),</span> <span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-2-76" name="__codelineno-2-76" href="#__codelineno-2-76"></a>    <span class="k">return</span> <span class="n">actual_load</span><span class="p">,</span> <span class="kc">None</span>
+<a id="__codelineno-2-77" name="__codelineno-2-77" href="#__codelineno-2-77"></a>
+<a id="__codelineno-2-78" name="__codelineno-2-78" href="#__codelineno-2-78"></a><span class="k">def</span><span class="w"> </span><span class="nf">calculate_transformer_health</span><span class="p">(</span><span class="n">actual_load</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">capacity</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">prev_health</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">100.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<a id="__codelineno-2-79" name="__codelineno-2-79" href="#__codelineno-2-79"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-2-80" name="__codelineno-2-80" href="#__codelineno-2-80"></a><span class="sd">    Моделює фізичний стан трансформатора (Digital Twin).</span>
+<a id="__codelineno-2-81" name="__codelineno-2-81" href="#__codelineno-2-81"></a><span class="sd">    Враховує перегрів та розчинені гази (DGA).</span>
+<a id="__codelineno-2-82" name="__codelineno-2-82" href="#__codelineno-2-82"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-2-83" name="__codelineno-2-83" href="#__codelineno-2-83"></a>    <span class="n">load_factor</span> <span class="o">=</span> <span class="n">actual_load</span> <span class="o">/</span> <span class="n">capacity</span> <span class="k">if</span> <span class="n">capacity</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.5</span>
+<a id="__codelineno-2-84" name="__codelineno-2-84" href="#__codelineno-2-84"></a>
+<a id="__codelineno-2-85" name="__codelineno-2-85" href="#__codelineno-2-85"></a>    <span class="c1"># Температура верхніх шарів масла (Top-oil temperature)</span>
+<a id="__codelineno-2-86" name="__codelineno-2-86" href="#__codelineno-2-86"></a>    <span class="n">ambient_base</span> <span class="o">=</span> <span class="mf">20.0</span>
+<a id="__codelineno-2-87" name="__codelineno-2-87" href="#__codelineno-2-87"></a>    <span class="n">temp_rise</span> <span class="o">=</span> <span class="mf">45.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">load_factor</span> <span class="o">**</span> <span class="mf">1.6</span><span class="p">)</span> <span class="c1"># Спрощена формула IEEE</span>
+<a id="__codelineno-2-88" name="__codelineno-2-88" href="#__codelineno-2-88"></a>    <span class="n">top_oil_temp</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">ambient_base</span> <span class="o">+</span> <span class="n">temp_rise</span> <span class="o">+</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-2-89" name="__codelineno-2-89" href="#__codelineno-2-89"></a>
+<a id="__codelineno-2-90" name="__codelineno-2-90" href="#__codelineno-2-90"></a>    <span class="c1"># Генерація водню (H2) як індикатора деградації</span>
+<a id="__codelineno-2-91" name="__codelineno-2-91" href="#__codelineno-2-91"></a>    <span class="n">h2_increment</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="p">(</span><span class="n">load_factor</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="k">if</span> <span class="n">top_oil_temp</span> <span class="o">&gt;</span> <span class="mi">80</span> <span class="k">else</span> <span class="mf">0.01</span>
+<a id="__codelineno-2-92" name="__codelineno-2-92" href="#__codelineno-2-92"></a>    <span class="n">h2_ppm</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="mf">15.0</span> <span class="o">+</span> <span class="n">h2_increment</span> <span class="o">+</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-2-93" name="__codelineno-2-93" href="#__codelineno-2-93"></a>
+<a id="__codelineno-2-94" name="__codelineno-2-94" href="#__codelineno-2-94"></a>    <span class="c1"># Розрахунок інтегрального Health Score</span>
+<a id="__codelineno-2-95" name="__codelineno-2-95" href="#__codelineno-2-95"></a>    <span class="n">temp_penalty</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">top_oil_temp</span> <span class="o">-</span> <span class="mi">95</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.5</span>
+<a id="__codelineno-2-96" name="__codelineno-2-96" href="#__codelineno-2-96"></a>    <span class="n">gas_penalty</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">h2_ppm</span> <span class="o">-</span> <span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span>
+<a id="__codelineno-2-97" name="__codelineno-2-97" href="#__codelineno-2-97"></a>    <span class="n">load_penalty</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">load_factor</span> <span class="o">-</span> <span class="mf">1.1</span><span class="p">)</span> <span class="o">*</span> <span class="mf">20.0</span>
+<a id="__codelineno-2-98" name="__codelineno-2-98" href="#__codelineno-2-98"></a>
+<a id="__codelineno-2-99" name="__codelineno-2-99" href="#__codelineno-2-99"></a>    <span class="n">health</span> <span class="o">=</span> <span class="mf">100.0</span> <span class="o">-</span> <span class="n">temp_penalty</span> <span class="o">-</span> <span class="n">gas_penalty</span> <span class="o">-</span> <span class="n">load_penalty</span>
+<a id="__codelineno-2-100" name="__codelineno-2-100" href="#__codelineno-2-100"></a>    <span class="k">return</span> <span class="n">top_oil_temp</span><span class="p">,</span> <span class="n">h2_ppm</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">health</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mf">100.0</span><span class="p">))</span>
+</code></pre></div>
+<h3 id="2-predict_v2py">А.2. Модуль предиктивного аналізу (predict_v2.py)</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">gc</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">src.ml.vectorizer</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_latest_window</span><span class="p">,</span> <span class="n">select_features_v2</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">src.ml.model_loader</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_resources</span><span class="p">,</span> <span class="n">DEFAULT_WINDOW_SIZE</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_ai_forecast</span><span class="p">(</span><span class="n">hours_ahead</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">substation_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">source_type</span><span class="o">=</span><span class="s2">&quot;Live&quot;</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="s2">&quot;v3&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="sd">    Головна функція інференсу для отримання прогнозу на N годин вперед.</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="sd">    Підтримує рекурсивне прогнозування (Autoregressive).</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>        <span class="n">model</span><span class="p">,</span> <span class="n">scaler</span> <span class="o">=</span> <span class="n">load_resources</span><span class="p">(</span><span class="n">version</span><span class="p">)</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>        <span class="k">if</span> <span class="n">model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> 
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>            <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(),</span> <span class="s2">&quot;Помилка завантаження моделі ONNX&quot;</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>        <span class="c1"># Отримання останнього вікна даних (Look-back window)</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>        <span class="n">values</span><span class="p">,</span> <span class="n">constants</span><span class="p">,</span> <span class="n">last_ts</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">get_latest_window</span><span class="p">(</span><span class="n">substation_name</span><span class="p">,</span> <span class="n">source_type</span><span class="p">,</span> <span class="n">version</span><span class="p">)</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>        <span class="k">if</span> <span class="n">values</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">DEFAULT_WINDOW_SIZE</span><span class="p">:</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>            <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(),</span> <span class="s2">&quot;Недостатньо даних для формування вікна (потрібно 48г)&quot;</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>        <span class="c1"># Підготовка вхідного масиву</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>        <span class="n">features</span> <span class="o">=</span> <span class="n">select_features_v2</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">version</span><span class="p">)</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>        <span class="n">current_window</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>        <span class="n">input_name</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_inputs</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span>
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>        <span class="n">predictions</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>        <span class="c1"># Рекурсивний цикл прогнозування</span>
+<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">hours_ahead</span><span class="p">):</span>
+<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a>            <span class="c1"># Формування тензору (Batch, Time, Features)</span>
+<a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a>            <span class="n">x_input</span> <span class="o">=</span> <span class="n">current_window</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">current_window</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">current_window</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a>
+<a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a>            <span class="c1"># Виконання інференсу</span>
+<a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a>            <span class="n">onnx_out</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="p">{</span><span class="n">input_name</span><span class="p">:</span> <span class="n">x_input</span><span class="p">})[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a>            <span class="n">pred_val</span> <span class="o">=</span> <span class="n">onnx_out</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a>            <span class="n">predictions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pred_val</span><span class="p">)</span>
+<a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a>
+<a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a>            <span class="c1"># Оновлення вікна для наступного кроку (Shift window)</span>
+<a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a>            <span class="n">new_row</span> <span class="o">=</span> <span class="n">current_window</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a>            <span class="n">new_row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">pred_val</span> <span class="c1"># Оновлюємо цільову ознаку (load) прогнозом</span>
+<a id="__codelineno-3-45" name="__codelineno-3-45" href="#__codelineno-3-45"></a>
+<a id="__codelineno-3-46" name="__codelineno-3-46" href="#__codelineno-3-46"></a>            <span class="n">current_window</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_window</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="p">[</span><span class="n">new_row</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-3-47" name="__codelineno-3-47" href="#__codelineno-3-47"></a>
+<a id="__codelineno-3-48" name="__codelineno-3-48" href="#__codelineno-3-48"></a>        <span class="c1"># Формування вихідного DataFrame з мітками часу</span>
+<a id="__codelineno-3-49" name="__codelineno-3-49" href="#__codelineno-3-49"></a>        <span class="n">future_ts</span> <span class="o">=</span> <span class="p">[</span><span class="n">last_ts</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">hours_ahead</span><span class="p">)]</span>
+<a id="__codelineno-3-50" name="__codelineno-3-50" href="#__codelineno-3-50"></a>        <span class="n">df_res</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+<a id="__codelineno-3-51" name="__codelineno-3-51" href="#__codelineno-3-51"></a>            <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="n">future_ts</span><span class="p">,</span>
+<a id="__codelineno-3-52" name="__codelineno-3-52" href="#__codelineno-3-52"></a>            <span class="s2">&quot;predicted_load_mw&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
+<a id="__codelineno-3-53" name="__codelineno-3-53" href="#__codelineno-3-53"></a>        <span class="p">})</span>
+<a id="__codelineno-3-54" name="__codelineno-3-54" href="#__codelineno-3-54"></a>
+<a id="__codelineno-3-55" name="__codelineno-3-55" href="#__codelineno-3-55"></a>        <span class="k">return</span> <span class="n">df_res</span><span class="p">,</span> <span class="kc">None</span>
+<a id="__codelineno-3-56" name="__codelineno-3-56" href="#__codelineno-3-56"></a>
+<a id="__codelineno-3-57" name="__codelineno-3-57" href="#__codelineno-3-57"></a>    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-3-58" name="__codelineno-3-58" href="#__codelineno-3-58"></a>        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Inference error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-59" name="__codelineno-3-59" href="#__codelineno-3-59"></a>        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(),</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+<a id="__codelineno-3-60" name="__codelineno-3-60" href="#__codelineno-3-60"></a>    <span class="k">finally</span><span class="p">:</span>
+<a id="__codelineno-3-61" name="__codelineno-3-61" href="#__codelineno-3-61"></a>        <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="3-vectorizerpy">А.3. Модуль векторизації та підготовки ознак (vectorizer.py)</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">src.core.database</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_query</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">encode_cyclical_features</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">max_val</span><span class="p">):</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="sd">    Виконує тригонометричне кодування циклічних ознак (час, дні).</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="sd">    Дозволяє уникнути розриву між 23:59 та 00:00.</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="n">df</span><span class="p">[</span><span class="n">col</span> <span class="o">+</span> <span class="s1">&#39;_sin&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">/</span><span class="n">max_val</span><span class="p">)</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>    <span class="n">df</span><span class="p">[</span><span class="n">col</span> <span class="o">+</span> <span class="s1">&#39;_cos&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">/</span><span class="n">max_val</span><span class="p">)</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>    <span class="k">return</span> <span class="n">df</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="k">def</span><span class="w"> </span><span class="nf">select_features_v3</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="sd">    Відбирає фінальний набір ознак для моделі v3.</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>    <span class="n">required</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>        <span class="s2">&quot;actual_load_mw&quot;</span><span class="p">,</span> <span class="s2">&quot;temp_c&quot;</span><span class="p">,</span> <span class="s2">&quot;h2_ppm&quot;</span><span class="p">,</span> <span class="s2">&quot;health_score&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>        <span class="s2">&quot;hour_sin&quot;</span><span class="p">,</span> <span class="s2">&quot;hour_cos&quot;</span><span class="p">,</span> <span class="s2">&quot;day_sin&quot;</span><span class="p">,</span> <span class="s2">&quot;day_cos&quot;</span><span class="p">,</span> <span class="s2">&quot;is_weekend&quot;</span>
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>    <span class="p">]</span>
+<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>    <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="n">required</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>
+<a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a><span class="k">def</span><span class="w"> </span><span class="nf">prepare_training_data</span><span class="p">(</span><span class="n">raw_df</span><span class="p">):</span>
+<a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a><span class="sd">    Повний цикл Preprocessing для навчання.</span>
+<a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a>    <span class="n">df</span> <span class="o">=</span> <span class="n">raw_df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a>    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">])</span>
+<a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a>    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;hour&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">hour</span>
+<a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a>    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;day_of_week&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">dayofweek</span>
+<a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a>    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;is_weekend&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;day_of_week&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a>
+<a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a>    <span class="n">df</span> <span class="o">=</span> <span class="n">encode_cyclical_features</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s1">&#39;hour&#39;</span><span class="p">,</span> <span class="mi">24</span><span class="p">)</span>
+<a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a>    <span class="n">df</span> <span class="o">=</span> <span class="n">encode_cyclical_features</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s1">&#39;day_of_week&#39;</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a>
+<a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a>    <span class="k">return</span> <span class="n">select_features_v3</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</code></pre></div>
+<p align="center">Додаток Б</p>
+<p align="center"><b>Конфігураційні файли та DevOps</b></p>
+
+<h3 id="1-docker-dockerfile">Б.1. Конфігурація Docker-контейнера (Dockerfile)</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c"># Використання оптимізованого образу Python</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.11-slim</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c"># Встановлення системних залежностей для математичних бібліотек</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span>build-essential<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span>libpq-dev<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/apt/lists/*
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="c"># Копіювання та встановлення залежностей</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="k">COPY</span><span class="w"> </span>requirements.txt<span class="w"> </span>.
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="c"># Копіювання вихідного коду</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="c"># Налаштування змінних середовища</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="k">ENV</span><span class="w"> </span><span class="nv">PYTHONUNBUFFERED</span><span class="o">=</span><span class="m">1</span>
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="k">ENV</span><span class="w"> </span><span class="nv">STREAMLIT_SERVER_PORT</span><span class="o">=</span><span class="m">8501</span>
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="c"># Запуск додатку</span>
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;streamlit&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;run&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;main.py&quot;</span><span class="p">]</span>
+</code></pre></div>
+<p align="center">Додаток В</p>
+<p align="center"><b>Схема бази даних (SQL DDL)</b></p>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">-- Створення структури таблиць для системи EnergyMonitor-OLAP</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Regions</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="n">region_id</span><span class="w"> </span><span class="nb">SERIAL</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="n">region_name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="p">);</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Substations</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span><span class="n">substation_id</span><span class="w"> </span><span class="nb">SERIAL</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">    </span><span class="n">region_id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">Regions</span><span class="p">(</span><span class="n">region_id</span><span class="p">),</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">    </span><span class="n">substation_name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">    </span><span class="n">capacity_mw</span><span class="w"> </span><span class="nb">FLOAT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">    </span><span class="n">profile_type</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;RESIDENTIAL&#39;</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="p">);</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">LoadMeasurements</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="w">    </span><span class="n">measurement_id</span><span class="w"> </span><span class="n">BIGSERIAL</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="w">    </span><span class="n">substation_id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">Substations</span><span class="p">(</span><span class="n">substation_id</span><span class="p">),</span>
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="w">    </span><span class="k">timestamp</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="w">    </span><span class="n">actual_load_mw</span><span class="w"> </span><span class="nb">FLOAT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="w">    </span><span class="n">temp_c</span><span class="w"> </span><span class="nb">FLOAT</span><span class="p">,</span>
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="w">    </span><span class="n">h2_ppm</span><span class="w"> </span><span class="nb">FLOAT</span><span class="p">,</span>
+<a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a><span class="w">    </span><span class="n">health_score</span><span class="w"> </span><span class="nb">FLOAT</span><span class="p">,</span>
+<a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>
+<a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a><span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">unique_measurement</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="p">(</span><span class="n">substation_id</span><span class="p">,</span><span class="w"> </span><span class="k">timestamp</span><span class="p">)</span>
+<a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a><span class="p">);</span>
+<a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a>
+<a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a><span class="c1">-- Створення індексів для прискорення OLAP-запитів</span>
+<a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_load_timestamp</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">LoadMeasurements</span><span class="p">(</span><span class="k">timestamp</span><span class="w"> </span><span class="k">DESC</span><span class="p">);</span>
+<a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_substation_id</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">LoadMeasurements</span><span class="p">(</span><span class="n">substation_id</span><span class="p">);</span>
+</code></pre></div>
+<p align="center">Додаток Г</p>
+<p align="center"><b>Настанови користувача (Інструкція)</b></p>
+
+<h3 id="1_2">Г.1. Вимоги до середовища</h3>
+<p>Для запуску системи необхідно мати встановлений <strong>Docker</strong> та <strong>Docker Compose</strong>. Весь інструментарій (Python, TensorFlow, PostgreSQL клієнти) автоматично налаштується всередині контейнера.</p>
+<h3 id="2_2">Г.2. Запуск системи</h3>
+<ol>
+<li>Склонуйте репозиторій з кодом.</li>
+<li>Створіть файл <code>.env</code> та вкажіть у ньому посилання на базу даних Neon: <code>DATABASE_URL=postgres://user:pass@host/db</code>.</li>
+<li>Запустіть термінал у папці проєкту та виконайте команду:
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>docker-compose<span class="w"> </span>up<span class="w"> </span>--build
+</code></pre></div></li>
+<li>Відкрийте браузер за адресою <code>http://localhost:8501</code>.</li>
+</ol>
+<h3 id="3_2">Г.3. Робота з інтерфейсом</h3>
+<ul>
+<li><strong>Панель моніторингу</strong>: Оберіть підстанцію у бічному меню для перегляду поточних KPI.</li>
+<li><strong>Генерація прогнозу</strong>: Перейдіть на вкладку "AI Forecast" та натисніть кнопку "Generate 24h Prediction".</li>
+<li><strong>Діагностика</strong>: У розділі "Health Score" доступна детальна інформація про технічний стан трансформаторів.</li>
+</ul>
+<p align="center">Додаток Д</p>
+<p align="center"><b>Результати тестування (Протокол)</b></p>
+
+<h3 id="1-unit-tests">Д.1. Результати модульного тестування (Unit Tests)</h3>
+<p>Тестування проводилося за допомогою фреймворку <code>pytest</code>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Модуль</th>
+<th style="text-align: center;">Кількість тестів</th>
+<th style="text-align: center;">Статус</th>
+<th style="text-align: center;">Час виконання</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>physics.py</code> (Math formulas)</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">PASSED</td>
+<td style="text-align: center;">0.45s</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>vectorizer.py</code> (Data prep)</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">PASSED</td>
+<td style="text-align: center;">1.20s</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>model_loader.py</code> (Resources)</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">PASSED</td>
+<td style="text-align: center;">2.10s</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-ml-validation">Д.2. Результати валідації ШІ-моделі (ML Validation)</h3>
+<p>Валідація проводилася на відкладеній вибірці (20% даних PJM Dayton).</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Метрика</th>
+<th style="text-align: center;">Значення</th>
+<th style="text-align: center;">Цільовий показник</th>
+<th style="text-align: center;">Статус</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>MAPE</strong></td>
+<td style="text-align: center;">3.08%</td>
+<td style="text-align: center;">&lt; 4.0%</td>
+<td style="text-align: center;">УСПІШНО</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RMSE</strong></td>
+<td style="text-align: center;">42.15 MW</td>
+<td style="text-align: center;">&lt; 60.0 MW</td>
+<td style="text-align: center;">УСПІШНО</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>R² Score</strong></td>
+<td style="text-align: center;">0.92</td>
+<td style="text-align: center;">&gt; 0.85</td>
+<td style="text-align: center;">УСПІШНО</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

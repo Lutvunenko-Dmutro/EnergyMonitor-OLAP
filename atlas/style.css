@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;600;900&display=swap');
+
+:root {
+    --bg: #030712;
+    --sidebar: rgba(15, 23, 42, 0.8);
+    --accent: #00f2ff;
+    --accent-glow: rgba(0, 242, 255, 0.4);
+    --text: #f8fafc;
+    --text-dim: #94a3b8;
+    --border: rgba(255, 255, 255, 0.08);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* Background Grid */
+.bg-grid {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-image: 
+        linear-gradient(rgba(0, 242, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 242, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    z-index: -1;
+}
+
+/* Sidebar */
+#sidebar {
+    position: absolute; top: 20px; left: 20px; bottom: 20px;
+    width: 280px;
+    background: var(--sidebar);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 30px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+}
+
+.title-group h1 {
+    font-size: 1.5rem; font-weight: 900; letter-spacing: -1px;
+    background: linear-gradient(to right, #fff, var(--accent));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+.title-group p { font-size: 0.6rem; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 30px; }
+
+/* System Monitor */
+.system-status {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 25px;
+}
+
+.status-row { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; font-size: 0.7rem; }
+.status-led { width: 6px; height: 6px; border-radius: 50%; }
+.led-green { background: #10b981; box-shadow: 0 0 10px #10b981; }
+.led-blink { background: #f59e0b; animation: blink 1s infinite alternate; box-shadow: 0 0 10px #f59e0b; }
+.led-dim { background: #334155; opacity: 0.3; }
+
+@keyframes blink { from { opacity: 0.3; } to { opacity: 1; } }
+
+/* Stats */
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+.stat-box { background: rgba(255,255,255,0.03); padding: 12px; border-radius: 12px; border: 1px solid var(--border); text-align: center; }
+.stat-box span { display: block; font-size: 1.2rem; font-weight: 900; color: var(--accent); }
+.stat-box label { font-size: 0.5rem; text-transform: uppercase; opacity: 0.5; }
+
+/* Search */
+.search-box {
+    width: 100%;
+    background: rgba(0,0,0,0.2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px;
+    color: white;
+    font-size: 0.8rem;
+    margin-bottom: 20px;
+    outline: none;
+    transition: 0.3s;
+}
+.search-box:focus { border-color: var(--accent); box-shadow: 0 0 15px var(--accent-glow); }
+
+/* Refresh Button */
+.refresh-btn {
+    width: 100%; background: var(--accent); color: var(--bg);
+    border: none; padding: 10px; border-radius: 10px;
+    font-size: 0.7rem; font-weight: 900; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    transition: 0.3s;
+}
+.refresh-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px var(--accent-glow); }
+
+/* Main Viewport */
+#viewport { position: relative; width: 100%; height: 100%; }
+#cy { width: 100%; height: 100%; }
+
+/* Inspector */
+#inspector {
+    position: absolute; top: 20px; right: 20px; width: 300px;
+    background: var(--sidebar);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 25px;
+    transform: translateX(350px);
+    transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+#inspector.active { transform: translateX(0); }
+
+/* Console */
+#console-panel {
+    position: absolute; bottom: 20px; left: 320px; right: 340px; height: 150px;
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    display: flex; flex-direction: column; overflow: hidden;
+}
+
+.console-header { background: rgba(0,0,0,0.3); padding: 0 15px; height: 30px; display: flex; align-items: center; border-bottom: 1px solid var(--border); }
+.console-tab { font-size: 0.6rem; color: var(--text-dim); font-weight: 900; cursor: pointer; padding: 0 10px; height: 100%; display: flex; align-items: center; }
+.console-tab.active { color: var(--accent); border-bottom: 2px solid var(--accent); }
+.console-body { flex: 1; padding: 12px; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: #94a3b8; overflow-y: auto; }
+
+/* Loader */
+#loader {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--bg); z-index: 10000;
+    display: flex; align-items: center; justify-content: center;
+    transition: opacity 1s ease;
+}
+.spinner { width: 50px; height: 50px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 20px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.progress-container { width: 250px; height: 2px; background: rgba(255,255,255,0.05); margin-top: 20px; border-radius: 10px; overflow: hidden; }
+#progress-bar { width: 0%; height: 100%; background: var(--accent); box-shadow: 0 0 15px var(--accent); transition: width 0.3s; }
+
+/* Filter Buttons */
+.filter-btn {
+    width: 100%; background: rgba(0, 242, 255, 0.1); color: var(--accent);
+    border: 1px solid var(--accent); padding: 10px; border-radius: 10px;
+    font-size: 0.7rem; font-weight: 900; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    transition: 0.3s;
+}
+.filter-btn:hover { background: var(--accent); color: var(--bg); box-shadow: 0 0 15px var(--accent-glow); }
+.filter-btn.secondary { background: transparent; border-color: var(--border); color: var(--text-dim); }
+.filter-btn.secondary:hover { background: var(--border); color: white; }
+
+/* System Status Panel */
