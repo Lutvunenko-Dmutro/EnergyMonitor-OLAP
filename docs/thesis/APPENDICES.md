@@ -1,6 +1,7 @@
 # ДОДАТКИ
 
-## Додаток А. Вихідний код ключових модулів системи
+<p align="center">Додаток А</p>
+<p align="center"><b>Вихідний код ключових модулів системи</b></p>
 
 ### А.1. Модуль математичного моделювання фізичних процесів (physics.py)
 
@@ -215,7 +216,8 @@ def prepare_training_data(raw_df):
     return select_features_v3(df)
 ```
 
-## Додаток Б. Конфігураційні файли та DevOps
+<p align="center">Додаток Б</p>
+<p align="center"><b>Конфігураційні файли та DevOps</b></p>
 
 ### Б.1. Конфігурація Docker-контейнера (Dockerfile)
 
@@ -246,7 +248,8 @@ ENV STREAMLIT_SERVER_PORT=8501
 CMD ["streamlit", "run", "main.py"]
 ```
 
-## Додаток В. Схема бази даних (SQL DDL)
+<p align="center">Додаток В</p>
+<p align="center"><b>Схема бази даних (SQL DDL)</b></p>
 
 ```sql
 -- Створення структури таблиць для системи EnergyMonitor-OLAP
@@ -280,7 +283,8 @@ CREATE INDEX idx_load_timestamp ON LoadMeasurements(timestamp DESC);
 CREATE INDEX idx_substation_id ON LoadMeasurements(substation_id);
 ```
 
-## Додаток Г. Настанови користувача (Інструкція)
+<p align="center">Додаток Г</p>
+<p align="center"><b>Настанови користувача (Інструкція)</b></p>
 
 ### Г.1. Вимоги до середовища
 Для запуску системи необхідно мати встановлений **Docker** та **Docker Compose**. Весь інструментарій (Python, TensorFlow, PostgreSQL клієнти) автоматично налаштується всередині контейнера.
@@ -299,7 +303,8 @@ CREATE INDEX idx_substation_id ON LoadMeasurements(substation_id);
 * **Генерація прогнозу**: Перейдіть на вкладку "AI Forecast" та натисніть кнопку "Generate 24h Prediction".
 * **Діагностика**: У розділі "Health Score" доступна детальна інформація про технічний стан трансформаторів.
 
-## Додаток Д. Результати тестування (Протокол)
+<p align="center">Додаток Д</p>
+<p align="center"><b>Результати тестування (Протокол)</b></p>
 
 ### Д.1. Результати модульного тестування (Unit Tests)
 Тестування проводилося за допомогою фреймворку `pytest`.

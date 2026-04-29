@@ -30,9 +30,8 @@ def run_conversion(input_md, output_docx, include_appendix=True):
     section.top_margin, section.bottom_margin = Cm(2.0), Cm(2.0)
 
     in_code, code_buf, code_lang = False, [], ""
-    in_table, table_buf = False, []
-    in_math, math_buf = False, []
-    last_was_image = False
+    in_table = False; in_math = False; table_buf = []; math_buf = []; last_was_image = False
+    in_mermaid = False
 
     i = 0
     while i < len(lines):
@@ -40,6 +39,19 @@ def run_conversion(input_md, output_docx, include_appendix=True):
         i += 1
         
         stripped = line.strip()
+
+        # Ігноруємо блоки Mermaid та їхні підписи (вони тільки для GitHub)
+        if stripped.startswith('```mermaid'):
+            in_mermaid = True
+            continue
+        if in_mermaid:
+            if stripped.startswith('```'):
+                in_mermaid = False
+            continue
+            
+        # Ігноруємо підписи до Mermaid схем
+        if re.search(r'Схема\s+\d+\.\d+\..*\(Mermaid-версія', stripped):
+            continue
 
         # Фільтрація навігації
         if NAV_PATTERN.search(line) and len(line.strip()) < 150: continue

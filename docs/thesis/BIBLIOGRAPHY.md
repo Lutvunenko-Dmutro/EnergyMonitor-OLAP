@@ -30,14 +30,15 @@
 28. VanderPlas J. Python Data Science Handbook. O'Reilly Media, 2016. 548 p.
 29. Werbos P. J. Backpropagation through time: what it does and how to do it. Proceedings of the IEEE. 1990. Vol. 78, No. 10. P. 1550—1560.
 30. Zheng J., Xu C., Zhang Z., Li X. Electric Load Forecasting in Smart Grids Using Long-Short-Term Memory Recurrent Neural Networks. Annual Conference on Information Science and Systems (CISS). 2017. P. 1—6.
-31. Бутенко О. С. Інтелектуальні мережі Smart Grid: стан та перспективи впровадження в Україні. Енергетика: економіка, технології, екологія. 2019. № 2. С. 34—42.
+31. Бондаренко С. А., Зеркіна О. О. Smart Grid як основа інноваційних трансформацій на ринку електроенергії України в контексті євроінтеграційних процесів. Проблеми системного підходу в економіці. 2019. Вип. 2(70). С. 135—141.
 32. Зайченко Ю. П. Математичні основи інтелектуальних систем. Київ : Видавничий дім «Слово», 2011. 452 с.
 33. SQLAlchemy Documentation. Unified Tutorial (Version 2.0). URL: https://docs.sqlalchemy.org/en/20/tutorial/ (дата звернення: 12.04.2026).
 34. GitHub Actions Documentation. Understanding GitHub Actions. URL: https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions (дата звернення: 05.04.2026).
-35. Vasiliev V., Gurevich Y. Digital Twins for Smart Grid Infrastructure: Challenges and Opportunities. International Journal of Energy Research. 2021. Vol. 45. P. 12050—12065.
+35. Fuller A., Fan Z., Day C., Barlow C. Digital Twin: Enabling Technologies, Challenges and Open Research. IEEE Access. 2020. Vol. 8. P. 108952—108971.
 36. ISO/ASME 23247:2021. Automation systems and integration — Digital twin framework for manufacturing. Part 1-4. 2021.
 37. IEEE 1547-2018. IEEE Standard for Interconnection and Interoperability of Distributed Energy Resources with Associated Electric Power Systems Interfaces. 2018.
 38. IEEE C57.91-2011. IEEE Guide for Loading Mineral-Oil-Immersed Transformers and Step-Voltage Regulators. 2011.
+39. Makoveichuk O., Golubenko O., Kukhtyk S., Antonenko A., Bereznychenko V. Temperature Forecasting with LSTM: A Case Study on Kyiv Weather Data. CEUR Workshop Proceedings. 2025.
 
 ---
 [Назад до Висновків](THESIS_FINAL_CONCLUSIONS.md) | [Далі: ДОДАТКИ](APPENDICES.md)

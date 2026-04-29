@@ -59,7 +59,7 @@ def add_h1(doc, text):
     pf.alignment          = WD_ALIGN_PARAGRAPH.CENTER
     pf.space_before       = Pt(12)
     pf.space_after        = Pt(6)
-    pf.line_spacing       = 1.0 # Одинарний інтервал
+    pf.line_spacing       = 1.0 # Одинарний інтервал за п. 6.1
     pf.first_line_indent  = Cm(0)
     
     # Розрив сторінки: тільки для головних вузлів. ВІДГУК/РЕЦЕНЗІЯ йдуть після ЗАКЛАД, тому їм не треба розрив.
@@ -75,16 +75,14 @@ def add_h2(doc, text):
         except: p = doc.add_paragraph()
     else:
         p = doc.add_paragraph()
+    
+    # Налаштування згідно п. 6.1: по ширині, відступ 1.25 см
     add_formatted_run(p, text, size=14, bold_base=True)
     pf = p.paragraph_format
-    
-    # Центруємо офіційні заголовки
-    if not is_toc: pf.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    else: pf.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
-    
+    pf.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
     pf.space_before = Pt(6); pf.space_after = Pt(6)
     pf.line_spacing = 1.0
-    pf.first_line_indent = Cm(0) if not is_toc else Cm(1.25)
+    pf.first_line_indent = Cm(1.25)
 
 def add_h3(doc, text):
     text = clean_heading_dots(text)
@@ -95,16 +93,13 @@ def add_h3(doc, text):
     else:
         p = doc.add_paragraph()
     
+    # Налаштування згідно п. 6.1: по ширині, відступ 1.25 см
     add_formatted_run(p, text, size=14, bold_base=True)
     pf = p.paragraph_format
-    
-    # Центруємо офіційні заголовки
-    if not is_toc: pf.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    else: pf.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
-    
+    pf.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
     pf.space_before = Pt(6); pf.space_after = Pt(6)
     pf.line_spacing = 1.0
-    pf.first_line_indent = Cm(0) if not is_toc else Cm(1.25)
+    pf.first_line_indent = Cm(1.25)
 
 def add_h4(doc, text):
     text = clean_heading_dots(text)
