@@ -1,3 +1,15 @@
+# ATLAS_PASSPORT: docs/system/map/analysis_services_hub.md
+"""
+📈 ANALYTICAL DATA AGGREGATOR (OLAP Engine).
+Модуль: aggregator.py | Версія: 2.1.0
+Призначення: Високопродуктивна обробка, ресемплінг та нормалізація сирих метрик для формування цілісної аналітичної картини.
+
+Ключові можливості:
+- ⏳ Temporal Resampling: Дискретизація часових рядів (1h-window) через Pandas Resample API.
+- 📏 Metric Normalization: Розрахунок відносного навантаження (%) для порівняльного аналізу об'єктів.
+- 🔄 Hybrid ETL: Уніфікований доступ до історичних даних з PostgreSQL та локальних архівів.
+- 📊 Data Synthesis: Формування агрегованих зрізів за регіонами та групами активів.
+"""
 import pandas as pd
 
 from src.core.database import run_query

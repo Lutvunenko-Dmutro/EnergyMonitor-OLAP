@@ -1,6 +1,14 @@
+# ATLAS_PASSPORT: docs/system/map/utils_validators.md
 """
-Input validation module to prevent SQL injection and invalid data.
-Whitelist-based validation for all user inputs.
+🛡️ SECURITY & VALIDATION LAYER (Input Shield).
+Модуль: validators.py | Версія: 2.2.0 "SafeGuard"
+Призначення: Забезпечення кібербезпеки та цілісності даних через багатошарову валідацію користувацького вводу та системних параметрів.
+
+Ключові механізми:
+- 🚫 Anti-Injection Engine: Глибоке сканування вводу на наявність небезпечних SQL-патернів.
+- ⚪ Whitelist Validation: Верифікація ідентифікаторів об'єктів за еталонними реєстрами.
+- 📏 Bounds Checking: Суворий контроль числових меж для фізичних та енергетичних показників.
+- 🧹 SQL Sanitization: Очищення ідентифікаторів перед використанням у динамічних запитах.
 """
 
 from typing import Optional, Union, List, Set

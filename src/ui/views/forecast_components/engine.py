@@ -1,3 +1,15 @@
+"""
+РЕАКТИВНИЙ ДВИГУН ПРОГНОЗУВАННЯ (Reactive Forecast Engine)
+========================================================
+Модуль керує логікою виконання прогнозів, адаптуючись до вибраних режимів (Single/Multi-model).
+Ключові можливості:
+1. Multi-Path Execution: динамічне перемикання між розрахунком для однієї версії та паралельним прогнозуванням V1-V3.
+2. Reactive AI Integration: взаємодія з кешованим контролером для миттєвої реакції інтерфейсу на зміну параметрів.
+3. Grid Processing Detection: інтелектуальне визначення переліку об'єктів для пакетної обробки ("Усі підстанції").
+4. Cross-source Adaptation: адаптація логіки вибору об'єктів залежно від джерела (SQL DB / Kaggle CSV).
+Служить сполучною ланкою між інтерфейсом користувача та аналітичними обчисленнями ШІ.
+"""
+# ATLAS_PASSPORT: docs/system/map/forecast_view.md
 import streamlit as st
 from src.ui.views.forecast_components.constants import MODEL_LABELS
 from src.ml.forecast_controller import cached_ai_forecast as _cached_ai_forecast

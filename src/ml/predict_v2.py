@@ -1,8 +1,20 @@
+# ATLAS_PASSPORT: docs/system/map/ml_core_engine.md
+"""
+🤖 AI FORECASTING PIPELINE (Intelligent Core v3).
+Модуль: predict_v2.py | Версія: 3.5.0 "Neural Guard"
+Призначення: Високонадійний конвеєр предиктивної аналітики на базі нейронних мереж для прогнозування навантаження та технічного стану мережі.
+
+Ключові технології:
+- 🧠 ONNX Optimized Inference: Рекурентне прогнозування на базі квантованих нейронних моделей.
+- ⚖️ Domain Adaptation: Динамічне масштабування прогнозів під специфіку конкретних вузлів мережі.
+- 🧵 Seamless Stitching: Алгоритм усунення розривів (Bias Correction) між фактом та прогнозом.
+- 🛡️ Sanity Checker: Система верифікації результатів ШІ та автоматичний Fallback на базові моделі.
+- ❄️ Seasons Blending: Комбінування нейромережевих результатів з історичними трендами.
+"""
 import gc
 import logging
 from typing import Tuple, Optional
 
-import numpy as np
 import pandas as pd
 
 from src.ml.vectorizer import get_latest_window, select_features_v2

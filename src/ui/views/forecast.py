@@ -1,6 +1,13 @@
+# ATLAS_PASSPORT: docs/system/map/forecast_view.md
 """
-🔮 UNIFIED FORECAST VIEW — AI Energy Monitor Ultimate
-Integrated dispatcher-style UI for the main Dashboard tab.
+ЦЕНТР ПРОГНОЗУВАННЯ ТА АУДИТУ ШІ (AI Forecast & Backtest Center)
+==============================================================
+Головний інтерфейсний модуль для взаємодії з ML-моделями системи. 
+Забезпечує:
+1. Реактивний інференц-двигун для генерації прогнозів навантаження в реальному часі.
+2. Порівняльний аналіз архітектур (V1 vs V2 vs V3) для одного об'єкта або всієї мережі.
+3. Модуль зворотного тестування (Backtesting) для оцінки точності ШІ на історичних даних.
+4. Візуалізацію інтервалів довіри та сезонних трендів через динамічні графіки Plotly.
 """
 import streamlit as st
 from src.utils.ui_helpers import safe_plotly_render

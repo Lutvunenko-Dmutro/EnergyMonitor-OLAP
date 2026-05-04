@@ -1,3 +1,14 @@
+# ATLAS_PASSPORT: docs/system/map/data_services_hub.md
+"""
+🌱 ETL & SEED ENGINE (Data Synthesis Core).
+Модуль: db_seeder.py | Версія: 3.1.0 "AutoDeploy"
+Призначення: Повноцикловий конвеєр розгортання та інтелектуального наповнення бази даних реалістичними часовими рядами.
+
+Ключові можливості:
+- 🏗️ Schema Auto-Init: Автоматичне створення реляційної структури та індексів при старті.
+- 🧬 Physics Simulation: Генерація даних на основі складних моделей навантаження та погоди.
+- 🚀 Batch Ingestion: Високошвидкісний запис великих масивів даних через execute_values.
+"""
 import os
 import random
 import pandas as pd

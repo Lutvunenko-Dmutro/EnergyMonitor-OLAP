@@ -1,9 +1,21 @@
+"""
+СЕРВІС ПОГЛИБЛЕНОГО МАШИННОГО НАВЧАННЯ (Advanced Machine Learning Analytics)
+==========================================================================
+Модуль реалізує складні алгоритми інтелектуального аналізу даних для виявлення патернів.
+Ключові можливості:
+1. Multivariate Clustering (K-Means): групування підстанцій за навантаженням та аварійністю.
+2. Predictive Classification (Decision Tree): прогноз ймовірності критичних станів (What-If).
+3. Decision Path Visualization: генерація дерев рішень для Explainable AI аналізу.
+4. Automated Risk Assessment: розрахунок статистичних звітів точності класифікації.
+Використовується для стратегічного планування та розширеної діагностики ризиків.
+"""
 import logging
 import os
 from contextlib import contextmanager
 
 import matplotlib.pyplot as plt
 import numpy as np
+# ATLAS_PASSPORT: docs/system/map/analysis_services_hub.md
 import pandas as pd
 import psycopg2
 import seaborn as sns

@@ -1,3 +1,14 @@
+# ATLAS_PASSPORT: docs/system/map/advanced_view.md
+"""
+СИСТЕМА ІНТЕЛЕКТУАЛЬНОГО АНАЛІЗУ ТА СЕГМЕНТАЦІЇ (Advanced AI Analytics)
+=====================================================================
+Модуль для глибокої аналітики енергосистеми з використанням AI-методів.
+Забезпечує:
+1. Clustering & Segmentation: автоматичне групування підстанцій за патернами профілів навантаження.
+2. Trend Decomposition: декомпозиція часових рядів на трендову, сезонну та залишкову складові.
+3. Fragment-based UI: стабільний рендеринг важких аналітичних вкладок через ізольовані фрагменти.
+4. Multidimensional Analysis: підтримка логарифмічного масштабування та відносних метрик для порівняльного аналізу.
+"""
 import streamlit as st
 from src.ui.views.advanced_components.clustering_view import render_clustering_segment
 from src.ui.views.advanced_components.trend_view import render_trend_decomposition

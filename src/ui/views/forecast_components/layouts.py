@@ -1,4 +1,16 @@
+"""
+ОРКЕСТРАТОР ПРЕДСТАВЛЕННЯ ПРОГНОЗІВ ТА БЕКТЕСТІВ (Forecast & Backtest Layouts)
+=============================================================================
+Модуль відповідає за компоновку результатів прогнозування та управління циклами бектестування.
+Ключові можливості:
+1. Forecast Accuracy Audit: інтелектуальний аналіз точності (MAPE, RMSE, R²) з індикацією статусу калібрування.
+2. Mega-Hybrid Visualization: оркестрація графіків, що об'єднують історію бектесту, прогноз та довірчі інтервали.
+3. Backtest Loop Orchestration: управління ітераційними циклами тестування (старт, пауза, зупинка) з прогрес-баром.
+4. Academic Reporting Engine: автоматична генерація академічних графіків розподілу помилок та кореляції.
+Забезпечує професійний рівень інтерпретації результатів ШІ-моделей для операторів та аналітиків.
+"""
 import pandas as pd
+# ATLAS_PASSPORT: docs/system/map/forecast_view.md
 import streamlit as st
 from src.utils.ui_helpers import safe_plotly_render
 from src.ui.components.charts import _generate_mega_hybrid_figure

@@ -1,3 +1,15 @@
+# ATLAS_PASSPORT: docs/system/map/ml_core_engine.md
+"""
+📉 HISTORICAL BACKTESTING ENGINE (ML Validation Hub).
+================================================================================
+Модуль забезпечує наукову достовірність прогнозів через тестування моделей на історії.
+Ключові можливості:
+1. Historical Evaluation: оцінка точності (1-Step-Ahead) на реальних замірах останніх періодів.
+2. Vectorized Batch Inference: пакетне виконання прогнозів для миттєвого аудиту великих вікон даних.
+3. Statistical Audit: розрахунок ключових метрик точності (RMSE, MAE, R-Squared) та похибок.
+4. Robust Handling: інтеграція з Resilience Layer для стабільної роботи при перемиканні контекстів UI.
+Забезпечує доказову базу ефективності нейронних мереж для наукової звітності.
+"""
 import gc
 import logging
 from typing import Tuple, Optional, Dict, List, Any

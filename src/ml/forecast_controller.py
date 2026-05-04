@@ -1,3 +1,15 @@
+# ATLAS_PASSPORT: docs/system/map/ml_core_engine.md
+"""
+🚀 AI FORECAST ORCHESTRATOR (Execution & Caching Control).
+=============================================================================
+Модуль виступає диспетчером між UI-компонентами та ML-ядром системи.
+Основні функції:
+1. Neural Inference Orchestration: координація запусків нейронних мереж (V1-V3) залежно від контексту.
+2. Scenario-based Simulation: адаптація прогнозів під користувацькі сценарії (температурні зсуви, стан обладнання).
+3. Intelligent Caching: мінімізація надлишкових обчислень та запитів до БД через st.cache_data.
+4. Instant Accuracy Audit: миттєва верифікація моделі на останньому зрізі історії для формування довірчих інтервалів.
+Забезпечує високу швидкість відгуку аналітичного дашборду при складних ШІ-обчисленнях.
+"""
 import streamlit as st
 import pandas as pd
 from src.ml.predict_v2 import get_ai_forecast

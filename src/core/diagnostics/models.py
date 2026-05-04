@@ -1,3 +1,12 @@
+# ATLAS_PASSPORT: docs/system/map/diagnostics_engine_hub.md
+"""
+🏗️ DIAGNOSTICS DATA MODELS (Quality Assurance Schema).
+=================================================
+Модуль визначає базові структури даних для системи автоматичного аудиту проєкту.
+Містить класи для фіксації знайдених проблем (DiagIssue), аналізу функцій (FunctionDiag)
+та агрегації результатів по кожному файлу (FileDiag).
+Використовується як фундамент для побудови звітів про цілісність кодової бази.
+"""
 from dataclasses import dataclass, field
 from typing import Optional, List
 from pathlib import Path

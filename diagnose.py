@@ -1,7 +1,14 @@
-#!/usr/bin/env python3
+# ATLAS_PASSPORT: docs/system/map/diagnose.md
 """
-ENERGY MONITOR: POWER DIAGNOSTICS v2.0 (MODULAR)
-Головний скрипт для запуску повного аудиту проекту.
+СИСТЕМА ТЕХНІЧНОЇ ДІАГНОСТИКИ ПРОЄКТУ (Project Health Diagnostics)
+=================================================================
+Головний скрипт для автоматизованого аудиту кодової бази Energy Monitor.
+Ключові можливості:
+1. Automated Code Audit: сканування структури проєкту на відповідність стандартам.
+2. Technical Debt Scanning: виявлення проблем та неоптимальних конструкцій.
+3. HTML Report Generation: формування інтерактивного звіту diagnostics_report.html.
+4. Health Score Calculation: підрахунок статистики помилок для оцінки стабільності.
+Служить інструментом контролю якості (Quality Gate) перед деплоєм або захистом.
 """
 from pathlib import Path
 from src.core.diagnostics.scanner import ProjectScanner

@@ -1,3 +1,14 @@
+# ATLAS_PASSPORT: docs/system/map/analysis_services_hub.md
+"""
+🔍 DATA FILTERING & CONDITIONING (Analytical Pre-processor).
+Призначення: Забезпечення безпечної, валідованої та високопродуктивної "нарізки" даних для потреб UI-візуалізації та глибокої аналітики.
+
+Ключові особливості:
+- 🛡️ Secure Validation: Багатошарова перевірка вхідних параметрів на предмет ін'єкцій та аномалій.
+- 📐 Multi-dimensional Slicing: Підтримка складних зрізів за часом, регіонами та ієрархією об'єктів.
+- ⚡ Vectorized Masking: Використання швидких булевих масок Pandas для збереження швидкодії.
+- 🧩 Adaptive Logic: Контекстно-залежна фільтрація для різних типів датасетів (Load vs Alerts).
+"""
 from typing import Optional, Union, List, Tuple
 from datetime import date
 import pandas as pd

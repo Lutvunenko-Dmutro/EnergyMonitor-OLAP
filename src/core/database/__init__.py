@@ -1,3 +1,16 @@
+# ATLAS_PASSPORT: docs/system/map/data_services_hub.md
+"""
+🗄️ DATABASE ACCESS LAYER (Resilient Data Node).
+Пакет: src.core.database | Версія: 3.2.0 "NeonGuard"
+Призначення: Низькорівневий рівень доступу до даних, що забезпечує стабільну взаємодію з PostgreSQL (Local/Cloud) та екстремальну оптимізацію ресурсів.
+
+Архітектурні особливості:
+- 🔌 Hybrid Connection: Динамічне перемикання між локальним сервером та Neon Cloud Cluster.
+- 🧬 Memory Diet Protocol: Агресивна оптимізація RAM через типи Pandas (економія до 70%).
+- 🛡️ Neon Resilience: Система інтелектуальних ретраїв для подолання "холодного старту" хмари.
+- 📦 Parquet Fallback: Автономний режим роботи через локальне кешування запитів.
+- 🔒 Atomic Transactions: Контекстні менеджери для гарантування цілісності ACID-операцій.
+"""
 import os
 import hashlib
 from contextlib import contextmanager

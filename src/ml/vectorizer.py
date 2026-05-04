@@ -1,7 +1,17 @@
+# ATLAS_PASSPORT: docs/system/map/ml_core_engine.md
+"""
+🔢 ML DATA VECTORIZER (Feature Engineering Engine).
+Призначення: Трансформація сирих часових рядів у високоякісні вхідні тензори для ШІ-моделей з використанням методів проектування ознак.
+
+Ключові можливості:
+- 🎡 Temporal Engineering: Циклічне кодування часу (Sine/Cosine) для відображення сезонності.
+- 🗃️ Versioned Selection: Динамічне формування наборів ознак для різних архітектур моделей (V1-V3).
+- 🪟 Rolling Window: Формування "ковзних вікон" (Sliding Windows) заданої глибини.
+- 🩹 Data Imputation: Интелектуальне заповнення пропусків для забезпечення безперервності векторів.
+"""
 import logging
 from typing import Tuple, Optional, Dict, List, Any
 
-import numpy as np
 import pandas as pd
 from src.core.database import run_query
 

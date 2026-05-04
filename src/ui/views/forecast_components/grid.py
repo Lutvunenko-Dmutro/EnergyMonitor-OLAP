@@ -1,3 +1,15 @@
+"""
+ВІЗУАЛІЗАТОР СІТКИ ПРОГНОЗІВ (Grid Forecast Visualizer)
+=====================================================
+Модуль забезпечує пакетний рендеринг прогнозів для декількох об'єктів у вигляді сітки.
+Ключові можливості:
+1. Batch Forecast Visualization: автоматичне формування 2-колонкового лейауту для порівняння об'єктів.
+2. Dynamic Layout Orchestration: інтелектуальний розподіл графіків по колонках інтерфейсу.
+3. Multi-context Rendering: підтримка як поодиноких прогнозів, так і мульти-модельних порівнянь (V1-V3).
+4. Smart Legend Management: оптимізація відображення легенд графіків для економії екранного простору.
+Забезпечує диспетчеру швидкий огляд всієї енергосистеми через "дзеркало" прогнозів.
+"""
+# ATLAS_PASSPORT: docs/system/map/forecast_view.md
 import streamlit as st
 from src.utils.ui_helpers import safe_plotly_render
 from src.ml.forecast_controller import cached_ai_forecast as _cached_ai_forecast

@@ -1,6 +1,17 @@
+# ATLAS_PASSPORT: docs/system/map/core_kernel_hub.md
+"""
+🚚 DATA INGESTION PIPELINE (Kaggle Dataset Connector).
+Модуль: kaggle_loader.py | Версія: 2.0.0 "Data-Link"
+Призначення: Автоматизований імпорт, стандартизація та оптимізація історичних наборів даних енергосистем для аналітичного ядра Atlas.
+
+Ключові можливості:
+- 📂 Automated ETL: Динамічне сканування та уніфікація CSV-файлів за масками.
+- 🗺️ Pretty-Name Mapping: Денормалізація технічних кодів (AEP, PJM) у зрозумілі гео-ідентифікатори.
+- ⚡ Radical Optimization: Стратегія "Memory Diet" через превентивну обрізку часових рядів.
+- 🛡️ Data Integrity: Верифікація типів та інтелектуальна чистка аномалій при завантаженні.
+"""
 import glob
 import os
-
 import pandas as pd
 
 KAGGLE_MAPPING = {

@@ -1,3 +1,15 @@
+"""
+ПАНЕЛЬ КЕРУВАННЯ ПРОГНОЗАМИ (Forecast Control Header)
+====================================================
+Модуль відповідає за інтерактивний інтерфейс конфігурації прогнозів та виявлення змін.
+Ключові можливості:
+1. State Change Detection: система відстеження змін у виборі об'єкта для скидання кешу.
+2. Reactive UI Controls: перемикач мульти-модельного аналізу та селектор архітектур.
+3. Scenario Parameterization: панель параметрів симуляції (Temp, H2, Health) для What-If аналізу.
+4. Session Management: очищення session_state при зміні фундаментальних параметрів.
+Забезпечує гнучкість та надійність налаштування аналітичних сесій користувачем.
+"""
+# ATLAS_PASSPORT: docs/system/map/forecast_view.md
 import streamlit as st
 from src.ui.views.forecast_components.constants import MODEL_LABELS
 

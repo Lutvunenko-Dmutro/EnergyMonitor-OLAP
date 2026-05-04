@@ -1,3 +1,14 @@
+# ATLAS_PASSPORT: docs/system/map/generation_view.md
+"""
+СИСТЕМА ВІЗУАЛІЗАЦІЇ СТРУКТУРИ ГЕНЕРАЦІЇ (Generation Mix Monitor)
+==============================================================
+Забезпечує багатовимірний аналіз джерел електроенергії та їх розподілу.
+Ключові візуалізації:
+1. Sankey Diagram: інтерактивне відображення потоків потужності від типів джерел до регіонів.
+2. Pie Mix Chart: аналіз процентної частки джерел (Energy Mix) у загальному балансі системи.
+3. Stacked Area Chart: динаміка вироблення енергії з розбивкою за категоріями (Nuclear, Thermal, RES).
+Використовує єдину систему колірної ідентифікації для всіх графіків (Master Colors).
+"""
 import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st

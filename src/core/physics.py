@@ -1,3 +1,17 @@
+# ATLAS_PASSPORT: docs/system/map/core_kernel_hub.md
+"""
+⚛️ PHYSICAL MODELS ENGINE (Scientific Core).
+Модуль: physics.py | Версія: 3.1.0 "Digital Twin"
+Призначення: Комплексне математичне моделювання фізичних та економічних процесів енергосистеми для створення високоточного цифрового двійника.
+
+Ключові симуляційні моделі:
+- ⚡ Grid Losses: Диференційований розрахунок втрат у ЛЕП (AC vs HVDC).
+- ⚖️ Stability Engine: Оцінка балансу генерації/споживання та ризиків блекаутів.
+- 🌤️ Weather Matrix: Симуляція добових циклів температури та впливу на RES.
+- 💰 Market Economics: Динамічне ціноутворення (відповідно до постанови НКРЕКП № 949).
+- 🩺 Asset Health: Предиктивна діагностика трансформаторів (H2 ppm + Oil Temp).
+"""
+import math
 import datetime
 import random
 from typing import Dict, Optional, Tuple

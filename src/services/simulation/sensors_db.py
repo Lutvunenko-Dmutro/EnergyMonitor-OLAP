@@ -1,39 +1,17 @@
 """
-Digital Twin Sensor Collector — src/services/sensors_db.py
-===========================================================
-
-Фоновий процес симуляції телеметрії підстанцій для захисту диплому.
-
-Архітектура:
-    Запускається як окремий підпроцес із sidebar.py через subprocess.Popen().
-    Використовує lock-файл як singleton-захист від дублювання.
-
-Lifecycle:
-    1. Перевіряє наявність logs/sensors.lock (якщо є — завершується).
-    2. Записує PID у sensors.lock.
-    3. Кожні 5 секунд генерує телеметрію і пише у logs/live_state.json.
-    4. Оновлює logs/heartbeat.txt (timestamp «я живий»).
-    5. Після TIMEOUT_SECONDS (15 хв) — самозавершується та видаляє lock.
-
-Ключові файли:
-    - logs/sensors.lock     : Singleton PID guard.
-    - logs/live_state.json  : Актуальний стан (MW, Health, H2, температура).
-    - logs/heartbeat.txt    : Timestamp останнього оновлення.
-
-Конфігурація:
-    TIMEOUT_SECONDS = 900   : Тривалість симуляції (15 хв для демо).
-                              Змінити на 3600+ для продакшн-режиму.
-
-Використання:
-    # Через UI (рекомендовано):
-    # Sidebar → "▶️ Запустити Симуляцію Датчиків"
-
-    # Вручну (для тестування):
-    # python -m src.services.sensors_db
+ЕМУЛЯТОР ТРАНСЛЯЦІЇ ТЕЛЕМЕТРІЇ (Digital Twin Real-Time Engine)
+=============================================================
+Реалізує фоновий процес (Subprocess) для симуляції потокової телеметрії об'єктів. 
+Це серце "Цифрового двійника" системи, що забезпечує:
+1. Генерацію реалістичних показників (MW, Hz, H2, Temp) кожні 5 секунд.
+2. Singleton-захист через PID-lock для запобігання дублювання процесів.
+3. Передачу даних через швидкий JSON-буфер (live_state.json) для UI.
+4. Автономний Lifecycle з механізмом Heartbeat та автоматичним самозавершенням.
 """
 import os
 import sys
 import time
+# ATLAS_PASSPORT: docs/system/map/simulation_engine_hub.md
 import json
 import random
 import logging

@@ -1,3 +1,15 @@
+# ATLAS_PASSPORT: docs/system/map/ui_sidebar_controls.md
+"""
+ПАНЕЛЬ СТРАТЕГІЧНОГО УПРАВЛІННЯ (Command Center Sidebar)
+=======================================================
+Головний інтерфейсний вузол для керування станом та фільтрацією системи.
+Забезпечує:
+1. Dynamic Filtering: каскадні списки регіонів та підстанцій з прямою SQL-валідацією.
+2. Lifecycle Management: контроль фонового процесу симуляції датчиків через Subprocess API.
+3. Data Source Switching: миттєве перемикання між Live-даними та Kaggle-архівами.
+4. Health Dashboard: інтегрований моніторинг RAM та статусів системних ресурсів.
+5. Administrative Tools: швидкий доступ до інструментів ETL (Data Seeder) та очищення кешу.
+"""
 import os
 import sys
 import time

@@ -1,3 +1,15 @@
+# ATLAS_PASSPORT: docs/system/map/ui_live_kpi_segment.md
+"""
+ОРКЕСТРАТОР ЖИВОЇ ТЕЛЕМЕТРІЇ ТА ПОКАЗНИКІВ KPI (Real-time Telemetry Orchestrator)
+=============================================================================
+Модуль забезпечує миттєву візуалізацію стану енергосистеми через реактивне оновлення.
+Ключові можливості:
+1. Active Telemetry Handshake: пряме зчитування JSON-стейту симуляції для нульової затримки.
+2. Fragment-based Polling: використання st.fragment (5с) для ізольованого оновлення KPI.
+3. Simulation State Sync: автоматичне мапування Load, Voltage, Frequency та H2 у UI-метрики.
+4. Robust Fallback Layer: резервне перемикання на SQL-запити при втраті стріму даних.
+Забезпечує ефект реального часу та високу динаміку ситуаційного центру оператора.
+"""
 import logging
 import json
 import time

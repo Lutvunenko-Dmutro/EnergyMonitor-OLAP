@@ -1,3 +1,15 @@
+# ATLAS_PASSPORT: docs/system/map/analysis_services_hub.md
+"""
+🧩 ML CLUSTERING ENGINE (Pattern Recognition).
+py | Версія: 2.3.0 "ML-Profiler"
+Призначення: Інтелектуальна сегментація енергооб'єктів на основі алгоритмів некерованого машинного навчання (K-Means) для виявлення патернів навантаження та ризиків.
+
+Ключові можливості:
+- 🤖 K-Means Clustering: Автоматичний поділ активів на групи за схожими режимами роботи.
+- 📊 Multi-factor Profiling: Комплексний аналіз на основі навантаження та температурних факторів.
+- 🔴 Risk Ranking: Ранжування кластерів та автоматичне присвоєння статусів критичності.
+- 📐 Feature Scaling: Використання StandardScaler для забезпечення математичної точності моделей.
+"""
 import pandas as pd
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler

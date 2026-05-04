@@ -1,3 +1,15 @@
+# ATLAS_PASSPORT: docs/system/map/diagnostics_engine_hub.md
+"""
+📊 DIAGNOSTICS REPORTING ENGINE (Health Auditor).
+py | Версія: 1.5.0
+Призначення: Трансформація результатів технічного аудиту в інтерактивні HTML-звіти з використанням сучасних стандартів візуалізації.
+
+Ключові можливості:
+- 📊 State Aggregation: Підрахунок глобальних метрик здоров'я проєкту (OK/Warning/Error).
+- 🎨 Visual Highlighting: Кольорова індикація проблем за рівнем критичності (GitHub-style).
+- 🛡️ Security Focused reporting: Окреме виділення вразливостей безпеки.
+- 📄 Automated Documentation: Формування автономного файлу diagnostics_report.html.
+"""
 from datetime import datetime
 from pathlib import Path
 from .models import FileDiag

@@ -1,5 +1,17 @@
+"""
+🛠️ DATABASE BUSINESS SERVICES (Data Service Layer).
+Модуль: db_services.py | Версія: 2.1.0
+Призначення: Високорівневий рівень бізнес-логіки для взаємодії з даними, оптимізований для HUD-інтерфейсу та оперативного управління.
+
+Ключові можливості:
+- 📡 Telemetry Engine: Формування актуальних зрізів станів з розрахунком віртуальних метрик.
+- 🚨 Incident Lifecycle: Повний цикл управління аварійними подіями (CRUD + Status tracking).
+- 🧹 Database Hygiene: Механізми вибіркової та масової очистки застарілих логів та алертів.
+- 🔐 Atomic Transactions: Гарантування цілісності ACID-операцій через SQLAlchemy ORM.
+"""
 import random
 import datetime
+# ATLAS_PASSPORT: docs/system/map/data_services_hub.md
 import pandas as pd
 from sqlalchemy import text
 from src.core.database import run_query, execute_update, get_engine

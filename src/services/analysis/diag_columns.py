@@ -1,3 +1,4 @@
+# ATLAS_PASSPORT: docs/system/map/analysis_services_hub.md
 import os
 
 import psycopg2

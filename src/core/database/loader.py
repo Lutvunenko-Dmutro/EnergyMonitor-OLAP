@@ -1,3 +1,15 @@
+# ATLAS_PASSPORT: docs/system/map/data_services_hub.md
+"""
+📦 REAL-TIME DATA LOADER (ETL Stream Handler).
+py | Версія: 2.3.0
+Призначення: Центральний вузол управління життєвим циклом даних: від ініціалізації з'єднань до інтелектуального завантаження аналітичних зрізів.
+
+Ключові можливості:
+- 🏗️ Active Boot Sequencing: Поетапне завантаження компонентів з візуальною індикацією прогресу.
+- ⚡ Multi-level Caching: Дворівнева оптимізація доступу (RAM Cache + Session Fallback).
+- 🦥 Lazy Loading: Завантаження великих архівів (Kaggle) виключно за запитом (Just-in-Time).
+- 🛡️ Robust Recovery: Автоматичне відновлення даних та Seeder-інтеграція при порожній БД.
+"""
 import gc
 import logging
 import time

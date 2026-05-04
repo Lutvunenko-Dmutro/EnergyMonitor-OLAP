@@ -1,3 +1,14 @@
+# ATLAS_PASSPORT: docs/system/map/core_kernel_hub.md
+"""
+📡 LOGGING ORCHESTRATOR (System Audit System).
+Призначення: Централізована реєстрація подій, моніторинг стану та аудит помилок у всіх компонентах Atlas.
+
+Ключові можливості:
+- 🏗️ Unified Interface: Стандартизований логер для забезпечення консистентності журналів.
+- 📺 Multi-channel Output: Паралельний вивід у консоль (Real-time) та файл system.log (History).
+- 🛡️ Redundancy Protection: Захист від дублювання обробників при перезапусках Streamlit.
+- 🔇 Noise Reduction: Фільтрація службових повідомлень від зовнішніх бібліотек (PIL, SQLAlchemy).
+"""
 import logging
 import sys
 

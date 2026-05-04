@@ -1,12 +1,21 @@
 """
-analytics_advanced.py — Автономний скрипт аналізу трендів та асоціативних правил.
-Запускати ЛИШЕ як standalone: python -m src.services.analytics_advanced
+АНАЛІЗ ТРЕНДІВ ТА АСОЦІАТИВНИХ ПРАВИЛ (Trend & Association Rule Analysis)
+=======================================================================
+Автономний аналітичний сервіс для виявлення прихованих структурних зв'язків.
+Ключові можливості:
+1. Temporal Trend Discovery: аналіз тижневої динаміки для ідентифікації об'єктів з аномальним ростом.
+2. Cascade Failure Identification: пошук асоціативних правил для виявлення зон каскадного ризику.
+3. Frequent Pattern Mining: комбінаторний аналіз частоти спільних критичних подій.
+4. Strategic Insights Generation: висновки щодо структурної пов'язаності об'єктів енергосистеми.
+Служить для превентивного виявлення вразливостей топології мережі.
 """
 from collections import Counter
 from itertools import combinations
 import logging
 
 import matplotlib.pyplot as plt
+# ATLAS_PASSPORT: docs/system/map/analysis_services_hub.md
+import pandas as pd
 import seaborn as sns
 from dotenv import load_dotenv
 

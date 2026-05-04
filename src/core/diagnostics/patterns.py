@@ -1,9 +1,21 @@
+# ATLAS_PASSPORT: docs/system/map/diagnostics_engine_hub.md
+"""
+🛡️ DIAGNOSTIC PATTERN REGISTRY (Security & Quality Signatures).
+Модуль: patterns.py | Версія: 2.2.0 "Guardian Rules"
+Призначення: Централізоване сховище евристичних правил, сигнатур вразливостей та архітектурних констант для системи діагностики.
+
+Ключові розділи:
+- 📂 Directory Configuration: Визначення зон сканування та виключення системних шляхів.
+- 🚚 Dependency Whitelists: Реєстр довірених бібліотек (Standard Library & Third-party).
+- 📏 Heuristic Thresholds: Граничні значення складності та довжини функцій.
+- 🛡️ Security Signatures: Регулярні вирази для виявлення SQLi, Hardcoded Secrets та небезпечного коду.
+"""
 import re
 import sys
 from pathlib import Path
 
 # --- CONFIG ---
-SCAN_DIRS = ["ui", "src", "core", "app", "utils", "ml"]
+SCAN_DIRS = ["ui", "src", "core", "app", "utils", "ml", "scripts"]
 EXCLUDE_DIRS = {"__pycache__", ".git", "site", "node_modules", ".pytest_cache"}
 STDLIB_MODULES = set(sys.stdlib_module_names) if hasattr(sys, "stdlib_module_names") else set()
 

@@ -1,3 +1,15 @@
+# ATLAS_PASSPORT: docs/system/map/ui_splash_screen.md
+"""
+СИСТЕМА ІНТЕРАКТИВНОЇ ЗАСТАВКИ ТА ІНІЦІАЛІЗАЦІЇ (Active Boot Sequence)
+====================================================================
+Модуль реалізує візуальний процес запуску системи у стилі "Cyber-HUD".
+Забезпечує:
+1. Interactive Splash Screen: анімоване завантаження з CRT-ефектами та логами в реальному часі.
+2. Dynamic Bootstrapping: візуалізація прогресу зчитування БД та підготовки ML-ресурсів.
+3. Multi-source Selection: інтерфейс вибору вузла даних (Local vs Cloud Neon) при старті.
+4. UI Immersion: використання Orbitron та Roboto Mono для створення premium-атмосфери.
+Створює ефект високотехнологічного комплексу та оптимізує очікування при складних запитах.
+"""
 import streamlit as st
 import time
 

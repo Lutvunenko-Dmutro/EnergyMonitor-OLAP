@@ -1,58 +1,39 @@
+# ATLAS_PASSPORT: docs/system/map/system_orchestrator.md
+"""
+🚀 ATLAS COMMAND & CONTROL CENTER (Strategic Orchestrator).
+Модуль: main.py | Версія: 5.0.0 "Defense Edition"
+Призначення: Високорівнева оркестрація життєвого циклу системи, управління потоками даних та забезпечення операційної стійкості HUD-інтерфейсу.
+
+Ключові технології:
+- 🛡️ Watchdog Sentinel: Активний моніторинг ресурсів та превентивне очищення RAM для запобігання витокам.
+- ⚡ Cloud-Safe Engine: Оптимізація паралелізму математичних бібліотек для стабільності у хмарних середовищах.
+- 🧬 Hybrid Data Strategy: Динамічне перемикання між Live-телеметрією та Lazy-архівами Kaggle.
+- 🩺 Project Diagnostics: Автоматична верифікація цілісності середовища при кожному запуску.
+"""
+
 import logging
 import os
 import sys
 import warnings
+import streamlit as st
 
-# --- OPENBLAS & NUMPY MEMORY SPIKE PREVENTION ---
-# Забороняємо математичним бібліотекам створювати зайві потоки,
-# які дублюють пам'ять і вбивають Render (OpenBLAS Memory allocation failed).
-os.environ["OPENBLAS_NUM_THREADS"] = "1"
-os.environ["MKL_NUM_THREADS"] = "1"
-os.environ["OMP_NUM_THREADS"] = "1"
-os.environ["VECLIB_MAXIMUM_THREADS"] = "1"
-os.environ["NUMEXPR_NUM_THREADS"] = "1"
+# --- КОНФІГУРАЦІЯ ОБЧИСЛЮВАЛЬНОГО СЕРЕДОВИЩА ---
+# Примусове обмеження паралелізму математичних бібліотек до одного потоку.
+# Це критично для запобігання помилкам алокації пам'яті (Memory Spike) в обмежених контейнерах.
+os.environ.update({
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1"
+})
 
-# Блокуємо шум від сторонніх бібліотек
+# Фільтрація технічних попереджень сторонніх бібліотек для чистоти логів
 logging.getLogger("streamlit").setLevel(logging.ERROR)
 warnings.filterwarnings("ignore")
 
-# ✨ Використовуємо централізовану конфігурацію логування
+# Імпорт сервісних модулівAtlas
 from src.utils.logging_config import setup_logging
-
-log = setup_logging(log_level=os.getenv("STREAMLIT_LOGGER_LEVEL", "INFO"))
-logger = log
-
-
-# Налаштування стартового середовища
-def system_startup():
-    """
-    Виконує початкове налаштування середовища (System Bootstrapping).
-
-    Ця функція забезпечує "чистий" запуск додатку:
-    1. Очищення терміналу: Видаляє старі логи попередніх запусків (підтримує Windows/Linux).
-    2. Візуалізація: Виводить вітальний банер з використанням ANSI-кольорів для індикації успішного старту.
-    3. Фільтрація шумів: Приглушує технічні попередження (warnings) бібліотек (зокрема Streamlit),
-       які не впливають на роботу, але засмічують консоль.
-    """
-    # 1. ОЧИЩЕННЯ ЕКРАНУ (Закоментовано, щоб не прати банер)
-    # os.system('cls' if os.name == 'nt' else 'clear')
-    pass
-
-    # 3. ГЛУШИМО, ЩО МОЖЕМО
-    warnings.filterwarnings("ignore")
-    # Додатковий глушник для streamlit (можеш дописати, якщо хочеш)
-
-    # 4. TTL CACHE CLEANUP: Видаляємо JSON-файли кешу старіші за 24 години
-    try:
-        from src.utils.cache_manager import startup_cache_cleanup
-        startup_cache_cleanup(ttl_hours=24)
-    except Exception:
-        pass  # Ніколи не ламаємо запуск через помилку в очищенні
-
-
-# Database & Queries
-
-
 from src.app.config import DataKeys
 from src.core.analytics.filter import filter_dataframe
 from src.core.database.loader import get_verified_data
@@ -61,38 +42,62 @@ from src.ui.segments.dashboard import render_dashboard_ui
 from src.ui.segments.sidebar import render_sidebar
 from src.ui.segments.splash import show_boot_sequence
 from src.utils.memory_helper import auto_gc
-import streamlit as st
 
+# Ініціалізація централізованого логера
+log = setup_logging(log_level=os.getenv("STREAMLIT_LOGGER_LEVEL", "INFO"))
 
+def system_startup():
+    """
+    Виконує процедуру початкового розгортання середовища (Bootstrapping).
+    
+    Технічні етапи:
+    1. Верифікація кешу: Перевірка та очищення застарілих тимчасових файлів (TTL 24h).
+    2. Фільтрація виводу: Придушення некритичних попереджень від Streamlit-ядра.
+    3. Діагностика: (Опціонально) Вивід системного банера в консоль для візуалізації статусу.
+    """
+    try:
+        from src.utils.cache_manager import startup_cache_cleanup
+        startup_cache_cleanup(ttl_hours=24)
+    except Exception as e:
+        log.warning(f"Cache cleanup bypass: {e}")
 
-# Головний оркестратор додатка (Application Entry Point)
 def main():
-    # --- PAGE CONFIG (MUST BE FIRST) ---
+    """
+    Головний цикл управління додатком (Main Event Loop).
+    
+    Послідовність виконання:
+    1. Налаштування метаданих сторінки (Page Config).
+    2. Перевірка лімітів пам'яті (Watchdog Trigger).
+    3. Обробка стану сесії та ініціалізація заставки (Splash Screen).
+    4. Координація джерел даних та логіка агрегації.
+    5. Рендеринг основного аналітичного дашборда.
+    """
+    # 1. Ініціалізація конфігурації сторінки (має бути першим викликом Streamlit)
     init_page_config()
     
-    # --- MEMORY WATCHDOG (AUTO-GC) ---
-    # Якщо RAM > 380 MB, автоматично очищаємо кеш + gc.collect()
+    # 2. Моніторинг ресурсів: автоматичне очищення RAM при досягненні порогу 380 MB
     auto_gc(threshold_mb=380)
 
-    # --- APPLY STYLES ---
+    # 3. Застосування кастомної HUD-стилізації (CSS-ін'єкції)
     apply_custom_css()
 
-    # --- BOOT SEQUENCE (ACTIVE SPLASH SCREEN) ---
+    # 4. Керування логікою завантаження (Boot Sequence)
+    # Використовує Session State для уникнення повторних анімацій при кожній взаємодії.
     if "booted" not in st.session_state:
         boot_data = show_boot_sequence()
-        st.session_state["boot_data"] = boot_data
-        st.session_state["booted"] = True
-        # [ОПТИМІЗОВАНО]: Замість st.rerun(), продовжуємо з даними
-        # Це дозволяє уникнути додаткового перезавантаження та фрагмент-помилок
+        st.session_state.update({
+            "boot_data": boot_data,
+            "booted": True
+        })
         data = boot_data
     else:
-        # Отримуємо дані (вже завантажені заставкою або кешовані)
+        # Отримання верифікованих даних з кешу сесії або БД
         data = get_verified_data()
 
-    # --- DATA SOURCE ORCHESTRATION ---
+    # 5. Оркестрація джерел даних (Hybrid Data Strategy)
+    # Реалізує механізм Lazy Loading для великих архівів Kaggle.
     active_source = st.session_state.get("active_source", "Локальна БД (Симуляція)")
     
-    # Data source switching (Kaggle — lazy loading)
     if active_source == "Еталонні дані (Kaggle)":
         from src.core.database.loader import load_kaggle_lazy
         kaggle_df = load_kaggle_lazy()
@@ -103,16 +108,17 @@ def main():
     else:
         st.session_state["active_data"] = data
 
-    # Регулювання фільтрів бічної панелі (Тепер отримує вже правильні дані для меж дат)
+    # 6. Обробка фільтрів та отримання параметрів від користувача
     selected_region, date_range, data_source, selected_substation = render_sidebar(data)
 
-    # Визначення рівнів агрегації
+    # 7. Динамічне визначення рівнів агрегації
+    # Логіка: якщо обрано конкретний регіон — фокус на підстанціях, інакше — на регіонах.
     group_by_col = (
         "substation_name" if selected_region != DataKeys.ALL_REGIONS else "region_name"
     )
 
-    # [ОПТИМІЗОВАНО v2]: filtered_data НЕ формується заздалегідь для всіх ключів.
-    # Кожна вкладка сама фільтрує тільки потрібний DF у момент рендеру.
+    # 8. Виклик основного UI-модуля для побудови аналітичного простору
+    # [ОПТИМІЗАЦІЯ]: Фільтрація даних відбувається безпосередньо у вкладках дашборда.
     render_dashboard_ui(
         data,
         group_by_col,
@@ -123,13 +129,9 @@ def main():
         filter_fn=filter_dataframe,
     )
 
-
-# --- ТОЧКА ВХОДУ (ENTRY POINT) ---
+# --- ТОЧКА ВХОДУ ---
 if __name__ == "__main__":
-    # Захист від випадкового запуску (Guard Clause).
-    #
-    # Код нижче (system_startup та main) спрацює, тільки якщо ми
-    # запускаємо саме ЦЕЙ файл. Якщо ми імпортуємо його в інший скрипт
-    # (наприклад, для тестів), то main() автоматично НЕ запуститься.
-    system_startup()  # Очищення консолі та вивід банера
-    main()  # Запуск логіки додатка
+    # Guard Clause для безпечного імпорту модуля.
+    # system_startup() готує середовище, main() запускає прикладний рівень.
+    system_startup()
+    main()

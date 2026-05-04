@@ -1,3 +1,15 @@
+"""
+МОДУЛЬ ВІРТУАЛЬНОЇ ТЕЛЕМЕТРІЇ ТА СЕНСОРІВ (Virtual Hardware Instrumentation)
+========================================================================
+Реалізує програмну імітацію фізичних датчиків високовольтного обладнання.
+Ключові можливості:
+1. Physical Law Simulation: імітація параметрів за законами фізики (Ohm's Law).
+2. Thermal Inertia Modeling: модель теплової інерції — плавне нагрівання трансформаторів.
+3. Health Degradation Logic: оцінка стану на основі концентрації газів та перевантажень.
+4. Operational States: автоматичне визначення статусів роботи (OK, WARNING, CRITICAL).
+Дозволяє отримати дані, ідентичні реальним сигналам з систем моніторингу SCADA.
+"""
+# ATLAS_PASSPORT: docs/system/map/simulation_engine_hub.md
 import random
 from dataclasses import dataclass
 from datetime import datetime

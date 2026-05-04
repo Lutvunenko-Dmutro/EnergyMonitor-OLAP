@@ -1,4 +1,16 @@
-import datetime
+# ATLAS_PASSPORT: docs/system/map/data_services_hub.md
+"""
+📜 HISTORICAL ARCHIVE ENGINE (OLAP Data Sourcing).
+Модуль: archive.py | Версія: 1.2.0
+Призначення: Модуль виконання складних ретроспективних запитів до історичних масивів даних для виявлення довгострокових трендів.
+
+Ключові можливості:
+- 📅 Archive Bounds Discovery: Автоматичне визначення часових меж доступної статистики.
+- 🔗 Multidimensional Join: Об'єднання метрик навантаження, стану активів та метеоданих.
+- 🥁 Rhythm Slicing: Аналіз циклічності споживання за годинами та днями тижня (DOW).
+- ⚡ Intelligent Caching: Мінімізація навантаження на БД через агресивне кешування.
+"""
+import pandas as pd
 
 import streamlit as st
 from src.core.database import run_query

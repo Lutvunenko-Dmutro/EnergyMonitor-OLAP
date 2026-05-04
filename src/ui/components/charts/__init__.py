@@ -1,6 +1,13 @@
+# ATLAS_PASSPORT: docs/system/map/ui_charts_library_index.md
 """
-📈 CENTRAL CHARTS DISPATCHER (Package Entry)
-Re-exports components from modular sub-files to keep imports clean.
+БІБЛІОТЕКА ВІЗУАЛЬНИХ КОМПОНЕНТІВ (Charts Library Dispatcher)
+============================================================
+Центральний вузол для ініціалізації та ре-експорту графічних модулів системи.
+Забезпечує уніфікований інтерфейс для:
+1. Base Charts: графіки з подвійною віссю (Dual-Axis) та ритмічні діаграми (Rhythm Charts).
+2. Forecast Visuals: гібридні діаграми прогнозів, порівняльні плоти та мега-гібридні візуалізації.
+3. Academic Plots: спеціалізовані графіки для наукового аналізу та звітності.
+Реалізує механізм чистого імпорту та забезпечує зворотну сумісність з легасі-викликами візуалізації.
 """
 from src.ui.components.charts.base import render_dual_axis_chart, render_rhythm_chart
 from src.ui.components.charts.forecast_plots import (

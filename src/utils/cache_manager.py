@@ -1,11 +1,17 @@
 """
-Cache Manager — TTL-based automatic cache cleanup utility.
+🧹 CACHE LIFECYCLE MANAGER (System Hygiene).
+Модуль: cache_manager.py | Версія: 1.1.0
+Призначення: Автоматичне управління життєвим циклом тимчасових даних для підтримання продуктивності файлової системи.
 
-Видаляє застарілі файли з папки cache/ при кожному запуску.
-Зберігає .graphml файли (карти) як "постійний" кеш.
+Ключові можливості:
+- 🕰️ TTL-based Cleanup: Автоматичне видалення застарілих об'єктів за часовими мітками.
+- 🔒 Protected Assets: Система винятків для захисту критичних файлів (карт .graphml).
+- 🩺 Health Monitoring: Моніторинг обсягів дискового простору та статистики очищення.
+- 🤫 Silent Execution: Фонове виконання процесів гігієни без впливу на UX.
 """
 
 import logging
+# ATLAS_PASSPORT: docs/system/map/utils_extended_toolkit.md
 import os
 import time
 from pathlib import Path

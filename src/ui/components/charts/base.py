@@ -1,3 +1,15 @@
+# ATLAS_PASSPORT: docs/system/map/ui_charts_base.md
+"""
+ЯДРО БАЗОВОЇ ВІЗУАЛІЗАЦІЇ (Core Visualization Engine)
+===================================================
+Модуль реалізує фундаментальні типи аналітичних графіків для системи моніторингу.
+Ключові можливості:
+1. Dual-Axis Rendering: побудова графіків з двома осями Y для аналізу кореляції параметрів.
+2. Rhythm Analysis Charts: генерація порівняльних графіків добових профілів (Будні vs Вихідні).
+3. Multi-Substation Handling: відображення декількох трендів на одному полотні.
+4. Professional Styling: використання Alpha-blending та Dark-теми для преміального вигляду.
+Служить фундаментом для всіх історичних та діагностичних звітів системи.
+"""
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go

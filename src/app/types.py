@@ -1,12 +1,18 @@
-# ═══════════════════════════════════════════════════════════════
-# Type Definitions for Energy Monitor Ultimate
-# ═══════════════════════════════════════════════════════════════
 """
-Централізовані type hints та custom types для проекту.
-Використовуй ці типи в усіх функціях для консистентності.
+💎 TYPE DEFINITION REGISTRY (System Data Contracts).
+Модуль: types.py | Версія: 2.1.0
+Призначення: Забезпечення строгої типізації, архітектурної цілісності та верифікації контрактів даних між ML, Core та UI.
+
+Ключові можливості:
+- 🏗️ Data Contract Enforcement: Визначення структур для AI-прогнозів та аналітики.
+- 🧩 Domain-Specific Types: Спеціалізовані аліаси для об'єктів енергосистеми.
+- 🤝 Interface Consistency: Узгодження форматів даних у всьому конвеєрі Atlas.
+- 🛡️ Static Analysis Foundation: База для автоматизованої перевірки цілісності коду.
 """
 
 from typing import Dict, List, Tuple, Optional, Union
+# ATLAS_PASSPORT: docs/system/map/app_core_logic.md
+from dataclasses import dataclass
 from datetime import date, datetime
 import pandas as pd
 

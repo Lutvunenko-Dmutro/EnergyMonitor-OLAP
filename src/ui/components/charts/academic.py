@@ -1,3 +1,15 @@
+# ATLAS_PASSPORT: docs/system/map/ui_charts_academic.md
+"""
+ВІЗУАЛІЗАТОР АКАДЕМІЧНОЇ ЗВІТНОСТІ (Academic Research Visualization)
+=====================================================================
+Модуль реалізує спеціалізовані графіки для наукового обґрунтування точності нейромереж.
+Ключові можливості:
+1. Statistical Error Analysis (Fig. 7): діаграми щільності розподілу помилок з нормалізацією.
+2. Neural Regression Correlation (Fig. 8): побудова Scatter-діаграм "Actual vs Predicted".
+3. Temporal Dynamics & Tracking (Fig. 5): детальний аналіз відхилень прогнозів у часі.
+4. Thesis-ready Formatting: суворе дотримання нумерації та академічного стилю для диплома.
+Забезпечує високу доказову базу при захисті архітектурних рішень та результатів дослідження.
+"""
 import plotly.graph_objects as go
 import numpy as np
 import pandas as pd

@@ -1,5 +1,17 @@
+"""
+СЕРВІС ІМПОРТУ РЕАЛЬНИХ ДАНИХ (Real-World Data Ingestion)
+======================================================
+Модуль для інтеграції зовнішніх історичних датасетів у систему Atlas.
+Ключові можливості:
+1. Automated CSV Parsing: зчитування та стандартизація часових рядів з великих файлів.
+2. Data Cleansing & Sorting: конвертація типів, обробка пропусків та сортування.
+3. Isolated Storage Architecture: завантаження даних у таблицю RealLoadMeasurements.
+4. Batch Processing: швидка пакетна вставка десятків тисяч записів через psycopg2.
+Служить містком для валідації ШІ-моделей на основі реальних світових показників.
+"""
 import os
 
+# ATLAS_PASSPORT: docs/system/map/data_services_hub.md
 import pandas as pd
 import psycopg2
 from dotenv import load_dotenv

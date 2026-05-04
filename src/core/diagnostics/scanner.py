@@ -1,3 +1,16 @@
+# ATLAS_PASSPORT: docs/system/map/diagnostics_engine_hub.md
+"""
+🔍 SYSTEM AUDIT SCANNER (Deep Code Inspector).
+py | Версія: 2.5.0 "DeepScan"
+Призначення: Рекурсивний аудит кодової бази на базі Abstract Syntax Tree (AST) та евристичних алгоритмів оцінки якості.
+
+Ключові можливості:
+- 🏗️ AST Structural Analysis: Глибока перевірка синтаксису та архітектурних зв'язків.
+- 🚚 Import Sentinel: Верифікація ланцюжків залежностей та виявлення відсутніх модулів.
+- 📏 Heuristic Quality Control: Розумна оцінка довжини функцій з урахуванням контексту (UI vs Core).
+- 🛡️ Security Audit: Багаторівневий пошук вразливостей через інтегровані паттерни.
+"""
+import os
 import ast
 import re
 import importlib.util

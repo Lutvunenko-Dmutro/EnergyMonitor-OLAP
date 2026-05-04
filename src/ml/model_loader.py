@@ -1,3 +1,15 @@
+# ATLAS_PASSPORT: docs/system/map/ml_core_engine.md
+"""
+🧠 ML MODEL REGISTRY & LIFECYCLE (Resource Loader).
+py | Версія: 2.1.0
+Призначення: Центральний вузол керування життєвим циклом ШІ-моделей, скейлерів та відповідних метаданих конфігурації.
+
+Ключові можливості:
+- 🗄️ Unified Registry: Ведення реєстру версій моделей (V1-V3) та бінарних ресурсів.
+- 🚀 Optimized Inference: Конфігурація ONNX-сесій з максимальною оптимізацією графів обчислень.
+- 🛡️ Integrity Guards: Автоматична перевірка цілісності та валідація бінарних файлів.
+- 🧠 Smart Caching: Використання st.cache_resource для запобігання дублювання моделей у RAM.
+"""
 import os
 import joblib
 import logging

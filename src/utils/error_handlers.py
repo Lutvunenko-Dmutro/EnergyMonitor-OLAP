@@ -1,9 +1,17 @@
 """
-Robust error handling utilities with logging and recovery strategies.
-Handles specific exceptions with proper context and recovery options.
+🩹 RESILIENCE LAYER (Fault Tolerance & Audit).
+Модуль: error_handlers.py | Версія: 1.8.0
+Призначення: Забезпечення відмовостійкості критичних вузлів системи через ізоляцію помилок та автоматичне відновлення стану.
+
+Ключові компоненти:
+- 🤖 ML Resilience: Спеціалізовані декоратори для захисту нейромережевих потоків від аномалій.
+- 🔌 DB Fault Tolerance: Механізми автоматичного відновлення та fallback-значень для БД.
+- ⏱️ Operation Audit: Контекстне логування та прецизійне вимірювання часу виконання операцій.
+- 🛡️ Defensive Accessors: Безпечний доступ до складних структур даних для запобігання збоям.
 """
 
 import functools
+# ATLAS_PASSPORT: docs/system/map/utils_extended_toolkit.md
 import logging
 import streamlit as st
 from typing import Callable, Any, Optional

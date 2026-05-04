@@ -1,3 +1,15 @@
+# ATLAS_PASSPORT: docs/system/map/ml_core_engine.md
+"""
+📉 STATISTICAL BASELINE ENGINE (ARIMA/SARIMA Benchmarking).
+=======================================================
+Модуль реалізує класичні статистичні методи для порівняльного аналізу точності.
+Ключові можливості:
+1. Grid Search Optimization: автоматизований підбір параметрів (p, d, q) для мінімізації RMSE.
+2. Seasonal Modeling: врахування добової сезонності енергоспоживання через SARIMA(24).
+3. Rolling Window Forecasting: реалізація методу One-Step-Ahead прогнозування з постійним оновленням історії.
+4. Academic Benchmarking: формування еталонного рівня точності (Baseline) для порівняння з LSTM-моделями.
+Служить науковою базою для обґрунтування переваг методів глибокого навчання над класичною статистикою.
+"""
 import os
 import pandas as pd
 import numpy as np

@@ -1,3 +1,15 @@
+# ATLAS_PASSPORT: docs/system/map/ui_design_system.md
+"""
+🎨 DESIGN SYSTEM ENGINE (Cyber-HUD Visual Identity).
+Модуль: styles.py | Версія: 2.1.0 "Aesthetic Plus"
+Призначення: Реалізація візуальної ідентичності проекту через глибоку кастомізацію Streamlit та впровадження Cyber-HUD дизайну.
+
+Ключові можливості:
+- 💉 CSS Injection: Пряма ін'єкція стилів для радикальної зміни вигляду стандартних віджетів.
+- 🌌 Neon Theming: Стилізація кнопок, селекторів та сайдбарів з використанням неонових градієнтів.
+- 🛡️ UI Resilience: Приховування системних елементів для створення ефекту автономного софту.
+- 📊 Plotly Sync: Повна синхронізація кольорової палітри графіків з темною темою інтерфейсу.
+"""
 import plotly.io as pio
 import streamlit as st
 

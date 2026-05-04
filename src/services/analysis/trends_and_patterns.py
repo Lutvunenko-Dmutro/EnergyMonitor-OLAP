@@ -1,3 +1,14 @@
+"""
+АНАЛІЗ ПАТЕРНІВ ТА КОРЕЛЯЦІЇ ІНЦИДЕНТІВ (Consumption Patterns & Failure Correlation)
+==================================================================================
+Модуль для дослідження циклічних закономірностей та взаємозв'язків у мережі.
+Ключові можливості:
+1. Weekly Load Dynamics: аналіз навантаження по тижнях для виявлення довгих трендів.
+2. Cascading Incident Mapping: ідентифікація груп підстанцій з тенденцією до спільних аварій.
+3. Failure Correlation Heatmaps: візуалізація матриці кореляцій для визначення вразливих вузлів.
+4. Statistical Insight Generation: формування ТОП-рейтингів каскадних ризиків.
+Допомагає оптимізувати стратегію обслуговування та підвищити живучість системи.
+"""
 import logging
 import os
 from collections import Counter
@@ -5,6 +16,7 @@ from contextlib import contextmanager
 from itertools import combinations
 
 import matplotlib.pyplot as plt
+# ATLAS_PASSPORT: docs/system/map/analysis_services_hub.md
 import pandas as pd
 import psycopg2
 import seaborn as sns
