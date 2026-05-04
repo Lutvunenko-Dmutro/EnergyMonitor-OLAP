@@ -10,6 +10,7 @@
 - 🥁 Rhythm Slicing: Аналіз циклічності споживання за годинами та днями тижня (DOW).
 - ⚡ Intelligent Caching: Мінімізація навантаження на БД через агресивне кешування.
 """
+import datetime
 import pandas as pd
 
 import streamlit as st

@@ -9,6 +9,9 @@
 4. Statistics Integration: автоматичний збір метрик тексту після завершення збірки.
 Забезпечує швидку підготовку фінальних матеріалів для захисту дипломного проєкту.
 """
+import os
+import sys
+
 # Додаємо корінь проєкту до шляху, щоб працювали імпорти src та scripts
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 if ROOT_DIR not in sys.path:

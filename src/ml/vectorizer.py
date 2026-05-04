@@ -9,6 +9,7 @@
 - 🪟 Rolling Window: Формування "ковзних вікон" (Sliding Windows) заданої глибини.
 - 🩹 Data Imputation: Интелектуальне заповнення пропусків для забезпечення безперервності векторів.
 """
+import numpy as np
 import logging
 from typing import Tuple, Optional, Dict, List, Any
 

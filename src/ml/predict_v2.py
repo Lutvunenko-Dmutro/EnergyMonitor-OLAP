@@ -11,6 +11,7 @@
 - 🛡️ Sanity Checker: Система верифікації результатів ШІ та автоматичний Fallback на базові моделі.
 - ❄️ Seasons Blending: Комбінування нейромережевих результатів з історичними трендами.
 """
+import numpy as np
 import gc
 import logging
 from typing import Tuple, Optional
