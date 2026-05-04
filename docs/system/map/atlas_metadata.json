@@ -1,297 +1,297 @@
 {
     "project": "Project ATLAS",
     "total_passports": 58,
-    "last_sync": "2026-05-04T16:18:31.574949",
+    "last_sync": "2026-05-04T16:51:46.220739",
     "passports": [
         {
             "name": "ATLAS_MASTER_INDEX.md",
             "path": "system/map/ATLAS_MASTER_INDEX.md",
-            "updated_at": "2026-05-04T16:18:31.574978"
+            "updated_at": "2026-05-04T16:51:46.220761"
         },
         {
             "name": "academic_charts.md",
             "path": "system/map/academic_charts.md",
-            "updated_at": "2026-05-04T16:18:31.574980"
+            "updated_at": "2026-05-04T16:51:46.220763"
         },
         {
             "name": "advanced_ai_view.md",
             "path": "system/map/advanced_ai_view.md",
-            "updated_at": "2026-05-04T16:18:31.574982"
+            "updated_at": "2026-05-04T16:51:46.220764"
         },
         {
             "name": "advanced_view.md",
             "path": "system/map/advanced_view.md",
-            "updated_at": "2026-05-04T16:18:31.574983"
+            "updated_at": "2026-05-04T16:51:46.220765"
         },
         {
             "name": "alerts_view.md",
             "path": "system/map/alerts_view.md",
-            "updated_at": "2026-05-04T16:18:31.574984"
+            "updated_at": "2026-05-04T16:51:46.220767"
         },
         {
             "name": "analysis_services_hub.md",
             "path": "system/map/analysis_services_hub.md",
-            "updated_at": "2026-05-04T16:18:31.574986"
+            "updated_at": "2026-05-04T16:51:46.220768"
         },
         {
             "name": "app_core_logic.md",
             "path": "system/map/app_core_logic.md",
-            "updated_at": "2026-05-04T16:18:31.574987"
+            "updated_at": "2026-05-04T16:51:46.220769"
         },
         {
             "name": "audit_view.md",
             "path": "system/map/audit_view.md",
-            "updated_at": "2026-05-04T16:18:31.574988"
+            "updated_at": "2026-05-04T16:51:46.220770"
         },
         {
             "name": "base_charts.md",
             "path": "system/map/base_charts.md",
-            "updated_at": "2026-05-04T16:18:31.574989"
+            "updated_at": "2026-05-04T16:51:46.220771"
         },
         {
             "name": "cache_management_engine.md",
             "path": "system/map/cache_management_engine.md",
-            "updated_at": "2026-05-04T16:18:31.574990"
+            "updated_at": "2026-05-04T16:51:46.220772"
         },
         {
             "name": "consumption_view.md",
             "path": "system/map/consumption_view.md",
-            "updated_at": "2026-05-04T16:18:31.574991"
+            "updated_at": "2026-05-04T16:51:46.220773"
         },
         {
             "name": "core_kaggle_loader.md",
             "path": "system/map/core_kaggle_loader.md",
-            "updated_at": "2026-05-04T16:18:31.574992"
+            "updated_at": "2026-05-04T16:51:46.220774"
         },
         {
             "name": "core_kernel_hub.md",
             "path": "system/map/core_kernel_hub.md",
-            "updated_at": "2026-05-04T16:18:31.574993"
+            "updated_at": "2026-05-04T16:51:46.220775"
         },
         {
             "name": "dashboard.md",
             "path": "system/map/dashboard.md",
-            "updated_at": "2026-05-04T16:18:31.574994"
+            "updated_at": "2026-05-04T16:51:46.220777"
         },
         {
             "name": "data_services_hub.md",
             "path": "system/map/data_services_hub.md",
-            "updated_at": "2026-05-04T16:18:31.574995"
+            "updated_at": "2026-05-04T16:51:46.220778"
         },
         {
             "name": "deployment_ops_guide.md",
             "path": "system/map/deployment_ops_guide.md",
-            "updated_at": "2026-05-04T16:18:31.574996"
+            "updated_at": "2026-05-04T16:51:46.220779"
         },
         {
             "name": "diagnostics_engine_hub.md",
             "path": "system/map/diagnostics_engine_hub.md",
-            "updated_at": "2026-05-04T16:18:31.574997"
+            "updated_at": "2026-05-04T16:51:46.220780"
         },
         {
             "name": "error_resilience_system.md",
             "path": "system/map/error_resilience_system.md",
-            "updated_at": "2026-05-04T16:18:31.574998"
+            "updated_at": "2026-05-04T16:51:46.220781"
         },
         {
             "name": "finance_view.md",
             "path": "system/map/finance_view.md",
-            "updated_at": "2026-05-04T16:18:31.574999"
+            "updated_at": "2026-05-04T16:51:46.220782"
         },
         {
             "name": "forecast_ui_plots.md",
             "path": "system/map/forecast_ui_plots.md",
-            "updated_at": "2026-05-04T16:18:31.575000"
+            "updated_at": "2026-05-04T16:51:46.220783"
         },
         {
             "name": "forecast_view.md",
             "path": "system/map/forecast_view.md",
-            "updated_at": "2026-05-04T16:18:31.575001"
+            "updated_at": "2026-05-04T16:51:46.220784"
         },
         {
             "name": "generation_view.md",
             "path": "system/map/generation_view.md",
-            "updated_at": "2026-05-04T16:18:31.575002"
+            "updated_at": "2026-05-04T16:51:46.220786"
         },
         {
             "name": "historical_audit_view.md",
             "path": "system/map/historical_audit_view.md",
-            "updated_at": "2026-05-04T16:18:31.575003"
+            "updated_at": "2026-05-04T16:51:46.220787"
         },
         {
             "name": "kpi_view.md",
             "path": "system/map/kpi_view.md",
-            "updated_at": "2026-05-04T16:18:31.575004"
+            "updated_at": "2026-05-04T16:51:46.220788"
         },
         {
             "name": "live_kpi.md",
             "path": "system/map/live_kpi.md",
-            "updated_at": "2026-05-04T16:18:31.575005"
+            "updated_at": "2026-05-04T16:51:46.220789"
         },
         {
             "name": "main.md",
             "path": "system/map/main.md",
-            "updated_at": "2026-05-04T16:18:31.575006"
+            "updated_at": "2026-05-04T16:51:46.220790"
         },
         {
             "name": "map_view.md",
             "path": "system/map/map_view.md",
-            "updated_at": "2026-05-04T16:18:31.575007"
+            "updated_at": "2026-05-04T16:51:46.220791"
         },
         {
             "name": "ml_assets_architecture.md",
             "path": "system/map/ml_assets_architecture.md",
-            "updated_at": "2026-05-04T16:18:31.575008"
+            "updated_at": "2026-05-04T16:51:46.220792"
         },
         {
             "name": "ml_core_engine.md",
             "path": "system/map/ml_core_engine.md",
-            "updated_at": "2026-05-04T16:18:31.575009"
+            "updated_at": "2026-05-04T16:51:46.220793"
         },
         {
             "name": "ram_hygiene_monitor.md",
             "path": "system/map/ram_hygiene_monitor.md",
-            "updated_at": "2026-05-04T16:18:31.575010"
+            "updated_at": "2026-05-04T16:51:46.220794"
         },
         {
             "name": "sensors_service.md",
             "path": "system/map/sensors_service.md",
-            "updated_at": "2026-05-04T16:18:31.575011"
+            "updated_at": "2026-05-04T16:51:46.220796"
         },
         {
             "name": "services_package.md",
             "path": "system/map/services_package.md",
-            "updated_at": "2026-05-04T16:18:31.575012"
+            "updated_at": "2026-05-04T16:51:46.220797"
         },
         {
             "name": "sidebar.md",
             "path": "system/map/sidebar.md",
-            "updated_at": "2026-05-04T16:18:31.575013"
+            "updated_at": "2026-05-04T16:51:46.220798"
         },
         {
             "name": "simulation_engine_hub.md",
             "path": "system/map/simulation_engine_hub.md",
-            "updated_at": "2026-05-04T16:18:31.575015"
+            "updated_at": "2026-05-04T16:51:46.220799"
         },
         {
             "name": "splash.md",
             "path": "system/map/splash.md",
-            "updated_at": "2026-05-04T16:18:31.575016"
+            "updated_at": "2026-05-04T16:51:46.220800"
         },
         {
             "name": "styles.md",
             "path": "system/map/styles.md",
-            "updated_at": "2026-05-04T16:18:31.575017"
+            "updated_at": "2026-05-04T16:51:46.220801"
         },
         {
             "name": "system_orchestrator.md",
             "path": "system/map/system_orchestrator.md",
-            "updated_at": "2026-05-04T16:18:31.575017"
+            "updated_at": "2026-05-04T16:51:46.220802"
         },
         {
             "name": "system_root_package.md",
             "path": "system/map/system_root_package.md",
-            "updated_at": "2026-05-04T16:18:31.575018"
+            "updated_at": "2026-05-04T16:51:46.220803"
         },
         {
             "name": "ui_cards.md",
             "path": "system/map/ui_cards.md",
-            "updated_at": "2026-05-04T16:18:31.575019"
+            "updated_at": "2026-05-04T16:51:46.220804"
         },
         {
             "name": "ui_cards_library.md",
             "path": "system/map/ui_cards_library.md",
-            "updated_at": "2026-05-04T16:18:31.575020"
+            "updated_at": "2026-05-04T16:51:46.220805"
         },
         {
             "name": "ui_charts.md",
             "path": "system/map/ui_charts.md",
-            "updated_at": "2026-05-04T16:18:31.575021"
+            "updated_at": "2026-05-04T16:51:46.220806"
         },
         {
             "name": "ui_charts_academic.md",
             "path": "system/map/ui_charts_academic.md",
-            "updated_at": "2026-05-04T16:18:31.575022"
+            "updated_at": "2026-05-04T16:51:46.220807"
         },
         {
             "name": "ui_charts_base.md",
             "path": "system/map/ui_charts_base.md",
-            "updated_at": "2026-05-04T16:18:31.575023"
+            "updated_at": "2026-05-04T16:51:46.220809"
         },
         {
             "name": "ui_charts_forecast.md",
             "path": "system/map/ui_charts_forecast.md",
-            "updated_at": "2026-05-04T16:18:31.575026"
+            "updated_at": "2026-05-04T16:51:46.220811"
         },
         {
             "name": "ui_charts_library_index.md",
             "path": "system/map/ui_charts_library_index.md",
-            "updated_at": "2026-05-04T16:18:31.575027"
+            "updated_at": "2026-05-04T16:51:46.220812"
         },
         {
             "name": "ui_components_hub.md",
             "path": "system/map/ui_components_hub.md",
-            "updated_at": "2026-05-04T16:18:31.575028"
+            "updated_at": "2026-05-04T16:51:46.220813"
         },
         {
             "name": "ui_dashboard_layout.md",
             "path": "system/map/ui_dashboard_layout.md",
-            "updated_at": "2026-05-04T16:18:31.575029"
+            "updated_at": "2026-05-04T16:51:46.220814"
         },
         {
             "name": "ui_design_system.md",
             "path": "system/map/ui_design_system.md",
-            "updated_at": "2026-05-04T16:18:31.575030"
+            "updated_at": "2026-05-04T16:51:46.220816"
         },
         {
             "name": "ui_live_kpi_segment.md",
             "path": "system/map/ui_live_kpi_segment.md",
-            "updated_at": "2026-05-04T16:18:31.575031"
+            "updated_at": "2026-05-04T16:51:46.220817"
         },
         {
             "name": "ui_package_root.md",
             "path": "system/map/ui_package_root.md",
-            "updated_at": "2026-05-04T16:18:31.575032"
+            "updated_at": "2026-05-04T16:51:46.220818"
         },
         {
             "name": "ui_sidebar_controls.md",
             "path": "system/map/ui_sidebar_controls.md",
-            "updated_at": "2026-05-04T16:18:31.575034"
+            "updated_at": "2026-05-04T16:51:46.220820"
         },
         {
             "name": "ui_splash_screen.md",
             "path": "system/map/ui_splash_screen.md",
-            "updated_at": "2026-05-04T16:18:31.575035"
+            "updated_at": "2026-05-04T16:51:46.220821"
         },
         {
             "name": "ui_views_registry.md",
             "path": "system/map/ui_views_registry.md",
-            "updated_at": "2026-05-04T16:18:31.575036"
+            "updated_at": "2026-05-04T16:51:46.220822"
         },
         {
             "name": "unified_logging_registry.md",
             "path": "system/map/unified_logging_registry.md",
-            "updated_at": "2026-05-04T16:18:31.575037"
+            "updated_at": "2026-05-04T16:51:46.220823"
         },
         {
             "name": "universal_system_helpers.md",
             "path": "system/map/universal_system_helpers.md",
-            "updated_at": "2026-05-04T16:18:31.575038"
+            "updated_at": "2026-05-04T16:51:46.220824"
         },
         {
             "name": "utils_extended_toolkit.md",
             "path": "system/map/utils_extended_toolkit.md",
-            "updated_at": "2026-05-04T16:18:31.575039"
+            "updated_at": "2026-05-04T16:51:46.220825"
         },
         {
             "name": "utils_package.md",
             "path": "system/map/utils_package.md",
-            "updated_at": "2026-05-04T16:18:31.575040"
+            "updated_at": "2026-05-04T16:51:46.220826"
         },
         {
             "name": "utils_validators.md",
             "path": "system/map/utils_validators.md",
-            "updated_at": "2026-05-04T16:18:31.575041"
+            "updated_at": "2026-05-04T16:51:46.220827"
         }
     ]
 }

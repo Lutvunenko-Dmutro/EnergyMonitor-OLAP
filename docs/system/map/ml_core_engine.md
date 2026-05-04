@@ -27,7 +27,7 @@
 <div class="section-container">
     <div class="section-header"><span class="section-number">01</span><h2 class="section-title">Архітектурна Місія ML-Ядра</h2></div>
     <div class="glass-card flow-step">
-        <p>Пакет <code>src/ml/</code> є інтелектуальним центром системи ATLAS. Його місія — перетворення історичних даних та живих потоків телеметрії на точні прогнози майбутнього стану мережі. Ми використовуємо гібридний підхід, поєднуючи класичні статистичні моделі (ARIMA) для стабільного фону та сучасні нейронні мережі (LSTM) для вловлювання складних нелінійних залежностей. Це забезпечує надійність прогнозів навіть у періоди високої волатильності енергоспоживання.</p>
+        <p>Пакет <code>src/ml/</code> є інтелектуальним центром системи ATLAS. Його місія — перетворення історичних даних та живих потоків телеметрії на точні прогнози майбутнього стану мережі. Ми використовуємо гібридний підхід, поєднуючи класичні статистичні моделі (ARIMA) для стабільного фону та сучасні нейронні мережі (LSTM) для вловлювання складних нелінійних залежностей. Це забезпечує надійність прогнозів навіть у періоди високої волатильності енергоспоживання. Ядро спроектоване для роботи в умовах невизначеності, де кожна помилка може коштувати стабільності енергосистеми.</p>
     </div>
 </div>
 
@@ -40,16 +40,18 @@
                 <tr style="border-bottom: 1px solid var(--border); color: var(--accent);">
                     <th>Модуль</th>
                     <th>Роль</th>
-                    <th>Технологія</th>
-                    <th>Функція</th>
+                    <th>Ключова Технологія</th>
+                    <th>Математичний апарат</th>
                 </tr>
             </thead>
             <tbody>
-                <tr><td><code>predict_v2.py</code></td><td>Основний інференс</td><td>ONNX Runtime</td><td>Прогноз в реальному часі</td></tr>
-                <tr><td><code>train_lstm.py</code></td><td>Навчання нейромереж</td><td>PyTorch / LSTM</td><td>Генерація ваг моделей</td></tr>
-                <tr><td><code>baseline_arima.py</code></td><td>Статистичний фон</td><td>Statsmodels (SARIMA)</td><td>Benchmark аналіз</td></tr>
-                <tr><td><code>forecast_controller.py</code></td><td>Оркестратор ШІ</td><td>LRU Caching</td><td>Керування запитами ШІ</td></tr>
-                <tr><td><code>backtest.py</code></td><td>Аудит точності</td><td>Time-series Split</td><td>Валідація на архівах</td></tr>
+                <tr><td><code>predict_v2.py</code></td><td>Основний інференс</td><td>ONNX Runtime</td><td>Recurrent Inference (Many-to-Many)</td></tr>
+                <tr><td><code>train_lstm.py</code></td><td>Навчання нейромереж</td><td>PyTorch / LSTM</td><td>Adam Optimizer / MSE Loss</td></tr>
+                <tr><td><code>baseline_arima.py</code></td><td>Статистичний фон</td><td>SARIMA</td><td>Auto-Regressive Integrated Moving Average</td></tr>
+                <tr><td><code>forecast_controller.py</code></td><td>Оркестратор ШІ</td><td>LRU Caching</td><td>Dynamic Model Dispatcher</td></tr>
+                <tr><td><code>backtest.py</code></td><td>Аудит точності</td><td>Time-series Split</td><td>Walk-forward Validation</td></tr>
+                <tr><td><code>vectorizer.py</code></td><td>Feature Engineering</td><td>Scikit-learn / Numpy</td><td>Cyclic Temporal Encoding</td></tr>
+                <tr><td><code>metrics_engine.py</code></td><td>Аудит точності</td><td>RMSE / MAE / sMAPE</td><td>Statistical Error Analysis</td></tr>
             </tbody>
         </table>
     </div>
@@ -59,7 +61,7 @@
 <div class="section-container" id="predict-v2">
     <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Стратегія Гібридного Прогнозування</h2></div>
     <div class="glass-card flow-step">
-        <p>Наша стратегія базується на принципі <b>Multi-model Consensus</b>. Замість того, щоб покладатися на одну модель, ATLAS порівнює результати глибокого навчання (LSTM) з класичними методами. Це дозволяє виявляти аномалії в самих прогнозах: якщо результати моделей розходяться занадто сильно, система сигналізує про високу невизначеність, що є критично важливим для безпечного оперативного управління.</p>
+        <p>Наша стратегія базується на принципі <b>Multi-model Consensus</b>. Замість того, щоб покладатися на одну модель, ATLAS порівнює результати глибокого навчання (LSTM) з класичними методами. Це дозволяє виявляти аномалії в самих прогнозах: якщо результати моделей розходяться занадто сильно, система сигналізує про високу невизначеність, що є критично важливим для безпечного оперативного управління. Гібридизація також включає "сезонне змішування" (Seasons Blending), де історичні профілі навантаження використовуються як базовий шар для нейромережевої корекції.</p>
     </div>
 </div>
 
@@ -89,51 +91,116 @@ graph TD
     </div></div>
 </div>
 
-<!-- SECTION 05: ONNX-BASED INFERENCE OPTIMIZATION -->
+<!-- SECTION 05: DEEP LEARNING ARCHITECTURE (LSTM) -->
+<div class="section-container">
+    <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Архітектура Глибокого Навчання (LSTM)</h2></div>
+    <div class="glass-card flow-step">
+        <p>Для прогнозування ATLAS використовує багатошарову рекурентну архітектуру <b>LSTM (Long Short-Term Memory)</b>. Вона здатна утримувати в пам'яті як короткострокові коливання (наприклад, включення потужного споживача), так і довгострокові цикли (тижневі ритми роботи промисловості). 
+        Вхідний вектор включає:
+        <ul>
+            <li><code>L_t-1...L_t-n</code>: Історія навантаження (вікно 48 годин).</li>
+            <li><code>T_ext</code>: Прогноз температури повітря.</li>
+            <li><code>C_sin/C_cos</code>: Гармоніки часу доби та дня тижня.</li>
+            <li><code>S_state</code>: Поточний стан обладнання (Binary health flags).</li>
+        </ul>
+        На виході модель видає вектор прогнозних значень на наступні 24-72 години.</p>
+    </div>
+</div>
+
+<!-- SECTION 06: ONNX-BASED INFERENCE OPTIMIZATION -->
 <div class="section-container" id="model-loader">
-    <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Оптимізація Інференсу через ONNX</h2></div>
+    <div class="section-header"><span class="section-number">06</span><h2 class="section-title">Оптимізація Інференсу через ONNX</h2></div>
     <div class="glass-card flow-step">
-        <p>Для забезпечення високої продуктивності в браузерному середовищі, всі навчені моделі конвертуються у формат <b>ONNX (Open Neural Network Exchange)</b>. Це дозволяє проводити розрахунки з мінімальними затримками, не вимагаючи наявності важких фреймворків (як-от PyTorch) у середовищі виконання інтерфейсу. Модуль <code>predict_v2.py</code> реалізує цю логіку, забезпечуючи ідеальну швидкість відгуку системи.</p>
+        <p>Для забезпечення високої продуктивності в браузерному середовищі, всі навчені моделі конвертуються у формат <b>ONNX (Open Neural Network Exchange)</b>. Це дозволяє проводити розрахунки з мінімальними затримками, не вимагаючи наявності важких фреймворків (як-от PyTorch) у середовищі виконання інтерфейсу. Модуль <code>predict_v2.py</code> реалізує цю логіку, забезпечуючи ідеальну швидкість відгуку системи. Крім того, ONNX-інференс дозволяє системі ATLAS бути платформо-незалежною, легко розгортаючись як на серверних GPU, так і на легких Edge-пристроях.</p>
     </div>
 </div>
 
-<!-- SECTION 06: FEATURE ENGINEERING & VECTORIZATION -->
+<!-- SECTION 07: FEATURE ENGINEERING & VECTORIZATION -->
 <div class="section-container" id="vectorizer">
-    <div class="section-header"><span class="section-number">06</span><h2 class="section-title">Feature Engineering та Векторизація</h2></div>
+    <div class="section-header"><span class="section-number">07</span><h2 class="section-title">Feature Engineering та Векторизація</h2></div>
     <div class="glass-card flow-step">
-        <p>Модуль <code>vectorizer.py</code> відповідає за перетворення "сирих" позначок часу та значень навантаження у тензори, зрозумілі для ШІ. Ми використовуємо <b>Cyclical Encoding</b> для часу (Sin/Cos перетворення годин та місяців), що дозволяє моделі розуміти безперервність циклів споживання. Також проводиться динамічне масштабування (Scaling) для вирівнювання діапазонів різних підстанцій.</p>
+        <p>Модуль <code>vectorizer.py</code> відповідає за перетворення "сирих" позначок часу та значень навантаження у тензори, зрозумілі для ШІ. Ми використовуємо <b>Cyclical Encoding</b> для часу (Sin/Cos перетворення годин та місяців), що дозволяє моделі розуміти безперервність циклів споживання. Також проводиться динамічне масштабування (Scaling) для вирівнювання діапазонів різних підстанцій. Процес векторизації включає інтелектуальну обробку пропусків (Imputation) на основі середньозважених значень сусідніх періодів, що робить ШІ-ядро стійким до втрати пакетів телеметрії.</p>
     </div>
 </div>
 
-<!-- SECTION 07: AUTOMATED BACKTESTING & ERROR AUDIT -->
+<!-- SECTION 08: AUTOMATED BACKTESTING & ERROR AUDIT -->
 <div class="section-container" id="metrics">
-    <div class="section-header"><span class="section-number">07</span><h2 class="section-title">Автоматизований Бектестинг та Аудит</h2></div>
+    <div class="section-header"><span class="section-number">08</span><h2 class="section-title">Автоматизований Бектестинг та Аудит</h2></div>
     <div class="glass-card flow-step">
-        <p>Впевненість у прогнозі неможлива без перевірки на минулому. <code>backtest.py</code> автоматично імітує ситуації "що було б, якби ми прогнозували тиждень тому", порівнюючи результати ШІ з реальними даними, що вже стали історією. Це дозволяє розраховувати динамічний довірчий інтервал (Confidence Interval) та постійно моніторити дрейф точності моделей.</p>
+        <p>Впевненість у прогнозі неможлива без перевірки на минулому. <code>backtest.py</code> автоматично імітує ситуації "що було б, якби ми прогнозували тиждень тому", порівнюючи результати ШІ з реальними даними, що вже стали історією. Це дозволяє розраховувати динамічний довірчий інтервал (Confidence Interval) та постійно моніторити дрейф точності моделей. Якщо похибка RMSE перевищує встановлений поріг (Threshold), система автоматично ініціює запит на перенавчання моделі (Retraining Signal).</p>
     </div>
 </div>
 
-<!-- SECTION 08: THE MODEL REGISTRY & LIFECYCLE -->
+<!-- SECTION 09: THE MODEL REGISTRY & LIFECYCLE -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">08</span><h2 class="section-title">Реєстр Моделей та Життєвий Цикл</h2></div>
+    <div class="section-header"><span class="section-number">09</span><h2 class="section-title">Реєстр Моделей та Життєвий Цикл</h2></div>
     <div class="glass-card flow-step">
-        <p>Модуль <code>model_loader.py</code> виконує роль <b>Model Registry</b>. Він автоматично знаходить найкращі версії ваг моделей у директорії <code>cache/models/</code>, перевіряє їх цілісність та завантажує в пам'ять. Це забезпечує безшовне оновлення інтелекту ATLAS: розробник може просто підкласти новий файл моделі, і система почне використовувати його без перезапуску.</p>
+        <p>Модуль <code>model_loader.py</code> виконує роль <b>Model Registry</b>. Він автоматично знаходить найкращі версії ваг моделей у директорії <code>cache/models/</code>, перевіряє їх цілісність за контрольними сумами та завантажує в пам'ять. Це забезпечує безшовне оновлення інтелекту ATLAS: розробник може просто підкласти новий файл моделі, і система почне використовувати його без перезапуску. Життєвий цикл моделі включає стадії: <i>Training -> Validation -> Candidate -> Production -> Archive</i>.</p>
     </div>
 </div>
 
-<!-- SECTION 09: ANALYTIC METRICS & PERFORMANCE ENGINE -->
+<!-- SECTION 10: ANALYTIC METRICS & PERFORMANCE ENGINE -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">09</span><h2 class="section-title">Аналітичні Метрики та Двигун Оцінки</h2></div>
+    <div class="section-header"><span class="section-number">10</span><h2 class="section-title">Аналітичні Метрики та Двигун Оцінки</h2></div>
     <div class="glass-card flow-step">
-        <p>У <code>metrics_engine.py</code> зосереджена математика оцінки якості. Ми використовуємо не лише стандартні RMSE та MAE, а й специфічні для енергетики метрики: <i>Peak Load Deviation</i> та <i>Trend Sign Consistency</i>. Це дозволяє оцінювати корисність прогнозу не просто з точки зору математики, а з точки зору практичної цінності для диспетчера мережі.</p>
+        <p>У <code>metrics_engine.py</code> зосереджена математика оцінки якості. Ми використовуємо не лише стандартні RMSE та MAE, а й специфічні для енергетики метрики: <i>Peak Load Deviation</i> (точність прогнозу піків) та <i>Trend Sign Consistency</i> (правильність визначення напрямку зміни). Це дозволяє оцінювати корисність прогнозу не просто з точки зору математики, а з точки зору практичної цінності для диспетчера мережі. Всі метрики розраховуються у ковзному вікні, забезпечуючи Real-time моніторинг адекватності ШІ.</p>
     </div>
 </div>
 
-<!-- SECTION 10: ROADMAP TO v6.0 (REINFORCEMENT LEARNING) -->
+<!-- SECTION 11: DATA FLOW SEQUENCE -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">10</span><h2 class="section-title">Дорожня карта v6.0 (RL-Grid Control)</h2></div>
+    <div class="section-header"><span class="section-number">11</span><h2 class="section-title">Sequence Diagram: Процес Прогнозування</h2></div>
+    <div class="diagram-outer-wrapper"><div class="mermaid">
+sequenceDiagram
+    participant UI as Dashboard UI
+    participant FC as Forecast Controller
+    participant VEC as Vectorizer
+    participant INF as ONNX Engine
+    participant DB as Historical DB
+    
+    UI->>FC: Request Forecast (sub_id, horizon)
+    FC->>DB: Fetch last window (48h)
+    DB-->>FC: Raw data
+    FC->>VEC: Vectorize(data)
+    VEC-->>FC: Tensors (Sin/Cos/Norm)
+    FC->>INF: Run Inference
+    INF-->>FC: Raw AI Output
+    FC->>FC: Apply Bias Correction
+    FC-->>UI: Structured JSON Forecast
+    </div></div>
+</div>
+
+<!-- SECTION 12: ROADMAP TO v6.0 (REINFORCEMENT LEARNING) -->
+<div class="section-container">
+    <div class="section-header"><span class="section-number">12</span><h2 class="section-title">Дорожня карта v6.0 (RL-Grid Control)</h2></div>
     <div class="glass-card flow-step">
-        <p>У версії 6.0 планується впровадження **Reinforcement Learning (RL)** для автономного управління балансуванням мережі. Система не просто прогнозуватиме дефіцит, а пропонуватиме оптимальні керуючі дії (вимикання/вмикання ліній) для мінімізації втрат та ризиків. Також буде додано підтримку <i>Explainable AI (XAI)</i>, щоб диспетчер міг бачити, які саме фактори найбільше вплинули на формування конкретного прогнозу.</p>
+        <p>У версії 6.0 планується впровадження **Reinforcement Learning (RL)** для автономного управління балансуванням мережі. Система не просто прогнозуватиме дефіцит, а пропонуватиме оптимальні керуючі дії (вимикання/вмикання ліній) для мінімізації втрат та ризиків. Також буде додано підтримку <i>Explainable AI (XAI)</i> через алгоритми SHAP/LIME, щоб диспетчер міг бачити, які саме фактори (наприклад, різке падіння температури або вихідні дні) найбільше вплинули на формування конкретного прогнозу.</p>
+    </div>
+</div>
+
+<!-- SECTION 13: TECHNICAL FAQ & TROUBLESHOOTING -->
+<div class="section-container">
+    <div class="section-header"><span class="section-number">13</span><h2 class="section-title">Технічний FAQ та Усунення Несправностей</h2></div>
+    <div class="glass-card flow-step">
+        <p><b>Q: Яка мінімальна довжина вікна для точного прогнозу?</b><br>
+        A: Для моделей V3 оптимальним є вікно 48 годин. Менші вікна призводять до втрати добової сезонності.</p>
+        <p><b>Q: Як система реагує на різку зміну погоди?</b><br>
+        A: Модуль <code>predict_v2.py</code> включає температурний градієнт у вхідний вектор, що дозволяє ШІ миттєво коригувати прогноз при отриманні нових метеоданих.</p>
+        <p><b>Q: Що робити при високому RMSE?</b><br>
+        A: Перевірте якість векторизації у <code>vectorizer.py</code> та переконайтеся, що вхідні дані не містять аномальних викидів, які не були відфільтровані.</p>
+    </div>
+</div>
+
+<!-- SECTION 14: ML TERMINOLOGY GLOSSARY -->
+<div class="section-container">
+    <div class="section-header"><span class="section-number">14</span><h2 class="section-title">Глосарій ML-термінів ATLAS</h2></div>
+    <div class="glass-card flow-step">
+        <ul>
+            <li><b>Inference:</b> Процес отримання прогнозу від уже навченої моделі.</li>
+            <li><b>Backtesting:</b> Перевірка моделі на історичних даних для оцінки її реальної точності.</li>
+            <li><b>ONNX:</b> Універсальний формат обміну моделями, що забезпечує високу швидкість обчислень.</li>
+            <li><b>LSTM:</b> Тип рекурентної нейронної мережі, спеціалізований на роботі з часовими рядами.</li>
+        </ul>
     </div>
 </div>
 

@@ -27,7 +27,7 @@
 <div class="section-container">
     <div class="section-header"><span class="section-number">01</span><h2 class="section-title">Місія Системної Діагностики</h2></div>
     <div class="glass-card flow-step">
-        <p>Пакет <code>src/core/diagnostics/</code> виконує роль "Імунної системи" проекту ATLAS. В складних аналітичних комплексах помилка в даних або в параметрах моделі може призвести до хибних прогнозів, що мають серйозні економічні наслідки. Наш двигун діагностики забезпечує превентивне виявлення таких проблем, аналізуючи метадані, структуру часових рядів та внутрішні стани нейронних мереж ще до того, як результати потраплять до оператора.</p>
+        <p>Пакет <code>src/core/diagnostics/</code> виконує роль "Імунної системи" проекту ATLAS. В складних аналітичних комплексах помилка в даних або в параметрах моделі може призвести до хибних прогнозів, що мають серйозні економічні наслідки. Наш двигун діагностики забезпечує превентивне виявлення таких проблем, аналізуючи метадані, структуру часових рядів та внутрішні стани нейронних мереж ще до того, як результати потраплять до оператора. Система гарантує, що кожен біт інформації відповідає стандартам наукової достовірності.</p>
     </div>
 </div>
 
@@ -41,14 +41,15 @@
                     <th>Модуль</th>
                     <th>Функціональна Роль</th>
                     <th>Методологія</th>
-                    <th>Ціль</th>
+                    <th>Рівень Аналізу</th>
                 </tr>
             </thead>
             <tbody>
-                <tr><td><code>scanner.py</code></td><td>Глибоке сканування</td><td>Regex & Metadata Audit</td><td>Виявлення структурних збоїв</td></tr>
-                <tr><td><code>patterns.py</code></td><td>Аналіз сигнатур</td><td>Pattern Recognition</td><td>Класифікація типів помилок</td></tr>
-                <tr><td><code>models.py</code></td><td>Аудит ML-моделей</td><td>ONNX Graph Analysis</td><td>Гарантія цілісності AI</td></tr>
-                <tr><td><code>reporter.py</code></td><td>Генератор звітів</td><td>Markdown & PDF Export</td><td>Візуалізація стану системи</td></tr>
+                <tr><td><code>scanner.py</code></td><td>Глибоке сканування</td><td>AST / Regex Parsing</td><td>Структура коду/даних</td></tr>
+                <tr><td><code>patterns.py</code></td><td>Аналіз сигнатур</td><td>ML Classifier / Rules</td><td>Семантика помилок</td></tr>
+                <tr><td><code>models.py</code></td><td>Аудит ML-моделей</td><td>Graph Integrity Scan</td><td>Ядро інтелекту</td></tr>
+                <tr><td><code>reporter.py</code></td><td>Генератор звітів</td><td>Templating Engine</td><td>Executive Summary</td></tr>
+                <tr><td><code>compliance.py</code></td><td>Контроль стандартів</td><td>Policy Enforcement</td><td>Compliance & Audit</td></tr>
             </tbody>
         </table>
     </div>
@@ -58,7 +59,14 @@
 <div class="section-container" id="scanner">
     <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Стратегія Глибокого Сканування Метаданих</h2></div>
     <div class="glass-card flow-step">
-        <p>У <code>scanner.py</code> ми реалізуємо алгоритм <b>Multi-level Inspection</b>. Система перевіряє не лише наявність файлів, а й відповідність їхнього внутрішнього змісту встановленим стандартам ATLAS (наприклад, наявність тегів # ATLAS_PASSPORT). Це гарантує, що документація та код завжди синхронізовані, а будь-які відхилення автоматично потрапляють у список завдань на виправлення.</p>
+        <p>У <code>scanner.py</code> ми реалізуємо алгоритм <b>Multi-level Inspection</b>. Система використовує регулярні вирази та аналіз абстрактного синтаксичного дерева (AST) для перевірки відповідності встановленим стандартам ATLAS. 
+        Перевірці підлягають:
+        <ul>
+            <li><b>Passport Integrity:</b> Наявність та коректність тегів <code># ATLAS_PASSPORT</code>.</li>
+            <li><b>API Consistency:</b> Перевірка сигнатур функцій на відповідність технічному завданню.</li>
+            <li><b>Docstring Coverage:</b> Автоматичний підрахунок покриття коду коментарями.</li>
+        </ul>
+        Будь-які відхилення автоматично потрапляють у список завдань на виправлення (Audit Backlog).</p>
     </div>
 </div>
 
@@ -79,51 +87,103 @@ graph TD
     </div></div>
 </div>
 
-<!-- SECTION 05: ERROR SIGNATURE & PATTERN MAPPING -->
+<!-- SECTION 05: AUDIT & COMPLIANCE STANDARDS -->
+<div class="section-container">
+    <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Стандарти Аудиту та Відповідності</h2></div>
+    <div class="glass-card flow-step">
+        <p>Проект ATLAS розроблявся з урахуванням високих вимог до академічної та промислової документації. Модуль діагностики перевіряє відповідність проекту наступним критеріям:
+        <ul>
+            <li><b>Traceability:</b> 100% покриття модулів документацією.</li>
+            <li><b>Verifiability:</b> Кожна математична модель повинна мати супровідний опис у Хабі.</li>
+            <li><b>Security:</b> Відсутність хардкод-секретів та відповідність правилам SQL-безпеки.</li>
+        </ul>
+        Ці перевірки є обов'язковими для отримання статусу "Defense-Ready".</p>
+    </div>
+</div>
+
+<!-- SECTION 06: ERROR SIGNATURE & PATTERN MAPPING -->
 <div class="section-container" id="patterns">
-    <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Мапування Сигнатур та Паттернів Помилок</h2></div>
+    <div class="section-header"><span class="section-number">06</span><h2 class="section-title">Мапування Сигнатур та Паттернів Помилок</h2></div>
     <div class="glass-card flow-step">
-        <p>Модуль <code>patterns.py</code> дозволяє системі ATLAS "вчитися на помилках". Ми створюємо бібліотеку сигнатур відомих проблем: від втрати пакетів телеметрії до дрейфу ваг моделей. Коли сканер виявляє аномалію, цей модуль ідентифікує її тип та пропонує готові сценарії вирішення, що значно прискорює технічне обслуговування системи.</p>
+        <p>Модуль <code>patterns.py</code> дозволяє системі ATLAS "вчитися на помилках". Ми створюємо бібліотеку сигнатур відомих проблем. Алгоритм порівнює поточний стан системи з базою сигнатур, використовуючи відстань Левенштейна та тематичне моделювання. Це дозволяє не просто констатувати факт помилки, а вказувати на її першопричину (Root Cause Analysis), що значно прискорює технічне обслуговування системи та підвищує її MTTR (Mean Time To Repair).</p>
     </div>
 </div>
 
-<!-- SECTION 06: ML MODEL INTEGRITY AUDIT -->
+<!-- SECTION 07: DIAGNOSTIC SEQUENCE DIAGRAM -->
+<div class="section-container">
+    <div class="section-header"><span class="section-number">07</span><h2 class="section-title">Sequence: Процес діагностичного циклу</h2></div>
+    <div class="diagram-outer-wrapper"><div class="mermaid">
+sequenceDiagram
+    participant Sys as ATLAS System
+    participant Sc as Scanner.py
+    participant Pa as Patterns.py
+    participant Re as Reporter.py
+    
+    Sys->>Sc: Trigger Full Audit
+    Sc->>Sc: Scan Metadata & AST
+    Sc->>Pa: Analyze Found Anomalies
+    Pa-->>Sc: Return Error Signatures
+    Sc->>Re: Compile Audit Findings
+    Re->>Re: Calculate Health Score
+    Re-->>Sys: Final Health Report (PDF/MD)
+    </div></div>
+</div>
+
+<!-- SECTION 08: ML MODEL INTEGRITY AUDIT -->
 <div class="section-container" id="models">
-    <div class="section-header"><span class="section-number">06</span><h2 class="section-title">Аудит Цілісності ML-Моделей</h2></div>
+    <div class="section-header"><span class="section-number">08</span><h2 class="section-title">Аудит Цілісності ML-Моделей</h2></div>
     <div class="glass-card flow-step">
-        <p>Модуль <code>models.py</code> фокусується на безпеці ШІ. Він аналізує графіки обчислень ONNX-моделей на наявність некоректних шарів або неоптимальних шляхів виконання. Також проводиться перевірка вхідних та вихідних тензорів на відповідність фізичним обмеженням енергосистеми, запобігаючи "галюцинаціям" ШІ.</p>
+        <p>Модуль <code>models.py</code> фокусується на безпеці ШІ. Він аналізує графіки обчислень ONNX-моделей на наявність некоректних шарів або неоптимальних шляхів виконання. Також проводиться перевірка вхідних та вихідних тензорів на відповідність фізичним обмеженням енергосистеми. Якщо ШІ видає "неможливе" значення (наприклад, навантаження вище потужності генератора), діагностичний двигун блокує цей прогноз та ініціює Fallback-процедуру.</p>
     </div>
 </div>
 
-<!-- SECTION 07: AUTOMATED REPORTING & DOCUMENTATION -->
+<!-- SECTION 09: AUTOMATED REPORTING & DOCUMENTATION -->
 <div class="section-container" id="reporter">
-    <div class="section-header"><span class="section-number">07</span><h2 class="section-title">Автоматизована Звітність та Документація</h2></div>
+    <div class="section-header"><span class="section-number">09</span><h2 class="section-title">Автоматизована Звітність та Документація</h2></div>
     <div class="glass-card flow-step">
-        <p>Завдяки <code>reporter.py</code> результати діагностики перетворюються на структуровані документи. Система автоматично генерує <i>System Health Score</i> — єдину метрику, що відображає загальний стан проекту. Ці звіти є критично важливими для проходження технічних аудитів та захисту наукових робіт, забезпечуючи доказову базу стабільності ATLAS.</p>
+        <p>Завдяки <code>reporter.py</code> результати діагностики перетворюються на структуровані документи. Система автоматично генерує <i>System Health Score</i> — єдину метрику, що відображає загальний стан проекту. Ці звіти є критично важливими для проходження технічних аудитів та захисту наукових робіт, забезпечуючи доказову базу стабільності ATLAS. Кожен звіт містить перелік критичних правок (Critical Fixes) та рекомендації щодо оптимізації архітектури.</p>
     </div>
 </div>
 
-<!-- SECTION 08: METADATA DRIVEN DEVELOPMENT (MDD) -->
+<!-- SECTION 10: METADATA DRIVEN DEVELOPMENT (MDD) -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">08</span><h2 class="section-title">Розвиток через Метадані (MDD)</h2></div>
+    <div class="section-header"><span class="section-number">10</span><h2 class="section-title">Розвиток через Метадані (MDD)</h2></div>
     <div class="glass-card flow-step">
-        <p>Ми впроваджуємо підхід, де метадані (паспорти) є не просто описом, а активною частиною системи. Діагностичний двигун використовує інформацію з паспортів для автоматичного налаштування глибини перевірки кожного модуля, створюючи саморегульовану екосистему контролю якості.</p>
+        <p>Ми впроваджуємо підхід, де метадані (паспорти) є не просто описом, а активною частиною системи. Діагностичний двигун використовує інформацію з паспортів для автоматичного налаштування глибини перевірки кожного модуля. Наприклад, модулі з тегом <code>#HIGH_CRITICALITY</code> перевіряються за розширеним набором правил, що створює саморегульовану екосистему контролю якості.</p>
     </div>
 </div>
 
-<!-- SECTION 09: GRACEFUL DEGRADATION ANALYSIS -->
+<!-- SECTION 11: ROADMAP TO v4.0 (SELF-HEALING ARCHITECTURE) -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">09</span><h2 class="section-title">Аналіз М'якої Деградації</h2></div>
+    <div class="section-header"><span class="section-number">11</span><h2 class="section-title">Дорожня карта v4.0 (Self-healing)</h2></div>
     <div class="glass-card flow-step">
-        <p>Система діагностики здатна оцінювати, як вихід з ладу одного модуля вплине на загальну точність прогнозів. Це дозволяє впроваджувати стратегії <b>Graceful Degradation</b>: якщо складний ML-алгоритм недоступний, система автоматично перемикається на спрощену статистичну модель, зберігаючи базову функціональність моніторингу.</p>
+        <p>У версії 4.0 планується перехід до **Архітектури Самозцілення**. Система діагностики зможе не лише виявляти проблеми, а й автоматично застосовувати "патчі" (наприклад, перемикання на резервну БД або завантаження попередньої стабільної версії моделі). Також буде додано підтримку <i>Predictive Maintenance</i> для самого коду, виявляючи потенційні місця виникнення помилок на основі аналізу історії коммітів та складності коду за метрикою Маккейба.</p>
     </div>
 </div>
 
-<!-- SECTION 10: ROADMAP TO v4.0 (SELF-HEALING ARCHITECTURE) -->
+<!-- SECTION 12: DIAGNOSTICS TECHNICAL FAQ -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">10</span><h2 class="section-title">Дорожня карта v4.0 (Self-healing)</h2></div>
+    <div class="section-header"><span class="section-number">12</span><h2 class="section-title">Технічний FAQ Діагностики</h2></div>
     <div class="glass-card flow-step">
-        <p>У версії 4.0 планується перехід до **Архітектури Самозцілення**. Система діагностики зможе не лише виявляти проблеми, а й автоматично застосовувати "патчі" або перевантажувати мікросервіси при виявленні критичних патернів. Також буде додано підтримку <i>Predictive Maintenance</i> для самого коду, виявляючи потенційні місця виникнення помилок на основі аналізу історії коммітів.</p>
+        <p><b>Q: Як додати нову сигнатуру помилки в базу?</b><br>
+        A: Потрібно додати опис регулярного виразу та метадані проблеми у файл конфігурації модуля <code>patterns.py</code>.</p>
+        <p><b>Q: Чи впливає робота сканера на продуктивність основної системи?</b><br>
+        A: Ні, сканер працює в окремому асинхронному потоці або як фонове завдання, використовуючи лише вільні ресурси CPU.</p>
+        <p><b>Q: Як інтерпретувати Health Score?</b><br>
+        A: 100 — ідеальний стан; нижче 70 — рекомендується перевірка логів; нижче 40 — критичні структурні збої, що потребують негайного втручання.</p>
+    </div>
+</div>
+
+<!-- SECTION 13: DIAGNOSTICS ENGINE GLOSSARY -->
+<div class="section-container">
+    <div class="section-header"><span class="section-number">13</span><h2 class="section-title">Глосарій Двигуна Діагностики</h2></div>
+    <div class="glass-card flow-step">
+        <ul>
+            <li><b>AST (Abstract Syntax Tree):</b> Деревоподібне представлення структури вихідного коду для глибокого аналізу.</li>
+            <li><b>Error Signature:</b> Унікальний відбиток (паттерн) певної технічної проблеми.</li>
+            <li><b>Health Score:</b> Агрегований показник надійності та цілісності системи.</li>
+            <li><b>Root Cause Analysis (RCA):</b> Метод виявлення першопричини виникнення дефекту.</li>
+        </ul>
     </div>
 </div>
 
