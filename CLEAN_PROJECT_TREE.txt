@@ -8,39 +8,45 @@ Py/
     .pyre_configuration
     .secrets.baseline
     ARCHITECTURE.md
-    backup_local.sql
+    convert_thesis.py
     DEPLOYMENT.md
     DEVELOPMENT.md
     diagnose.py
+    diploma_thesis_draft.ipynb
     Dockerfile
     main.py
     mkdocs.yml
-    PROJECT_STATUS.md
     pytest.ini
     README.md
     requirements-dev.txt
     requirements.txt
-    ROADMAP.md
     .streamlit/
         config.toml
     cache/
     data/
         energy.db
     docs/
-        architecture.md
         CLEAN_PROJECT_TREE.txt
-        database.md
-        digital_twin.md
-        DIPLOMA_PLAN.md
         DOCS_PLAN.md
-        FULL_PROJECT_TREE.txt
+        FOR_REVIEWER.md
         GLOSSARY.md
         index.md
-        MAINTENANCE.md
+        PROJECT_STATUS.md
+        ROADMAP.md
         search.js
-        SECURITY.md
-        testing.md
-        USER_MANUAL.md
+        api/
+            index.md
+        atlas/
+            data.js
+            script.js
+            style.css
+            img/
+                logo.png
+        guides/
+            MAINTENANCE.md
+            SECURITY.md
+            TESTING_GUIDE.md
+            USER_MANUAL.md
         history/
             COMPREHENSIVE_CODE_QUALITY_AUDIT.md
             FINAL_IMPLEMENTATION_REPORT.md
@@ -58,6 +64,16 @@ Py/
             clustering.png
             consumption.png
             day_cycle_raw.png
+            diag_architecture.png
+            diag_cicd_pipeline.png
+            diag_er_db.png
+            diag_gantt_schedule.png
+            diag_infra_cloud.png
+            diag_lstm_compare.png
+            diag_sequence_1.png
+            diag_sequence_2.png
+            diag_sequence_horizontal.png
+            diag_use_case.png
             error_distribution.png
             finance.png
             generation.png
@@ -79,15 +95,66 @@ Py/
         src/
             core/
             services/
+        system/
+            architecture.md
+            atlas.md
+            database.md
+            digital_twin.md
+            map/
+                core_map.md
+                ml_map.md
+                services_map.md
+                ui_map.md
         thesis/
+            ABBREVIATIONS.md
             APPENDICES.md
             BIBLIOGRAPHY.md
+            DEFENSE_GUIDE.md
+            DIPLOMA_PLAN.md
+            IMAGE_AUDIT_REPORT.md
+            KANBAN_THESIS.md
+            OFFICIAL_CALENDAR_PLAN.md
+            OFFICIAL_RECENSION_PROJECT.md
+            OFFICIAL_REVIEW_PROJECT.md
+            OFFICIAL_TASK_STATEMENT.md
+            OFFICIAL_TITLE_PAGE.md
+            PRACTICE_DIARY_DRAFT.md
+            PRACTICE_DIARY_TEMPLATE.md
+            PRACTICE_PRESENTATION_DRAFT.md
+            PRACTICE_REPORT_FINAL.md
+            PRACTICE_REPORT_FULL_DRAFT.md
+            PRACTICE_REPORT_SECTION_1.md
+            PRACTICE_REPORT_SECTION_2.md
+            PRACTICE_REPORT_SECTION_3.md
+            PRACTICE_REPORT_SECTION_4.md
+            PRACTICE_REPORT_SECTION_5.md
+            THESIS_0_ABSTRACT.md
             THESIS_0_INTRODUCTION.md
             THESIS_1_THEORY.md
-            THESIS_2_DESIGN.md
-            THESIS_3_ML_CORE.md
-            THESIS_4_IMPLEMENTATION.md
-            THESIS_5_RESULTS.md
+            THESIS_2_REQUIREMENTS.md
+            THESIS_3_DESIGN_AND_IMPLEMENTATION.md
+            THESIS_3_DESIGN_AND_IMPLEMENTATION_EXPANDED.md
+            THESIS_ASSEMBLY.md
+            THESIS_FINAL.docx
+            THESIS_FINAL_CONCLUSIONS.md
+            THESIS_FULL_FINAL_UTF8.md
+            THESIS_PRESENTATION_FINAL.md
+            THESIS_PROCEEDINGS_ABSTRACTS.md
+            ~$ESIS_FINAL.docx
+            check_pages/
+                ABBREVIATIONS.docx
+                APPENDICES.docx
+                BIBLIOGRAPHY.docx
+                OFFICIAL_RECENSION_PROJECT.docx
+                OFFICIAL_REVIEW_PROJECT.docx
+                OFFICIAL_TASK_STATEMENT.docx
+                OFFICIAL_TITLE_PAGE.docx
+                THESIS_0_ABSTRACT.docx
+                THESIS_0_INTRODUCTION.docx
+                THESIS_1_THEORY.docx
+                THESIS_2_REQUIREMENTS.docx
+                THESIS_3_DESIGN_AND_IMPLEMENTATION.docx
+                THESIS_FINAL_CONCLUSIONS.docx
         ui/
             views/
     results/
@@ -107,6 +174,7 @@ Py/
         benchmark.py
         benchmark_models.py
         check_db_stats.py
+        collect_stats.py
         convert_to_onnx.py
         lstm_sandbox.py
         real_data_evaluation.py
@@ -114,6 +182,14 @@ Py/
         run_backtest_diag.py
         SUMMARY_DASHBOARD.py
         test_plots.py
+        converter/
+            appendix.py
+            config.py
+            engine.py
+            formulas.py
+            handlers.py
+            styles.py
+            __init__.py
     sql/
         01_create_schema.sql
         02_insert_static_data.sql

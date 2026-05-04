@@ -1,0 +1,21 @@
+/* 🎨 Atlas Theme - Core Variables & Global Styles */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600;800&display=swap');
+
+:root {
+    --accent: #38bdf8;
+    --accent-glow: rgba(56, 189, 248, 0.4);
+    --bg-card: rgba(30, 41, 59, 0.4);
+    --border: rgba(255, 255, 255, 0.1);
+    --text-main: #f8fafc;
+    --text-dim: #94a3b8;
+    --glass: blur(12px) saturate(180%);
+}
+
+.mega-passport { 
+    font-family: 'Inter', sans-serif; 
+    color: var(--text-main); 
+    max-width: 100%; 
+    padding: 0 20px;
+    padding-bottom: 80px;
+    scroll-behavior: smooth;
+}

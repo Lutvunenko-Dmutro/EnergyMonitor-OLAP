@@ -53,6 +53,14 @@
     
       <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
     
+      <link rel="stylesheet" href="../../atlas/theme.css">
+    
+      <link rel="stylesheet" href="../../atlas/components.css">
+    
+      <link rel="stylesheet" href="../../atlas/mermaid.css">
+    
+      <link rel="stylesheet" href="../../atlas/blueprint.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -238,7 +246,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../atlas_v4/" class="md-tabs__link">
+        <a href="../atlas_final/" class="md-tabs__link">
           
   
   
@@ -911,14 +919,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../atlas_v4/" class="md-nav__link">
+      <a href="../atlas_final/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    📍 Інженерний Атлас (SCADA)
+    🛡️ Defense Atlas (Interactive)
   
 
     
@@ -939,14 +947,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../map/core_map/" class="md-nav__link">
+      <a href="../map/ATLAS_MASTER_INDEX/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    ⚙️ Ядро (Core)
+    🗺️ Реєстр Гіга-Паспортів (79 модулів)
   
 
     
@@ -967,70 +975,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../map/ml_map/" class="md-nav__link">
+      <a href="../atlas_city/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    🧠 ШІ-Конвеєр (ML)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../map/ui_map/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    🎨 Інтерфейс (UI)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../map/services_map/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    🏭 Сервіси (Services)
+    🏙️ CodeCity: 3D-Атлас
   
 
     
@@ -2799,43 +2751,44 @@
 
 <h1 id="_1">🏗️ Архітектура системи</h1>
 <h2 id="4">Огляд (4 шари)</h2>
-<pre class="mermaid"><code>%%{init: {'theme': 'dark'}}%%
-graph TB
-    subgraph UI["🌐 Presentation Layer"]
-        A1["📊 KPI Dashboard\nlive_kpi.py"]
-        A2["📈 ML Forecast\nforecast.py"]
-        A3["🗺️ Geo Map\nmap.py"]
-        A4["⚠️ Alerts\nalerts.py"]
-        A5["📜 Archive\nhistorical_audit.py"]
-    end
-
-    subgraph CORE["🧠 Intelligence Layer"]
-        B1["LSTM v3\npredict_v2.py"]
-        B2["Fallback\nbaseline_arima.py"]
-        B3["Physics\nphysics.py"]
-        B4["Vectorizer\nvectorizer.py"]
-    end
-
-    subgraph DATA["💾 Data Layer"]
-        C1[("PostgreSQL\nNeon Cloud")]
-        C2["Cache TTL 24h\ncache_manager.py"]
-        C3["Digital Twin\nsensors_db.py"]
-    end
-
-    subgraph DEVOPS["⚙️ DevOps"]
-        D1["GitHub Actions\nCI/CD"]
-        D2["Docker"]
-        D3["Render.com"]
-    end
-
-    UI --&gt; CORE --&gt; DATA
-    C3 --&gt; C1
-    DEVOPS --&gt; UI
-
-    style UI fill:#0d1117,stroke:#58a6ff
-    style CORE fill:#0d1117,stroke:#ffb703
-    style DATA fill:#0d1117,stroke:#00ff88
-    style DEVOPS fill:#0d1117,stroke:#ff6b6b</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>%%{init: {&#39;theme&#39;: &#39;dark&#39;}}%%
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>graph TB
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    subgraph UI[&quot;🌐 Presentation Layer&quot;]
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>        A1[&quot;📊 KPI Dashboard\nlive_kpi.py&quot;]
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        A2[&quot;📈 ML Forecast\nforecast.py&quot;]
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        A3[&quot;🗺️ Geo Map\nmap.py&quot;]
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        A4[&quot;⚠️ Alerts\nalerts.py&quot;]
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        A5[&quot;📜 Archive\nhistorical_audit.py&quot;]
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    end
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    subgraph CORE[&quot;🧠 Intelligence Layer&quot;]
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        B1[&quot;LSTM v3\npredict_v2.py&quot;]
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        B2[&quot;Fallback\nbaseline_arima.py&quot;]
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>        B3[&quot;Physics\nphysics.py&quot;]
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>        B4[&quot;Vectorizer\nvectorizer.py&quot;]
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    end
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    subgraph DATA[&quot;💾 Data Layer&quot;]
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>        C1[(&quot;PostgreSQL\nNeon Cloud&quot;)]
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>        C2[&quot;Cache TTL 24h\ncache_manager.py&quot;]
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>        C3[&quot;Digital Twin\nsensors_db.py&quot;]
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    end
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    subgraph DEVOPS[&quot;⚙️ DevOps&quot;]
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>        D1[&quot;GitHub Actions\nCI/CD&quot;]
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>        D2[&quot;Docker&quot;]
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>        D3[&quot;Render.com&quot;]
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    end
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>    UI --&gt; CORE --&gt; DATA
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>    C3 --&gt; C1
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>    DEVOPS --&gt; UI
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>    style UI fill:#0d1117,stroke:#58a6ff
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>    style CORE fill:#0d1117,stroke:#ffb703
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>    style DATA fill:#0d1117,stroke:#00ff88
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>    style DEVOPS fill:#0d1117,stroke:#ff6b6b
+</code></pre></div>
 <hr />
 <h2 id="presentation-layer-ui">Presentation Layer (UI)</h2>
 <p>Реалізований на <strong>Streamlit</strong> як набір незалежних view-модулів.</p>
@@ -2882,16 +2835,17 @@ graph TB
 </table>
 <hr />
 <h2 id="intelligence-layer-ml">Intelligence Layer (ML)</h2>
-<pre class="mermaid"><code>%%{init: {'theme': 'dark'}}%%
-flowchart LR
-    DB[("DB: last 48h")] --&gt; VEC["vectorizer.py\nSliding Window"]
-    VEC --&gt; FEAT["Feature Engineering\n9 features + sin/cos time"]
-    FEAT --&gt; LSTM["LSTM v3\npredict_v2.py"]
-    LSTM --&gt; ADAPT["Domain Adaptation\n(substation scaling)"]
-    ADAPT --&gt; OUT["df_forecast\n24 годин"]
-
-    LSTM -- "Якщо unavailable" --&gt; FALL["SARIMA\nbaseline_arima.py"]
-    FALL --&gt; OUT</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>%%{init: {&#39;theme&#39;: &#39;dark&#39;}}%%
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>flowchart LR
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    DB[(&quot;DB: last 48h&quot;)] --&gt; VEC[&quot;vectorizer.py\nSliding Window&quot;]
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    VEC --&gt; FEAT[&quot;Feature Engineering\n9 features + sin/cos time&quot;]
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    FEAT --&gt; LSTM[&quot;LSTM v3\npredict_v2.py&quot;]
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    LSTM --&gt; ADAPT[&quot;Domain Adaptation\n(substation scaling)&quot;]
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    ADAPT --&gt; OUT[&quot;df_forecast\n24 годин&quot;]
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    LSTM -- &quot;Якщо unavailable&quot; --&gt; FALL[&quot;SARIMA\nbaseline_arima.py&quot;]
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    FALL --&gt; OUT
+</code></pre></div>
 <p><strong>Версії моделей:</strong></p>
 <table>
 <thead>
@@ -2932,72 +2886,74 @@ flowchart LR
 <hr />
 <h2 id="data-layer">Data Layer</h2>
 <h3 id="postgresql-neon-cloud">PostgreSQL (Neon Cloud)</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">-- Ключові таблиці</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">Regions</span><span class="w">           </span><span class="c1">-- Регіони (Київ, Харків...)</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">Substations</span><span class="w">       </span><span class="c1">-- Підстанції (підкатегорія регіону)</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">LoadMeasurements</span><span class="w">  </span><span class="c1">-- Телеметрія (MW, Health, H2, температура)</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">Predictions</span><span class="w">       </span><span class="c1">-- Збережені прогнози LSTM</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">Alerts</span><span class="w">            </span><span class="c1">-- Аварійні події</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">WeatherReports</span><span class="w">    </span><span class="c1">-- Погода по регіонах</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">-- Ключові таблиці</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">Regions</span><span class="w">           </span><span class="c1">-- Регіони (Київ, Харків...)</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">Substations</span><span class="w">       </span><span class="c1">-- Підстанції (підкатегорія регіону)</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">LoadMeasurements</span><span class="w">  </span><span class="c1">-- Телеметрія (MW, Health, H2, температура)</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">Predictions</span><span class="w">       </span><span class="c1">-- Збережені прогнози LSTM</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">Alerts</span><span class="w">            </span><span class="c1">-- Аварійні події</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">WeatherReports</span><span class="w">    </span><span class="c1">-- Погода по регіонах</span>
 </code></pre></div>
 <h3 id="cache-manager">Cache Manager</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># utils/cache_manager.py</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># TTL = 24 годин</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># Захищає: *.graphml (карти міст)</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Очищає: *.json (застарілі запити)</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">startup_cache_cleanup</span><span class="p">(</span><span class="n">ttl_hours</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>  <span class="c1"># викликається з main.py</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># utils/cache_manager.py</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1"># TTL = 24 годин</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># Захищає: *.graphml (карти міст)</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># Очищає: *.json (застарілі запити)</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">startup_cache_cleanup</span><span class="p">(</span><span class="n">ttl_hours</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>  <span class="c1"># викликається з main.py</span>
 </code></pre></div>
 <hr />
 <h2 id="data-flows">🧬 Потоки даних (Data Flows)</h2>
 <h3 id="forecasting-sequence">Послідовність прогнозування (Forecasting Sequence)</h3>
 <p>Наступна діаграма демонструє шлях даних від запиту користувача до візуалізації ШІ-прогнозу.</p>
-<pre class="mermaid"><code>%%{init: {'theme': 'dark'}}%%
-sequenceDiagram
-    participant U as 👤 Користувач
-    participant UI as 🖥️ UI (Streamlit)
-    participant V as 🧪 Vectorizer
-    participant DB as 💾 PostgreSQL
-    participant ML as 🧠 LSTM Model
-    participant S as 📉 Scaler (Domain Adaptation)
-
-    U-&gt;&gt;UI: Вибір підстанції
-    UI-&gt;&gt;DB: Запит вікна 48 год.
-    DB--&gt;&gt;UI: df_history (raw)
-    UI-&gt;&gt;V: get_latest_window(df)
-    V-&gt;&gt;V: FE: sin/cos, normalization
-    V--&gt;&gt;UI: model_input_tensor
-    UI-&gt;&gt;ML: model.predict(input)
-    ML--&gt;&gt;UI: raw_forecast (0..1)
-    UI-&gt;&gt;S: inverse_transform() + scale_factor
-    S--&gt;&gt;UI: final_forecast (MW)
-    UI-&gt;&gt;U: Відображення графіка</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>%%{init: {&#39;theme&#39;: &#39;dark&#39;}}%%
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>sequenceDiagram
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    participant U as 👤 Користувач
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    participant UI as 🖥️ UI (Streamlit)
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    participant V as 🧪 Vectorizer
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    participant DB as 💾 PostgreSQL
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    participant ML as 🧠 LSTM Model
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    participant S as 📉 Scaler (Domain Adaptation)
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    U-&gt;&gt;UI: Вибір підстанції
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>    UI-&gt;&gt;DB: Запит вікна 48 год.
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>    DB--&gt;&gt;UI: df_history (raw)
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>    UI-&gt;&gt;V: get_latest_window(df)
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>    V-&gt;&gt;V: FE: sin/cos, normalization
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>    V--&gt;&gt;UI: model_input_tensor
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>    UI-&gt;&gt;ML: model.predict(input)
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>    ML--&gt;&gt;UI: raw_forecast (0..1)
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>    UI-&gt;&gt;S: inverse_transform() + scale_factor
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>    S--&gt;&gt;UI: final_forecast (MW)
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>    UI-&gt;&gt;U: Відображення графіка
+</code></pre></div>
 <hr />
 <h2 id="devops-layer">⚙️ DevOps Layer</h2>
 <h3 id="cicd-pipeline">Детальний CI/CD Pipeline</h3>
-<pre class="mermaid"><code>%%{init: {'theme': 'dark'}}%%
-flowchart TD
-    Build[Build Phase] --&gt; Test[Test Phase]
-    Test --&gt; Security[Security Phase]
-    Security --&gt; Deploy[Deploy Phase]
-
-    subgraph Build
-        B1["Docker build\n(Multi-stage)"]
-    end
-
-    subgraph Test
-        T1["pytest\n(79 tests)"]
-        T2["mypy\n(Type check)"]
-    end
-
-    subgraph Security
-        S1["bandit\n(SAST)"]
-        S2["detect-secrets"]
-    end
-
-    subgraph Deploy
-        D1["Push to Registry\n(Docker Hub)"]
-        D2["Render.com\nWebHook"]
-    end</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>%%{init: {&#39;theme&#39;: &#39;dark&#39;}}%%
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>flowchart TD
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    Build[Build Phase] --&gt; Test[Test Phase]
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    Test --&gt; Security[Security Phase]
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    Security --&gt; Deploy[Deploy Phase]
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    subgraph Build
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>        B1[&quot;Docker build\n(Multi-stage)&quot;]
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    end
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>    subgraph Test
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>        T1[&quot;pytest\n(79 tests)&quot;]
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>        T2[&quot;mypy\n(Type check)&quot;]
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>    end
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>    subgraph Security
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>        S1[&quot;bandit\n(SAST)&quot;]
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>        S2[&quot;detect-secrets&quot;]
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>    end
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>    subgraph Deploy
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>        D1[&quot;Push to Registry\n(Docker Hub)&quot;]
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>        D2[&quot;Render.com\nWebHook&quot;]
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>    end
+</code></pre></div>
 <h3 id="_2">Ключові конфіги</h3>
 <table>
 <thead>
@@ -3100,9 +3056,11 @@ flowchart TD
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/polyfill/3.111.0/polyfill.min.js?features=es6"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
       
     
   </body>

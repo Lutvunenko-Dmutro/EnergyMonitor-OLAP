@@ -1,0 +1,297 @@
+{
+    "project": "Project ATLAS",
+    "total_passports": 58,
+    "last_sync": "2026-05-04T16:18:31.574949",
+    "passports": [
+        {
+            "name": "ATLAS_MASTER_INDEX.md",
+            "path": "system/map/ATLAS_MASTER_INDEX.md",
+            "updated_at": "2026-05-04T16:18:31.574978"
+        },
+        {
+            "name": "academic_charts.md",
+            "path": "system/map/academic_charts.md",
+            "updated_at": "2026-05-04T16:18:31.574980"
+        },
+        {
+            "name": "advanced_ai_view.md",
+            "path": "system/map/advanced_ai_view.md",
+            "updated_at": "2026-05-04T16:18:31.574982"
+        },
+        {
+            "name": "advanced_view.md",
+            "path": "system/map/advanced_view.md",
+            "updated_at": "2026-05-04T16:18:31.574983"
+        },
+        {
+            "name": "alerts_view.md",
+            "path": "system/map/alerts_view.md",
+            "updated_at": "2026-05-04T16:18:31.574984"
+        },
+        {
+            "name": "analysis_services_hub.md",
+            "path": "system/map/analysis_services_hub.md",
+            "updated_at": "2026-05-04T16:18:31.574986"
+        },
+        {
+            "name": "app_core_logic.md",
+            "path": "system/map/app_core_logic.md",
+            "updated_at": "2026-05-04T16:18:31.574987"
+        },
+        {
+            "name": "audit_view.md",
+            "path": "system/map/audit_view.md",
+            "updated_at": "2026-05-04T16:18:31.574988"
+        },
+        {
+            "name": "base_charts.md",
+            "path": "system/map/base_charts.md",
+            "updated_at": "2026-05-04T16:18:31.574989"
+        },
+        {
+            "name": "cache_management_engine.md",
+            "path": "system/map/cache_management_engine.md",
+            "updated_at": "2026-05-04T16:18:31.574990"
+        },
+        {
+            "name": "consumption_view.md",
+            "path": "system/map/consumption_view.md",
+            "updated_at": "2026-05-04T16:18:31.574991"
+        },
+        {
+            "name": "core_kaggle_loader.md",
+            "path": "system/map/core_kaggle_loader.md",
+            "updated_at": "2026-05-04T16:18:31.574992"
+        },
+        {
+            "name": "core_kernel_hub.md",
+            "path": "system/map/core_kernel_hub.md",
+            "updated_at": "2026-05-04T16:18:31.574993"
+        },
+        {
+            "name": "dashboard.md",
+            "path": "system/map/dashboard.md",
+            "updated_at": "2026-05-04T16:18:31.574994"
+        },
+        {
+            "name": "data_services_hub.md",
+            "path": "system/map/data_services_hub.md",
+            "updated_at": "2026-05-04T16:18:31.574995"
+        },
+        {
+            "name": "deployment_ops_guide.md",
+            "path": "system/map/deployment_ops_guide.md",
+            "updated_at": "2026-05-04T16:18:31.574996"
+        },
+        {
+            "name": "diagnostics_engine_hub.md",
+            "path": "system/map/diagnostics_engine_hub.md",
+            "updated_at": "2026-05-04T16:18:31.574997"
+        },
+        {
+            "name": "error_resilience_system.md",
+            "path": "system/map/error_resilience_system.md",
+            "updated_at": "2026-05-04T16:18:31.574998"
+        },
+        {
+            "name": "finance_view.md",
+            "path": "system/map/finance_view.md",
+            "updated_at": "2026-05-04T16:18:31.574999"
+        },
+        {
+            "name": "forecast_ui_plots.md",
+            "path": "system/map/forecast_ui_plots.md",
+            "updated_at": "2026-05-04T16:18:31.575000"
+        },
+        {
+            "name": "forecast_view.md",
+            "path": "system/map/forecast_view.md",
+            "updated_at": "2026-05-04T16:18:31.575001"
+        },
+        {
+            "name": "generation_view.md",
+            "path": "system/map/generation_view.md",
+            "updated_at": "2026-05-04T16:18:31.575002"
+        },
+        {
+            "name": "historical_audit_view.md",
+            "path": "system/map/historical_audit_view.md",
+            "updated_at": "2026-05-04T16:18:31.575003"
+        },
+        {
+            "name": "kpi_view.md",
+            "path": "system/map/kpi_view.md",
+            "updated_at": "2026-05-04T16:18:31.575004"
+        },
+        {
+            "name": "live_kpi.md",
+            "path": "system/map/live_kpi.md",
+            "updated_at": "2026-05-04T16:18:31.575005"
+        },
+        {
+            "name": "main.md",
+            "path": "system/map/main.md",
+            "updated_at": "2026-05-04T16:18:31.575006"
+        },
+        {
+            "name": "map_view.md",
+            "path": "system/map/map_view.md",
+            "updated_at": "2026-05-04T16:18:31.575007"
+        },
+        {
+            "name": "ml_assets_architecture.md",
+            "path": "system/map/ml_assets_architecture.md",
+            "updated_at": "2026-05-04T16:18:31.575008"
+        },
+        {
+            "name": "ml_core_engine.md",
+            "path": "system/map/ml_core_engine.md",
+            "updated_at": "2026-05-04T16:18:31.575009"
+        },
+        {
+            "name": "ram_hygiene_monitor.md",
+            "path": "system/map/ram_hygiene_monitor.md",
+            "updated_at": "2026-05-04T16:18:31.575010"
+        },
+        {
+            "name": "sensors_service.md",
+            "path": "system/map/sensors_service.md",
+            "updated_at": "2026-05-04T16:18:31.575011"
+        },
+        {
+            "name": "services_package.md",
+            "path": "system/map/services_package.md",
+            "updated_at": "2026-05-04T16:18:31.575012"
+        },
+        {
+            "name": "sidebar.md",
+            "path": "system/map/sidebar.md",
+            "updated_at": "2026-05-04T16:18:31.575013"
+        },
+        {
+            "name": "simulation_engine_hub.md",
+            "path": "system/map/simulation_engine_hub.md",
+            "updated_at": "2026-05-04T16:18:31.575015"
+        },
+        {
+            "name": "splash.md",
+            "path": "system/map/splash.md",
+            "updated_at": "2026-05-04T16:18:31.575016"
+        },
+        {
+            "name": "styles.md",
+            "path": "system/map/styles.md",
+            "updated_at": "2026-05-04T16:18:31.575017"
+        },
+        {
+            "name": "system_orchestrator.md",
+            "path": "system/map/system_orchestrator.md",
+            "updated_at": "2026-05-04T16:18:31.575017"
+        },
+        {
+            "name": "system_root_package.md",
+            "path": "system/map/system_root_package.md",
+            "updated_at": "2026-05-04T16:18:31.575018"
+        },
+        {
+            "name": "ui_cards.md",
+            "path": "system/map/ui_cards.md",
+            "updated_at": "2026-05-04T16:18:31.575019"
+        },
+        {
+            "name": "ui_cards_library.md",
+            "path": "system/map/ui_cards_library.md",
+            "updated_at": "2026-05-04T16:18:31.575020"
+        },
+        {
+            "name": "ui_charts.md",
+            "path": "system/map/ui_charts.md",
+            "updated_at": "2026-05-04T16:18:31.575021"
+        },
+        {
+            "name": "ui_charts_academic.md",
+            "path": "system/map/ui_charts_academic.md",
+            "updated_at": "2026-05-04T16:18:31.575022"
+        },
+        {
+            "name": "ui_charts_base.md",
+            "path": "system/map/ui_charts_base.md",
+            "updated_at": "2026-05-04T16:18:31.575023"
+        },
+        {
+            "name": "ui_charts_forecast.md",
+            "path": "system/map/ui_charts_forecast.md",
+            "updated_at": "2026-05-04T16:18:31.575026"
+        },
+        {
+            "name": "ui_charts_library_index.md",
+            "path": "system/map/ui_charts_library_index.md",
+            "updated_at": "2026-05-04T16:18:31.575027"
+        },
+        {
+            "name": "ui_components_hub.md",
+            "path": "system/map/ui_components_hub.md",
+            "updated_at": "2026-05-04T16:18:31.575028"
+        },
+        {
+            "name": "ui_dashboard_layout.md",
+            "path": "system/map/ui_dashboard_layout.md",
+            "updated_at": "2026-05-04T16:18:31.575029"
+        },
+        {
+            "name": "ui_design_system.md",
+            "path": "system/map/ui_design_system.md",
+            "updated_at": "2026-05-04T16:18:31.575030"
+        },
+        {
+            "name": "ui_live_kpi_segment.md",
+            "path": "system/map/ui_live_kpi_segment.md",
+            "updated_at": "2026-05-04T16:18:31.575031"
+        },
+        {
+            "name": "ui_package_root.md",
+            "path": "system/map/ui_package_root.md",
+            "updated_at": "2026-05-04T16:18:31.575032"
+        },
+        {
+            "name": "ui_sidebar_controls.md",
+            "path": "system/map/ui_sidebar_controls.md",
+            "updated_at": "2026-05-04T16:18:31.575034"
+        },
+        {
+            "name": "ui_splash_screen.md",
+            "path": "system/map/ui_splash_screen.md",
+            "updated_at": "2026-05-04T16:18:31.575035"
+        },
+        {
+            "name": "ui_views_registry.md",
+            "path": "system/map/ui_views_registry.md",
+            "updated_at": "2026-05-04T16:18:31.575036"
+        },
+        {
+            "name": "unified_logging_registry.md",
+            "path": "system/map/unified_logging_registry.md",
+            "updated_at": "2026-05-04T16:18:31.575037"
+        },
+        {
+            "name": "universal_system_helpers.md",
+            "path": "system/map/universal_system_helpers.md",
+            "updated_at": "2026-05-04T16:18:31.575038"
+        },
+        {
+            "name": "utils_extended_toolkit.md",
+            "path": "system/map/utils_extended_toolkit.md",
+            "updated_at": "2026-05-04T16:18:31.575039"
+        },
+        {
+            "name": "utils_package.md",
+            "path": "system/map/utils_package.md",
+            "updated_at": "2026-05-04T16:18:31.575040"
+        },
+        {
+            "name": "utils_validators.md",
+            "path": "system/map/utils_validators.md",
+            "updated_at": "2026-05-04T16:18:31.575041"
+        }
+    ]
+}

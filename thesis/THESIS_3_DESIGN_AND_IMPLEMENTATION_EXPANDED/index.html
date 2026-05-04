@@ -53,6 +53,14 @@
     
       <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
     
+      <link rel="stylesheet" href="../../atlas/theme.css">
+    
+      <link rel="stylesheet" href="../../atlas/components.css">
+    
+      <link rel="stylesheet" href="../../atlas/mermaid.css">
+    
+      <link rel="stylesheet" href="../../atlas/blueprint.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -236,7 +244,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../system/atlas_v4/" class="md-tabs__link">
+        <a href="../../system/atlas_final/" class="md-tabs__link">
           
   
   
@@ -692,14 +700,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../system/atlas_v4/" class="md-nav__link">
+      <a href="../../system/atlas_final/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    📍 Інженерний Атлас (SCADA)
+    🛡️ Defense Atlas (Interactive)
   
 
     
@@ -720,14 +728,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../system/map/core_map/" class="md-nav__link">
+      <a href="../../system/map/ATLAS_MASTER_INDEX/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    ⚙️ Ядро (Core)
+    🗺️ Реєстр Гіга-Паспортів (79 модулів)
   
 
     
@@ -748,70 +756,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../system/map/ml_map/" class="md-nav__link">
+      <a href="../../system/atlas_city/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    🧠 ШІ-Конвеєр (ML)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../system/map/ui_map/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    🎨 Інтерфейс (UI)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../system/map/services_map/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    🏭 Сервіси (Services)
+    🏙️ CodeCity: 3D-Атлас
   
 
     
@@ -2989,58 +2941,60 @@
 <h3 id="31-no">3.1. Р—Р°РіР°Р»СЊРЅР° Р°СЂС…С–С‚РµРєС‚СѓСЂР° С‚Р° С–РЅС„РѕСЂРјР°С†С–Р№РЅРµ Р·Р°Р±РµР·РїРµС‡РµРЅРЅСЏ</h3>
 <h4 id="311-energymonitor-olap">3.1.1. Р‘Р°РіР°С‚РѕС€Р°СЂРѕРІР° Р°СЂС…С–С‚РµРєС‚СѓСЂР° EnergyMonitor-OLAP</h4>
 <p>РџСЂРѕС”РєС‚СѓРІР°РЅРЅСЏ Р°СЂС…С–С‚РµРєС‚СѓСЂРё С–РЅС‚РµР»РµРєС‚СѓР°Р»СЊРЅРѕС— СЃРёСЃС‚РµРјРё EnergyMonitor-OLAP Р±Р°Р·СѓС”С‚СЊСЃСЏ РЅР° РїСЂРёРЅС†РёРїР°С… РјРѕРґСѓР»СЊРЅРѕСЃС‚С– С‚Р° РјР°СЃС€С‚Р°Р±РѕРІР°РЅРѕСЃС‚С–. Р”Р»СЏ Р·Р°Р±РµР·РїРµС‡РµРЅРЅСЏ СЃС‚Р°Р±С–Р»СЊРЅРѕС— СЂРѕР±РѕС‚Рё Сѓ С…РјР°СЂРЅРѕРјСѓ СЃРµСЂРµРґРѕРІРёС‰С– РјРё РѕР±СЂР°Р»Рё Р±Р°РіР°С‚РѕС€Р°СЂРѕРІСѓ Р°СЂС…С–С‚РµРєС‚СѓСЂСѓ (Layered Architecture), С‰Рѕ СЃРєР»Р°РґР°С”С‚СЊСЃСЏ Р· С‡РѕС‚РёСЂСЊРѕС… С„СѓРЅРєС†С–РѕРЅР°Р»СЊРЅРёС… СЂС–РІРЅС–РІ, СЂРµР°Р»С–Р·РѕРІР°РЅРёС… Р·Р° РґРѕРїРѕРјРѕРіРѕСЋ С„СЂРµР№РјРІРѕСЂРєСѓ Streamlit [26] С‚Р° Р±С–Р±Р»С–РѕС‚РµРє РіР»РёР±РѕРєРѕРіРѕ РЅР°РІС‡Р°РЅРЅСЏ TensorFlow/Keras [1, 4] (Р РёСЃ. 3.1).</p>
-<p><pre class="mermaid"><code>graph TB
-    subgraph UI["Р С–РІРµРЅСЊ РїСЂРµРґСЃС‚Р°РІР»РµРЅРЅСЏ (Streamlit)"]
-        direction LR
-        A1["KPI РџР°РЅРµР»СЊ"]
-        A2["ML РџСЂРѕРіРЅРѕР·"]
-        A3["Р“Р†РЎ РљР°СЂС‚Р°"]
-    end
-
-    subgraph CORE["Р†РЅС‚РµР»РµРєС‚СѓР°Р»СЊРЅРёР№ С€Р°СЂ"]
-        direction LR
-        B1["LSTM v3\npredict_v2.py"]
-        B3["Р¤С–Р·РёС‡РЅРёР№ РґРІРёРіСѓРЅ\nphysics.py"]
-        B4["Р’РµРєС‚РѕСЂРёР·Р°С‚РѕСЂ\n(Sliding Window)"]
-    end
-
-    subgraph DATA["РЁР°СЂ РґР°РЅРёС… (OLAP)"]
-        direction LR
-        C1[("PostgreSQL\nNeon Cloud")]
-        C3["Р¦РёС„СЂРѕРІРёР№ РґРІС–Р№РЅРёРє\nРЎРёРјСѓР»СЏС†С–СЏ СЃРµРЅСЃРѕСЂС–РІ"]
-    end
-
-    subgraph DEVOPS["DevOps РЁР°СЂ"]
-        direction LR
-        D1["GitHub Actions\nCI/CD"]
-        D2["Docker\nРљРѕРЅС‚РµР№РЅРµСЂ"]
-    end
-
-    UI --&gt;|"Р—Р°РїРёС‚ РґР°РЅРёС…"| CORE
-    CORE --&gt;|"SQL SELECT"| DATA
-    C3 --&gt;|"SQL INSERT С‚РµР»РµРјРµС‚СЂС–СЏ"| C1
-    B1 --&gt;|"Р РµР·СѓР»СЊС‚Р°С‚Рё РЁР†"| UI</code></pre>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>graph TB
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    subgraph UI[&quot;Р С–РІРµРЅСЊ РїСЂРµРґСЃС‚Р°РІР»РµРЅРЅСЏ (Streamlit)&quot;]
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>        direction LR
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>        A1[&quot;KPI РџР°РЅРµР»СЊ&quot;]
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        A2[&quot;ML РџСЂРѕРіРЅРѕР·&quot;]
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        A3[&quot;Р“Р†РЎ РљР°СЂС‚Р°&quot;]
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    end
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    subgraph CORE[&quot;Р†РЅС‚РµР»РµРєС‚СѓР°Р»СЊРЅРёР№ С€Р°СЂ&quot;]
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        direction LR
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        B1[&quot;LSTM v3\npredict_v2.py&quot;]
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        B3[&quot;Р¤С–Р·РёС‡РЅРёР№ РґРІРёРіСѓРЅ\nphysics.py&quot;]
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        B4[&quot;Р’РµРєС‚РѕСЂРёР·Р°С‚РѕСЂ\n(Sliding Window)&quot;]
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    end
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    subgraph DATA[&quot;РЁР°СЂ РґР°РЅРёС… (OLAP)&quot;]
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        direction LR
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>        C1[(&quot;PostgreSQL\nNeon Cloud&quot;)]
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>        C3[&quot;Р¦РёС„СЂРѕРІРёР№ РґРІС–Р№РЅРёРє\nРЎРёРјСѓР»СЏС†С–СЏ СЃРµРЅСЃРѕСЂС–РІ&quot;]
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    end
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    subgraph DEVOPS[&quot;DevOps РЁР°СЂ&quot;]
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>        direction LR
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>        D1[&quot;GitHub Actions\nCI/CD&quot;]
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>        D2[&quot;Docker\nРљРѕРЅС‚РµР№РЅРµСЂ&quot;]
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    end
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    UI --&gt;|&quot;Р—Р°РїРёС‚ РґР°РЅРёС…&quot;| CORE
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>    CORE --&gt;|&quot;SQL SELECT&quot;| DATA
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>    C3 --&gt;|&quot;SQL INSERT С‚РµР»РµРјРµС‚СЂС–СЏ&quot;| C1
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>    B1 --&gt;|&quot;Р РµР·СѓР»СЊС‚Р°С‚Рё РЁР†&quot;| UI
+</code></pre></div>
 <em>РЎС…РµРјР° 3.1. Р›РѕРіС–С‡РЅР° Р°СЂС…С–С‚РµРєС‚СѓСЂР° (Mermaid-РІРµСЂСЃС–СЏ РґР»СЏ СЂРµРїРѕР·РёС‚РѕСЂС–СЋ)</em></p>
 <p><img alt="Р РёСЃ. 3.1. РђСЂС…С–С‚РµРєС‚СѓСЂРЅР° СЃС…РµРјР° СЃРёСЃС‚РµРјРё EnergyMonitor-OLAP" src="../../images/diag_architecture.png" />
 <em>Р РёСЃ. 3.1. РђСЂС…С–С‚РµРєС‚СѓСЂРЅР° СЃС…РµРјР° СЃРёСЃС‚РµРјРё EnergyMonitor-OLAP</em></p>
 <h4 id="312-no-digital-twin">3.1.2. РџРѕС‚РѕРєРё РґР°РЅРёС… С‚Р° С–РјС–С‚Р°С†С–Р№РЅРµ РјРѕРґРµР»СЋРІР°РЅРЅСЏ Digital Twin</h4>
 <p>Р¦РµРЅС‚СЂР°Р»СЊРЅРѕСЋ С‡Р°СЃС‚РёРЅРѕСЋ СЃРёСЃС‚РµРјРё С” РјРµС…Р°РЅС–Р·Рј В«Р¦РёС„СЂРѕРІРѕРіРѕ РґРІС–Р№РЅРёРєР°В», СЏРєРёР№ С–РјС–С‚СѓС” СЂРѕР±РѕС‚Сѓ СЂРµР°Р»СЊРЅРёС… РїС–РґСЃС‚Р°РЅС†С–Р№. РџСЂРѕС†РµСЃ РѕР±СЂРѕР±РєРё РґР°РЅРёС… РІРєР»СЋС‡Р°С” Р·Р±С–СЂ С‚РµР»РµРјРµС‚СЂС–С—, С—С— РІРµРєС‚РѕСЂРёР·Р°С†С–СЋ С‚Р° РїРѕРґР°С‡Сѓ РЅР° РІС…С–Рґ РЅРµР№СЂРѕРЅРЅРѕС— РјРµСЂРµР¶С– (Р РёСЃ. 3.2).</p>
-<p><pre class="mermaid"><code>graph TD
-    subgraph Local ["рџ’» LOCAL ENVIRONMENT"]
-        DG["data_generator.py\n(РЎРёРјСѓР»СЏС‚РѕСЂ)"]
-    end
-
-    subgraph Cloud ["в�ЃпёЏ CLOUD INFRASTRUCTURE (Render)"]
-        DB[(PostgreSQL\nOLAP Database)]
-        Vect["vectorizer.py"]
-        Pred["predict_v2.py"]
-        UI["main.py\n(Dashboard)"]
-    end
-
-    DG ==&gt;|"Telemetry Push"| DB
-    DB &lt;--&gt;|"Data Exchange"| Vect
-    Vect --&gt; Pred
-    Pred --&gt; UI</code></pre>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>graph TD
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    subgraph Local [&quot;рџ’» LOCAL ENVIRONMENT&quot;]
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>        DG[&quot;data_generator.py\n(РЎРёРјСѓР»СЏС‚РѕСЂ)&quot;]
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    end
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    subgraph Cloud [&quot;в�ЃпёЏ CLOUD INFRASTRUCTURE (Render)&quot;]
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        DB[(PostgreSQL\nOLAP Database)]
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        Vect[&quot;vectorizer.py&quot;]
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>        Pred[&quot;predict_v2.py&quot;]
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>        UI[&quot;main.py\n(Dashboard)&quot;]
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    end
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    DG ==&gt;|&quot;Telemetry Push&quot;| DB
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    DB &lt;--&gt;|&quot;Data Exchange&quot;| Vect
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    Vect --&gt; Pred
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>    Pred --&gt; UI
+</code></pre></div>
 <em>РЎС…РµРјР° 3.2. РџРѕС‚РѕРєРё РґР°РЅРёС… (Mermaid-РІРµСЂСЃС–СЏ)</em></p>
 <p><img alt="Р РёСЃ. 3.2. РЎС…РµРјР° СЂРѕР·РіРѕСЂС‚Р°РЅРЅСЏ С‚Р° РїРѕС‚РѕРєС–РІ РґР°РЅРёС… СЃРёСЃС‚РµРјРё" src="../../images/diag_infra_cloud.png" />
 <em>Р РёСЃ. 3.2. РЎС…РµРјР° СЂРѕР·РіРѕСЂС‚Р°РЅРЅСЏ С‚Р° РїРѕС‚РѕРєС–РІ РґР°РЅРёС… СЃРёСЃС‚РµРјРё</em></p>
@@ -3065,30 +3019,31 @@
 <p>Р”Р»СЏ Р·Р±РµСЂС–РіР°РЅРЅСЏ С‚РµР»РµРјРµС‚СЂС–С— С‚Р° СЂРµР·СѓР»СЊС‚Р°С‚С–РІ РїСЂРѕРіРЅРѕР·СѓРІР°РЅРЅСЏ РІРёРєРѕСЂРёСЃС‚Р°РЅРѕ С…РјР°СЂРЅСѓ РЎРЈР‘Р” Neon PostgreSQL [18, 23, 25], С‰Рѕ РїС–РґС‚СЂРёРјСѓС” Р°СЂС…С–С‚РµРєС‚СѓСЂСѓ Serverless. Р’Р·Р°С”РјРѕРґС–СЏ Р· Р±Р°Р·РѕСЋ РґР°РЅРёС… Р·РґС–Р№СЃРЅСЋС”С‚СЊСЃСЏ С‡РµСЂРµР· ORM SQLAlchemy [33]. РџСЂРѕС†РµСЃРё Р±РµР·РїРµСЂРµСЂРІРЅРѕС— С–РЅС‚РµРіСЂР°С†С–С— С‚Р° СЂРѕР·РіРѕСЂС‚Р°РЅРЅСЏ (CI/CD) РЅР°Р»Р°С€С‚РѕРІР°РЅС– Р·Р° РґРѕРїРѕРјРѕРіРѕСЋ GitHub Actions [34].</p>
 <h4 id="331-olap">3.3.1. РЎС…РµРјР° РґР°РЅРёС… OLAP</h4>
 <p>Р”Р»СЏ Р·Р°Р±РµР·РїРµС‡РµРЅРЅСЏ РІРёСЃРѕРєРѕС— С€РІРёРґРєРѕСЃС‚С– Р°РЅР°Р»С–С‚РёС‡РЅРёС… Р·Р°РїРёС‚С–РІ Р±Р°Р·Р° РґР°РЅРёС… PostgreSQL СЃРїСЂРѕС”РєС‚РѕРІР°РЅР° Р·Р° СЃС…РµРјРѕСЋ В«Р·С–СЂРєР°В» (Р РёСЃ. 3.7).</p>
-<p><pre class="mermaid"><code>erDiagram
-    REGIONS ||--o{ SUBSTATIONS : "РјС–СЃС‚РёС‚СЊ"
-    SUBSTATIONS ||--o{ LOADMEASUREMENTS : "РіРµРЅРµСЂСѓС” РЅР°РІР°РЅС‚Р°Р¶РµРЅРЅСЏ"
-    SUBSTATIONS ||--o{ ALERTS : "РіРµРЅРµСЂСѓС” Р°РІР°СЂС–С—"
-    SUBSTATIONS ||--o{ GENERATORS : "РјР°С” РґР¶РµСЂРµР»Р°"
-    GENERATORS ||--o{ GENERATIONMEASUREMENTS : "РІРёСЂРѕР±Р»СЏС” РµРЅРµСЂРіС–СЋ"
-    REGIONS ||--o{ WEATHERREPORTS : "РјР°С” РїРѕРіРѕРґСѓ"
-
-    REGIONS {
-        int region_id PK
-        string region_name
-    }
-    SUBSTATIONS {
-        int substation_id PK
-        string substation_name
-        float capacity_mw
-    }
-    LOADMEASUREMENTS {
-        int measurement_id PK
-        int substation_id FK
-        float actual_load_mw
-        float health_score
-        timestamp timestamp
-    }</code></pre>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>erDiagram
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    REGIONS ||--o{ SUBSTATIONS : &quot;РјС–СЃС‚РёС‚СЊ&quot;
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    SUBSTATIONS ||--o{ LOADMEASUREMENTS : &quot;РіРµРЅРµСЂСѓС” РЅР°РІР°РЅС‚Р°Р¶РµРЅРЅСЏ&quot;
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    SUBSTATIONS ||--o{ ALERTS : &quot;РіРµРЅРµСЂСѓС” Р°РІР°СЂС–С—&quot;
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    SUBSTATIONS ||--o{ GENERATORS : &quot;РјР°С” РґР¶РµСЂРµР»Р°&quot;
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    GENERATORS ||--o{ GENERATIONMEASUREMENTS : &quot;РІРёСЂРѕР±Р»СЏС” РµРЅРµСЂРіС–СЋ&quot;
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    REGIONS ||--o{ WEATHERREPORTS : &quot;РјР°С” РїРѕРіРѕРґСѓ&quot;
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    REGIONS {
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>        int region_id PK
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>        string region_name
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    }
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    SUBSTATIONS {
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>        int substation_id PK
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>        string substation_name
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>        float capacity_mw
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>    }
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>    LOADMEASUREMENTS {
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>        int measurement_id PK
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>        int substation_id FK
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>        float actual_load_mw
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>        float health_score
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>        timestamp timestamp
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>    }
+</code></pre></div>
 <em>РЎС…РµРјР° 3.3. ER-РґС–Р°РіСЂР°РјР° (Mermaid-РІРµСЂСЃС–СЏ)</em></p>
 <p><img alt="Р РёСЃ. 3.7. РЎС…РµРјР° Р±Р°Р·Рё РґР°РЅРёС… (ER-РґС–Р°РіСЂР°РјР°) СЃРёСЃС‚РµРјРё" src="../../images/diag_er_db.png" />
 <em>Р РёСЃ. 3.7. РЎС…РµРјР° Р±Р°Р·Рё РґР°РЅРёС… (ER-РґС–Р°РіСЂР°РјР°) СЃРёСЃС‚РµРјРё</em></p>
@@ -3118,11 +3073,12 @@
 <em>Р РёСЃ. 3.9. Р†РЅС‚РµСЂС„РµР№СЃ С„С–РЅР°РЅСЃРѕРІРѕРіРѕ РјРѕРЅС–С‚РѕСЂРёРЅРіСѓ С‚Р° СЂРѕР·СЂР°С…СѓРЅРєСѓ РІС‚СЂР°С‚</em></p>
 <h3 id="36-devops-cicd">3.6. DevOps С‚Р° CI/CD РєРѕРЅРІРµС”СЂ</h3>
 <p>Р”Р»СЏ Р°РІС‚РѕРјР°С‚РёР·Р°С†С–С— СЂРѕР·РіРѕСЂС‚Р°РЅРЅСЏ СЃРёСЃС‚РµРјРё РІРїСЂРѕРІР°РґР¶РµРЅРѕ CI/CD РєРѕРЅРІРµС”СЂ (Р РёСЃ. 3.10). РљРѕРЅС„С–РіСѓСЂР°С†С–Р№РЅС– С„Р°Р№Р»Рё Docker С‚Р° РЅР°Р»Р°С€С‚СѓРІР°РЅРЅСЏ СЃРµСЂРµРґРѕРІРёС‰Р° РЅР°РІРµРґРµРЅС– Сѓ Р”РѕРґР°С‚РєСѓ Р‘.</p>
-<p><pre class="mermaid"><code>flowchart LR
-    Push["git push"] --&gt; Lint["Linting (flake8)"]
-    Lint --&gt; Tests["Unit Tests (pytest)"]
-    Tests --&gt; Build["Docker Build"]
-    Build --&gt; Deploy["Deploy to Render.com"]</code></pre>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>flowchart LR
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    Push[&quot;git push&quot;] --&gt; Lint[&quot;Linting (flake8)&quot;]
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    Lint --&gt; Tests[&quot;Unit Tests (pytest)&quot;]
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    Tests --&gt; Build[&quot;Docker Build&quot;]
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    Build --&gt; Deploy[&quot;Deploy to Render.com&quot;]
+</code></pre></div>
 <em>РЎС…РµРјР° 3.4. РљРѕРЅРІРµС”СЂ CI/CD (Mermaid-РІРµСЂСЃС–СЏ)</em></p>
 <p><img alt="Р РёСЃ. 3.10. РўРµС…РЅРѕР»РѕРіС–С‡РЅР° СЃС…РµРјР° РєРѕРЅРІРµС”СЂР° CI/CD СЃРёСЃС‚РµРјРё" src="../../images/diag_cicd_pipeline.png" />
 <em>Р РёСЃ. 3.10. РўРµС…РЅРѕР»РѕРіС–С‡РЅР° СЃС…РµРјР° РєРѕРЅРІРµС”СЂР° CI/CD СЃРёСЃС‚РµРјРё</em></p>
@@ -3231,9 +3187,11 @@
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/polyfill/3.111.0/polyfill.min.js?features=es6"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
       
     
   </body>

@@ -53,6 +53,14 @@
     
       <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
     
+      <link rel="stylesheet" href="../../atlas/theme.css">
+    
+      <link rel="stylesheet" href="../../atlas/components.css">
+    
+      <link rel="stylesheet" href="../../atlas/mermaid.css">
+    
+      <link rel="stylesheet" href="../../atlas/blueprint.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -236,7 +244,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../system/atlas_v4/" class="md-tabs__link">
+        <a href="../../system/atlas_final/" class="md-tabs__link">
           
   
   
@@ -692,14 +700,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../system/atlas_v4/" class="md-nav__link">
+      <a href="../../system/atlas_final/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    📍 Інженерний Атлас (SCADA)
+    🛡️ Defense Atlas (Interactive)
   
 
     
@@ -720,14 +728,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../system/map/core_map/" class="md-nav__link">
+      <a href="../../system/map/ATLAS_MASTER_INDEX/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    ⚙️ Ядро (Core)
+    🗺️ Реєстр Гіга-Паспортів (79 модулів)
   
 
     
@@ -748,70 +756,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../system/map/ml_map/" class="md-nav__link">
+      <a href="../../system/atlas_city/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    🧠 ШІ-Конвеєр (ML)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../system/map/ui_map/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    🎨 Інтерфейс (UI)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../system/map/services_map/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    🏭 Сервіси (Services)
+    🏙️ CodeCity: 3D-Атлас
   
 
     
@@ -2838,37 +2790,38 @@
 *   <strong>Нерівномірність споживання:</strong> виникнення критичних піків, що змушують тримати в резерві неекологічні потужності (вугільні ТЕС).
 *   <strong>Інформаційна розрізненість:</strong> дані про споживання часто залишаються "закритими" всередині окремих підрозділів, що унеможливлює комплексне планування.</p>
 <p>Історично розвиток міст проходив через кілька етапів: від Infrastructure City (фізична розбудова) та Digital City (оцифрування реєстрів) до сучасного Smart City 3.0, де використання систем штучного інтелекту та великих даних (Big Data) дозволяє здійснювати проактивне управління. В основі Smart City лежить розгалужена мережа взаємопов'язаних пристроїв — <strong>Інтернету речей (IoT)</strong>. </p>
-<pre class="mermaid"><code>graph TB
-    subgraph UI["Рівень представлення (Streamlit)"]
-        direction LR
-        A1["KPI Панель"]
-        A2["ML Прогноз"]
-        A3["ГІС Карта"]
-    end
-
-    subgraph CORE["Інтелектуальний шар"]
-        direction LR
-        B1["LSTM v3\npredict_v2.py"]
-        B3["Фізичний двигун\nphysics.py"]
-        B4["Векторизатор\n(Sliding Window)"]
-    end
-
-    subgraph DATA["Шар даних (OLAP)"]
-        direction LR
-        C1[("PostgreSQL\nNeon Cloud")]
-        C3["Цифровий двійник\nСимуляція сенсорів"]
-    end
-
-    subgraph DEVOPS["DevOps Шар"]
-        direction LR
-        D1["GitHub Actions\nCI/CD"]
-        D2["Docker\nКонтейнер"]
-    end
-
-    UI --&gt;|"Запит даних"| CORE
-    CORE --&gt;|"SQL SELECT"| DATA
-    C3 --&gt;|"SQL INSERT телеметрія"| C1
-    B1 --&gt;|"Результати ШІ"| UI</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>graph TB
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    subgraph UI[&quot;Рівень представлення (Streamlit)&quot;]
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>        direction LR
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>        A1[&quot;KPI Панель&quot;]
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        A2[&quot;ML Прогноз&quot;]
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        A3[&quot;ГІС Карта&quot;]
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    end
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    subgraph CORE[&quot;Інтелектуальний шар&quot;]
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        direction LR
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        B1[&quot;LSTM v3\npredict_v2.py&quot;]
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        B3[&quot;Фізичний двигун\nphysics.py&quot;]
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        B4[&quot;Векторизатор\n(Sliding Window)&quot;]
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    end
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    subgraph DATA[&quot;Шар даних (OLAP)&quot;]
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        direction LR
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>        C1[(&quot;PostgreSQL\nNeon Cloud&quot;)]
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>        C3[&quot;Цифровий двійник\nСимуляція сенсорів&quot;]
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    end
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    subgraph DEVOPS[&quot;DevOps Шар&quot;]
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>        direction LR
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>        D1[&quot;GitHub Actions\nCI/CD&quot;]
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>        D2[&quot;Docker\nКонтейнер&quot;]
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    end
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    UI --&gt;|&quot;Запит даних&quot;| CORE
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>    CORE --&gt;|&quot;SQL SELECT&quot;| DATA
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>    C3 --&gt;|&quot;SQL INSERT телеметрія&quot;| C1
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>    B1 --&gt;|&quot;Результати ШІ&quot;| UI
+</code></pre></div>
 <p><img alt="Рис. 1.1. Типова багаторівнева архітектура IoT-платформи Smart City" src="../../images/diag_architecture.png" />
 <em>Рис. 1.1. Типова багаторівнева архітектура IoT-платформи Smart City</em></p>
 <p>Процеси збору та аналізу даних у реальному часі дозволяють трансформувати міське середовище у динамічну екосистему, здатну до самодіагностики та самовідновлення. Світовий досвід (Сінгапур, Барселона), а також локальні дослідження кліматичних параметрів міста Києва [39], підтверджують, що саме цифровізація дозволяє економити до 30% енергоресурсів на рівні муніципалітету.</p>
@@ -2878,22 +2831,23 @@
 1.  <strong>Advanced Metering Infrastructure (AMI):</strong> системи інтелектуального обліку, що дозволяють отримувати дані про споживання з інтервалом у 15-60 хвилин.
 2.  <strong>Phasor Measurement Units (PMU):</strong> пристрої, що фіксують фазові параметри мережі з високою частотою для запобігання блекаутам.
 3.  <strong>Energy Storage Systems (ESS):</strong> системи накопичення енергії, що дозволяють згладжувати графік навантаження.</p>
-<pre class="mermaid"><code>graph TD
-    subgraph Local ["💻 LOCAL ENVIRONMENT"]
-        DG["data_generator.py\n(Симулятор)"]
-    end
-
-    subgraph Cloud ["☁️ CLOUD INFRASTRUCTURE (Render)"]
-        DB[(PostgreSQL\nOLAP Database)]
-        Vect["vectorizer.py"]
-        Pred["predict_v2.py"]
-        UI["main.py\n(Dashboard)"]
-    end
-
-    DG ==&gt;|"Telemetry Push"| DB
-    DB &lt;--&gt;|"Data Exchange"| Vect
-    Vect --&gt; Pred
-    Pred --&gt; UI</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>graph TD
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    subgraph Local [&quot;💻 LOCAL ENVIRONMENT&quot;]
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>        DG[&quot;data_generator.py\n(Симулятор)&quot;]
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    end
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    subgraph Cloud [&quot;☁️ CLOUD INFRASTRUCTURE (Render)&quot;]
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        DB[(PostgreSQL\nOLAP Database)]
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        Vect[&quot;vectorizer.py&quot;]
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>        Pred[&quot;predict_v2.py&quot;]
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>        UI[&quot;main.py\n(Dashboard)&quot;]
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    end
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    DG ==&gt;|&quot;Telemetry Push&quot;| DB
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    DB &lt;--&gt;|&quot;Data Exchange&quot;| Vect
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    Vect --&gt; Pred
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>    Pred --&gt; UI
+</code></pre></div>
 <p><img alt="Рис. 1.2. Концептуальна схема Smart Grid та інфраструктури передачі даних" src="../../images/diag_infra_cloud.png" />
 <em>Рис. 1.2. Концептуальна схема Smart Grid та інфраструктури передачі даних</em></p>
 <p>Чим відрізняються розумні мережі від традиційних? Розумні мережі відрізняються від традиційних наявністю двосторонньої комунікації та здатністю до саморегуляції. Однією з найбільш гострих проблем є так звана <strong>«крива качки» (Duck Curve)</strong> — феномен різкого падіння чистого навантаження вдень та його стрімкого зростання ввечері, що вимагає надзвичайно точного прогнозування.</p>
@@ -2907,7 +2861,7 @@
 <h3 id="12">1.2. Математичний апарат глибокого навчання для часових рядів</h3>
 <h4 id="121">1.2.1. Природа енергетичних часових рядів</h4>
 <p>Математичний опис навантаження як часового ряду базується на декомпозиції його складових [3, 5, 13, 32]:
-$<span class="arithmatex">\(y(t) = T(t) + S_d(t) + S_w(t) + C(t) + \epsilon(t) \quad (1.1)\)</span>$
+<span class="arithmatex">\(<span class="arithmatex">\(y(t) = T(t) + S_d(t) + S_w(t) + C(t) + \epsilon(t) \quad (1.1)\)</span>\)</span>
 де <span class="arithmatex">\(y(t)\)</span> — обсяг навантаження; <span class="arithmatex">\(T(t)\)</span> — тренд; <span class="arithmatex">\(S(t)\)</span> — сезонність; <span class="arithmatex">\(\epsilon(t)\)</span> — шум [2, 13]. У контексті Smart Grid завдання інтелектуального прогнозування полягає у тому, щоб розпізнати ці закономірності серед "шумних" даних телеметрії.</p>
 <h4 id="122-lstm">1.2.2. Обґрунтування вибору архітектури LSTM та її математичний апарат</h4>
 <p>На відміну від традиційних статистичних методів (ARIMA), які вимагають стаціонарності ряду, енергоспоживання у Smart City характеризується нелінійністю та мультисезонністю (добові піки, вихідні дні, вплив погоди) [4, 9, 13]. Для вирішення цієї проблеми обрано рекурентні нейронні мережі з архітектурою LSTM (Long Short-Term Memory) [11].</p>
@@ -2915,22 +2869,22 @@ $<span class="arithmatex">\(y(t) = T(t) + S_d(t) + S_w(t) + C(t) + \epsilon(t) \
 <ol>
 <li>
 <p><strong>Вентиль забування (Forget Gate):</strong> Вирішує, яку частину довгострокової пам'яті слід відкинути. Наприклад, якщо після вихідних починається робочий понеділок, мережа "забуває" патерн вихідного дня:
-    $<span class="arithmatex">\(f_t = \sigma(W_f \cdot [h_{t-1}, x_t] + b_f)\)</span>$
+    <span class="arithmatex">\(<span class="arithmatex">\(f_t = \sigma(W_f \cdot [h_{t-1}, x_t] + b_f)\)</span>\)</span>
     де <span class="arithmatex">\(x_t\)</span> — поточний вектор ознак (навантаження, температура, час доби).</p>
 </li>
 <li>
 <p><strong>Вентиль входу (Input Gate):</strong> Визначає, які нові дані (наприклад, раптове похолодання) є достатньо важливими для оновлення поточного стану:
-    $<span class="arithmatex">\(i_t = \sigma(W_i \cdot [h_{t-1}, x_t] + b_i)\)</span>$
-    $<span class="arithmatex">\(\tilde{C}_t = \tanh(W_C \cdot [h_{t-1}, x_t] + b_C)\)</span>$</p>
+    <span class="arithmatex">\(<span class="arithmatex">\(i_t = \sigma(W_i \cdot [h_{t-1}, x_t] + b_i)\)</span>\)</span>
+    <span class="arithmatex">\(<span class="arithmatex">\(\tilde{C}_t = \tanh(W_C \cdot [h_{t-1}, x_t] + b_C)\)</span>\)</span></p>
 </li>
 <li>
 <p><strong>Оновлення стану комірки (Cell State):</strong> Обчислення загального контексту мережі (чи знаходимося ми зараз у ранковому або вечірньому піку споживання):
-    $<span class="arithmatex">\(C_t = f_t * C_{t-1} + i_t * \tilde{C}_t\)</span>$</p>
+    <span class="arithmatex">\(<span class="arithmatex">\(C_t = f_t * C_{t-1} + i_t * \tilde{C}_t\)</span>\)</span></p>
 </li>
 <li>
 <p><strong>Вентиль виходу (Output Gate):</strong> Формує фінальне значення прогнозу навантаження на наступний період, базуючись на оновленому контексті:
-    $<span class="arithmatex">\(o_t = \sigma(W_o \cdot [h_{t-1}, x_t] + b_o)\)</span>$
-    $<span class="arithmatex">\(h_t = o_t * \tanh(C_t)\)</span>$</p>
+    <span class="arithmatex">\(<span class="arithmatex">\(o_t = \sigma(W_o \cdot [h_{t-1}, x_t] + b_o)\)</span>\)</span>
+    <span class="arithmatex">\(<span class="arithmatex">\(h_t = o_t * \tanh(C_t)\)</span>\)</span></p>
 </li>
 </ol>
 <p>У контексті енергетики така здатність до математичного виявлення складних часових залежностей дозволяє моделі прогнозувати навантаження без ручного створення сотень статистичних ознак [16, 29, 10].</p>
@@ -2943,20 +2897,21 @@ $$
 <p>У проєкті використано архітектуру <strong>Hybrid OLAP</strong> на базі Neon (PostgreSQL). Це дозволяє поєднувати надійність реляційних БД з високою швидкістю аналітичних запитів (Autoscaling), що критично для систем реального часу.</p>
 <h3 id="14">1.4. Порівняльний аналіз сучасних методів прогнозування</h3>
 <h4 id="141">1.4.1. Порівняння архітектурних рішень</h4>
-<p><pre class="mermaid"><code>graph LR
-    subgraph RNN["Simple RNN Cell"]
-        R_in["x(t)"] --&gt; R_tanh["tanh layer"]
-        R_prev["h(t-1)"] --&gt; R_tanh
-        R_tanh --&gt; R_out["h(t)"]
-    end
-
-    subgraph LSTM["LSTM Cell (Gated)"]
-        L_in["x(t)"] --&gt; L_gates["Gates: Forget, Input, Output"]
-        L_prev_h["h(t-1)"] --&gt; L_gates
-        L_prev_c["C(t-1)"] --&gt; L_state["Cell State (Memory)"]
-        L_gates --&gt; L_state
-        L_state --&gt; L_out_h["h(t)"]
-    end</code></pre>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>graph LR
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    subgraph RNN[&quot;Simple RNN Cell&quot;]
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>        R_in[&quot;x(t)&quot;] --&gt; R_tanh[&quot;tanh layer&quot;]
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>        R_prev[&quot;h(t-1)&quot;] --&gt; R_tanh
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>        R_tanh --&gt; R_out[&quot;h(t)&quot;]
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    end
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    subgraph LSTM[&quot;LSTM Cell (Gated)&quot;]
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>        L_in[&quot;x(t)&quot;] --&gt; L_gates[&quot;Gates: Forget, Input, Output&quot;]
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>        L_prev_h[&quot;h(t-1)&quot;] --&gt; L_gates
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>        L_prev_c[&quot;C(t-1)&quot;] --&gt; L_state[&quot;Cell State (Memory)&quot;]
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>        L_gates --&gt; L_state
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>        L_state --&gt; L_out_h[&quot;h(t)&quot;]
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>    end
+</code></pre></div>
 <em>Схема 1.1. Порівняння архітектур RNN та LSTM (Mermaid-версія)</em></p>
 <p><img alt="Рис. 1.3. Порівняльна характеристика архітектур RNN та LSTM" src="../../images/diag_lstm_compare.png" />
 <em>Рис. 1.3. Порівняльна характеристика архітектур RNN та LSTM (для Ворда)</em></p>
@@ -3071,9 +3026,11 @@ $$
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/polyfill/3.111.0/polyfill.min.js?features=es6"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
       
     
   </body>

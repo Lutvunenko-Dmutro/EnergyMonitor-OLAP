@@ -14,7 +14,7 @@
         <link rel="prev" href="../system/database/">
       
       
-        <link rel="next" href="../system/atlas_v4/">
+        <link rel="next" href="../system/atlas_final/">
       
       
         
@@ -52,6 +52,14 @@
     
     
       <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../atlas/theme.css">
+    
+      <link rel="stylesheet" href="../atlas/components.css">
+    
+      <link rel="stylesheet" href="../atlas/mermaid.css">
+    
+      <link rel="stylesheet" href="../atlas/blueprint.css">
     
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -238,7 +246,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../system/atlas_v4/" class="md-tabs__link">
+        <a href="../system/atlas_final/" class="md-tabs__link">
           
   
   
@@ -927,14 +935,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../system/atlas_v4/" class="md-nav__link">
+      <a href="../system/atlas_final/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    📍 Інженерний Атлас (SCADA)
+    🛡️ Defense Atlas (Interactive)
   
 
     
@@ -955,14 +963,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../system/map/core_map/" class="md-nav__link">
+      <a href="../system/map/ATLAS_MASTER_INDEX/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    ⚙️ Ядро (Core)
+    🗺️ Реєстр Гіга-Паспортів (79 модулів)
   
 
     
@@ -983,70 +991,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../system/map/ml_map/" class="md-nav__link">
+      <a href="../system/atlas_city/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    🧠 ШІ-Конвеєр (ML)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../system/map/ui_map/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    🎨 Інтерфейс (UI)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../system/map/services_map/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    🏭 Сервіси (Services)
+    🏙️ CodeCity: 3D-Атлас
   
 
     
@@ -2953,9 +2905,9 @@
 <h3 id="smart-stitching-exponential-decay">📈 Smart Stitching (Exponential Decay)</h3>
 <p>При переході від останнього відомого факту <span class="arithmatex">\(y_{t}\)</span> до першого кроку прогнозу <span class="arithmatex">\(\hat{y}_{t+1}\)</span> часто виникає розрив (step-jump) через похибку моделі. Для візуальної та логічної цілісності використовується експоненціальне згладжування помилки:</p>
 <p><strong>Помилка початкового кроку</strong>:
-$<span class="arithmatex">\(\delta = y_t - \hat{y}_t\)</span>$</p>
+<span class="arithmatex">\(<span class="arithmatex">\(\delta = y_t - \hat{y}_t\)</span>\)</span></p>
 <p><strong>Корекція для k-го кроку прогнозу</strong>:
-$<span class="arithmatex">\(\hat{y}_{t+k}^{corr} = \hat{y}_{t+k} + \delta \cdot \lambda^k\)</span>$</p>
+<span class="arithmatex">\(<span class="arithmatex">\(\hat{y}_{t+k}^{corr} = \hat{y}_{t+k} + \delta \cdot \lambda^k\)</span>\)</span></p>
 <p>Де <span class="arithmatex">\(\lambda\)</span> — коефіцієнт затухання (<span class="arithmatex">\(\approx 0.85\)</span>). Це забезпечує плавний старт прогнозної кривої без втрати точності моделі на довгій дистанції.</p>
 <hr />
 <h2 id="metrics_enginepy">metrics_engine.py</h2>
@@ -3034,7 +2986,7 @@ $<span class="arithmatex">\(\hat{y}_{t+k}^{corr} = \hat{y}_{t+k} + \delta \cdot 
 <a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># Результат: models/substation_model_v3_final.keras + scaler_v3_final.pkl</span>
 </code></pre></div>
 <p>Функція втрат — <strong>Huber Loss</strong> (стійка до викидів у телеметрії):
-$<span class="arithmatex">\(\mathcal{L}_{\delta}(y, \hat{y}) = \begin{cases} \frac{1}{2}(y - \hat{y})^2, &amp; |y - \hat{y}| \leq \delta \\ \delta \cdot |y - \hat{y}| - \frac{1}{2}\delta^2, &amp; |y - \hat{y}| &gt; \delta \end{cases}\)</span>$</p>
+<span class="arithmatex">\(<span class="arithmatex">\(\mathcal{L}_{\delta}(y, \hat{y}) = \begin{cases} \frac{1}{2}(y - \hat{y})^2, &amp; |y - \hat{y}| \leq \delta \\ \delta \cdot |y - \hat{y}| - \frac{1}{2}\delta^2, &amp; |y - \hat{y}| &gt; \delta \end{cases}\)</span>\)</span></p>
 <p>Оптимізатор: <strong>Adam</strong> з Backpropagation Through Time (BPTT).</p>
 
 
@@ -3096,9 +3048,11 @@ $<span class="arithmatex">\(\mathcal{L}_{\delta}(y, \hat{y}) = \begin{cases} \fr
     
       <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/polyfill/3.111.0/polyfill.min.js?features=es6"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
       
     
   </body>

@@ -53,6 +53,14 @@
     
       <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
     
+      <link rel="stylesheet" href="../../atlas/theme.css">
+    
+      <link rel="stylesheet" href="../../atlas/components.css">
+    
+      <link rel="stylesheet" href="../../atlas/mermaid.css">
+    
+      <link rel="stylesheet" href="../../atlas/blueprint.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -236,7 +244,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../system/atlas_v4/" class="md-tabs__link">
+        <a href="../../system/atlas_final/" class="md-tabs__link">
           
   
   
@@ -692,14 +700,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../system/atlas_v4/" class="md-nav__link">
+      <a href="../../system/atlas_final/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    📍 Інженерний Атлас (SCADA)
+    🛡️ Defense Atlas (Interactive)
   
 
     
@@ -720,14 +728,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../system/map/core_map/" class="md-nav__link">
+      <a href="../../system/map/ATLAS_MASTER_INDEX/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    ⚙️ Ядро (Core)
+    🗺️ Реєстр Гіга-Паспортів (79 модулів)
   
 
     
@@ -748,70 +756,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../system/map/ml_map/" class="md-nav__link">
+      <a href="../../system/atlas_city/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    🧠 ШІ-Конвеєр (ML)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../system/map/ui_map/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    🎨 Інтерфейс (UI)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../system/map/services_map/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    🏭 Сервіси (Services)
+    🏙️ CodeCity: 3D-Атлас
   
 
     
@@ -2953,56 +2905,58 @@ $$
 <hr />
 <h2 id="27-">2.7. Високорівневі моделі системи (Моделювання бізнес-процесів)</h2>
 <p>Для документування вимог та опису взаємодії акторів із системою доцільно використати методологію UML (Unified Modeling Language). Основним користувачем системи є <strong>Диспетчер-аналітик</strong>, який взаємодіє з дашбордами для прийняття управлінських рішень.</p>
-<p><pre class="mermaid"><code>flowchart LR
-    User(["👨‍💻 Диспетчер"])
-    System(["⚙️ Digital Twin (Система)"])
-
-    subgraph Monitoring ["Моніторинг мережі"]
-        direction TB
-        UC1(["Перегляд карти підстанцій"])
-        UC2(["Аналіз KPI та Health Score"])
-        UC3(["Моніторинг температури/втрат"])
-    end
-
-    subgraph AI ["AI Прогнозування"]
-        direction TB
-        UC4(["Генерація LSTM прогнозу"])
-        UC5(["Аналіз довірчого інтервалу"])
-        UC6(["Панель ML Метрик"])
-    end
-
-    User --&gt; UC1
-    User --&gt; UC2
-    User --&gt; UC4
-    User --&gt; UC6
-
-    System --&gt; UC3
-    UC4 -. "&lt;&lt;include&gt;&gt;" .-&gt; UC5</code></pre>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>flowchart LR
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    User([&quot;👨‍💻 Диспетчер&quot;])
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    System([&quot;⚙️ Digital Twin (Система)&quot;])
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    subgraph Monitoring [&quot;Моніторинг мережі&quot;]
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>        direction TB
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>        UC1([&quot;Перегляд карти підстанцій&quot;])
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>        UC2([&quot;Аналіз KPI та Health Score&quot;])
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>        UC3([&quot;Моніторинг температури/втрат&quot;])
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    end
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    subgraph AI [&quot;AI Прогнозування&quot;]
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>        direction TB
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>        UC4([&quot;Генерація LSTM прогнозу&quot;])
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>        UC5([&quot;Аналіз довірчого інтервалу&quot;])
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>        UC6([&quot;Панель ML Метрик&quot;])
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>    end
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>    User --&gt; UC1
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>    User --&gt; UC2
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>    User --&gt; UC4
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>    User --&gt; UC6
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>    System --&gt; UC3
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>    UC4 -. &quot;&lt;&lt;include&gt;&gt;&quot; .-&gt; UC5
+</code></pre></div>
 <img alt="Рис. 2.1. Діаграма прецедентів системи EnergyMonitor" src="../../images/diag_use_case.png" />
 <em>Рис. 2.1. Діаграма прецедентів системи EnergyMonitor</em></p>
 <p>Діаграма прецедентів (Рис. 2.1) описує межі системи та основні ролі. Головний актор — Диспетчер — має доступ до чотирьох функціональних підсистем: моніторингу в реальному часі, AI-прогнозування, фінансового аудиту та системного адміністрування. Використання такої моделі дозволяє чітко розмежувати відповідальність компонентів на етапі проєктування інтерфейсу (Розділ 3).</p>
-<pre class="mermaid"><code>stateDiagram-v2
-    [*] --&gt; ЗапитАктивовано: Користувач натискає "Generate Forecast"
-    ЗапитАктивовано --&gt; ОтриманняІсторії: Streamlit викликає ML Engine
-    ОтриманняІсторії --&gt; Трансформація: SQL SELECT (Останні 48 годин)
-
-    state Трансформація {
-        [*] --&gt; Нормалізація
-        Нормалізація --&gt; ВекторизаціяЧасу: Вставка Sin/Cos гармонік
-        ВекторизаціяЧасу --&gt; Масштабування: MinMaxScaler
-        Масштабування --&gt; [*]
-    }
-
-    Трансформація --&gt; Інференс: Передача тензора до LSTM
-    Інференс --&gt; Validation
-
-    state Validation &lt;&lt;choice&gt;&gt;
-    Validation --&gt; Денормалізація: Прогноз коректний (Safe)
-    Validation --&gt; Fallback: Виявлено аномалію (Error)
-    Fallback --&gt; Денормалізація: Активація Seasonal Naive
-
-    Денормалізація --&gt; Візуалізація: Побудова Plotly графіка
-    Візуалізація --&gt; [*]: Завершення бізнес-процесу</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>stateDiagram-v2
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    [*] --&gt; ЗапитАктивовано: Користувач натискає &quot;Generate Forecast&quot;
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    ЗапитАктивовано --&gt; ОтриманняІсторії: Streamlit викликає ML Engine
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    ОтриманняІсторії --&gt; Трансформація: SQL SELECT (Останні 48 годин)
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    state Трансформація {
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>        [*] --&gt; Нормалізація
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>        Нормалізація --&gt; ВекторизаціяЧасу: Вставка Sin/Cos гармонік
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>        ВекторизаціяЧасу --&gt; Масштабування: MinMaxScaler
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>        Масштабування --&gt; [*]
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    }
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>    Трансформація --&gt; Інференс: Передача тензора до LSTM
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>    Інференс --&gt; Validation
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>    state Validation &lt;&lt;choice&gt;&gt;
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>    Validation --&gt; Денормалізація: Прогноз коректний (Safe)
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>    Validation --&gt; Fallback: Виявлено аномалію (Error)
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>    Fallback --&gt; Денормалізація: Активація Seasonal Naive
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>    Денормалізація --&gt; Візуалізація: Побудова Plotly графіка
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>    Візуалізація --&gt; [*]: Завершення бізнес-процесу
+</code></pre></div>
 <p><img alt="Рис. 2.2а. Процес підготовки та трансформації даних" src="../../images/diag_sequence_1.png" />
 <em>Рис. 2.2а. Процес підготовки та трансформації даних</em></p>
 <p><img alt="Рис. 2.2б. Процес інференсу та валідації прогнозу" src="../../images/diag_sequence_2.png" />
@@ -3012,20 +2966,21 @@ $$
 <hr />
 <h2 id="28">2.8. Етапи проєктування та черговість впровадження</h2>
 <p>Процес розробки платформи відбувається за ітеративною моделлю життєвого циклу ПЗ (Agile-like). Наочно черговість виконання етапів представлена на діаграмі Ганта (Рис. 2.3).</p>
-<pre class="mermaid"><code>gantt
-    title Календарний графік розробки EnergyMonitor-OLAP
-    dateFormat  YYYY-MM-DD
-    section Аналіз та Проектування
-    Збір вимог та аналіз предметної області :active, des1, 2026-04-01, 10d
-    Математичне моделювання (LSTM) : des2, after des1, 7d
-    section Бекенд та БД
-    Проектування схеми БД у Neon Cloud : des3, after des2, 5d
-    Розробка API та генератора телеметрії : des4, after des3, 10d
-    section AI Ядро
-    Навчання та валідація моделі v3 : des5, after des4, 14d
-    section Фронтенд та Деплой
-    Розробка SPA на Streamlit : des6, after des5, 7d
-    Тестування та CI/CD деплой на Render : des7, after des6, 5d</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>gantt
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    title Календарний графік розробки EnergyMonitor-OLAP
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    dateFormat  YYYY-MM-DD
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    section Аналіз та Проектування
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    Збір вимог та аналіз предметної області :active, des1, 2026-04-01, 10d
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    Математичне моделювання (LSTM) : des2, after des1, 7d
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    section Бекенд та БД
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    Проектування схеми БД у Neon Cloud : des3, after des2, 5d
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    Розробка API та генератора телеметрії : des4, after des3, 10d
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    section AI Ядро
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>    Навчання та валідація моделі v3 : des5, after des4, 14d
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>    section Фронтенд та Деплой
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>    Розробка SPA на Streamlit : des6, after des5, 7d
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>    Тестування та CI/CD деплой на Render : des7, after des6, 5d
+</code></pre></div>
 <p><img alt="Рис. 2.3. Календарний графік етапів розробки системи" src="../../images/diag_gantt_schedule.png" />
 <em>Рис. 2.3. Календарний графік етапів розробки системи</em></p>
 <p>Опис етапів:
@@ -3102,9 +3057,11 @@ $$
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/polyfill/3.111.0/polyfill.min.js?features=es6"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
       
     
   </body>
