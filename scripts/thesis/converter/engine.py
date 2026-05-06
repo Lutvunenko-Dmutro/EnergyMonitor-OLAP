@@ -38,6 +38,8 @@ def run_conversion(input_md, output_docx, include_appendix=True):
 
     doc = Document()
     section = doc.sections[0]
+    section.page_height = Cm(29.7)
+    section.page_width = Cm(21.0)
     section.left_margin, section.right_margin = Cm(3.0), Cm(1.0)
     section.top_margin, section.bottom_margin = Cm(2.0), Cm(2.0)
 
@@ -186,3 +188,10 @@ def run_conversion(input_md, output_docx, include_appendix=True):
     print(f"✅ Документ збережено: {output_docx}")
     
     convert_formulas_to_word_objects(output_docx)
+
+if __name__ == "__main__":
+    import sys
+    if len(sys.argv) < 3:
+        print("Usage: python engine.py input.md output.docx")
+    else:
+        run_conversion(sys.argv[1], sys.argv[2])

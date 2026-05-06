@@ -78,14 +78,9 @@ def add_page_numbers(doc):
     section = doc.sections[0]
     section.different_first_page_header_footer = True
     
-    # Header paragraphs for the title page (first page) should be empty
-    first_header = section.first_page_header
-    for p in first_header.paragraphs:
-        p.clear()
-
-    # Normal header for other pages
-    header  = section.header
-    p = header.paragraphs[0]
+    # Normal footer for other pages (Page numbering at bottom right)
+    footer = section.footer
+    p = footer.paragraphs[0]
     p.clear()
     p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
     run = p.add_run()
