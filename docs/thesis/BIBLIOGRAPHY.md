@@ -41,4 +41,4 @@
 39. Makoveichuk O., Golubenko O., Kukhtyk S., Antonenko A., Bereznychenko V. Temperature Forecasting with LSTM: A Case Study on Kyiv Weather Data. CEUR Workshop Proceedings. 2025.
 
 ---
-[Назад до Висновків](THESIS_FINAL_CONCLUSIONS.md) | [Далі: ДОДАТКИ](APPENDICES.md)
+[Назад до Висновків](THESIS_FINAL_CONCLUSIONS.md)
