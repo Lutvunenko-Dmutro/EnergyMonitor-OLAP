@@ -19,15 +19,39 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 from latex2mathml.converter import convert as latex_to_mathml
 from .styles import set_run_font
 
-def add_formula(doc, latex_text):
+from docx.enum.text import WD_TAB_ALIGNMENT
+
+def add_formula(doc, latex_text, chapter_num, formula_num, has_where=False):
     latex = re.sub(r'^\$\$?|\$\$?$', '', latex_text.strip()).strip()
+    # Видаляємо ручну нумерацію, якщо вона вже була (щоб уникнути дублювання)
+    latex = re.sub(r'\\quad\s*\(\d+\.\d+\)$', '', latex).strip()
+    latex = re.sub(r'\(\d+\.\d+\)$', '', latex).strip()
     if not latex: return
+    
+    # Якщо наступний рядок починається з "де", додаємо кому до формули
+    if has_where and not latex.endswith(','):
+        latex += ','
+    
+    # Enter перед формулою
+    doc.add_paragraph().add_run("\u00A0")
+    
     p = doc.add_paragraph()
-    run = p.add_run(f"⇲{latex}⇱")
+    
+    # Налаштування табуляції: центр (8.5 см) та правий край (17.0 см)
+    tab_stops = p.paragraph_format.tab_stops
+    tab_stops.add_tab_stop(Cm(8.5), WD_TAB_ALIGNMENT.CENTER)
+    tab_stops.add_tab_stop(Cm(17.0), WD_TAB_ALIGNMENT.RIGHT)
+    
+    # Формат: <Tab> Формула <Tab> (Розділ.Номер)
+    run = p.add_run(f"\t⇲{latex}⇱\t({chapter_num}.{formula_num})")
     set_run_font(run, 14)
-    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    p.paragraph_format.space_before, p.paragraph_format.space_after = Pt(6), Pt(6)
+    
+    p.paragraph_format.space_before = Pt(0)
+    p.paragraph_format.space_after = Pt(0)
     p.paragraph_format.first_line_indent = Cm(0)
+    
+    # Enter після формули
+    doc.add_paragraph().add_run("\u00A0")
 
 def paste_mathml(text):
     for _ in range(10):
@@ -40,17 +64,30 @@ def paste_mathml(text):
         except Exception: time.sleep(0.1)
     raise Exception("Clipboard Locked!")
 
-def convert_formulas_to_word_objects(docx_path):
-    print("Запуск COM-автоматизації для перетворення 2D формул...")
-    word = win32.Dispatch("Word.Application")
+def finalize_thesis_document(docx_path):
+    print("Запуск фінальної оптимізації документа (формули + зміст)...")
+    
+    import subprocess
+    subprocess.run(["taskkill", "/F", "/IM", "WINWORD.EXE", "/T"], capture_output=True)
+    time.sleep(1)
+    
+    from win32com.client import gencache
+    try: word = gencache.EnsureDispatch("Word.Application")
+    except: word = win32.Dispatch("Word.Application")
+        
     word.Visible = False
+    word.DisplayAlerts = 0
+    
     try:
-        doc_word = word.Documents.Open(os.path.abspath(docx_path))
+        abs_path = os.path.abspath(docx_path)
+        doc_word = word.Documents.Open(abs_path)
+        
+        # 1. ПЕРЕТВОРЕННЯ ФОРМУЛ
         word.Selection.HomeKey(Unit=6)
         find = word.Selection.Find
         find.ClearFormatting()
-        find.MatchWildcards = False
         math_count = 0
+        
         while True:
             find.Text = "⇲"
             if not find.Execute(): break
@@ -67,18 +104,17 @@ def convert_formulas_to_word_objects(docx_path):
                 time.sleep(0.05)
                 rng.Paste()
                 math_count += 1
-            except Exception as e:
-                print(f"Помилка [{formula}]: {e}")
-                rng.Text = f"[{formula}]"
+            except: pass
             word.Selection.Collapse(Direction=0)
-        # Оновлення Змісту та всіх полів (TOC update)
-        print("Оновлення Змісту та номерів сторінок...")
+        
+        # 2. ОНОВЛЕННЯ ЗМІСТУ ТА ПОЛІВ
+        print(f"✅ Формули ({math_count}) оброблено. Оновлення Змісту...")
+        doc_word.Fields.Update()
         for toc in doc_word.TablesOfContents:
             toc.Update()
-        doc_word.Fields.Update()
         
         doc_word.Save()
-        print(f"✅ Успішно відформатовано {math_count} формул та оновлено Зміст!")
+        print("✅ Документ повністю оптимізовано за один прохід.")
     finally:
         try:
             doc_word.Close()

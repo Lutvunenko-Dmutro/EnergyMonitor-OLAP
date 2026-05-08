@@ -11,17 +11,20 @@
 Гарантує професійний візуальний вигляд пояснювальної записки без ручного редагування.
 """
 import re
-from docx.shared import Pt, Cm
+from docx.shared import Pt, Cm, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 
-def set_run_font(run, size=14, bold=False, italic=False, mono=False):
+def set_run_font(run, size=14, bold=False, italic=False, mono=False, color_rgb=None):
     fname = "Courier New" if mono else "Times New Roman"
     run.font.name  = fname
     run.font.size  = Pt(size)
     run.font.bold  = bold
     run.font.italic = italic
+    if color_rgb:
+        run.font.color.rgb = color_rgb
+    
     rPr = run._r.get_or_add_rPr()
     rFonts = OxmlElement("w:rFonts")
     rFonts.set(qn("w:ascii"), fname)
@@ -29,14 +32,18 @@ def set_run_font(run, size=14, bold=False, italic=False, mono=False):
     rPr.insert(0, rFonts)
 
 def add_formatted_run(paragraph, text, size=14, bold_base=False, italic_base=False, mono=False):
-    """Парсить текст з підтримкою **bold**, *italic* та <u>underline</u> і додає run-и в параграф."""
+    """Парсить текст з підтримкою **bold**, *italic*, <u>underline</u> та ==highlight==."""
     text = text.replace("<br>", "\n").replace("<BR>", "\n")
-    pattern = r'(\*\*|\*|<u>|</u>)'
+    pattern = r'(\*\*|\*|<u>|</u>|==)'
     parts = re.split(pattern, text)
     curr_bold = bold_base
     curr_italic = italic_base
     curr_under = False
+    curr_highlight = False
     for part in parts:
+        if part == "==":
+            curr_highlight = not curr_highlight
+            continue
         if part == "**":
             curr_bold = not curr_bold
             continue
@@ -51,8 +58,11 @@ def add_formatted_run(paragraph, text, size=14, bold_base=False, italic_base=Fal
             continue
         if part:
             run = paragraph.add_run(part)
-            set_run_font(run, size, bold=curr_bold, italic=curr_italic, mono=mono)
+            set_run_font(run, size, bold=curr_bold, italic=curr_italic, mono=mono, color_rgb=RGBColor(0,0,0))
             run.underline = curr_under
+            if curr_highlight:
+                from docx.enum.text import WD_COLOR_INDEX
+                run.font.highlight_color = WD_COLOR_INDEX.YELLOW
 
 def clean_inline(text):
     """Прибирає Markdown розмітку, залишає формули з мітками."""
@@ -76,6 +86,10 @@ def para_std(p, indent=True):
 
 def add_page_numbers(doc):
     section = doc.sections[0]
+    # Вимога керівника: формат А4
+    section.page_height = Cm(29.7)
+    section.page_width = Cm(21.0)
+    
     section.different_first_page_header_footer = True
     
     # Normal footer for other pages (Page numbering at bottom right)

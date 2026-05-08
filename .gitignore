@@ -41,3 +41,18 @@ Thumbs.db
 coverage.xml
 diagnostics_report.html
 junit/
+
+# Thesis Work
+scratch/
+docs/thesis/check_pages/
+docs/thesis/GIT_BACKUP_BEFORE_AI/
+docs/thesis/RESTORED_BACKUP/
+docs/thesis/FORMULA_TEST.docx
+docs/thesis/DIPLOMA_PLAN.docx
+docs/thesis/FINAL_DOC_CHECK.docx
+docs/thesis/THESIS_FINAL_LITVINENKO.docx
+docs/thesis/THESIS_FINAL_PERFECT.docx
+docs/thesis/THESIS_FULL_FINAL.docx
+docs/thesis/THESIS_FULL_FINAL_v2.docx
+*.docx
+!docs/thesis/Литвиненко_*.docx

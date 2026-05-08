@@ -12,15 +12,15 @@
 """
 import os
 import re
-from docx.shared import Pt, Cm
+from docx.shared import Pt, Cm, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from PIL import Image
 from .styles import set_run_font, para_std, clean_inline, add_formatted_run
 
 def clean_heading_dots(text):
-    # Прибирає крапку після номерів підрозділів (наприклад "1.1. Назва" -> "1.1 Назва")
-    # Але не чіпає "РОЗДІЛ 1." або інші випадки
-    return re.sub(r'^(\d+(\.\d+)+)\.\s+', r'\1 ', text)
+    # Вимога керівника: "1.1 Назва" -> "1.1. Назва" (крапка в кінці номера)
+    # Шукаємо номер на початку: цифри з крапками, за якими НЕ йде крапка
+    return re.sub(r'^(\d+(?:\.\d+)*)(?!\.)(\s+)', r'\1.\2', text)
 
 def should_be_in_toc(text, level=1):
     text_up = text.upper().strip()
@@ -53,31 +53,28 @@ def should_be_in_toc(text, level=1):
         
     return False
 
-def add_h1(doc, text):
+def add_h1(doc, text, force_no_break=False):
     text_up = text.upper().strip()
-    is_toc = should_be_in_toc(text, level=1)
-    if is_toc:
-        try: p = doc.add_paragraph(style='Heading 1')
-        except: p = doc.add_paragraph()
+    # ЗАВЖДИ ставимо стиль Heading 1, щоб працювали 4 галочки
+    try: p = doc.add_paragraph(style='Heading 1')
+    except: p = doc.add_paragraph()
+    
+    # Визначаємо, чи це головний розділ, який має починатися з нової сторінки
+    major_keywords = ["РОЗДІЛ", "ВСТУП", "ВИСНОВКИ", "ЛІТЕРАТУРА", "ДОДАТКИ", "РЕФЕРАТ", "СКОРОЧЕНЬ", "ЗМІСТ", "ЗАВДАННЯ", "СПИСОК"]
+    is_major = any(kw in text_up for kw in major_keywords)
+    
+    # Ставимо розрив сторінки ТІЛЬКИ для головних розділів і якщо не було force_no_break
+    if is_major and not force_no_break and len(text_up) < 100:
+        p.paragraph_format.page_break_before = True
     else:
-        p = doc.add_paragraph()
-        
-    # Прибираємо крапку після "РОЗДІЛ 1."
-    text = re.sub(r'^(РОЗДІЛ\s+\d+)\.', r'\1', text, flags=re.IGNORECASE)
+        p.paragraph_format.page_break_before = False
     
-    # Універсальний парзер зі стилем H1 (AllCaps + Bold)
+    # Вимога керівника: "РОЗДІЛ 1." (з крапкою)
+    text = re.sub(r'^(РОЗДІЛ\s+\d+)(?!\.)', r'\1.', text, flags=re.IGNORECASE)
+    
+    # Універсальний парзер зі стилем H1 (16pt, AllCaps, Bold)
+    # Всі параметри (bold, size, page break) тепер беруться автоматично зі стилю 'Heading 1'
     add_formatted_run(p, text.upper(), size=16, bold_base=True)
-    pf = p.paragraph_format
-    pf.alignment          = WD_ALIGN_PARAGRAPH.CENTER
-    pf.space_before       = Pt(12)
-    pf.space_after        = Pt(6)
-    pf.line_spacing       = 1.0 # Одинарний інтервал за п. 6.1
-    pf.first_line_indent  = Cm(0)
-    
-    # Розрив сторінки: тільки для головних вузлів. ВІДГУК/РЕЦЕНЗІЯ йдуть після ЗАКЛАД, тому їм не треба розрив.
-    break_keywords = ["РОЗДІЛ", "ЗАКЛАД", "ЗАВДАННЯ", "З А В Д А Н Н Я", "РЕФЕРАТ / ABSTRACT", "ВСТУП", "ВИСНОВКИ", "СПИСОК", "ДОДАТКИ"]
-    if is_toc or any(bk in text_up for bk in break_keywords):
-        pf.page_break_before = True
 
 def add_h2(doc, text):
     text = clean_heading_dots(text)
@@ -87,14 +84,11 @@ def add_h2(doc, text):
         except: p = doc.add_paragraph()
     else:
         p = doc.add_paragraph()
-    
-    # Налаштування згідно п. 6.1: по ширині, відступ 1.25 см
+
+    # Вимога керівника: H2 — жирний, по ширині, нова сторінка
     add_formatted_run(p, text, size=14, bold_base=True)
-    pf = p.paragraph_format
-    pf.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
-    pf.space_before = Pt(6); pf.space_after = Pt(6)
-    pf.line_spacing = 1.0
-    pf.first_line_indent = Cm(1.25)
+    # Параметри успадковуються від стилю, але ми залишаємо вирівнювання по ширині
+    p.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
 
 def add_h3(doc, text):
     text = clean_heading_dots(text)
@@ -104,34 +98,49 @@ def add_h3(doc, text):
         except: p = doc.add_paragraph()
     else:
         p = doc.add_paragraph()
-    
-    # Налаштування згідно п. 6.1: по ширині, відступ 1.25 см
+
+    # Вимога керівника: H3 — без курсиву, жирний, 14pt
     add_formatted_run(p, text, size=14, bold_base=True)
     pf = p.paragraph_format
     pf.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
-    pf.space_before = Pt(6); pf.space_after = Pt(6)
-    pf.line_spacing = 1.0
+    pf.space_before = Pt(6)
+    pf.space_after = Pt(6)
     pf.first_line_indent = Cm(1.25)
+    pf.keep_with_next = True
+    pf.keep_together = True
+    pf.widow_control = True
 
 def add_h4(doc, text):
+    # Вимога керівника: без курсиву
     text = clean_heading_dots(text)
     p = doc.add_paragraph()
-    add_formatted_run(p, text, size=14, italic_base=True)
+    add_formatted_run(p, text, size=14, bold_base=True)
     pf = p.paragraph_format
     pf.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
-    pf.space_before = Pt(2); pf.space_after = Pt(2)
-    pf.line_spacing = Pt(18)
+    pf.space_before = Pt(2)
+    pf.space_after = Pt(2)
     pf.first_line_indent = Cm(1.25)
+    pf.keep_with_next = True
+    pf.keep_together = True
+    pf.widow_control = True
 
-def add_body(doc, text):
+def add_body(doc, text, indent=True):
     if not text.strip(): return
     p = doc.add_paragraph()
+    # Вимога керівника: 14pt TNR, 1.5 інтервал, відступ 1.25, без зайвих відступів після
     add_formatted_run(p, text, size=14)
     pf = p.paragraph_format
     pf.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
-    pf.space_before = Pt(0); pf.space_after = Pt(4)
-    pf.line_spacing = 1.5 # Міжрядковий інтервал 1.5
-    pf.first_line_indent = Cm(1.25)
+    pf.space_before = Pt(0)
+    pf.space_after = Pt(0)
+    pf.line_spacing = 1.5
+    pf.keep_with_next = False
+    pf.keep_together = False
+    pf.widow_control = True
+    if indent:
+        pf.first_line_indent = Cm(1.25)
+    else:
+        pf.first_line_indent = Cm(0)
 
 def add_list_item(doc, text, numbered=False):
     if not text.strip(): return
@@ -145,10 +154,13 @@ def add_list_item(doc, text, numbered=False):
     pf.alignment = WD_ALIGN_PARAGRAPH.LEFT
     pf.line_spacing = 1.5 # Міжрядковий інтервал 1.5
     pf.left_indent = Cm(1.25)
+    pf.keep_with_next = True
+    pf.keep_together = True
+    pf.widow_control = True
     if numbered: pf.first_line_indent = Cm(-0.75)
     pf.space_after = Pt(2)
 
-def add_image(doc, img_name, caption):
+def add_image(doc, img_name, caption=None):
     target_width = None
     if "?" in img_name:
         parts = img_name.split("?")
@@ -158,8 +170,14 @@ def add_image(doc, img_name, caption):
             except: pass
     img_path = os.path.join("docs", "images", img_name)
     if not os.path.exists(img_path): return
+
+    # Вимога керівника: Enter перед рисунком
+    doc.add_paragraph().add_run("\u00A0")
+
     p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    p.paragraph_format.space_before = Pt(0)
+    p.paragraph_format.space_after = Pt(0)
     run = p.add_run()
     try:
         with Image.open(img_path) as img:
@@ -172,14 +190,111 @@ def add_image(doc, img_name, caption):
         run.add_picture(img_path, width=final_width)
     except Exception as e: print(f" [ERR] Image ERR {img_name}: {e}")
 
+def add_figure_caption(doc, text):
+    # Вимога керівника: підпис рисунку відцентрований, курсивом, 12pt
+    cap_clean = re.sub(r'^\*(.+)\*$', r'\1', text.strip())
+    p_cap = doc.add_paragraph()
+    p_cap.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    p_cap.paragraph_format.space_before = Pt(0)
+    p_cap.paragraph_format.space_after = Pt(0)
+    run_cap = p_cap.add_run(cap_clean)
+    set_run_font(run_cap, size=12, italic=True)
+    
+    # Вимога керівника: Джерело під рисунком
+    p_src = doc.add_paragraph()
+    p_src.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    p_src.paragraph_format.space_before = Pt(0)
+    p_src.paragraph_format.space_after = Pt(0)
+    run_src = p_src.add_run("Джерело: згенеровано автором на основі програмного коду.")
+    set_run_font(run_src, size=12, italic=False)
+    
+    # Enter після підпису
+    doc.add_paragraph().add_run("\u00A0")
+
 def add_code(doc, code_lines):
+    # Вимога керівника: код в Courier New 12pt
+    # Додатково: Автоматична підсвітка синтаксису (Keywords, Comments, Strings)
     p = doc.add_paragraph()
-    run = p.add_run("\n".join(code_lines))
-    set_run_font(run, 10, mono=True)
     pf = p.paragraph_format
     pf.first_line_indent = Cm(0)
-    pf.space_before = Pt(3); pf.space_after = Pt(3)
-    pf.line_spacing = Pt(14)
+    pf.space_before = Pt(3)
+    pf.space_after = Pt(3)
+    pf.line_spacing = Pt(16)
+    
+    python_keywords = {
+        'def', 'class', 'import', 'from', 'return', 'if', 'else', 'elif', 
+        'for', 'while', 'try', 'except', 'finally', 'with', 'as', 'in', 
+        'is', 'and', 'or', 'not', 'None', 'True', 'False', 'self', 'lambda',
+        'async', 'await', 'pass', 'break', 'continue', 'yield'
+    }
+    python_builtins = {
+        'print', 'len', 'range', 'int', 'str', 'list', 'dict', 'set', 'tuple',
+        'float', 'bool', 'object', 'super', 'type', 'enumerate', 'zip', 'sum',
+        'min', 'max', 'abs', 'round', 'open', 'any', 'all', 'map', 'filter',
+        'Exception', 'ValueError', 'TypeError', 'KeyError', 'IndexError', 'RuntimeError'
+    }
+    python_operators = {'=', '==', '!=', '<', '>', '<=', '>=', '+', '-', '*', '/', '//', '%', '**', '+=', '-=', '*=', '/='}
+
+    # Простий розбір по рядках для підсвітки
+    for line in code_lines:
+        # Обробка коментарів (все після # - зелене)
+        if '#' in line:
+            parts = line.split('#', 1)
+            main_part = parts[0]
+            comment_part = '#' + parts[1]
+        else:
+            main_part = line
+            comment_part = ""
+
+        # Розбиваємо головну частину на токени
+        tokens = re.split(r'(\s+|[(),\[\]{}:.=#@]|".*?"|\'.*?\')', main_part)
+        for token in tokens:
+            if not token: continue
+            run = p.add_run(token)
+            set_run_font(run, 11, mono=True)
+            
+            stripped = token.strip()
+            # Ключові слова (Blue)
+            if stripped in python_keywords:
+                run.font.color.rgb = RGBColor(0, 0, 255)
+                run.font.bold = True
+            # Вбудовані функції (Teal)
+            elif stripped in python_builtins:
+                run.font.color.rgb = RGBColor(0, 128, 128)
+            # Рядки (Dark Red)
+            elif (token.startswith('"') or token.startswith("'")):
+                run.font.color.rgb = RGBColor(163, 21, 21)
+            # Декоратори (Gold)
+            elif token.startswith('@'):
+                run.font.color.rgb = RGBColor(121, 94, 38)
+            # Оператори (Slate Blue)
+            elif stripped in python_operators:
+                run.font.color.rgb = RGBColor(59, 89, 152)
+            # Числа (Emerald)
+            elif re.match(r'^\d+$', stripped):
+                run.font.color.rgb = RGBColor(9, 134, 88)
+
+        if comment_part:
+            run = p.add_run(comment_part)
+            set_run_font(run, 11, mono=True)
+            run.font.color.rgb = RGBColor(0, 128, 0) # Green for comments
+        
+        # Перехід на новий рядок всередині параграфа (Shift+Enter)
+        if line != code_lines[-1]:
+            p.add_run('\n')
+
+def add_table_caption(doc, text):
+    # Вимога керівника: Таблиця 1.1 — Назва (через довге тире)
+    cap_clean = re.sub(r'^\*(.+)\*$', r'\1', text.strip())
+    # Заміна крапки після номера на тире
+    cap_clean = re.sub(r'^(Таблиця\s+\d+\.\d+)\.?\s*', r'\1 — ', cap_clean)
+    
+    p = doc.add_paragraph()
+    p.alignment = WD_ALIGN_PARAGRAPH.LEFT # Таблиці зазвичай зліва
+    p.paragraph_format.space_before = Pt(6)
+    p.paragraph_format.space_after = Pt(0)
+    run = p.add_run(cap_clean)
+    set_run_font(run, size=14, italic=False) # Не курсив для таблиць за ДСТУ
 
 def add_table(doc, table_lines):
     rows_data = []
@@ -192,12 +307,32 @@ def add_table(doc, table_lines):
         if all(re.match(r'^:?-+:?$', c) for c in cells if c): continue
         rows_data.append(cells)
     if not rows_data: return
+    
     ncols = max(len(r) for r in rows_data)
     tbl = doc.add_table(rows=len(rows_data), cols=ncols)
+    tbl.allow_autofit = False
+    
     if is_borderless:
         tbl.style = None
     else:
         tbl.style = 'Table Grid'
+
+    # Оптимізація ширини колонок на основі довжини тексту
+    col_widths_chars = [0] * ncols
+    for row_data in rows_data:
+        for c_idx, cell_text in enumerate(row_data):
+            if c_idx < ncols:
+                col_widths_chars[c_idx] = max(col_widths_chars[c_idx], len(cell_text))
+    
+    total_chars = sum(col_widths_chars)
+    if total_chars > 0:
+        # Приблизно 16.5 см доступно для таблиці
+        available_width = 16.5
+        for c_idx in range(ncols):
+            w = (col_widths_chars[c_idx] / total_chars) * available_width
+            w = max(w, 1.0) # Мінімум 1 см
+            tbl.columns[c_idx].width = Cm(w)
+
     for r_idx, row_data in enumerate(rows_data):
         row = tbl.rows[r_idx]
         is_header = (r_idx == 0 and not is_borderless)
@@ -214,3 +349,6 @@ def add_table(doc, table_lines):
                     pf.alignment = WD_ALIGN_PARAGRAPH.LEFT
                 # Максимальне ущільнення для бланків
                 pf.space_before, pf.space_after, pf.line_spacing = Pt(1), Pt(1), Pt(14)
+                
+    # Enter після таблиці
+    doc.add_paragraph().add_run("\u00A0")
