@@ -6,82 +6,8 @@
 ### А.1. Модуль математичного моделювання фізичних процесів (physics.py)
 
 ```python
-import datetime
-import random
-from typing import Dict, Optional, Tuple
 import numpy as np
 import pandas as pd
-from src.core.config import LOAD_PROFILES
-
-def calculate_line_losses(df_lines: pd.DataFrame) -> pd.DataFrame:
-    """
-    Розраховує втрати потужності в мережі для AC та HVDC ліній.
-    Враховує квадратичну залежність втрат від навантаження для AC.
-    """
-    if df_lines.empty: return df_lines
-    df = df_lines.copy()
-    
-    if "line_type" not in df.columns and "max_load_mw" in df.columns:
-        df["line_type"] = df["max_load_mw"].apply(lambda x: "HVDC" if x >= 3000 else "AC")
-    
-    is_hvdc = df["line_type"] == "HVDC"
-    
-    # Модель втрат: 1.5% для постійного струму, до 3.5% для змінного при номіналі
-    loss_dc = (df["actual_load_mw"] * 0.015) * (df["load_pct"] / 100)
-    loss_ac = (df["actual_load_mw"] * 0.035) * (df["load_pct"] / 100) ** 2
-    
-    df["losses_mw"] = np.where(is_hvdc, loss_dc, loss_ac)
-    df["efficiency_pct"] = 100 * (1 - df["losses_mw"] / df["actual_load_mw"])
-    return df
-
-def calculate_weather(ts: datetime.datetime, current_temps: Dict[int, float]) -> Dict[int, Tuple[float, str]]:
-    """
-    Імітує добовий цикл температури з випадковими флуктуаціями.
-    Використовує синусоїдальну апроксимацію добового ходу.
-    """
-    weather_map = {}
-    time_val = ts.hour + ts.minute / 60.0
-    
-    for region_id, base_temp in current_temps.items():
-        # Добова амплітуда 5-7 градусів, пік о 14:00
-        amplitude = 6.0
-        peak_hour = 14.0
-        daily_cycle = amplitude * np.sin((time_val - peak_hour + 6) * np.pi / 12)
-        
-        # Додавання випадкового шуму (броунівський рух температури)
-        noise = np.random.normal(0, 0.15)
-        final_temp = float(base_temp + daily_cycle + noise)
-        
-        condition = "Ясно" if final_temp > 15 else "Хмарно"
-        if random.random() > 0.9: condition = "Дощ"
-        
-        weather_map[region_id] = (round(final_temp, 2), condition)
-    return weather_map
-
-def calculate_substation_load(capacity: float, profile_type: str, ts: datetime.datetime, 
-                              temp: float, is_weekend: bool, prev_f: float = 0.5) -> Tuple[float, Optional[str]]:
-    """
-    Розраховує поточне навантаження підстанції з урахуванням профілю, 
-    температури та дня тижня.
-    """
-    hour = ts.hour
-    hourly_profile = LOAD_PROFILES.get(profile_type, LOAD_PROFILES["RESIDENTIAL"]).get(hour, 0.5)
-    
-    # Корекція на вихідний день (-20% навантаження)
-    day_mult = 0.85 if is_weekend else 1.0
-    
-    # Вплив температури (кондиціювання або опалення)
-    # Базова комфортна температура 21 градус
-    temp_diff = abs(temp - 21.0)
-    temp_mult = 1.0 + (temp_diff * 0.02) # +2% навантаження на кожний градус відхилення
-    
-    final_f = hourly_profile * day_mult * temp_mult + np.random.normal(0, 0.02)
-    
-    # Ефект інерційності споживання (Smoothing)
-    smoothed_f = (final_f * 0.7) + (prev_f * 0.3)
-    
-    actual_load = round(float(capacity * max(0.05, smoothed_f)), 2)
-    return actual_load, None
 
 def calculate_transformer_health(actual_load: float, capacity: float, prev_health: float = 100.0) -> Tuple[float, float, float]:
     """
@@ -98,6 +24,42 @@ def calculate_transformer_health(actual_load: float, capacity: float, prev_healt
     # Генерація водню (H2) як індикатора деградації
     h2_increment = 0.1 * (load_factor ** 2) if top_oil_temp > 80 else 0.01
     h2_ppm = round(15.0 + h2_increment + random.uniform(0, 0.5), 1)
+    
+    # Розрахунок індексу здоров'я (Health Score)
+    degradation = (top_oil_temp / 110) ** 2 + (h2_ppm / 150)
+    health_score = max(0.0, prev_health - degradation)
+    
+    return round(health_score, 2), top_oil_temp, h2_ppm
+```
+
+### А.2. Модуль нейромережевого прогнозування (models.py)
+
+```python
+import torch
+import torch.nn as nn
+
+class EnergyLSTM(nn.Module):
+    def __init__(self, input_dim=8, hidden_dim=64, num_layers=2, output_dim=24):
+        super(EnergyLSTM, self).__init__()
+        self.lstm = nn.LSTM(input_dim, hidden_dim, num_layers, batch_first=True, dropout=0.2)
+        self.fc = nn.Linear(hidden_dim, output_dim)
+        
+    def forward(self, x):
+        # x shape: (batch, seq_len, input_dim)
+        h0 = torch.zeros(self.num_layers, x.size(0), self.hidden_dim).to(x.device)
+        c0 = torch.zeros(self.num_layers, x.size(0), self.hidden_dim).to(x.device)
+        
+        out, _ = self.lstm(x, (h0, c0))
+        out = self.fc(out[:, -1, :]) # Прогноз на основі останнього стану
+        return out
+```
+
+<p align="center">Додаток Б</p>
+<p align="center"><b>Графічні матеріали та інтерфейси системи</b></p>
+
+Б.1. Схема потоків даних EnergyMonitor-OLAP.
+Б.2. Скріншоти дашбордів візуалізації (Grafana).
+Б.3. Результати тестування моделі на валідаційних даних.
     
     # Розрахунок інтегрального Health Score
     temp_penalty = max(0, top_oil_temp - 95) * 1.5
@@ -287,7 +249,7 @@ CREATE INDEX idx_substation_id ON LoadMeasurements(substation_id);
 <p align="center"><b>Настанови користувача (Інструкція)</b></p>
 
 ### Г.1. Вимоги до середовища
-Для запуску системи необхідно мати встановлений **Docker** та **Docker Compose**. Весь інструментарій (Python, TensorFlow, PostgreSQL клієнти) автоматично налаштується всередині контейнера.
+Для запуску системи необхідно мати встановлений Docker та Docker Compose. Весь інструментарій (Python, TensorFlow, PostgreSQL клієнти) автоматично налаштується всередині контейнера.
 
 ### Г.2. Запуск системи
 1. Склонуйте репозиторій з кодом.
@@ -299,9 +261,9 @@ CREATE INDEX idx_substation_id ON LoadMeasurements(substation_id);
 4. Відкрийте браузер за адресою `http://localhost:8501`.
 
 ### Г.3. Робота з інтерфейсом
-* **Панель моніторингу**: Оберіть підстанцію у бічному меню для перегляду поточних KPI.
-* **Генерація прогнозу**: Перейдіть на вкладку "AI Forecast" та натисніть кнопку "Generate 24h Prediction".
-* **Діагностика**: У розділі "Health Score" доступна детальна інформація про технічний стан трансформаторів.
+* оберіть підстанцію у бічному меню для перегляду поточних KPI (панель моніторингу);
+* перейдіть на вкладку "AI Forecast" та натисніть кнопку "Generate 24h Prediction" (генерація прогнозу);
+* у розділі "Health Score" доступна детальна інформація про технічний стан трансформаторів (діагностика).
 
 <p align="center">Додаток Д</p>
 <p align="center"><b>Результати тестування (Протокол)</b></p>
