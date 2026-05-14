@@ -1,7 +1,7 @@
 # ⚡ Energy Monitor Ultimate (v3.1 STABLE)
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 ![Python](https://img.shields.io/badge/python-3.11-blue)
-![Tests](https://img.shields.io/badge/tests-79%20passed-success)
+![Tests](https://img.shields.io/badge/tests-74%20passed-success)
 ![Accuracy](https://img.shields.io/badge/accuracy-MAPE%203.08%25-orange)
 ![Thesis Status](https://img.shields.io/badge/thesis-ready%20for%20defense-blueviolet)
 ![License](https://img.shields.io/badge/license-MIT-yellow)
@@ -11,7 +11,7 @@
 🚀 **Live Production (MaaS/SaaS):** [energymonitor-olap.onrender.com](https://energymonitor-olap.onrender.com/)
 
 ### 📄 Статус та Документація
-*   [**PROJECT_STATUS.md**](PROJECT_STATUS.md) — Поточний стан (79 тестів / 0 помилок).
+*   [**PROJECT_STATUS.md**](PROJECT_STATUS.md) — Поточний стан (74 тести / 0 помилок).
 *   [**ARCHITECTURE.md**](docs/system/architecture.md) — Архітектурна схема системи.
 *   [**ROADMAP.md**](ROADMAP.md) — План розвитку.
 
@@ -57,7 +57,7 @@
 | **Допуск** | [**Відгук керівника (Додаток Г)**](docs/thesis/OFFICIAL_REVIEW_PROJECT.md) | ✅ **Ready** |
 | | [**Рецензія (Додаток Д)**](docs/thesis/OFFICIAL_RECENSION_PROJECT.md) | ✅ **Ready** |
 | | Висновок про плагіат | ⏳ |
-| **Фінал** | [**Фінальний диплом (ВОРД за ДСТУ)**](docs/thesis/THESIS_FINAL_DSTU_COMPLIANT.docx) | ✅ **READY** |
+| **Фінал** | [**Фінальний диплом (ВОРД за ДСТУ)**](FINAL_THESIS_MASTER_BUILD.docx) | ✅ **READY** |
 | | PDF з КЕП ([Інструкція Дія](https://www.youtube.com/watch?v=VaT8KmAh5B4)) | ⏳ |
 | | [Презентація до захисту](docs/thesis/THESIS_PRESENTATION_FINAL.md) | ✅ **Ready** |
 | | [**Текст доповіді (у презентації)**](docs/thesis/THESIS_PRESENTATION_FINAL.md) | ✅ **Ready** |
@@ -89,7 +89,7 @@
 *   📄 [**РЕФЕРАТ ТА ВСТУП**](docs/thesis/THESIS_0_ABSTRACT.md) — Мета та об'єкт дослідження.
 *   📘 [**РОЗДІЛ 1. ТЕОРЕТИЧНИЙ АНАЛІЗ**](docs/thesis/THESIS_1_THEORY.md) — Огляд Digital Twin та ML.
 *   📙 [**РОЗДІЛ 2. ТЕХНІЧНЕ ЗАВДАННЯ**](docs/thesis/THESIS_2_REQUIREMENTS.md) — Формальні вимоги до системи.
-*   📗 [**РОЗДІЛ 3. ПРОЄКТНІ РІШЕННЯ**](docs/thesis/THESIS_3_DESIGN_AND_IMPLEMENTATION_EXPANDED.md) — Математика LSTM та UI.
+*   📗 [**РОЗДІЛ 3. ПРОЄКТНІ РІШЕННЯ**](docs/thesis/THESIS_3_DESIGN_AND_IMPLEMENTATION.md) — Математика LSTM та UI.
 *   🏁 [**ВИСНОВКИ**](docs/thesis/THESIS_FINAL_CONCLUSIONS.md) — Підсумок наукової новизни.
 *   📚 [**СПИСОК ЛІТЕРАТУРИ**](docs/thesis/BIBLIOGRAPHY.md) — Перелік використаних джерел.
 *   📎 [**ДОДАТКИ**](docs/thesis/APPENDICES.md) — Код та додаткові матеріали.
