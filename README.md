@@ -11,9 +11,9 @@
 🚀 **Live Production (MaaS/SaaS):** [energymonitor-olap.onrender.com](https://energymonitor-olap.onrender.com/)
 
 ### 📄 Статус та Документація
-*   [**PROJECT_STATUS.md**](PROJECT_STATUS.md) — Поточний стан (74 тести / 0 помилок).
+*   [**PROJECT_STATUS.md**](docs/PROJECT_STATUS.md) — Поточний стан (79 тести / 0 помилок).
 *   [**ARCHITECTURE.md**](docs/system/architecture.md) — Архітектурна схема системи.
-*   [**ROADMAP.md**](ROADMAP.md) — План розвитку.
+*   [**ROADMAP.md**](docs/ROADMAP.md) — План розвитку.
 
 ---
 ## 👤 Автор / Author
@@ -48,7 +48,7 @@
 | | [Завдання на роботу (Додаток Б)](docs/thesis/OFFICIAL_TASK_STATEMENT.md) | ✅ Finalized |
 | | [Титульна сторінка (Додаток В)](docs/thesis/OFFICIAL_TITLE_PAGE.md) | ✅ Finalized |
 | | [Календарний план](docs/thesis/OFFICIAL_CALENDAR_PLAN.md) | ✅ Finalized |
-| **Практика** | [**Звіт з практики (ФІНАЛ)**](docs/thesis/PRACTICE_REPORT_FINAL.md) | 🏗️ **In Progress** |
+| **Практика** | [**Звіт з практики (ФІНАЛ)**](docs/thesis/practice_report/PRACTICE_REPORT_MERGED.md) <br> ([Титулка](docs/thesis/practice_report/PR_TITLE.md) / [Р1](docs/thesis/practice_report/PR_S1.md) / [Р2](docs/thesis/practice_report/PR_S2.md) / [Р3](docs/thesis/practice_report/PR_S3.md) / [Р4](docs/thesis/practice_report/PR_S4.md) / [Р5](docs/thesis/practice_report/PR_S5.md) / [Додаток А](docs/thesis/practice_report/PR_S6.md)) | ✅ **100% Ready** |
 | | [Щоденник практики](docs/thesis/PRACTICE_DIARY_DRAFT.md) | ✅ Ready |
 | | [Презентація до практики](docs/thesis/PRACTICE_PRESENTATION_DRAFT.md) | ✅ Ready |
 | **Диплом** | [**Кваліфікаційна робота (Шліфування)**](docs/thesis/THESIS_FULL_FINAL_UTF8.md) | 🏗️ **In Progress** |
@@ -92,7 +92,7 @@
 *   📗 [**РОЗДІЛ 3. ПРОЄКТНІ РІШЕННЯ**](docs/thesis/THESIS_3_DESIGN_AND_IMPLEMENTATION.md) — Математика LSTM та UI.
 *   🏁 [**ВИСНОВКИ**](docs/thesis/THESIS_FINAL_CONCLUSIONS.md) — Підсумок наукової новизни.
 *   📚 [**СПИСОК ЛІТЕРАТУРИ**](docs/thesis/BIBLIOGRAPHY.md) — Перелік використаних джерел.
-*   📎 [**ДОДАТКИ**](docs/thesis/APPENDICES.md) — Код та додаткові матеріали.
+*   📎 [**ДОДАТКИ**](docs/thesis/THESIS_APPENDICES.md) — Код та додаткові матеріали.
 
 ### 🧬 Наукова новизна та практичне значення
 1. **Гібридне моделювання (Digital Twin + ML):** Система поєднує стохастичний прогноз (LSTM-мережі) з детермінованими фізичними моделями мережі (розрахунок втрат потужності, температурна деградація).
