@@ -1,7 +1,6 @@
 # ДОДАТКИ
 
-<p align="center"><b>Додаток А</b></p>
-<p align="center"><b>Вихідний код ключових модулів системи</b></p>
+<p align="center"><b>Додаток А. Вихідний код ключових модулів системи</b></p>
 
 **А.1. Модуль математичного моделювання фізичних процесів (physics.py)**
 
@@ -147,6 +146,8 @@ class EnergyLSTM(nn.Module):
         return out
 ```
 
+<pagebreak>
+
 <p align="center"><b>Додаток Б</b></p>
 <p align="center"><b>Конфігураційні файли та DevOps</b></p>
 
@@ -179,6 +180,8 @@ ENV STREAMLIT_SERVER_PORT=8501
 CMD ["streamlit", "run", "main.py"]
 ```
 
+<pagebreak>
+
 <p align="center"><b>Додаток В</b></p>
 <p align="center"><b>Схема бази даних (SQL DDL)</b></p>
 
@@ -202,7 +205,7 @@ CREATE INDEX idx_substation_id ON LoadMeasurements(substation_id);
 
 <pagebreak>
 
-<p align="center">Додаток Г</p>
+<p align="center"><b>Додаток Г</b></p>
 <p align="center"><b>Результати тестування та верифікації системи</b></p>
 
 **Г.1. Протокол виконання модульних тестів (pytest)**
@@ -219,7 +222,7 @@ CREATE INDEX idx_substation_id ON LoadMeasurements(substation_id);
 
 <pagebreak>
 
-<p align="center">Додаток Д</p>
+<p align="center"><b>Додаток Д</b></p>
 <p align="center"><b>Настанови користувача щодо експлуатації системи</b></p>
 
 **Д.1. Системні вимоги**

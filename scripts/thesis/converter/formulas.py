@@ -12,7 +12,10 @@
 import re
 import os
 import time
+import shutil
+import win32com
 import win32com.client as win32
+from win32com.client import dynamic as win32_dynamic
 import win32clipboard
 from docx.shared import Pt, Cm
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -20,6 +23,19 @@ from latex2mathml.converter import convert as latex_to_mathml
 from .styles import set_run_font
 
 from docx.enum.text import WD_TAB_ALIGNMENT
+
+def _fix_word_com_cache():
+    """Автоматично видаляє зіпсований win32com gen_py кеш Word для перегенерації. 
+    Вирішує помилку: AttributeError 'CLSIDToPackageMap'."""
+    try:
+        gen_py_dir = os.path.join(os.path.dirname(win32com.__file__), 'gen_py')
+        word_cache_id = '00020905-0000-0000-C000-000000000046x0x8x7'
+        cache_path = os.path.join(gen_py_dir, word_cache_id)
+        if os.path.exists(cache_path):
+            shutil.rmtree(cache_path, ignore_errors=True)
+            print(" [INFO] win32com Word cache видалено (був зіпсований), перегенерується...")
+    except Exception as e:
+        print(f" [WARN] Cache clear: {e}")
 
 def add_formula(doc, latex_text, chapter_num, formula_num, has_where=False):
     latex = re.sub(r'^\$\$?|\$\$?$', '', latex_text.strip()).strip()
@@ -65,15 +81,27 @@ def paste_mathml(text):
     raise Exception("Clipboard Locked!")
 
 def finalize_thesis_document(docx_path):
+    # 1. Видаляємо зіпсований gen_py файл
+    _fix_word_com_cache()
+    # 2. Monkey-patch gencache: повертає None для всіх CLSID —
+    #    це змушує __WrapDispatch використовувати звичайний CDispatch (пізнє зв’язування)
+    try:
+        import win32com.client.gencache as _gc
+        _gc.GetClassForCLSID = lambda clsid: None
+    except:
+        pass
     print("Запуск фінальної оптимізації документа (формули + зміст)...")
     
     import subprocess
     subprocess.run(["taskkill", "/F", "/IM", "WINWORD.EXE", "/T"], capture_output=True)
     time.sleep(1)
     
-    from win32com.client import gencache
-    try: word = gencache.EnsureDispatch("Word.Application")
-    except: word = win32.Dispatch("Word.Application")
+    # dynamic.Dispatch + monkey-patched gencache = ніяких посилань на кеш
+    try:
+        word = win32_dynamic.Dispatch("Word.Application")
+    except Exception as e:
+        print(f" [ERR] Word COM недоступний, формули пропускаються: {e}")
+        return
         
     word.Visible = False
     word.DisplayAlerts = 0

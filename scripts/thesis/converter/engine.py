@@ -229,8 +229,8 @@ def run_conversion(input_md, output_docx, include_appendix=False):
                 fldChar2 = OxmlElement('w:fldChar'); fldChar2.set(qn('w:fldCharType'), 'separate')
                 fldChar3 = OxmlElement('w:fldChar'); fldChar3.set(qn('w:fldCharType'), 'end')
                 run._r.append(fldChar1); run._r.append(instrText); run._r.append(fldChar2); run._r.append(fldChar3)
-                # Після змісту теж ставимо прапорець, щоб наступний заголовок не стрибав
-                just_had_pagebreak = True
+                # Після змісту ставимо False, щоб наступний заголовок (ПЕРЕЛІК) розпочався з нової сторінки
+                just_had_pagebreak = False
                 # ПРИБРАНО ПОВТОРНИЙ doc.add_page_break(), бо add_h1 сам зробить розрив для наступного розділу
 
             if text.upper().startswith('РОЗДІЛ'):

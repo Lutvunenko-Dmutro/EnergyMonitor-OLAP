@@ -51,6 +51,14 @@ class ThesisDashboard:
         self.folder_btn = ttk.Button(ctrl_frame, text="[ 📂 OPEN FOLDER ]", style="Action.TButton", command=self.open_folder)
         self.folder_btn.pack(side="left", padx=5, expand=True, fill="x")
 
+        # ROW 2 — Practice Report
+        ctrl_frame2 = ttk.Frame(root)
+        ctrl_frame2.pack(pady=(0, 10), padx=20, fill="x")
+        self.practice_btn = ttk.Button(ctrl_frame2, text="[ 📝 BUILD PRACTICE REPORT ]", style="Action.TButton", command=self.start_practice_build)
+        self.practice_btn.pack(side="left", padx=5, expand=True, fill="x")
+        self.practice_open_btn = ttk.Button(ctrl_frame2, text="[ 📂 OPEN PRACTICE FOLDER ]", style="Action.TButton", command=self.open_practice_folder)
+        self.practice_open_btn.pack(side="left", padx=5, expand=True, fill="x")
+
         # LOG AREA
         log_frame = ttk.Frame(root)
         log_frame.pack(pady=10, padx=20, fill="both", expand=True)
@@ -105,6 +113,72 @@ class ThesisDashboard:
         path = os.path.abspath("docs/thesis")
         os.startfile(path)
         self.log(f"📂 Folder opened: {path}")
+
+    def open_practice_folder(self):
+        path = os.path.abspath("docs/thesis/practice_report")
+        os.makedirs(path, exist_ok=True)
+        os.startfile(path)
+        self.log(f"📂 Practice folder opened: {path}")
+
+    def run_practice_build(self):
+        """Merge all PR_*.md sections and convert to DOCX."""
+        import time
+        start_time = datetime.now()
+        try:
+            self.practice_btn.config(state="disabled")
+            self.progress["value"] = 0
+            self.log("=" * 50)
+            self.log("📝 BUILDING PRACTICE REPORT...")
+            report_dir = os.path.abspath("docs/thesis/practice_report")
+            merged_md   = os.path.join(report_dir, "PRACTICE_REPORT_MERGED.md")
+            output_docx = os.path.join(report_dir, "PRACTICE_REPORT.docx")
+            self.log("Step 1/3: Merging MD sections...")
+            section_files = ["PR_TITLE.md","PR_S1.md","PR_S2.md","PR_S3.md","PR_S4.md","PR_S5.md"]
+            merged_content = []
+            for fname in section_files:
+                fpath = os.path.join(report_dir, fname)
+                if os.path.exists(fpath):
+                    with open(fpath, encoding="utf-8") as f:
+                        merged_content.append(f.read())
+                    self.log(f"  ✔ {fname}")
+                else:
+                    self.log(f"  ⚠ Missing: {fname}")
+            with open(merged_md, "w", encoding="utf-8") as f:
+                f.write("\n\n<pagebreak>\n\n".join(merged_content))
+            self.progress["value"] = 40
+            self.log(f"  Merged → {os.path.basename(merged_md)}")
+            self.log("Step 2/3: Converting to DOCX...")
+            self.kill_word()
+            time.sleep(2)
+            conv_proc = subprocess.Popen(
+                ["python", "scripts/thesis/convert_thesis.py", merged_md, output_docx],
+                stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, encoding="utf-8"
+            )
+            for line in conv_proc.stdout:
+                line = line.strip()
+                if line: self.log(f"  {line}")
+            conv_proc.wait()
+            self.kill_word()
+            time.sleep(1)
+            self.progress["value"] = 90
+            self.log("Step 3/3: Finalizing...")
+            duration = datetime.now() - start_time
+            if os.path.exists(output_docx):
+                self.progress["value"] = 100
+                self.log(f"✅ SUCCESS! Build time: {duration.seconds}s")
+                self.log(f"✅ File: {output_docx}")
+                if messagebox.askyesno("Practice Report Ready", f"PRACTICE_REPORT.docx is ready!\n\nOpen now?"):
+                    os.startfile(os.path.abspath(output_docx))
+            else:
+                self.log("❌ FAILED: DOCX not found.")
+        except Exception as e:
+            self.log(f"❌ CRITICAL ERROR: {str(e)}")
+        finally:
+            self.practice_btn.config(state="normal")
+
+    def start_practice_build(self):
+        threading.Thread(target=self.run_practice_build, daemon=True).start()
+
 
     def run_build_process(self):
         start_time = datetime.now()

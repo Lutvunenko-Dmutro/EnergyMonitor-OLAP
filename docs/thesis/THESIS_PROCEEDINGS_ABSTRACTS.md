@@ -22,7 +22,7 @@
 **Результати.** Програмна реалізація системи базується на 4-рівневій архітектурі (Streamlit UI, AI Core, PostgreSQL Data Layer, DevOps). Предиктивне ядро навчено на еталонному наборі даних PJM Dayton Hourly. Експериментально встановлено, що використання функції втрат **Huber Loss** робить модель стійкою до викидів. 
 
 Основні метрики точності моделі LSTM v3:
-*   Середня абсолютна похибка (MAPE): **1.5% — 3.1%**.
+*   Середня абсолютна похибка (MAPE): **1.5% – 3.1%**.
 *   Коефіцієнт детермінації ($R^2$): **0.92**.
 *   Обсяг верифікації: **79 автоматизованих тестів**.
 
@@ -30,5 +30,5 @@
 
 **Література:**
 1. Goodfellow I., Bengio Y., Courville A. Deep Learning. MIT Press, 2016. 800 p.
-2. Hochreiter S., Schmidhuber J. Long Short-Term Memory. Neural Computation. 1997. Vol. 9. P. 1735—1780.
+2. Hochreiter S., Schmidhuber J. Long Short-Term Memory. Neural Computation. 1997. Vol. 9. P. 1735–1780.
 3. Billings S. A. Nonlinear System Identification. Wiley, 2013. 574 p.

@@ -27,10 +27,10 @@ def should_be_in_toc(text, level=1):
     
     # 1. Специфічні виключення (сміття)
     trash_keywords = [
-        "НА ТЕМУ:", "ТЕМА:", "ЗАКЛАД ВИЩОЇ", "МІЖНАРОДНИЙ НАУКОВО-ТЕХНІЧНИЙ", 
-        "БАКАЛАВР", "СПЕЦІАЛЬНІСТЮ", "КИЇВ –", "СТУДЕНТУ", "ЛИТВИНЕНКУ", 
+        "НА ТЕМУ", "ТЕМА:", "ЗАКЛАД ВИЩОЇ", "МІЖНАРОДНИЙ НАУКОВО-ТЕХНІЧНИЙ", 
+        "БАКАЛАВР", "СПЕЦІАЛЬНІСТЮ", "КИЇВ", "СТУДЕНТУ", "ЛИТВИНЕНКУ", 
         "ОСВІТНЬОГО СТУПЕНЯ", "ВІДГУК", "РЕЦЕНЗІЯ", "РЕЦЕНЗЕНТА", "КЕРІВНИКА",
-        "КАЛЕНДАРНИЙ ПЛАН"
+        "КАЛЕНДАРНИЙ ПЛАН", "КВАЛІФІКАЦІЙНА РОБОТА"
     ]
     if any(tk in text_up for tk in trash_keywords):
         return False
@@ -55,16 +55,24 @@ def should_be_in_toc(text, level=1):
 
 def add_h1(doc, text, force_no_break=False):
     text_up = text.upper().strip()
-    # ЗАВЖДИ ставимо стиль Heading 1, щоб працювали 4 галочки
-    try: p = doc.add_paragraph(style='Heading 1')
-    except: p = doc.add_paragraph()
+    is_toc = should_be_in_toc(text, level=1)
+    
+    if is_toc:
+        try: p = doc.add_paragraph(style='Heading 1')
+        except: p = doc.add_paragraph()
+    else:
+        p = doc.add_paragraph()
+        p.paragraph_format.keep_with_next = True
+        p.paragraph_format.keep_together = True
+        p.paragraph_format.widow_control = True
     
     # Визначаємо, чи це головний розділ, який має починатися з нової сторінки
     major_keywords = ["РОЗДІЛ", "ВСТУП", "ВИСНОВКИ", "ЛІТЕРАТУРА", "ДОДАТКИ", "РЕФЕРАТ", "СКОРОЧЕНЬ", "ЗМІСТ", "ЗАВДАННЯ", "СПИСОК"]
     is_major = any(kw in text_up for kw in major_keywords)
     
     # Ставимо розрив сторінки ТІЛЬКИ для головних розділів і якщо не було force_no_break
-    if is_major and not force_no_break and len(text_up) < 100:
+    # ВИНЯТОК: "Київ" не повинен починатися з нової сторінки
+    if is_major and not force_no_break and len(text_up) < 100 and "КИЇВ" not in text_up:
         p.paragraph_format.page_break_before = True
     else:
         p.paragraph_format.page_break_before = False
@@ -72,8 +80,10 @@ def add_h1(doc, text, force_no_break=False):
     # Вимога керівника: "РОЗДІЛ 1." (з крапкою)
     text = re.sub(r'^(РОЗДІЛ\s+\d+)(?!\.)', r'\1.', text, flags=re.IGNORECASE)
     
+    # Центрування заголовків
+    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    
     # Універсальний парзер зі стилем H1 (16pt, AllCaps, Bold)
-    # Всі параметри (bold, size, page break) тепер беруться автоматично зі стилю 'Heading 1'
     add_formatted_run(p, text.upper(), size=16, bold_base=True)
 
 def add_h2(doc, text):
@@ -85,10 +95,14 @@ def add_h2(doc, text):
     else:
         p = doc.add_paragraph()
 
-    # Вимога керівника: H2 — жирний, по ширині, нова сторінка
+    # Вимога керівника: H2 — жирний, по ширині
     add_formatted_run(p, text, size=14, bold_base=True)
-    # Параметри успадковуються від стилю, але ми залишаємо вирівнювання по ширині
-    p.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+    
+    # Якщо це не нумерований підрозділ (на титулці), то центруємо
+    if not re.match(r'^(\d+\.|[А-Я]\.)', text):
+        p.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    else:
+        p.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
 
 def add_h3(doc, text):
     text = clean_heading_dots(text)
@@ -126,6 +140,11 @@ def add_h4(doc, text):
 
 def add_body(doc, text, indent=True):
     if not text.strip(): return
+    # Підтримка <br> для ручних розривів на титулці
+    if text.strip() == "<br>":
+        doc.add_paragraph().add_run("\u00A0")
+        return
+        
     p = doc.add_paragraph()
     # Вимога керівника: 14pt TNR, 1.5 інтервал, відступ 1.25, без зайвих відступів після
     add_formatted_run(p, text, size=14)
@@ -151,13 +170,13 @@ def add_list_item(doc, text, numbered=False):
         p = doc.add_paragraph()
     add_formatted_run(p, text, size=14)
     pf = p.paragraph_format
-    pf.alignment = WD_ALIGN_PARAGRAPH.LEFT
+    pf.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
     pf.line_spacing = 1.5 # Міжрядковий інтервал 1.5
-    pf.left_indent = Cm(1.25)
-    pf.keep_with_next = True
-    pf.keep_together = True
+    pf.left_indent = Cm(0)
+    pf.keep_with_next = False
+    pf.keep_together = False
     pf.widow_control = True
-    if numbered: pf.first_line_indent = Cm(-0.75)
+    pf.first_line_indent = Cm(1.25)
     pf.space_after = Pt(2)
 
 def add_image(doc, img_name, caption=None):
@@ -198,7 +217,7 @@ def add_figure_caption(doc, text):
     p_cap.paragraph_format.space_before = Pt(0)
     p_cap.paragraph_format.space_after = Pt(0)
     run_cap = p_cap.add_run(cap_clean)
-    set_run_font(run_cap, size=12, italic=True)
+    set_run_font(run_cap, size=14, italic=False)
     
     # Вимога керівника: Джерело під рисунком
     p_src = doc.add_paragraph()
@@ -284,13 +303,15 @@ def add_code(doc, code_lines):
             p.add_run('\n')
 
 def add_table_caption(doc, text):
-    # Вимога керівника: Таблиця 1.1 — Назва (через довге тире)
+    # Вимога керівника: Таблиця 1.1 – Назва (коротке тире, по центру, без крапки в кінці)
     cap_clean = re.sub(r'^\*(.+)\*$', r'\1', text.strip())
-    # Заміна крапки після номера на тире
-    cap_clean = re.sub(r'^(Таблиця\s+\d+\.\d+)\.?\s*', r'\1 — ', cap_clean)
+    # Заміна крапки після номера на коротке тире
+    cap_clean = re.sub(r'^(Таблиця\s+\d+\.\d+)\.?\s*', r'\1 – ', cap_clean)
+    # Прибираємо крапку в кінці
+    cap_clean = cap_clean.rstrip('.')
     
     p = doc.add_paragraph()
-    p.alignment = WD_ALIGN_PARAGRAPH.LEFT # Таблиці зазвичай зліва
+    p.alignment = WD_ALIGN_PARAGRAPH.CENTER # Таблиці по центру
     p.paragraph_format.space_before = Pt(6)
     p.paragraph_format.space_after = Pt(0)
     run = p.add_run(cap_clean)
@@ -310,28 +331,46 @@ def add_table(doc, table_lines):
     
     ncols = max(len(r) for r in rows_data)
     tbl = doc.add_table(rows=len(rows_data), cols=ncols)
-    tbl.allow_autofit = False
+    tbl.allow_autofit = False # Вимикаємо автопідбір для повного контролю ширини
     
     if is_borderless:
         tbl.style = None
     else:
         tbl.style = 'Table Grid'
 
-    # Оптимізація ширини колонок на основі довжини тексту
-    col_widths_chars = [0] * ncols
-    for row_data in rows_data:
-        for c_idx, cell_text in enumerate(row_data):
-            if c_idx < ncols:
-                col_widths_chars[c_idx] = max(col_widths_chars[c_idx], len(cell_text))
+    # Робимо таблицю на всю ширину сторінки (16.5 см)
+    available_width = 16.5
+    col_widths = [0.0] * ncols
     
-    total_chars = sum(col_widths_chars)
-    if total_chars > 0:
-        # Приблизно 16.5 см доступно для таблиці
-        available_width = 16.5
-        for c_idx in range(ncols):
-            w = (col_widths_chars[c_idx] / total_chars) * available_width
-            w = max(w, 1.0) # Мінімум 1 см
-            tbl.columns[c_idx].width = Cm(w)
+    # Спеціальна логіка для Щоденника (4 колонки: № | Зміст | Дати | Відмітка)
+    if ncols == 4 and not is_borderless:
+        col_widths = [1.2, 9.3, 3.5, 2.5]
+    # Спеціальна логіка для Титулки (3 колонки: Виконав | Підпис | Прізвище)
+    elif ncols == 3 and is_borderless:
+        col_widths = [7.5, 4.0, 5.0] # Збільшуємо першу колонку для "Виконав (ла)..."
+    else:
+        # Пропорційно до тексту
+        col_widths_chars = [0] * ncols
+        for row_data in rows_data:
+            for c_idx, cell_text in enumerate(row_data):
+                if c_idx < ncols:
+                    col_widths_chars[c_idx] = max(col_widths_chars[c_idx], len(cell_text))
+        
+        total_chars = sum(col_widths_chars)
+        if total_chars > 0:
+            for c_idx in range(ncols):
+                w = (col_widths_chars[c_idx] / total_chars) * available_width
+                col_widths[c_idx] = max(w, 2.0)
+            
+            # Масштабуємо щоб в сумі було рівно 16.5
+            curr_sum = sum(col_widths)
+            col_widths = [w * (available_width / curr_sum) for w in col_widths]
+        else:
+            col_widths = [available_width / ncols] * ncols
+
+    # Застосовуємо ширину колонок до об'єкта таблиці
+    for c_idx in range(ncols):
+        tbl.columns[c_idx].width = Cm(col_widths[c_idx])
 
     for r_idx, row_data in enumerate(rows_data):
         row = tbl.rows[r_idx]
@@ -339,16 +378,23 @@ def add_table(doc, table_lines):
         row_data += [''] * (ncols - len(row_data))
         for c_idx, cell_text in enumerate(row_data):
             cell = row.cells[c_idx]
+            # Явно встановлюємо ширину для кожної комірки (це надійніше ніж для всієї колонки)
+            cell.width = Cm(col_widths[c_idx])
+            
             cell.text = ""
             p = cell.paragraphs[0]
-            # 11pt для офіційних таблиць в бланках
-            add_formatted_run(p, cell_text, size=11, bold_base=is_header)
+            # Для титулки (borderless) використовуємо 14pt, для звичайних таблиць 12pt
+            font_size = 14 if is_borderless else 12
+            add_formatted_run(p, cell_text, size=font_size, bold_base=is_header)
             for para in cell.paragraphs:
                 pf = para.paragraph_format
                 if is_borderless:
                     pf.alignment = WD_ALIGN_PARAGRAPH.LEFT
-                # Максимальне ущільнення для бланків
-                pf.space_before, pf.space_after, pf.line_spacing = Pt(1), Pt(1), Pt(14)
+                else:
+                    pf.alignment = WD_ALIGN_PARAGRAPH.CENTER # Дані в таблицях зазвичай по центру
+                # Налаштування відступів всередині комірок
+                pf.space_before, pf.space_after = Pt(2), Pt(2)
+                pf.line_spacing = 1.0
                 
     # Enter після таблиці
     doc.add_paragraph().add_run("\u00A0")
