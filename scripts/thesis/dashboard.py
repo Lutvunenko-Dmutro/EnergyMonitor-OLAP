@@ -133,7 +133,7 @@ class ThesisDashboard:
             merged_md   = os.path.join(report_dir, "PRACTICE_REPORT_MERGED.md")
             output_docx = os.path.join(report_dir, "PRACTICE_REPORT.docx")
             self.log("Step 1/3: Merging MD sections...")
-            section_files = ["PR_TITLE.md","PR_S1.md","PR_S2.md","PR_S3.md","PR_S4.md","PR_S5.md"]
+            section_files = ["PR_TITLE.md","PR_S1.md","PR_S2.md","PR_S3.md","PR_S4.md","PR_S5.md","PR_S6.md"]
             merged_content = []
             for fname in section_files:
                 fpath = os.path.join(report_dir, fname)

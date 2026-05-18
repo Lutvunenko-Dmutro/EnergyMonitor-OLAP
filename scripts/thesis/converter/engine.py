@@ -216,7 +216,7 @@ def run_conversion(input_md, output_docx, include_appendix=False):
         elif stripped.startswith('#'):
             text = re.sub(r'^#\s*', '', stripped)
             # ВСТАВКА ЗМІСТУ ПЕРЕД СКОРОЧЕННЯМИ (Згідно п. 6.1: Реферат -> Зміст -> Скорочення)
-            if "СКОРОЧЕНЬ" in text.upper() or "ПОЗНАЧЕНЬ" in text.upper():
+            if "СКОРОЧЕНЬ" in text.upper() or "ПОЗНАЧЕНЬ" in text.upper() or "1 ПОСТАНОВКА ЗАВДАНЬ ПРАКТИКИ" in text.upper():
                 p_toc = doc.add_paragraph()
                 p_toc.alignment = WD_ALIGN_PARAGRAPH.CENTER
                 add_formatted_run(p_toc, "ЗМІСТ", size=16, bold_base=True)
@@ -225,7 +225,13 @@ def run_conversion(input_md, output_docx, include_appendix=False):
                 run = p_field.add_run()
                 # Вставка поля TOC (Table of Contents)
                 fldChar1 = OxmlElement('w:fldChar'); fldChar1.set(qn('w:fldCharType'), 'begin')
-                instrText = OxmlElement('w:instrText'); instrText.text = ' TOC \\o "1-3" \\h \\z \\u '
+                instrText = OxmlElement('w:instrText')
+                if "1 ПОСТАНОВКА ЗАВДАНЬ ПРАКТИКИ" in text.upper():
+                    # 1-level TOC for Practice Report
+                    instrText.text = ' TOC \\o "1-1" \\h \\z \\u '
+                else:
+                    # 3-level TOC for Thesis
+                    instrText.text = ' TOC \\o "1-3" \\h \\z \\u '
                 fldChar2 = OxmlElement('w:fldChar'); fldChar2.set(qn('w:fldCharType'), 'separate')
                 fldChar3 = OxmlElement('w:fldChar'); fldChar3.set(qn('w:fldCharType'), 'end')
                 run._r.append(fldChar1); run._r.append(instrText); run._r.append(fldChar2); run._r.append(fldChar3)

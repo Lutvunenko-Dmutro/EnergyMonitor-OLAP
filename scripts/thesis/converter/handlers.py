@@ -13,6 +13,8 @@
 import os
 import re
 from docx.shared import Pt, Cm, RGBColor
+from docx.oxml import OxmlElement
+from docx.oxml.ns import qn
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from PIL import Image
 from .styles import set_run_font, para_std, clean_inline, add_formatted_run
@@ -67,7 +69,7 @@ def add_h1(doc, text, force_no_break=False):
         p.paragraph_format.widow_control = True
     
     # Визначаємо, чи це головний розділ, який має починатися з нової сторінки
-    major_keywords = ["РОЗДІЛ", "ВСТУП", "ВИСНОВКИ", "ЛІТЕРАТУРА", "ДОДАТКИ", "РЕФЕРАТ", "СКОРОЧЕНЬ", "ЗМІСТ", "ЗАВДАННЯ", "СПИСОК"]
+    major_keywords = ["РОЗДІЛ", "ВСТУП", "ВИСНОВКИ", "ЛІТЕРАТУРА", "ДОДАТКИ", "РЕФЕРАТ", "СКОРОЧЕНЬ", "ЗМІСТ", "ЗАВДАННЯ", "СПИСОК", "ПОСТАНОВКА", "ОБГРУНТУВАННЯ", "ОГЛЯД", "ДОДАТОК"]
     is_major = any(kw in text_up for kw in major_keywords)
     
     # Ставимо розрив сторінки ТІЛЬКИ для головних розділів і якщо не було force_no_break
@@ -97,12 +99,18 @@ def add_h2(doc, text):
 
     # Вимога керівника: H2 — жирний, по ширині
     add_formatted_run(p, text, size=14, bold_base=True)
+    pf = p.paragraph_format
+    pf.keep_with_next = True
+    pf.keep_together = True
+    pf.widow_control = True
+    pf.space_before = Pt(6)
+    pf.space_after = Pt(6)
     
     # Якщо це не нумерований підрозділ (на титулці), то центруємо
     if not re.match(r'^(\d+\.|[А-Я]\.)', text):
-        p.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        pf.alignment = WD_ALIGN_PARAGRAPH.CENTER
     else:
-        p.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+        pf.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
 
 def add_h3(doc, text):
     text = clean_heading_dots(text)
@@ -163,21 +171,38 @@ def add_body(doc, text, indent=True):
 
 def add_list_item(doc, text, numbered=False):
     if not text.strip(): return
-    if not numbered:
-        try: p = doc.add_paragraph(style='List Bullet')
-        except: p = doc.add_paragraph("• ")
-    else:
-        p = doc.add_paragraph()
-    add_formatted_run(p, text, size=14)
+    p = doc.add_paragraph()
     pf = p.paragraph_format
     pf.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
     pf.line_spacing = 1.5 # Міжрядковий інтервал 1.5
-    pf.left_indent = Cm(0)
     pf.keep_with_next = False
     pf.keep_together = False
     pf.widow_control = True
-    pf.first_line_indent = Cm(1.25)
     pf.space_after = Pt(2)
+    
+    if not numbered:
+        # Для ненумерованих списків за ДСТУ використовуємо тире "– "
+        # Налаштовуємо висячий відступ: маркер на 0.75см, текст на 1.25см
+        p.add_run("– ")
+        add_formatted_run(p, text, size=14)
+        pf.left_indent = Cm(1.25)
+        pf.first_line_indent = Cm(-0.5)
+    else:
+        # Для нумерованих списків (текст зазвичай вже містить номер, наприклад "1. ")
+        # Виділяємо номер і робимо такий самий висячий відступ
+        match = re.match(r'^(\d+[\.\)]\s*)(.*)$', text)
+        if match:
+            num_part = match.group(1)
+            text_part = match.group(2)
+            run_num = p.add_run(num_part)
+            set_run_font(run_num, size=14)
+            add_formatted_run(p, text_part, size=14)
+            pf.left_indent = Cm(1.25)
+            pf.first_line_indent = Cm(-0.5)
+        else:
+            add_formatted_run(p, text, size=14)
+            pf.left_indent = Cm(1.25)
+            pf.first_line_indent = Cm(-0.5)
 
 def add_image(doc, img_name, caption=None):
     target_width = None
@@ -374,6 +399,10 @@ def add_table(doc, table_lines):
 
     for r_idx, row_data in enumerate(rows_data):
         row = tbl.rows[r_idx]
+        # Запобігаємо розриву рядка таблиці між сторінками
+        trPr = row._tr.get_or_add_trPr()
+        trPr.append(OxmlElement('w:cantSplit'))
+        
         is_header = (r_idx == 0 and not is_borderless)
         row_data += [''] * (ncols - len(row_data))
         for c_idx, cell_text in enumerate(row_data):
