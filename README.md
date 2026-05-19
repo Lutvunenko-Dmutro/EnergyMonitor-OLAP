@@ -13,6 +13,12 @@
 
 🚀 **Live Production (MaaS/SaaS):** [energymonitor-olap.onrender.com](https://energymonitor-olap.onrender.com/)
 
+### 📂 Документація системи / System Documentation
+
+*   📊 [**PROJECT_STATUS.md**](docs/PROJECT_STATUS.md) — Поточний стан системи (79 тести / 5 пропущено / 0 помилок).
+*   🏗️ [**ARCHITECTURE.md**](docs/system/architecture.md) — Архітектурна схема та опис шарів.
+*   🗺️ [**ROADMAP.md**](docs/ROADMAP.md) — План розробки та дорожня карта проекту.
+
 ---
 
 ## 📌 Швидка навігація / Quick Navigation
@@ -84,11 +90,11 @@
 
 Для підвищення якості оформлення кваліфікаційної роботи впроваджено такі інструменти:
 
-*   🚀 [**Modular Converter System**](scripts/converter/) — масштабована архітектура конвертації MD -> DOCX.
-*   🛠️ [**convert_thesis.py**](convert_thesis.py) — головний скрипт збірки з підтримкою LaTeX-to-OMML та ДСТУ-форматуванням.
-*   📊 [**quality_check.py**](scripts/quality_check.py) — автоматизований нормоконтроль та перевірка цілісності цитувань.
-*   🧠 [**stylometry_check.py**](scripts/stylometry_check.py) — аналіз стилістичної однорідності тексту для захисту від помилкових спрацювань AI-детекторів.
-*   🛡️ [**deep_ai_check.py**](scripts/deep_ai_check.py) — локальна система верифікації оригінальності тексту.
+*   🚀 [**Modular Converter System**](scripts/thesis/converter/) — масштабована архітектура конвертації MD -> DOCX.
+*   🛠️ [**convert_thesis.py**](scripts/thesis/convert_thesis.py) — головний скрипт збірки з підтримкою LaTeX-to-OMML та ДСТУ-форматуванням.
+*   📊 [**quality_check.py**](scripts/thesis/quality_check.py) — автоматизований нормоконтроль та перевірка цілісності цитувань.
+*   🧠 [**stylometry_check.py**](scripts/thesis/stylometry_check.py) — аналіз стилістичної однорідності тексту для захисту від помилкових спрацювань AI-детекторів.
+*   🛡️ [**deep_ai_check.py**](scripts/thesis/deep_ai_check.py) — локальна система верифікації оригінальності тексту.
 *   🖼️ **Hybrid Visuals (FINAL)**: Впроваджено формат «Mermaid + PNG». Оптимізовано Рис. 2.2 (Activity Diagram) та Рис. 3.10. Загальний обсяг документації — **~45 сторінок**.
 
 ---
@@ -224,7 +230,7 @@ $$
 
 ## 🛠️ Технологічний стек
 
-| Рівень (Layer) | Технонологии |
+| Рівень (Layer) | Технології (Technologies) |
 | :--- | :--- |
 | **Backend & Core** | `Python 3.11+`, `SQLAlchemy`, `Psycopg2` |
 | **СУБД (Data)** | `PostgreSQL 15` (Агрегація: `DATE_TRUNC`) |
@@ -343,7 +349,7 @@ graph TD
 ## 🧪 Тестування та Гарантія Якості (QA)
 
 ### Об'єкти тестування:
-* **Digital Twin Fidelity:** Верифікація фізичних законів у `test_physics.py` (наприклад, генерація сонячної енергії вночі дорівнює нулю).
+* **Digital Twin Fidelity:** Верифікація фізичних законів у [`test_physics.py`](tests/test_physics.py) (наприклад, генерація сонячної енергії вночі дорівнює нулю).
 * **ML Reliability:** Тестування входу/виходу LSTM конвеєра та стабільності нормалізації даних.
 * **Security Validation:** Захист від SQL-ін'єкцій, коректне маскування паролів у логах та валідація діапазонів дат.
 
