@@ -1,30 +1,47 @@
 # ⚡ Energy Monitor Ultimate (v3.1 STABLE)
-![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
-![Python](https://img.shields.io/badge/python-3.11-blue)
-![Tests](https://img.shields.io/badge/tests-74%20passed-success)
-![Accuracy](https://img.shields.io/badge/accuracy-MAPE%203.08%25-orange)
-![Thesis Status](https://img.shields.io/badge/thesis-ready%20for%20defense-blueviolet)
-![License](https://img.shields.io/badge/license-MIT-yellow)
+
+<p align="left">
+  <a href="https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/actions"><img src="https://img.shields.io/badge/Build-passing-brightgreen?style=for-the-badge&logo=github-actions" alt="Build Status"></a>
+  <a href="https://www.python.org"><img src="https://img.shields.io/badge/Python-3.11+-blue?style=for-the-badge&logo=python&logoColor=white" alt="Python"></a>
+  <a href="#-тестування-та-гарантія-якості-qa"><img src="https://img.shields.io/badge/Tests-74%20Passed-success?style=for-the-badge&logo=pytest" alt="Tests"></a>
+  <a href="#-наукова-новизна-та-практичне-значення"><img src="https://img.shields.io/badge/Accuracy-MAPE%203.08%25-orange?style=for-the-badge&logo=target" alt="Accuracy"></a>
+  <a href="#-bachelor-thesis-dashboard-121-іпз"><img src="https://img.shields.io/badge/Thesis-Defense%20Ready-blueviolet?style=for-the-badge&logo=read-the-docs" alt="Thesis Status"></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" alt="License"></a>
+</p>
 
 **Інтелектуальна система аналітики та предиктивного моделювання навантаження енергетичних мереж на базі концепції Digital Twin та рекурентних нейромереж LSTM.**
 
 🚀 **Live Production (MaaS/SaaS):** [energymonitor-olap.onrender.com](https://energymonitor-olap.onrender.com/)
 
-### 📄 Статус та Документація
-*   [**PROJECT_STATUS.md**](docs/PROJECT_STATUS.md) — Поточний стан (79 тести / 0 помилок).
-*   [**ARCHITECTURE.md**](docs/system/architecture.md) — Архітектурна схема системи.
-*   [**ROADMAP.md**](docs/ROADMAP.md) — План розвитку.
+---
+
+## 📌 Швидка навігація / Quick Navigation
+
+* 👤 [**Автор та Статус**](#-автор--author) — Відомості про розробника та календарний план.
+* 📂 [**Обов'язкові документи**](#-перелік-обовʼязкових-документів-checklist) — Контрольний список кваліфікаційних матеріалів.
+* 🛠️ [**Технічні оновлення**](#️-останні-технічні-оновлення-автоматизація) — Реалізовані інструменти автоматизації.
+* 🔬 [**Науковий базис**](#-науково-дослідний-базис-дипломна-робота) — Методологічна структура дослідження.
+* 🧮 [**Математична модель**](#-математична-модель-прогнозування) — Формалізація LSTM та інженерії ознак.
+* 💻 [**Технологічний стек**](#️-технологічний-стек) — Інструменти та архітектурне обґрунтування.
+* 🖼️ [**Галерея інтерфейсу**](#️-галерея-інтерфейсу-energy-core) — Інтерактивний огляд екранів системи.
+* 📊 [**Схеми та діаграми**](#-візуальні-моделі-та-діаграми-mermaid) — UML та системна архітектура.
+* 🧪 [**Тестування та QA**](#-тестування-та-гарантія-якості-qa) — Валідація фізики та стійкості (79 тестів).
 
 ---
+
 ## 👤 Автор / Author
-**Литвиненко Дмитро Сергійович (Lutvunenko Dmutro), бакалавр**  
-*Бакалавр 121 ІПЗ / Bachelor of Software Engineering*
+
+**Литвиненко Дмитро Сергійович (Lutvunenko Dmutro)**  
+*Бакалавр 121 ІПЗ / Bachelor of Software Engineering*  
+*Кафедра «Інформаційних та комунікаційних технологій некомп'ютерних наук та інженерії програмного забезпечення»*
+
+---
 
 ## 🎓 Bachelor Thesis Dashboard (121 ІПЗ)
 
 > [!TIP]
-> **Поточний статус:** Основна частина тексту готова. Триває фінальне шліфування, виправлення математичного апарату та аудит графічного наповнення.
-> **Головний план:** 📋 [**kanban_thesis.md**](docs/thesis/KANBAN_THESIS.md)
+> **Поточний статус:** Основна частина тексту готова. Виконано фінальне шліфування, математичний апарат повністю верифіковано та впроваджено нормоконтроль графічного наповнення.
+> **Головний план розробки:** 📋 [**kanban_thesis.md**](docs/thesis/KANBAN_THESIS.md)
 
 | 🗓️ Дата | 🎯 Подія / Milestone | 🚩 Статус |
 | :--- | :--- | :--- |
@@ -36,15 +53,13 @@
 | **17.06 (10:00)** | 🏆 **ЗАХИСТ В ЕК (Група І23)** | 💎 **ФІНАЛ** |
 | **Classroom** | Подача документів (вкл. КЕП) | ⏳ Очікує |
 
-**Кафедра:** «Інформаційних та комунікаційних технологій некомп'ютерних наук та інженерії програмного забезпечення»
-
 ---
 
 ## 📂 Перелік обов'язкових документів (Checklist)
 
 | Етап | Документ | Статус |
 | :--- | :--- | :--- |
-| **Організація** | Заява на тему | ✅ |
+| **Організація** | Заява на тему | ✅ Подано |
 | | [Завдання на роботу (Додаток Б)](docs/thesis/OFFICIAL_TASK_STATEMENT.md) | ✅ Finalized |
 | | [Титульна сторінка (Додаток В)](docs/thesis/OFFICIAL_TITLE_PAGE.md) | ✅ Finalized |
 | | [Календарний план](docs/thesis/OFFICIAL_CALENDAR_PLAN.md) | ✅ Finalized |
@@ -56,9 +71,9 @@
 | | [**Тези доповідей (Апробація)**](docs/thesis/THESIS_PROCEEDINGS_ABSTRACTS.md) | ✅ **Ready** |
 | **Допуск** | [**Відгук керівника (Додаток Г)**](docs/thesis/OFFICIAL_REVIEW_PROJECT.md) | ✅ **Ready** |
 | | [**Рецензія (Додаток Д)**](docs/thesis/OFFICIAL_RECENSION_PROJECT.md) | ✅ **Ready** |
-| | Висновок про плагіат | ⏳ |
+| | Висновок про плагіат | ⏳ Перевірка |
 | **Фінал** | [**Фінальний диплом (ВОРД за ДСТУ)**](FINAL_THESIS_MASTER_BUILD.docx) | ✅ **READY** |
-| | PDF з КЕП ([Інструкція Дія](https://www.youtube.com/watch?v=VaT8KmAh5B4)) | ⏳ |
+| | PDF з КЕП ([Інструкція Дія](https://www.youtube.com/watch?v=VaT8KmAh5B4)) | ⏳ Очікує |
 | | [Презентація до захисту](docs/thesis/THESIS_PRESENTATION_FINAL.md) | ✅ **Ready** |
 | | [**Текст доповіді (у презентації)**](docs/thesis/THESIS_PRESENTATION_FINAL.md) | ✅ **Ready** |
 | | [**Шпаргалка до захисту (Cheat Sheet)**](docs/thesis/DEFENSE_GUIDE.md) | ✅ **Ready** |
@@ -106,7 +121,7 @@
 
 ### 🧬 1. Інженерія ознак та нормалізація
 
-**Циклічне кодування періодичності:**
+**Циклічне кодування періодичності:**  
 Для усунення розривів неперервності (наприклад, $23:59 \rightarrow 00:00$) та збереження сезонності, часові ознаки $h \in [0, 23]$ (година) та $d \in [0, 6]$ (день тижня) переносяться на тригонометричне коло:
 
 $$
@@ -117,7 +132,7 @@ $$
 \text{day}_{sin}(t) = \sin\left(\frac{2\pi \cdot d(t)}{7}\right), \quad \text{day}_{cos}(t) = \cos\left(\frac{2\pi \cdot d(t)}{7}\right)
 $$
 
-**Нормалізація ознак ($MinMaxScaler$):**
+**Нормалізація ознак ($MinMaxScaler$):**  
 Масштабування вхідного простору в діапазон $[0, 1]$ призначене для вирівнювання масштабів різних фізичних величин (МВт, % здоров'я, $\text{ppm}$) за формулою:
 
 $$
@@ -151,7 +166,8 @@ $$
 \mathbf{Y}_{t+1} = y^{load}_{t+1} \in \mathbb{R}^1
 $$
 
-> **Примітка:** Health Score розраховується окремо фізичним рушієм Digital Twin (`physics.py`), а не нейронною мережею.
+> [!NOTE]
+> Показник здоров'я трансформаторів (Health Score) розраховується окремо фізичним рушієм Digital Twin (`physics.py`), а не нейронною мережею.
 
 ---
 
@@ -181,7 +197,7 @@ $$h_t = o_t \odot \tanh(C_t)$$
 
 ### 📉 4. Функція втрат та оптимізація
 
-Мінімізується **Huber Loss** (δ=1.0) — адаптивна функція, що поводиться як MSE для малих помилок та MAE для великих (стійкість до викидів у телеметрії):
+Мінімізується **Huber Loss** ($\delta=1.0$) — адаптивна функція, що поводиться як MSE для малих помилок та MAE для великих (стійкість до викидів у телеметрії):
 
 $$
 \mathcal{L}_{\delta}(y, \hat{y}) = \begin{cases} \frac{1}{2}(y - \hat{y})^2, & |y - \hat{y}| \leq \delta \\ \delta \cdot |y - \hat{y}| - \frac{1}{2}\delta^2, & |y - \hat{y}| > \delta \end{cases} \rightarrow \min
@@ -190,10 +206,6 @@ $$
 Оновлення ваг виконується за алгоритмом **Adam** через зворотне поширення помилки в часі (**BPTT**).
 
 ---
-
-
----
-
 
 ## 👥 Ролі користувачів (User Personas)
 
@@ -205,14 +217,14 @@ $$
 
 ## 🔍 Обґрунтування технологічного вибору (Rationale)
 
-*   **PostgreSQL 15 (Neon Cloud):** Вибір обумовлений необхідністю швидкої агрегації часових рядів (`DATE_TRUNC`).
-*   **SQLAlchemy ORM:** Реалізує патерн **Data Access Layer (DAL)**, що забезпечує незалежність бізнес-логіки від конкретної СУБД.
+*   **PostgreSQL 15 (Neon Cloud):** Вибір обумовлений необхідністю швидкої агрегації часових рядів (`DATE_TRUNC`) та стабільної роботи в хмарі.
+*   **SQLAlchemy ORM:** Реалізує патерн **Data Access Layer (DAL)**, що забезпечує незалежність бізнес-логіки від конкретної СУБД та захист від ін'єкцій.
 
 ---
 
 ## 🛠️ Технологічний стек
 
-| Рівень (Layer) | Технології |
+| Рівень (Layer) | Технонологии |
 | :--- | :--- |
 | **Backend & Core** | `Python 3.11+`, `SQLAlchemy`, `Psycopg2` |
 | **СУБД (Data)** | `PostgreSQL 15` (Агрегація: `DATE_TRUNC`) |
@@ -224,79 +236,80 @@ $$
 
 ## 🖼️ Галерея інтерфейсу (Energy Core)
 
-### 🛰️ 1. Ініціалізація системи (Splash Screen)
-Екран вибору вузла підключення: локальний вузол або хмарний кластер Neon.
-![Ініціалізація](docs/images/boot_1.png)
+<details>
+  <summary>🔍 <b>Розгорнути повну галерею скріншотів інтерфейсу (13+ зображень)</b></summary>
+  <br>
 
-### 📟 2. Energy Core Bootloader
-Процес автентифікації, перевірки цілісності даних та встановлення зв'язку з OLAP-шаром.
-![Bootloader](docs/images/boot_loader.png)
+  ### 🛰️ 1. Ініціалізація системи (Splash Screen)
+  Екран вибору вузла підключення: локальний вузол або хмарний кластер Neon.
+  ![Ініціалізація](docs/images/boot_1.png)
 
-### 🗺️ 3. ГІС Моніторинг мережі
-Візуалізація географічного розташування вузлів та їх поточного стану (Heatmap навантаження).
-![Карта мережі](docs/images/map.png)
+  ### 📟 2. Energy Core Bootloader
+  Процес автентифікації, перевірки цілісності даних та встановлення зв'язку з OLAP-шаром.
+  ![Bootloader](docs/images/boot_loader.png)
 
-### 📊 4. Динаміка споживання
-Детальний аналіз навантаження в розрізі регіонів та часових проміжків.
-![Споживання](docs/images/consumption.png)
+  ### 🗺️ 3. ГІС Моніторинг мережі
+  Візуалізація географічного розташування вузлів та їх поточного стану (Heatmap навантаження).
+  ![Карта мережі](docs/images/map.png)
 
-### ⚡ 5. Структура генерації
-Баланс енергії за джерелами (Nuclear, Hydro, Thermal, Solar, Wind).
-![Генерація](docs/images/generation.png)
+  ### 📊 4. Динаміка споживання
+  Детальний аналіз навантаження в розрізі регіонів та часових проміжків.
+  ![Споживання](docs/images/consumption.png)
 
-### ⚠️ 6. Центр керування аваріями (Alerts)
-Інтелектуальна система реєстрації та управління критичними інцидентами.
-![Журнал аварій](docs/images/alerts.png)
+  ### ⚡ 5. Структура генерації
+  Баланс енергії за джерелами (Nuclear, Hydro, Thermal, Solar, Wind).
+  ![Генерація](docs/images/generation.png)
 
-### 💰 7. Фінансова аналітика
-Аналіз вартості генерації, теплові карти цін та характеристики втрат.
-![Фінанси](docs/images/finance.png)
+  ### ⚠️ 6. Центр керування аваріями (Alerts)
+  Інтелектуальна система реєстрації та управління критичними інцидентами.
+  ![Журнал аварій](docs/images/alerts.png)
 
-### 🧠 8. ШІ-Аналітика та Кластеризація
-Сегментація підстанцій за рівнем ризику за допомогою K-Means.
-![Кластеризація](docs/images/clustering.png)
+  ### 💰 7. Фінансова аналітика
+  Аналіз вартості генерації, теплові карти цін та характеристики втрат.
+  ![Фінанси](docs/images/finance.png)
 
-### 📈 9. Предиктивне Моделювання (LSTM v3.1)
-Оперативне прогнозування навантаження на 24 години з аудитом точності.
-![ШІ Прогноз](docs/images/ai_forecast.png)
-![Глобальна мережа](docs/images/multi_forecast.png)
+  ### 🧠 8. ШІ-Аналітика та Кластеризація
+  Сегментація підстанцій за рівнем ризику за допомогою K-Means.
+  ![Кластеризація](docs/images/clustering.png)
 
-### 🔍 10. Детальний аудит об'єктів
-Персоналізований аналіз кожної підстанції.
-![Деталізація 1](docs/images/substation_1.png)
-![Деталізація 2](docs/images/substation_2.png)
+  ### 📈 9. Предиктивне Моделювання (LSTM v3.1)
+  Оперативне прогнозування навантаження на 24 години з аудитом точності.
+  ![ШІ Прогноз](docs/images/ai_forecast.png)
+  ![Глобальна мережа](docs/images/multi_forecast.png)
 
-### 🔬 11. Науковий аудит та верифікація (Diploma Special)
-Комплексна перевірка точності моделей: потокова аналітика (7д бектест), порівняння архітектур LSTM (v1, v2, v3) та статистичний аналіз розподілу помилок.
-![Бектест](docs/images/streaming_analytics.png)
-![Порівняння](docs/images/audit_comparison.png)
-![Розподіл помилок](docs/images/error_distribution.png)
-![Метрики](docs/images/metrics_table.png)
+  ### 🔍 10. Детальний аудит об'єктів
+  Персоналізований аналіз кожної підстанції.
+  ![Деталізація 1](docs/images/substation_1.png)
+  ![Деталізація 2](docs/images/substation_2.png)
 
-### 🌡️ 12. Цифровий двійник та фізичний моніторинг
-Глибокий аналіз активів: термодинамічний баланс (вплив погоди), моніторинг «здоров’я» трансформаторів за концентрацією газів (H2) та аналіз циклічності «Будні vs Вихідні».
-![Баланс](docs/images/weather_impact.png)
-![Здоров'я](docs/images/health_monitoring.png)
-![Цикли](docs/images/day_cycle_raw.png)
+  ### 🔬 11. Науковий аудит та верифікація (Diploma Special)
+  Комплексна перевірка точності моделей: потокова аналітика (7д бектест), порівняння архітектур LSTM (v1, v2, v3) та статистичний аналіз розподілу помилок.
+  ![Бектест](docs/images/streaming_analytics.png)
+  ![Порівняння](docs/images/audit_comparison.png)
+  ![Розподіл помилок](docs/images/error_distribution.png)
+  ![Метрики](docs/images/metrics_table.png)
 
-### 📈 13. Еталонне тестування (Kaggle PJM Interconnection)
-Верифікація системи на відкритих великих даних енергосистеми США (PJM). Демонстрація роботи OLAP-ядра та ШІ-прогнозів з навантаженнями в десятки гігават.
-![Kaggle Споживання](docs/images/kaggle_consumption.png)
-![Kaggle Прогноз](docs/images/kaggle_global_forecast.png)
-![Kaggle Деталізація 1](docs/images/kaggle_substations_1.png)
-![Kaggle Деталізація 2](docs/images/kaggle_substations_2.png)
+  ### 🌡️ 12. Цифровий двійник та фізичний моніторинг
+  Глибокий аналіз активів: термодинамічний баланс (вплив погоди), моніторинг «здоров’я» трансформаторів за концентрацією газів (H2) та аналіз циклічності «Будні vs Вихідні».
+  ![Баланс](docs/images/weather_impact.png)
+  ![Здоров'я](docs/images/health_monitoring.png)
+  ![Цикли](docs/images/day_cycle_raw.png)
+
+  ### 📈 13. Еталонне тестування (Kaggle PJM Interconnection)
+  Верифікація системи на відкритих великих даних енергосистеми США (PJM). Демонстрація роботи OLAP-ядра та ШІ-прогнозів з навантаженнями в десятки гігават.
+  ![Kaggle Споживання](docs/images/kaggle_consumption.png)
+  ![Kaggle Прогноз](docs/images/kaggle_global_forecast.png)
+  ![Kaggle Деталізація 1](docs/images/kaggle_substations_1.png)
+  ![Kaggle Деталізація 2](docs/images/kaggle_substations_2.png)
+
+</details>
 
 ---
 
----
-
-
-
-
-## 📊 Візуальні моделі та діаграми (Mermaid)
+## 📊 Візуальні модели та діаграми (Mermaid)
 
 ### 🗺️ 1. UML Схема Компонентів
-Архітектура 4-шарової структури (Layers) з розділенням середовищ:
+Архітектура 4-шарової структури (Layers) з розділенням локального та хмарного середовищ:
 
 ```mermaid
 graph TD
@@ -330,18 +343,18 @@ graph TD
 ## 🧪 Тестування та Гарантія Якості (QA)
 
 ### Об'єкти тестування:
-* **Digital Twin Fidelity:** Верифікація фізичних законів у `test_physics.py` (напр., генерація сонячної енергії вночі $\approx 0$).
-* **ML Reliability:** Тестування входу/виходу LSTM конвеєра та стабільності нормалізації.
-* **Security Validation:** 26 тестів на захист від SQL-ін'єкцій та XSS.
+* **Digital Twin Fidelity:** Верифікація фізичних законів у `test_physics.py` (наприклад, генерація сонячної енергії вночі дорівнює нулю).
+* **ML Reliability:** Тестування входу/виходу LSTM конвеєра та стабільності нормалізації даних.
+* **Security Validation:** Захист від SQL-ін'єкцій, коректне маскування паролів у логах та валідація діапазонів дат.
 
 **Запуск тестів:**
 ```bash
-# Всі 79 тесті
-pytest tests/ -v
+# Запуск повного пакету тестів
+python -m pytest tests/ -v
 ```
 
-**Поточний результат:**
-`79 passed, 0 failed — 13.71s ✅`
+**Поточний результат:**  
+`74 passed, 5 skipped (79 total) — 13.57s ✅`
 
 ---
 
@@ -358,9 +371,9 @@ pytest tests/ -v
 
 ## 🛡️ Безпека та Відмовостійкість (Resilience)
 
-*   **SQL Injection Protection:** Реалізовано через параметризацію ORM та whitelist-валідатори.
-*   **Zero-Failure Fallback:** При збої AI-обчислень система автоматично переходить на статистичний бейзлайн (SARIMA).
-*   **Auto-GC Watchdog:** Автоматичне керування пам'яттю для стабільної роботи на Free-хостингах.
+*   **SQL Injection Protection:** Реалізовано через параметризацію ORM SQLAlchemy та whitelist-валідатори вхідних значень.
+*   **Zero-Failure Fallback:** При збої AI-обчислень система автоматично переходить на статистичний бейзлайн (ARIMA).
+*   **Auto-GC Watchdog:** Автоматичне керування пам'яттю для стабільної роботи на Free-хостингах (Render).
 
 ---
 
