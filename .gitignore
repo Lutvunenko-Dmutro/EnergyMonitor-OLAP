@@ -45,8 +45,7 @@ junit/
 # Thesis Work
 scratch/
 docs/thesis/check_pages/
-docs/thesis/GIT_BACKUP_BEFORE_AI/
-docs/thesis/RESTORED_BACKUP/
+thesis_backups/
 docs/thesis/FORMULA_TEST.docx
 docs/thesis/DIPLOMA_PLAN.docx
 docs/thesis/FINAL_DOC_CHECK.docx

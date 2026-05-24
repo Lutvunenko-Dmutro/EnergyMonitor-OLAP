@@ -6,7 +6,7 @@ on:
       - main
     paths:
       - 'docs/**'
-      - 'mkdocs.yml'
+      - 'properdocs.yml'
       - 'README.md'
       - 'requirements-dev.txt'
   workflow_dispatch: # Дозволяє запуск вручну кнопкою на GitHub
@@ -33,4 +33,4 @@ jobs:
           pip install -r requirements-dev.txt
 
       - name: Deploy to GitHub Pages 🚀
-        run: mkdocs gh-deploy --force
+        run: mkdocs gh-deploy -f properdocs.yml --force

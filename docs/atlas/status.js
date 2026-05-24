@@ -3,5 +3,5 @@ const SYSTEM_STATUS = {
     "ui_dashboard": "offline",
     "simulation": "offline",
     "database": "online",
-    "timestamp": 1777322266.2275817
+    "timestamp": 1748108700.0
 };

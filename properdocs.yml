@@ -47,10 +47,10 @@ nav:
       - Вступ: thesis/THESIS_0_INTRODUCTION.md
       - Розділ 1. Теорія: thesis/THESIS_1_THEORY.md
       - Розділ 2. Вимоги: thesis/THESIS_2_REQUIREMENTS.md
-      - Розділ 3. Реалізація (v3): thesis/THESIS_3_DESIGN_AND_IMPLEMENTATION_EXPANDED.md
+      - Розділ 3. Реалізація (v3): thesis/THESIS_3_DESIGN_AND_IMPLEMENTATION.md
       - Висновки: thesis/THESIS_FINAL_CONCLUSIONS.md
       - Список літератури: thesis/BIBLIOGRAPHY.md
-      - Додатки: thesis/APPENDICES.md
+      - Додатки: thesis/THESIS_APPENDICES.md
       - Канбан проєкту: thesis/KANBAN_THESIS.md
       - Тези та апробація: thesis/THESIS_PROCEEDINGS_ABSTRACTS.md
       - Скорочення: thesis/ABBREVIATIONS.md
@@ -60,7 +60,7 @@ nav:
       - Звіт (ФІНАЛ): thesis/PRACTICE_REPORT_FINAL.md
       - Щоденник практики: thesis/PRACTICE_DIARY_DRAFT.md
       - Презентація: thesis/PRACTICE_PRESENTATION_DRAFT.md
-      - Повний чернетка звіту: thesis/PRACTICE_REPORT_FULL_DRAFT.md
+      - Повний чернетка звіту: thesis/ARCHIVE/PRACTICE_REPORT_FULL_DRAFT.md
   - 📄 Офіційні бланки:
       - Титульна сторінка: thesis/OFFICIAL_TITLE_PAGE.md
       - Завдання на роботу: thesis/OFFICIAL_TASK_STATEMENT.md
