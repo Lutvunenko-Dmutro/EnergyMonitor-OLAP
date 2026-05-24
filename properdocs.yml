@@ -79,7 +79,6 @@ nav:
 
 plugins:
   - search
-  - kroki: {}
   - mkdocstrings:
       handlers:
         python:
