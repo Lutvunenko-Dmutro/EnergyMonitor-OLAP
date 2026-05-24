@@ -71,6 +71,7 @@ def run_conversion(input_md, output_docx, include_appendix=False):
     section.top_margin, section.bottom_margin = Cm(2.0), Cm(2.0)
 
     in_code = False
+    code_lang = ""
     in_math = False
     in_table = False
     in_mermaid = False
