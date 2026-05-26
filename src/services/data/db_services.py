@@ -11,7 +11,7 @@
 """
 import random
 import datetime
-# ATLAS_PASSPORT: docs/system/map/data_services_hub.md
+# ATLAS_PASSPORT: docs/system/map/db_services.md
 import pandas as pd
 from sqlalchemy import text
 from src.core.database import run_query, execute_update, get_engine

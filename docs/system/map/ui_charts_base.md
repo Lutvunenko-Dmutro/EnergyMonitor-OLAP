@@ -4,155 +4,207 @@
 
 <!-- HERO SECTION -->
 <div class="hero-section">
-    <div class="hero-badge">CHARTING ENGINE | ANALYTICAL CORE</div>
+    <div class="hero-badge">CORE GRAPHICS | ANALYTICAL VISUALS</div>
     <div class="hero-main">
         <div class="hero-icon-wrapper"><span class="hero-icon">📈</span><div class="pulse-ring"></div></div>
         <div class="hero-title-group">
-            <h1 class="mega-title">Ядро Візуалізації</h1>
-            <p class="mega-subtitle">Фундаментальний двигун аналітичних графіків проекту ATLAS: підтримка подвійних осей (Dual-Axis), аналіз ритміки споживання та професійна стилізація з використанням Alpha-blending для прецизійного аудиту даних</p>
-            <div class="status-tags"><span class="tag tag-online">VIS ENGINE ACTIVE</span><span class="tag tag-version">v2.3.0</span><span class="tag tag-role">CORE ANALYTICS</span></div>
+            <h1 class="mega-title">Ядро Базової Візуалізації</h1>
+            <p class="mega-subtitle">Фундаментальний двигун графічної аналітики проєкту ATLAS: двовісні кореляційні графіки (Dual-Axis Charts), добові профілі ритмічності (Rhythm Analysis) та багатовузлові тренди</p>
+            <div class="status-tags"><span class="tag tag-online">BASE VIZ ACTIVE</span><span class="tag tag-version">v2.1.0</span><span class="tag tag-role">CORE VISUALIZER</span></div>
         </div>
     </div>
 </div>
 
 <!-- KEY METRICS GRID -->
 <div class="metrics-grid">
-    <div class="glass-card metric-card"><div class="metric-icon">🔄</div><div class="metric-info"><span class="metric-label">Mode</span><span class="metric-value">Dual-Axis Sync</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">⏳</div><div class="metric-info"><span class="metric-label">Analysis</span><span class="metric-value">Rhythm (Day Type)</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🎨</div><div class="metric-info"><span class="metric-label">Alpha</span><span class="metric-value">0.08 Blending</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🛡️</div><div class="metric-info"><span class="metric-label">Library</span><span class="metric-value">Plotly Graph Objects</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🔄</div><div class="metric-info"><span class="metric-label">Dual-Axis</span><span class="metric-value">Secondary Y-Axis Spec</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">📅</div><div class="metric-info"><span class="metric-label">Rhythm</span><span class="metric-value">Monday vs Saturday</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">⚡</div><div class="metric-info"><span class="metric-label">Rendering</span><span class="metric-value">Zero-latency GPU</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🧪</div><div class="metric-info"><span class="metric-label">Color blending</span><span class="metric-value">Hex-to-RGB Alpha</span></div></div>
 </div>
 
-<!-- SECTION 01: CHARTING ENGINE PHILOSOPHY -->
+<!-- SECTION 01: BASE VISUALIZATION PHILOSOPHY -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">01</span><h2 class="section-title">Філософія Ядра Візуалізації</h2></div>
+    <div class="section-header"><span class="section-number">01</span><h2 class="section-title">Філософія Базової Візуалізації</h2></div>
     <div class="glass-card flow-step">
-        <p>Модуль <code>base.py</code> є "Очима" аналітичної системи ATLAS. В складних енергетичних системах дані мають сенс лише у порівнянні. Наша філософія базується на <b>Кореляційній Прозорості</b>: ми розробили інструменти, які дозволяють бачити не просто цифри, а зв'язки між ними. Використання подвійних осей (Dual-Axis) та порівняння добових ритмів (Rhythm Analysis) дає диспетчеру можливість миттєво зрозуміти, як зміна одного параметра (наприклад, температури повітря) впливає на інший (навантаження мережі), перетворюючи сирі дані на усвідомлені технічні рішення.</p>
+        <p>Модуль <code>base.py</code> є "Зоровим апаратом" проєкту ATLAS. Нашою філософією є <b>Контекстна Прозорість</b>: графіки не повинні бути просто набором ліній. Вони мають виявляти приховані взаємозв'язки. Побудова кореляцій за двома осями Y (наприклад, суміщення температурного режиму з рівнем енергоспоживання) дозволяє диспетчеру миттєво побачити причину перевантаження, а ритмічні графіки допомагають виявити системні зрушення у тижневих циклах споживання міста.</p>
     </div>
 </div>
 
-<!-- SECTION 02: VISUALIZATION PIPELINE DIAGRAM -->
+<!-- SECTION 02: BASE CHART PIPELINE -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Конвеєр побудови графіків (Vis Flow)</h2></div>
+    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Конвеєр базової візуалізації (Data Flow)</h2></div>
     <div class="diagram-outer-wrapper"><div class="mermaid">
 graph TD
-    DATA("Aggregated Dataframe") --> TYPE{"Identify Chart Type"}
+    DATA("Input DataFrame (load, temp, timestamp)") --> TYPE_SELECT{"Select Layout Engine"}
     
-    TYPE -- "Correlation" --> DUAL("render_dual_axis_chart")
-    DUAL --> SUBPLOTS("make_subplots (secondary_y=True)")
-    SUBPLOTS --> TRACES("Add Scatter Traces (Left/Right)")
-    TRACES --> ALPHA("Apply RGBA Alpha Blending (0.08)")
+    TYPE_SELECT -- "Dual-Axis Trend" --> SUBPLOT("make_subplots(secondary_y=True)")
+    SUBPLOT --> CHECK_MULTI{"Is Multi-Substation?"}
     
-    TYPE -- "Patterns" --> RHYTHM("render_rhythm_chart")
-    RHYTHM --> GROUP("Group by DayType (Mon vs Sat)")
-    GROUP --> OVERLAY("Overlay Profiles (Hour 0-23)")
+    CHECK_MULTI -- "Yes" --> ADD_TRACES_MULTI("Loop substations: add left & right lines")
+    CHECK_MULTI -- "No" --> ADD_TRACES_SINGLE("Add single left & right lines")
+    ADD_TRACES_SINGLE --> HEX_RGB("_hex_to_rgb(left_color)")
+    HEX_RGB --> FILL("Apply Alpha-blended fill color (rgba, 0.08)")
     
-    ALPHA --> LAYOUT("Update Layout (Dark Theme)")
-    OVERLAY --> LAYOUT
+    TYPE_SELECT -- "Rhythm Chart" --> RHYTHM_COPY("Copy & cast: dow, hour, avg_load to numeric")
+    RHYTHM_COPY --> FILTER_DAYS("Filter: Monday (dow=1) & Saturday (dow=6)")
+    FILTER_DAYS --> PLOT_RHYTHM("Render solid line (Monday) and dashed line (Saturday)")
     
-    LAYOUT --> FIG("Return go.Figure Object")
+    ADD_TRACES_MULTI --> STYLE_LAYOUT("Apply Template plotly_dark & Margin Fix")
+    FILL --> STYLE_LAYOUT
+    PLOT_RHYTHM --> STYLE_LAYOUT
+    
+    STYLE_LAYOUT --> RENDER("Output go.Figure to UI View")
     </div></div>
 </div>
 
-<!-- SECTION 03: DUAL-AXIS CORRELATION ENGINE -->
+<!-- SECTION 03: DUAL-AXIS CORRELATION ARCHITECTURE -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Двигун кореляції з подвійною віссю (Dual-Axis)</h2></div>
+    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Архітектура двовісної кореляції (Dual-Axis)</h2></div>
     <div class="glass-card flow-step">
-        <p>Функція <code>render_dual_axis_chart</code> є ключовою для діагностичного аналізу:</p>
+        <p>Для одночасного спостереження параметрів з різними шкалами (наприклад, потужність у МВт та температура у °C) ми використовуємо технологію <b>двовісного рендерингу (Secondary Y-Axis)</b>:</p>
         <ul>
-            <li><b>Independent Scaling:</b> Ліва та права осі Y масштабуються незалежно, що дозволяє порівнювати параметри з різними одиницями виміру (наприклад, МВт та °C).</li>
-            <li><b>Visual Hierarchy:</b> Основний параметр (навантаження) підсвічується заливкою (Fill to zero) з альфа-каналом, тоді як допоміжний параметр відображається пунктирною лінією (Dot dash).</li>
-            <li><b>Multi-Substation Overlay:</b> Модуль автоматично розпізнає наявність даних від декількох підстанцій та будує індивідуальні тренди для кожної, зберігаючи цілісність легенди.</li>
+            <li><b>Subplot Specs:</b> Ми ініціалізуємо об'єкт Plotly за допомогою <code>make_subplots(specs=[[{"secondary_y": True}]])</code>, що створює дві паралельні системи координат на одному полотні.</li>
+            <li><b>Alpha-blending Area:</b> Для головного (лівого) тренду ми розраховуємо плавне заповнення до осі X. За допомогою функції <code>_hex_to_rgb</code> шістнадцятковий колір конвертується у формат RGBA з прозорістю <code>0.08</code>. Це створює відчуття глибини та покращує візуальний баланс графіка, не перекриваючи сітку.</li>
+            <li><b>Grid Separation:</b> Ми вимикаємо сітку для правої осі (<code>showgrid=False</code>), щоб лінії правої осі не створювали візуального хаосу при перетині з основною сіткою.</li>
         </ul>
     </div>
 </div>
 
-<!-- SECTION 04: CHART STYLING & COLOR MATRIX -->
+<!-- SECTION 04: CORE VISUALIZATION MATRIX -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Матриця стилізації та колірна палітра</h2></div>
+    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Матриця базових аналітичних графіків</h2></div>
     <div class="glass-card flow-step">
         <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
             <thead>
                 <tr style="border-bottom: 1px solid var(--border); color: var(--accent);">
-                    <th>Параметр</th>
-                    <th>Тип лінії</th>
-                    <th>Колір (Hex)</th>
-                    <th>Alpha-заливка</th>
+                    <th>Тип графіка / Метод</th>
+                    <th>Вхідні колонки</th>
+                    <th>Особливості стилізації</th>
+                    <th>Аналітична мета</th>
                 </tr>
             </thead>
             <tbody>
-                <tr><td>Load (MW)</td><td>Solid (2px)</td><td>#f97316 (Orange)</td><td>0.08 (Subtle)</td></tr>
-                <tr><td>Temperature</td><td>Dot (1.5px)</td><td>#38bdf8 (Blue)</td><td>None</td></tr>
-                <tr><td>Oil Temp</td><td>Solid (1.5px)</td><td>#f43f5e (Rose)</td><td>None</td></tr>
-                <tr><td>Health Index</td><td>Solid (2px)</td><td>#22c55e (Green)</td><td>None</td></tr>
-                <tr><td>Gas (H2)</td><td>Dash (1.5px)</td><td>#a855f7 (Purple)</td><td>None</td></tr>
+                <tr><td><code>render_dual_axis_chart()</code></td><td><code>ts</code>, <code>left_col</code>, <code>right_col</code>, <code>substation</code> (опціонально)</td><td>Дві осі Y, напівпрозоре заповнення лівого тренду (0.08 alpha), пунктирний правий тренд.</td><td>Аналіз впливу факторів (температура, вологість, водень) на загальне споживання.</td></tr>
+                <tr><td><code>render_rhythm_chart()</code></td><td><code>dow</code> (Day of Week), <code>hour_of_day</code>, <code>avg_load</code></td><td>Суцільна лінія (Понеділок), штрихова лінія (Субота), колірний контраст Orange/SkyBlue.</td><td>Аналіз ритмічності: порівняння типового робочого дня з типовим вихідним для виявлення піків.</td></tr>
             </tbody>
         </table>
     </div>
 </div>
 
-<!-- SECTION 05: RHYTHM ANALYSIS (WORKDAY VS WEEKEND) -->
+<!-- SECTION 05: DAILY RHYTHM ANALYSIS (MON vs SAT) -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Аналіз енергетичних ритмів (Будні vs Вихідні)</h2></div>
+    <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Добові профілі ритмічності (Rhythm)</h2></div>
     <div class="glass-card flow-step">
-        <p>Функція <code>render_rhythm_chart</code> візуалізує "Відбиток пальця" енергосистеми. Ми накладаємо середній профіль понеділка (робочий день) на профіль суботи (вихідний). Це дозволяє технічному персоналу перевірити правильність роботи ШІ-моделей: чи враховують вони падіння промислового споживання у вихідні та зміщення пікових годин вечірнього споживання населенням.</p>
+        <p>Аналіз ритмічності в <code>render_rhythm_chart</code> фокусується на двох крайніх точках тижневого циклу споживання:</p>
+        <ul>
+            <li><b>Понеділок (dow=1):</b> Відображає максимальне робоче завантаження енергосистеми (активність заводів, офісів, транспорту). Позначається яскравою суцільною лінією <code>#f97316</code>.</li>
+            <li><b>Субота (dow=6):</b> Показує типову картину вихідного дня (побутове споживання, відсутність промислового навантаження). Позначається штриховою лінією блакитного кольору <code>#38bdf8</code>.</li>
+        </ul>
+        <p>Цей графік дозволяє енергоаналітику миттєво визначити коефіцієнт нерівномірності споживання та скоригувати графіки генерації електростанцій.</p>
     </div>
 </div>
 
-<!-- SECTION 06: CORE LOGIC (PSEUDO-CODE) -->
+<!-- SECTION 06: CORE LOGIC (PSEUDO-CODE & AST DETAILS) -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">06</span><h2 class="section-title">Псевдокод Ядра (Vis Engine Logic)</h2></div>
+    <div class="section-header"><span class="section-number">06</span><h2 class="section-title">Математичні перетворення та алгоритми (Base Logic)</h2></div>
     <div class="glass-card flow-step">
-        <pre><code>FUNCTION render_dual_axis(df, left_col, right_col):
-    1. INITIALIZE: fig = make_subplots(secondary_y=True)
-    
-    2. ITERATE_SUBSTATIONS:
-           FOR sub IN df.substations.unique():
-               # Left Axis Trace (Fillable)
-               fig.add_trace(go.Scatter(y=sub.left, fill='tozeroy', alpha=0.08))
-               
-               # Right Axis Trace (Trendline)
-               fig.add_trace(go.Scatter(y=sub.right, dash='dot'), secondary_y=True)
-               
-    3. STYLE:
-           SET template = "plotly_dark"
-           SET hovermode = "x unified"
-           SET legend = "horizontal_bottom"
+        <p>Математична формула для перетворення HEX-кольору у формат RGB (зсув по байтах):</p>
+        <div style="text-align: center; margin: 15px 0; font-size: 15px; color: var(--accent);">
+            $$\text{RGB}(H) = \left( \text{int}(H_{1:2}, 16), \text{int}(H_{3:4}, 16), \text{int}(H_{5:6}, 16) \right)$$
+        </div>
+        <p>Це перетворення виконується у допоміжній функції <code>_hex_to_rgb(hex_color)</code> для гнучкого додавання альфа-каналу прозорості.</p>
+        
+        <pre><code class="language-python"># Двигун базової візуалізації (base.py)
+FUNCTION _hex_to_rgb(hex_color):
+    1. Clean '#' symbol if present:
+           h = hex_color.lstrip('#')
+    2. Split hex into pairs and convert to decimal list:
+           R = int(h[0:2], 16)
+           G = int(h[2:4], 16)
+           B = int(h[4:6], 16)
+    3. Return string "R,G,B"
+END FUNCTION
+
+FUNCTION render_dual_axis_chart(df, left_col, left_label, left_color, right_col, right_label, right_color, fill_left):
+    1. INITIALIZE subplots with secondary Y axis:
+           fig = make_subplots(specs=[[{"secondary_y": True}]])
            
-    4. RETURN fig
+    2. CHECK FOR MULTI-SUBSTATION:
+           IF "substation" in df.columns:
+               unique_subs = df["substation"].unique()
+           ELSE:
+               unique_subs = [None]
+           is_multi = len(unique_subs) > 1
+           
+    3. LOOP SUBSTATIONS AND ADD TRACES:
+           FOR sub IN unique_subs:
+               sub_df = df[df["substation"] == sub] IF sub IS NOT NULL ELSE df
+               trace_name = str(sub) IF sub IS NOT NULL ELSE left_label
+               
+               # 3.1 Main left axis (usually Load)
+               fig.add_trace(go.Scatter(
+                   x = sub_df["ts"], y = sub_df[left_col],
+                   name = f"{trace_name} ({left_label})" IF is_multi ELSE left_label,
+                   line = dict(color=left_color IF NOT is_multi ELSE None, width=2),
+                   fill = "tozeroy" IF fill_left and NOT is_multi ELSE "none",
+                   fillcolor = f"rgba({_hex_to_rgb(left_color)},0.08)" IF fill_left and NOT is_multi ELSE None
+               ), secondary_y=False)
+               
+               # 3.2 Secondary right axis (usually Temperature or H2)
+               fig.add_trace(go.Scatter(
+                   x = sub_df["ts"], y = sub_df[right_col],
+                   name = f"{trace_name} ({right_label})" IF is_multi ELSE right_label,
+                   line = dict(color=right_color IF NOT is_multi ELSE None, width=1.5, dash="dot" IF NOT is_multi ELSE "solid")
+               ), secondary_y=True)
+               
+    4. Y-AXES STYLING:
+           Set left Y axis title = left_label
+           Set right Y axis title = right_label, disable secondary grid: showgrid=False
+           
+    5. LAYOUT OVERRIDES:
+           height = 400
+           hovermode = "x unified"
+           Apply template "plotly_dark"
+           Position legend horizontally at the bottom: y=-0.4
+           
+    6. RETURN fig
 END FUNCTION</code></pre>
     </div>
 </div>
 
-<!-- SECTION 07: ALPHA-BLENDING & VISUAL LAYER SYNC -->
+<!-- SECTION 07: ZERO-LATENCY GPU RENDERING -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">07</span><h2 class="section-title">Alpha-blending та синхронізація шарів</h2></div>
+    <div class="section-header"><span class="section-number">07</span><h2 class="section-title">Оптимізація рендерингу (Zero-latency)</h2></div>
     <div class="glass-card flow-step">
-        <p>Для запобігання візуального перекриття (Occlusion) при відображенні декількох графіків, ми використовуємо власну утиліту <code>_hex_to_rgb</code>. Вона динамічно перетворює HEX-кольори у RGBA з рівнем прозорості <b>0.08</b> для фонових заливок. Це створює ефект "легких тіней" під графіками, які допомагають оку відстежувати площу під кривою, але не заважають бачити сітку та інші лінії трендів.</p>
+        <p>Для забезпечення миттєвого відображення графіків на слабких клієнтських комп'ютерах та смартфонах, ми використовуємо об'єкти <b>Plotly Scatter</b> з оптимізованими типами ліній. Всі розрахунки агрегації (наприклад, обчислення середнього добового ритму) виконуються на стороні сервера за допомогою швидких векторних операцій Pandas перед передачею даних у Plotly, що знижує навантаження на JS-двигун браузера до нуля.</p>
     </div>
 </div>
 
-<!-- SECTION 08: INTERACTIVE HOVER & LEGEND DESIGN -->
+<!-- SECTION 08: COGNITIVE RHYTHM MAPPING -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">08</span><h2 class="section-title">Дизайн інтерактивного наведення та легенди</h2></div>
+    <div class="section-header"><span class="section-number">08</span><h2 class="section-title">Когнітивне мапування ритмів</h2></div>
     <div class="glass-card flow-step">
-        <p>Усі графіки використовують режим <b>hovermode="x unified"</b>. Це означає, що при наведенні курсору на будь-яку точку осі X, система автоматично підсвічує значення всіх параметрів на цей момент часу у єдиному тултипі. Легенда графіків винесена у нижню частину (horizontal layout), що звільняє місце для самої візуалізації та забезпечує кращу читабельність на мобільних пристроях.</p>
+        <p>Вибір кольорів для Rhythm Chart базується на психофізіології кольору. Яскравий оранжевий (Понеділок) символізує енергію, активність та високу робочу динаміку, тоді як спокійний блакитний (Субота) асоціюється зі спокоєм, вихідними та низьким побутовим ритмом. Це дозволяє диспетчеру сприймати графік на рівні емоцій, навіть не дивлячись на підписи легенди.</p>
     </div>
 </div>
 
-<!-- SECTION 09: MEMORY OPTIMIZATION FOR HEAVY PLOTS -->
+<!-- SECTION 09: ROBUST NUMERIC CASTING -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">09</span><h2 class="section-title">Оптимізація пам'яті для важких графіків</h2></div>
+    <div class="section-header"><span class="section-number">09</span><h2 class="section-title">Стійка конвертація числових типів (Robust Casting)</h2></div>
     <div class="glass-card flow-step">
-        <p>При роботі з великими часовими діапазонами (наприклад, рік даних), модуль <code>base.py</code> автоматично підтримує роботу з агрегованими масивами. Ми мінімізуємо кількість точок у об'єктах <code>go.Scatter</code>, передаючи вже підготовлені в Pandas середні значення. Це гарантує швидкий відгук інтерфейсу (FPS > 30) навіть при активному масштабуванні (Zooming) складних кореляційних діаграм.</p>
+        <p>При побудові Rhythm Chart дані з бази можуть містити текстові артефакти або порожні значення. Щоб запобігти збоям рендерингу, у функції <code>render_rhythm_chart</code> застосовується примусове кастингування колонок до числових типів:</p>
+        <pre><code class="language-python">for col in ["dow", "hour_of_day", "avg_load"]:
+    df_r[col] = pd.to_numeric(df_r[col], errors="coerce")</code></pre>
+        <p>Значення, які не вдалося перетворити на числа (наприклад, випадковий текст помилки датчика), м'яко замінюються на <code>NaN</code> і просто ігноруються при побудові ліній, що забезпечує стабільність UI.</p>
     </div>
 </div>
 
-<!-- SECTION 10: USER-CENTRIC ANALYTICAL UX -->
+<!-- SECTION 10: BOTTOM LEGEND UX FIX -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">10</span><h2 class="section-title">Аналітичний UX (Користувацький досвід)</h2></div>
+    <div class="section-header"><span class="section-number">10</span><h2 class="section-title">UX-фікс розташування легенди</h2></div>
     <div class="glass-card flow-step">
-        <p>Графіки в <code>base.py</code> розроблені як **Дослідницькі інструменти**. Оператор може вимкнути будь-яку лінію, просто натиснувши на її назву в легенді. Це дозволяє крок за кроком "очищати" візуалізацію від шуму, фокусуючись на конкретному аспекті аварії або аномалії, що значно прискорює процес розслідування технологічних інцидентів.</p>
+        <p>Стандартна легенда Plotly зазвичай розташовується справа, що стискає корисну ширину графіка на 15-20%. У нашому ядрі легенду винесено **під графік (horizontally centered)** за допомогою параметрів <code>y=-0.4</code> та <code>x=0.5</code>. Це дає графіку дихати, збільшує корисну ширину шкали часу та робить аналіз дрібних деталей значно зручнішим.</p>
     </div>
 </div>
 
@@ -161,43 +213,53 @@ END FUNCTION</code></pre>
     <div class="section-header"><span class="section-number">11</span><h2 class="section-title">Матриця залежностей (Dependencies)</h2></div>
     <div class="roles-grid">
         <div class="role-item">
-            <div class="role-icon">📊</div>
-            <div class="role-content">
-                <h4>Plotly Subplots</h4>
-                <p>Механізм створення багатоосьових композицій графіків.</p>
-            </div>
-        </div>
-        <div class="role-item">
             <div class="role-icon">🏗️</div>
             <div class="role-content">
-                <h4>Plotly Graph Objects</h4>
-                <p>Низькорівневий рендеринг векторних Scatter-трейсів.</p>
+                <h4>Plotly Subplots</h4>
+                <p>Інфраструктура для створення багатоосьових сіток графіків.</p>
             </div>
         </div>
         <div class="role-item">
-            <div class="role-icon">⚙️</div>
+            <div class="role-icon">🗄️</div>
             <div class="role-content">
-                <h4>Pandas Core</h4>
-                <p>Постачальник очищених та типізованих аналітичних масивів.</p>
+                <h4>Pandas Library</h4>
+                <p>Очищення даних, сортування та кастинг типів перед рендерингом.</p>
+            </div>
+        </div>
+        <div class="role-item">
+            <div class="role-icon">🎨</div>
+            <div class="role-content">
+                <h4>Plotly Express</h4>
+                <p>Базовий набір для експрес-візуалізації швидких трендів.</p>
             </div>
         </div>
     </div>
 </div>
 
-<!-- SECTION 12: ROADMAP TO v3.0 (WEBGL RENDERING) -->
+<!-- SECTION 12: ROADMAP TO v3.0 (HEATMAP GRID) -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">12</span><h2 class="section-title">Дорожня карта v3.0 (WebGL Rendering)</h2></div>
+    <div class="section-header"><span class="section-number">12</span><h2 class="section-title">Дорожня карта v3.0 (Heatmap Rhythm Grid)</h2></div>
     <div class="glass-card flow-step">
-        <p>У версії 3.0 планується перехід на **WebGL-рендеринг** (go.Scattergl). Це дозволить плавно відображати мільйони точок телеметрії без будь-якої агрегації. Також буде додано підтримку <b>Зумування за областю</b> (Range Selector), як у професійних фінансових терміналах, та вбудовані інструменти анотування для маркування аномалій прямо на графіку.</p>
+        <p>У версії 3.0 планується розширення ядра базової візуалізації:</p>
+        <ul>
+            <li>Впровадження <b>Heatmap Rhythm Grid</b> — теплової карти споживання, де кожна клітинка показує рівень навантаження на перетині "Година доби / День тижня". Це дозволить бачити повну картину тижня в одному компактному віджеті.</li>
+            <li>Реалізація автоматичної підсвітки аномальних піків (Alarm Markers) на графіках трендів.</li>
+            <li>Додавання підтримки експорту даних графіка безпосередньо у формат Excel з сайдбару.</li>
+        </ul>
     </div>
 </div>
 
 <!-- SECTION 13: FAQ - ЧАСТІ ЗАПИТАННЯ -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">13</span><h2 class="section-title">FAQ: Ядро Візуалізації</h2></div>
+    <div class="section-header"><span class="section-number">13</span><h2 class="section-title">FAQ: Базові Графіки</h2></div>
     <div class="glass-card flow-step">
-        <p><b>Чому на графіку Rhythm немає суботи?</b> — Перевірте, чи охоплює обраний часовий діапазон хоча б один вихідний день.</p>
-        <p><b>Як скинути зум на графіку?</b> — Двічі клікніть на полотно графіка, і він повернеться до початкового масштабу.</p>
+        <p><b>Чому на Rhythm Chart не відображається Субота?</b><br>— Перевірте вхідний DataFrame. Якщо ваш часовий діапазон фільтрації охоплює лише будні дні (наприклад, середу та четвер), дані за суботу будуть відсутні, і відповідна лінія не побудується.</p>
+        
+        <p><b>Як працює злиття декількох підстанцій на одному графіку?</b><br>— Якщо в DataFrame є колонка <code>substation</code> і вона містить більше одного унікального об'єкта, система автоматично відключить градієнтну заливку (fill) та перейде в режим паралельного порівняння ліній для кожного об'єкта.</p>
+        
+        <p><b>Чому права вісь Y не має сітки?</b><br>— Ми вимкнули сітку правої осі (<code>showgrid=False</code>) навмисно, щоб горизонтальні лінії правої осі не перетиналися з лініями лівої осі, створюючи візуальний шум.</p>
+        
+        <p><b>Як функція _hex_to_rgb обробляє короткі HEX-коди (наприклад, #fff)?</b><br>— Функція очікує повний 6-значний HEX-код. Для стабільної роботи завжди передавайте кольори у форматі <code>#RRGGBB</code>.</p>
     </div>
 </div>
 

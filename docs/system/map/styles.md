@@ -1,192 +1,207 @@
-# Технічна специфікація модуля: ui/components/styles.py (GIGA-PASSPORT EDITION)
+# Технічний Паспорт Модуля: scripts/thesis/converter/styles.py (GIGA-PASSPORT v3)
 
 <div class="mega-passport">
 
 <!-- HERO SECTION -->
 <div class="hero-section">
-    <div class="hero-badge">DESIGN SYSTEM & CYBER-HUD IDENTITY</div>
+    <div class="hero-badge">🎨 ACADEMIC STYLING & LAYOUT ENGINE</div>
     <div class="hero-main">
-        <div class="hero-icon-wrapper"><span class="hero-icon">🎨</span><div class="pulse-ring"></div></div>
+        <div class="hero-icon-wrapper"><span class="hero-icon">⚙️</span><div class="pulse-ring"></div></div>
         <div class="hero-title-group">
-            <h1 class="mega-title">Дизайн-Система Cyber-HUD</h1>
-            <p class="mega-subtitle">Візуальний двигун проекту: глибока CSS-ін'єкція, неонова стилізація та преміальна Glassmorphism естетика</p>
-            <div class="status-tags"><span class="tag tag-online">AESTHETIC PLUS</span><span class="tag tag-version">v2.1.0</span><span class="tag tag-role">UI IDENTITY</span></div>
+            <h1 class="mega-title">styles.py</h1>
+            <p class="mega-subtitle">Двигун академічного стилю та верстки, регулятор параметрів сторінки А4 та генератор нативної нумерації OpenXML за ДСТУ</p>
+            <div class="status-tags">
+                <span class="tag tag-online">STYLER ACTIVE</span>
+                <span class="tag tag-version">v3.1.0</span>
+                <span class="tag tag-role">LAYOUT MANAGER</span>
+            </div>
         </div>
     </div>
 </div>
 
 <!-- KEY METRICS GRID -->
 <div class="metrics-grid">
-    <div class="glass-card metric-card"><div class="metric-icon">💉</div><div class="metric-info"><span class="metric-label">Method</span><span class="metric-value">CSS Injection</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🌌</div><div class="metric-info"><span class="metric-label">Theme</span><span class="metric-value">Neon Deep Dark</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🛡️</div><div class="metric-info"><span class="metric-label">UI Guard</span><span class="metric-value">System Stealth</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">📊</div><div class="metric-info"><span class="metric-label">Sync</span><span class="metric-value">Plotly Dark</span></div></div>
-</div>
-
-<!-- SECTION 01: VISUAL PHILOSOPHY -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">01</span><h2 class="section-title">Філософія Cyber-HUD дизайну</h2></div>
-    <div class="glass-card flow-step">
-        <p>Модуль <code>styles.py</code> не просто "фарбує" кнопки. Він створює імерсивне середовище, в якому оператор енергосистеми відчуває себе за пультом футуристичного командного центру. Філософія Cyber-HUD базується на поєднанні глибокого чорного фону (для зниження втоми очей) з яскравими акцентними градієнтами, які виділяють критично важливу інформацію.</p>
-    </div>
-</div>
-
-<!-- SECTION 02: CSS INJECTION ENGINE -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Двигун CSS-ін'єкції</h2></div>
-    <div class="glass-card flow-step">
-        <p>Для подолання стандартних обмежень лейауту Streamlit, ми використовуємо метод прямої ін'єкції стилів через <code>st.html</code>. Це дозволяє нам маніпулювати DOM-деревом на рівні селекторів <code>data-testid</code>, змінюючи поведінку та вигляд нативних віджетів.</p>
-        <ul>
-            <li><b>DOM Targeting:</b> Використання специфічних аттрибутів Streamlit для точкової стилізації.</li>
-            <li><b>Shadow DOM Overrides:</b> Перевизначення глобальних змінних теми (Primary Color, Background).</li>
-            <li><b>Layout Resilience:</b> Адаптивне налаштування відступів (padding) для максимального використання екранного простору.</li>
-        </ul>
-    </div>
-</div>
-
-<!-- SECTION 03: VISUAL COMPONENTS SPECIFICATION -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Специфікація візуальних компонентів</h2></div>
-    <div class="diagram-outer-wrapper"><div class="mermaid">
-graph TD
-    SIDEBAR("Sidebar (Deep #0D1117)") --> NAV("Navigation Labels (Neon Blue)")
-    NAV --> BTN("Primary Buttons (Linear Gradient)")
-    DASH("Dashboard") --> CARDS("Metric Cards (Glassmorphism)")
-    CARDS --> PLOTLY("Plotly Charts (Sync Dark)")
-    </div></div>
-</div>
-
-<!-- SECTION 04: GLOBAL COLOR PALETTE (PALETTE MATRIX) -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Матриця кольорової палітри</h2></div>
-    <div class="glass-card flow-step">
-        <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
-            <thead>
-                <tr style="border-bottom: 1px solid var(--border); color: var(--accent);">
-                    <th>Елемент</th>
-                    <th>Код кольору / Градієнт</th>
-                    <th>Ефект</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td>Background</td><td>#0d1117</td><td>Глибокий космос (Base)</td></tr>
-                <tr><td>Accent (Blue)</td><td>#58a6ff</td><td>Неонова підсвітка іконок</td></tr>
-                <tr><td>Primary Button</td><td>linear-gradient(135deg, #1f6feb, #114e9e)</td><td>Ефект глибини та натискання</td></tr>
-                <tr><td>Sidebar</td><td>linear-gradient(180deg, #0d1117, #161b22)</td><td>Вертикальний градієнт фокусу</td></tr>
-                <tr><td>Success</td><td>#2ea043</td><td>Позитивні тренди (Eco Green)</td></tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<!-- SECTION 05: GLASSMORPHISM & SHADOWS -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Естетика Glassmorphism</h2></div>
-    <div class="glass-card flow-step">
-        <p>Для створення ефекту накладених панелей використовуються напівпрозорі межі (border) та м'які тіні з розмиттям:</p>
-        <div class="formula-box">
-            box-shadow: 0 4px 15px rgba(88, 166, 255, 0.15);<br>
-            border: 1px solid rgba(255, 255, 255, 0.08);
+    <div class="glass-card metric-card">
+        <div class="metric-icon">✒️</div>
+        <div class="metric-info">
+            <span class="metric-label">Core Font</span>
+            <span class="metric-value">Times New Roman 14pt</span>
         </div>
-        <p class="section-desc">Це дозволяє "відірвати" аналітичні віджети від фону, створюючи тривимірний простір інтерфейсу.</p>
+    </div>
+    <div class="glass-card metric-card">
+        <div class="metric-icon">↔️</div>
+        <div class="metric-info">
+            <span class="metric-label">Line Spacing</span>
+            <span class="metric-value">1.5 / 21pt Justified</span>
+        </div>
+    </div>
+    <div class="glass-card metric-card">
+        <div class="metric-icon">📄</div>
+        <div class="metric-info">
+            <span class="metric-label">Page Format</span>
+            <span class="metric-value">Standard A4 (21x29.7cm)</span>
+        </div>
+    </div>
+    <div class="glass-card metric-card">
+        <div class="metric-icon">🔢</div>
+        <div class="metric-info">
+            <span class="metric-label">Page Numbers</span>
+            <span class="metric-value">Native w:instrText PAGE</span>
+        </div>
     </div>
 </div>
 
-<!-- SECTION 06: UI RESILIENCE & STEALTH MODE -->
+<!-- SECTION 01: CONCEPTUAL ROLE -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">06</span><h2 class="section-title">UI Resilience: Режим "Стелс"</h2></div>
+    <div class="section-header"><span class="section-number">01</span><h2 class="section-title">Концептуальне призначення та архітектурна роль</h2></div>
     <div class="glass-card flow-step">
-        <p>Для перетворення веб-сторінки на професійний софт, система приховує всі зайві системні елементи:</p>
+        <p>
+            Модуль <code>styles.py</code> виступає центральним стандартизатором оформлення у процесі конвертації дипломних робіт. Він інкапсулює вимоги державних стандартів України (ДСТУ) до наукових праць та реалізує їх у вигляді програмних правил для OpenXML-розмітки текстового процесора MS Word.
+        </p>
+        <p style="margin-top: 10px;">
+            Основний спектр відповідальності модуля включає:
+        </p>
         <ul>
-            <li><b>Header Stealth:</b> Приховування верхньої смужки Streamlit та меню.</li>
-            <li><b>Footer Hidden:</b> Видалення копірайтів для чистоти дизайну.</li>
-            <li><b>Spinner Block:</b> Приховування стандартних спінерів для використання кастомних Splash-екранів.</li>
-            <li><b>Decoration Hide:</b> Видалення кольорових акцентів над хедером.</li>
+            <li><strong>Universal Font Management:</strong> Налаштування Times New Roman як глобального шрифту для основного тексту (14pt) та заголовків, а також використання Courier New (11pt) для лістингів коду.</li>
+            <li><strong>Rich Text Parsing:</strong> Парсинг Markdown-розмітки inline-стилів (жирний <code>**</code>, курсив <code>*</code>, підкреслений <code>&lt;u&gt;</code> та виділення кольором <code>==</code>) та їх перетворення на нативні властивості Word Run (об'єкт <code>docx.shared.Pt</code>).</li>
+            <li><strong>Standard Formatting:</strong> Забезпечення суворого вирівнювання тексту по ширині (Justified), міжрядкового інтервалу 1.5 та абзацного відступу (першого рядка) рівно 1.25 см.</li>
+            <li><strong>Page Geometry & Pagination:</strong> Задання геометрії сторінки А4, конфігурація дзеркальних полів та вставка нативних полів автонумерації сторінок у верхньому чи нижньому правому кутку (з виключенням першої сторінки титульного листа).</li>
         </ul>
     </div>
 </div>
 
-<!-- SECTION 07: PSEUDO-CODE (CSS INJECTOR) -->
+<!-- SECTION 02: TECHNICAL DETAILS & MATHEMATICS -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">07</span><h2 class="section-title">Псевдокод CSS-ін'єктора</h2></div>
-    <div class="glass-card flow-step">
-        <pre><code>FUNCTION apply_custom_css():
-    DEFINE CSS_BLOCK:
-        .block-container -> set padding
-        [data-testid="stSidebar"] -> apply linear-gradient
-        button[kind="primary"] -> set neon-shadow & transition
-        div[role="radiogroup"] -> transform to custom navigation tabs
-        header -> set visibility: hidden
-    END DEFINE
+    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Математична формалізація стилю за ДСТУ</h2></div>
+    <div class="glass-card">
+        <div style="display: flex; flex-direction: column; gap: 15px;">
+            <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); padding: 15px; border-radius: 8px;">
+                <h4 style="color: var(--accent); margin: 0 0 8px 0; font-family: 'Orbitron', sans-serif;">1. Розрахунок інтервалів та зміщень</h4>
+                <p style="margin: 0 0 8px 0; font-size: 13.5px; color: var(--text-dim);">
+                    Міжрядковий інтервал за вимогами ДСТУ складає 1.5 від розміру шрифту $H_{\text{font}} = 14$ pt, що в абсолютних одиницях виміру OpenXML дорівнює:
+                </p>
+                <div class="math-block" style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 6px; text-align: center; margin-bottom: 8px; font-family: monospace; color: var(--accent);">
+                    $$ S_{\text{line}} = 1.5 \times H_{\text{font}} = 21 \text{ pt} $$
+                </div>
+                <p style="margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);">
+                    Абзацний відступ першого рядка (First Line Indent) фіксується на позначці:
+                </p>
+                <div class="math-block" style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 6px; text-align: center; margin-bottom: 8px; font-family: monospace; color: var(--accent);">
+                    $$ I_{\text{first}} = 1.25 \text{ см} = 0.492 \text{ in} $$
+                </div>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); padding: 15px; border-radius: 8px;">
+                <h4 style="color: var(--accent); margin: 0 0 8px 0; font-family: 'Orbitron', sans-serif;">2. Співвідношення геометрії сторінки А4</h4>
+                <p style="margin: 0 0 8px 0; font-size: 13.5px; color: var(--text-dim);">
+                    Фізичні параметри друкованого аркуша визначаються наступними геометричними константами:
+                </p>
+                <div class="math-block" style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 6px; text-align: center; margin-bottom: 8px; font-family: monospace; color: var(--accent);">
+                    $$ W_{\text{page}} = 21.0 \text{ см}, \quad H_{\text{page}} = 29.7 \text{ см} $$
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SECTION 03: INTERACTION PIPELINE (DIAGRAM) -->
+<div class="section-container">
+    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Життєвий цикл стилізації тексту</h2></div>
+    <div class="glass-card">
+        <div class="diagram-outer-wrapper">
+            <div class="mermaid">
+            graph TD
+                TEXT_IN("Вхідний текст з Markdown розміткою") --> REG_PARSE("clean_inline(): видалення залишків посилань та коду")
+                REG_PARSE --> FORMAT_RUN["add_formatted_run(): парсер inline стилів"]
+                
+                FORMAT_RUN --> SPLIT{"Регулярний вираз: split(**, *, u, ==)"}
+                SPLIT -- "**" --> BOLD_TOGGLE["Перемикання bold = NOT bold"]
+                SPLIT -- "*" --> ITALIC_TOGGLE["Перемикання italic = NOT italic"]
+                SPLIT -- "<u>" --> UNDER_TRUE["underline = True"]
+                SPLIT -- "</u>" --> UNDER_FALSE["underline = False"]
+                SPLIT -- "==" --> HIGH_TOGGLE["highlight_color = YELLOW"]
+                
+                BOLD_TOGGLE & ITALIC_TOGGLE & UNDER_TRUE & UNDER_FALSE & HIGH_TOGGLE --> RUN_GEN["paragraph.add_run(part)"]
+                RUN_GEN --> FONT_ENG["set_run_font(): Призначення Times/Courier"]
+                FONT_ENG --> PARA_ALIGN["para_std(): вирівнювання по ширині, інтервал 1.5, абзац 1.25см"]
+                PARA_ALIGN --> PAGE_NUM["add_page_numbers(): Вставка нативного поля PAGE в колонтитул"]
+                PAGE_NUM --> OUT_DOC("Стилізований ДСТУ-документ (.docx)")
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SECTION 04: PSEUDOCODE -->
+<div class="section-container">
+    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Алгоритм генерації нативної нумерації сторінок</h2></div>
+    <div class="glass-card">
+        <p>
+            Псевдокод демонструє низькорівневу вставку XML-полів MS Word для реалізації динамічної автонумерації сторінок у верхньому/нижньому правому куті:
+        </p>
+        <pre><code class="language-python">
+def add_page_numbers(doc):
+    section = doc.sections[0]
+    section.page_width = Cm(21.0)
+    section.page_height = Cm(29.7)
     
-    INJECT CSS_BLOCK into current HTML session
-    LOG design_system_applied("Aesthetic Plus")
-END FUNCTION</code></pre>
+    # Перша сторінка (титульна) має окремий колонтитул без номера
+    section.different_first_page_header_footer = True
+    
+    # Отримуємо доступ до нижнього колонтитула для звичайних сторінок
+    footer = section.footer
+    p = footer.paragraphs[0]
+    p.clear()
+    p.alignment = WD_ALIGN_PARAGRAPH.RIGHT # Номер сторінки справа
+    
+    # Створюємо Word Run для поля інструкцій (PAGE Field)
+    run = p.add_run()
+    
+    # 1. Початок поля (Field Character Begin)
+    fldChar1 = OxmlElement('w:fldChar')
+    fldChar1.set(qn('w:fldCharType'), 'begin')
+    run._r.append(fldChar1)
+    
+    # 2. Текст інструкції (Instruction Text: PAGE)
+    instr = OxmlElement('w:instrText')
+    instr.text = 'PAGE'
+    run._r.append(instr)
+    
+    # 3. Завершення поля (Field Character End)
+    fldChar2 = OxmlElement('w:fldChar')
+    fldChar2.set(qn('w:fldCharType'), 'end')
+    run._r.append(fldChar2)
+    
+    # Призначаємо стандартний шрифт для номера сторінки
+    run.font.name = "Times New Roman"
+    run.font.size = Pt(12)
+        </code></pre>
     </div>
 </div>
 
-<!-- SECTION 08: PLOTLY DARK SYNC STRATEGY -->
+<!-- SECTION 05: TECHNICAL FAQ -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">08</span><h2 class="section-title">Стратегія синхронізації Plotly Dark</h2></div>
-    <div class="glass-card flow-step">
-        <p>Модуль <code>styles.py</code> примусово встановлює глобальний шаблон <code>plotly_dark</code>. Це гарантує, що всі графіки, створені в будь-якому модулі системи, автоматично отримають темний фон, відповідні кольори осей та шрифтів без необхідності налаштування кожного окремого графіка.</p>
-    </div>
-</div>
+    <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Часті питання (FAQ)</h2></div>
+    <div class="glass-card">
+        <h4 style="color: var(--text-main); margin-bottom: 5px;">Q1: Чому для нумерації сторінок використовується складний XML-код замість звичайного тексту?</h4>
+        <p style="color: var(--text-dim); margin-bottom: 15px;">
+            A: Простий текст буде статично однаковим на всіх сторінках (наприклад, всюди виведеться цифра "2"). Використання нативного XML-тега <code>w:instrText</code> з інструкцією <code>PAGE</code> змушує текстовий процесор MS Word динамічно вираховувати номер сторінки в момент відкриття або друку документа на основі реальної геометрії верстки.
+        </p>
 
-<!-- SECTION 09: NAVIGATION TABS CUSTOMIZATION -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">09</span><h2 class="section-title">Кастомізація навігаційних табів</h2></div>
-    <div class="glass-card flow-step">
-        <p>Стандартні радіо-кнопки Streamlit перетворюються на сучасні навігаційні панелі через:</p>
-        <ul>
-            <li>Приховування круглих чекбоксів (display: none).</li>
-            <li>Перетворення лейблів на кнопки з відступами та рамками.</li>
-            <li>Додавання <code>hover</code> ефектів з легким зміщенням вгору (translateY).</li>
-            <li>Використання акцентного градієнту для активного стану.</li>
-        </ul>
-    </div>
-</div>
+        <h4 style="color: var(--text-main); margin-bottom: 5px;">Q2: Чому у Word не встановлюється шрифт, хоча `run.font.name` змінено?</h4>
+        <p style="color: var(--text-dim); margin-bottom: 15px;">
+            A: Це поширений баг бібліотеки <code>python-docx</code>. Зміна властивості <code>run.font.name</code> не завжди прописує шрифт у низькорівневих властивостях стилю Run. Для 100% надійності функція <code>set_run_font()</code> додатково створює OXML-елемент <code>w:rFonts</code> та явно прописує його атрибути <code>w:ascii</code> та <code>w:cs</code> (Complex Scripts).
+        </p>
 
-<!-- SECTION 10: RESPONSIVE DESIGN CONSIDERATIONS -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">10</span><h2 class="section-title">Особливості адаптивного дизайну</h2></div>
-    <div class="glass-card flow-step">
-        <p>Стилі оптимізовані для широкоформатних моніторів диспетчерських центрів (Ultra-Wide). Використання відносних одиниць <code>rem</code> для шрифтів та <code>vh/vw</code> для деяких елементів гарантує, що HUD буде виглядати масштабованим та читабельним на екранах будь-якої роздільної здатності.</p>
-    </div>
-</div>
-
-<!-- SECTION 11: MODULE DEPENDENCY MATRIX -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">11</span><h2 class="section-title">Матриця залежностей (Dependencies)</h2></div>
-    <div class="roles-grid">
-        <div class="role-item">
-            <div class="role-icon">🚀</div>
-            <div class="role-content">
-                <h4>Main Orchestrator</h4>
-                <p>Викликає ініціалізацію стилів на самому початку життєвого циклу сесії.</p>
-            </div>
-        </div>
-        <div class="role-item">
-            <div class="role-icon">📊</div>
-            <div class="role-content">
-                <h4>Dashboard UI</h4>
-                <p>Базується на CSS-класах, визначених у стилях, для побудови карток метрик.</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- SECTION 12: ROADMAP TO v3.0 (DYNAMIC THEMING) -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">12</span><h2 class="section-title">Дорожня карта v3.0 (Dynamic Theming)</h2></div>
-    <div class="glass-card flow-step">
-        <p>У версії 3.0 планується впровадження <b>динамічної зміни тем</b> (наприклад, "Alarm Mode" з червоним пульсуючим фоном при критичних аваріях) та повна підтримка <b>SVG-іконок</b> для кожного типу підстанції.</p>
+        <h4 style="color: var(--text-main); margin-bottom: 5px;">Q3: Як реалізовано очищення тексту від Markdown-залишків?</h4>
+        <p style="color: var(--text-dim);">
+            A: Функція <code>clean_inline()</code> використовує каскад регулярних виразів для очищення тексту. Вона видаляє символи `**`, `*`, `\``, а також HTML-теги та посилання `[text](url)`, залишаючи чистий текст, але при цьому зберігає мітки формул типу `$$formula$$` у вигляді унікальних символів-розділювачів `⇲` та `⇱` для їх подальшої обробки математичним двигуном.
+        </p>
     </div>
 </div>
 
 <!-- FOOTER NAV -->
 <div class="passport-footer">
-    <a href="../../atlas_final/" class="mega-btn"><span class="btn-icon">🔙</span><span class="btn-text">ПОВЕРНУТИСЬ ДО АТЛАСУ</span></a>
+    <a href="../../atlas_final/" class="mega-btn"><span class="btn-icon">🔙</span><span class="btn-text">Повернутися до Атласу</span></a>
 </div>
 
 </div>

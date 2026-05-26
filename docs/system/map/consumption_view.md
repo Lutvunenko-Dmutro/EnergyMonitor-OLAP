@@ -9,7 +9,7 @@
         <div class="hero-icon-wrapper"><span class="hero-icon">📈</span><div class="pulse-ring"></div></div>
         <div class="hero-title-group">
             <h1 class="mega-title">Аналіз Споживання</h1>
-            <p class="mega-subtitle">Універсальний двигун візуалізації енергоспоживання: інтерактивна динаміка, статистичне групування за типами днів та багатофакторна кореляція з погодою</p>
+            <p class="mega-subtitle">Універсальний аналітичний двигун візуалізації енергоспоживання: інтерактивна динаміка, статистичне групування за типами днів та багатофакторна кореляція з метеоумовами</p>
             <div class="status-tags"><span class="tag tag-online">CONSUMPTION ACTIVE</span><span class="tag tag-version">v2.4.0</span><span class="tag tag-role">NETWORK ANALYST</span></div>
         </div>
     </div>
@@ -17,75 +17,81 @@
 
 <!-- KEY METRICS GRID -->
 <div class="metrics-grid">
-    <div class="glass-card metric-card"><div class="metric-icon">🔄</div><div class="metric-info"><span class="metric-label">Dimensions</span><span class="metric-value">Temporal / Region</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">📦</div><div class="metric-info"><span class="metric-label">Methods</span><span class="metric-value">Boxplot / OLS</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🔥</div><div class="metric-info"><span class="metric-label">Features</span><span class="metric-value">Peak Detection</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">⚡</div><div class="metric-info"><span class="metric-label">Scale</span><span class="metric-value">Log / Relative</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🔄</div><div class="metric-info"><span class="metric-label">Dimensions</span><span class="metric-value">Temporal / Regional</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">📦</div><div class="metric-info"><span class="metric-label">Methods</span><span class="metric-value">Boxplot / OLS Reg</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🔥</div><div class="metric-info"><span class="metric-label">Features</span><span class="metric-value">Peak Annotation</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">⚡</div><div class="metric-info"><span class="metric-label">Scale</span><span class="metric-value">Log / Relative %</span></div></div>
 </div>
 
-<!-- SECTION 01: CONSUMPTION VIEW PHILOSOPHY -->
+<!-- SECTION 01: CONSUMPTION PHILOSOPHY -->
 <div class="section-container">
     <div class="section-header"><span class="section-number">01</span><h2 class="section-title">Філософія Аналізу Споживання</h2></div>
     <div class="glass-card flow-step">
-        <p>Модуль <code>consumption.py</code> є фундаментом системи моніторингу ATLAS. В енергетиці навантаження — це не просто лінія на графіку, це "пульс" життєдіяльності регіону. Наша філософія базується на <b>Багатовимірному Контексті</b>: ми розглядаємо споживання не ізольовано, а в тісному зв'язку з часом (година, тип дня) та зовнішніми факторами (температура). Це дозволяє диспетчеру не лише бачити фактичний стан, а й розуміти статистичні межі норми для поточного періоду.</p>
+        <p>Модуль <code>consumption.py</code> є фундаментом системи моніторингу ATLAS. В енергетиці навантаження — це не просто лінія на графіку, це "пульс" життєдіяльності регіону. Наша філософія базується на <b>Багатовимірному Контексті</b>: ми розглядаємо споживання не ізольовано, а в тісному зв'язку з часом (година, робочий/вихідний день) та зовнішніми факторами (температура). Це дозволяє диспетчеру не лише бачити фактичний стан, а й розуміти статистичні межі норми для поточного періоду.</p>
     </div>
 </div>
 
-<!-- SECTION 02: ANALYTICAL PIPELINE DIAGRAM -->
+<!-- SECTION 02: MATHEMATICAL METRICS NORMALIZATION -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Конвеєр Аналітичної Обробки (Flow)</h2></div>
+    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Математична нормалізація та регресійний аналіз</h2></div>
+    <div class="glass-card flow-step">
+        <p>Для коректного порівняння об'єктів різного масштабу та виявлення прихованих закономірностей реалізовано наступні математичні апарати:</p>
+        
+        <h4>1. Відносна нормалізація навантаження (%)</h4>
+        <p>Кожне миттєве значення навантаження $L_{\text{actual}, t}$ ділиться на історичний максимум підстанції/регіону для приведення до єдиної шкали:</p>
+        $$L_{\text{relative}, t} = \frac{L_{\text{actual}, t}}{\max_{k \in T} (L_{\text{actual}, k})} \times 100\%$$
+        <p>Це дозволяє наочно порівнювати "завантаженість" гігаватного мегаполіса та локальної підстанції.</p>
+
+        <h4>2. Термочутливість енергомережі (OLS Regression)</h4>
+        <p>Кореляція між температурою повітря $X_{\text{temp}}$ та навантаженням $Y_{\text{load}}$ описується лінійною регресією за методом найменших квадратів (Ordinary Least Squares):</p>
+        $$\hat{Y}_{\text{load}} = \beta_0 + \beta_1 X_{\text{temp}} + \epsilon$$
+        <p>Коефіцієнт нахилу $\beta_1$ показує термочутливість системи ($\text{МВт}/^\circ\text{C}$). Від'ємне значення $\beta_1$ взимку вказує на переважання опалювального навантаження, тоді як додатне значення влітку свідчить про активне використання систем кондиціонування.</p>
+    </div>
+</div>
+
+<!-- SECTION 03: ANALYTICAL PIPELINE DIAGRAM -->
+<div class="section-container">
+    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Конвеєр Аналітичної Обробки (Flow)</h2></div>
     <div class="diagram-outer-wrapper"><div class="mermaid">
 graph TD
-    DATA("Input Dataframe (Cleaned)") --> AGGR("Temporal Aggregation (Hourly)")
-    AGGR --> MODE{Mode Selection?}
+    DATA("Input DataFrame (Measurements)") --> AGGR("Hourly Resampling / Mean Aggregation")
+    AGGR --> SCALE{Select Metric Mode}
     
-    MODE -- "Relative (%)" --> NORM("Normalization by Peak Load")
-    MODE -- "Absolute (MW)" --> RAW("Raw Load Series")
+    SCALE -- "Absolute Load (MW)" --> ABS("Use actual_load_mw")
+    SCALE -- "Relative Load (%)" --> REL("Calculate relative_load via Peak Max")
     
-    NORM --> VIS_LINE("Interactive Line Chart")
-    RAW --> VIS_LINE
+    ABS --> PLOT("px.line (Plotly Dark Theme)")
+    REL --> PLOT
     
-    VIS_LINE --> PEAK("Automatic Peak Annotation")
+    PLOT --> PEAK("Global Peak Search & Annotation ('🔥 Пік')")
     
-    AGGR --> STAT("Statistical Slicing (Boxplots)")
-    STAT --> DAY_TYPE("Workday vs Weekend Split")
+    AGGR --> BOX["Add day_type (Workday vs Weekend)"]
+    BOX --> REND_BOX("px.box (Hourly Distribution)")
     
-    AGGR --> WEATH("Weather Correlation (Scatter)")
-    WEATH --> REGR("OLS Regression Analysis")
+    AGGR --> REG{"Temperature Exists?"}
+    REG -- "Yes" --> OLS("px.scatter + trendline='ols'")
+    REG -- "No" --> INFO("Display Ingestion Note")
     </div></div>
-</div>
-
-<!-- SECTION 03: METRIC NORMALIZATION (MW vs %) -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Нормалізація та масштабування метрик</h2></div>
-    <div class="glass-card flow-step">
-        <p>Для ефективного порівняння об'єктів різного масштабу модуль реалізує два режими відображення:</p>
-        <ul>
-            <li><b>Абсолютне навантаження (МВт):</b> Пряма візуалізація потужності, необхідна для оперативного управління генерацією та резервами.</li>
-            <li><b>Відносне навантаження (%):</b> Нормалізація відносно максимального історичного піку об'єкта. Дозволяє порівнювати "напруженість" роботи великих регіонів та малих підстанцій на одній шкалі.</li>
-            <li><b>Logarithmic Scale:</b> Підтримка логарифмічної осі Y для виявлення мікро-патернів у періоди нічних мінімумів.</li>
-        </ul>
-    </div>
 </div>
 
 <!-- SECTION 04: FEATURE CAPABILITIES MATRIX -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Матриця функціональних можливостей</h2></div>
+    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Матриця аналітичного функціоналу</h2></div>
     <div class="glass-card flow-step">
         <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
             <thead>
                 <tr style="border-bottom: 1px solid var(--border); color: var(--accent);">
                     <th>Функція</th>
-                    <th>Механізм реалізації</th>
-                    <th>Цільовий інсайт</th>
+                    <th>Метод розрахунку</th>
+                    <th>Діагностичне значення</th>
                 </tr>
             </thead>
             <tbody>
-                <tr><td>Peak Detection</td><td>Annotated Max Search</td><td>Виявлення критичних навантажень</td></tr>
-                <tr><td>Facet Grids</td><td>Region-based Splitting</td><td>Паралельне порівняння територій</td></tr>
-                <tr><td>Boxplots</td><td>Interquartile Range (IQR)</td><td>Аналіз волатильності споживання</td></tr>
-                <tr><td>Regression</td><td>Ordinary Least Squares (OLS)</td><td>Оцінка термочутливості мережі</td></tr>
-                <tr><td>Day-type Split</td><td>Calendar Mapping</td><td>Різниця патернів (Будні/Вихідні)</td></tr>
+                <tr><td><b>Peak Detection</b></td><td>Пошук глобального максимуму у вікні фільтрації</td><td>Локалізація моментів критичного навантаження для планування резервів</td></tr>
+                <tr><td><b>Facet Gridding</b></td><td>Динамічна генерація підобластей рендерингу (by Region)</td><td>Паралельне порівняння профілів споживання без перевантаження одного графіка</td></tr>
+                <tr><td><b>Boxplot Slicing</b></td><td>Обчислення міжквартильного розмаху (IQR) по годинах</td><td>Виявлення волатильності та меж нормального споживання системи</td></tr>
+                <tr><td><b>OLS Regression</b></td><td>Метод найменших квадратів на базі Statsmodels</td><td>Визначення коефіцієнта температурного впливу на кожну підстанцію</td></tr>
+                <tr><td><b>Day-Type Classifier</b></td><td>Мапування дня тижня: <code>dayofweek >= 5</code></td><td>Порівняння профілів буднього та вихідного дня для валідації ШІ-моделей</td></tr>
             </tbody>
         </table>
     </div>
@@ -95,7 +101,7 @@ graph TD
 <div class="section-container">
     <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Сезонне зрізування та типи днів</h2></div>
     <div class="glass-card flow-step">
-        <p>Модуль автоматично класифікує дані на "Робочі" та "Вихідні". За допомогою діаграм "Ящик з вусами" (Boxplots) візуалізується погодинний розподіл навантаження. Це дозволяє диспетчеру побачити типовий "горб" вечірнього піку та зрозуміти, чи поточне споживання виходить за межі типового 75-го перцентиля, що може свідчити про нетипову ситуацію в енергосистемі.</p>
+        <p>Модуль автоматично класифікує кожен історичний таймстемп на "Робочий день" (будні) або "Вихідний". За допомогою діаграм "Ящик з вусами" (Boxplots) візуалізується погодинний розподіл навантаження. Це дозволяє диспетчеру побачити типовий "горб" вечірнього піку та зрозуміти, чи поточне споживання виходить за межі типового 75-го перцентиля, що може свідчити про нетипову ситуацію в енергосистемі.</p>
     </div>
 </div>
 
@@ -103,103 +109,107 @@ graph TD
 <div class="section-container">
     <div class="section-header"><span class="section-number">06</span><h2 class="section-title">Псевдокод Ядра Візуалізації (Consumption Logic)</h2></div>
     <div class="glass-card flow-step">
-        <pre><code>FUNCTION render_consumption_view(df, group_col):
-    1. PREPARE: Normalize timestamps & drop empty data
-    2. UI_CONTROLS: Use Popover for scale settings (Log, Rel, Facet)
-    
-    3. AGGREGATE: df_hourly = aggregate_by_hour(df, group_col)
-    
-    4. MAIN_CHART: 
-           fig = px.line(df_hourly, y=mode_col, facet=facet_mode)
-           ANNOTATE(fig, max_load_point, "🔥 PEAK")
-           safe_render(fig)
+        <pre><code>FUNCTION render_consumption_view(df_load, group_by_col):
+    1. // [DATA VALIDITY CHECK]
+       IF df_load is NULL or Empty:
+           show_ux_warning_and_instructions()
+           RETURN
+       
+    2. // [DYNAMIC PREPARATION & INTERPOLATION]
+       df_sel = df_load.copy()
+       df_sel["timestamp"] = parse_to_datetime(df_sel["timestamp"])
+       
+    3. // [SETTINGS POPUP]
+       with popover("⚙️ Налаштування"):
+           use_relative = toggle("📈 Відносні показники (%)")
+           use_log = toggle("🪵 Логарифмічна шкала (Y)")
+           use_facet = toggle("🔲 Сітка графіків (by Region)")
            
-    5. STAT_ANALYSIS:
-           df_stat = enrich_with_day_type(df_hourly)
-           fig_box = px.box(df_stat, x="hour", color="day_type")
-           safe_render(fig_box)
+    4. // [HOURLY RESAMPLING VIA AGGREGATOR]
+       df_plot = aggregator.aggregate_consumption(df_sel, group_by_col, numeric_cols=["actual_load_mw"])
+       
+    5. // [SCALE SWITCHING]
+       IF use_relative:
+           df_plot = aggregator.add_relative_load(df_plot, group_by_col)
+           y_col = "relative_load"
+       ELSE:
+           y_col = "actual_load_mw"
            
-    6. WEATHER_CORR:
-           IF temperature_exists:
-               px.scatter(df_hourly, x="temp", y="load", trendline="ols")
+    6. // [LINE CHART RENDER WITH PEAK DETECT]
+       fig = px.line(df_plot, x="timestamp", y=y_col, color=group_by_col, facet_col=(group_by_col IF use_facet ELSE None))
+       IF NOT use_facet:
+           max_point = df_plot.loc[df_plot[y_col].idxmax()]
+           fig.add_annotation(x=max_point.timestamp, y=max_point[y_col], text="🔥 Пік")
+       safe_plotly_render(fig)
+       
+    7. // [STATISTICAL BOXPLOTS & WEATHER CORRELATION]
+       df_stat = enrich_with_hour_and_daytype(df_plot)
+       render_boxplot_in_column_1(df_stat)
+       IF "temperature" in df_plot.columns:
+           render_scatter_with_ols_in_column_2(df_plot)
 END FUNCTION</code></pre>
     </div>
 </div>
 
-<!-- SECTION 07: WEATHER CORRELATION & REGRESSION -->
+<!-- SECTION 07: SMART DATA IMPUTATION IN UI -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">07</span><h2 class="section-title">Кореляція з погодою та регресія</h2></div>
+    <div class="section-header"><span class="section-number">07</span><h2 class="section-title">Розумна обробка пропусків (UI-Imputation)</h2></div>
     <div class="glass-card flow-step">
-        <p>Важливою частиною аналізу є блок <b>Weather Correlation</b>. Система будує діаграму розсіювання (Scatter Plot) з лінією тренду (OLS Regression) для кожного регіону. Нахил цієї лінії показує "температурну чутливість" енергосистеми: скільки МВт навантаження додається на кожний градус зниження температури. Це база для довгострокового планування паливних запасів на ТЕС/ТЕЦ.</p>
+        <p>При візуалізації <code>consumption.py</code> використовує згладжування та агрегацію для заповнення короткочасних "дірок" у телеметрії. Це гарантує цілісність ліній на графіках та запобігає візуальному шуму, який міг би відволікати диспетчера. Якщо даних занадто мало, система виводить спеціальну UX-підказку щодо коригування фільтрів календаря у боковій панелі (Sidebar).</p>
     </div>
 </div>
 
-<!-- SECTION 08: PEAK DETECTION & ANNOTATION -->
+<!-- SECTION 08: MODULE DEPENDENCY MATRIX -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">08</span><h2 class="section-title">Виявлення піків та анотування</h2></div>
-    <div class="glass-card flow-step">
-        <p>Модуль автоматично шукає точку глобального максимуму в обраному часовому вікні. Ця точка позначається яскравою анотацією "🔥 Пік" з точним значенням. Це дозволяє уникнути помилок при візуальному читанні графіка та миттєво зафіксувати екстремальні режими роботи мережі, що є критичним для звітності перед керівництвом енергокомпанії.</p>
-    </div>
-</div>
-
-<!-- SECTION 09: SMART DATA IMPUTATION IN UI -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">09</span><h2 class="section-title">Розумна обробка пропусків (UI-Imputation)</h2></div>
-    <div class="glass-card flow-step">
-        <p>При візуалізації <code>consumption.py</code> використовує методи згладжування та інтерполяції для заповнення короткочасних "дирок" у телеметрії. Це гарантує цілісність ліній на графіках та запобігає візуальному шуму, який міг би відволікати диспетчера. Якщо даних занадто мало, система виводить спеціальну UX-підказку щодо коригування фільтрів календаря.</p>
-    </div>
-</div>
-
-<!-- SECTION 10: MULTI-REGION FACET GRIDDING -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">10</span><h2 class="section-title">Сітки фасетних графіків (Facet Grids)</h2></div>
-    <div class="glass-card flow-step">
-        <p>Для порівняння декількох регіонів одночасно, модуль підтримує режим <b>Facet Grid</b>. Замість того, щоб малювати 10 ліній на одному перевантаженому графіку, система створює сітку маленьких діаграм для кожного об'єкта. Це дозволяє легко ідентифікувати аномальну поведінку в окремому регіоні, яка могла б "загубитися" у сумарному графіку всієї країни.</p>
-    </div>
-</div>
-
-<!-- SECTION 11: MODULE DEPENDENCY MATRIX -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">11</span><h2 class="section-title">Матриця залежностей (Dependencies)</h2></div>
+    <div class="section-header"><span class="section-number">08</span><h2 class="section-title">Матриця залежностей (Dependencies)</h2></div>
     <div class="roles-grid">
         <div class="role-item">
             <div class="role-icon">🏗️</div>
             <div class="role-content">
-                <h4>Aggregator Engine</h4>
-                <p>Постачальник агрегованих та нормалізованих даних.</p>
+                <h4><a href="analysis_services_hub.md">aggregator.py</a></h4>
+                <p>Потужне ядро математичної агрегації даних: функції <code>aggregate_consumption</code> та <code>add_relative_load</code>.</p>
             </div>
         </div>
         <div class="role-item">
             <div class="role-icon">📊</div>
             <div class="role-content">
                 <h4>Plotly Express</h4>
-                <p>Основна бібліотека для швидкої та інтерактивної візуалізації.</p>
+                <p>Основна бібліотека для побудови високопродуктивних інтерактивних лінійних графіків, boxplots та регресійних трендів.</p>
             </div>
         </div>
         <div class="role-item">
             <div class="role-icon">🛠️</div>
             <div class="role-content">
-                <h4>UI Helpers</h4>
-                <p>Набір утиліт для безпечного рендерингу Plotly-контенту.</p>
+                <h4><a href="utils_extended_toolkit.md">ui_helpers.py</a></h4>
+                <p>Набір утиліт для стабільного рендерингу Plotly-графіків (<code>safe_plotly_render</code>) з інтегрованим оверлеєм помилок.</p>
             </div>
         </div>
     </div>
 </div>
 
-<!-- SECTION 12: ROADMAP TO v3.0 (PREDICTIVE COMPARISON) -->
+<!-- SECTION 09: ROADMAP TO v3.0 (HEATMAP LOAD CALENDAR) -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">12</span><h2 class="section-title">Дорожня карта v3.0 (Predictive Comparison)</h2></div>
+    <div class="section-header"><span class="section-number">09</span><h2 class="section-title">Дорожня карта v3.0 (Heatmap Load Calendar)</h2></div>
     <div class="glass-card flow-step">
-        <p>У версії 3.0 планується впровадження <b>Гібридної візуалізації</b>. Ми будемо накладати прогнозні інтервали від ШІ безпосередньо на історичні статистичні Boxplots. Також буде додано підтримку <b>Heatmaps</b> (теплових карт) для аналізу інтенсивності навантаження у розрізі "День тижня / Година", що є ідеальним для виявлення системних зсувів графіків споживання.</p>
+        <p>У наступних версіях планується:</p>
+        <ul>
+            <li><b>Календарні теплокарти (Load Heatmaps):</b> Візуалізація навантаження у розрізі "День тижня / Година доби" для швидкого виявлення аномальних нічних споживань.</li>
+            <li><b>Multi-target Overlay:</b> Порівняння лінії прогнозу від LSTM моделі безпосередньо з історичними статистичними межами Boxplot в реальному часі.</li>
+            <li><b>Vectorized Outlier Detection:</b> Автоматичне маркування викидів споживання за критерієм $3\sigma$ (Правило трьох сигм).</li>
+        </ul>
     </div>
 </div>
 
-<!-- SECTION 13: FAQ - ЧАСТІ ЗАПИТАННЯ -->
+<!-- SECTION 10: FAQ - ЧАСТІ ЗАПИТАННЯ -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">13</span><h2 class="section-title">FAQ: Аналіз Споживання</h2></div>
+    <div class="section-header"><span class="section-number">10</span><h2 class="section-title">FAQ: Технічні відповіді</h2></div>
     <div class="glass-card flow-step">
-        <p><b>Чому лінія графіка розривається?</b> — Це свідчить про великі пропуски в даних телеметрії, які неможливо заповнити автоматично. Спробуйте змінити період або джерело даних.</p>
-        <p><b>Як вимкнути легенду?</b> — Натисніть подвійним кліком на будь-який елемент легенди, щоб ізолювати його, або скористайтеся налаштуваннями у поповері.</p>
+        <p><b>Q: Чому при виборі Kaggle-джерела пише "Аналіз температури недоступний"?</b><br>
+        A: Історичні CSV-файли Kaggle (наприклад, <code>AEP_hourly.csv</code>) містять лише часові позначки та навантаження у МВт, без метеорологічних даних. У такому разі система автоматично відключає блок OLS-регресії, щоб запобігти помилкам розрахунку, та виводить інформаційне повідомлення.</p>
+        <p><b>Q: Як працює фільтрація неповних днів?</b><br>
+        A: Агрегатор перевіряє кількість годинних записів для кожного дня. Якщо записів менше 20, цей день вважається "збійним" і не береться до розрахунку трендів, що запобігає появі помилкових різких спадів графіків у кінці часового вікна.</p>
+        <p><b>Q: Як розраховується відносна шкала (%)?</b><br>
+        A: Ми беремо максимальне значення навантаження для обраного об'єкта за весь обраний період і приймаємо його за 100%. Всі інші значення відображаються у відсотках від цього максимуму.</p>
     </div>
 </div>
 

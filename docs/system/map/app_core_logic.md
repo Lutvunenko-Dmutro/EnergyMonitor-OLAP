@@ -1,199 +1,202 @@
-# Технічна специфікація: Ядро Конфігурації та Типізації Додатка (APP CORE LOGIC)
+# Технічна специфікація: Ядро Конфігурації та Типізації Додатка (APP CORE LOGIC) (GIGA-PASSPORT v3)
 
 <div class="mega-passport">
 
 <!-- HERO SECTION -->
 <div class="hero-section">
-    <div class="hero-badge">APPLICATION CORE | TYPES & CONFIG</div>
+    <div class="hero-badge">📦 APPLICATION CORE | TYPES & CONFIG</div>
     <div class="hero-main">
         <div class="hero-icon-wrapper"><span class="hero-icon">⚙️</span><div class="pulse-ring"></div></div>
         <div class="hero-title-group">
-            <h1 class="mega-title">Ядро Додатка</h1>
+            <h1 class="mega-title">Ядро Додатка (app)</h1>
             <p class="mega-subtitle">Централізоване управління конфігурацією, типами даних та глобальними константами системи ATLAS, що забезпечує цілісність бізнес-логіки та стабільність обміну даними між шарами</p>
-            <div class="status-tags"><span class="tag tag-online">CORE ACTIVE</span><span class="tag tag-version">v2.5.0</span><span class="tag tag-role">BASE LOGIC</span></div>
+            <div class="status-tags">
+                <span class="tag tag-online">CORE ACTIVE</span>
+                <span class="tag tag-version">v2.6.0</span>
+                <span class="tag tag-role">BASE LOGIC</span>
+            </div>
         </div>
     </div>
 </div>
 
 <!-- KEY METRICS GRID -->
 <div class="metrics-grid">
-    <div class="glass-card metric-card"><div class="metric-icon">🆔</div><div class="metric-info"><span class="metric-label">Identity</span><span class="metric-value">Strict Enum Mapping</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🔑</div><div class="metric-info"><span class="metric-label">Config</span><span class="metric-value">Environment Agnostic</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">📊</div><div class="metric-info"><span class="metric-label">Data</span><span class="metric-value">Pydantic/Typed Handshake</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🛡️</div><div class="metric-info"><span class="metric-label">Stability</span><span class="metric-value">Zero-Null Tolerance</span></div></div>
+    <div class="glass-card metric-card">
+        <div class="metric-icon">🆔</div>
+        <div class="metric-info">
+            <span class="metric-label">DataKeys</span>
+            <span class="metric-value">Strict String Enums</span>
+        </div>
+    </div>
+    <div class="glass-card metric-card">
+        <div class="metric-icon">📊</div>
+        <div class="metric-info">
+            <span class="metric-label">Strict Typing</span>
+            <span class="metric-value">Dataclasses & TypedDict</span>
+        </div>
+    </div>
+    <div class="glass-card metric-card">
+        <div class="metric-icon">🤝</div>
+        <div class="metric-info">
+            <span class="metric-label">Data Contracts</span>
+            <span class="metric-value">Zero-Null Handshake</span>
+        </div>
+    </div>
+    <div class="glass-card metric-card">
+        <div class="metric-icon">🛡️</div>
+        <div class="metric-info">
+            <span class="metric-label">Static Analysis</span>
+            <span class="metric-value">Mypy Compliant</span>
+        </div>
+    </div>
 </div>
 
 <!-- SECTION 01: ARCHITECTURAL ROLE -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">01</span><h2 class="section-title">Архітектурна Роль Ядра</h2></div>
+    <div class="section-header"><span class="section-number">01</span><h2 class="section-title">Архітектурна Роль Ядра Додатка</h2></div>
     <div class="glass-card flow-step">
-        <p>Модулі пакета <code>src/app/</code> (<code>config.py</code>, <code>types.py</code>) виконують роль "Конституції" системи. Вони визначають правила гри для всіх інших шарів: від бази даних до інтерфейсу користувача. Замість використання "магічних рядків" по всьому коду, ми впроваджуємо строгу типізацію та іменовані константи. Це дозволяє уникнути помилок, пов'язаних з людським фактором, та значно спрощує рефакторинг та розширення системи у майбутньому. Ядро забезпечує те, що кожна компонента ATLAS розуміє очікувані формати даних та межі своїх повноважень.</p>
-    </div>
-</div>
-
-<!-- SECTION 02: CORE COMPONENTS MATRIX -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Матриця Компонентів Ядра</h2></div>
-    <div class="glass-card flow-step">
-        <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
-            <thead>
-                <tr style="border-bottom: 1px solid var(--border); color: var(--accent);">
-                    <th>Модуль</th>
-                    <th>Роль</th>
-                    <th>Методологія</th>
-                    <th>Ключовий Елемент</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td><code>config.py</code></td><td>Глобальні константи</td><td>Static Registry Pattern</td><td>SystemSettings Class</td></tr>
-                <tr><td><code>types.py</code></td><td>Строга типізація</td><td>Pydantic / TypedDict</td><td>DataModels Registry</td></tr>
-                <tr><td><code>__init__.py</code></td><td>Експорт інтерфейсів</td><td>Singleton Accessors</td><td>Interface Re-exports</td></tr>
-                <tr><td><code>paths.py</code></td><td>Управління шляхами</td><td>Pathlib Integration</td><td>Project FS Registry</td></tr>
-                <tr><td><code>exceptions.py</code></td><td>Доменні помилки</td><td>Custom Exception Tree</td><td>AtlasBaseException</td></tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<!-- SECTION 03: TYPE ENFORCEMENT STRATEGY -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Стратегія Забезпечення Типів</h2></div>
-    <div class="glass-card flow-step">
-        <p>Ми використовуємо поєднання <b>Python Type Hints</b> та кастомних класів даних (на базі Pydantic або dataclasses) для створення "Безпечного Рукостискання" (Safe Handshake) між ML-моделями та UI-компонентами. 
-        Це гарантує:
+        <p>
+            Пакет <code>src/app/</code> виконує роль архітектурного контракту (або "Конституції") системи ATLAS. Він визначає структури даних, правила взаємодії та глобальні константи, які є спільними для аналітичного ядра, ML-моделей та графічного інтерфейсу користувача. Замість використання небезпечних динамічних структур та "магічних рядків", пакет впроваджує строгу типізацію. Це гарантує цілісність даних на кордоні взаємодії підсистем та повністю усуває помилки неузгодженості інтерфейсів під час виконання.
+        </p>
+        <p style="margin-top: 10px;">
+            Ключові компоненти пакета:
+        </p>
         <ul>
-            <li><b>Validation at Boundary:</b> Перевірка даних на вході в сервіс.</li>
-            <li><b>Schema Enforcement:</b> Неможливість передачі некоректних полів у UI.</li>
-            <li><b>IDE Support:</b> Повне автодоповнення та статична перевірка коду (Mypy).</li>
+            <li><strong>config.py (Global Config Registry):</strong> Визначає центральний клас <code>DataKeys</code>, що містить стандартизовані ключі доступу до словників стану (State Dictionaries), які використовуються для обміну інформацією між аналітикою та UI.</li>
+            <li><strong>types.py (Type Definition Registry):</strong> Зберігає описи складних типів даних, аліасів та доменних моделей (наприклад, прогнози моделей <code>PredictionResult</code>, метрики <code>MetricsDict</code> та параметри фільтрації <code>FilterParams</code>).</li>
+            <li><strong>__init__.py:</strong> Фасад пакета, що забезпечує чистий імпорт типів та констант для вищих рівнів системи.</li>
         </ul>
-        Такий підхід мінімізує <i>Runtime Errors</i> та робить систему передбачуваною.</p>
     </div>
 </div>
 
-<!-- SECTION 04: DATA FLOW DIAGRAM (CORE ORIENTED) -->
+<!-- SECTION 02: TECHNICAL DETAILS & MATHEMATICS -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Схема потоку даних (Ядро)</h2></div>
-    <div class="diagram-outer-wrapper"><div class="mermaid">
-graph LR
-    CONFIG("config.py: Constants") --> SERVICE("Services Logic")
-    TYPES("types.py: Schemas") --> SERVICE
-    SERVICE --> UI("UI Views")
-    DB("Database") -- Raw Data --> SERVICE
-    SERVICE -- Typed Objects --> UI
-    </div></div>
-</div>
+    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Математичне представлення словників стану</h2></div>
+    <div class="glass-card">
+        <div style="display: flex; flex-direction: column; gap: 15px;">
+            <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); padding: 15px; border-radius: 8px;">
+                <h4 style="color: var(--accent); margin: 0 0 8px 0; font-family: 'Orbitron', sans-serif;">1. Контракт словника стану системи</h4>
+                <p style="margin: 0 0 8px 0; font-size: 13.5px; color: var(--text-dim);">
+                    Глобальний словник стану $S$ визначається як відображення, що зіставляє кожен стандартизований ключ $k$ з відповідним об'єктом Pandas DataFrame $D$:
+                </p>
+                <div class="math-block" style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 6px; text-align: center; margin-bottom: 8px; font-family: monospace; color: var(--accent);">
+                    $$ S = \{ (k, D_k) \mid k \in \mathcal{K}, \, D_k \in \mathbb{D}_{\text{DataFrame}} \} $$
+                </div>
+                <p style="margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);">
+                    Де множина допустимих ключів доступу $\mathcal{K}$ жорстко зафіксована у класі <code>DataKeys</code>:
+                </p>
+                <div class="math-block" style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 6px; text-align: center; margin-bottom: 8px; font-family: monospace; color: var(--accent);">
+                    $$ \mathcal{K} = \{ \text{"load"}, \, \text{"gen"}, \, \text{"alerts"}, \, \text{"lines"}, \, \text{"fin"} \} $$
+                </div>
+            </div>
 
-<!-- SECTION 05: THE CORE SINGLETON PATTERN -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Патерн Singleton у конфігурації</h2></div>
-    <div class="glass-card flow-step">
-        <p>Для забезпечення глобального доступу до налаштувань без створення дублікатів у пам'яті, об'єкт конфігурації реалізовано через патерн **Singleton**. Це гарантує, що будь-яка зміна в налаштуваннях під час виконання (runtime) буде миттєво доступна всім модулям системи. Такий підхід забезпечує синхронізовану поведінку всіх компонентів ATLAS, від стрімінгу телеметрії до генерації звітів.</p>
+            <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); padding: 15px; border-radius: 8px;">
+                <h4 style="color: var(--accent); margin: 0 0 8px 0; font-family: 'Orbitron', sans-serif;">2. Формалізація AI-прогнозу (Prediction Tuple)</h4>
+                <p style="margin: 0 0 8px 0; font-size: 13.5px; color: var(--text-dim);">
+                    Кожен результат роботи нейромережевої моделі прогнозування представляє собою колінеарний кортеж $P_{\text{result}}$, який містить часовий ряд прогнозу, середньоквадратичну помилку RMSE та словник метаданих:
+                </p>
+                <div class="math-block" style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 6px; text-align: center; margin-bottom: 8px; font-family: monospace; color: var(--accent);">
+                    $$ P_{\text{result}} = \langle D_{\text{forecast}}, \, E_{\text{rmse}}, \, M_{\text{meta}} \rangle \quad \text{де } E_{\text{rmse}} \in \mathbb{R}^+, \, M_{\text{meta}} \in \text{Dict} $$
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
-<!-- SECTION 06: CENTRALIZED CONFIGURATION MANAGEMENT -->
+<!-- SECTION 03: INTERACTION PIPELINE -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">06</span><h2 class="section-title">Централізоване Управління Конфігурацією</h2></div>
-    <div class="glass-card flow-step">
-        <p>Конфігурація у <code>config.py</code> побудована за принципом <b>Single Source of Truth</b>. Всі ліміти навантаження, кольорові коди станів та ключі кешування зберігаються в одному місці. Це дозволяє змінити поведінку всього додатку (наприклад, змінити поріг критичного навантаження або URL бази даних) шляхом редагування одного рядка коду. Це критично для гнучкості оперативного управління та швидкого розгортання системи в різних інфраструктурних умовах.</p>
+    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Схема потоку типізованих об'єктів</h2></div>
+    <div class="glass-card">
+        <div class="diagram-outer-wrapper">
+            <div class="mermaid">
+            graph LR
+                DB_RAW[("Raw DB Data")] --> CORE_READ["core.database: Read SQL"]
+                CORE_READ --> SCH_VALID{"Валідація за types.py"}
+                
+                SCH_VALID -- "Невідповідність" --> ERR_VAL["Raise ValidationError / Logs"]
+                SCH_VALID -- "Успішно (DataDict)" --> ML_ENG["ml.backtest: Predict Engine"]
+                
+                ML_ENG --> PRED_OUT["prediction: PredictionResult"]
+                PRED_OUT --> UI_VIEW["ui.views: Render Charts / Tables"]
+                
+                CONFIG["config.py: DataKeys"] -- "Контроль доступу" --> UI_VIEW
+                UI_VIEW --> DISPLAY["Cyber-HUD Streamlit GUI"]
+            </div>
+        </div>
     </div>
 </div>
 
-<!-- SECTION 07: SEQUENCE: APPLICATION HANDSHAKE -->
+<!-- SECTION 04: PSEUDOCODE -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">07</span><h2 class="section-title">Sequence: Процес ініціалізації Ядра</h2></div>
-    <div class="diagram-outer-wrapper"><div class="mermaid">
-sequenceDiagram
-    participant App as ATLAS Main
-    participant Co as Config.py
-    participant Ty as Types.py
-    participant DB as DB Service
+    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Приклад реалізації строгої типізації доменних моделей</h2></div>
+    <div class="glass-card">
+        <p>
+            Псевдокод демонструє практичне застосування типів з <code>types.py</code> для забезпечення стійкої до збоїв обробки аналітичних даних та аліасів:
+        </p>
+        <pre><code class="language-python">
+# Псевдокод з реалізації контрактів даних на основі src/app/types.py
+from typing import Dict, List, Tuple, Union, Optional
+import pandas as pd
+
+# Визначення базових доменних типів
+PredictionResult = Dict[str, Union[pd.DataFrame, float, dict]]
+FilterParams = Dict[str, Union[str, Tuple[str, str], List[str], None]]
+
+def process_lstm_forecast(
+    raw_forecast: pd.DataFrame, 
+    rmse_value: float, 
+    substation_id: str
+) -> PredictionResult:
+    """
+    Формує суворий контракт результату прогнозування для передачі в UI.
+    Гарантує відсутність Null-значень та правильну структуру полів.
+    """
+    # Валідація наявності ключових колонок у DataFrame прогнозу
+    expected_cols = {'Datetime', 'Forecast_MW', 'Lower_Bound', 'Upper_Bound'}
+    actual_cols = set(raw_forecast.columns)
     
-    App->>Co: Load System Constants
-    Co-->>App: Constants Loaded
-    App->>Ty: Register Data Schemas
-    Ty-->>App: Schemas Active
-    App->>DB: Handshake with Typed Config
-    DB-->>App: Connection Verified (ACID)
-    App->>App: Core Logic Ready
-    </div></div>
-</div>
-
-<!-- SECTION 08: DATA MODELS & SCHEMA REGISTRY -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">08</span><h2 class="section-title">Реєстр Моделей та Схем Даних</h2></div>
-    <div class="glass-card flow-step">
-        <p>У <code>types.py</code> ми визначаємо <i>Digital Twin Schemas</i>. Ці структури описують фізичні параметри підстанцій: напругу, струм, склад газів у маслі. Використання спільних схем дозволяє аналітичному ядру та візуалізатору "говорити однією мовою", незалежно від того, чи дані надходять з реальних датчиків, чи з генератора симуляції. Це забезпечує високу модульність: ми можемо замінити джерело даних, не змінюючи логіку обробки.</p>
+    if not expected_cols.issubset(actual_cols):
+        raise ValueError(f"Missing columns in forecast DataFrame: {expected_cols - actual_cols}")
+        
+    # Формування об'єкта PredictionResult
+    result: PredictionResult = {
+        "forecast": raw_forecast,
+        "rmse": float(rmse_value),
+        "metadata": {
+            "substation": str(substation_id),
+            "generated_at": pd.Timestamp.now().isoformat(),
+            "status": "VALIDATED"
+        }
+    }
+    return result
+        </code></pre>
     </div>
 </div>
 
-<!-- SECTION 09: ERROR MITIGATION THROUGH ENUMS -->
+<!-- SECTION 05: TECHNICAL FAQ -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">09</span><h2 class="section-title">Запобігання помилкам через Enums</h2></div>
-    <div class="glass-card flow-step">
-        <p>Для всіх категоріальних даних використовуються <b>Enums</b>. Це унеможливлює ситуації з друкарськими помилками в ключах або назвах регіонів. Всі порівняння та фільтрації відбуваються через посилання на об'єкти констант, що забезпечує 100% точність аналітичних вибірок. Це також спрощує локалізацію інтерфейсу: ми змінюємо відображення імені в одному місці Enum, і воно оновлюється всюди.</p>
-    </div>
-</div>
+    <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Технічний FAQ Ядра Додатка</h2></div>
+    <div class="glass-card">
+        <h4 style="color: var(--text-main); margin-bottom: 5px;">Q1: Чому замість Pydantic використовуються стандартні аліаси `Dict` та `Tuple` з `typing`?</h4>
+        <p style="color: var(--text-dim); margin-bottom: 15px;">
+            A: Оскільки ядро ATLAS оперує великими об'єктами <code>pandas.DataFrame</code>, використання повноцінних Pydantic-моделей призвело б до значних накладних витрат на порядову валідацію мільйонів рядків телеметрії. Стандартні аліаси типу <code>DataDict = Dict[str, pd.DataFrame]</code> забезпечують бездоганну статичну перевірку типу (Mypy/Pyright) під час розробки з нульовим впливом на швидкість виконання (zero runtime overhead).
+        </p>
 
-<!-- SECTION 10: MAINTENANCE & SCALABILITY -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">10</span><h2 class="section-title">Супровід та Масштабованість</h2></div>
-    <div class="glass-card flow-step">
-        <p>Завдяки чіткому розділенню типів та налаштувань, додавання нового типу енергооб'єкта (наприклад, сонячної станції) займає мінімум часу. Програміст просто додає поле в існуючий тип у <code>types.py</code>, і інструменти статичного аналізу автоматично підказують всі місця в проекті, де цей параметр потрібно обробити. Це значно знижує технічний борг та робить проект ATLAS готовим до довгострокового супроводу в промислових масштабах.</p>
-    </div>
-</div>
+        <h4 style="color: var(--text-main); margin-bottom: 5px;">Q2: Для чого потрібен клас `DataKeys` у `config.py`?</h4>
+        <p style="color: var(--text-dim); margin-bottom: 15px;">
+            A: Клас <code>DataKeys</code> запобігає виникненню багів, пов'язаних з друкарськими помилками в рядках. Якщо в коді зчитування даних написати <code>state["loda"]</code> замість <code>state["load"]</code>, Python видасть помилку лише під час виконання. Використання константи <code>state[DataKeys.LOAD]</code> гарантує автодоповнення в IDE та виявлення будь-яких помилок на етапі статичного аналізу.
+        </p>
 
-<!-- SECTION 11: ROADMAP TO v3.0 (DYNAMIC CONFIG) -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">11</span><h2 class="section-title">Дорожня карта v3.0 (Dynamic Core)</h2></div>
-    <div class="glass-card flow-step">
-        <p>У наступних версіях планується впровадження **Динамічної Конфігурації**, яка дозволить змінювати параметри системи (наприклад, інтервал опитування датчиків) без перезапуску інтерфейсу через механізм <i>Hot Reload</i>. Також буде додано автоматичну генерацію документації OpenAPI на основі <code>types.py</code> та розширено підтримку складних вкладених типів для більш детального моделювання Smart-Grid мереж наступного покоління.</p>
-    </div>
-</div>
-
-<!-- SECTION 12: APP CORE TECHNICAL FAQ -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">12</span><h2 class="section-title">Технічний FAQ Ядра Додатка</h2></div>
-    <div class="glass-card flow-step">
-        <p><b>Q: Як додати нову глобальну константу?</b><br>
-        A: Необхідно додати її в клас <code>SystemSettings</code> у файлі <code>config.py</code>. Це забезпечить її доступність через Singleton-екземпляр.</p>
-        <p><b>Q: Що робити, якщо Pydantic модель видає ValidationError?</b><br>
-        A: Перевірте відповідність вхідних даних схемі в <code>types.py</code>. Найчастіше це свідчить про зміну формату даних у БД без оновлення моделей ядра.</p>
-        <p><b>Q: Чи можна використовувати змінні оточення (.env)?</b><br>
-        A: Так, ядро автоматично завантажує параметри з файлу <code>.env</code>, якщо вони там визначені, надаючи їм пріоритет над дефолтними значеннями.</p>
-    </div>
-</div>
-
-<!-- SECTION 13: APP CORE GLOSSARY -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">13</span><h2 class="section-title">Глосарій Ядра Додатка</h2></div>
-    <div class="glass-card flow-step">
-        <ul>
-            <li><b>Singleton:</b> Патерн проектування, який гарантує наявність лише одного екземпляра класу в системі.</li>
-            <li><b>Strict Typing:</b> Механізм контролю відповідності типів даних під час розробки та виконання коду.</li>
-            <li><b>Environment Agnostic:</b> Здатність системи працювати в різних оточеннях без зміни вихідного коду.</li>
-            <li><b>Schema Handshake:</b> Процес верифікації структури даних при передачі між різними шарами архітектури.</li>
-        </ul>
-    </div>
-</div>
-
-<!-- SECTION 14: PROFESSIONAL USAGE GUIDELINES -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">14</span><h2 class="section-title">Професійні настанови з використання Ядра</h2></div>
-    <div class="glass-card flow-step">
-        <p>При розширенні логіки ядра ATLAS враховуйте наступні архітектурні принципи:</p>
-        <ul>
-            <li><b>Type Safety:</b> Завжди оновлюйте <code>types.py</code> перед внесенням змін у логіку сервісів.</li>
-            <li><b>Config Isolation:</b> Не хардкодьте шляхи до файлів, використовуйте <code>ProjectPaths</code> з <code>config.py</code>.</li>
-            <li><b>Singleton Integrity:</b> Уникайте створення декількох екземплярів <code>SystemSettings</code>, використовуйте лише метод <code>get_instance()</code>.</li>
-            <li><b>Documentation:</b> Кожен новий тип даних повинен мати відповідний опис у технічному паспорті хаба.</li>
-        </ul>
+        <h4 style="color: var(--text-main); margin-bottom: 5px;">Q3: Яким чином типізація допомагає у тестуванні системи?</h4>
+        <p style="color: var(--text-dim);">
+            A: Завдяки суворим контрактам типів у <code>types.py</code>, ми можемо миттєво генерувати фікстури (Mock-дані) для юніт-тестів. Тестувальник точно знає структуру та типи очікуваних полів об'єкта <code>PredictionResult</code> або <code>AlertData</code>, що дозволяє автоматизувати верифікацію роботи як ML-моделей, так і UI-компонентів.
+        </p>
     </div>
 </div>
 
 <!-- FOOTER NAV -->
 <div class="passport-footer">
-    <a href="./atlas_final/" class="mega-btn"><span class="btn-icon">🔙</span><span class="btn-text">ПОВЕРНУТИСЬ ДО АТЛАСУ</span></a>
+    <a href="../../atlas_final/" class="mega-btn"><span class="btn-icon">🔙</span><span class="btn-text">Повернутися до Атласу</span></a>
 </div>
 
 </div>

@@ -4,181 +4,88 @@
 
 <!-- HERO SECTION -->
 <div class="hero-section">
-    <div class="hero-badge">STRATEGIC COMMAND & CONTROL CENTER</div>
+    <div class="hero-badge">AUTOMATION ENGINE & UTILITY NODE</div>
     <div class="hero-main">
-        <div class="hero-icon-wrapper"><span class="hero-icon">🚀</span><div class="pulse-ring"></div></div>
+        <div class="hero-icon-wrapper"><span class="hero-icon">⚙️</span><div class="pulse-ring"></div></div>
         <div class="hero-title-group">
-            <h1 class="mega-title">Оркестратор ATLAS</h1>
-            <p class="mega-subtitle">Центральний командний центр системи: управління життєвим циклом додатку, ресурсами RAM та гібридними потоками даних</p>
-            <div class="status-tags"><span class="tag tag-online">DEFENSE EDITION</span><span class="tag tag-version">v5.0.0</span><span class="tag tag-role">ORCHESTRATOR</span></div>
+            <h1 class="mega-title">Служба автоматизації: main</h1>
+            <p class="mega-subtitle">Технічний скрипт автоматизації процесів збирання, аналізу або конвертації в екосистемі ATLAS</p>
+            <div class="status-tags"><span class="tag tag-online">DEFENSE EDITION</span><span class="tag tag-version">v5.0.0</span><span class="tag tag-role">UTILITY SCRIPT</span></div>
         </div>
     </div>
 </div>
 
 <!-- KEY METRICS GRID -->
 <div class="metrics-grid">
-    <div class="glass-card metric-card"><div class="metric-icon">🛡️</div><div class="metric-info"><span class="metric-label">Watchdog</span><span class="metric-value">Active Sentinel</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">⚡</div><div class="metric-info"><span class="metric-label">Cloud Safe</span><span class="metric-value">Single-Threaded</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🧬</div><div class="metric-info"><span class="metric-label">Strategy</span><span class="metric-value">Hybrid Data</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🩺</div><div class="metric-info"><span class="metric-label">Health</span><span class="metric-value">Auto Diagnostic</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🛡️</div><div class="metric-info"><span class="metric-label">Runtime</span><span class="metric-value">Python 3.11+</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">⚡</div><div class="metric-info"><span class="metric-label">Execution</span><span class="metric-value">Automated Task</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🧬</div><div class="metric-info"><span class="metric-label">Priority</span><span class="metric-value">High Performance</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🩺</div><div class="metric-info"><span class="metric-label">Interface</span><span class="metric-value">CLI / Script</span></div></div>
 </div>
 
-<!-- SECTION 01: STRATEGIC ORCHESTRATION PHILOSOPHY -->
+<!-- SECTION 01: CONCEPTUAL ROLE -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">01</span><h2 class="section-title">Філософія Стратегічної Оркестрації</h2></div>
+    <div class="section-header"><span class="section-number">01</span><h2 class="section-title">Концептуальне призначення</h2></div>
     <div class="glass-card flow-step">
-        <p>Модуль <code>main.py</code> є "диригентом" всього аналітичного комплексу ATLAS. Його роль виходить далеко за межі простої точки входу. Він відповідає за підготовку обчислювального середовища, моніторинг критичних ресурсів сервера, управління станами сесій та безшовну інтеграцію між ML-ядром, базою даних та UI-компонентами. Це гарантує стабільність системи "Defense Edition" навіть при екстремальних навантаженнях.</p>
+        <p>Модуль <b>main</b> забезпечує інтеграцію та виконання наступних обчислювальних процесів системи: <i>🚀 ATLAS COMMAND & CONTROL CENTER (Strategic Orchestrator). Модуль: main.py | Версія: 5.0.0 "Defense Edition" Призначення: Високорівнева оркестрація життєвого циклу системи, управління потоками даних та забезпечення операційної стійкості HUD-інтерф...</i><br><br><b>Архітектурний інтерфейс:</b> надає методи <code>system_startup()</code>, <code>main()</code>.</p>
     </div>
 </div>
 
-<!-- SECTION 02: WATCHDOG SENTINEL (MEMORY GUARD) -->
+<!-- SECTION 02: CODE DOCUMENTATION (SMART PARSED) -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Watchdog Sentinel: Захист Пам'яті</h2></div>
-    <div class="glass-card flow-step">
-        <p>Однією з ключових інновацій версії 5.0 є впровадження активного вартівника пам'яті. В обмежених хмарних середовищах (наприклад, Streamlit Cloud або Docker-контейнери) виток пам'яті може призвести до миттєвої зупинки сервісу.</p>
-        <ul>
-            <li><b>Threshold Monitoring:</b> Система постійно відстежує обсяг RAM, зайнятий процесом.</li>
-            <li><b>Preemptive GC:</b> При досягненні порогу <b>380 MB</b> автоматично ініціюється глибоке очищення об'єктів та тензорів через <code>auto_gc</code>.</li>
-            <li><b>Thread Hardening:</b> Примусове обмеження <code>OPENBLAS_NUM_THREADS = 1</code> запобігає неконтрольованому паралелізму, який є головною причиною Memory Spikes.</li>
-        </ul>
+    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Системний опис з коду (Docstring)</h2></div>
+    <div class="glass-card flow-step" style="border-left: 4px solid var(--accent); padding-left: 20px;">
+        <p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>🚀 ATLAS COMMAND & CONTROL CENTER (Strategic Orchestrator).</p>
+<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'><b>Модуль:</b> main.py | Версія: 5.0.0 "Defense Edition"</p>
+<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'><b>Призначення:</b> Високорівнева оркестрація життєвого циклу системи, управління потоками даних та забезпечення операційної стійкості HUD-інтерфейсу.</p>
+<h3 style='color: var(--accent); font-family: "Orbitron", sans-serif; font-size: 15px; margin-top: 22px; margin-bottom: 10px;'>Ключові технології</h3>
+<ul style='margin-left: 20px; margin-bottom: 15px; list-style-type: square;'>
+<li style='margin-bottom: 6px; line-height: 1.5;'><b>🛡️ Watchdog Sentinel:</b> Активний моніторинг ресурсів та превентивне очищення RAM для запобігання витокам.</li>
+<li style='margin-bottom: 6px; line-height: 1.5;'><b>⚡ Cloud-Safe Engine:</b> Оптимізація паралелізму математичних бібліотек для стабільності у хмарних середовищах.</li>
+<li style='margin-bottom: 6px; line-height: 1.5;'><b>🧬 Hybrid Data Strategy:</b> Динамічне перемикання між Live-телеметрією та Lazy-архівами Kaggle.</li>
+<li style='margin-bottom: 6px; line-height: 1.5;'><b>🩺 Project Diagnostics:</b> Автоматична верифікація цілісності середовища при кожному запуску.</li>
+</ul>
     </div>
 </div>
 
-<!-- SECTION 03: BOOTSTRAPPING & STARTUP SEQUENCE -->
+<!-- SECTION 03: API REFERENCE (INTERACTIVE BLOCK) -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Протокол Бутстрапінгу (Startup Sequence)</h2></div>
+    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Інтерфейси та сигнатури коду</h2></div>
+    <div class="glass-card flow-step">
+        <p style="margin-bottom: 15px; color: var(--text-dim);">Документовані класи та методи, знайдені за допомогою статичного аналізу коду (AST):</p>
+        <div style='display: flex; flex-direction: column; gap: 10px;'>
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def system_startup()</code>
+                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Виконує процедуру початкового розгортання середовища (Bootstrapping).</p>
+            </div>
+            
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def main()</code>
+                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Головний цикл управління додатком (Main Event Loop).</p>
+            </div>
+            </div>
+    </div>
+</div>
+
+<!-- SECTION 04: EXECUTION FLOW (DIAGRAM) -->
+<div class="section-container">
+    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Життєвий цикл виконання</h2></div>
     <div class="diagram-outer-wrapper"><div class="mermaid">
 graph TD
-    START("Запуск (main.py)") --> ENV("Конфігурація оточення (Threads/Logs)")
-    ENV --> DIAG("Діагностика: Cache Cleanup (TTL 24h)")
-    DIAG --> CONFIG("Page Config (Init)")
-    CONFIG --> SPLASH("Splash Screen (Boot Sequence)")
-    SPLASH --> DATA("Hybrid Data Resolution")
-    DATA --> RENDER("Dashboard UI Rendering")
+    START("Запуск main.py") --> CONFIG("Ініціалізація оточення")
+    CONFIG --> RUN("Основний алгоритм")
+    RUN --> COMP("Завершення завдання")
     </div></div>
 </div>
 
-<!-- SECTION 04: MAIN EVENT LOOP ARCHITECTURE -->
+<!-- SECTION 05: MODULE DEPENDENCIES -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Архітектура Головного Циклу (Event Loop)</h2></div>
+    <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
     <div class="glass-card flow-step">
-        <p>Головний цикл ATLAS побудований за принципом "Single State Source". Будь-яка взаємодія користувача з інтерфейсом тригерує повторне виконання циклу, але завдяки розумному кешуванню в <code>st.session_state</code>, важкі операції (такі як анімація завантаження або SQL-запити) не повторюються.</p>
-        <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
-            <thead>
-                <tr style="border-bottom: 1px solid var(--border); color: var(--accent);">
-                    <th>Етап</th>
-                    <th>Механізм</th>
-                    <th>Результат</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td>Ініціалізація</td><td><code>init_page_config</code></td><td>Налаштування метаданих та іконки</td></tr>
-                <tr><td>Стилізація</td><td><code>apply_custom_css</code></td><td>Ін'єкція Cyber-HUD стилів</td></tr>
-                <tr><td>Резолюція даних</td><td><code>get_verified_data</code></td><td>Вибір між Live та Kaggle джерелами</td></tr>
-                <tr><td>Рендеринг</td><td><code>render_dashboard_ui</code></td><td>Побудова фінального аналітичного простору</td></tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<!-- SECTION 05: HYBRID DATA STRATEGY (LIFECYCLE) -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Реалізація Гібридної Стратегії Даних</h2></div>
-    <div class="glass-card flow-step">
-        <p>Оркестратор динамічно керує джерелами правди. Якщо користувач обирає "Еталонні дані (Kaggle)", <code>main.py</code> виконує підміну потоку даних через <code>load_kaggle_lazy</code>, гарантуючи, що всі аналітичні віджети миттєво перемкнуться на новий контекст без перезавантаження всього додатку.</p>
-    </div>
-</div>
-
-<!-- SECTION 06: PSEUDO-CODE (CORE ORCHESTRATOR) -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">06</span><h2 class="section-title">Псевдокод Головного Оркестратора</h2></div>
-    <div class="glass-card flow-step">
-        <pre><code>FUNCTION main():
-    1. INITIALIZE streamlit_page(title, layout='wide')
-    2. CHECK memory_usage()
-        IF usage > 380MB: TRIGGER garbage_collection()
-    3. INJECT Cyber-HUD CSS themes
-    4. IF NOT session.booted:
-        session.data = run_boot_sequence_animation()
-        session.booted = True
-    5. DATA = resolve_active_source(session.data)
-    6. RENDER_SIDEBAR(DATA) -> GET user_filters
-    7. ANALYZE context (Region vs Substation)
-    8. INVOKE dashboard_ui(DATA, filters)
-END FUNCTION</code></pre>
-    </div>
-</div>
-
-<!-- SECTION 07: CLOUD-SAFE ENGINE OPTIMIZATION -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">07</span><h2 class="section-title">Оптимізація Cloud-Safe Engine</h2></div>
-    <div class="glass-card flow-step">
-        <p>Для забезпечення "армійської" надійності, модуль примусово встановлює змінні оточення для бібліотек <code>OpenBLAS</code>, <code>MKL</code> та <code>OMP</code>. Це запобігає конфліктам паралелізму, які часто виникають при роботі <code>onnxruntime</code> та <code>numpy</code> в багатокористувацьких веб-сесіях.</p>
-    </div>
-</div>
-
-<!-- SECTION 08: RESOURCE MONITORING MATRIX -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">08</span><h2 class="section-title">Матриця моніторингу ресурсів</h2></div>
-    <div class="glass-card flow-step">
-        <ul>
-            <li><b>RAM Hard Limit:</b> 380 MB (Тригер <code>auto_gc</code>).</li>
-            <li><b>Thread Limit:</b> 1 (Single-threaded math core).</li>
-            <li><b>Cache TTL:</b> 24 години (Авто-очищення при старті).</li>
-            <li><b>Session Persistence:</b> Дані зберігаються в <code>st.session_state</code> для UX-стабільності.</li>
-        </ul>
-    </div>
-</div>
-
-<!-- SECTION 09: SYSTEM DIAGNOSTICS & LOGGING -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">09</span><h2 class="section-title">Системна діагностика та Логування</h2></div>
-    <div class="glass-card flow-step">
-        <p>При старті <code>main.py</code> ініціює централізовану систему логування <code>setup_logging</code>. Рівень логування (DEBUG/INFO/ERROR) може динамічно змінюватися через змінні оточення, що дозволяє проводити глибокий дебаг системи на сервері без зміни коду.</p>
-    </div>
-</div>
-
-<!-- SECTION 10: DYNAMIC AGGREGATION RESOLUTION -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">10</span><h2 class="section-title">Динамічна резолюція агрегації</h2></div>
-    <div class="glass-card flow-step">
-        <p>Оркестратор реалізує "інтелектуальний фокус": якщо користувач обирає фільтр "Усі регіони", система автоматично перемикає всі групування на <code>region_name</code>. Як тільки обирається конкретний регіон — фокус зміщується на рівень <code>substation_name</code>. Це забезпечує природну глибину аналізу (Drill-down).</p>
-    </div>
-</div>
-
-<!-- SECTION 11: MODULE ORCHESTRATION MATRIX -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">11</span><h2 class="section-title">Матриця оркестрації модулів</h2></div>
-    <div class="roles-grid">
-        <div class="role-item">
-            <div class="role-icon">🎨</div>
-            <div class="role-content">
-                <h4>UI Components</h4>
-                <p>main.py координує послідовність рендерингу від Sidebar до Dashboard.</p>
-            </div>
+        <p style="margin-bottom: 12px; color: var(--text-dim);">Бібліотеки та модулі, що імпортуються цим файлом:</p>
+        <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; border: 1px solid var(--border);">
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>logging</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>os</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.app.config</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.core.analytics.filter</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.core.database.loader</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.ui.components.styles</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.ui.segments.dashboard</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.ui.segments.sidebar</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.ui.segments.splash</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.utils.logging_config</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.utils.memory_helper</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>streamlit</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>sys</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>warnings</span>
         </div>
-        <div class="role-item">
-            <div class="role-icon">🗄️</div>
-            <div class="role-content">
-                <h4>Core Data</h4>
-                <p>main.py відповідає за Handshake з Loader та верифікацію цілісності даних.</p>
-            </div>
-        </div>
-        <div class="role-item">
-            <div class="role-icon">🩺</div>
-            <div class="role-content">
-                <h4>Memory Utils</h4>
-                <p>main.py виступає тригером для засобів примусового вивільнення RAM.</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- SECTION 12: ROADMAP TO v6.0 (DISTRIBUTED ATLAS) -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">12</span><h2 class="section-title">Дорожня карта v6.0 (Distributed Atlas)</h2></div>
-    <div class="glass-card flow-step">
-        <p>У версії 6.0 планується перехід на <b>розподілену чергу завдань (Celery/Redis)</b> для винесення ML-обчислень в окремі воркери, що дозволить <code>main.py</code> фокусуватися виключно на UI-оркестрації та підтримувати тисячі одночасних користувачів.</p>
     </div>
 </div>
 

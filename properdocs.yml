@@ -105,6 +105,7 @@ extra_css:
   - atlas/blueprint.css
 
 extra_javascript:
+  - javascripts/mathjax.js
   - https://cdnjs.cloudflare.com/ajax/libs/polyfill/3.111.0/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
   - https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js

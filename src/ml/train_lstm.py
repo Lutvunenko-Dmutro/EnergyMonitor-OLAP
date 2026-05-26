@@ -1,4 +1,4 @@
-# ATLAS_PASSPORT: docs/system/map/ml_core_engine.md
+# ATLAS_PASSPORT: docs/system/map/train_lstm.md
 """
 КОНВЕЄР НАВЧАННЯ ГЛИБОКИХ НЕЙРОННИХ МЕРЕЖ (LSTM Training Pipeline)
 ==============================================================

@@ -88,22 +88,30 @@ graph TD
     end
     
     TRAINING_LAB -- Artifacts --> MODEL_LOAD
-    </div></div>
+</div></div>
 </div>
 
 <!-- SECTION 05: DEEP LEARNING ARCHITECTURE (LSTM) -->
 <div class="section-container">
     <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Архітектура Глибокого Навчання (LSTM)</h2></div>
     <div class="glass-card flow-step">
-        <p>Для прогнозування ATLAS використовує багатошарову рекурентну архітектуру <b>LSTM (Long Short-Term Memory)</b>. Вона здатна утримувати в пам'яті як короткострокові коливання (наприклад, включення потужного споживача), так і довгострокові цикли (тижневі ритми роботи промисловості). 
-        Вхідний вектор включає:
+        <p>Для прогнозування ATLAS використовує багатошарову рекурентну архітектуру <b>LSTM (Long Short-Term Memory)</b>. Вона здатна утримувати в пам'яті як короткострокові коливання (наприклад, включення потужного споживача), так і довгострокові цикли (тижневі ритми роботи промисловості). LSTM-елемент містить фільтри для регулювання потоку інформації:</p>
+        <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #fff; margin: 15px 0; border: 1px solid var(--border);">
+            $$ f_t = \sigma(W_f \cdot [h_{t-1}, x_t] + b_f) \quad \text{(Forget Gate)} $$
+            $$ i_t = \sigma(W_i \cdot [h_{t-1}, x_t] + b_i) \quad \text{(Input Gate)} $$
+            $$ \tilde{C}_t = \tanh(W_c \cdot [h_{t-1}, x_t] + b_c) $$
+            $$ C_t = f_t * C_{t-1} + i_t * \tilde{C}_t \quad \text{(Cell State Update)} $$
+            $$ o_t = \sigma(W_o \cdot [h_{t-1}, x_t] + b_o) \quad \text{(Output Gate)} $$
+            $$ h_t = o_t * \tanh(C_t) \quad \text{(Hidden State Output)} $$
+        </div>
+        <p>Вхідний вектор включає:</p>
         <ul>
             <li><code>L_t-1...L_t-n</code>: Історія навантаження (вікно 48 годин).</li>
             <li><code>T_ext</code>: Прогноз температури повітря.</li>
             <li><code>C_sin/C_cos</code>: Гармоніки часу доби та дня тижня.</li>
             <li><code>S_state</code>: Поточний стан обладнання (Binary health flags).</li>
         </ul>
-        На виході модель видає вектор прогнозних значень на наступні 24-72 години.</p>
+        <p>На виході модель видає вектор прогнозних значень на наступні 24-72 години.</p>
     </div>
 </div>
 
@@ -123,27 +131,84 @@ graph TD
     </div>
 </div>
 
-<!-- SECTION 08: AUTOMATED BACKTESTING & ERROR AUDIT -->
-<div class="section-container" id="metrics">
-    <div class="section-header"><span class="section-number">08</span><h2 class="section-title">Автоматизований Бектестинг та Аудит</h2></div>
+<!-- SECTION 08: AUTOMATED BACKTESTING & TIMEFRAME VALIDATION -->
+<div class="section-container">
+    <div class="section-header"><span class="section-number">08</span><h2 class="section-title">Протокол крос-валідації часових рядів (Walk-Forward)</h2></div>
     <div class="glass-card flow-step">
-        <p>Впевненість у прогнозі неможлива без перевірки на минулому. <code>backtest.py</code> автоматично імітує ситуації "що було б, якби ми прогнозували тиждень тому", порівнюючи результати ШІ з реальними даними, що вже стали історією. Це дозволяє розраховувати динамічний довірчий інтервал (Confidence Interval) та постійно моніторити дрейф точності моделей. Якщо похибка RMSE перевищує встановлений поріг (Threshold), система автоматично ініціює запит на перенавчання моделі (Retraining Signal).</p>
+        <p>Для запобігання витоку інформації з майбутнього (data leakage) при оцінці якості моделей, у модулі <code>backtest.py</code> впроваджено Walk-Forward Time-Series Split.</p>
+        
+        <h4 style="color: var(--accent); margin-top: 15px; font-family: 'Orbitron', sans-serif;">Алгоритм бектестингу на ковзному вікні</h4>
+        <pre><code class="language-python">
+# Псевдокод реалізації Walk-Forward валідації
+def run_walk_forward_backtest(model, data, initial_train_hours=8760, forecast_horizon=24, step_hours=168):
+    total_hours = len(data)
+    results = []
+    
+    current_train_end = initial_train_hours
+    
+    while current_train_end + forecast_horizon <= total_hours:
+        # 1. Розділення на тренувальну та тестову вибірки
+        train_set = data.iloc[0:current_train_end]
+        test_set = data.iloc[current_train_end:current_train_end + forecast_horizon]
+        
+        # 2. Навчання або донавчання моделі на історичному вікні
+        model.fit(train_set)
+        
+        # 3. Виконання багатокрокового прогнозу
+        features = extract_features(test_set)
+        predictions = model.predict(features)
+        
+        # 4. Збереження метрик якості
+        actuals = test_set['actual_load'].values
+        rmse = calculate_rmse(actuals, predictions)
+        mae = calculate_mae(actuals, predictions)
+        
+        results.append({
+            "test_timestamp": test_set.index[0],
+            "predictions": predictions,
+            "actuals": actuals,
+            "rmse": rmse,
+            "mae": mae
+        })
+        
+        # 5. Просування навчального вікна вперед
+        current_train_end += step_hours
+        
+    return results
+        </code></pre>
     </div>
 </div>
 
-<!-- SECTION 09: THE MODEL REGISTRY & LIFECYCLE -->
+<!-- SECTION 09: ML TERMINOLOGY & EVALUATION METRICS -->
+<div class="section-container" id="metrics">
+    <div class="section-header"><span class="section-number">09</span><h2 class="section-title">Математика оцінки якості (Evaluation Metrics)</h2></div>
+    <div class="glass-card flow-step">
+        <p>Модуль <code>metrics_engine.py</code> розраховує наступні фундаментальні метрики оцінки точності:</p>
+        <ul>
+            <li><b>RMSE (Root Mean Squared Error):</b> Дуже чутлива до великих похибок метрика, критична для енергомереж.
+                <div style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 8px; text-align: center; margin: 10px 0; border: 1px solid var(--border);">
+                    $$ \text{RMSE} = \sqrt{\frac{1}{N} \sum_{i=1}^{N} (y_i - \hat{y}_i)^2} $$
+                </div>
+            </li>
+            <li><b>MAE (Mean Absolute Error):</b> Середня абсолютна похибка, що показує реальне відхилення в мегаватах.
+                <div style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 8px; text-align: center; margin: 10px 0; border: 1px solid var(--border);">
+                    $$ \text{MAE} = \frac{1}{N} \sum_{i=1}^{N} |y_i - \hat{y}_i| $$
+                </div>
+            </li>
+            <li><b>sMAPE (Symmetric Mean Absolute Percentage Error):</b> Симетрична відносна похибка в межах $[0\%, 200\%]$.
+                <div style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 8px; text-align: center; margin: 10px 0; border: 1px solid var(--border);">
+                    $$ \text{sMAPE} = \frac{100\%}{N} \sum_{i=1}^{N} \frac{|y_i - \hat{y}_i|}{(|y_i| + |\hat{y}_i|)/2} $$
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- SECTION 10: THE MODEL REGISTRY & LIFECYCLE -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">09</span><h2 class="section-title">Реєстр Моделей та Життєвий Цикл</h2></div>
+    <div class="section-header"><span class="section-number">10</span><h2 class="section-title">Реєстр Моделей та Життєвий Цикл</h2></div>
     <div class="glass-card flow-step">
         <p>Модуль <code>model_loader.py</code> виконує роль <b>Model Registry</b>. Він автоматично знаходить найкращі версії ваг моделей у директорії <code>cache/models/</code>, перевіряє їх цілісність за контрольними сумами та завантажує в пам'ять. Це забезпечує безшовне оновлення інтелекту ATLAS: розробник може просто підкласти новий файл моделі, і система почне використовувати його без перезапуску. Життєвий цикл моделі включає стадії: <i>Training -> Validation -> Candidate -> Production -> Archive</i>.</p>
-    </div>
-</div>
-
-<!-- SECTION 10: ANALYTIC METRICS & PERFORMANCE ENGINE -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">10</span><h2 class="section-title">Аналітичні Метрики та Двигун Оцінки</h2></div>
-    <div class="glass-card flow-step">
-        <p>У <code>metrics_engine.py</code> зосереджена математика оцінки якості. Ми використовуємо не лише стандартні RMSE та MAE, а й специфічні для енергетики метрики: <i>Peak Load Deviation</i> (точність прогнозу піків) та <i>Trend Sign Consistency</i> (правильність визначення напрямку зміни). Це дозволяє оцінювати корисність прогнозу не просто з точки зору математики, а з точки зору практичної цінності для диспетчера мережі. Всі метрики розраховуються у ковзному вікні, забезпечуючи Real-time моніторинг адекватності ШІ.</p>
     </div>
 </div>
 
@@ -158,7 +223,7 @@ sequenceDiagram
     participant INF as ONNX Engine
     participant DB as Historical DB
     
-    UI->>FC: Request Forecast (sub_id, horizon)
+    UI->HFC: Request Forecast (sub_id, horizon)
     FC->>DB: Fetch last window (48h)
     DB-->>FC: Raw data
     FC->>VEC: Vectorize(data)
@@ -167,14 +232,14 @@ sequenceDiagram
     INF-->>FC: Raw AI Output
     FC->>FC: Apply Bias Correction
     FC-->>UI: Structured JSON Forecast
-    </div></div>
+</div></div>
 </div>
 
 <!-- SECTION 12: ROADMAP TO v6.0 (REINFORCEMENT LEARNING) -->
 <div class="section-container">
     <div class="section-header"><span class="section-number">12</span><h2 class="section-title">Дорожня карта v6.0 (RL-Grid Control)</h2></div>
     <div class="glass-card flow-step">
-        <p>У версії 6.0 планується впровадження **Reinforcement Learning (RL)** для автономного управління балансуванням мережі. Система не просто прогнозуватиме дефіцит, а пропонуватиме оптимальні керуючі дії (вимикання/вмикання ліній) для мінімізації втрат та ризиків. Також буде додано підтримку <i>Explainable AI (XAI)</i> через алгоритми SHAP/LIME, щоб диспетчер міг бачити, які саме фактори (наприклад, різке падіння температури або вихідні дні) найбільше вплинули на формування конкретного прогнозу.</p>
+        <p>У версії 6.0 планується впровадження <b>Reinforcement Learning (RL)</b> для автономного управління балансуванням мережі. Система не просто прогнозуватиме дефіцит, а пропонуватиме оптимальні керуючі дії (вимикання/вмикання ліній) для мінімізації втрат та ризиків. Також буде додано підтримку <i>Explainable AI (XAI)</i> через алгоритми SHAP/LIME, щоб диспетчер міг бачити, які саме фактори (наприклад, різке падіння температури або вихідні дні) найбільше вплинули на формування конкретного прогнозу.</p>
     </div>
 </div>
 
@@ -206,7 +271,7 @@ sequenceDiagram
 
 <!-- FOOTER NAV -->
 <div class="passport-footer">
-    <a href="./atlas_final/" class="mega-btn"><span class="btn-icon">🔙</span><span class="btn-text">ПОВЕРНУТИСЬ ДО АТЛАСУ</span></a>
+    <a href="../../atlas_final/" class="mega-btn"><span class="btn-icon">🔙</span><span class="btn-text">ПОВЕРНУТИСЬ ДО АТЛАСУ</span></a>
 </div>
 
 </div>

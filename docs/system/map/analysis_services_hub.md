@@ -48,7 +48,7 @@
                 <tr><td><code>advanced_mining.py</code></td><td>Data Mining</td><td>Association Rules / FP-Growth</td><td>Кореляції параметрів</td></tr>
                 <tr><td><code>trends_and_patterns.py</code></td><td>Trend Analysis</td><td>STL Decomposition (Loess)</td><td>Часові ряди</td></tr>
                 <tr><td><code>analytics_advanced.py</code></td><td>Complex KPIs</td><td>Statistical Aggregation</td><td>Ефективність вузлів</td></tr>
-                <tr><td><code>intersection_tester.py</code></td><td>Logic Validation</td><td>Boundary Logic Check</td><td>Цілісність даних</td></tr>
+                <tr><td><code>automated_intersection_tester.py</code></td><td>Logic Validation</td><td>Boundary Logic Check</td><td>Цілісність даних</td></tr>
                 <tr><td><code>clustering.py</code></td><td>Segmentation</td><td>K-Means / DBSCAN</td><td>Типи споживачів</td></tr>
                 <tr><td><code>filter.py</code></td><td>Noise Reduction</td><td>Kalman / Low-pass Filter</td><td>Очищення телеметрії</td></tr>
                 <tr><td><code>diag_columns.py</code></td><td>Structure Scan</td><td>Schema Metadata Audit</td><td>Валідація БД</td></tr>
@@ -61,13 +61,21 @@
 <div class="section-container">
     <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Стратегія Декомпозиції Трендів</h2></div>
     <div class="glass-card flow-step">
-        <p>Для розуміння природи змін у навантаженні ми використовуємо метод **STL (Seasonal-Trend decomposition using Loess)**. Це дозволяє розділити часовий ряд на три складові: 
+        <p>Для розуміння природи змін у навантаженні ми використовуємо метод <b>STL (Seasonal-Trend decomposition using Loess)</b>. Це дозволяє розділити часовий ряд $Y_t$ на три незалежні складові:</p>
+        <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: #fff; margin: 15px 0; border: 1px solid var(--border); text-align: center;">
+            $$ Y_t = T_t + S_t + R_t $$
+        </div>
+        <p>Де компоненти визначаються наступним чином:</p>
         <ul>
-            <li><b>Trend:</b> Загальний довгостроковий рух (наприклад, зростання споживання через розширення району).</li>
-            <li><b>Seasonal:</b> Повторювані цикли (добові ритми 24г, тижневі ритми 7д).</li>
-            <li><b>Residual:</b> Випадковий шум та аномальні сплески, що потребують окремої уваги диспетчера.</li>
+            <li><b>$T_t$ (Trend-Cycle Component):</b> Довгостроковий рух навантаження, що відображає фундаментальні зміни споживання (наприклад, введення нових індустріальних потужностей або демографічні зсуви).</li>
+            <li><b>$S_t$ (Seasonal Component):</b> Циклічні варіації з відомим періодом (наприклад, добові коливання $P = 24$ або тижневі $P = 168$).</li>
+            <li><b>$R_t$ (Residual / Irregular Component):</b> Випадковий шум та нерегулярні сплески, спричинені аномальними погодними явищами або аваріями в енергомережі.</li>
         </ul>
-        Такий аналіз критично важливий для відділення реальних змін у споживанні від звичайних сезонних коливань, що дозволяє системі ATLAS виявляти "тиху" деградацію мережі.</p>
+        <p>Для локальної регресії Loess ваги сусідніх точок розраховуються за допомогою трикубічної функції ядра:</p>
+        <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: #fff; margin: 15px 0; border: 1px solid var(--border); text-align: center;">
+            $$ W(u) = (1 - |u|^3)^3 \quad \text{для} \quad |u| < 1 $$
+        </div>
+        <p>Такий підхід забезпечує стійкість декомпозиції до поодиноких імпульсних викидів.</p>
     </div>
 </div>
 
@@ -90,19 +98,52 @@ graph TD
     
     DATA_IN --> VALIDATION
     VALIDATION --> ALERTS("System Integrity Alerts")
-    </div></div>
+</div></div>
 </div>
 
 <!-- SECTION 05: CLUSTERING & SEGMENTATION LOGIC -->
 <div class="section-container">
     <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Логіка Кластеризації та Сегментації</h2></div>
     <div class="glass-card flow-step">
-        <p>Модуль <code>clustering.py</code> дозволяє групувати підстанції за схожістю їхньої поведінки. Використовуючи алгоритми **K-Means**, система автоматично ідентифікує "промислові", "житлові" та "комерційні" профілі навантаження. Це критично для:
-        <ul>
-            <li>Порівняльного аналізу ефективності (Benchmarking).</li>
-            <li>Виявлення об'єктів з нетиповим профілем споживання (Outlier Detection).</li>
-            <li>Оптимізації стратегій обслуговування для різних типів активів.</li>
-        </ul></p>
+        <p>Модуль <code>clustering.py</code> дозволяє групувати підстанції за схожістю їхньої поведінки. Використовуючи алгоритм <b>K-Means</b>, система мінімізує суму квадратів відстаней від точок до центрів відповідних кластерів:</p>
+        <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: #fff; margin: 15px 0; border: 1px solid var(--border); text-align: center;">
+            $$ J = \sum_{i=1}^{k} \sum_{\mathbf{x} \in S_i} \|\mathbf{x} - \boldsymbol{\mu}_i\|^2 $$
+        </div>
+        <p>Де $k$ — кількість цільових кластерів, $\boldsymbol{\mu}_i$ — центроїд кластера $S_i$. Для кожної підстанції формується вектор ознак, що містить середньодобовий профіль навантаження, піковий коефіцієнт та чутливість до зміни температури.</p>
+        
+        <h4 style="color: var(--accent); margin-top: 15px; font-family: 'Orbitron', sans-serif;">Алгоритм автоматичної сегментації підстанцій</h4>
+        <pre><code class="language-python">
+# Псевдокод реалізації K-Means сегментації
+def segment_substations(data_frame, n_clusters=3):
+    # 1. Формування матриці ознак X (24-годинний профіль + метадані)
+    profiles = preprocess_load_profiles(data_frame)
+    X = scale_features(profiles)  # Z-score scaling
+    
+    # 2. Ініціалізація центроїдів методом k-means++
+    centroids = initialize_centroids_kmeans_plus(X, n_clusters)
+    prev_centroids = np.zeros_like(centroids)
+    labels = np.zeros(len(X))
+    
+    # 3. Ітераційний процес оптимізації
+    iteration = 0
+    while not np.allclose(centroids, prev_centroids, rtol=1e-5) and iteration < 100:
+        prev_centroids = centroids.copy()
+        
+        # Шаг E: Призначення точок до найближчого центроїда
+        for i, point in enumerate(X):
+            distances = [np.linalg.norm(point - c) for c in centroids]
+            labels[i] = np.argmin(distances)
+            
+        # Шаг M: Перерахунок координат центроїдів
+        for c_idx in range(n_clusters):
+            assigned_points = X[labels == c_idx]
+            if len(assigned_points) > 0:
+                centroids[c_idx] = np.mean(assigned_points, axis=0)
+                
+        iteration += 1
+        
+    return labels, centroids
+        </code></pre>
     </div>
 </div>
 
@@ -111,6 +152,11 @@ graph TD
     <div class="section-header"><span class="section-number">06</span><h2 class="section-title">Автоматизоване Тестування Логіки</h2></div>
     <div class="glass-card flow-step">
         <p>Модуль <code>automated_intersection_tester.py</code> забезпечує математичну верифікацію даних. Він перевіряє, щоб сума навантажень підстанцій збігалася з регіональним балансом, і щоб часові позначки в різних таблицях не мали розривів. Це "Цифровий Аудитор", який гарантує, що вся аналітика базується на фізично коректних та цілісних даних. Будь-яка розбіжність понад 0.5% викликає попередження системи.</p>
+        <p>Для аналізу аномалій кожної точки часового ряду розраховується модифікований Z-score на основі медіанного абсолютного відхилення (MAD):</p>
+        <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: #fff; margin: 15px 0; border: 1px solid var(--border); text-align: center;">
+            $$ M_i = \frac{0.6745 \cdot (x_i - \tilde{x})}{\text{MAD}} \quad \text{де} \quad \text{MAD} = \text{median}(|x_i - \tilde{x}|) $$
+        </div>
+        <p>Точки, для яких $|M_i| > 3.5$, класифікуються як критичні викиди.</p>
     </div>
 </div>
 
@@ -118,7 +164,12 @@ graph TD
 <div class="section-container">
     <div class="section-header"><span class="section-number">07</span><h2 class="section-title">Можливості Поглибленого Data Mining</h2></div>
     <div class="glass-card flow-step">
-        <p>Ми використовуємо алгоритми <i>Advanced Mining</i> для пошуку неявних зв'язків. Наприклад, як температура повітря в одному регіоні впливає на стабільність частоти в іншому. Це реалізовано через аналіз асоціативних правил та розрахунок взаємної інформації (Mutual Information). Це дозволяє виявляти каскадні ефекти в енергосистемі ще до того, як вони стануть очевидними, забезпечуючи превентивне управління ризиками та стійкість мережі.</p>
+        <p>Ми використовуємо алгоритми <i>Advanced Mining</i> для пошуку неявних зв'язків. Наприклад, як температура повітря в одному регіоні впливає на стабільність частоти в іншому. Це реалізовано через аналіз асоціативних правил та розрахунок взаємної інформації (Mutual Information). Це дозволяє виявляти каскадні ефекти в енергосистемі ще до того, як вони стануть очевидними, забезпечуючи превентивне управління ризиками та стійкість мережі. Для асоціативних правил виконуються три метрики:</p>
+        <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #fff; margin: 15px 0; border: 1px solid var(--border);">
+            $$ \text{Support}(A \implies B) = P(A \cap B) $$
+            $$ \text{Confidence}(A \implies B) = P(B \mid A) = \frac{\text{Support}(A \cap B)}{\text{Support}(A)} $$
+            $$ \text{Lift}(A \implies B) = \frac{\text{Confidence}(A \implies B)}{\text{Support}(B)} $$
+        </div>
     </div>
 </div>
 
@@ -147,7 +198,7 @@ classDiagram
     BaseAnalyticService <|-- TrendAnalyzer
     BaseAnalyticService <|-- DataMiner
     BaseAnalyticService <|-- ClusterManager
-    </div></div>
+</div></div>
 </div>
 
 <!-- SECTION 09: DIAGNOSTIC SCANNING ENGINE -->
@@ -162,7 +213,7 @@ classDiagram
 <div class="section-container">
     <div class="section-header"><span class="section-number">10</span><h2 class="section-title">Дорожня карта v4.0 (Adaptive Analytics)</h2></div>
     <div class="glass-card flow-step">
-        <p>У версії 4.0 планується впровадження **Адаптивної Аналітики Реального Часу**, яка самостійно переналаштовує параметри декомпозиції залежно від поточної ситуації в мережі (наприклад, перемикання на більш часті вікна аналізу під час штормових попереджень). Також буде додано підтримку <i>Graph Analytics</i> для візуалізації складних топологічних зв'язків та впроваджено модулі автоматичного генерування текстових аналітичних звітів за допомогою LLM-агентів (GPT-4/Claude Integration).</p>
+        <p>У версії 4.0 планується впровадження <b>Адаптивної Аналітики Реального Часу</b>, яка самостійно переналаштовує параметри декомпозиції залежно від поточної ситуації в мережі (наприклад, перемикання на більш часті вікна аналізу під час штормових попереджень). Також буде додако підтримку <i>Graph Analytics</i> для візуалізації складних топологічних зв'язків та впроваджено модулі автоматичного генерування текстових аналітичних звітів за допомогою LLM-агентів.</p>
     </div>
 </div>
 
@@ -194,7 +245,7 @@ classDiagram
 
 <!-- FOOTER NAV -->
 <div class="passport-footer">
-    <a href="./atlas_final/" class="mega-btn"><span class="btn-icon">🔙</span><span class="btn-text">ПОВЕРНУТИСЬ ДО АТЛАСУ</span></a>
+    <a href="../../atlas_final/" class="mega-btn"><span class="btn-icon">🔙</span><span class="btn-text">ПОВЕРНУТИСЬ ДО АТЛАСУ</span></a>
 </div>
 
 </div>

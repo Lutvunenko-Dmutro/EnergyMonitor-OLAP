@@ -1,4 +1,4 @@
-# ATLAS_PASSPORT: docs/system/map/ml_core_engine.md
+# ATLAS_PASSPORT: docs/system/map/predict_v2.md
 """
 🤖 AI FORECASTING PIPELINE (Intelligent Core v3).
 Модуль: predict_v2.py | Версія: 3.5.0 "Neural Guard"

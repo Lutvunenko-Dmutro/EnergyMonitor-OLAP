@@ -9,7 +9,7 @@
         <div class="hero-icon-wrapper"><span class="hero-icon">🌊</span><div class="pulse-ring"></div></div>
         <div class="hero-title-group">
             <h1 class="mega-title">Структура Генерації</h1>
-            <p class="mega-subtitle">Багатовимірний монітор джерел енергії: візуалізація потоків потужності через діаграми Sankey, аналіз балансу Energy Mix та динаміка вироблення з розбивкою за категоріями</p>
+            <p class="mega-subtitle">Багатовимірний монітор джерел енергії та балансування потужності: візуалізація потоків через діаграми Sankey, аналіз балансу Energy Mix та динаміка генерації</p>
             <div class="status-tags"><span class="tag tag-online">GENERATION ACTIVE</span><span class="tag tag-version">v2.5.0</span><span class="tag tag-role">BALANCING AUTHORITY</span></div>
         </div>
     </div>
@@ -18,7 +18,7 @@
 <!-- KEY METRICS GRID -->
 <div class="metrics-grid">
     <div class="glass-card metric-card"><div class="metric-icon">🔄</div><div class="metric-info"><span class="metric-label">Flows</span><span class="metric-value">Source -> Region</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">⚛️</div><div class="metric-info"><span class="metric-label">Categories</span><span class="metric-value">Nuclear / RES / Thermal</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">⚛️</div><div class="metric-info"><span class="metric-label">Categories</span><span class="metric-value">Nuclear / Thermal / RES</span></div></div>
     <div class="glass-card metric-card"><div class="metric-icon">📊</div><div class="metric-info"><span class="metric-label">Chart Type</span><span class="metric-value">Sankey / Stacked Area</span></div></div>
     <div class="glass-card metric-card"><div class="metric-icon">🎨</div><div class="metric-info"><span class="metric-label">Colors</span><span class="metric-value">Master Sync Palette</span></div></div>
 </div>
@@ -27,63 +27,67 @@
 <div class="section-container">
     <div class="section-header"><span class="section-number">01</span><h2 class="section-title">Філософія Моніторингу Генерації</h2></div>
     <div class="glass-card flow-step">
-        <p>Модуль <code>generation.py</code> є "Серцем" енергобалансу проекту ATLAS. В сучасному світі важливо не лише скільки енергії споживається, а й звідки вона береться. Наша філософія базується на <b>Прозорості Потоків</b>: ми візуалізуємо шлях електроенергії від типу генерації (АЕС, ТЕС, ВДЕ) до кінцевого регіону споживання. Використання діаграм Sankey дозволяє диспетчеру миттєво оцінити топологічну структуру балансу, а кругові діаграми Energy Mix підсвічують частку екологічно чистої енергії в системі.</p>
+        <p>Модуль <code>generation.py</code> є "Серцем" енергобалансу проєкту ATLAS. В сучасній енергетичній системі критично важливо розуміти не лише обсяги споживання, а й походження потужності. Наша філософія базується на <b>Прозорості Потоків</b>: ми візуалізуємо повний шлях електроенергії від типу генерації (АЕС, ТЕС, ГЕС, СЕС, ВЕС) до кінцевого регіону споживання. Використання діаграм Sankey дозволяє диспетчеру миттєво оцінити топологічну структуру балансу, а кругові діаграми Energy Mix підсвічують частку екологічно чистої енергії в системі.</p>
     </div>
 </div>
 
-<!-- SECTION 02: GENERATION VISUALIZATION PIPELINE -->
+<!-- SECTION 02: MATHEMATICAL BALANCING FORMULAS -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Конвеєр Візуалізації Генерації (Flow)</h2></div>
+    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Математична формалізація енергетичного балансу</h2></div>
+    <div class="glass-card flow-step">
+        <p>Моніторинг генерації спирається на закони збереження енергії та балансові рівняння:</p>
+        
+        <h4>1. Рівняння вузлового балансу потужності (Sankey Flow conservation)</h4>
+        <p>Для будь-якого віртуального транзитного вузла $j$ сума вхідних потоків генерації дорівнює сумі вихідних потоків розподіленого споживання (закон Кірхгофа для потоків):</p>
+        $$\sum_{i \in \text{Sources}} F_{\text{gen}, i \to j} = \sum_{k \in \text{Regions}} F_{\text{cons}, j \to k}$$
+        <p>де $F_{\text{gen}, i \to j}$ — потужність, що надходить від генератора типу $i$ до вузла розподілу, а $F_{\text{cons}, j \to k}$ — розподілена потужність до регіону $k$.</p>
+
+        <h4>2. Частка екологічно чистої енергії (RES Share)</h4>
+        <p>Частка відновлюваних джерел енергії (ВДЕ) у загальному балансі генерації розраховується як відношення екологічних джерел до сумарного вироблення:</p>
+        $$\text{RES}_{\text{share}} = \frac{P_{\text{solar}} + P_{\text{wind}} + P_{\text{hydro}}}{\sum_{m \in \text{All}} P_{m}} \times 100\%$$
+        <p>де $P_{m}$ — миттєва потужність вироблення джерела типу $m$ в МВт.</p>
+    </div>
+</div>
+
+<!-- SECTION 03: GENERATION VISUALIZATION PIPELINE -->
+<div class="section-container">
+    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Конвеєр Візуалізації Генерації (Flow)</h2></div>
     <div class="diagram-outer-wrapper"><div class="mermaid">
 graph TD
-    DATA("Input Generation Data (per Source/Region)") --> AGGR_FLOW("Aggregate by Type & Destination")
-    AGGR_FLOW --> SANKEY("Generate Sankey Nodes & Links")
-    SANKEY --> VIS_SANKEY("Power Flow Diagram (Interactive)")
+    DATA("Input Generation Data (per Source/Region)") --> AGGR_FLOW("Group by generator_type & region_name")
+    AGGR_FLOW --> SANKEY_MAP("Map Strings to Indices (Sources + Targets)")
     
-    DATA --> AGGR_MIX("Sum by Generator Type")
-    AGGR_MIX --> VIS_PIE("Pie Chart (Energy Mix %)")
+    SANKEY_MAP --> HEX_RGBA("Convert Hex colors to RGBA (Alpha=0.5)")
+    HEX_RGBA --> REND_SANKEY("go.Sankey (Flow Links)")
     
-    DATA --> AGGR_TIME("Time-series Grouping")
-    AGGR_TIME --> VIS_AREA("Stacked Area Chart (Dynamics)")
+    DATA --> AGGR_MIX("Group by generator_type (Sum)")
+    AGGR_MIX --> REND_PIE("px.pie (Donut 50% hole + Inside Labels)")
     
-    VIS_SANKEY --> SYNC("Master Color Synchronization")
-    VIS_PIE --> SYNC
-    VIS_AREA --> SYNC
+    DATA --> AGGR_TIME("Group by timestamp & generator_type (Sum)")
+    AGGR_TIME --> REND_AREA("go.Scatter (stackgroup='one' + Line Color Sync)")
     </div></div>
-</div>
-
-<!-- SECTION 03: POWER FLOW VISUALIZATION (SANKEY) -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Візуалізація потоків (Sankey Diagram)</h2></div>
-    <div class="glass-card flow-step">
-        <p>Для відображення складних зв'язків між джерелами та споживачами ми впровадили діаграму <b>Sankey</b>:</p>
-        <ul>
-            <li><b>Topology Mapping:</b> Ліва частина діаграми — типи генерації (Джерела), права — регіони (Цілі).</li>
-            <li><b>Weighted Links:</b> Товщина ліній між вузлами пропорційна обсягу переданої потужності в МВт.</li>
-            <li><b>Interactive Tooltips:</b> При наведенні на потік система показує точне значення МВт*год, що передається від конкретного джерела до конкретного регіону.</li>
-        </ul>
-    </div>
 </div>
 
 <!-- SECTION 04: GENERATION TYPE COLOR MATRIX -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Матриця ідентифікації джерел (Master Colors)</h2></div>
+    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Матриця колірної синхронізації (Master Colors)</h2></div>
     <div class="glass-card flow-step">
+        <p>Для покращення когнітивного сприйняття системи ми впровадили <b>Master Colors</b>. Кожен тип джерела має фіксований колір, який єдиний для всіх графіків (Sankey, Pie, Area) на дашборді:</p>
         <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
             <thead>
                 <tr style="border-bottom: 1px solid var(--border); color: var(--accent);">
                     <th>Тип джерела</th>
-                    <th>Колір</th>
-                    <th>HEX</th>
-                    <th>Роль у системі</th>
+                    <th>Фіксований колір</th>
+                    <th>Hex-код</th>
+                    <th>Роль у маневруванні та енергомережі</th>
                 </tr>
             </thead>
             <tbody>
-                <tr><td>Nuclear (АЕС)</td><td>Amber</td><td>#fbbf24</td><td>Базова генерація</td></tr>
-                <tr><td>Thermal (ТЕС/ТЕЦ)</td><td>Purple</td><td>#a855f7</td><td>Маневрена потужність</td></tr>
-                <tr><td>Hydro (ГЕС/ГАЕС)</td><td>Blue</td><td>#3b82f6</td><td>Пікове регулювання</td></tr>
-                <tr><td>Solar (СЕС)</td><td>Orange</td><td>#f97316</td><td>Відновлювана енергія</td></tr>
-                <tr><td>Wind (ВЕС)</td><td>Teal</td><td>#2dd4bf</td><td>Відновлювана енергія</td></tr>
+                <tr><td><b>Nuclear (АЕС)</b></td><td>Amber (Жовтий)</td><td><code>#fbbf24</code></td><td>Базова генерація системи (мінімальна швидкість маневрування)</td></tr>
+                <tr><td><b>Thermal (ТЕС/ТЕЦ)</b></td><td>Purple (Фіолетовий)</td><td><code>#a855f7</code></td><td>Середньоманеврене покриття напівпікових навантажень</td></tr>
+                <tr><td><b>Hydro (ГЕС/ГАЕС)</b></td><td>Blue (Синій)</td><td><code>#3b82f6</code></td><td>Високоманеврене регулювання ранкових та вечірніх піків споживання</td></tr>
+                <tr><td><b>Solar (СЕС)</b></td><td>Orange (Помаранчевий)</td><td><code>#f97316</code></td><td>Відновлювана генерація (залежить від інсоляції)</td></tr>
+                <tr><td><b>Wind (ВЕС)</b></td><td>Teal (Бірюзовий)</td><td><code>#2dd4bf</code></td><td>Відновлювана генерація (залежить від вітрового тиску)</td></tr>
             </tbody>
         </table>
     </div>
@@ -91,9 +95,9 @@ graph TD
 
 <!-- SECTION 05: DYNAMIC STACKED AREA ANALYSIS -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Аналіз динаміки (Stacked Area)</h2></div>
+    <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Аналіз динаміки генерації (Stacked Area)</h2></div>
     <div class="glass-card flow-step">
-        <p>Для розуміння добових циклів вироблення ми використовуємо <b>Stacked Area Chart</b>. На відміну від звичайних ліній, цей графік показує сумарну потужність системи як суму всіх шарів. Це дозволяє наочно побачити "сонячний горб" вдень або роботу ГЕС під час ранкових та вечірніх піків споживання. Використання напівпрозорих заливок (RGBA) зберігає легкість сприйняття навіть при накладанні 5-6 різних типів генерації.</p>
+        <p>Для детального аналізу добових циклів вироблення ми використовуємо <b>Stacked Area Chart</b>, побудований на базі <code>go.Scatter</code> з параметром <code>stackgroup="one"</code>. На відміну від звичайних лінійних графіків, цей чарт показує сумарну потужність системи як суму всіх шарів. Це дозволяє наочно побачити "сонячний горб" вдень або роботу ГЕС під час вечірніх піків. Використання напівпрозорих заливок (RGBA) зберігає легкість сприйняття навіть при накладанні 5 різних типів генерації.</p>
     </div>
 </div>
 
@@ -102,100 +106,121 @@ graph TD
     <div class="section-header"><span class="section-number">06</span><h2 class="section-title">Псевдокод Ядра Генерації (Mix Engine Logic)</h2></div>
     <div class="glass-card flow-step">
         <pre><code>FUNCTION render_generation_mix(df_gen):
-    1. VALIDATE: Ensure dataframe has [type, region, mw, ts]
-    
-    2. SANKEY_DATA_PREP:
-           nodes = sources + regions
-           links = map_to_indices(sources -> regions, values=mw)
-           colors = [MASTER_COLORS.get(n) for n in nodes]
-           RENDER_SANKEY(nodes, links, colors)
+    1. // [VALIDITY CHECK]
+       IF df_gen is Empty:
+           show_live_simulation_warning()
+           RETURN
            
-    3. PIE_CHART:
-           mix = df_gen.groupby('type').sum()
-           RENDER_PIE(mix, hole=0.5, color_map=MASTER_COLORS)
+    2. // [SANKEY DATA PROCESSING]
+       df_s = df_gen.groupby(["generator_type", "region_name"])["actual_generation_mw"].sum().reset_index()
+       src_labels = sorted(df_s.generator_type.unique())
+       tgt_labels = sorted(df_s.region_name.unique())
+       all_nodes = src_labels + tgt_labels
+       
+       node_indices = create_index_mapping(all_nodes)
+       source_idx = [node_indices[s] for s in df_s.generator_type]
+       target_idx = [node_indices[t] for t in df_s.region_name]
+       values = df_s.actual_generation_mw.tolist()
+       
+    3. // [DYNAMIC COLORING WITH RGBA HEX TRANSLATION]
+       node_colors = [MASTER_COLORS.get(node.lower(), "#64748b") for node in all_nodes]
+       link_colors = [hex_to_rgba(MASTER_COLORS.get(src.lower(), "#888888"), alpha=0.5) for src in df_s.generator_type]
+       
+    4. // [RENDER SANKEY GRAPH]
+       fig_sankey = go.Figure(go.Sankey(
+           node=dict(label=all_nodes, color=node_colors, pad=20, thickness=15),
+           link=dict(source=source_idx, target=target_idx, value=values, color=link_colors)
+       ))
+       safe_plotly_render(fig_sankey)
+       
+    5. // [LOWER ROW: DONUT & STACKED AREA]
+       c1, c2 = st.columns([1, 2])
+       with c1:
+           mix_map = {gen: MASTER_COLORS.get(gen.lower(), "#888888") for gen in df_gen.generator_type.unique()}
+           fig_pie = px.pie(df_gen, values="actual_generation_mw", names="generator_type", hole=0.5, color_discrete_map=mix_map)
+           safe_plotly_render(fig_pie)
            
-    4. AREA_CHART:
-           timeline = df_gen.groupby(['ts', 'type']).sum()
-           FOR type IN mix:
-               ADD_STACKED_TRACE(timeline[type], fill='tonexty')
+       with c2:
+           df_area = df_gen.groupby(["timestamp", "generator_type"])["actual_generation_mw"].sum().reset_index()
+           fig_area = go.Figure()
+           FOR gen_type in df_area.generator_type.unique():
+               df_sub = df_area[df_area.generator_type == gen_type]
+               line_color = MASTER_COLORS.get(gen_type.lower(), "#888888")
+               fig_area.add_trace(go.Scatter(
+                   x=df_sub.timestamp, y=df_sub.actual_generation_mw,
+                   name=gen_type, stackgroup="one",
+                   line=dict(width=2, color=line_color),
+                   fillcolor=hex_to_rgba(line_color, 0.3)
+               ))
+           safe_plotly_render(fig_area)
 END FUNCTION</code></pre>
     </div>
 </div>
 
-<!-- SECTION 07: ENERGY MIX PERCENTAGE ANALYSIS -->
+<!-- SECTION 07: COLOR TRANSFORMATION ALGORITHMS (HEX-TO-RGBA) -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">07</span><h2 class="section-title">Аналіз відсоткової частки Energy Mix</h2></div>
+    <div class="section-header"><span class="section-number">07</span><h2 class="section-title">Алгоритми динамічної трансформації кольорів (Hex-to-RGBA)</h2></div>
     <div class="glass-card flow-step">
-        <p>Центральним елементом нижнього ярусу є <b>Donut Chart</b>. Він фокусує увагу на структурі портфеля генерації. Спеціальний режим <code>textinfo="percent+label"</code> дозволяє диспетчеру миттєво відповісти на питання: "Яка частка АЕС у поточному балансі?". Синхронізація кольорів з діаграмою Sankey забезпечує когнітивну цілісність — користувач підсвідомо пов'язує жовтий колір з атомною енергією у всіх частинах дашборду.</p>
+        <p>Для досягнення ефекту "скляного" інтерфейсу та згладжування ліній зв'язків у діаграмі Sankey, модуль містить алгоритм парсингу Hex-строк:</p>
+        <pre><code class="language-python">def hex_to_rgba(h, alpha=0.5):
+    h = h.lstrip("#")
+    rgb = tuple(int(h[i : i + 2], 16) for i in (0, 2, 4))
+    return f"rgba({rgb[0]}, {rgb[1]}, {rgb[2]}, {alpha})"</code></pre>
+        <p>Цей інструмент динамічно розраховує трибайтний масив RGB та додає четвертий канал прозорості (Alpha), запобігаючи візуальному накладанню ліній та перекриттю тексту підписів вузлів.</p>
     </div>
 </div>
 
-<!-- SECTION 08: COLOR TRANSFORMATION ALGORITHMS -->
+<!-- SECTION 08: MODULE DEPENDENCY MATRIX -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">08</span><h2 class="section-title">Алгоритми трансформації кольорів (Hex-to-RGBA)</h2></div>
-    <div class="glass-card flow-step">
-        <p>Для створення ефекту "скляного" інтерфейсу в <code>generation.py</code> реалізовано внутрішній конвертер <code>hex_to_rgba</code>. Він динамічно перетворює базові кольори з <code>MASTER_COLORS</code> у напівпрозорі версії для ліній зв'язку Sankey та заливки площ Area Chart. Це дозволяє уникнути візуального шуму та перекриття тексту, зберігаючи при цьому насиченість брендових кольорів Атласу.</p>
-    </div>
-</div>
-
-<!-- SECTION 09: LIVE SIMULATION INTEGRATION -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">09</span><h2 class="section-title">Інтеграція з Live-симуляцією</h2></div>
-    <div class="glass-card flow-step">
-        <p>Дані про структуру генерації є найбільш динамічною частиною системи. Модуль тісно інтегрований з <code>data_generator.py</code>. У режимі симуляції користувач може спостерігати, як раптова зупинка енергоблока ТЕС (через інцидент у <code>alerts.py</code>) призводить до перерозподілу потоків на діаграмі Sankey та збільшення частки гідрогенерації для компенсації дефіциту в реальному часі.</p>
-    </div>
-</div>
-
-<!-- SECTION 10: BOTTOM SPACER & SCROLLING (UX FIX) -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">10</span><h2 class="section-title">Комфорт скролінгу (UX Fix)</h2></div>
-    <div class="glass-card flow-step">
-        <p>У нижній частині вкладки генерації додано технічний Spacer (300px). Це критично для діаграм Sankey та Stacked Area, які зазвичай мають велику висоту. Відступ дозволяє користувачеві прокрутити графік так, щоб легенда та елементи керування Plotly знаходилися у верхній третині екрана, забезпечуючи зручний доступ до інтерактивних інструментів аналізу.</p>
-    </div>
-</div>
-
-<!-- SECTION 11: MODULE DEPENDENCY MATRIX -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">11</span><h2 class="section-title">Матриця залежностей (Dependencies)</h2></div>
+    <div class="section-header"><span class="section-number">08</span><h2 class="section-title">Матриця залежностей (Dependencies)</h2></div>
     <div class="roles-grid">
+        <div class="role-item">
+            <div class="role-icon">🏗️</div>
+            <div class="role-content">
+                <h4><a href="simulation_engine_hub.md">data_generator.py</a></h4>
+                <p>Постачальник динамічних даних генерації АЕС/ТЕС/ВДЕ у режимі Live-симуляції енергосистеми.</p>
+            </div>
+        </div>
         <div class="role-item">
             <div class="role-icon">📊</div>
             <div class="role-content">
                 <h4>Plotly Graph Objects</h4>
-                <p>Низькорівневий рендеринг складних Sankey-потоків.</p>
-            </div>
-        </div>
-        <div class="role-item">
-            <div class="role-icon">🏗️</div>
-            <div class="role-content">
-                <h4>Data Generator</h4>
-                <p>Постачальник синтетичних даних про структуру джерел.</p>
+                <p>Низькорівневий двигун рендерингу складних вузлів та зв'язків для діаграм Sankey (<code>go.Sankey</code>).</p>
             </div>
         </div>
         <div class="role-item">
             <div class="role-icon">🛠️</div>
             <div class="role-content">
-                <h4>UI Helpers</h4>
-                <p>Гарант безпечної візуалізації без технічних збоїв.</p>
+                <h4><a href="utils_extended_toolkit.md">ui_helpers.py</a></h4>
+                <p>Гарант безпечної інтеграції Plotly-об'єктів у фреймворк Streamlit за допомогою <code>safe_plotly_render</code>.</p>
             </div>
         </div>
     </div>
 </div>
 
-<!-- SECTION 12: ROADMAP TO v3.0 (CARBON FOOTPRINT) -->
+<!-- SECTION 09: ROADMAP TO v3.0 (CARBON AUDIT) -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">12</span><h2 class="section-title">Дорожня карта v3.0 (Carbon Footprint)</h2></div>
+    <div class="section-header"><span class="section-number">09</span><h2 class="section-title">Дорожня карта v3.0 (Carbon Footprint Audit)</h2></div>
     <div class="glass-card flow-step">
-        <p>У версії 3.0 планується впровадження <b>Аудиту вуглецевого сліду</b>. Система буде розраховувати обсяг викидів CO2 у реальному часі на основі структури генерації. Також буде додано підтримку <b>Прогнозного балансування</b>: візуалізація необхідного Mix-у генерації для покриття ШІ-прогнозу навантаження на наступні 24 години.</p>
+        <p>У наступній версії заплановано:</p>
+        <ul>
+            <li><b>Real-time Carbon Counter:</b> Розрахунок викидів CO₂ на основі типу генерації та спалюваного палива (вугілля, газ) в реальному часі.</li>
+            <li><b>AI Curtailment Prediction:</b> Прогнозування обсягів обмеження відновлюваної енергетики (RES Curtailment) при виникненні профіциту в енергосистемі.</li>
+            <li><b>Interactive Substation Nodes:</b> Можливість розгорнути вузол регіону на діаграмі Sankey для перегляду розподілу струмів на кожній підстанції.</li>
+        </ul>
     </div>
 </div>
 
-<!-- SECTION 13: FAQ - ЧАСТІ ЗАПИТАННЯ -->
+<!-- SECTION 10: FAQ - ЧАСТІ ЗАПИТАННЯ -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">13</span><h2 class="section-title">FAQ: Структура Генерації</h2></div>
+    <div class="section-header"><span class="section-number">10</span><h2 class="section-title">FAQ: Технічні особливості роботи</h2></div>
     <div class="glass-card flow-step">
-        <p><b>Чому Sankey діаграма іноді переплутана?</b> — Це може статися при великій кількості дрібних регіонів. Спробуйте змінити фільтр групування у боковій панелі.</p>
-        <p><b>Як виділити тільки один тип джерела?</b> — Натисніть на відповідний колір у легенді графіка Area Chart.</p>
+        <p><b>Q: Чому при виборі Kaggle-джерела пише "Дані про генерацію відсутні"?</b><br>
+        A: Kaggle-датасети містять лише сумарні показники споживання регіону без інформації про структуру генерації (яка електростанція скільки виробляла). Ці дані є унікальною фічею нашого імітаційного двигуна (Digital Twin) у реальному часі. Перемкніть джерело на "Симулятор" у боковій панелі.</p>
+        <p><b>Q: Як працює сортування вузлів у Sankey-діаграмі?</b><br>
+        A: Система сортує джерела та регіони за алфавітом (<code>sorted()</code>), що забезпечує стабільність вузлів при перезавантаженні сторінки та запобігає перемішуванню зв'язків.</p>
+        <p><b>Q: Які переваги дає Stacked Area Go.Scatter перед px.area?</b><br>
+        A: Використання <code>go.Scatter(stackgroup='one')</code> дає 100% контроль над кольором контуру кожної зони, лінією згладжування та налаштуваннями напівпрозорої заливки, що неможливо зробити базовими методами Plotly Express.</p>
     </div>
 </div>
 

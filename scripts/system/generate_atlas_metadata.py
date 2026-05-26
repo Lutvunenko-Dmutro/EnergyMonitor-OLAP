@@ -84,21 +84,35 @@ def generate_metadata():
                 "path": rel_root,
                 "parent_id": parent_id,
                 "short_description": f"Контейнер для модулів у директорії {rel_root}.",
-                "detail_link": f"/{rel_root}/"
+                "detail_link": "/system/map/data_fallback/" if rel_root == "data/fallback" else f"/{rel_root}/"
             })
             created_folders.add(rel_root)
 
         # Реєструємо файли
         for file in files:
-            if file.endswith(".py"):
+            # Skip scanning individual cache files in data/fallback
+            if "data/fallback" in rel_root or "data\\fallback" in rel_root or file.endswith(".parquet"):
+                continue
+            if file.endswith(".py") or file.endswith(".csv") or file.endswith(".db") or file.endswith(".parquet"):
                 file_path = os.path.join(root, file)
                 rel_file_path = os.path.relpath(file_path, base_dir).replace("\\", "/")
                 file_id = f"file_{rel_file_path.replace('/', '_').replace('.', '_')}"
                 
-                description = extract_docstring(file_path)
+                if file.endswith(".py"):
+                    description = extract_docstring(file_path)
+                elif file.endswith(".csv"):
+                    description = f"Файл набору даних (Dataset CSV): {file}. Локальні історичні показники енергоспоживання."
+                elif file.endswith(".db"):
+                    description = f"Локальна база даних SQLite: {file}. Зберігає кешовані обчислення."
+                elif file.endswith(".parquet"):
+                    description = f"Кешований запит Parquet: {file}. Містить оптимізовані колонки результатів."
                 
                 # Перевірка наявності паспорта
                 detail_link = None
+                if not file.endswith(".py"):
+                    # Generate unique clean name for individual passport
+                    clean_name = rel_file_path.replace("/", "_").replace(".", "_")
+                    detail_link = f"/system/map/{clean_name}/"
                 passport_path = None
                 
                 # Пріоритет 1: Пошук тега # ATLAS_PASSPORT у файлі

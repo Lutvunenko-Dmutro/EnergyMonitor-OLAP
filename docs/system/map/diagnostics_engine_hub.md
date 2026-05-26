@@ -59,14 +59,14 @@
 <div class="section-container" id="scanner">
     <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Стратегія Глибокого Сканування Метаданих</h2></div>
     <div class="glass-card flow-step">
-        <p>У <code>scanner.py</code> ми реалізуємо алгоритм <b>Multi-level Inspection</b>. Система використовує регулярні вирази та аналіз абстрактного синтаксичного дерева (AST) для перевірки відповідності встановленим стандартам ATLAS. 
-        Перевірці підлягають:
+        <p>У <code>scanner.py</code> ми реалізуємо алгоритм <b>Multi-level Inspection</b>. Система використовує регулярні вирази та аналіз абстрактного синтаксичного дерева (AST) для перевірки відповідності встановленим стандартам ATLAS.</p>
+        <p>Перевірці підлягають:</p>
         <ul>
-            <li><b>Passport Integrity:</b> Наявність та коректність тегів <code># ATLAS_PASSPORT</code>.</li>
+            <li><b>Passport Integrity:</b> Наявність та коректність тегів <code># ATLAS_PASSPORT</code> та їх структурованих полів.</li>
             <li><b>API Consistency:</b> Перевірка сигнатур функцій на відповідність технічному завданню.</li>
             <li><b>Docstring Coverage:</b> Автоматичний підрахунок покриття коду коментарями.</li>
         </ul>
-        Будь-які відхилення автоматично потрапляють у список завдань на виправлення (Audit Backlog).</p>
+        <p>Будь-які відхилення автоматично потрапляють у список завдань на виправлення (Audit Backlog).</p>
     </div>
 </div>
 
@@ -84,20 +84,18 @@ graph TD
     
     REP_GEN --> PDF("Technical Health Report")
     REP_GEN --> UI_DASH("Admin Dashboard")
-    </div></div>
+</div></div>
 </div>
 
 <!-- SECTION 05: AUDIT & COMPLIANCE STANDARDS -->
 <div class="section-container">
     <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Стандарти Аудиту та Відповідності</h2></div>
     <div class="glass-card flow-step">
-        <p>Проект ATLAS розроблявся з урахуванням високих вимог до академічної та промислової документації. Модуль діагностики перевіряє відповідність проекту наступним критеріям:
-        <ul>
-            <li><b>Traceability:</b> 100% покриття модулів документацією.</li>
-            <li><b>Verifiability:</b> Кожна математична модель повинна мати супровідний опис у Хабі.</li>
-            <li><b>Security:</b> Відсутність хардкод-секретів та відповідність правилам SQL-безпеки.</li>
-        </ul>
-        Ці перевірки є обов'язковими для отримання статусу "Defense-Ready".</p>
+        <p>Проект ATLAS розроблявся з урахуванням високих вимог до академічної та промислової документації. Модуль діагностики розраховує підсумковий індекс здоров'я системи за наступною формулою:</p>
+        <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: #fff; margin: 15px 0; border: 1px solid var(--border); text-align: center;">
+            $$ \text{HealthScore} = \max\left(0, 100 - \left( 15.0 \cdot N_{\text{crit}} + 5.0 \cdot N_{\text{major}} + 1.0 \cdot N_{\text{minor}} \right)\right) $$
+        </div>
+        <p>Де $N_{\text{crit}}$, $N_{\text{major}}$, $N_{\text{minor}}$ — кількість виявлених критичних помилок, серйозних невідповідностей та дрібних попереджень відповідно.</p>
     </div>
 </div>
 
@@ -126,30 +124,66 @@ sequenceDiagram
     Sc->>Re: Compile Audit Findings
     Re->>Re: Calculate Health Score
     Re-->>Sys: Final Health Report (PDF/MD)
-    </div></div>
+</div></div>
 </div>
 
-<!-- SECTION 08: ML MODEL INTEGRITY AUDIT -->
+<!-- SECTION 08: AST STATIC CODE ANALYSIS DEEP DIVE -->
+<div class="section-container">
+    <div class="section-header"><span class="section-number">08</span><h2 class="section-title">Статичний аналіз через AST (Abstract Syntax Tree)</h2></div>
+    <div class="glass-card flow-step">
+        <p>Для перевірки безпеки коду та виявлення прихованих дефектів (наприклад, незакритих з'єднань з базою або неоптимальних циклів) застосовується синтаксичний аналізатор на базі бібліотеки AST.</p>
+        
+        <h4 style="color: var(--accent); margin-top: 15px; font-family: 'Orbitron', sans-serif;">Реалізація AST-сканера для пошуку незахищених SQL запитів</h4>
+        <pre><code class="language-python">
+import ast
+
+class SQLInjectionSafetyScanner(ast.NodeVisitor):
+    def __init__(self):
+        self.violations = []
+
+    def visit_Call(self, node):
+        # 1. Пошук викликів функцій виконання запитів (execute, run_query)
+        if isinstance(node.func, ast.Name) and node.func.id in ['execute', 'run_query']:
+            if len(node.args) > 0:
+                first_arg = node.args[0]
+                # 2. Перевірка чи використовується конкатенація рядків / f-рядки замість параметризації
+                if isinstance(first_arg, (ast.BinOp, ast.JoinedStr)):
+                    self.violations.append({
+                        "line": node.lineno,
+                        "col": node.col_offset,
+                        "type": "CRITICAL_SQL_INJECTION_RISK",
+                        "message": "Raw string concatenation detected in query parameters. Use dict/tuple binds instead."
+                    })
+        self.generic_visit(node)
+
+def analyze_file_safety(file_path):
+    with open(file_path, "r", encoding="utf-8") as f:
+        source = f.read()
+    
+    try:
+        tree = ast.parse(source)
+        scanner = SQLInjectionSafetyScanner()
+        scanner.visit(tree)
+        return scanner.violations
+    except SyntaxError as se:
+        return [{"line": se.lineno, "type": "SYNTAX_ERROR", "message": str(se)}]
+        </code></pre>
+    </div>
+</div>
+
+<!-- SECTION 09: ML MODEL INTEGRITY AUDIT -->
 <div class="section-container" id="models">
-    <div class="section-header"><span class="section-number">08</span><h2 class="section-title">Аудит Цілісності ML-Моделей</h2></div>
+    <div class="section-header"><span class="section-number">09</span><h2 class="section-title">Аудит Цілісності ML-Моделей</h2></div>
     <div class="glass-card flow-step">
         <p>Модуль <code>models.py</code> фокусується на безпеці ШІ. Він аналізує графіки обчислень ONNX-моделей на наявність некоректних шарів або неоптимальних шляхів виконання. Також проводиться перевірка вхідних та вихідних тензорів на відповідність фізичним обмеженням енергосистеми. Якщо ШІ видає "неможливе" значення (наприклад, навантаження вище потужності генератора), діагностичний двигун блокує цей прогноз та ініціює Fallback-процедуру.</p>
     </div>
 </div>
 
-<!-- SECTION 09: AUTOMATED REPORTING & DOCUMENTATION -->
+<!-- SECTION 10: AUTOMATED REPORTING & DOCUMENTATION -->
 <div class="section-container" id="reporter">
-    <div class="section-header"><span class="section-number">09</span><h2 class="section-title">Автоматизована Звітність та Документація</h2></div>
+    <div class="section-header"><span class="section-number">10</span><h2 class="section-title">Автоматизована Звітність та Документація</h2></div>
     <div class="glass-card flow-step">
         <p>Завдяки <code>reporter.py</code> результати діагностики перетворюються на структуровані документи. Система автоматично генерує <i>System Health Score</i> — єдину метрику, що відображає загальний стан проекту. Ці звіти є критично важливими для проходження технічних аудитів та захисту наукових робіт, забезпечуючи доказову базу стабільності ATLAS. Кожен звіт містить перелік критичних правок (Critical Fixes) та рекомендації щодо оптимізації архітектури.</p>
-    </div>
-</div>
-
-<!-- SECTION 10: METADATA DRIVEN DEVELOPMENT (MDD) -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">10</span><h2 class="section-title">Розвиток через Метадані (MDD)</h2></div>
-    <div class="glass-card flow-step">
-        <p>Ми впроваджуємо підхід, де метадані (паспорти) є не просто описом, а активною частиною системи. Діагностичний двигун використовує інформацію з паспортів для автоматичного налаштування глибини перевірки кожного модуля. Наприклад, модулі з тегом <code>#HIGH_CRITICALITY</code> перевіряються за розширеним набором правил, що створює саморегульовану екосистему контролю якості.</p>
     </div>
 </div>
 
@@ -157,7 +191,7 @@ sequenceDiagram
 <div class="section-container">
     <div class="section-header"><span class="section-number">11</span><h2 class="section-title">Дорожня карта v4.0 (Self-healing)</h2></div>
     <div class="glass-card flow-step">
-        <p>У версії 4.0 планується перехід до **Архітектури Самозцілення**. Система діагностики зможе не лише виявляти проблеми, а й автоматично застосовувати "патчі" (наприклад, перемикання на резервну БД або завантаження попередньої стабільної версії моделі). Також буде додано підтримку <i>Predictive Maintenance</i> для самого коду, виявляючи потенційні місця виникнення помилок на основі аналізу історії коммітів та складності коду за метрикою Маккейба.</p>
+        <p>У версії 4.0 планується перехід до <b>Архітектури Самозцілення</b>. Система діагностики зможе не лише виявляти проблеми, а й автоматично застосовувати "патчі" (наприклад, перемикання на резервну БД або завантаження попередньої стабільної версії моделі). Також буде додано підтримку <i>Predictive Maintenance</i> для самого коду, виявляючи потенційні місця виникнення помилок на основі аналізу історії коммітів та складності коду за метрикою Маккейба.</p>
     </div>
 </div>
 
@@ -189,7 +223,7 @@ sequenceDiagram
 
 <!-- FOOTER NAV -->
 <div class="passport-footer">
-    <a href="./atlas_final/" class="mega-btn"><span class="btn-icon">🔙</span><span class="btn-text">ПОВЕРНУТИСЬ ДО АТЛАСУ</span></a>
+    <a href="../../atlas_final/" class="mega-btn"><span class="btn-icon">🔙</span><span class="btn-text">ПОВЕРНУТИСЬ ДО АТЛАСУ</span></a>
 </div>
 
 </div>

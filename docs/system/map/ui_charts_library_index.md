@@ -9,7 +9,7 @@
         <div class="hero-icon-wrapper"><span class="hero-icon">🏗️</span><div class="pulse-ring"></div></div>
         <div class="hero-title-group">
             <h1 class="mega-title">Диспетчер Графіків</h1>
-            <p class="mega-subtitle">Центральний хаб візуалізації проекту ATLAS: ініціалізація та ре-експорт аналітичних модулів, забезпечення зворотньої сумісності та уніфікований інтерфейс для базових, прогнозних та академічних графіків</p>
+            <p class="mega-subtitle">Центральний хаб візуалізації проєкту ATLAS: ініціалізація та ре-експорт аналітичних модулів, забезпечення зворотної сумісності та уніфікований інтерфейс для базових, прогнозних та академічних графіків</p>
             <div class="status-tags"><span class="tag tag-online">LIBRARY HUB ACTIVE</span><span class="tag tag-version">v2.1.0</span><span class="tag tag-role">VISUAL ARCHITECT</span></div>
         </div>
     </div>
@@ -23,47 +23,46 @@
     <div class="glass-card metric-card"><div class="metric-icon">⚡</div><div class="metric-info"><span class="metric-label">Import</span><span class="metric-value">Clean Module API</span></div></div>
 </div>
 
-<!-- SECTION 01: CHARTS LIBRARY PHILOSOPHY -->
+<!-- SECTION 01: SYSTEM PHILOSOPHY -->
 <div class="section-container">
     <div class="section-header"><span class="section-number">01</span><h2 class="section-title">Філософія Диспетчера Візуалізації</h2></div>
     <div class="glass-card flow-step">
-        <p>Модуль <code>charts/__init__.py</code> є "Точкою входу" (Gateway) у світ візуалізації проекту ATLAS. В складних архітектурах важливо приховати складність реалізації від кінцевого розробника інтерфейсу. Наша філософія базується на <b>Уніфікованому Доступі</b>: замість імпорту з десяти різних файлів, представлення (Views) звертаються до єдиного хаба. Це не лише спрощує код, а й дозволяє централізовано керувати версіями графіків, впроваджувати глобальні стилі та забезпечувати стабільність рендерингу в масштабах всього додатку.</p>
+        <p>Модуль <code>charts/__init__.py</code> є "Точкою входу" (Gateway) у світ візуалізації проєкту ATLAS. В складних архітектурах важливо приховати складність реалізації від кінцевого розробника інтерфейсу. Наша філософія базується на <b>Уніфікованому Доступі</b>: замість імпорту з десяти різних файлів, представлення (Views) звертаються до єдиного хаба. Це не лише спрощує код, а й дозволяє централізовано керувати версіями графіків, впроваджувати глобальні стилі та забезпечувати стабільність рендерингу в масштабах всього додатку.</p>
     </div>
 </div>
 
-<!-- SECTION 02: LIBRARY EXPOSURE DIAGRAM -->
+<!-- SECTION 02: FACADE MATHEMATICAL ABSTRACT MODEL -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Схема експозиції бібліотеки (Architecture Flow)</h2></div>
+    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Математична модель та паттерн Фасад</h2></div>
+    <div class="glass-card flow-step">
+        <p>Диспетчер приховує складність внутрішніх підсистем візуалізації за допомогою оператора Фасаду $\mathbf{\Phi}_{\text{facade}}$:</p>
+        $$\mathbf{\Phi}_{\text{facade}}: \sum_{k \in \text{Libraries}} \mathbf{Lib}_k \longrightarrow \text{Unified Public API}$$
+        <p>Кожна експортована функція візуалізації приводиться до суворого математичного та програмного контракту:</p>
+        $$\mathbf{Figure} = f(\mathbf{DataFrame}, \mathbf{Config}_{\text{axes}}, \mathbf{Theme}_{\text{dark}})$$
+        <p>Це дозволяє повністю відокремити внутрішні алгоритми побудови довірчих інтервалів чи щільностей розподілу помилок відStreamlit-представлень сторінок. Заміна бібліотеки рендерингу (наприклад, з Plotly на Bokeh або WebGL примітиви) відбувається локально всередині субмодулів без потреби рефакторингу логіки вкладки.</p>
+    </div>
+</div>
+
+<!-- SECTION 03: LIBRARY EXPOSURE DIAGRAM -->
+<div class="section-container">
+    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Схема експозиції бібліотеки (Architecture Flow)</h2></div>
     <div class="diagram-outer-wrapper"><div class="mermaid">
 graph TD
-    VIEW("UI View (e.g., forecast.py)") --> HUB("Charts Hub (__init__.py)")
+    VIEW("UI View (e.g., forecast.py, academic_view.md)") --> HUB("Charts Hub (charts/__init__.py)")
     
-    HUB --> BASE("base.py: Dual-Axis & Rhythm")
-    HUB --> FC("forecast_plots.py: Hybrid & Multi-Model")
-    HUB --> ACAD("academic.py: Error Stats & Regression")
+    HUB --> BASE("base.py: Dual-Axis & Rhythm Charts")
+    HUB --> FC("forecast_plots.py: Hybrid & Multi-Model Curves")
+    HUB --> ACAD("academic.py: Normal Fit Error & OLS Regression")
     
-    HUB --> LEGACY("Legacy: render_forecast_chart")
+    HUB --> LEGACY("Legacy: render_forecast_chart fallback")
     
-    BASE --> EXPORT("Unified API Export")
+    BASE --> EXPORT("Unified API Export Namespace")
     FC --> EXPORT
     ACAD --> EXPORT
     LEGACY --> EXPORT
     
-    EXPORT --> RENDER("Final Streamlit Dashboard")
+    EXPORT --> RENDER("Final Streamlit Dashboard Render")
     </div></div>
-</div>
-
-<!-- SECTION 03: UNIFIED INTERFACE & FACADE PATTERN -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Уніфікований інтерфейс та патерн Фасад</h2></div>
-    <div class="glass-card flow-step">
-        <p>Модуль реалізує архітектурний патерн <b>Facade</b>. Це дозволяє розробнику:</p>
-        <ul>
-            <li><b>Simplify Imports:</b> Використовувати лаконічні виклики на кшталт <code>from src.ui.components import charts</code>.</li>
-            <li><b>Internal Abstraction:</b> Змінювати реалізацію графіків (наприклад, переходити з Plotly на WebGL) без необхідності змінювати код у всіх вкладках дашборду.</li>
-            <li><b>Controlled Visibility:</b> Експортувати тільки стабільні та протестовані функції, приховуючи внутрішні утиліти та допоміжні алгоритми.</li>
-        </ul>
-    </div>
 </div>
 
 <!-- SECTION 04: CORE DISPATCHER MATRIX -->
@@ -74,16 +73,16 @@ graph TD
             <thead>
                 <tr style="border-bottom: 1px solid var(--border); color: var(--accent);">
                     <th>Категорія</th>
-                    <th>Експортовані функції</th>
-                    <th>Цільовий модуль</th>
+                    <th>Експортовані функції API</th>
+                    <th>Оригінальний модуль-провайдер</th>
+                    <th>Діагностична цінність</th>
                 </tr>
             </thead>
             <tbody>
-                <tr><td>General Analytics</td><td>render_dual_axis_chart, render_rhythm_chart</td><td>base.py</td></tr>
-                <tr><td>AI Forecasting</td><td>generate_comparison_plot, _generate_forecast...</td><td>forecast_plots.py</td></tr>
-                <tr><td>Academic Thesis</td><td>generate_academic_plots</td><td>academic.py</td></tr>
-                <tr><td>Legacy Ops</td><td>render_forecast_chart</td><td>__init__.py (Native)</td></tr>
-                <tr><td>Validation</td><td>Safe Rendering Wrappers</td><td>utils/ui_helpers.py</td></tr>
+                <tr><td><b>General Analytics</b></td><td><code>render_dual_axis_chart</code>, <code>render_rhythm_chart</code></td><td><code>base.py</code></td><td>Співвідношення навантаження з погодою, аналіз ритміки споживання Будні/Вихідні</td></tr>
+                <tr><td><b>AI Forecasting</b></td><td><code>_generate_forecast_figure</code>, <code>_generate_multi_forecast_figure</code>, <code>_generate_mega_hybrid_figure</code>, <code>generate_comparison_plot</code></td><td><code>forecast_plots.py</code></td><td>Гібридне ШІ-прогнозування, порівняння точності LSTM-моделей та ARIMA</td></tr>
+                <tr><td><b>Academic Thesis</b></td><td><code>generate_academic_plots</code></td><td><code>academic.py</code></td><td>Апроксимація розподілу похибок прогнозу, побудова графіків для дисертації</td></tr>
+                <tr><td><b>Legacy Operations</b></td><td><code>render_forecast_chart</code></td><td><code>__init__.py</code> (Native fallback)</td><td>Зворотна сумісність для швидкого малювання лінійних трендів без кастомізації</td></tr>
             </tbody>
         </table>
     </div>
@@ -91,7 +90,7 @@ graph TD
 
 <!-- SECTION 05: BACKWARD COMPATIBILITY (LEGACY WRAPPERS) -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Зворотня сумісність (Legacy Wrappers)</h2></div>
+    <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Зворотна сумісність (Legacy Fallbacks)</h2></div>
     <div class="glass-card flow-step">
         <p>У <code>charts/__init__.py</code> збережено нативну реалізацію <code>render_forecast_chart</code>. Це критично для підтримки старих частин коду та швидких прототипів. На відміну від складних гібридних графіків, ця функція використовує <code>plotly.express</code> для миттєвої побудови лінійних трендів без глибокої кастомізації. Це дозволяє розробнику вибрати між "швидким та простим" відображенням та "глибоким аналітичним" рендерингом залежно від завдання.</p>
     </div>
@@ -99,24 +98,34 @@ graph TD
 
 <!-- SECTION 06: CORE LOGIC (PSEUDO-CODE) -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">06</span><h2 class="section-title">Псевдокод Диспетчера (Hub Logic)</h2></div>
+    <div class="section-header"><span class="section-number">06</span><h2 class="section-title">Псевдокод Диспетчера (Charts API Hub)</h2></div>
     <div class="glass-card flow-step">
-        <pre><code>MODULE src.ui.components.charts:
-    1. IMPORT_AND_REEXPORT:
-           FROM .base IMPORT *
-           FROM .forecast_plots IMPORT *
-           FROM .academic IMPORT *
+        <pre><code>PACKAGE src.ui.components.charts:
+    1. // [CLEAN FACADE RE-EXPORTS]
+       IMPORT render_dual_axis_chart, render_rhythm_chart FROM .base
+       IMPORT generate_comparison_plot FROM .forecast_plots
+       IMPORT generate_academic_plots FROM .academic
+       
+    2. // [LEGACY BACKWARD COMPATIBLE FALLBACK IMPLEMENTATION]
+       FUNCTION render_forecast_chart(df_merged, sub_label):
+           IMPORT plotly.express as px
            
-    2. LEGACY_FALLBACK:
-           FUNCTION render_forecast_chart(data, label):
-               # Fast Plotly Express Implementation
-               fig = px.line(data, title=label)
-               fig.update_layout(template="plotly_dark")
-               RETURN fig
-               
-    3. INTERFACE_SYNC:
-           Ensure all exported functions accept (DataFrame, Title) pattern
-END MODULE</code></pre>
+           // Color map for immediate visual differentiation
+           color_map = {"Історія": "#3b82f6", "Прогноз": "#ef4444"}
+           
+           fig = px.line(
+               df_merged, x="timestamp", y="actual_load_mw", color="type",
+               color_discrete_map=color_map, title=f"📈 {sub_label}"
+           )
+           
+           // Apply uniform dark themed configuration
+           fig.update_layout(
+               template="plotly_dark",
+               height=320,
+               margin=dict(l=10, r=10, t=40, b=10)
+           )
+           RETURN fig
+END PACKAGE</code></pre>
     </div>
 </div>
 
@@ -128,72 +137,57 @@ END MODULE</code></pre>
     </div>
 </div>
 
-<!-- SECTION 08: IMPORT OPTIMIZATION & NAMESPACE CLEANING -->
+<!-- SECTION 08: MODULE DEPENDENCY MATRIX -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">08</span><h2 class="section-title">Оптимізація імпортів та очищення простору імен</h2></div>
-    <div class="glass-card flow-step">
-        <p>Використання <code>__init__.py</code> як хаба дозволяє уникнути забруднення простору імен (Namespace pollution). Ми явно вказуємо, які функції доступні зовні, що допомагає IDE (VS Code, PyCharm) надавати точніші підказки через автодоповнення. Також це дозволяє відкласти імпорт важких бібліотек (наприклад, Scipy для академічних графіків) до моменту реального звернення до відповідної функції, прискорюючи холодний старт додатку.</p>
-    </div>
-</div>
-
-<!-- SECTION 09: USER EXPERIENCE FOR DEVELOPERS (DX) -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">09</span><h2 class="section-title">DX: Досвід розробника інтерфейсу</h2></div>
-    <div class="glass-card flow-step">
-        <p>Диспетчер розроблений з акцентом на <b>Developer Experience (DX)</b>. Кожна функція, що експортується, має уніфіковану сигнатуру виклику. Це означає, що розробнику не потрібно пам'ятати специфічні параметри для кожного типу графіка — вони всі працюють за принципом "Дані + Заголовок". Такий підхід значно знижує кількість помилок при розробці нових вкладок дашборду та робить код Атласу легким для підтримки та масштабування.</p>
-    </div>
-</div>
-
-<!-- SECTION 10: BOTTOM SPACER & LAYOUT CONSISTENCY -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">10</span><h2 class="section-title">Консистентність макетів та відступи</h2></div>
-    <div class="glass-card flow-step">
-        <p>Усі графіки, що проходять через диспетчер, мають уніфіковану висоту (зазвичай 400-550px) та відступи. Це гарантує, що при розміщенні графіків поруч у колонках Streamlit (<code>st.columns</code>), їхні осі та легенди будуть вирівняні по горизонталі. Така "візуальна сітка" є ознакою якісного проектування інтерфейсів і робить сприйняття складної аналітичної інформації більш природним для людського ока.</p>
-    </div>
-</div>
-
-<!-- SECTION 11: MODULE DEPENDENCY MATRIX -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">11</span><h2 class="section-title">Матриця залежностей (Dependencies)</h2></div>
+    <div class="section-header"><span class="section-number">08</span><h2 class="section-title">Матриця залежностей (Dependencies)</h2></div>
     <div class="roles-grid">
         <div class="role-item">
             <div class="role-icon">🏗️</div>
             <div class="role-content">
-                <h4>Chart Sub-modules</h4>
-                <p>Базові модулі (base, forecast, academic), що надають реалізацію графіків.</p>
+                <h4><a href="ui_charts_base.md">charts/base.py</a></h4>
+                <p>Базові аналітичні графіки (Dual-Axis Y, Rhythm profiles).</p>
             </div>
         </div>
         <div class="role-item">
-            <div class="role-icon">📈</div>
+            <div class="role-icon">🔮</div>
             <div class="role-content">
-                <h4>Plotly Express</h4>
-                <p>Легковаговий двигун для швидкої візуалізації у Legacy-функціях.</p>
+                <h4><a href="ui_charts_forecast.md">charts/forecast_plots.py</a></h4>
+                <p>Ші-прогнозні графіки (Confidence Bands, Multi-model, Mega Hybrid).</p>
             </div>
         </div>
         <div class="role-item">
-            <div class="role-icon">🛠️</div>
+            <div class="role-icon">🎓</div>
             <div class="role-content">
-                <h4>UI Helpers</h4>
-                <p>Зовнішні утиліти для безпечного рендерингу та обробки винятків.</p>
+                <h4><a href="ui_charts_academic.md">charts/academic.py</a></h4>
+                <p>Академічні наукові графіки (Normal Fit, OLS Regression, Error Density).</p>
             </div>
         </div>
     </div>
 </div>
 
-<!-- SECTION 12: ROADMAP TO v3.0 (DYNAMIC REGISTRY) -->
+<!-- SECTION 09: ROADMAP TO v3.0 (PLUGGABLE DYNAMIC CHARTS) -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">12</span><h2 class="section-title">Дорожня карта v3.0 (Dynamic Registry)</h2></div>
+    <div class="section-header"><span class="section-number">09</span><h2 class="section-title">Дорожня карта v3.0 (Dynamic Pluggable Charts)</h2></div>
     <div class="glass-card flow-step">
-        <p>У версії 3.0 планується впровадження <b>Динамічного реєстру графіків</b>. Диспетчер буде автоматично реєструвати нові модулі графіків з папки <code>charts/</code>, що дозволить додавати нові типи візуалізації без зміни <code>__init__.py</code>. Також буде додано підтримку <b>Глобальних пресетів</b> (Global Presets), що дозволить одним викликом змінювати стиль усіх графіків у системі (наприклад, перемикатися між Dark та Light темами).</p>
+        <p>У версії 3.0 заплановано:</p>
+        <ul>
+            <li><b>Dynamic Sub-package Discovery:</b> Автоматична реєстрація нових файлів з папки <code>charts/</code> через рефлексію простору імен, що дозволить розширювати бібліотеку без редагування <code>__init__.py</code>.</li>
+            <li><b>Plotly WebGL Autoconfig:</b> Автоматичне перемикання рендерингу великих датасетів (&gt;100 000 точок) на WebGL (<code>go.Scattergl</code>) для підтримки FPS.</li>
+            <li><b>Interactive Color Themes:</b> Зв'язування легенд Plotly з глобальними пресетами CSS-тем з <code>styles.py</code> для автоматичного перефарбування кривих при зміні теми користувачем.</li>
+        </ul>
     </div>
 </div>
 
-<!-- SECTION 13: FAQ - ЧАСТІ ЗАПИТАННЯ -->
+<!-- SECTION 10: FAQ - ЧАСТІ ЗАПИТАННЯ -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">13</span><h2 class="section-title">FAQ: Диспетчер Бібліотеки</h2></div>
+    <div class="section-header"><span class="section-number">10</span><h2 class="section-title">FAQ: Технічні відповіді</h2></div>
     <div class="glass-card flow-step">
-        <p><b>Чому краще імпортувати через хаб?</b> — Це гарантує, що ви використовуєте останню версію функції з усіма виправленнями та актуальними стилями ATLAS.</p>
-        <p><b>Що таке Legacy функція?</b> — Це старий код, який ми залишили для підтримки сумісності; для нових частин проекту використовуйте спеціалізовані модулі.</p>
+        <p><b>Q: Чому краще імпортувати графіки через хаб-диспетчер?</b><br>
+        A: Це гарантує, що ви отримуєте стабільне API з підключеними глобальними стилями темної теми, мінімальними відступами та безпечним рендерингом, усуваючи дублювання коду імпортів.</p>
+        <p><b>Q: Як працює зворотна сумісність у Legacy функції?</b><br>
+        A: Функція <code>render_forecast_chart</code> приймає два параметри (DataFrame та підпис). Якщо стара версія коду викличе цю функцію, вона миттєво побудує лінійний графік Plotly Express, пофарбує історію в синій, а прогноз — в червоний, і поверне об'єкт фігури без жодних збоїв сумісності.</p>
+        <p><b>Q: Чому Plotly є пріоритетним вибором перед Matplotlib?</b><br>
+        A: Plotly будує повністю інтерактивні векторні SVG/HTML графіки. Користувач може зумувати ділянки, ізолювати окремі лінії кліком по легенді та бачити HUD-тултипи при наведенні, що критично для диспетчерського моніторингу і неможливо зробити у статичному Matplotlib.</p>
     </div>
 </div>
 

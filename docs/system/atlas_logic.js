@@ -136,7 +136,18 @@ function showDetails(nodeId, el) {
     const btnContainer = document.getElementById('details-links');
     if (node.detail_link) {
         btnContainer.style.display = 'block';
-        const finalUrl = window.location.origin + node.detail_link;
+        
+        // Dynamically compute correct base path relative to system/atlas_final
+        let basePath = "";
+        const path = window.location.pathname;
+        const systemIndex = path.indexOf("/system/atlas_final");
+        if (systemIndex !== -1) {
+            basePath = path.substring(0, systemIndex);
+        }
+        
+        const origin = window.location.origin && window.location.origin !== 'null' ? window.location.origin : '';
+        const finalUrl = origin + basePath + node.detail_link;
+        
         document.getElementById('details-btn').setAttribute('data-url', finalUrl);
     } else {
         btnContainer.style.display = 'none';

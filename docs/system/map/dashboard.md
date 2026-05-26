@@ -1,192 +1,237 @@
-# Технічна специфікація модуля: ui/segments/dashboard.py (GIGA-PASSPORT EDITION)
+# Технічний Паспорт Компонента: scripts/thesis/dashboard.py (GIGA-PASSPORT v3)
 
 <div class="mega-passport">
 
 <!-- HERO SECTION -->
 <div class="hero-section">
-    <div class="hero-badge">APPLICATION UI HUB & NAVIGATION ORCHESTRATOR</div>
+    <div class="hero-badge">🖥️ THESIS GRAPHICAL CONTROL CENTER</div>
     <div class="hero-main">
-        <div class="hero-icon-wrapper"><span class="hero-icon">🎮</span><div class="pulse-ring"></div></div>
+        <div class="hero-icon-wrapper"><span class="hero-icon">🎛️</span><div class="pulse-ring"></div></div>
         <div class="hero-title-group">
-            <h1 class="mega-title">Оркестратор Інтерфейсу ATLAS</h1>
-            <p class="mega-subtitle">Головний вузол візуалізації: фрагментований рендеринг, стабільна шина навігації та лінива фільтрація телеметрії</p>
-            <div class="status-tags"><span class="tag tag-online">UI BUS ACTIVE</span><span class="tag tag-version">v2.0.0</span><span class="tag tag-role">UI ORCHESTRATOR</span></div>
+            <h1 class="mega-title">dashboard.py</h1>
+            <p class="mega-subtitle">Багатопотоковий графічний пульт управління збіркою дисертації, тестуванням формул та інтелектуальною санітацією</p>
+            <div class="status-tags">
+                <span class="tag tag-online">DESKTOP GUI</span>
+                <span class="tag tag-version">v3.0.0</span>
+                <span class="tag tag-role">SYSTEM CONTROLLER</span>
+            </div>
         </div>
     </div>
 </div>
 
 <!-- KEY METRICS GRID -->
 <div class="metrics-grid">
-    <div class="glass-card metric-card"><div class="metric-icon">🧩</div><div class="metric-info"><span class="metric-label">Logic</span><span class="metric-value">Fragment-Based</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🚀</div><div class="metric-info"><span class="metric-label">Perf</span><span class="metric-value">Lazy Filtering</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🛰️</div><div class="metric-info"><span class="metric-label">Sync</span><span class="metric-value">Stable Nav Bus</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🧠</div><div class="metric-info"><span class="metric-label">Routing</span><span class="metric-value">Intelligent Mode</span></div></div>
-</div>
-
-<!-- SECTION 01: APPLICATION UI HUB PHILOSOPHY -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">01</span><h2 class="section-title">Філософія Оркестрації Інтерфейсу</h2></div>
-    <div class="glass-card flow-step">
-        <p>Модуль <code>dashboard.py</code> є "Диригентом" візуального шару ATLAS. У складних аналітичних системах на базі Streamlit критично важливо уникати повного перезавантаження сторінки при зміні дрібних елементів. Наша архітектура базується на принципі <b>ізольованих фрагментів</b>, де кожна частина інтерфейсу (Карта, Графіки, AI) працює як автономний мікро-додаток, синхронізований через глобальну шину стану, що забезпечує UX рівня нативних десктопних додатків.</p>
+    <div class="glass-card metric-card">
+        <div class="metric-icon">🎨</div>
+        <div class="metric-info">
+            <span class="metric-label">GUI Engine</span>
+            <span class="metric-value">Tkinter / Custom ttk</span>
+        </div>
+    </div>
+    <div class="glass-card metric-card">
+        <div class="metric-icon">🧵</div>
+        <div class="metric-info">
+            <span class="metric-label">Threading</span>
+            <span class="metric-value">Daemon Workers</span>
+        </div>
+    </div>
+    <div class="glass-card metric-card">
+        <div class="metric-icon">🚀</div>
+        <div class="metric-info">
+            <span class="metric-label">Style Mode</span>
+            <span class="metric-value">Consolas Matrix Dark</span>
+        </div>
+    </div>
+    <div class="glass-card metric-card">
+        <div class="metric-icon">🩹</div>
+        <div class="metric-info">
+            <span class="metric-label">Integration</span>
+            <span class="metric-value">Subprocess IPC</span>
+        </div>
     </div>
 </div>
 
-<!-- SECTION 02: FRAGMENT-BASED RENDERING ARCHITECTURE -->
+<!-- SECTION 1: SYSTEM OVERVIEW -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Архітектура фрагментованого рендерингу</h2></div>
-    <div class="diagram-outer-wrapper"><div class="mermaid">
-graph TD
-    MAIN("Main UI Loop") --> BUS("Stable Fragment Bus")
-    BUS --> F_MAP("Fragment: Map (Active/Sleep)")
-    BUS --> F_CONS("Fragment: Consumption (Active/Sleep)")
-    BUS --> F_AI("Fragment: AI Analytics (Active/Sleep)")
-    F_MAP & F_CONS & F_AI --> DATA("Lazy Data Fetcher")
-    DATA --> RENDER("Target View Render")
-    </div></div>
-</div>
-
-<!-- SECTION 03: STABLE NAVIGATION BUS & SYNC LOGIC -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Стабільна шина навігації та синхронізація</h2></div>
-    <div class="glass-card flow-step">
-        <p>Для запобігання критичній помилці <code>DuplicateWidgetID</code>, модуль реалізує паттерн <b>Stable Navigation Bus</b>. Всі фрагменти викликаються в ідентичному порядку незалежно від поточної сторінки, але рендериться лише активний. Це гарантує стабільність дерева віджетів Streamlit та дозволяє реалізувати плавне перемикання між вкладками без втрати контексту.</p>
+    <div class="section-header">
+        <span class="section-number">01</span>
+        <h2 class="section-title">Концептуальна роль та архітектурне призначення</h2>
     </div>
-</div>
-
-<!-- SECTION 04: LAZY FILTERING ENGINE STRATEGY -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Стратегія "Лінивої Фільтрації" (Memory Diet)</h2></div>
-    <div class="glass-card flow-step">
-        <p>На відміну від класичних підходів, де відфільтровані дані передаються як аргументи, наш <code>dashboard.py</code> використовує <b>Lazy Filtering</b>:</p>
-        <ul>
-            <li>Фрагменти отримують лише <b>ключ даних</b> та <b>параметри фільтрації</b> (словник).</li>
-            <li>Фільтрація відбувається безпосередньо всередині фрагмента перед рендерингом.</li>
-            <li>Це усуває необхідність копіювання великих DataFrame між контекстами функцій, радикально знижуючи споживання RAM.</li>
+    <div class="glass-card">
+        <p>
+            Модуль <code>scripts/thesis/dashboard.py</code> виконує роль <strong>центрального операційного пульта управління (Thesis Control Center)</strong> усього процесу академічної публікації. Він надає зручний графічний інтерфейс користувача (GUI) для запуску консольних утиліт збірки, автоматизуючи складні ручні команди розробника в один клік.
+        </p>
+        <p style="margin-top: 10px;">
+            Основний функціонал графічного диспетчера:
+        </p>
+        <ul style="margin-left: 20px; color: var(--text-dim);">
+            <li><strong>Керування процесами (Build Orchestration):</strong> Запуск повної збірки диплома, що охоплює покрокову конвертацію Markdown розділів, їх злиття у моноліт та фінальну генерацію DOCX.</li>
+            <li><strong>Аналітика практики (Practice Report compiler):</strong> Виділений конвеєр для зшивання 7 офіційних розділів звіту переддипломної практики (<code>PR_TITLE.md</code> до <code>PR_S6.md</code>).</li>
+            <li><strong>Ізольоване тестування формул (Formula Validation):</strong> Можливість швидко перевірити правильність рендерингу математичних LaTeX формул у форматі Word через виклик тестового документа `FORMULA_TEST.md`.</li>
+            <li><strong>Багатопотокове виконання (Non-blocking Threading):</strong> Всі фонові процеси та виклики Pandas/Word запускаються у фонових демонічних потоках (Daemon Threads), що повністю запобігає зависанню графічного інтерфейсу (UI Freezing) під час важких дискових операцій.</li>
         </ul>
     </div>
 </div>
 
-<!-- SECTION 05: INTELLIGENT ROUTING (LIVE VS KAGGLE) -->
+<!-- SECTION 2: ARCHITECTURAL FLOW -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Інтелектуальний роутінг режимів</h2></div>
-    <div class="glass-card flow-step">
-        <p>Система автоматично переналаштовує навігаційну панель залежно від джерела даних:</p>
-        <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
-            <thead>
-                <tr style="border-bottom: 1px solid var(--border); color: var(--accent);">
-                    <th>Режим</th>
-                    <th>Доступні сервіси</th>
-                    <th>Особливості UI</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td>Live Simulation</td><td>Повний набір (Map, Econ, Alerts...)</td><td>Реактивне оновлення 5с</td></tr>
-                <tr><td>Kaggle Archive</td><td>Analytics, AI, Forecast</td><td>Статичний історичний аналіз</td></tr>
-                <tr><td>Fallback</td><td>Emergency UI</td><td>Мінімалістичний режим доступу</td></tr>
-            </tbody>
-        </table>
+    <div class="section-header">
+        <span class="section-number">02</span>
+        <h2 class="section-title">Конвеєр виконання процесів (Multithreaded Build Pipeline)</h2>
+    </div>
+    <div class="glass-card">
+        <p>
+            Схема демонструє, як головний потік GUI створює фонові робітники для виконання збірки та отримує логи в реальному часі через канали `stdout`:
+        </p>
+        <div class="diagram-outer-wrapper">
+            <div class="mermaid">
+            graph TD
+                START("Запуск GUI (root.mainloop)") --> DRAW("1. Побудова віджетів (Tkinter ttk)")
+                DRAW --> USER_CLICK{"2. Клік користувача на 'RUN FULL BUILD'"}
+                
+                USER_CLICK --> SPAWN_THREAD("3. Створення threading.Thread(daemon=True)")
+                SPAWN_THREAD --> THREAD_RUN("4. Фоновий потік: Запуск run_build_process()")
+                
+                THREAD_RUN --> KILL_WORD("5. taskkill WINWORD.EXE (Очищення процесів)")
+                KILL_WORD --> SUB_PROC("6. subprocess.Popen(convert_thesis.py --all)")
+                
+                SUB_PROC --> READ_OUT("7. Посимвольне зчитування stdout.readline()")
+                READ_OUT --> UPDATE_LOG("8. root.after() / root.update(): Вивід логів у ScrolledText")
+                
+                UPDATE_LOG --> COMP_STEPS{"9. Чи завершено конвертацію?"}
+                COMP_STEPS -- "Ні" --> READ_OUT
+                COMP_STEPS -- "Так" --> MERGE("10. Запуск scripts/thesis/merge_thesis.py")
+                
+                MERGE --> OPEN_FILE("11. os.startfile(Литвиненко_YYYYMMDD.docx)")
+                OPEN_FILE --> END("Завершення фонового потоку & розблокування кнопок")
+            </div>
+        </div>
     </div>
 </div>
 
-<!-- SECTION 06: PSEUDO-CODE (FRAGMENT ORCHESTRATION) -->
+<!-- SECTION 3: TECHNICAL DETAILS & MATHEMATICS -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">06</span><h2 class="section-title">Псевдокод оркестрації фрагментів</h2></div>
-    <div class="glass-card flow-step">
-        <pre><code>FUNCTION render_dashboard_ui(data, params):
-    1. SYNC_NAVIGATION_STATE()
-    2. RENDER top_navigation_bar
-    
-    # THE STABLE BUS (Always in this order)
-    CALL fragment_live_map(key="load", params, active=(page == "MAP"))
-    CALL fragment_live_consumption(key="load", params, active=(page == "CONS"))
-    CALL fragment_live_ai(key="load", params, active=(page == "AI"))
-    
-    # 3. ROUTE static pages (Not fragments)
-    IF page == "ECONOMY":
-        RENDER static_finance_view(data["fin"])
-        TRIGGER garbage_collector()
+    <div class="section-header">
+        <span class="section-number">03</span>
+        <h2 class="section-title">Математика багатопотоковості та інтеграція Windows DWM</h2>
+    </div>
+    <div class="glass-card">
+        <div style="display: flex; flex-direction: column; gap: 15px;">
+            <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); padding: 15px; border-radius: 8px;">
+                <h4 style="color: var(--accent); margin: 0 0 8px 0; font-family: 'Orbitron', sans-serif;">1. Синхронізація прогрес-бару (Linear Progress mapping)</h4>
+                <p style="margin: 0 0 8px 0; font-size: 13.5px; color: var(--text-dim);">
+                    Оскільки збірка складається з дискретних етапів різної тривалості, прогрес-бар оновлюється за кусково-лінійною функцією, де кожному етапу виділяється певний фіксований відсоток шкали $S$:
+                </p>
+                <div class="math-block" style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 6px; text-align: center; margin-bottom: 8px; font-family: monospace; color: var(--accent);">
+                    S(t) = \begin{cases} 
+                      10, & t = \text{taskkill} \\
+                      10 + 4 \cdot k, & k \in [1, N] \quad (\text{конвертація } k\text{-го розділу}) \\
+                      80, & t = \text{злиття файлів} \\
+                      90 + 10 \cdot p, & p \in [0, 1] \quad (\text{фінальна Word оптимізація}) 
+                   \end{cases}
+                </div>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); padding: 15px; border-radius: 8px;">
+                <h4 style="color: var(--accent); margin: 0 0 8px 0; font-family: 'Orbitron', sans-serif;">2. Низькорівнева інтеграція Windows Dark Title Bar</h4>
+                <p style="margin: 0 0 8px 0; font-size: 13.5px; color: var(--text-dim);">
+                    Для забезпечення бездоганного Cyber-HUD дизайну, скрипт обходить стандартний білий заголовок вікна Windows за допомогою системних викликів `dwmapi.dll`. Атрибут `DWMWA_USE_IMMERSIVE_DARK_MODE` (код 35) примусово вмикає темну тему вікна:
+                </p>
+                <div class="math-block" style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 6px; text-align: center; margin-bottom: 8px; font-family: monospace; color: var(--accent);">
+                    $$ \text{DwmSetWindowAttribute}(\text{HWND}, 35, \&\text{Enabled}(1), \text{sizeof}(\text{int})) $$
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SECTION 4: PSEUDOCODE -->
+<div class="section-container">
+    <div class="section-header">
+        <span class="section-number">04</span>
+        <h2 class="section-title">Псевдокод багатопотокового GUI контролера</h2>
+    </div>
+    <div class="glass-card">
+        <p>
+            Спрощена схема створення фонового потоку та зчитування логів через `subprocess`:
+        </p>
+        <pre><code class="language-python">
+# Псевдокод асинхронного GUI дашборда
+import threading
+import subprocess
+
+class AsyncThesisDashboard:
+    def __init__(self):
+        self.root = create_tkinter_window()
+        self.log_widget = create_scroll_text()
+        self.progress_bar = create_progress_bar()
         
-    4. RENDER footer with system_meta
-END FUNCTION</code></pre>
+    def log(self, text):
+        # Вставка тексту з часовим штампом
+        self.log_widget.insert_at_end(f"[{get_time()}] {text}")
+        self.root.update_idletasks()
+
+    def run_build_in_background(self):
+        self.log("Starting Build...")
+        self.progress_bar.set_value(10)
+        
+        # Запускаємо процес Pandoc/Word як підпроцес
+        process = subprocess.Popen(
+            ["python", "convert_thesis.py", "--all"],
+            stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True
+        )
+        
+        # Зчитуємо по рядку, не блокуючи головний потік
+        while True:
+            line = process.stdout.readline()
+            if not line:
+                break
+            self.log(f"  {line.strip()}")
+            if "Processed" in line:
+                self.progress_bar.increment(5)
+                
+        process.wait()
+        self.progress_bar.set_value(100)
+        self.log("Build Completed successfully!")
+
+    def on_build_click(self):
+        # Запуск у фоновому потоці для запобігання зависанню вікна
+        worker = threading.Thread(target=self.run_build_in_background, daemon=True)
+        worker.start()
+        </code></pre>
     </div>
 </div>
 
-<!-- SECTION 07: FRAGMENT ISOLATION & GC TRIGGER -->
+<!-- SECTION 5: FAQ -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">07</span><h2 class="section-title">Ізоляція фрагментів та тригери GC</h2></div>
-    <div class="glass-card flow-step">
-        <p>Кожен фрагмент після завершення рендерингу виконує примусове видалення локальних посилань на дані та викликає <code>gc.collect()</code>. Це критично для Streamlit, оскільки дозволяє тримати RAM-футпринт у межах 512MB навіть при активному перемиканні між важкими аналітичними вкладками.</p>
+    <div class="section-header">
+        <span class="section-number">05</span>
+        <h2 class="section-title">Часті питання (FAQ)</h2>
     </div>
-</div>
+    <div class="glass-card">
+        <h4 style="color: var(--text-main); margin-bottom: 5px;">Q1: Чому інтерфейс Tkinter не зависає під час тривалого процесу збірки (20-40 сек)?</h4>
+        <p style="color: var(--text-dim); margin-bottom: 15px;">
+            A: Звичайні GUI програми на Python зависають (не реагують на кліки та перетягування), якщо тривалі розрахунки або файлові операції запускаються в основному потоці вікна. Дашборд вирішує це шляхом винесення всієї логіки збірки (`subprocess.Popen` та `merge_thesis`) у виділений фоновий потік `threading.Thread(daemon=True)`. Головний потік залишається повністю вільним для обробки подій вікна та відмальовки логів.
+        </p>
 
-<!-- SECTION 08: THE NAVIGATION SYNC PROTOCOL -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">08</span><h2 class="section-title">Протокол синхронізації навігації</h2></div>
-    <div class="glass-card flow-step">
-        <p>Функція <code>sync_nav</code> забезпечує двосторонній зв'язок між <code>session_state</code> та віджетом <code>st.radio</code>. Це дозволяє програмно змінювати сторінки (наприклад, перехід до Журналу Аварій при натисканні на KPI-карту) без збоїв у стані інтерфейсу.</p>
-    </div>
-</div>
+        <h4 style="color: var(--text-main); margin-bottom: 5px;">Q2: Що робить кнопка "TEST FORMULAS"?</h4>
+        <p style="color: var(--text-dim); margin-bottom: 15px;">
+            A: Вона призначена для швидкого налагодження математичних формул LaTeX. Скрипт бере невеликий локальний файл `docs/thesis/FORMULA_TEST.md`, швидко конвертує його в `docs/thesis/FORMULA_TEST.docx` і автоматично відкриває результат у MS Word. Це дозволяє перевірити, як трансформуються складні дроби, інтеграли та грецькі літери перед великою генерацією всього диплома.
+        </p>
 
-<!-- SECTION 09: LIVE TELEMETRY WRAPPER INTEGRATION -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">09</span><h2 class="section-title">Інтеграція обгортки живої телеметрії</h2></div>
-    <div class="glass-card flow-step">
-        <p>Оркестратор інтегрує <code>live_telemetry_wrapper</code> всередині expander-блоку "Деталізація по підстанціях". Це дозволяє тримати стрім даних активним у фоні, забезпечуючи оновлення KPI-показників навіть тоді, коли користувач працює з іншими вкладками (наприклад, аналізує архів).</p>
-    </div>
-</div>
-
-<!-- SECTION 10: USER-CENTRIC DESIGN (UX/UI) -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">10</span><h2 class="section-title">Користувачо-центрований дизайн</h2></div>
-    <div class="glass-card flow-step">
-        <p>Інтерфейс спроектований для роботи в режимі "Ситуаційного Центру":</p>
-        <ul>
-            <li><b>Horizontal Navigation:</b> Швидкий доступ до всіх аналітичних зрізів.</li>
-            <li><b>Status Captions:</b> Візуалізація часу останньої синхронізації БД.</li>
-            <li><b>Visual Dividers:</b> Чітке розмежування між керуванням та візуалізацією.</li>
-        </ul>
-    </div>
-</div>
-
-<!-- SECTION 11: MODULE DEPENDENCY MATRIX -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">11</span><h2 class="section-title">Матриця залежностей (Dependencies)</h2></div>
-    <div class="roles-grid">
-        <div class="role-item">
-            <div class="role-icon">🎨</div>
-            <div class="role-content">
-                <h4>Styles System</h4>
-                <p>Забезпечує Cyber-HUD візуалізацію через <code>apply_custom_css</code>.</p>
-            </div>
-        </div>
-        <div class="role-item">
-            <div class="role-icon">🗄️</div>
-            <div class="role-content">
-                <h4>Data Loader</h4>
-                <p>Надає верифіковані дані для лінивого завантаження.</p>
-            </div>
-        </div>
-        <div class="role-item">
-            <div class="role-icon">📈</div>
-            <div class="role-content">
-                <h4>View Components</h4>
-                <p>Бібліотека спеціалізованих представлень (Map, Forecast, Finance).</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- SECTION 12: ROADMAP TO v3.0 (MODULAR VIEWS) -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">12</span><h2 class="section-title">Дорожня карта v3.0 (Modular Views)</h2></div>
-    <div class="glass-card flow-step">
-        <p>У версії 3.0 планується впровадження <b>динамічної ін'єкції вкладок</b> (Plugin-based UI), підтримка <b>PWA (Progressive Web App)</b> для роботи на мобільних пристроях диспетчерів та впровадження <b>Dark/Light адаптивної схеми</b>.</p>
+        <h4 style="color: var(--text-main); margin-bottom: 5px;">Q3: Що за дивні виклики бібліотеки `ctypes` в кінці файлу?</h4>
+        <p style="color: var(--text-dim);">
+            A: Ці системні виклики через C-сумісні типи (`ctypes`) звертаються безпосередньо до Windows API (`dwmapi.dll`). Вони перехоплюють дескриптор вікна Tkinter (HWND) та примусово встановлюють для верхньої системної рамки вікна темне оформлення. Це позбавляє додаток застарілого білого заголовка, створюючи цілісний Cyber-HUD стиль.
+        </p>
     </div>
 </div>
 
 <!-- FOOTER NAV -->
 <div class="passport-footer">
-    <a href="../../atlas_final/" class="mega-btn"><span class="btn-icon">🔙</span><span class="btn-text">ПОВЕРНУТИСЬ ДО АТЛАСУ</span></a>
+    <a href="../../atlas_final/" class="mega-btn">
+        <span class="btn-icon">🔙</span>
+        <span class="btn-text">Повернутися до Атласу</span>
+    </a>
 </div>
 
 </div>

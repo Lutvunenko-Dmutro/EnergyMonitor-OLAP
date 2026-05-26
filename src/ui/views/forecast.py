@@ -1,4 +1,4 @@
-# ATLAS_PASSPORT: docs/system/map/forecast_view.md
+# ATLAS_PASSPORT: docs/system/map/forecast.md
 """
 ЦЕНТР ПРОГНОЗУВАННЯ ТА АУДИТУ ШІ (AI Forecast & Backtest Center)
 ==============================================================

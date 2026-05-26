@@ -27,7 +27,7 @@
 <div class="section-container">
     <div class="section-header"><span class="section-number">01</span><h2 class="section-title">Місія Віртуальних Сенсорів</h2></div>
     <div class="glass-card flow-step">
-        <p>Пакет <code>src/services/simulation/</code> відповідає за створення "живої" атмосфери в системі ATLAS. Оскільки реальні датчики енергосистеми не завжди доступні для розробки, ми створили <b>High-Fidelity Simulator</b>. Він моделює складну взаємодію фізичних величин: як навантаження впливає на температуру масла в трансформаторі, як частота мережі реагує на баланс генерації та споживання, і як накопичуються розчинені гази (H2) при тривалих перевантаженнях. Це дозволяє системі ATLAS функціонувати як повноцінний цифровий двійник енергосистеми.</p>
+        <p>Пакет <code>src/services/simulation/</code> відповідає за створення "живої" атмосфери в системі ATLAS. Оскільки реальні датчики енергосистеми не завжди доступні для розробки, ми створили <b>High-Fidelity Simulator</b>. Він моделює складну взаємодію фізичних величин: як навантаження впливає на температуру масла в трансформаторі, як частота мережі реагує на баланс генерації та споживання, і як накопичуються розчинені гази ($H_2$) при тривалих перевантаженнях. Це дозволяє системі ATLAS функціонувати як повноцінний цифровий двійник енергосистеми.</p>
     </div>
 </div>
 
@@ -59,14 +59,37 @@
 <div class="section-container">
     <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Фізичні формули Цифрового Двійника</h2></div>
     <div class="glass-card flow-step">
-        <p>Симуляція базується на наступних математичних моделях:
+        <p>Симуляція цифрового двійника базується на наступних фізичних та диференціальних рівняннях, що розраховуються на кожному кроці квантування $\Delta t$:</p>
         <ul>
-            <li><b>Температурна інерція:</b> T_next = T_curr + (Load_factor² * k_heat - (T_curr - T_env) * k_cool) * dt.</li>
-            <li><b>Генерація H2 (Газоутворення):</b> Rate_H2 = base_rate * exp(alpha * T_oil).</li>
-            <li><b>Дрейф частоти:</b> df/dt = (Power_Gen - Power_Load) / Inertia_Constant.</li>
-            <li><b>Health Score Decay:</b> dH/dt = -beta * (T_oil > T_limit) * (T_oil - T_limit).</li>
+            <li><b>Температурна інерція обмоток трансформатора:</b>
+                <div style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 8px; text-align: center; margin: 10px 0; border: 1px solid var(--border);">
+                    $$ T_{t+\Delta t} = T_t + \left( I_t^2 \cdot k_{\text{heat}} - (T_t - T_{\text{env}}) \cdot k_{\text{cool}} \right) \cdot \Delta t $$
+                </div>
+                Де $T_t$ — поточна температура масла обмотки, $I_t$ — коефіцієнт навантаження струму, $k_{\text{heat}}$ та $k_{\text{cool}}$ — константи нагріву та охолодження відповідно, $T_{\text{env}}$ — температура навколишнього середовища.
+            </li>
+            <li><b>Швидкість утворення розчиненого водню ($H_2$) при перегріві масла:</b>
+                <div style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 8px; text-align: center; margin: 10px 0; border: 1px solid var(--border);">
+                    $$ \text{Rate}_{H2} = c_{\text{base}} \cdot e^{\alpha \cdot T_t} $$
+                </div>
+                Де $c_{\text{base}}$ — фонова швидкість газоутворення, $\alpha$ — тепловий коефіцієнт розкладу масла.
+            </li>
+            <li><b>Динаміка дрейфу частоти енергосистеми (Grid Frequency):</b>
+                <div style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 8px; text-align: center; margin: 10px 0; border: 1px solid var(--border);">
+                    $$ \frac{df}{dt} = \frac{P_{\text{Gen}} - P_{\text{Load}}}{M_{\text{inertia}}} $$
+                </div>
+                Де $P_{\text{Gen}}$ та $P_{\text{Load}}$ — загальна генерація та споживання в мережі, $M_{\text{inertia}}$ — механічна інерція роторів синхронних генераторів.
+            </li>
+            <li><b>Деградація індексу здоров'я обладнання (Health Score Decay):</b>
+                <div style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 8px; text-align: center; margin: 10px 0; border: 1px solid var(--border);">
+                    $$ \frac{dH}{dt} = \begin{cases} 
+                    -\beta \cdot (T_t - T_{\text{critical}}) & \text{якщо } T_t > T_{\text{critical}} \\
+                    0 & \text{в іншому випадку}
+                    \end{cases} $$
+                </div>
+                Де $\beta$ — коефіцієнт прискореного зносу ізоляції трансформатора при перевантаженнях.
+            </li>
         </ul>
-        Ці формули забезпечують реалістичну динаміку станів, що є критичним для тестування систем раннього попередження (Alerting System).</p>
+        <p>Ці формули забезпечують реалістичну динаміку станів, що є критичним для тестування систем раннього попередження (Alerting System).</p>
     </div>
 </div>
 
@@ -93,7 +116,7 @@ graph TD
     
     JSON --> UI("Situational Dashboard")
     DB --> ANALYTICS("Historical Audit")
-    </div></div>
+</div></div>
 </div>
 
 <!-- SECTION 06: SENSOR STATE TRANSITIONS -->
@@ -109,44 +132,117 @@ stateDiagram-v2
     Critical --> Failure: Sudden Breakdown
     Failure --> Off: Maintenance Reset
     Nominal --> Off: Stop Engine
-    </div></div>
+</div></div>
 </div>
 
-<!-- SECTION 07: PHYSICAL MODELING OF ASSETS -->
+<!-- SECTION 07: REAL-TIME TELEMETRY ENGINE LOOP -->
+<div class="section-container">
+    <div class="section-header"><span class="section-number">07</span><h2 class="section-title">Багатопроцесорна оркестрація та емітер стріму</h2></div>
+    <div class="glass-card flow-step">
+        <p>Для запобігання конфліктів доступу та одночасного запуску декількох процесів симулятора, у модулі <code>sensors_db.py</code> реалізовано блокування ресурсів на базі ексклюзивного файлового замка (lock file) та обробник сигналів системи.</p>
+        
+        <h4 style="color: var(--accent); margin-top: 15px; font-family: 'Orbitron', sans-serif;">Реалізація стрімінг-циклу симуляції</h4>
+        <pre><code class="language-python">
+import time
+import json
+import portalocker
+import sys
+import signal
+
+class TelemetrySimulationOrchestrator:
+    def __init__(self, state_file="live_state.json", lock_file="simulator.lock"):
+        self.state_file = state_file
+        self.lock_file = lock_file
+        self.running = True
+        
+        # Реєстрація системних сигналів для м'якої зупинки
+        signal.signal(signal.SIGINT, self.terminate)
+        signal.signal(signal.SIGTERM, self.terminate)
+
+    def terminate(self, signum, frame):
+        print(f"[SHUTDOWN] Signal {signum} received. Stopping simulator...")
+        self.running = False
+
+    def run(self):
+        # 1. Захоплення ексклюзивного блокування процесу
+        with open(self.lock_file, "w") as lock_f:
+            try:
+                portalocker.lock(lock_f, portalocker.LOCK_EX | portalocker.LOCK_NB)
+                print("[INIT] Simulator acquired exclusive lock. Starting main loop...")
+                
+                # Ініціалізація початкового стану датчиків
+                sensors = initialize_sensor_agents()
+                
+                # 2. Нескінченний цикл високої частоти (1 Гц)
+                while self.running:
+                    start_time = time.time()
+                    
+                    # Крок розрахунку фізики для кожної підстанції
+                    current_state = {}
+                    for agent in sensors:
+                        agent.calculate_physics_step(dt=1.0)
+                        current_state[agent.id] = agent.get_state_dict()
+                        
+                    # 3. Атомарний безпечний запис у live_state.json
+                    temp_file = self.state_file + ".tmp"
+                    with open(temp_file, "w", encoding="utf-8") as out_f:
+                        json.dump(current_state, out_f, indent=2)
+                        out_f.flush()
+                        os.fsync(out_f.fileno()) # Гарантія запису на диск
+                        
+                    # Атомарна заміна файлу
+                    os.replace(temp_file, self.state_file)
+                    
+                    # 4. Розрахунок часу сну для точної частоти 1 Гц
+                    execution_time = time.time() - start_time
+                    sleep_time = max(0.0, 1.0 - execution_time)
+                    time.sleep(sleep_time)
+                    
+            except portalocker.exceptions.AlreadyLocked:
+                print("[FATAL] Another instance of the Simulator is already running! Aborting.")
+                sys.exit(1)
+            finally:
+                portalocker.unlock(lock_f)
+                print("[SHUTDOWN] Lock released. Process cleaned up.")
+        </code></pre>
+    </div>
+</div>
+
+<!-- SECTION 08: PHYSICAL MODELING OF ASSETS -->
 <div class="section-container" id="sensors">
-    <div class="section-header"><span class="section-number">07</span><h2 class="section-title">Фізичне Моделювання Активів</h2></div>
+    <div class="section-header"><span class="section-number">08</span><h2 class="section-title">Фізичне Моделювання Активів</h2></div>
     <div class="glass-card flow-step">
-        <p>Модуль <code>sensors.py</code> реалізує цифрові двійники обладнання. Кожна підстанція має свій набір віртуальних датчиків: навантаження, температура масла, концентрація H2, рівень вібрації. Показник <i>Health Score</i> динамічно деградує при роботі в зонах перевантаження, що дозволяє тестувати системи предиктивного обслуговування (Predictive Maintenance). Алгоритми імітують стохастичну природу вимірювань, додаючи невелику похибку до кожного значення.</p>
+        <p>Модуль <code>sensors.py</code> реалізує цифрові двійники обладнання. Кожна підстанція має свій набір віртуальних датчиків: навантаження, температура масла, концентрація $H_2$, рівень вібрації. Показник <i>Health Score</i> динамічно деградує при роботі в зонах перевантаження, що дозволяє тестувати системи предиктивного обслуговування (Predictive Maintenance). Алгоритми імітують стохастичну природу вимірювань, додаючи невелику похибку до кожного значення.</p>
     </div>
 </div>
 
-<!-- SECTION 08: MULTIPROCESS ORCHESTRATION & LOCKS -->
+<!-- SECTION 09: MULTIPROCESS ORCHESTRATION & LOCKS -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">08</span><h2 class="section-title">Багатопроцесорна Оркестрація та Блокування</h2></div>
+    <div class="section-header"><span class="section-number">09</span><h2 class="section-title">Багатопроцесорна Оркестрація та Блокування</h2></div>
     <div class="glass-card flow-step">
-        <p>Для стабільної роботи симулятор запускається як окремий фоновий процес. Модуль <code>sensors_db.py</code> використовує механізм **Lock-файлів** (через модуль <code>portalocker</code> або системні виклики), щоб запобігти одночасному запуску декількох інстансів генератора. Це гарантує, що лише один процес має право на запис у <code>live_state.json</code>, запобігаючи пошкодженню даних. Система також підтримує "м'яку зупинку" через перехоплення сигналів <code>SIGTERM</code>.</p>
+        <p>Для стабільної роботи симулятор запускається як окремий фоновий процес. Модуль <code>sensors_db.py</code> використовує механізм <b>Lock-файлів</b> (через модуль <code>portalocker</code> або системні виклики), щоб запобігти одночасному запуску декількох інстансів генератора. Це гарантує, що лише один процес має право на запис у <code>live_state.json</code>, запобігаючи пошкодженню даних. Система також підтримує "м'яку зупинку" через перехоплення сигналів <code>SIGTERM</code>.</p>
     </div>
 </div>
 
-<!-- SECTION 09: FAIL-SAFE OPERATION & RESOURCE MONITORING -->
+<!-- SECTION 10: FAIL-SAFE OPERATION & RESOURCE MONITORING -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">09</span><h2 class="section-title">Відмовостійкість та Моніторинг Ресурсів</h2></div>
+    <div class="section-header"><span class="section-number">10</span><h2 class="section-title">Відмовостійкість та Моніторинг Ресурсів</h2></div>
     <div class="glass-card flow-step">
         <p>Симулятор обладнаний системою самодіагностики. Якщо запис у базу даних стає неможливим, двигун продовжує транслювати живий стан у JSON-буфер. Це дозволяє ситуаційному центру бачити поточну картину мережі навіть за умови розриву зв'язку з хмарним сховищем. Після відновлення зв'язку система автоматично синхронізує накопичені в пам'яті дані з архівом.</p>
     </div>
 </div>
 
-<!-- SECTION 10: ROADMAP TO v5.0 (DISTRIBUTED MULTI-AGENT SIM) -->
+<!-- SECTION 11: ROADMAP TO v5.0 (DISTRIBUTED MULTI-AGENT SIM) -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">10</span><h2 class="section-title">Дорожня карта v5.0 (Multi-Agent Sim)</h2></div>
+    <div class="section-header"><span class="section-number">11</span><h2 class="section-title">Дорожня карта v5.0 (Multi-Agent Sim)</h2></div>
     <div class="glass-card flow-step">
-        <p>У версії 5.0 планується перехід на **Розподілену Мультиагентну Симуляцію**, де кожна підстанція буде окремим автономним агентом з власною логікою поведінки. Також буде додано підтримку <i>Monte Carlo Simulations</i> для розрахунку ймовірностей аварійних відключень та впроваджено модуль імітації кібер-атак на протоколи передачі телеметрії (наприклад, імітація спуфінгу значень напруги) для навчання систем кіберзахисту енергосистеми.</p>
+        <p>У версії 5.0 планується перехід на <b>Розподілену Мультиагентну Симуляцію</b>, де кожна підстанція буде окремим автономним агентом з власною логікою поведінки. Також буде додано підтримку <i>Monte Carlo Simulations</i> для розрахунку ймовірностей аварійних відключень та впроваджено модуль імітації кібер-атак на протоколи передачі телеметрії (наприклад, імітація спуфінгу значень напруги) для навчання систем кіберзахисту енергосистеми.</p>
     </div>
 </div>
 
-<!-- SECTION 11: SIMULATION TECHNICAL FAQ -->
+<!-- SECTION 12: SIMULATION TECHNICAL FAQ -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">11</span><h2 class="section-title">Технічний FAQ Симуляції</h2></div>
+    <div class="section-header"><span class="section-number">12</span><h2 class="section-title">Технічний FAQ Симуляції</h2></div>
     <div class="glass-card flow-step">
         <p><b>Q: Як змінити швидкість симуляції?</b><br>
         A: Швидкість регулюється через параметр <code>dt</code> у <code>sensors_db.py</code>. За замовчуванням це 1 секунда реального часу.</p>
@@ -157,9 +253,9 @@ stateDiagram-v2
     </div>
 </div>
 
-<!-- SECTION 12: SIMULATION ENGINE GLOSSARY -->
+<!-- SECTION 13: SIMULATION ENGINE GLOSSARY -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">12</span><h2 class="section-title">Глосарій Двигуна Симуляції</h2></div>
+    <div class="section-header"><span class="section-number">13</span><h2 class="section-title">Глосарій Двигуна Симуляції</h2></div>
     <div class="glass-card flow-step">
         <ul>
             <li><b>Digital Twin:</b> Віртуальна копія фізичного об'єкта, яка імітує його поведінку в реальному часі.</li>
@@ -184,23 +280,9 @@ stateDiagram-v2
     </div>
 </div>
 
-<!-- SECTION 14: PROFESSIONAL USAGE GUIDELINES -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">14</span><h2 class="section-title">Професійні настанови з використання</h2></div>
-    <div class="glass-card flow-step">
-        <p>Для максимально ефективної роботи з Симулятором ATLAS рекомендується дотримуватися наступних правил:</p>
-        <ul>
-            <li><b>Стабільність стріму:</b> Запускайте симулятор на виділеному ядрі CPU для уникнення мікро-затримок у генерації телеметрії.</li>
-            <li><b>Масштабування:</b> При додаванні понад 1000 віртуальних сенсорів перемикайте <code>sensors_db.py</code> в режим <i>Async Batching</i>.</li>
-            <li><b>Моніторинг:</b> Регулярно перевіряйте розмір файлу <code>live_state.json</code> — він не повинен перевищувати 5МБ для збереження миттєвої реакції UI.</li>
-            <li><b>Архівація:</b> Налаштуйте автоматичну очистку застарілих симуляційних логів раз на тиждень.</li>
-        </ul>
-    </div>
-</div>
-
 <!-- FOOTER NAV -->
 <div class="passport-footer">
-    <a href="./atlas_final/" class="mega-btn"><span class="btn-icon">🔙</span><span class="btn-text">ПОВЕРНУТИСЬ ДО АТЛАСУ</span></a>
+    <a href="../../atlas_final/" class="mega-btn"><span class="btn-icon">🔙</span><span class="btn-text">ПОВЕРНУТИСЬ ДО АТЛАСУ</span></a>
 </div>
 
 </div>
