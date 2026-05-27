@@ -112,3 +112,4 @@ extra_javascript:
   - https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js
   - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js
   - javascripts/syntax_highlighter.js
+  - javascripts/diagram_lightbox.js
