@@ -20,7 +20,7 @@
 }
 
 .mermaid svg {
-    min-width: 850px !important; /* Force minimum width for perfect legibility */
+    max-width: 100%;
     height: auto !important; /* Keep aspect ratio intact */
 }
 

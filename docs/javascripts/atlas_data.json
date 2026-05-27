@@ -1561,47 +1561,12 @@
   "edges": [
     {
       "source": "file_diagnose_py",
-      "target": "file_src_core_diagnostics_scanner_py",
-      "type": "import"
-    },
-    {
-      "source": "file_diagnose_py",
       "target": "file_src_core_diagnostics_reporter_py",
       "type": "import"
     },
     {
-      "source": "file_main_py",
-      "target": "file_src_ui_segments_dashboard_py",
-      "type": "import"
-    },
-    {
-      "source": "file_main_py",
-      "target": "file_src_app_config_py",
-      "type": "import"
-    },
-    {
-      "source": "file_main_py",
-      "target": "file_src_ui_segments_splash_py",
-      "type": "import"
-    },
-    {
-      "source": "file_main_py",
-      "target": "file_src_ui_segments_sidebar_py",
-      "type": "import"
-    },
-    {
-      "source": "file_main_py",
-      "target": "file_src_utils_logging_config_py",
-      "type": "import"
-    },
-    {
-      "source": "file_main_py",
-      "target": "file_src_core_analytics_filter_py",
-      "type": "import"
-    },
-    {
-      "source": "file_main_py",
-      "target": "file_src_ui_components_styles_py",
+      "source": "file_diagnose_py",
+      "target": "file_src_core_diagnostics_scanner_py",
       "type": "import"
     },
     {
@@ -1611,12 +1576,47 @@
     },
     {
       "source": "file_main_py",
+      "target": "file_src_ui_segments_dashboard_py",
+      "type": "import"
+    },
+    {
+      "source": "file_main_py",
+      "target": "file_src_utils_logging_config_py",
+      "type": "import"
+    },
+    {
+      "source": "file_main_py",
       "target": "file_src_core_database_loader_py",
       "type": "import"
     },
     {
       "source": "file_main_py",
+      "target": "file_src_core_analytics_filter_py",
+      "type": "import"
+    },
+    {
+      "source": "file_main_py",
       "target": "file_src_utils_memory_helper_py",
+      "type": "import"
+    },
+    {
+      "source": "file_main_py",
+      "target": "file_src_app_config_py",
+      "type": "import"
+    },
+    {
+      "source": "file_main_py",
+      "target": "file_src_ui_segments_sidebar_py",
+      "type": "import"
+    },
+    {
+      "source": "file_main_py",
+      "target": "file_src_ui_segments_splash_py",
+      "type": "import"
+    },
+    {
+      "source": "file_main_py",
+      "target": "file_src_ui_components_styles_py",
       "type": "import"
     },
     {
@@ -1651,17 +1651,17 @@
     },
     {
       "source": "file_scripts_system_refactor_run_py",
-      "target": "file_src_ml_forecast_controller_py",
-      "type": "import"
-    },
-    {
-      "source": "file_scripts_system_refactor_run_py",
       "target": "file_src_ml_backtest_py",
       "type": "import"
     },
     {
       "source": "file_scripts_system_refactor_run_py",
       "target": "file_src_ui_components_charts_py",
+      "type": "import"
+    },
+    {
+      "source": "file_scripts_system_refactor_run_py",
+      "target": "file_src_ml_forecast_controller_py",
       "type": "import"
     },
     {
@@ -1701,27 +1701,17 @@
     },
     {
       "source": "file_src_core_analytics_filter_py",
-      "target": "file_src_app_config_py",
+      "target": "file_src_utils_validators_py",
       "type": "import"
     },
     {
       "source": "file_src_core_analytics_filter_py",
-      "target": "file_src_utils_validators_py",
+      "target": "file_src_app_config_py",
       "type": "import"
     },
     {
       "source": "file_src_core_database_archive_py",
       "target": "file_src_core_database_py",
-      "type": "import"
-    },
-    {
-      "source": "file_src_core_database_loader_py",
-      "target": "file_src_core_kaggle_loader_py",
-      "type": "import"
-    },
-    {
-      "source": "file_src_core_database_loader_py",
-      "target": "file_src_services_data_db_seeder_py",
       "type": "import"
     },
     {
@@ -1736,12 +1726,22 @@
     },
     {
       "source": "file_src_core_database_loader_py",
-      "target": "file_src_utils_validators_py",
+      "target": "file_src_services_data_db_seeder_py",
       "type": "import"
     },
     {
       "source": "file_src_core_database_loader_py",
       "target": "file_src_services_data_db_services_py",
+      "type": "import"
+    },
+    {
+      "source": "file_src_core_database_loader_py",
+      "target": "file_src_utils_validators_py",
+      "type": "import"
+    },
+    {
+      "source": "file_src_core_database_loader_py",
+      "target": "file_src_core_kaggle_loader_py",
       "type": "import"
     },
     {
@@ -1756,7 +1756,17 @@
     },
     {
       "source": "file_src_ml_backtest_py",
+      "target": "file_src_utils_error_handlers_py",
+      "type": "import"
+    },
+    {
+      "source": "file_src_ml_backtest_py",
       "target": "file_src_core_database_py",
+      "type": "import"
+    },
+    {
+      "source": "file_src_ml_backtest_py",
+      "target": "file_src_ml_metrics_engine_py",
       "type": "import"
     },
     {
@@ -1767,16 +1777,6 @@
     {
       "source": "file_src_ml_backtest_py",
       "target": "file_src_ml_predict_v2_py",
-      "type": "import"
-    },
-    {
-      "source": "file_src_ml_backtest_py",
-      "target": "file_src_utils_error_handlers_py",
-      "type": "import"
-    },
-    {
-      "source": "file_src_ml_backtest_py",
-      "target": "file_src_ml_metrics_engine_py",
       "type": "import"
     },
     {
@@ -1796,17 +1796,12 @@
     },
     {
       "source": "file_src_ml_metrics_engine_py",
-      "target": "file_src_core_kaggle_loader_py",
-      "type": "import"
-    },
-    {
-      "source": "file_src_ml_metrics_engine_py",
       "target": "file_src_utils_error_handlers_py",
       "type": "import"
     },
     {
       "source": "file_src_ml_metrics_engine_py",
-      "target": "file_src_core_database_py",
+      "target": "file_src_core_kaggle_loader_py",
       "type": "import"
     },
     {
@@ -1815,6 +1810,11 @@
       "type": "import"
     },
     {
+      "source": "file_src_ml_metrics_engine_py",
+      "target": "file_src_core_database_py",
+      "type": "import"
+    },
+    {
       "source": "file_src_ml_model_loader_py",
       "target": "file_src_utils_error_handlers_py",
       "type": "import"
@@ -1827,11 +1827,6 @@
     {
       "source": "file_src_ml_predict_v2_py",
       "target": "file_src_utils_error_handlers_py",
-      "type": "import"
-    },
-    {
-      "source": "file_src_ml_predict_v2_py",
-      "target": "file_src_ml_vectorizer_py",
       "type": "import"
     },
     {
@@ -1840,8 +1835,8 @@
       "type": "import"
     },
     {
-      "source": "file_src_ml_train_lstm_py",
-      "target": "file_src_core_database_py",
+      "source": "file_src_ml_predict_v2_py",
+      "target": "file_src_ml_vectorizer_py",
       "type": "import"
     },
     {
@@ -1850,12 +1845,7 @@
       "type": "import"
     },
     {
-      "source": "file_src_ml_train_v1_py",
-      "target": "file_src_ml_utils_plots_py",
-      "type": "import"
-    },
-    {
-      "source": "file_src_ml_train_v1_py",
+      "source": "file_src_ml_train_lstm_py",
       "target": "file_src_core_database_py",
       "type": "import"
     },
@@ -1866,7 +1856,17 @@
     },
     {
       "source": "file_src_ml_train_v1_py",
+      "target": "file_src_ml_utils_plots_py",
+      "type": "import"
+    },
+    {
+      "source": "file_src_ml_train_v1_py",
       "target": "file_src_core_logger_py",
+      "type": "import"
+    },
+    {
+      "source": "file_src_ml_train_v1_py",
+      "target": "file_src_core_database_py",
       "type": "import"
     },
     {
@@ -1886,12 +1886,22 @@
     },
     {
       "source": "file_src_services_data_db_seeder_py",
-      "target": "file_src_core_physics_py",
+      "target": "file_src_core_config_py",
       "type": "import"
     },
     {
       "source": "file_src_services_data_db_seeder_py",
       "target": "file_src_core_database_py",
+      "type": "import"
+    },
+    {
+      "source": "file_src_services_data_db_seeder_py",
+      "target": "file_src_core_physics_py",
+      "type": "import"
+    },
+    {
+      "source": "file_src_services_data_db_seeder_py",
+      "target": "file_src_core_logger_py",
       "type": "import"
     },
     {
@@ -1900,23 +1910,13 @@
       "type": "import"
     },
     {
-      "source": "file_src_services_data_db_seeder_py",
+      "source": "file_src_services_data_db_services_py",
       "target": "file_src_core_logger_py",
-      "type": "import"
-    },
-    {
-      "source": "file_src_services_data_db_seeder_py",
-      "target": "file_src_core_config_py",
       "type": "import"
     },
     {
       "source": "file_src_services_data_db_services_py",
       "target": "file_src_core_database_py",
-      "type": "import"
-    },
-    {
-      "source": "file_src_services_data_db_services_py",
-      "target": "file_src_core_logger_py",
       "type": "import"
     },
     {
@@ -1931,7 +1931,7 @@
     },
     {
       "source": "file_src_services_simulation_data_generator_py",
-      "target": "file_src_core_physics_py",
+      "target": "file_src_services_data_db_seeder_py",
       "type": "import"
     },
     {
@@ -1941,12 +1941,7 @@
     },
     {
       "source": "file_src_services_simulation_data_generator_py",
-      "target": "file_src_services_data_db_seeder_py",
-      "type": "import"
-    },
-    {
-      "source": "file_src_services_simulation_data_generator_py",
-      "target": "file_src_services_simulation_generator_constants_py",
+      "target": "file_src_core_physics_py",
       "type": "import"
     },
     {
@@ -1955,8 +1950,8 @@
       "type": "import"
     },
     {
-      "source": "file_src_services_simulation_sensors_db_py",
-      "target": "file_src_core_config_py",
+      "source": "file_src_services_simulation_data_generator_py",
+      "target": "file_src_services_simulation_generator_constants_py",
       "type": "import"
     },
     {
@@ -1965,13 +1960,13 @@
       "type": "import"
     },
     {
-      "source": "file_src_ui_components_cards_py",
-      "target": "file_src_utils_ui_helpers_py",
+      "source": "file_src_services_simulation_sensors_db_py",
+      "target": "file_src_core_config_py",
       "type": "import"
     },
     {
-      "source": "file_src_ui_components_charts___init___py",
-      "target": "file_src_ui_components_charts_academic_py",
+      "source": "file_src_ui_components_cards_py",
+      "target": "file_src_utils_ui_helpers_py",
       "type": "import"
     },
     {
@@ -1985,18 +1980,13 @@
       "type": "import"
     },
     {
-      "source": "file_src_ui_segments_dashboard_py",
-      "target": "file_src_ui_segments_live_kpi_py",
+      "source": "file_src_ui_components_charts___init___py",
+      "target": "file_src_ui_components_charts_academic_py",
       "type": "import"
     },
     {
       "source": "file_src_ui_segments_dashboard_py",
-      "target": "file_src_ui_components_styles_py",
-      "type": "import"
-    },
-    {
-      "source": "file_src_ui_segments_dashboard_py",
-      "target": "file_src_core_analytics_filter_py",
+      "target": "file_src_ui_views_advanced_py",
       "type": "import"
     },
     {
@@ -2006,12 +1996,22 @@
     },
     {
       "source": "file_src_ui_segments_dashboard_py",
+      "target": "file_src_ui_segments_live_kpi_py",
+      "type": "import"
+    },
+    {
+      "source": "file_src_ui_segments_dashboard_py",
       "target": "file_src_core_database_loader_py",
       "type": "import"
     },
     {
       "source": "file_src_ui_segments_dashboard_py",
-      "target": "file_src_ui_views_advanced_py",
+      "target": "file_src_core_analytics_filter_py",
+      "type": "import"
+    },
+    {
+      "source": "file_src_ui_segments_dashboard_py",
+      "target": "file_src_ui_components_styles_py",
       "type": "import"
     },
     {
@@ -2026,7 +2026,7 @@
     },
     {
       "source": "file_src_ui_segments_sidebar_py",
-      "target": "file_src_app_config_py",
+      "target": "file_src_core_py",
       "type": "import"
     },
     {
@@ -2036,22 +2036,22 @@
     },
     {
       "source": "file_src_ui_segments_sidebar_py",
-      "target": "file_src_core_py",
-      "type": "import"
-    },
-    {
-      "source": "file_src_ui_segments_sidebar_py",
-      "target": "file_src_ui_components_styles_py",
-      "type": "import"
-    },
-    {
-      "source": "file_src_ui_segments_sidebar_py",
       "target": "file_src_core_database_loader_py",
       "type": "import"
     },
     {
       "source": "file_src_ui_segments_sidebar_py",
+      "target": "file_src_app_config_py",
+      "type": "import"
+    },
+    {
+      "source": "file_src_ui_segments_sidebar_py",
       "target": "file_src_utils_memory_helper_py",
+      "type": "import"
+    },
+    {
+      "source": "file_src_ui_segments_sidebar_py",
+      "target": "file_src_ui_components_styles_py",
       "type": "import"
     },
     {
@@ -2071,22 +2071,22 @@
     },
     {
       "source": "file_src_ui_views_alerts_py",
-      "target": "file_src_core_py",
-      "type": "import"
-    },
-    {
-      "source": "file_src_ui_views_alerts_py",
       "target": "file_src_services_data_db_services_py",
       "type": "import"
     },
     {
-      "source": "file_src_ui_views_consumption_py",
-      "target": "file_src_core_analytics_aggregator_py",
+      "source": "file_src_ui_views_alerts_py",
+      "target": "file_src_core_py",
       "type": "import"
     },
     {
       "source": "file_src_ui_views_consumption_py",
       "target": "file_src_utils_ui_helpers_py",
+      "type": "import"
+    },
+    {
+      "source": "file_src_ui_views_consumption_py",
+      "target": "file_src_core_analytics_aggregator_py",
       "type": "import"
     },
     {
@@ -2101,17 +2101,17 @@
     },
     {
       "source": "file_src_ui_views_forecast_py",
-      "target": "file_src_ui_views_forecast_components_layouts_py",
-      "type": "import"
-    },
-    {
-      "source": "file_src_ui_views_forecast_py",
       "target": "file_src_ui_views_forecast_components_header_py",
       "type": "import"
     },
     {
       "source": "file_src_ui_views_forecast_py",
       "target": "file_src_ui_views_forecast_components_engine_py",
+      "type": "import"
+    },
+    {
+      "source": "file_src_ui_views_forecast_py",
+      "target": "file_src_ui_components_charts_py",
       "type": "import"
     },
     {
@@ -2126,17 +2126,17 @@
     },
     {
       "source": "file_src_ui_views_forecast_py",
+      "target": "file_src_ui_views_forecast_components_audits_py",
+      "type": "import"
+    },
+    {
+      "source": "file_src_ui_views_forecast_py",
       "target": "file_src_ml_forecast_controller_py",
       "type": "import"
     },
     {
       "source": "file_src_ui_views_forecast_py",
-      "target": "file_src_ui_components_charts_py",
-      "type": "import"
-    },
-    {
-      "source": "file_src_ui_views_forecast_py",
-      "target": "file_src_ui_views_forecast_components_audits_py",
+      "target": "file_src_ui_views_forecast_components_layouts_py",
       "type": "import"
     },
     {
@@ -2146,22 +2146,22 @@
     },
     {
       "source": "file_src_ui_views_historical_audit_py",
-      "target": "file_src_ui_components_charts_py",
-      "type": "import"
-    },
-    {
-      "source": "file_src_ui_views_historical_audit_py",
       "target": "file_src_core_database_archive_py",
       "type": "import"
     },
     {
       "source": "file_src_ui_views_historical_audit_py",
-      "target": "file_src_utils_ui_helpers_py",
+      "target": "file_src_ui_components_charts_py",
       "type": "import"
     },
     {
       "source": "file_src_ui_views_historical_audit_py",
       "target": "file_src_ui_views_historical_audit_components_data_table_py",
+      "type": "import"
+    },
+    {
+      "source": "file_src_ui_views_historical_audit_py",
+      "target": "file_src_utils_ui_helpers_py",
       "type": "import"
     },
     {
@@ -2191,7 +2191,7 @@
     },
     {
       "source": "file_src_ui_views_forecast_components_audits_py",
-      "target": "file_src_ml_backtest_py",
+      "target": "file_src_ui_views_forecast_components_engine_py",
       "type": "import"
     },
     {
@@ -2206,17 +2206,17 @@
     },
     {
       "source": "file_src_ui_views_forecast_components_audits_py",
-      "target": "file_src_ui_views_forecast_components_engine_py",
+      "target": "file_src_ml_forecast_controller_py",
+      "type": "import"
+    },
+    {
+      "source": "file_src_ui_views_forecast_components_audits_py",
+      "target": "file_src_ml_backtest_py",
       "type": "import"
     },
     {
       "source": "file_src_ui_views_forecast_components_audits_py",
       "target": "file_src_ui_views_forecast_components_constants_py",
-      "type": "import"
-    },
-    {
-      "source": "file_src_ui_views_forecast_components_audits_py",
-      "target": "file_src_ml_forecast_controller_py",
       "type": "import"
     },
     {
@@ -2231,7 +2231,7 @@
     },
     {
       "source": "file_src_ui_views_forecast_components_engine_py",
-      "target": "file_src_ml_forecast_controller_py",
+      "target": "file_src_core_kaggle_loader_py",
       "type": "import"
     },
     {
@@ -2241,11 +2241,6 @@
     },
     {
       "source": "file_src_ui_views_forecast_components_engine_py",
-      "target": "file_src_core_kaggle_loader_py",
-      "type": "import"
-    },
-    {
-      "source": "file_src_ui_views_forecast_components_grid_py",
       "target": "file_src_ml_forecast_controller_py",
       "type": "import"
     },
@@ -2256,17 +2251,17 @@
     },
     {
       "source": "file_src_ui_views_forecast_components_grid_py",
+      "target": "file_src_ml_forecast_controller_py",
+      "type": "import"
+    },
+    {
+      "source": "file_src_ui_views_forecast_components_grid_py",
       "target": "file_src_utils_ui_helpers_py",
       "type": "import"
     },
     {
       "source": "file_src_ui_views_forecast_components_header_py",
       "target": "file_src_ui_views_forecast_components_constants_py",
-      "type": "import"
-    },
-    {
-      "source": "file_src_ui_views_forecast_components_layouts_py",
-      "target": "file_src_ml_forecast_controller_py",
       "type": "import"
     },
     {
@@ -2285,18 +2280,23 @@
       "type": "import"
     },
     {
+      "source": "file_src_ui_views_forecast_components_layouts_py",
+      "target": "file_src_ml_forecast_controller_py",
+      "type": "import"
+    },
+    {
       "source": "file_src_utils_helpers_py",
       "target": "file_src_app_types_py",
       "type": "import"
     },
     {
       "source": "file_tests_conftest_py",
-      "target": "file_src_core_config_py",
+      "target": "file_src_core_database_loader_py",
       "type": "import"
     },
     {
       "source": "file_tests_conftest_py",
-      "target": "file_src_core_database_loader_py",
+      "target": "file_src_core_config_py",
       "type": "import"
     },
     {
@@ -2336,12 +2336,12 @@
     },
     {
       "source": "file_tests_test_security_py",
-      "target": "file_src_utils_error_handlers_py",
+      "target": "file_src_utils_validators_py",
       "type": "import"
     },
     {
       "source": "file_tests_test_security_py",
-      "target": "file_src_utils_validators_py",
+      "target": "file_src_utils_error_handlers_py",
       "type": "import"
     },
     {

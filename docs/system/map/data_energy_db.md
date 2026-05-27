@@ -118,6 +118,10 @@
                     REAL revenue
                     REAL losses_cost
                 }
+                transmission_lines ||--o{ load_data : "measures"
+                transmission_lines ||--o{ generation_data : "feeds"
+                transmission_lines ||--o{ alerts_data : "logs"
+                transmission_lines ||--o{ financial_data : "prices"
             </div>
         </div>
     </div>
