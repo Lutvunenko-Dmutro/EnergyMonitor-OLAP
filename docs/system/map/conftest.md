@@ -143,7 +143,7 @@
                     Генерує еталонний часовий ряд за 24 години для регіону "Київ" та підстанції "Київ ТЕС". Навантаження формується за лінійною функцією:
                 </p>
                 <div class="math-block" style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 6px; text-align: center; margin-bottom: 8px; font-family: monospace; color: var(--accent);">
-                    L(t) = 100 + 2 * t, &nbsp;&nbsp;&nbsp; G(t) = 95 + 1.5 * t, &nbsp;&nbsp;&nbsp; H(t) = 0.9 &nbsp;&nbsp; (∀ t ∈ [0, 23])
+                    $$ L(t) = 100 + 2 * t, &nbsp;&nbsp;&nbsp; G(t) = 95 + 1.5 * t, &nbsp;&nbsp;&nbsp; H(t) = 0.9 &nbsp;&nbsp; (∀ t ∈ [0, 23]) $$
                 </div>
                 <p style="margin: 0; font-size: 13.5px; color: var(--text-dim);">
                     Де L(t) - активне навантаження в МВт, G(t) - генерація в МВт, H(t) - індекс технічного стану (Health Score).

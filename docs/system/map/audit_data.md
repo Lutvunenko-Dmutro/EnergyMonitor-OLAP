@@ -129,7 +129,7 @@
                     Якщо фізичний показник (температура, вологість, КВВП) дорівнює строго `0.0` протягом тривалого періоду, це може бути результатом системної помилки датчиків. Аудитор розраховує частку нулів $Z_c$ для кожної колонки $c$:
                 </p>
                 <div class="math-block" style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 6px; text-align: center; margin-bottom: 8px; font-family: monospace; color: var(--accent);">
-                    Z_c = \frac{1}{N} \sum_{i=1}^N [x_{i,c} == 0] \times 100\%
+                    $$ Z_c = \frac{1}{N} \sum_{i=1}^N [x_{i,c} == 0] \times 100\% $$
                 </div>
             </div>
 

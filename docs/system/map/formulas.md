@@ -122,9 +122,7 @@
                 <p style="margin: 0 0 8px 0; font-size: 13.5px; color: var(--text-dim);">
                     Згідно з ДСТУ, математична формула має бути розташована суворо по центру сторінки, а її порядковий номер — вирівняний по правому краю. Для забезпечення цього без створення громіздких невидимих таблиць, двигун впроваджує до абзацу формули дві точки табуляції на позиціях $T_1 = 8.5$ см (вирівнювання за центром) та $T_2 = 17.0$ см (вирівнювання за правим краєм):
                 </p>
-                <div class="math-block" style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 6px; text-align: center; margin-bottom: 8px; font-family: monospace; color: var(--accent);">
-                    $$ \text{TabStops} = \{ (8.5\text{cm}, \text{Center}), (17.0\text{cm}, \text{Right}) \} \quad \implies \quad \text{Format} = \text{"\textbackslash t Formula \textbackslash t (Chapter.Number)"} $$
-                </div>
+                <pre style="margin-bottom: 8px;"><code class="language-python">TabStops = {(8.5cm, Center), (17.0cm, Right)}  =>  Format = "\t Formula \t (Chapter.Number)"</code></pre>
             </div>
 
             <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); padding: 15px; border-radius: 8px;">

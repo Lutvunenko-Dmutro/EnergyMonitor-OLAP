@@ -87,7 +87,7 @@
         <div class="diagram-outer-wrapper">
             <div class="mermaid">
             graph TD
-                START("Запуск quality_check.py <target>") --> OPEN_DOC("1. Відкриття файлу DOCX (Document)")
+                START("Запуск quality_check.py &lt;target&gt;") --> OPEN_DOC("1. Відкриття файлу DOCX (Document)")
                 
                 OPEN_DOC --> TEST_1("2. check_margins(): Перевірка полів сторінки (см)")
                 TEST_1 --> TEST_2("3. check_mixed_alphabets(): Детектор Cyrillic/Latin слів")
@@ -124,10 +124,10 @@
                     Індекс TTR відображає відношення кількості унікальних слів (лем/типів, $V$) до загальної кількості слів у тексті (токенів, $N$). Для якісних академічних текстів українською мовою значення має перевищувати $0.35$:
                 </p>
                 <div class="math-block" style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 6px; text-align: center; margin-bottom: 8px; font-family: monospace; color: var(--accent);">
-                    \text{TTR} = \frac{|V|}{N} \quad \implies \quad \text{Audit} = \begin{cases} 
+                    $$ \text{TTR} = \frac{|V|}{N} \quad \implies \quad \text{Audit} = \begin{cases} 
                       \text{Pass}, & \text{TTR} \ge 0.35 \\
                       \text{Warning (AI signature)}, & \text{TTR} < 0.35 
-                   \end{cases}
+                   \end{cases} $$
                 </div>
             </div>
 
@@ -137,10 +137,10 @@
                     AI-асистенти прагнуть писати речення однакової синтаксичної складності, що дає аномально низьку дисперсію $\sigma^2$ довжини речень $x_i$ відносно середнього значення $\mu$. Жива мова характеризується чергуванням довгих описів та коротких тверджень:
                 </p>
                 <div class="math-block" style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 6px; text-align: center; margin-bottom: 8px; font-family: monospace; color: var(--accent);">
-                    \sigma^2 = \frac{1}{M} \sum_{i=1}^M (x_i - \mu)^2 \quad \implies \quad \text{Status} = \begin{cases} 
+                    $$ \sigma^2 = \frac{1}{M} \sum_{i=1}^M (x_i - \mu)^2 \quad \implies \quad \text{Status} = \begin{cases} 
                       \text{Monotonous (AI)}, & \sigma^2 < 30 \\
                       \text{Natural (Human)}, & \sigma^2 \ge 30 
-                   \end{cases}
+                   \end{cases} $$
                 </div>
             </div>
 

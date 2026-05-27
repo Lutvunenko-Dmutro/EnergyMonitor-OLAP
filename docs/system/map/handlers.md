@@ -81,11 +81,11 @@
                     Якщо користувачем не вказано кастомну ширину зображення (параметр <code>?w=W_user</code>), то фінальний розмір $W_{\text{final}}$ на сторінці визначається на основі коефіцієнта пропорцій (Aspect Ratio) растрового файлу $A = H / W$:
                 </p>
                 <div class="math-block" style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 6px; text-align: center; margin-bottom: 8px; font-family: monospace; color: var(--accent);">
-                    W_{\text{final}} = \begin{cases} 
+                    $$ W_{\text{final}} = \begin{cases} 
                     8.0 \text{ см}, & \text{якщо } A > 1.2 \quad (\text{виражена книжкова орієнтація}) \\
                     11.0 \text{ см}, & \text{якщо } 0.8 < A \le 1.2 \quad (\text{квадратна орієнтація}) \\
                     15.5 \text{ см}, & \text{якщо } A \le 0.8 \quad (\text{виражена альбомна орієнтація})
-                    \end{cases}
+                    \end{cases} $$
                 </div>
             </div>
 

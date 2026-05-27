@@ -95,7 +95,7 @@
                 LOOP_LINES --> FILTER_WEB("5. Фільтрація: Видалення навігаційних лінків & Mermaid схем")
                 FILTER_WEB --> PARSE_STRUCT{"6. Визначення типу рядка за маркером"}
                 
-                PARSE_STRUCT -- "``` (код)" --> PROC_CODE("7a. add_code(): Збір лістингу вConsolas")
+                PARSE_STRUCT -- "Код (code)" --> PROC_CODE("7a. add_code(): Збір лістингу вConsolas")
                 PARSE_STRUCT -- "$$ (формули)" --> PROC_MATH("7b. add_formula(): Розмітка математичних маркерів ⇲")
                 PARSE_STRUCT -- "| (таблиця)" --> PROC_TABLE("7c. add_table(): Парсинг сітки таблиці")
                 PARSE_STRUCT -- "# (заголовок)" --> PROC_HEAD("7d. add_h1-h4(): Запис ієрархії розділів")
@@ -129,9 +129,7 @@
                 <p style="margin: 0 0 8px 0; font-size: 13.5px; color: var(--text-dim);">
                     Для запобігання втрати LaTeX нотації всередині речень, двигун застосовує регулярний вираз для пошуку інлайнових формул $\dots$ та замінює їх на маркерні дужки `⇲ ... ⇱` для подальшої обробки COM-сервером:
                 </p>
-                <div class="math-block" style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 6px; text-align: center; margin-bottom: 8px; font-family: monospace; color: var(--accent);">
-                    T_{\text{processed}} = \text{RegExSub}(r'\$(.+?)\$', r'⇲\1⇱', T_{\text{raw}})
-                </div>
+                <pre style="margin-bottom: 8px;"><code class="language-python">T_processed = RegExSub(r'\$(.+?)\$', r'⇲\1⇱', T_raw)</code></pre>
             </div>
 
             <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); padding: 15px; border-radius: 8px;">
@@ -139,9 +137,7 @@
                 <p style="margin: 0 0 8px 0; font-size: 13.5px; color: var(--text-dim);">
                     Оскільки зміст Word є динамічним полем, двигун будує його за допомогою OXML-інструкції (Office XML). Створюється тег `w:instrText` зі спеціальними інструкціями збору рівнів (від 1 до 3), гіперпосилань (`\h`) та приховування номерів на екрані (`\z`):
                 </p>
-                <div class="math-block" style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 6px; text-align: center; margin-bottom: 8px; font-family: monospace; color: var(--accent);">
-                    $$ \text{instrText} = \text{" TOC \textbackslash\textbackslash o \textbackslash"1-3\textbackslash" \textbackslash\textbackslash h \textbackslash\textbackslash z \textbackslash\textbackslash u "} $$
-                </div>
+                <pre style="margin-bottom: 8px;"><code class="language-python">instrText = " TOC \o \"1-3\" \h \z \u "</code></pre>
             </div>
         </div>
     </div>

@@ -96,7 +96,7 @@
                 
                 READ_IN --> CHK_FIRST{"5. Чи є файл першим у списку (Title Page)?"}
                 CHK_FIRST -- "Так" --> WRITE_BODY("6a. Запис тіла документа")
-                CHK_FIRST -- "Ні" --> WRITE_BREAK("6b. Запис маркерного розриву <pagebreak> у потік")
+                CHK_FIRST -- "Ні" --> WRITE_BREAK("6b. Запис маркерного розриву &lt;pagebreak&gt; у потік")
                 
                 WRITE_BREAK --> WRITE_BODY
                 WRITE_BODY --> WRITE_SPACE("7. Запис додаткових відступів \n\n")
@@ -127,7 +127,7 @@
                     Нехай $C_i$ — текстовий вміст $i$-го файлу з масиву розділів, а $B$ — рядок маркерного розриву сторінки <code>\n&lt;pagebreak&gt;\n</code>. Фінальний згенерований монолітний документ $M_{\text{merged}}$ описується як послідовне зшивання рядків:
                 </p>
                 <div class="math-block" style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 6px; text-align: center; margin-bottom: 8px; font-family: monospace; color: var(--accent);">
-                    $$ M_{\text{merged}} = C_1 \oplus \bigoplus_{i=2}^{N} \left( B \oplus C_i \oplus \text{"\textbackslash n\textbackslash n"} \right) $$
+                    $$ M_{\text{merged}} = C_1 \oplus \bigoplus_{i=2}^{N} \left( B \oplus C_i \oplus \text{"} \backslash \text{n} \backslash \text{n"} \right) $$
                 </div>
             </div>
 

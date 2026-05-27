@@ -121,7 +121,7 @@
                     У багатокористувацькому інтерфейсі Streamlit користувач може обирати як одну підстанцію, так і декілька. Утиліта <code>normalize_substation_selection</code> приводить будь-який формат вводу до єдиного рядка:
                 </p>
                 <div class="math-block" style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 6px; text-align: center; margin-bottom: 8px; font-family: monospace; color: var(--accent);">
-                    S_{\text{norm}} = \begin{cases} s, & s \in \text{String} \\ s[0], & s \in \text{List} \land |s| \ge 1 \\ \text{"Усі підстанції"}, & s = [] \\ \text{None}, & s = \text{None} \end{cases}
+                    $$ S_{\text{norm}} = \begin{cases} s, & s \in \text{String} \\ s[0], & s \in \text{List} \land |s| \ge 1 \\ \text{"Усі підстанції"}, & s = [] \\ \text{None}, & s = \text{None} \end{cases} $$
                 </div>
             </div>
             

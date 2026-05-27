@@ -146,7 +146,7 @@
                     Моделі навчалися на багатофакторному наборі з $M$ колонок. Щоб де-нормалізувати окремий прогноз навантаження за допомогою <code>inverse_transform</code>, розроблено алгоритм алокації буфера-заглушки (dummy array):
                 </p>
                 <div class="math-block" style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 6px; text-align: center; margin-bottom: 8px; font-family: monospace; color: var(--accent);">
-                    \mathbf{X}_{\text{dummy}} = \begin{bmatrix} \hat{\mathbf{y}}_{\text{scaled}} & \mathbf{0} & \dots & \mathbf{0} \end{bmatrix}_{N \times M} \quad \implies \quad \mathbf{y}_{\text{actual}} = \left(\text{Scaler}^{-1}(\mathbf{X}_{\text{dummy}})\right)[:, 0]
+                    $$ \mathbf{X}_{\text{dummy}} = \begin{bmatrix} \hat{\mathbf{y}}_{\text{scaled}} & \mathbf{0} & \dots & \mathbf{0} \end{bmatrix}_{N \times M} \quad \implies \quad \mathbf{y}_{\text{actual}} = \left(\text{Scaler}^{-1}(\mathbf{X}_{\text{dummy}})\right)[:, 0] $$
                 </div>
             </div>
         </div>

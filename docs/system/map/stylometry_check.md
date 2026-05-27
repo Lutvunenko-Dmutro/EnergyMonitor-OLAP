@@ -86,7 +86,7 @@
         <div class="diagram-outer-wrapper">
             <div class="mermaid">
             graph TD
-                START("Запуск stylometry_check.py <target>") --> OPEN_DOC("1. Зчитування файлу DOCX (python-docx)")
+                START("Запуск stylometry_check.py &lt;target&gt;") --> OPEN_DOC("1. Зчитування файлу DOCX (python-docx)")
                 
                 OPEN_DOC --> LOOP_PARA("2. Перебір абзаців документа")
                 LOOP_PARA --> FILT_TECH{"3. Чи містить абзац код, додатки або літературу?"}
@@ -107,8 +107,8 @@
                 CALC_VEC --> COMP_VARIANCE("8. Розрахунок середнього, дисперсії та RSD (%) для кожної метрики")
                 
                 COMP_VARIANCE --> STATS_COMP{"9. Чи перевищує RSD хоча б однієї метрики 25%?"}
-                STATS_COMP -- "Так (RSD > 25%)" --> SET_JUMP("10a. Статус: СТРИБОК СТИЛЮ (issues > 0)")
-                STATS_COMP -- "Ні (RSD <= 25%)" --> SET_STABLE("10b. Статус: СТАБІЛЬНО (issues = 0)")
+                STATS_COMP -- "Так (RSD &gt; 25%)" --> SET_JUMP("10a. Статус: СТРИБОК СТИЛЮ (issues &gt; 0)")
+                STATS_COMP -- "Ні (RSD &lt;= 25%)" --> SET_STABLE("10b. Статус: СТАБІЛЬНО (issues = 0)")
                 
                 SET_JUMP & SET_STABLE --> GEN_VERDICT("11. Формування фінального вердикту про цілісність")
                 GEN_VERDICT --> END("Завершення аудиту")
@@ -154,10 +154,10 @@
                     Стійкість авторського стилю вважається порушеною (наявність "стрибка"), якщо хоча б один вимір вектора перевищує критичний поріг варіації у 25%:
                 </p>
                 <div class="math-block" style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 6px; text-align: center; margin-bottom: 8px; font-family: monospace; color: var(--accent);">
-                    \text{Verdict} = \begin{cases} 
+                    $$ \text{Verdict} = \begin{cases} 
                       \text{Stable style}, & \forall m \in [1, 4]: \text{RSD}_m \le 25\% \\
                       \text{Style Jump Alert}, & \exists m \in [1, 4]: \text{RSD}_m > 25\% 
-                   \end{cases}
+                   \end{cases} $$
                 </div>
             </div>
         </div>

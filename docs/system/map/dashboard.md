@@ -123,12 +123,12 @@
                     Оскільки збірка складається з дискретних етапів різної тривалості, прогрес-бар оновлюється за кусково-лінійною функцією, де кожному етапу виділяється певний фіксований відсоток шкали $S$:
                 </p>
                 <div class="math-block" style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 6px; text-align: center; margin-bottom: 8px; font-family: monospace; color: var(--accent);">
-                    S(t) = \begin{cases} 
+                    $$ S(t) = \begin{cases} 
                       10, & t = \text{taskkill} \\
                       10 + 4 \cdot k, & k \in [1, N] \quad (\text{конвертація } k\text{-го розділу}) \\
                       80, & t = \text{злиття файлів} \\
                       90 + 10 \cdot p, & p \in [0, 1] \quad (\text{фінальна Word оптимізація}) 
-                   \end{cases}
+                   \end{cases} $$
                 </div>
             </div>
 

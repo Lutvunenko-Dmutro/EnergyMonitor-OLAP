@@ -122,7 +122,7 @@
                     Наївне прогнозування базується на припущенні, що завтрашній день $y(t + 24)$ буде ідентичним сьогоднішньому дню $x(t)$. Для нормалізованого вікна $X_{\text{test}} \in \mathbb{R}^{S \times 24 \times 1}$ наївний прогноз отримується спрощеною зміною розмірності (reshape):
                 </p>
                 <div class="math-block" style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 6px; text-align: center; margin-bottom: 8px; font-family: monospace; color: var(--accent);">
-                    \hat{y}_{\text{naive}}(t + i) = x(t - 24 + i) \quad (\forall i \in [0, 23])
+                    $$ \hat{y}_{\text{naive}}(t + i) = x(t - 24 + i) \quad (\forall i \in [0, 23]) $$
                 </div>
             </div>
             
@@ -132,7 +132,7 @@
                     Оскільки кожне ковзне вікно дає прогноз на 24 години, просте накладання призведе до наявності 24 дублюючих значень для кожної години. Для побудови безперервної лінії 14 днів (336 годин) застосовується кроковий пробіг з інтервалом $\Delta = 24$:
                 </p>
                 <div class="math-block" style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 6px; text-align: center; margin-bottom: 8px; font-family: monospace; color: var(--accent);">
-                    \mathbf{A}_{\text{stitched}} = \bigcup_{k=0}^{K} \hat{\mathbf{y}}[k \cdot 24] \quad (\text{де } K = 14)
+                    $$ \mathbf{A}_{\text{stitched}} = \bigcup_{k=0}^{K} \hat{\mathbf{y}}[k \cdot 24] \quad (\text{де } K = 14) $$
                 </div>
                 <p style="margin: 0; font-size: 13.5px; color: var(--text-dim);">
                     Це створює суцільну часову шкалу без розривів та усереднень.

@@ -118,7 +118,7 @@
                     Перевіряє, що ціноутворення відповідає правилам енергетичного ринку. Розрахунок цін $P(h)$ обмежується наступними лімітами:
                 </p>
                 <div class="math-block" style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 6px; text-align: center; margin-bottom: 8px; font-family: monospace; color: var(--accent);">
-                    \begin{cases} P(h) \le 5600, & h \in [0, 7) \text{ (Нічний мінімум)} \\ P(h) \le 9000, & h \in [17, 23) \text{ (Вечірній пік)} \end{cases}
+                    $$ \begin{cases} P(h) \le 5600, & h \in [0, 7) \text{ (Нічний мінімум)} \\ P(h) \le 9000, & h \in [17, 23) \text{ (Вечірній пік)} \end{cases} $$
                 </div>
             </div>
             
@@ -138,7 +138,7 @@
                     Перевіряє роботу коефіцієнтів попиту. Навантаження підстанції у вихідний $L_{weekend}$ має бути меншим за робочий день $L_{workday}$ за рахунок системного мультиплікатора $k = 0.8$:
                 </p>
                 <div class="math-block" style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 6px; text-align: center; margin-bottom: 8px; font-family: monospace; color: var(--accent);">
-                    0.7 < \frac{L_{weekend}}{L_{workday}} < 0.95 \quad (\text{Очікуване значення } \approx 0.8)
+                    $$ 0.7 < \frac{L_{weekend}}{L_{workday}} < 0.95 \quad (\text{Очікуване значення } \approx 0.8) $$
                 </div>
             </div>
 

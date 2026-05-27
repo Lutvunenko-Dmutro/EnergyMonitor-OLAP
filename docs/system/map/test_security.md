@@ -133,7 +133,7 @@
                     Вбудований статичний аналізатор коду (AST/Regex). Автоматично обходить дерево каталогу проєкту за допомогою <code>os.walk</code>, ігноруючи віртуальні папки (<code>.venv</code>, <code>.git</code> тощо), та шукає регулярним виразом випадково залишені паролі Neon DB:
                 </p>
                 <div class="math-block" style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 6px; text-align: center; margin-bottom: 8px; font-family: monospace; color: var(--accent);">
-                    \text{Pattern} = \text{re.compile(r'npg\_[a-zA-Z0-9]\{12,\}')}
+                    $$ \text{Pattern} = \text{re.compile(r'npg\_[a-zA-Z0-9]\{12,\}')} $$
                 </div>
                 <p style="margin: 0; font-size: 13.5px; color: var(--text-dim);">
                     Якщо сканер знаходить хоча б один витік у файлах `.py` чи `.md`, тест негайно падає з виведенням списку вразливих файлів.
