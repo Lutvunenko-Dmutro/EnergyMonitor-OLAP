@@ -1,4 +1,4 @@
-# ATLAS_PASSPORT: docs/system/map/data_services_hub.md
+# ATLAS_PASSPORT: docs/system/map/loader.md
 """
 📦 REAL-TIME DATA LOADER (ETL Stream Handler).
 py | Версія: 2.3.0
@@ -94,7 +94,7 @@ def fetch_granular_data(step_key: str) -> Dict[str, pd.DataFrame]:
         return {}
     
     except Exception as e:
-        from streamlit.runtime.scriptrunner.exceptions import RerunException
+        from src.utils.helpers import RerunException
         if isinstance(e, RerunException): raise e
         logger.exception(f"Unexpected error on {step_key}: {e}")
         BOOT_ERRORS[step_key] = type(e).__name__

@@ -10,7 +10,7 @@
 Служить інструментом забезпечення якості математичного ядра та підготовки звітів.
 """
 import math
-# ATLAS_PASSPORT: docs/system/map/analysis_services_hub.md
+# ATLAS_PASSPORT: docs/system/map/automated_intersection_tester.md
 import pandas as pd
 import sys
 

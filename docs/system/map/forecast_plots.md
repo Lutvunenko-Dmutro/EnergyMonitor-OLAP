@@ -4,97 +4,87 @@
 
 <!-- HERO SECTION -->
 <div class="hero-section">
-    <div class="hero-badge">AUTOMATION ENGINE & UTILITY NODE</div>
+    <div class="hero-badge">ADVANCED VISUALIZATION ENGINE</div>
     <div class="hero-main">
-        <div class="hero-icon-wrapper"><span class="hero-icon">⚙️</span><div class="pulse-ring"></div></div>
+        <div class="hero-icon-wrapper"><span class="hero-icon">📈</span><div class="pulse-ring"></div></div>
         <div class="hero-title-group">
-            <h1 class="mega-title">Служба автоматизації: forecast_plots</h1>
-            <p class="mega-subtitle">Технічний скрипт автоматизації процесів збирання, аналізу або конвертації в екосистемі ATLAS</p>
-            <div class="status-tags"><span class="tag tag-online">DEFENSE EDITION</span><span class="tag tag-version">v5.0.0</span><span class="tag tag-role">UTILITY SCRIPT</span></div>
+            <h1 class="mega-title">Forecast Plots: forecast_plots</h1>
+            <p class="mega-subtitle">Рушій візуалізації прогнозів машинного навчання. Створює гібридні графіки, що поєднують історичні дані, передбачення моделей та довірчі інтервали на єдиному таймлайні.</p>
+            <div class="status-tags"><span class="tag tag-online">PLOTLY BACKEND</span><span class="tag tag-version">v2.0.0</span><span class="tag tag-role">ML VISUALIZATION</span></div>
         </div>
     </div>
 </div>
 
 <!-- KEY METRICS GRID -->
 <div class="metrics-grid">
-    <div class="glass-card metric-card"><div class="metric-icon">🛡️</div><div class="metric-info"><span class="metric-label">Runtime</span><span class="metric-value">Python 3.11+</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">⚡</div><div class="metric-info"><span class="metric-label">Execution</span><span class="metric-value">Automated Task</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🧬</div><div class="metric-info"><span class="metric-label">Priority</span><span class="metric-value">High Performance</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🩺</div><div class="metric-info"><span class="metric-label">Interface</span><span class="metric-value">CLI / Script</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">📊</div><div class="metric-info"><span class="metric-label">Rendering</span><span class="metric-value">Plotly Go</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🔍</div><div class="metric-info"><span class="metric-label">Precision</span><span class="metric-value">Multi-layer Hybrid</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🎨</div><div class="metric-info"><span class="metric-label">Styling</span><span class="metric-value">Smart Dash Lines</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🛡️</div><div class="metric-info"><span class="metric-label">Bounds</span><span class="metric-value">Auto-clipped</span></div></div>
 </div>
 
 <!-- SECTION 01: CONCEPTUAL ROLE -->
 <div class="section-container">
     <div class="section-header"><span class="section-number">01</span><h2 class="section-title">Концептуальне призначення</h2></div>
     <div class="glass-card flow-step">
-        <p>Модуль <b>forecast_plots</b> забезпечує інтеграцію та виконання наступних обчислювальних процесів системи: <i>ДВИГУН ВІЗУАЛІЗАЦІЇ ПРОГНОЗІВ (Advanced Forecast Visualization Engine) Модуль реалізує складні візуальні компоненти для представлення результатів ШІ-прогнозування.</i><br><br><b>Архітектурний інтерфейс:</b> надає методи <code>_generate_forecast_figure()</code>, <code>_generate_multi_forecast_figure()</code>.</p>
+        <p>Модуль <b>forecast_plots.py</b> відповідає за те, як кінцевий користувач бачить результати передбачень нейромереж. На відміну від базових графіків, тут реалізована складна логіка "зшивання" двох різних часових рядів: факт (минуле) та прогноз (майбутнє).</p>
+        <p style="margin-top: 12px;">Основна фіча: модуль автоматично генерує напівпрозорі "коридори" довірчих інтервалів (upper_bond/lower_bond) навколо лінії прогнозу, використовуючи SVG-заливку (<code>fill="toself"</code>). Він також керує колірним кодуванням різних версій моделей (V1, V2, V3) для візуального аудиту.</p>
     </div>
 </div>
 
-<!-- SECTION 02: CODE DOCUMENTATION (SMART PARSED) -->
+<!-- SECTION 02: API REFERENCE -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Системний опис з коду (Docstring)</h2></div>
-    <div class="glass-card flow-step" style="border-left: 4px solid var(--accent); padding-left: 20px;">
-        <p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>ДВИГУН ВІЗУАЛІЗАЦІЇ ПРОГНОЗІВ (Advanced Forecast Visualization Engine)</p>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>Модуль реалізує складні візуальні компоненти для представлення результатів ШІ-прогнозування.</p>
-<h3 style='color: var(--accent); font-family: "Orbitron", sans-serif; font-size: 15px; margin-top: 22px; margin-bottom: 10px;'>Ключові можливості</h3>
-<ol style='margin-left: 20px; margin-bottom: 15px;'>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Hybrid Multi-layer Rendering:</b> побудова графіків з історією, прогнозом та довірчими інтервалами.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Comparative Audit Plotting:</b> порівняння "Ground Truth" з передбаченнями V1, V2, V3 одночасно.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Mega-Flow Visualization:</b> наскрізні графіки, що з'єднують бектест та майбутній прогноз.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Professional Styling Schema:</b> застосування диференційованих стилів ліній для кожної архітектури.</li>
-</ol>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>Забезпечує високу точність візуальної інтерпретації результатів нейромережевого моделювання.</p>
-    </div>
-</div>
-
-<!-- SECTION 03: API REFERENCE (INTERACTIVE BLOCK) -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Інтерфейси та сигнатури коду</h2></div>
+    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Публічний інтерфейс (API)</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 15px; color: var(--text-dim);">Документовані класи та методи, знайдені за допомогою статичного аналізу коду (AST):</p>
         <div style='display: flex; flex-direction: column; gap: 10px;'>
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def _generate_forecast_figure()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Виконує обчислювальну операцію системи.</p>
+            
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>def _generate_forecast_figure(df_hist: pd.DataFrame, df_fc: pd.DataFrame, title: str, version_lbl: str) → go.Figure</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Основний графік прогнозу. Малює суцільну лінію <code>df_hist</code> та пунктирну <code>df_fc</code>. Додає полігон (коридор похибки) використовуючи координати <code>timestamp + timestamp[::-1]</code> та значення <code>upper_bond + lower_bond[::-1]</code>. Включає автоматичне відсікання аномальних піків похибки (clip).</p>
             </div>
             
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def _generate_multi_forecast_figure()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Виконує обчислювальну операцію системи.</p>
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>def generate_comparison_plot(results: dict, substation_name: str) → go.Figure</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Створює графік для аудиту моделей на сторінці Backtest. На вхід приймає словник <code>{"v1": df, "v2": df, "v3": df}</code>. Малює "Ground Truth" помаранчевою лінією і накладає зверху прогнози різних версій з різним рівнем пунктиру (dot, dash, solid) для зручного візуального порівняння точності.</p>
             </div>
             
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def generate_comparison_plot()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Creates a unified Plotly chart showing Actuals + V1/V2/V3 Predictions for Audit.</p>
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>def _generate_mega_hybrid_figure(df_bt: pd.DataFrame, df_fc: pd.DataFrame, title: str, version_lbl: str) → go.Figure</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Будує "Наскрізний таймлайн": одночасно показує результати бектесту (як модель відпрацювала вчора) та прогноз (що модель очікує завтра) на одному суцільному графіку. Використовує колір <code>#ee5253</code> для маркування зони впливу ML.</p>
             </div>
-            
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def _generate_mega_hybrid_figure()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Виконує обчислювальну операцію системи.</p>
-            </div>
-            </div>
+
+        </div>
     </div>
 </div>
 
-<!-- SECTION 04: EXECUTION FLOW (DIAGRAM) -->
+<!-- SECTION 03: EXECUTION FLOW DIAGRAM -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Життєвий цикл виконання</h2></div>
+    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Схема побудови довірчого інтервалу</h2></div>
     <div class="diagram-outer-wrapper"><div class="mermaid">
 graph TD
-    START("Запуск forecast_plots.py") --> CONFIG("Ініціалізація оточення")
-    CONFIG --> RUN("Основний алгоритм")
-    RUN --> COMP("Завершення завдання")
+    IN("df_hist (Actuals)\ndf_fc (Forecast + Bounds)") --> ADD_HIST("Add Trace: Actual Load\n(Solid Line, #3498db)")
+    
+    ADD_HIST --> CLIP("Calculate max values\nclip(upper=max*1.5)")
+    
+    CLIP --> CONCAT_X("Concat X:\ntimestamp + reversed(timestamp)")
+    CONCAT_X --> CONCAT_Y("Concat Y:\nupper_bond + reversed(lower_bond)")
+    
+    CONCAT_Y --> POLYGON("Add Trace: Polygon\n(fill='toself', Red 8% Alpha)")
+    
+    POLYGON --> ADD_FC("Add Trace: Forecast\n(Dash Line, #e74c3c)")
+    
+    ADD_FC --> LAYOUT("update_layout:\nplotly_dark, x unified")
+    LAYOUT --> OUT("Return Plotly Figure")
     </div></div>
 </div>
 
-<!-- SECTION 05: MODULE DEPENDENCIES -->
+<!-- SECTION 04: DEPENDENCIES -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
+    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 12px; color: var(--text-dim);">Бібліотеки та модулі, що імпортуються цим файлом:</p>
         <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; border: 1px solid var(--border);">
-            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>pandas</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>plotly.graph_objects</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>pandas</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>plotly.graph_objects</span>
         </div>
     </div>
 </div>

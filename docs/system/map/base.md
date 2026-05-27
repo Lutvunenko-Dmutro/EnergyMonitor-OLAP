@@ -4,92 +4,91 @@
 
 <!-- HERO SECTION -->
 <div class="hero-section">
-    <div class="hero-badge">AUTOMATION ENGINE & UTILITY NODE</div>
+    <div class="hero-badge">CORE VISUALIZATION ENGINE</div>
     <div class="hero-main">
-        <div class="hero-icon-wrapper"><span class="hero-icon">⚙️</span><div class="pulse-ring"></div></div>
+        <div class="hero-icon-wrapper"><span class="hero-icon">📈</span><div class="pulse-ring"></div></div>
         <div class="hero-title-group">
-            <h1 class="mega-title">Служба автоматизації: base</h1>
-            <p class="mega-subtitle">Технічний скрипт автоматизації процесів збирання, аналізу або конвертації в екосистемі ATLAS</p>
-            <div class="status-tags"><span class="tag tag-online">DEFENSE EDITION</span><span class="tag tag-version">v5.0.0</span><span class="tag tag-role">UTILITY SCRIPT</span></div>
+            <h1 class="mega-title">UI Charts: base</h1>
+            <p class="mega-subtitle">Фундаментальний графічний рушій системи. Реалізує базові аналітичні діаграми: порівняльні Dual-Axis графіки та профілі ритмічності споживання.</p>
+            <div class="status-tags"><span class="tag tag-online">PLOTLY BACKEND</span><span class="tag tag-version">v1.1.0</span><span class="tag tag-role">UI COMPONENT</span></div>
         </div>
     </div>
 </div>
 
 <!-- KEY METRICS GRID -->
 <div class="metrics-grid">
-    <div class="glass-card metric-card"><div class="metric-icon">🛡️</div><div class="metric-info"><span class="metric-label">Runtime</span><span class="metric-value">Python 3.11+</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">⚡</div><div class="metric-info"><span class="metric-label">Execution</span><span class="metric-value">Automated Task</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🧬</div><div class="metric-info"><span class="metric-label">Priority</span><span class="metric-value">High Performance</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🩺</div><div class="metric-info"><span class="metric-label">Interface</span><span class="metric-value">CLI / Script</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">📊</div><div class="metric-info"><span class="metric-label">Backend</span><span class="metric-value">Plotly (Graph Objects)</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🌗</div><div class="metric-info"><span class="metric-label">Theme Mode</span><span class="metric-value">plotly_dark</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">⚡</div><div class="metric-info"><span class="metric-label">Interactivity</span><span class="metric-value">x unified hover</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🛠️</div><div class="metric-info"><span class="metric-label">Data Format</span><span class="metric-value">Pandas DataFrame</span></div></div>
 </div>
 
 <!-- SECTION 01: CONCEPTUAL ROLE -->
 <div class="section-container">
     <div class="section-header"><span class="section-number">01</span><h2 class="section-title">Концептуальне призначення</h2></div>
     <div class="glass-card flow-step">
-        <p>Модуль <b>base</b> забезпечує інтеграцію та виконання наступних обчислювальних процесів системи: <i>ЯДРО БАЗОВОЇ ВІЗУАЛІЗАЦІЇ (Core Visualization Engine) Модуль реалізує фундаментальні типи аналітичних графіків для системи моніторингу.</i><br><br><b>Архітектурний інтерфейс:</b> надає методи <code>_hex_to_rgb()</code>, <code>render_dual_axis_chart()</code>.</p>
+        <p>Модуль <b>base.py</b> є основою для всіх складніших візуалізацій в системі. Він надає універсальні функції-генератори Plotly-графіків, які використовуються на різних сторінках дашборду для відображення як сирих телеметричних даних, так і результатів машинного навчання.</p>
+        <p style="margin-top: 12px;">Основні архітектурні принципи: <b>Dry (Don't Repeat Yourself)</b> у конфігураціях графіків (єдині відступи, легенди, темна тема), автоматичне відстеження режиму відображення однієї або декількох підстанцій, та використання Alpha-blending (прозорості) для заповнення областей під кривими.</p>
     </div>
 </div>
 
-<!-- SECTION 02: CODE DOCUMENTATION (SMART PARSED) -->
+<!-- SECTION 02: API REFERENCE -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Системний опис з коду (Docstring)</h2></div>
-    <div class="glass-card flow-step" style="border-left: 4px solid var(--accent); padding-left: 20px;">
-        <p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>ЯДРО БАЗОВОЇ ВІЗУАЛІЗАЦІЇ (Core Visualization Engine)</p>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>Модуль реалізує фундаментальні типи аналітичних графіків для системи моніторингу.</p>
-<h3 style='color: var(--accent); font-family: "Orbitron", sans-serif; font-size: 15px; margin-top: 22px; margin-bottom: 10px;'>Ключові можливості</h3>
-<ol style='margin-left: 20px; margin-bottom: 15px;'>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Dual-Axis Rendering:</b> побудова графіків з двома осями Y для аналізу кореляції параметрів.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Rhythm Analysis Charts:</b> генерація порівняльних графіків добових профілів (Будні vs Вихідні).</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Multi-Substation Handling:</b> відображення декількох трендів на одному полотні.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Professional Styling:</b> використання Alpha-blending та Dark-теми для преміального вигляду.</li>
-</ol>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>Служить фундаментом для всіх історичних та діагностичних звітів системи.</p>
-    </div>
-</div>
-
-<!-- SECTION 03: API REFERENCE (INTERACTIVE BLOCK) -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Інтерфейси та сигнатури коду</h2></div>
+    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Публічний інтерфейс (API)</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 15px; color: var(--text-dim);">Документовані класи та методи, знайдені за допомогою статичного аналізу коду (AST):</p>
         <div style='display: flex; flex-direction: column; gap: 10px;'>
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def _hex_to_rgb()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Виконує обчислювальну операцію системи.</p>
+            
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>def render_dual_axis_chart(df: pd.DataFrame, left_col: str, left_label: str, left_color: str, right_col: str, right_label: str, right_color: str, fill_left: bool = True) → go.Figure</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Генерує графік з двома осями Y (наприклад, Навантаження зліва, Температура справа). Автоматично обробляє випадок, коли в <code>df</code> присутні дані для кількох підстанцій (column: <code>substation</code>) — у такому випадку відключає <code>fill</code> для збереження читабельності та додає назви підстанцій в легенду.</p>
             </div>
             
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def render_dual_axis_chart()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Виконує обчислювальну операцію системи.</p>
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>def render_rhythm_chart(df_rhythm: pd.DataFrame) → go.Figure</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Аналізує ритмічність: порівнює середнє навантаження за кожну годину (0-23) для Понеділка (<code>dow=1</code>) та Суботи (<code>dow=6</code>). Використовується для виявлення структурних зсувів у споживанні електроенергії в залежності від дня тижня.</p>
             </div>
             
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def render_rhythm_chart()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Виконує обчислювальну операцію системи.</p>
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>def _hex_to_rgb(hex_color: str) → str</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Внутрішня утиліта. Конвертує HEX колір (напр. <code>#f97316</code>) у формат <code>r,g,b</code> для використання в RGBA стилях Plotly (наприклад, для напівпрозорого заповнення <code>fillcolor</code>).</p>
             </div>
-            </div>
+
+        </div>
     </div>
 </div>
 
-<!-- SECTION 04: EXECUTION FLOW (DIAGRAM) -->
+<!-- SECTION 03: EXECUTION FLOW DIAGRAM -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Життєвий цикл виконання</h2></div>
+    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Схема Dual-Axis Rendering</h2></div>
     <div class="diagram-outer-wrapper"><div class="mermaid">
 graph TD
-    START("Запуск base.py") --> CONFIG("Ініціалізація оточення")
-    CONFIG --> RUN("Основний алгоритм")
-    RUN --> COMP("Завершення завдання")
+    IN(DataFrame: df\nleft_col, right_col) --> INIT("make_subplots(secondary_y=True)")
+    INIT --> CHECK_MULTI{"substation\ncolumn exists\n& unique > 1?"}
+    
+    CHECK_MULTI -->|Yes| LOOP("For each substation")
+    LOOP --> TRACE_M1("Add Scatter(left_col)\nfill='none'")
+    TRACE_M1 --> TRACE_M2("Add Scatter(right_col)\ndash='solid'")
+    TRACE_M2 --> LOOP
+    
+    CHECK_MULTI -->|No| TRACE_S1("Add Scatter(left_col)\nfill='tozeroy' w/ alpha")
+    TRACE_S1 --> TRACE_S2("Add Scatter(right_col)\ndash='dot'")
+    
+    LOOP --> LAYOUT("update_layout:\ndark theme, bottom legend\nhovermode='x unified'")
+    TRACE_S2 --> LAYOUT
+    
+    LAYOUT --> OUT("Return Plotly go.Figure")
     </div></div>
 </div>
 
-<!-- SECTION 05: MODULE DEPENDENCIES -->
+<!-- SECTION 04: DEPENDENCIES -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
+    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 12px; color: var(--text-dim);">Бібліотеки та модулі, що імпортуються цим файлом:</p>
         <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; border: 1px solid var(--border);">
-            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>pandas</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>plotly.express</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>plotly.graph_objects</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>plotly.subplots</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>pandas</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>plotly.express</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>plotly.graph_objects</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>plotly.subplots.make_subplots</span>
         </div>
     </div>
 </div>

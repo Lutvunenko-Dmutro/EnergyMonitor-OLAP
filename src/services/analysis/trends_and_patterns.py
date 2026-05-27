@@ -16,7 +16,7 @@ from contextlib import contextmanager
 from itertools import combinations
 
 import matplotlib.pyplot as plt
-# ATLAS_PASSPORT: docs/system/map/analysis_services_hub.md
+# ATLAS_PASSPORT: docs/system/map/trends_and_patterns.md
 import pandas as pd
 import psycopg2
 import seaborn as sns

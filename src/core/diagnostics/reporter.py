@@ -1,4 +1,4 @@
-# ATLAS_PASSPORT: docs/system/map/diagnostics_engine_hub.md
+# ATLAS_PASSPORT: docs/system/map/reporter.md
 """
 📊 DIAGNOSTICS REPORTING ENGINE (Health Auditor).
 py | Версія: 1.5.0

@@ -1,4 +1,4 @@
-# ATLAS_PASSPORT: docs/system/map/ml_core_engine.md
+# ATLAS_PASSPORT: docs/system/map/model_loader.md
 """
 🧠 ML MODEL REGISTRY & LIFECYCLE (Resource Loader).
 py | Версія: 2.1.0

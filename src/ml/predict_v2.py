@@ -213,7 +213,7 @@ def get_ai_forecast(
         if values is None:
             return pd.DataFrame(), "Telemetry unavailable."
     except Exception as e:
-        from streamlit.runtime.scriptrunner.exceptions import StopException, RerunException
+        from src.utils.helpers import StopException, RerunException
         if isinstance(e, (StopException, RerunException)):
             raise e
         return pd.DataFrame(), f"Data error: {e}"
@@ -297,7 +297,7 @@ def get_ai_forecast(
         return df_result, None
 
     except Exception as exc:
-        from streamlit.runtime.scriptrunner.exceptions import StopException, RerunException
+        from src.utils.helpers import StopException, RerunException
         if isinstance(exc, (StopException, RerunException)):
             raise exc
             

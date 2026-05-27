@@ -1,4 +1,4 @@
-# ATLAS_PASSPORT: docs/system/map/data_services_hub.md
+# ATLAS_PASSPORT: docs/system/map/db_seeder.md
 """
 🌱 ETL & SEED ENGINE (Data Synthesis Core).
 Модуль: db_seeder.py | Версія: 3.1.0 "AutoDeploy"

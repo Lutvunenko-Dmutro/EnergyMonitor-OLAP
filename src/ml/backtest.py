@@ -1,4 +1,4 @@
-# ATLAS_PASSPORT: docs/system/map/ml_core_engine.md
+# ATLAS_PASSPORT: docs/system/map/backtest.md
 """
 📉 HISTORICAL BACKTESTING ENGINE (ML Validation Hub).
 ================================================================================
@@ -160,7 +160,7 @@ def get_fast_backtest(substation_name: str, version: str, source_type: str = "Li
         return results
     except Exception as e:
         # Ігноруємо сигнали керування Streamlit (щоб не смітити в логах при перемиканні вкладок)
-        from streamlit.runtime.scriptrunner.exceptions import StopException, RerunException
+        from src.utils.helpers import StopException, RerunException
         if isinstance(e, (StopException, RerunException)):
             raise e
             

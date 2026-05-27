@@ -4,97 +4,80 @@
 
 <!-- HERO SECTION -->
 <div class="hero-section">
-    <div class="hero-badge">AUTOMATION ENGINE & UTILITY NODE</div>
+    <div class="hero-badge">CONSUMPTION PATTERNS & FAILURE CORRELATION</div>
     <div class="hero-main">
-        <div class="hero-icon-wrapper"><span class="hero-icon">⚙️</span><div class="pulse-ring"></div></div>
+        <div class="hero-icon-wrapper"><span class="hero-icon">🔗</span><div class="pulse-ring"></div></div>
         <div class="hero-title-group">
-            <h1 class="mega-title">Служба автоматизації: trends_and_patterns</h1>
-            <p class="mega-subtitle">Технічний скрипт автоматизації процесів збирання, аналізу або конвертації в екосистемі ATLAS</p>
-            <div class="status-tags"><span class="tag tag-online">DEFENSE EDITION</span><span class="tag tag-version">v5.0.0</span><span class="tag tag-role">UTILITY SCRIPT</span></div>
+            <h1 class="mega-title">Cascading Failure Analyzer: trends_and_patterns</h1>
+            <p class="mega-subtitle">Дослідження циклічних закономірностей та аварійних кореляцій. Асоціативні правила між підстанціями через Counter + combinations. Seaborn Heatmap.</p>
+            <div class="status-tags"><span class="tag tag-online">SEABORN HEATMAP</span><span class="tag tag-version">v1.5.0</span><span class="tag tag-role">STANDALONE ANALYTICS</span></div>
         </div>
     </div>
 </div>
 
 <!-- KEY METRICS GRID -->
 <div class="metrics-grid">
-    <div class="glass-card metric-card"><div class="metric-icon">🛡️</div><div class="metric-info"><span class="metric-label">Runtime</span><span class="metric-value">Python 3.11+</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">⚡</div><div class="metric-info"><span class="metric-label">Execution</span><span class="metric-value">Automated Task</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🧬</div><div class="metric-info"><span class="metric-label">Priority</span><span class="metric-value">High Performance</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🩺</div><div class="metric-info"><span class="metric-label">Interface</span><span class="metric-value">CLI / Script</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">📈</div><div class="metric-info"><span class="metric-label">Trends</span><span class="metric-value">Weekly Load by Station</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">💥</div><div class="metric-info"><span class="metric-label">Failures</span><span class="metric-value">Pair Correlation Counter</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🔥</div><div class="metric-info"><span class="metric-label">Heatmap</span><span class="metric-value">Symmetric NxN Matrix</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">💾</div><div class="metric-info"><span class="metric-label">Output</span><span class="metric-value">PNG (savefig)</span></div></div>
 </div>
 
 <!-- SECTION 01: CONCEPTUAL ROLE -->
 <div class="section-container">
     <div class="section-header"><span class="section-number">01</span><h2 class="section-title">Концептуальне призначення</h2></div>
     <div class="glass-card flow-step">
-        <p>Модуль <b>trends_and_patterns</b> забезпечує інтеграцію та виконання наступних обчислювальних процесів системи: <i>АНАЛІЗ ПАТЕРНІВ ТА КОРЕЛЯЦІЇ ІНЦИДЕНТІВ (Consumption Patterns & Failure Correlation) Модуль для дослідження циклічних закономірностей та взаємозв'язків у мережі.</i><br><br><b>Архітектурний інтерфейс:</b> надає методи <code>get_db_connection()</code>, <code>get_data()</code>.</p>
+        <p>Модуль <b>trends_and_patterns.py</b> — це окремий автономний аналітичний скрипт (запускається через <code>if __name__ == "__main__"</code>), не є частиною Streamlit-UI. Він призначений для глибокого оффлайн-аналізу, результатами якого є PNG-файли.</p>
+        <p style="margin-top: 12px;">Основна ідея <code>analyze_cascading_failures()</code>: з БД вибираються всі аварії типу 'Перевантаження', групуються по годині. Якщо в одну годину одночасно впало кілька підстанцій — вони вважаються "парою". Пари рахуються через <code>Counter + combinations</code>. Результат: симетрична матриця кореляцій N×N, де N — кількість підстанцій. Візуалізується через <code>sns.heatmap</code> з анотаціями (ціфри в клітинках) та зберігається у <code>heatmap_failures.png</code>.</p>
     </div>
 </div>
 
-<!-- SECTION 02: CODE DOCUMENTATION (SMART PARSED) -->
+<!-- SECTION 02: API REFERENCE -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Системний опис з коду (Docstring)</h2></div>
-    <div class="glass-card flow-step" style="border-left: 4px solid var(--accent); padding-left: 20px;">
-        <p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>АНАЛІЗ ПАТЕРНІВ ТА КОРЕЛЯЦІЇ ІНЦИДЕНТІВ (Consumption Patterns & Failure Correlation)</p>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>Модуль для дослідження циклічних закономірностей та взаємозв'язків у мережі.</p>
-<h3 style='color: var(--accent); font-family: "Orbitron", sans-serif; font-size: 15px; margin-top: 22px; margin-bottom: 10px;'>Ключові можливості</h3>
-<ol style='margin-left: 20px; margin-bottom: 15px;'>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Weekly Load Dynamics:</b> аналіз навантаження по тижнях для виявлення довгих трендів.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Cascading Incident Mapping:</b> ідентифікація груп підстанцій з тенденцією до спільних аварій.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Failure Correlation Heatmaps:</b> візуалізація матриці кореляцій для визначення вразливих вузлів.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Statistical Insight Generation:</b> формування ТОП-рейтингів каскадних ризиків.</li>
-</ol>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>Допомагає оптимізувати стратегію обслуговування та підвищити живучість системи.</p>
-    </div>
-</div>
-
-<!-- SECTION 03: API REFERENCE (INTERACTIVE BLOCK) -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Інтерфейси та сигнатури коду</h2></div>
+    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Публічний інтерфейс (API)</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 15px; color: var(--text-dim);">Документовані класи та методи, знайдені за допомогою статичного аналізу коду (AST):</p>
         <div style='display: flex; flex-direction: column; gap: 10px;'>
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def get_db_connection()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Безпечне підключення до БД (як у генераторі).</p>
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>def analyze_consumption_trends() → None</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>SQL: <code>AVG(actual_load_mw) GROUP BY substation, EXTRACT(WEEK)</code>. Будує лінійний графік (Seaborn lineplot) з групуванням по підстанціях. Зберігає у <code>trends_innovators.png</code>.</p>
             </div>
-            
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def get_data()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Виконує SQL-запит і повертає Pandas DataFrame.</p>
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>def analyze_cascading_failures() → None</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>SQL: Всі 'Перевантаження' аварії з <code>date_trunc('hour')</code>. Групує по годині → список підстанцій. Для кожного списку з 2+ станцій генерує всі пари через <code>itertools.combinations</code>. Рахує через <code>Counter</code>. Будує симетричну матрицю. Рендерить <code>sns.heatmap(annot=True, cmap="Reds")</code>. Виводить текстовий ТОП-5 пар. Зберігає у <code>heatmap_failures.png</code>.</p>
             </div>
-            
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def analyze_consumption_trends()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Аналіз трендів споживання (Innovators/Early Adopters).</p>
-            </div>
-            
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def analyze_cascading_failures()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Пошук асоціативних правил та побудова теплової карти кореляцій.</p>
-            </div>
-            </div>
+        </div>
     </div>
 </div>
 
-<!-- SECTION 04: EXECUTION FLOW (DIAGRAM) -->
+<!-- SECTION 03: EXECUTION FLOW DIAGRAM -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Життєвий цикл виконання</h2></div>
+    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Пайплайн Аналізу Каскадних Аварій</h2></div>
     <div class="diagram-outer-wrapper"><div class="mermaid">
 graph TD
-    START("Запуск trends_and_patterns.py") --> CONFIG("Ініціалізація оточення")
-    CONFIG --> RUN("Основний алгоритм")
-    RUN --> COMP("Завершення завдання")
+    IN("analyze_cascading_failures()") --> SQL("SELECT date_trunc('hour',ts), sub_name\nFROM Alerts WHERE type='Перевантаження'")
+    SQL --> GROUP("groupby('alert_time')['sub_name'].apply(list)")
+    GROUP --> PAIRS("For basket in baskets:\ncombinations(unique_subs, 2)")
+    PAIRS --> COUNT("pair_counts.update(pairs)\nCounter accumulation")
+    COUNT --> REPORT("Print TOP-5 pairs")
+    REPORT --> MATRIX("Build N×N DataFrame matrix\n(symmetric fill)")
+    MATRIX --> HEAT("sns.heatmap(annot=True, fmt='d'\ncmap='Reds')")
+    HEAT --> SAVE("plt.savefig('heatmap_failures.png')")
     </div></div>
 </div>
 
-<!-- SECTION 05: MODULE DEPENDENCIES -->
+<!-- SECTION 04: DEPENDENCIES -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
+    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 12px; color: var(--text-dim);">Бібліотеки та модулі, що імпортуються цим файлом:</p>
         <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; border: 1px solid var(--border);">
-            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>collections</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>contextlib</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>dotenv</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>itertools</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>logging</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>matplotlib.pyplot</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>os</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>pandas</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>psycopg2</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>seaborn</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>logging, os, contextlib</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>collections.Counter</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>itertools.combinations</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>matplotlib.pyplot (plt)</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>pandas</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>psycopg2</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>seaborn (sns.heatmap)</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>dotenv (load_dotenv)</span>
         </div>
     </div>
 </div>

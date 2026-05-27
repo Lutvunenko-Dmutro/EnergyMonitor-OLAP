@@ -4,87 +4,87 @@
 
 <!-- HERO SECTION -->
 <div class="hero-section">
-    <div class="hero-badge">AUTOMATION ENGINE & UTILITY NODE</div>
+    <div class="hero-badge">INCIDENT MANAGEMENT CENTER</div>
     <div class="hero-main">
-        <div class="hero-icon-wrapper"><span class="hero-icon">⚙️</span><div class="pulse-ring"></div></div>
+        <div class="hero-icon-wrapper"><span class="hero-icon">🚨</span><div class="pulse-ring"></div></div>
         <div class="hero-title-group">
-            <h1 class="mega-title">Служба автоматизації: alerts</h1>
-            <p class="mega-subtitle">Технічний скрипт автоматизації процесів збирання, аналізу або конвертації в екосистемі ATLAS</p>
-            <div class="status-tags"><span class="tag tag-online">DEFENSE EDITION</span><span class="tag tag-version">v5.0.0</span><span class="tag tag-role">UTILITY SCRIPT</span></div>
+            <h1 class="mega-title">UI View: Alerts Dashboard</h1>
+            <p class="mega-subtitle">Централізований інтерфейс для моніторингу та обробки аварійних подій. Забезпечує інтерактивне управління життєвим циклом інцидентів (Incident Lifecycle) у реальному часі.</p>
+            <div class="status-tags"><span class="tag tag-online">STREAMLIT UI</span><span class="tag tag-version">v2.0.0</span><span class="tag tag-role">INCIDENT LOG</span></div>
         </div>
     </div>
 </div>
 
 <!-- KEY METRICS GRID -->
 <div class="metrics-grid">
-    <div class="glass-card metric-card"><div class="metric-icon">🛡️</div><div class="metric-info"><span class="metric-label">Runtime</span><span class="metric-value">Python 3.11+</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">⚡</div><div class="metric-info"><span class="metric-label">Execution</span><span class="metric-value">Automated Task</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🧬</div><div class="metric-info"><span class="metric-label">Priority</span><span class="metric-value">High Performance</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🩺</div><div class="metric-info"><span class="metric-label">Interface</span><span class="metric-value">CLI / Script</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">📝</div><div class="metric-info"><span class="metric-label">Editor</span><span class="metric-value">st.data_editor</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🔄</div><div class="metric-info"><span class="metric-label">Lifecycle</span><span class="metric-value">NEW -> RESOLVED</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">➕</div><div class="metric-info"><span class="metric-label">Registration</span><span class="metric-value">Manual Form Input</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🧹</div><div class="metric-info"><span class="metric-label">Hygiene</span><span class="metric-value">TOP-10 Cleanup</span></div></div>
 </div>
 
 <!-- SECTION 01: CONCEPTUAL ROLE -->
 <div class="section-container">
     <div class="section-header"><span class="section-number">01</span><h2 class="section-title">Концептуальне призначення</h2></div>
     <div class="glass-card flow-step">
-        <p>Модуль <b>alerts</b> забезпечує інтеграцію та виконання наступних обчислювальних процесів системи: <i>СИСТЕМА УПРАВЛІННЯ ІНЦИДЕНТАМИ (Incident Management Center) Централізований інтерфейс для моніторингу та обробки аварійних подій. Забезпечує:</i><br><br><b>Архітектурний інтерфейс:</b> надає методи <code>render()</code>, <code>save_changes()</code>.</p>
+        <p>Модуль <b>alerts.py</b> виконує роль "Диспетчерського пульта". Він відображає список усіх зафіксованих системою (або створених вручну) аварій. Його ключова фіча — <i>інтерактивність</i>.</p>
+        <p style="margin-top: 12px;">Замість статичної таблиці, модуль використовує <code>st.data_editor</code>, дозволяючи диспетчеру прямо в таблиці змінити статус інциденту з "NEW" на "IN PROGRESS" або "RESOLVED". Модуль обробляє ці зміни, автоматично знімаючи emoji-кодування (Visual Coding), і зберігає "чистий" статус назад у базу даних.</p>
     </div>
 </div>
 
-<!-- SECTION 02: CODE DOCUMENTATION (SMART PARSED) -->
+<!-- SECTION 02: API REFERENCE -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Системний опис з коду (Docstring)</h2></div>
-    <div class="glass-card flow-step" style="border-left: 4px solid var(--accent); padding-left: 20px;">
-        <p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>СИСТЕМА УПРАВЛІННЯ ІНЦИДЕНТАМИ (Incident Management Center)</p>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>Централізований інтерфейс для моніторингу та обробки аварійних подій.</p>
-<h3 style='color: var(--accent); font-family: "Orbitron", sans-serif; font-size: 15px; margin-top: 22px; margin-bottom: 10px;'>Забезпечує</h3>
-<ol style='margin-left: 20px; margin-bottom: 15px;'>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Incident Lifecycle:</b> повний цикл обробки подій (NEW -> IN PROGRESS -> RESOLVED).</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Interactive Editor:</b> редагування статусів у реальному часі через st.data_editor.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Manual Entry:</b> можливість ручної реєстрації інцидентів (кібер-атаки, пожежі тощо).</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Visual Coding:</b> кодування рівнів небезпеки через емодзі та колірні схеми.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Auto-Cleanup:</b> інструменти для підтримки гігієни бази даних (видалення застарілих логів).</li>
-</ol>
-    </div>
-</div>
-
-<!-- SECTION 03: API REFERENCE (INTERACTIVE BLOCK) -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Інтерфейси та сигнатури коду</h2></div>
+    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Публічний інтерфейс (API)</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 15px; color: var(--text-dim);">Документовані класи та методи, знайдені за допомогою статичного аналізу коду (AST):</p>
         <div style='display: flex; flex-direction: column; gap: 10px;'>
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def render()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Рендеринг вкладки керування аваріями.</p>
+            
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>def render(df_alerts: pd.DataFrame) → None</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Рендерить весь інтерфейс керування аваріями. Включає ізольовану форму додавання нових інцидентів (<code>create_custom_alert</code>), кнопку швидкого очищення історії до 10 останніх записів (<code>cleanup_old_alerts</code>), та інтерактивний журнал (<code>st.data_editor</code>). Застосовує мапінг емодзі для покращення UX.</p>
             </div>
             
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def save_changes()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Обробник подій: зберігає зміни статусів у БД, очищаючи емодзі.</p>
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>def save_changes(changes: dict, df: pd.DataFrame) → None</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Callback-функція (обробник подій), яка спрацьовує при зміні даних у таблиці. Вона бере словник змін <code>edited_rows</code> від Streamlit, знаходить відповідний <code>alert_id</code>, очищує емодзі від статусу (напр. "🟢 RESOLVED" -> "RESOLVED") та викликає метод БД <code>update_alert_status</code>.</p>
             </div>
-            </div>
+
+        </div>
     </div>
 </div>
 
-<!-- SECTION 04: EXECUTION FLOW (DIAGRAM) -->
+<!-- SECTION 03: EXECUTION FLOW DIAGRAM -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Життєвий цикл виконання</h2></div>
+    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Схема взаємодії (Event Flow)</h2></div>
     <div class="diagram-outer-wrapper"><div class="mermaid">
 graph TD
-    START("Запуск alerts.py") --> CONFIG("Ініціалізація оточення")
-    CONFIG --> RUN("Основний алгоритм")
-    RUN --> COMP("Завершення завдання")
+    USER(("Диспетчер")) --> |Клікає 'Додати'| FORM("Form Submission")
+    USER --> |Клікає 'Очистка'| CLEAN("cleanup_old_alerts(10)")
+    USER --> |Змінює статус у таблиці| EDITOR("st.data_editor\n(on_change)")
+    
+    FORM --> DB_INSERT("create_custom_alert()")
+    CLEAN --> DB_DEL("DELETE FROM Alerts")
+    
+    EDITOR --> SAVE_CB("save_changes()")
+    SAVE_CB --> CLEAN_MAP("Mapping: '🟢 RESOLVED' -> 'RESOLVED'")
+    CLEAN_MAP --> DB_UPDATE("update_alert_status(id, status)")
+    
+    DB_INSERT --> RERUN("Clear Cache\nst.rerun()")
+    DB_DEL --> RERUN
+    DB_UPDATE --> RERUN
+    
+    RERUN --> UI("Оновлений Інтерфейс\nst.toast(Success)")
     </div></div>
 </div>
 
-<!-- SECTION 05: MODULE DEPENDENCIES -->
+<!-- SECTION 04: DEPENDENCIES -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
+    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 12px; color: var(--text-dim);">Бібліотеки та модулі, що імпортуються цим файлом:</p>
         <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; border: 1px solid var(--border);">
-            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.core</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.services.data.db_services</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>streamlit</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>time</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>streamlit</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.services.data.db_services</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.core.database</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>time</span>
         </div>
     </div>
 </div>

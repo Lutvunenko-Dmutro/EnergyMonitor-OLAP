@@ -4,107 +4,107 @@
 
 <!-- HERO SECTION -->
 <div class="hero-section">
-    <div class="hero-badge">AUTOMATION ENGINE & UTILITY NODE</div>
+    <div class="hero-badge">DIAGNOSTICS DATA MODELS</div>
     <div class="hero-main">
-        <div class="hero-icon-wrapper"><span class="hero-icon">⚙️</span><div class="pulse-ring"></div></div>
+        <div class="hero-icon-wrapper"><span class="hero-icon">🏗️</span><div class="pulse-ring"></div></div>
         <div class="hero-title-group">
-            <h1 class="mega-title">Служба автоматизації: models</h1>
-            <p class="mega-subtitle">Технічний скрипт автоматизації процесів збирання, аналізу або конвертації в екосистемі ATLAS</p>
-            <div class="status-tags"><span class="tag tag-online">DEFENSE EDITION</span><span class="tag tag-version">v5.0.0</span><span class="tag tag-role">UTILITY SCRIPT</span></div>
+            <h1 class="mega-title">Quality Assurance Schema: models</h1>
+            <p class="mega-subtitle">Визначає базові структури даних (Dataclasses) для системи автоматичного аудиту проєкту. Фіксує проблеми (Issues) на рівнях функцій та файлів.</p>
+            <div class="status-tags"><span class="tag tag-online">DATACLASSES</span><span class="tag tag-version">v1.1.0</span><span class="tag tag-role">DATA SCHEMAS</span></div>
         </div>
     </div>
 </div>
 
 <!-- KEY METRICS GRID -->
 <div class="metrics-grid">
-    <div class="glass-card metric-card"><div class="metric-icon">🛡️</div><div class="metric-info"><span class="metric-label">Runtime</span><span class="metric-value">Python 3.11+</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">⚡</div><div class="metric-info"><span class="metric-label">Execution</span><span class="metric-value">Automated Task</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🧬</div><div class="metric-info"><span class="metric-label">Priority</span><span class="metric-value">High Performance</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🩺</div><div class="metric-info"><span class="metric-label">Interface</span><span class="metric-value">CLI / Script</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🐛</div><div class="metric-info"><span class="metric-label">DiagIssue</span><span class="metric-value">Severity, Code, Line</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">⚙️</div><div class="metric-info"><span class="metric-label">FunctionDiag</span><span class="metric-value">AST Function Stats</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">📄</div><div class="metric-info"><span class="metric-label">FileDiag</span><span class="metric-value">Syntax & Imports Status</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">📈</div><div class="metric-info"><span class="metric-label">Aggregates</span><span class="metric-value">Dynamic Status Properties</span></div></div>
 </div>
 
 <!-- SECTION 01: CONCEPTUAL ROLE -->
 <div class="section-container">
     <div class="section-header"><span class="section-number">01</span><h2 class="section-title">Концептуальне призначення</h2></div>
     <div class="glass-card flow-step">
-        <p>Модуль <b>models</b> забезпечує інтеграцію та виконання наступних обчислювальних процесів системи: <i>🏗️ DIAGNOSTICS DATA MODELS (Quality Assurance Schema). Модуль визначає базові структури даних для системи автоматичного аудиту проєкту.</i><br><br><b>Архітектурний інтерфейс:</b> реалізує класи <code>DiagIssue</code>, <code>FunctionDiag</code>, <code>FileDiag</code>.</p>
+        <p>Модуль <b>models.py</b> (у папці diagnostics) відіграє роль "Конституції" для сканера коду. Сканер не може просто повертати текст про помилки — йому потрібні строгі структури даних, які потім можна передати у генератор звітів (напр. markdown чи JSON).</p>
+        <p style="margin-top: 12px;">Модуль використовує модуль <code>@dataclass</code> з Python для створення легковагових контейнерів. Основна фішка — розумні <code>@property</code>. Наприклад, замість того щоб вручну рахувати загальний статус файлу (OK/WARNING/ERROR), клас <code>FileDiag</code> автоматично сканує всі прикріплені до нього функції (<code>FunctionDiag</code>) і всі <code>DiagIssue</code>, та динамічно визначає свій загальний <code>status</code> і кількість знайдених проблем (<code>total_issues</code>).</p>
     </div>
 </div>
 
-<!-- SECTION 02: CODE DOCUMENTATION (SMART PARSED) -->
+<!-- SECTION 02: API REFERENCE -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Системний опис з коду (Docstring)</h2></div>
-    <div class="glass-card flow-step" style="border-left: 4px solid var(--accent); padding-left: 20px;">
-        <p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>🏗️ DIAGNOSTICS DATA MODELS (Quality Assurance Schema).</p>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>Модуль визначає базові структури даних для системи автоматичного аудиту проєкту.</p>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>Містить класи для фіксації знайдених проблем (DiagIssue), аналізу функцій (FunctionDiag)</p>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>та агрегації результатів по кожному файлу (FileDiag).</p>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>Використовується як фундамент для побудови звітів про цілісність кодової бази.</p>
-    </div>
-</div>
-
-<!-- SECTION 03: API REFERENCE (INTERACTIVE BLOCK) -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Інтерфейси та сигнатури коду</h2></div>
+    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Схема Даних (Dataclasses)</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 15px; color: var(--text-dim);">Документовані класи та методи, знайдені за допомогою статичного аналізу коду (AST):</p>
-        
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; margin-bottom: 15px;'>
-                <span style='color: #fb923c; font-weight: bold;'>class DiagIssue</span>
-                <p style='margin: 5px 0 10px 0; font-size: 13.5px; color: var(--text-dim);'>Клас об'єктної моделі.</p>
-                <div style='margin-left: 15px;'>
-            </div></div>
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; margin-bottom: 15px;'>
-                <span style='color: #fb923c; font-weight: bold;'>class FunctionDiag</span>
-                <p style='margin: 5px 0 10px 0; font-size: 13.5px; color: var(--text-dim);'>Клас об'єктної моделі.</p>
-                <div style='margin-left: 15px;'>
+        <div style='display: flex; flex-direction: column; gap: 10px;'>
             
-                    <div style='margin-bottom: 8px; border-left: 2px solid var(--accent); padding-left: 10px;'>
-                        <code style='color: var(--accent); font-weight: 600;'>def status()</code>
-                        <p style='margin: 2px 0 0 0; font-size: 12px; color: var(--text-dim);'>Метод класу.</p>
-                    </div>
-                </div></div>
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; margin-bottom: 15px;'>
-                <span style='color: #fb923c; font-weight: bold;'>class FileDiag</span>
-                <p style='margin: 5px 0 10px 0; font-size: 13.5px; color: var(--text-dim);'>Клас об'єктної моделі.</p>
-                <div style='margin-left: 15px;'>
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>@dataclass class DiagIssue</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Базовий блок проблеми. Містить: <code>severity</code> ("ERROR"|"WARNING"|"INFO"), <code>code</code> (ідентифікатор), <code>message</code> (опис), опціональну <code>line</code> (номер рядка), та <code>category</code>.</p>
+            </div>
             
-                    <div style='margin-bottom: 8px; border-left: 2px solid var(--accent); padding-left: 10px;'>
-                        <code style='color: var(--accent); font-weight: 600;'>def status()</code>
-                        <p style='margin: 2px 0 0 0; font-size: 12px; color: var(--text-dim);'>Метод класу.</p>
-                    </div>
-                
-                    <div style='margin-bottom: 8px; border-left: 2px solid var(--accent); padding-left: 10px;'>
-                        <code style='color: var(--accent); font-weight: 600;'>def total_issues()</code>
-                        <p style='margin: 2px 0 0 0; font-size: 12px; color: var(--text-dim);'>Метод класу.</p>
-                    </div>
-                
-                    <div style='margin-bottom: 8px; border-left: 2px solid var(--accent); padding-left: 10px;'>
-                        <code style='color: var(--accent); font-weight: 600;'>def security_status()</code>
-                        <p style='margin: 2px 0 0 0; font-size: 12px; color: var(--text-dim);'>Метод класу.</p>
-                    </div>
-                </div></div>
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>@dataclass class FunctionDiag</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Контейнер аналізу однієї функції. Містить: <code>name</code>, <code>lineno</code>, <code>lines</code>, та масив <code>issues: List[DiagIssue]</code>. Має <code>@property status</code>, що повертає ERROR якщо є хоч один ERROR-issue, інакше WARNING або OK.</p>
+            </div>
+            
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>@dataclass class FileDiag</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Контейнер цілого файлу. Зберігає шлях (<code>path</code>, <code>rel_path</code>), <code>syntax_ok</code>, списки <code>imports</code> та <code>missing_imports</code>, масив <code>functions</code> та глобальні <code>file_issues</code> і <code>security_issues</code>. Включає складні <code>@property</code> агрегатори: <code>status</code> (глобальна оцінка), <code>total_issues</code> (сума всіх проблем файлу + функцій), <code>security_status</code> (безпека).</p>
+            </div>
+
+        </div>
     </div>
 </div>
 
-<!-- SECTION 04: EXECUTION FLOW (DIAGRAM) -->
+<!-- SECTION 03: EXECUTION FLOW DIAGRAM -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Життєвий цикл виконання</h2></div>
+    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Ієрархія Моделей Аудиту</h2></div>
     <div class="diagram-outer-wrapper"><div class="mermaid">
-graph TD
-    START("Запуск models.py") --> CONFIG("Ініціалізація оточення")
-    CONFIG --> RUN("Основний алгоритм")
-    RUN --> COMP("Завершення завдання")
+classDiagram
+    class DiagIssue {
+        +String severity
+        +String code
+        +String message
+        +int line
+        +String category
+    }
+
+    class FunctionDiag {
+        +String name
+        +int lineno
+        +int lines
+        +List~DiagIssue~ issues
+        +status() String
+    }
+
+    class FileDiag {
+        +Path path
+        +bool syntax_ok
+        +List~String~ imports
+        +List~String~ missing_imports
+        +List~FunctionDiag~ functions
+        +List~DiagIssue~ file_issues
+        +List~DiagIssue~ security_issues
+        +status() String
+        +total_issues() int
+        +security_status() String
+    }
+
+    FileDiag "1" *-- "many" FunctionDiag : contains
+    FileDiag "1" *-- "many" DiagIssue : file/security issues
+    FunctionDiag "1" *-- "many" DiagIssue : logic issues
     </div></div>
 </div>
 
-<!-- SECTION 05: MODULE DEPENDENCIES -->
+<!-- SECTION 04: DEPENDENCIES -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
+    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 12px; color: var(--text-dim);">Бібліотеки та модулі, що імпортуються цим файлом:</p>
         <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; border: 1px solid var(--border);">
-            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>dataclasses</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>pathlib</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>typing</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>dataclasses (dataclass, field)</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>typing (Optional, List)</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>pathlib (Path)</span>
         </div>
     </div>
 </div>

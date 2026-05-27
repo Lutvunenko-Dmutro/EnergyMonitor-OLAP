@@ -4,81 +4,82 @@
 
 <!-- HERO SECTION -->
 <div class="hero-section">
-    <div class="hero-badge">AUTOMATION ENGINE & UTILITY NODE</div>
+    <div class="hero-badge">AI FORECAST & BACKTEST CENTER</div>
     <div class="hero-main">
-        <div class="hero-icon-wrapper"><span class="hero-icon">⚙️</span><div class="pulse-ring"></div></div>
+        <div class="hero-icon-wrapper"><span class="hero-icon">🧠</span><div class="pulse-ring"></div></div>
         <div class="hero-title-group">
-            <h1 class="mega-title">Служба автоматизації: forecast</h1>
-            <p class="mega-subtitle">Технічний скрипт автоматизації процесів збирання, аналізу або конвертації в екосистемі ATLAS</p>
-            <div class="status-tags"><span class="tag tag-online">DEFENSE EDITION</span><span class="tag tag-version">v5.0.0</span><span class="tag tag-role">UTILITY SCRIPT</span></div>
+            <h1 class="mega-title">Intelligence Hub: forecast</h1>
+            <p class="mega-subtitle">Головний інтерфейсний модуль для взаємодії з ML-моделями (V1-V3). Забезпечує управління реактивним інференц-двигуном, порівняльним аналізом та Historical Backtesting.</p>
+            <div class="status-tags"><span class="tag tag-online">STREAMLIT APP</span><span class="tag tag-version">v3.0.0</span><span class="tag tag-role">ORCHESTRATOR</span></div>
         </div>
     </div>
 </div>
 
 <!-- KEY METRICS GRID -->
 <div class="metrics-grid">
-    <div class="glass-card metric-card"><div class="metric-icon">🛡️</div><div class="metric-info"><span class="metric-label">Runtime</span><span class="metric-value">Python 3.11+</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">⚡</div><div class="metric-info"><span class="metric-label">Execution</span><span class="metric-value">Automated Task</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🧬</div><div class="metric-info"><span class="metric-label">Priority</span><span class="metric-value">High Performance</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🩺</div><div class="metric-info"><span class="metric-label">Interface</span><span class="metric-value">CLI / Script</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">⚡</div><div class="metric-info"><span class="metric-label">Mode 1</span><span class="metric-value">Reactive Inference</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">⚖️</div><div class="metric-info"><span class="metric-label">Mode 2</span><span class="metric-value">Architecture Comparison</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">📊</div><div class="metric-info"><span class="metric-label">Mode 3</span><span class="metric-value">Historical Backtest</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🌍</div><div class="metric-info"><span class="metric-label">Scope</span><span class="metric-value">Single / Global Network</span></div></div>
 </div>
 
 <!-- SECTION 01: CONCEPTUAL ROLE -->
 <div class="section-container">
     <div class="section-header"><span class="section-number">01</span><h2 class="section-title">Концептуальне призначення</h2></div>
     <div class="glass-card flow-step">
-        <p>Модуль <b>forecast</b> забезпечує інтеграцію та виконання наступних обчислювальних процесів системи: <i>ЦЕНТР ПРОГНОЗУВАННЯ ТА АУДИТУ ШІ (AI Forecast & Backtest Center) Головний інтерфейсний модуль для взаємодії з ML-моделями системи.</i><br><br><b>Архітектурний інтерфейс:</b> надає методи <code>render()</code>.</p>
+        <p>Модуль <b>forecast.py</b> — це головний маршрутизатор (Orchestrator) найскладнішої вкладки "Прогнозування". Він не малює графіки напряму і не робить ML-обчислень. Його єдина мета — <b>керувати станами (State Management)</b>.</p>
+        <p style="margin-top: 12px;">Залежно від того, що вибрав юзер (одна станція чи всі, одна модель чи порівняння, прогноз у майбутнє чи бектест минулого), модуль розбирає цей набір умов, зберігає прапорці в <code>st.session_state</code> (наприклад, <code>tab_active_mode</code>), викликає відповідний двигун (<code>run_reactive_forecast_engine</code> або <code>cached_fast_backtest</code>) та передає результат у компоненти відображення (Grid, Layouts, Audits). Також має захист від переривань через <code>engine_active</code>.</p>
     </div>
 </div>
 
-<!-- SECTION 02: CODE DOCUMENTATION (SMART PARSED) -->
+<!-- SECTION 02: API REFERENCE -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Системний опис з коду (Docstring)</h2></div>
-    <div class="glass-card flow-step" style="border-left: 4px solid var(--accent); padding-left: 20px;">
-        <p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>ЦЕНТР ПРОГНОЗУВАННЯ ТА АУДИТУ ШІ (AI Forecast & Backtest Center)</p>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>Головний інтерфейсний модуль для взаємодії з ML-моделями системи.</p>
-<h3 style='color: var(--accent); font-family: "Orbitron", sans-serif; font-size: 15px; margin-top: 22px; margin-bottom: 10px;'>Забезпечує</h3>
-<ol style='margin-left: 20px; margin-bottom: 15px;'>
-<li style='margin-bottom: 6px; line-height: 1.5;'>Реактивний інференц-двигун для генерації прогнозів навантаження в реальному часі.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'>Порівняльний аналіз архітектур (V1 vs V2 vs V3) для одного об'єкта або всієї мережі.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'>Модуль зворотного тестування (Backtesting) для оцінки точності ШІ на історичних даних.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'>Візуалізацію інтервалів довіри та сезонних трендів через динамічні графіки Plotly.</li>
-</ol>
-    </div>
-</div>
-
-<!-- SECTION 03: API REFERENCE (INTERACTIVE BLOCK) -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Інтерфейси та сигнатури коду</h2></div>
+    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Публічний інтерфейс (API)</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 15px; color: var(--text-dim);">Документовані класи та методи, знайдені за допомогою статичного аналізу коду (AST):</p>
         <div style='display: flex; flex-direction: column; gap: 10px;'>
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def render()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Main entry point for the Forecast & Audit tab.</p>
+            
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>def render(selected_substation="Усі підстанції", data_source="Live") → None</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Єдина точка входу. 1. Перевіряє "Interruption Monitor". 2. Нормалізує ввід (list vs string). 3. Рендерить Header. 4. Обробляє кнопки "Прогноз" та "Аудит". 5. В залежності від <code>tab_active_mode</code> викликає: <code>run_reactive_forecast_engine</code> (для майбутнього), <code>_render_comparative_audit</code> (для порівняння моделей), або <code>render_backtest_execution_loop</code> (для глобального аудиту). Розподіляє малювання графіків між <code>hero</code> компонентом та <code>grid</code> компонентами.</p>
             </div>
-            </div>
+
+        </div>
     </div>
 </div>
 
-<!-- SECTION 04: EXECUTION FLOW (DIAGRAM) -->
+<!-- SECTION 03: EXECUTION FLOW DIAGRAM -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Життєвий цикл виконання</h2></div>
+    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Диспетчеризація станів (State Machine)</h2></div>
     <div class="diagram-outer-wrapper"><div class="mermaid">
 graph TD
-    START("Запуск forecast.py") --> CONFIG("Ініціалізація оточення")
-    CONFIG --> RUN("Основний алгоритм")
-    RUN --> COMP("Завершення завдання")
+    IN("User Action") --> STATE("st.session_state\n[tab_active_mode]")
+    
+    STATE --> FORECAST["Mode: 'forecast'"]
+    STATE --> AUDIT_COMP["Mode: 'comparison_audit'"]
+    STATE --> AUDIT_GLOB["Mode: 'multi_audit_view'"]
+    
+    FORECAST --> FC_ENG("run_reactive_forecast_engine()")
+    FC_ENG --> FC_SCOPE{"Scope?"}
+    
+    FC_SCOPE -->|Single| RENDER_S("render_single_forecast_results()")
+    FC_SCOPE -->|Global| RENDER_G("render_substation_grid()")
+    
+    AUDIT_COMP --> AUD_C("_render_comparative_audit()")
+    
+    AUDIT_GLOB --> BT_LOOP("cached_fast_backtest()\nin a Loop + ProgressBar")
     </div></div>
 </div>
 
-<!-- SECTION 05: MODULE DEPENDENCIES -->
+<!-- SECTION 04: DEPENDENCIES -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
+    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 12px; color: var(--text-dim);">Бібліотеки та модулі, що імпортуються цим файлом:</p>
         <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; border: 1px solid var(--border);">
-            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.ml.forecast_controller</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.ui.components.charts</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.ui.views.forecast_components.audits</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.ui.views.forecast_components.engine</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.ui.views.forecast_components.grid</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.ui.views.forecast_components.header</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.ui.views.forecast_components.layouts</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.utils.ui_helpers</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>streamlit</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>streamlit</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.utils.ui_helpers (safe_plotly_render)</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.ui.views.forecast_components.* (header, engine, grid, audits, layouts)</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.ml.forecast_controller (get_cached_history, cached_fast_backtest)</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.ui.components.charts (_generate_*)</span>
         </div>
     </div>
 </div>

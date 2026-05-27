@@ -1,4 +1,4 @@
-# ATLAS_PASSPORT: docs/system/map/core_kernel_hub.md
+# ATLAS_PASSPORT: docs/system/map/physics.md
 """
 ⚛️ PHYSICAL MODELS ENGINE (Scientific Core).
 Модуль: physics.py | Версія: 3.1.0 "Digital Twin"

@@ -1,4 +1,4 @@
-# ATLAS_PASSPORT: docs/system/map/ml_core_engine.md
+# ATLAS_PASSPORT: docs/system/map/plots.md
 import matplotlib.pyplot as plt
 import pandas as pd
 import os

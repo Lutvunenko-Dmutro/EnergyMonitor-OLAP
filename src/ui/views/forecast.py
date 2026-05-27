@@ -63,7 +63,7 @@ def render(selected_substation="Усі підстанції", data_source="Live"
                     sub_name, sub_id_hero, version, src_type, scenario, is_multi_model
                 )
             except Exception as e:
-                from streamlit.runtime.scriptrunner.exceptions import StopException, RerunException
+                from src.utils.helpers import StopException, RerunException
                 if isinstance(e, (StopException, RerunException)): raise e
                 st.error(f"❌ Помилка двигуна: {e}")
                 multi_hero, res_fc, multi_results = {}, None, None
@@ -100,7 +100,7 @@ def render(selected_substation="Усі підстанції", data_source="Live"
             st.session_state["engine_active"] = True
             _render_comparative_audit(sub_name, src_type)
         except Exception as e:
-            from streamlit.runtime.scriptrunner.exceptions import StopException, RerunException
+            from src.utils.helpers import StopException, RerunException
             if isinstance(e, (StopException, RerunException)): raise e
             st.error(f"❌ Помилка аудиту: {e}")
         finally:
@@ -138,7 +138,7 @@ def render(selected_substation="Усі підстанції", data_source="Live"
                     status.update(label="✅ Глобальний аудит завершено!", state="complete")
                     p_bar.empty()
             except Exception as e:
-                from streamlit.runtime.scriptrunner.exceptions import StopException, RerunException
+                from src.utils.helpers import StopException, RerunException
                 if isinstance(e, (StopException, RerunException)): raise e
                 st.error(f"❌ Перервано під час аудиту: {e}")
             finally:

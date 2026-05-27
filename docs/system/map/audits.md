@@ -4,88 +4,88 @@
 
 <!-- HERO SECTION -->
 <div class="hero-section">
-    <div class="hero-badge">AUTOMATION ENGINE & UTILITY NODE</div>
+    <div class="hero-badge">FORECAST COMPARATIVE AUDITS</div>
     <div class="hero-main">
-        <div class="hero-icon-wrapper"><span class="hero-icon">⚙️</span><div class="pulse-ring"></div></div>
+        <div class="hero-icon-wrapper"><span class="hero-icon">⚖️</span><div class="pulse-ring"></div></div>
         <div class="hero-title-group">
-            <h1 class="mega-title">Служба автоматизації: audits</h1>
-            <p class="mega-subtitle">Технічний скрипт автоматизації процесів збирання, аналізу або конвертації в екосистемі ATLAS</p>
-            <div class="status-tags"><span class="tag tag-online">DEFENSE EDITION</span><span class="tag tag-version">v5.0.0</span><span class="tag tag-role">UTILITY SCRIPT</span></div>
+            <h1 class="mega-title">Model Diagnostics: audits</h1>
+            <p class="mega-subtitle">Підсистема глибинного аналізу точності різних поколінь нейромережевих моделей (LSTM V1, V2, V3). Забезпечує порівняльну діагностику архітектур та розрахунок метрик ефективності.</p>
+            <div class="status-tags"><span class="tag tag-online">PLOTLY UI</span><span class="tag tag-version">v2.0.0</span><span class="tag tag-role">DIAGNOSTICS PANEL</span></div>
         </div>
     </div>
 </div>
 
 <!-- KEY METRICS GRID -->
 <div class="metrics-grid">
-    <div class="glass-card metric-card"><div class="metric-icon">🛡️</div><div class="metric-info"><span class="metric-label">Runtime</span><span class="metric-value">Python 3.11+</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">⚡</div><div class="metric-info"><span class="metric-label">Execution</span><span class="metric-value">Automated Task</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🧬</div><div class="metric-info"><span class="metric-label">Priority</span><span class="metric-value">High Performance</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🩺</div><div class="metric-info"><span class="metric-label">Interface</span><span class="metric-value">CLI / Script</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🔍</div><div class="metric-info"><span class="metric-label">Evaluation</span><span class="metric-value">V1 vs V2 vs V3</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">📊</div><div class="metric-info"><span class="metric-label">Metrics</span><span class="metric-value">RMSE, MAE, R², MAPE</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">📈</div><div class="metric-info"><span class="metric-label">Visualization</span><span class="metric-value">Multi-Trace Plotly</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🧩</div><div class="metric-info"><span class="metric-label">Academic</span><span class="metric-value">Distributions & Scatter</span></div></div>
 </div>
 
 <!-- SECTION 01: CONCEPTUAL ROLE -->
 <div class="section-container">
     <div class="section-header"><span class="section-number">01</span><h2 class="section-title">Концептуальне призначення</h2></div>
     <div class="glass-card flow-step">
-        <p>Модуль <b>audits</b> забезпечує інтеграцію та виконання наступних обчислювальних процесів системи: <i>МОДУЛЬ ПОРІВНЯЛЬНОГО АУДИТУ ПРОГНОЗІВ (Forecast Comparative Audits) Модуль забезпечує глибинний аналіз точності різних поколінь нейромережевих моделей.</i><br><br><b>Архітектурний інтерфейс:</b> надає методи <code>_render_comparative_audit()</code>, <code>_render_group_comparison()</code>.</p>
+        <p>Модуль <b>audits.py</b> працює в межах вкладки "Прогнозування" та відповідає за відображення результатів <i>порівняльного тестування (Backtesting)</i>. Він дозволяє аналітику наочно побачити різницю між базовою моделлю та покращеною архітектурою, яка враховує погодні умови.</p>
+        <p style="margin-top: 12px;">Основна задача — викликати функції швидкого бектестингу (через <code>cached_fast_backtest</code>) для кожної доступної версії моделі, зібрати метрики, та відрендерити комплексний UI: графік порівняння, академічні графіки розподілу похибок, та зведену таблицю метрик.</p>
     </div>
 </div>
 
-<!-- SECTION 02: CODE DOCUMENTATION (SMART PARSED) -->
+<!-- SECTION 02: API REFERENCE -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Системний опис з коду (Docstring)</h2></div>
-    <div class="glass-card flow-step" style="border-left: 4px solid var(--accent); padding-left: 20px;">
-        <p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>МОДУЛЬ ПОРІВНЯЛЬНОГО АУДИТУ ПРОГНОЗІВ (Forecast Comparative Audits)</p>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>Модуль забезпечує глибинний аналіз точності різних поколінь нейромережевих моделей.</p>
-<h3 style='color: var(--accent); font-family: "Orbitron", sans-serif; font-size: 15px; margin-top: 22px; margin-bottom: 10px;'>Ключові можливості</h3>
-<ol style='margin-left: 20px; margin-bottom: 15px;'>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Multi-Architecture Comparison:</b> тестування та порівняння трьох архітектур LSTM (V1, V2, V3).</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Intelligent Performance Metrics:</b> зведені таблиці (R², RMSE, MAPE) з підсвічуванням кращих результатів.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Comparative Diagnostic:</b> генерація порівняльних графіків та діаграм розподілу помилок.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Group Load Analysis:</b> візуальне порівняння динаміки навантаження декількох підстанцій одночасно.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Academic Context:</b> наукове обґрунтування переваг інтеграції зовнішніх факторів у моделі.</li>
-</ol>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>Забезпечує науково обґрунтований підхід до оцінки якості інтелектуальних прогнозів.</p>
-    </div>
-</div>
-
-<!-- SECTION 03: API REFERENCE (INTERACTIVE BLOCK) -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Інтерфейси та сигнатури коду</h2></div>
+    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Публічний інтерфейс (API)</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 15px; color: var(--text-dim);">Документовані класи та методи, знайдені за допомогою статичного аналізу коду (AST):</p>
         <div style='display: flex; flex-direction: column; gap: 10px;'>
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def _render_comparative_audit()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Виконує порівняльний аналіз трьох поколінь LSTM (V1, V2, V3) </p>
+            
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>def _render_comparative_audit(substation_name: str, source_type: str) → None</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Головний UI-контролер. В залежності від <code>source_type</code> (Live/CSV) та перемикача в session_state, тестує 1 або 3 моделі. Рендерить 3 вкладки: 1) "Порівняння" (загальний графік), 2) "Діагностика" (гістограми та розсіювання помилок через модуль `academic.py`), 3) "Метрики" (таблиця з підсвіткою кращого R²).</p>
             </div>
             
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def _render_group_comparison()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Рендерить порівняльний графік для декількох підстанцій одночасно.</p>
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>def _render_group_comparison(stations_list: list, source_type: str, version: str) → None</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Рендерить єдиний лінійний Plotly-графік (go.Figure), на якому суміщені історичні дані навантаження відразу для декількох підстанцій (дозволяє диспетчеру порівняти піки споживання в різних вузлах).</p>
             </div>
-            </div>
+
+        </div>
     </div>
 </div>
 
-<!-- SECTION 04: EXECUTION FLOW (DIAGRAM) -->
+<!-- SECTION 03: EXECUTION FLOW DIAGRAM -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Життєвий цикл виконання</h2></div>
+    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Логіка побудови аудиту</h2></div>
     <div class="diagram-outer-wrapper"><div class="mermaid">
 graph TD
-    START("Запуск audits.py") --> CONFIG("Ініціалізація оточення")
-    CONFIG --> RUN("Основний алгоритм")
-    RUN --> COMP("Завершення завдання")
+    UI("User selects 'Compare Models'") --> AUDIT("_render_comparative_audit()")
+    
+    AUDIT --> LOOP{"For version in\n[v1, v2, v3]"}
+    
+    LOOP --> BT("cached_fast_backtest(v)")
+    BT --> METRICS["Extract: RMSE, MAE, R², df_bt"]
+    METRICS --> COL["Append to res_dict & mlist"]
+    COL --> LOOP
+    
+    LOOP -->|All Done| TABS("st.tabs: 📈 | 📊 | 📋")
+    
+    TABS --> TAB1("Tab 1:\ngenerate_comparison_plot()")
+    TABS --> TAB2("Tab 2:\ngenerate_academic_plots()")
+    TABS --> TAB3("Tab 3:\npd.DataFrame(mlist).style...")
     </div></div>
 </div>
 
-<!-- SECTION 05: MODULE DEPENDENCIES -->
+<!-- SECTION 04: DEPENDENCIES -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
+    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 12px; color: var(--text-dim);">Бібліотеки та модулі, що імпортуються цим файлом:</p>
         <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; border: 1px solid var(--border);">
-            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>pandas</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>plotly.graph_objects</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.ml.forecast_controller</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.ui.views.forecast_components.constants</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.utils.ui_helpers</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>streamlit</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>streamlit</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>pandas</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>plotly.graph_objects</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.ml.forecast_controller</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.utils.ui_helpers</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.ui.components.charts.academic (Inline)</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.ui.views.forecast_components.engine (Inline)</span>
         </div>
     </div>
 </div>

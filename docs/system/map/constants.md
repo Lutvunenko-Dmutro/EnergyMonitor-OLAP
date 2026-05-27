@@ -4,75 +4,60 @@
 
 <!-- HERO SECTION -->
 <div class="hero-section">
-    <div class="hero-badge">AUTOMATION ENGINE & UTILITY NODE</div>
+    <div class="hero-badge">FORECAST UI REGISTRY</div>
     <div class="hero-main">
-        <div class="hero-icon-wrapper"><span class="hero-icon">⚙️</span><div class="pulse-ring"></div></div>
+        <div class="hero-icon-wrapper"><span class="hero-icon">🎨</span><div class="pulse-ring"></div></div>
         <div class="hero-title-group">
-            <h1 class="mega-title">Служба автоматизації: constants</h1>
-            <p class="mega-subtitle">Технічний скрипт автоматизації процесів збирання, аналізу або конвертації в екосистемі ATLAS</p>
-            <div class="status-tags"><span class="tag tag-online">DEFENSE EDITION</span><span class="tag tag-version">v5.0.0</span><span class="tag tag-role">UTILITY SCRIPT</span></div>
+            <h1 class="mega-title">UI Registry: constants</h1>
+            <p class="mega-subtitle">Централізоване сховище текстових міток та колірних схем для оформлення аналітичних звітів та графіків ШІ-моделей (v1-v3).</p>
+            <div class="status-tags"><span class="tag tag-online">CONFIGURATION</span><span class="tag tag-version">v1.0.0</span><span class="tag tag-role">DICTIONARIES</span></div>
         </div>
     </div>
 </div>
 
 <!-- KEY METRICS GRID -->
 <div class="metrics-grid">
-    <div class="glass-card metric-card"><div class="metric-icon">🛡️</div><div class="metric-info"><span class="metric-label">Runtime</span><span class="metric-value">Python 3.11+</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">⚡</div><div class="metric-info"><span class="metric-label">Execution</span><span class="metric-value">Automated Task</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🧬</div><div class="metric-info"><span class="metric-label">Priority</span><span class="metric-value">High Performance</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🩺</div><div class="metric-info"><span class="metric-label">Interface</span><span class="metric-value">CLI / Script</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🏷️</div><div class="metric-info"><span class="metric-label">Labels</span><span class="metric-value">Unified Model Naming</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🎨</div><div class="metric-info"><span class="metric-label">Colors</span><span class="metric-value">Brand Color Coding</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">📌</div><div class="metric-info"><span class="metric-label">Role</span><span class="metric-value">Single Source of Truth</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">⚡</div><div class="metric-info"><span class="metric-label">Type</span><span class="metric-value">Static Dictionaries</span></div></div>
 </div>
 
 <!-- SECTION 01: CONCEPTUAL ROLE -->
 <div class="section-container">
     <div class="section-header"><span class="section-number">01</span><h2 class="section-title">Концептуальне призначення</h2></div>
     <div class="glass-card flow-step">
-        <p>Модуль <b>constants</b> забезпечує інтеграцію та виконання наступних обчислювальних процесів системи: <i>РЕЄСТР КОНСТАНТ ІНТЕРФЕЙСУ ПРОГНОЗІВ (Forecast UI Registry) Централізоване сховище текстових міток та колірних схем для ШІ-моделей.</i></p>
+        <p>Модуль <b>constants.py</b> дуже маленький, але архітектурно важливий. Він гарантує, що у всьому додатку (на графіках, в легендах, в таблицях) версії моделей (v1, v2, v3) будуть називатися однаково і мати однаковий колір.</p>
+        <p style="margin-top: 12px;">Це запобігає ситуаціям, коли на одному графіку v3 має зелений колір, а на іншому — синій, що сильно плутає користувача. Всі UI-компоненти, які малюють графіки, імпортують <code>MODEL_COLORS</code> з цього файлу.</p>
     </div>
 </div>
 
-<!-- SECTION 02: CODE DOCUMENTATION (SMART PARSED) -->
+<!-- SECTION 02: API REFERENCE -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Системний опис з коду (Docstring)</h2></div>
-    <div class="glass-card flow-step" style="border-left: 4px solid var(--accent); padding-left: 20px;">
-        <p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>РЕЄСТР КОНСТАНТ ІНТЕРФЕЙСУ ПРОГНОЗІВ (Forecast UI Registry)</p>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>Централізоване сховище текстових міток та колірних схем для ШІ-моделей.</p>
-<h3 style='color: var(--accent); font-family: "Orbitron", sans-serif; font-size: 15px; margin-top: 22px; margin-bottom: 10px;'>Ключові можливості</h3>
-<ol style='margin-left: 20px; margin-bottom: 15px;'>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Unified Model Labeling:</b> стандартизація назв та описів версій нейромереж (v1-v3).</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Color Coding Schema:</b> визначення фірмових кольорів для візуальної ідентифікації на графіках.</li>
-</ol>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>Служить єдиним джерелом істини для оформлення аналітичних звітів та діаграм.</p>
-    </div>
-</div>
-
-<!-- SECTION 03: API REFERENCE (INTERACTIVE BLOCK) -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Інтерфейси та сигнатури коду</h2></div>
+    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Публічні словники</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 15px; color: var(--text-dim);">Документовані класи та методи, знайдені за допомогою статичного аналізу коду (AST):</p>
-        <p style='color: var(--text-dim); font-style: italic;'>Модуль виконується як лінійний скрипт без виділених класів або функцій.</p>
+        <div style='display: flex; flex-direction: column; gap: 10px;'>
+            
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>MODEL_LABELS</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Словник (dict), що зіставляє системні версії ('v1', 'v2', 'v3') з повними зрозумілими назвами, наприклад <code>"LSTM-v2 (5 ознак · Телеметрія)"</code>. Використовується в Select-боксах та легендах графіків.</p>
+            </div>
+            
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>MODEL_COLORS</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Словник (dict) HEX-кодів. v1: "#ff9f43" (Помаранчевий), v2: "#ee5253" (Червоний), v3: "#10ac84" (Зелений). Використовується для Plotly <code>color_discrete_map</code>.</p>
+            </div>
+
+        </div>
     </div>
 </div>
 
-<!-- SECTION 04: EXECUTION FLOW (DIAGRAM) -->
+<!-- SECTION 03: DEPENDENCIES -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Життєвий цикл виконання</h2></div>
-    <div class="diagram-outer-wrapper"><div class="mermaid">
-graph TD
-    START("Запуск constants.py") --> CONFIG("Ініціалізація оточення")
-    CONFIG --> RUN("Основний алгоритм")
-    RUN --> COMP("Завершення завдання")
-    </div></div>
-</div>
-
-<!-- SECTION 05: MODULE DEPENDENCIES -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
+    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 12px; color: var(--text-dim);">Бібліотеки та модулі, що імпортуються цим файлом:</p>
         <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; border: 1px solid var(--border);">
-            <span style='color: var(--text-dim); font-style: italic;'>Немає зовнішніх залежностей</span>
+            <p style="color: var(--text-dim); margin-bottom: 0;"><i>Цей модуль не має зовнішніх залежностей.</i></p>
         </div>
     </div>
 </div>

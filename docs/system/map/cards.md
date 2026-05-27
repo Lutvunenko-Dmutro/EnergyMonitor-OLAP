@@ -4,86 +4,81 @@
 
 <!-- HERO SECTION -->
 <div class="hero-section">
-    <div class="hero-badge">AUTOMATION ENGINE & UTILITY NODE</div>
+    <div class="hero-badge">UI INDICATORS LIBRARY</div>
     <div class="hero-main">
-        <div class="hero-icon-wrapper"><span class="hero-icon">⚙️</span><div class="pulse-ring"></div></div>
+        <div class="hero-icon-wrapper"><span class="hero-icon">📟</span><div class="pulse-ring"></div></div>
         <div class="hero-title-group">
-            <h1 class="mega-title">Служба автоматизації: cards</h1>
-            <p class="mega-subtitle">Технічний скрипт автоматизації процесів збирання, аналізу або конвертації в екосистемі ATLAS</p>
-            <div class="status-tags"><span class="tag tag-online">DEFENSE EDITION</span><span class="tag tag-version">v5.0.0</span><span class="tag tag-role">UTILITY SCRIPT</span></div>
+            <h1 class="mega-title">UI Components: cards</h1>
+            <p class="mega-subtitle">Бібліотека інтерактивних карток та індикаторів. Реалізує компактні візуальні елементи (Gauge Charts, Health Bars) для швидкої оцінки стану об'єктів мережі в дашбордах.</p>
+            <div class="status-tags"><span class="tag tag-online">PLOTLY UI</span><span class="tag tag-version">v1.0.0</span><span class="tag tag-role">VISUAL COMPONENTS</span></div>
         </div>
     </div>
 </div>
 
 <!-- KEY METRICS GRID -->
 <div class="metrics-grid">
-    <div class="glass-card metric-card"><div class="metric-icon">🛡️</div><div class="metric-info"><span class="metric-label">Runtime</span><span class="metric-value">Python 3.11+</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">⚡</div><div class="metric-info"><span class="metric-label">Execution</span><span class="metric-value">Automated Task</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🧬</div><div class="metric-info"><span class="metric-label">Priority</span><span class="metric-value">High Performance</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🩺</div><div class="metric-info"><span class="metric-label">Interface</span><span class="metric-value">CLI / Script</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🚥</div><div class="metric-info"><span class="metric-label">Gauge</span><span class="metric-value">Plotly Indicator (0-100%)</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🩺</div><div class="metric-info"><span class="metric-label">Health</span><span class="metric-value">Emoji Progress Bar</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🔴</div><div class="metric-info"><span class="metric-label">Zoning</span><span class="metric-value">Green / Amber / Red</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">⚡</div><div class="metric-info"><span class="metric-label">Rendering</span><span class="metric-value">safe_plotly_render</span></div></div>
 </div>
 
 <!-- SECTION 01: CONCEPTUAL ROLE -->
 <div class="section-container">
     <div class="section-header"><span class="section-number">01</span><h2 class="section-title">Концептуальне призначення</h2></div>
     <div class="glass-card flow-step">
-        <p>Модуль <b>cards</b> забезпечує інтеграцію та виконання наступних обчислювальних процесів системи: <i>БІБЛІОТЕКА ІНТЕРАКТИВНИХ КАРТОК ТА ІНДИКАТОРІВ (UI Indicators Library) Модуль реалізує компактні візуальні елементи для швидкої оцінки стану об'єктів мережі.</i><br><br><b>Архітектурний інтерфейс:</b> надає методи <code>make_health_bar()</code>, <code>render_gauge()</code>.</p>
+        <p>Модуль <b>cards.py</b> містить перевикористовувані (reusable) UI-компоненти для відображення ключових метрик підстанцій у "плитковому" (card) форматі.</p>
+        <p style="margin-top: 12px;">Замість того, щоб дублювати код малювання "спідометрів" (Gauge) або індикаторів "здоров'я обладнання" (Health) в різних вкладках, всі вони винесені сюди. Модуль активно використовує <code>plotly.graph_objects.Indicator</code> для спідометрів та кастомну генерацію текстових емодзі для Health Score, що забезпечує дуже швидкий рендеринг без втрати інформативності.</p>
     </div>
 </div>
 
-<!-- SECTION 02: CODE DOCUMENTATION (SMART PARSED) -->
+<!-- SECTION 02: API REFERENCE -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Системний опис з коду (Docstring)</h2></div>
-    <div class="glass-card flow-step" style="border-left: 4px solid var(--accent); padding-left: 20px;">
-        <p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>БІБЛІОТЕКА ІНТЕРАКТИВНИХ КАРТОК ТА ІНДИКАТОРІВ (UI Indicators Library)</p>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>Модуль реалізує компактні візуальні елементи для швидкої оцінки стану об'єктів мережі.</p>
-<h3 style='color: var(--accent); font-family: "Orbitron", sans-serif; font-size: 15px; margin-top: 22px; margin-bottom: 10px;'>Забезпечує</h3>
-<ol style='margin-left: 20px; margin-bottom: 15px;'>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Gauge Indicators:</b> кругові діаграми поточного завантаження з колірним зонуванням статусів.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Asset Health Bars:</b> символьні прогрес-бари для візуалізації показника Health Score через емодзі-графіку.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Lightweight UI:</b> оптимізовані Plotly-індикатори для вбудовування в аналітичні дашборди.</li>
-</ol>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>Допомагає оператору миттєво ідентифікувати аномалії та критичні режими роботи обладнання.</p>
-    </div>
-</div>
-
-<!-- SECTION 03: API REFERENCE (INTERACTIVE BLOCK) -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Інтерфейси та сигнатури коду</h2></div>
+    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Публічний інтерфейс (API)</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 15px; color: var(--text-dim);">Документовані класи та методи, знайдені за допомогою статичного аналізу коду (AST):</p>
         <div style='display: flex; flex-direction: column; gap: 10px;'>
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def make_health_bar()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Створює кастомний текстовий прогрес-бар для показника здоров'я.</p>
+            
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>def make_health_bar(h: float | pd.NA) → str</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Генерує текстовий прогрес-бар для "здоров'я" (Health Score, 0-100). Використовує символ 🟩 для заповненої частини та ⬜ для порожньої. Додає кольорове емодзі стану на початку (🟢 >= 85, 🟡 >= 60, 🔴 < 60). Повертає відформатований рядок.</p>
             </div>
             
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def render_gauge()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Рендерить діаграму завантаженості (Gauge Chart).</p>
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>def render_gauge(value: float) → None</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Рендерить Plotly Gauge (Спідометр). Налаштований на діапазон 0-100% з трьома кольоровими зонами ("steps"): Зелена (0-70), Помаранчева (70-90), та Червона (90-100). Має прозорий фон (<code>paper_bgcolor="rgba(0,0,0,0)"</code>) та рендериться через <code>safe_plotly_render</code>.</p>
             </div>
-            </div>
+
+        </div>
     </div>
 </div>
 
-<!-- SECTION 04: EXECUTION FLOW (DIAGRAM) -->
+<!-- SECTION 03: EXECUTION FLOW DIAGRAM -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Життєвий цикл виконання</h2></div>
+    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Схема візуалізації</h2></div>
     <div class="diagram-outer-wrapper"><div class="mermaid">
 graph TD
-    START("Запуск cards.py") --> CONFIG("Ініціалізація оточення")
-    CONFIG --> RUN("Основний алгоритм")
-    RUN --> COMP("Завершення завдання")
+    UI("Streamlit Column\n(Container)") --> CALL_G("render_gauge(85.5)")
+    UI --> CALL_H("make_health_bar(92.0)")
+    
+    CALL_G --> PLOTLY("go.Figure(go.Indicator)\n+ Zones (Green, Amber, Red)")
+    PLOTLY --> SAFE_RENDER("safe_plotly_render()")
+    SAFE_RENDER --> VIEW_G("[Plotly Interactive Widget]")
+    
+    CALL_H --> MATH("round(92.0 / 10) = 9")
+    MATH --> STR("9x🟩 + 1x⬜\n+ 🟢 Emoji")
+    STR --> VIEW_H("String: '🟢 🟩🟩🟩🟩🟩🟩🟩🟩🟩⬜ 92.0%'")
     </div></div>
 </div>
 
-<!-- SECTION 05: MODULE DEPENDENCIES -->
+<!-- SECTION 04: DEPENDENCIES -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
+    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 12px; color: var(--text-dim);">Бібліотеки та модулі, що імпортуються цим файлом:</p>
         <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; border: 1px solid var(--border);">
-            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>pandas</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>plotly.graph_objects</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>streamlit</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>streamlit</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>pandas</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>plotly.graph_objects</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.utils.ui_helpers (safe_plotly_render)</span>
         </div>
     </div>
 </div>

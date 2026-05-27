@@ -1,4 +1,4 @@
-# ATLAS_PASSPORT: docs/system/map/diagnostics_engine_hub.md
+# ATLAS_PASSPORT: docs/system/map/scanner.md
 """
 🔍 SYSTEM AUDIT SCANNER (Deep Code Inspector).
 py | Версія: 2.5.0 "DeepScan"

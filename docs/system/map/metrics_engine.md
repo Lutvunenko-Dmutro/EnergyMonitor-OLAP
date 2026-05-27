@@ -4,102 +4,96 @@
 
 <!-- HERO SECTION -->
 <div class="hero-section">
-    <div class="hero-badge">AUTOMATION ENGINE & UTILITY NODE</div>
+    <div class="hero-badge">SCIENTIFIC ACCURACY AUDIT</div>
     <div class="hero-main">
-        <div class="hero-icon-wrapper"><span class="hero-icon">⚙️</span><div class="pulse-ring"></div></div>
+        <div class="hero-icon-wrapper"><span class="hero-icon">📐</span><div class="pulse-ring"></div></div>
         <div class="hero-title-group">
-            <h1 class="mega-title">Служба автоматизації: metrics_engine</h1>
-            <p class="mega-subtitle">Технічний скрипт автоматизації процесів збирання, аналізу або конвертації в екосистемі ATLAS</p>
-            <div class="status-tags"><span class="tag tag-online">DEFENSE EDITION</span><span class="tag tag-version">v5.0.0</span><span class="tag tag-role">UTILITY SCRIPT</span></div>
+            <h1 class="mega-title">Analytical Metrics Engine: metrics_engine</h1>
+            <p class="mega-subtitle">Реалізує комплексний апарат математичного та статистичного аналізу (RMSE, MAE, MAD, Shapiro-Wilk) для верифікації точності ШІ прогнозів.</p>
+            <div class="status-tags"><span class="tag tag-online">SCIPY / SKLEARN</span><span class="tag tag-version">v2.1.0</span><span class="tag tag-role">MATH VALIDATOR</span></div>
         </div>
     </div>
 </div>
 
 <!-- KEY METRICS GRID -->
 <div class="metrics-grid">
-    <div class="glass-card metric-card"><div class="metric-icon">🛡️</div><div class="metric-info"><span class="metric-label">Runtime</span><span class="metric-value">Python 3.11+</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">⚡</div><div class="metric-info"><span class="metric-label">Execution</span><span class="metric-value">Automated Task</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🧬</div><div class="metric-info"><span class="metric-label">Priority</span><span class="metric-value">High Performance</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🩺</div><div class="metric-info"><span class="metric-label">Interface</span><span class="metric-value">CLI / Script</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">📊</div><div class="metric-info"><span class="metric-label">Stats</span><span class="metric-value">Shapiro-Wilk (Normality)</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🧹</div><div class="metric-info"><span class="metric-label">Filter</span><span class="metric-value">3-Sigma MAD Threshold</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">⚖️</div><div class="metric-info"><span class="metric-label">Scale</span><span class="metric-value">Dynamic Scaling Factors</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🎯</div><div class="metric-info"><span class="metric-label">Accuracy</span><span class="metric-value">RMSE, MAE, R², MAPE</span></div></div>
 </div>
 
 <!-- SECTION 01: CONCEPTUAL ROLE -->
 <div class="section-container">
     <div class="section-header"><span class="section-number">01</span><h2 class="section-title">Концептуальне призначення</h2></div>
     <div class="glass-card flow-step">
-        <p>Модуль <b>metrics_engine</b> забезпечує інтеграцію та виконання наступних обчислювальних процесів системи: <i>📐 ANALYTICAL METRICS ENGINE (Scientific Accuracy Audit). Модуль реалізує комплексний апарат статистичного аналізу для верифікації точності прогнозів.</i><br><br><b>Архітектурний інтерфейс:</b> надає методи <code>perform_statistical_audit()</code>, <code>_get_scaling_factor()</code>.</p>
+        <p>Модуль <b>metrics_engine.py</b> відповідає на одне критичне запитання: <i>"Наскільки сильно помилився ШІ?"</i>. Оскільки дані з сенсорів часто містять шуми (наприклад, станція різко вимкнулась на 1 хвилину), звичайні формули помилок дадуть хибні результати.</p>
+        <p style="margin-top: 12px;">Цей модуль розв'язує проблему завдяки <b>Robust 3-Sigma MAD (Median Absolute Deviation)</b>. Він автоматично відкидає 100%-аномальні стрибки перед тим, як рахувати фінальні RMSE чи R². Також він проводить академічний статистичний аудит залишків (чи нормально розподілені помилки через критерій Шапіро-Уілка), та автоматично синхронізує прогнози ШІ з реальними даними з Бази Даних (Ground Truth Sync).</p>
     </div>
 </div>
 
-<!-- SECTION 02: CODE DOCUMENTATION (SMART PARSED) -->
+<!-- SECTION 02: API REFERENCE -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Системний опис з коду (Docstring)</h2></div>
-    <div class="glass-card flow-step" style="border-left: 4px solid var(--accent); padding-left: 20px;">
-        <p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>📐 ANALYTICAL METRICS ENGINE (Scientific Accuracy Audit).</p>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>Модуль реалізує комплексний апарат статистичного аналізу для верифікації точності прогнозів.</p>
-<h3 style='color: var(--accent); font-family: "Orbitron", sans-serif; font-size: 15px; margin-top: 22px; margin-bottom: 10px;'>Ключові можливості</h3>
-<ol style='margin-left: 20px; margin-bottom: 15px;'>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Statistical Audit:</b> проведення тестів на нормальність (Shapiro-Wilk), аналіз асиметрії та ексцесу помилок.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Outlier Filtering:</b> інтелектуальна фільтрація аномальних викидів та шуму через робастні 3-сигма маски (MAD).</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Ground Truth Sync:</b> автоматичне об'єднання прогнозів з реальними показниками БД для розрахунку RMSE, MAE, MAPE.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Scale-Aware Normalization:</b> розрахунок динамічних факторів масштабування для коректного порівняння об'єктів.</li>
-</ol>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>Гарантує математичну достовірність аналітичних звітів про продуктивність системи.</p>
-    </div>
-</div>
-
-<!-- SECTION 03: API REFERENCE (INTERACTIVE BLOCK) -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Інтерфейси та сигнатури коду</h2></div>
+    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Публічний інтерфейс (API)</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 15px; color: var(--text-dim);">Документовані класи та методи, знайдені за допомогою статичного аналізу коду (AST):</p>
         <div style='display: flex; flex-direction: column; gap: 10px;'>
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def perform_statistical_audit()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Performs a comprehensive mathematical audit of forecast residuals.</p>
+            
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>def perform_statistical_audit(errors: np.ndarray) → Dict[str, Any]</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Рахує математичну статистику для графіка розподілу (Histogram). Повертає: mu (середнє), sigma (станд. відх.), p_value (тест Шапіро), is_normal (p > 0.05), skew (асиметрія), kurt (ексцес).</p>
             </div>
             
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def _get_scaling_factor()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Automated scaling factor based on substation historical peaks.</p>
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>def _get_outlier_mask(actual: np.ndarray, preds: np.ndarray) → np.ndarray</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Повертає булеву маску для фільтрації аномалій. Рахує <code>mad = np.median(np.abs(err - median))</code>. Обчислює поріг <code>3.5 * 1.4826 * mad</code> (із кліпінгом 100-5000) та відсікає помилки, що перевищують цей ліміт.</p>
             </div>
             
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def _get_ground_truth()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Fetches actual load data from the database or CSV loader.</p>
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>def finalize_backtest_metrics(...) → Optional[Tuple]</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Огорнута в <code>@robust_ml_handler</code> функція фіналізації бектесту. Робить <code>inverse_transform</code> для зняття скейлінгу ШІ. Викликає <code>_get_ground_truth()</code> (запит до БД або Kaggle CSV). Робить внутрішній merge (Join по <code>timestamp</code>/<code>ts</code>). Застосовує <code>_get_outlier_mask</code>. Обчислює sklearn метрики: <code>mean_squared_error</code>, <code>mean_absolute_error</code>, <code>r2_score</code>, та MAPE. Повертає <code>(rmse, mae, mape, r2, None, merged_df)</code>.</p>
             </div>
-            
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def _get_outlier_mask()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Calculates robust 3-sigma mask to filter sensor noise.</p>
-            </div>
-            
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def finalize_backtest_metrics()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Calculates final metrics and merges with database ground truth.</p>
-            </div>
-            </div>
+
+        </div>
     </div>
 </div>
 
-<!-- SECTION 04: EXECUTION FLOW (DIAGRAM) -->
+<!-- SECTION 03: EXECUTION FLOW DIAGRAM -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Життєвий цикл виконання</h2></div>
+    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Пайплайн Валідації Точності</h2></div>
     <div class="diagram-outer-wrapper"><div class="mermaid">
 graph TD
-    START("Запуск metrics_engine.py") --> CONFIG("Ініціалізація оточення")
-    CONFIG --> RUN("Основний алгоритм")
-    RUN --> COMP("Завершення завдання")
+    IN("finalize_backtest_metrics()") --> UNNORM("scaler.inverse_transform(preds)")
+    
+    UNNORM --> TIME("Generate pd.DatetimeIndex\n(floor to hour)")
+    
+    TIME --> GT("_get_ground_truth()\nSQL JOIN LoadMeasurements & Substations")
+    
+    GT --> MERGE("pd.merge(preds_df, actual_df,\nby='timestamp')")
+    
+    MERGE --> MASK("_get_outlier_mask()\nMAD robust filtering")
+    
+    MASK --> CLEAN("Apply True/False mask to arrays")
+    
+    CLEAN --> METRICS("sklearn.metrics:\nRMSE, MAE, MAPE, R²")
+    
+    METRICS --> AUDIT("perform_statistical_audit(errors)\nShapiro-Wilk Test")
+    
+    AUDIT --> DONE("Return final scores to UI")
     </div></div>
 </div>
 
-<!-- SECTION 05: MODULE DEPENDENCIES -->
+<!-- SECTION 04: DEPENDENCIES -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
+    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 12px; color: var(--text-dim);">Бібліотеки та модулі, що імпортуються цим файлом:</p>
         <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; border: 1px solid var(--border);">
-            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>gc</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>numpy</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>pandas</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>scipy.stats</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>sklearn.metrics</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.core.database</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.ml.predict_v2</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.utils.error_handlers</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>typing</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>numpy</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>pandas</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>scipy.stats (shapiro, skew, kurtosis)</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>sklearn.metrics (mean_squared_error, mean_absolute_error, r2_score)</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.core.database (run_query)</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.ml.predict_v2 (load_resources, _get_substation_peak_automated)</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.core.kaggle_loader (load_kaggle_data)</span>
         </div>
     </div>
 </div>

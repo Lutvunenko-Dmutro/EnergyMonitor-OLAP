@@ -4,81 +4,82 @@
 
 <!-- HERO SECTION -->
 <div class="hero-section">
-    <div class="hero-badge">AUTOMATION ENGINE & UTILITY NODE</div>
+    <div class="hero-badge">SYSTEM AUDIT SYSTEM</div>
     <div class="hero-main">
-        <div class="hero-icon-wrapper"><span class="hero-icon">⚙️</span><div class="pulse-ring"></div></div>
+        <div class="hero-icon-wrapper"><span class="hero-icon">📡</span><div class="pulse-ring"></div></div>
         <div class="hero-title-group">
-            <h1 class="mega-title">Служба автоматизації: logger</h1>
-            <p class="mega-subtitle">Технічний скрипт автоматизації процесів збирання, аналізу або конвертації в екосистемі ATLAS</p>
-            <div class="status-tags"><span class="tag tag-online">DEFENSE EDITION</span><span class="tag tag-version">v5.0.0</span><span class="tag tag-role">UTILITY SCRIPT</span></div>
+            <h1 class="mega-title">Logging Orchestrator: logger</h1>
+            <p class="mega-subtitle">Централізована реєстрація подій, моніторинг стану та аудит помилок у всіх компонентах Atlas з подвійним виводом (Console + File).</p>
+            <div class="status-tags"><span class="tag tag-online">PYTHON LOGGING</span><span class="tag tag-version">v1.2.0</span><span class="tag tag-role">TELEMETRY</span></div>
         </div>
     </div>
 </div>
 
 <!-- KEY METRICS GRID -->
 <div class="metrics-grid">
-    <div class="glass-card metric-card"><div class="metric-icon">🛡️</div><div class="metric-info"><span class="metric-label">Runtime</span><span class="metric-value">Python 3.11+</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">⚡</div><div class="metric-info"><span class="metric-label">Execution</span><span class="metric-value">Automated Task</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🧬</div><div class="metric-info"><span class="metric-label">Priority</span><span class="metric-value">High Performance</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🩺</div><div class="metric-info"><span class="metric-label">Interface</span><span class="metric-value">CLI / Script</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">📺</div><div class="metric-info"><span class="metric-label">Outputs</span><span class="metric-value">sys.stdout + system.log</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🛡️</div><div class="metric-info"><span class="metric-label">Redundancy</span><span class="metric-value">Handler Dup-Protection</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🔇</div><div class="metric-info"><span class="metric-label">Noise</span><span class="metric-value">Suppress PIL / Streamlit</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">⏱️</div><div class="metric-info"><span class="metric-label">Format</span><span class="metric-value">Time | Level | Module</span></div></div>
 </div>
 
 <!-- SECTION 01: CONCEPTUAL ROLE -->
 <div class="section-container">
     <div class="section-header"><span class="section-number">01</span><h2 class="section-title">Концептуальне призначення</h2></div>
     <div class="glass-card flow-step">
-        <p>Модуль <b>logger</b> забезпечує інтеграцію та виконання наступних обчислювальних процесів системи: <i>📡 LOGGING ORCHESTRATOR (System Audit System). Призначення: Централізована реєстрація подій, моніторинг стану та аудит помилок у всіх компонентах Atlas.</i><br><br><b>Архітектурний інтерфейс:</b> надає методи <code>setup_logger()</code>.</p>
+        <p>Модуль <b>logger.py</b> — це "Чорна скринька" системи. Замість звичайних <code>print()</code>, всі компоненти Atlas використовують цей логер для запису своїх дій. Це дозволяє легко відслідкувати, де сталася помилка, навіть якщо система впала.</p>
+        <p style="margin-top: 12px;">У Streamlit є специфічна проблема: при кожному кліку в UI, він перезапускає скрипти. Якщо не додати захист, логер кожного разу створював би новий <code>Handler</code>, що призвело б до дублювання повідомлень (1 клік = 1 лог, 2 кліки = 2 однакових логи, 3 кліки = 3 і т.д.). Модуль блокує це через перевірку <code>if not logger.handlers:</code>. Крім того, він примусово "глушить" зайвий спам від зовнішніх бібліотек (Streamlit, PIL), залишаючи в логах лише чисту інформацію від Atlas.</p>
     </div>
 </div>
 
-<!-- SECTION 02: CODE DOCUMENTATION (SMART PARSED) -->
+<!-- SECTION 02: API REFERENCE -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Системний опис з коду (Docstring)</h2></div>
-    <div class="glass-card flow-step" style="border-left: 4px solid var(--accent); padding-left: 20px;">
-        <p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>📡 LOGGING ORCHESTRATOR (System Audit System).</p>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'><b>Призначення:</b> Централізована реєстрація подій, моніторинг стану та аудит помилок у всіх компонентах Atlas.</p>
-<h3 style='color: var(--accent); font-family: "Orbitron", sans-serif; font-size: 15px; margin-top: 22px; margin-bottom: 10px;'>Ключові можливості</h3>
-<ul style='margin-left: 20px; margin-bottom: 15px; list-style-type: square;'>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>🏗️ Unified Interface:</b> Стандартизований логер для забезпечення консистентності журналів.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>📺 Multi-channel Output:</b> Паралельний вивід у консоль (Real-time) та файл system.log (History).</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>🛡️ Redundancy Protection:</b> Захист від дублювання обробників при перезапусках Streamlit.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>🔇 Noise Reduction:</b> Фільтрація службових повідомлень від зовнішніх бібліотек (PIL, SQLAlchemy).</li>
-</ul>
-    </div>
-</div>
-
-<!-- SECTION 03: API REFERENCE (INTERACTIVE BLOCK) -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Інтерфейси та сигнатури коду</h2></div>
+    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Публічний інтерфейс (API)</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 15px; color: var(--text-dim);">Документовані класи та методи, знайдені за допомогою статичного аналізу коду (AST):</p>
         <div style='display: flex; flex-direction: column; gap: 10px;'>
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def setup_logger()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Налаштовує глобальний логер для проєкту.</p>
+            
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>def setup_logger(module_name: str) → logging.Logger</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Головний конструктор. Отримує <code>module_name</code> (зазвичай <code>__name__</code>). Перевіряє наявність обробників. Створює єдиний форматер (<code>[Час] ⚡ РІВЕНЬ | Модуль -> Текст</code>). Додає <code>StreamHandler(sys.stdout)</code> для перегляду в консолі та <code>FileHandler("system.log")</code> для запису на диск. Задає рівні логування для інших бібліотек: <code>streamlit=ERROR</code>, <code>PIL=WARNING</code>.</p>
             </div>
-            </div>
+
+        </div>
     </div>
 </div>
 
-<!-- SECTION 04: EXECUTION FLOW (DIAGRAM) -->
+<!-- SECTION 03: EXECUTION FLOW DIAGRAM -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Життєвий цикл виконання</h2></div>
+    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Пайплайн Ініціалізації Логера</h2></div>
     <div class="diagram-outer-wrapper"><div class="mermaid">
 graph TD
-    START("Запуск logger.py") --> CONFIG("Ініціалізація оточення")
-    CONFIG --> RUN("Основний алгоритм")
-    RUN --> COMP("Завершення завдання")
+    IN("setup_logger(__name__)") --> GET("logging.getLogger()")
+    
+    GET --> CHK{"logger.handlers\nis empty?"}
+    
+    CHK -->|No| RETURN("Return Existing Logger\n(Prevents duplication)")
+    
+    CHK -->|Yes| FMT("Create Formatter\n'[Time] LEVEL | Module -> Msg'")
+    
+    FMT --> H1("StreamHandler (sys.stdout)")
+    FMT --> H2("FileHandler ('system.log')")
+    
+    H1 --> ADD("logger.addHandler()")
+    H2 --> ADD
+    
+    ADD --> NOISE("Mute 3rd-party noise\n(streamlit->ERROR, PIL->WARN)")
+    
+    NOISE --> SET_PROP("logger.propagate = False")
+    SET_PROP --> RETURN
     </div></div>
 </div>
 
-<!-- SECTION 05: MODULE DEPENDENCIES -->
+<!-- SECTION 04: DEPENDENCIES -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
+    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 12px; color: var(--text-dim);">Бібліотеки та модулі, що імпортуються цим файлом:</p>
         <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; border: 1px solid var(--border);">
-            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>logging</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>sys</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>logging</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>sys (sys.stdout)</span>
         </div>
     </div>
 </div>

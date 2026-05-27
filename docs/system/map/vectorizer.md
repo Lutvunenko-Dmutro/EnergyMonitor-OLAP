@@ -4,101 +4,83 @@
 
 <!-- HERO SECTION -->
 <div class="hero-section">
-    <div class="hero-badge">AUTOMATION ENGINE & UTILITY NODE</div>
+    <div class="hero-badge">ML FEATURE ENGINEERING ENGINE</div>
     <div class="hero-main">
-        <div class="hero-icon-wrapper"><span class="hero-icon">⚙️</span><div class="pulse-ring"></div></div>
+        <div class="hero-icon-wrapper"><span class="hero-icon">🔢</span><div class="pulse-ring"></div></div>
         <div class="hero-title-group">
-            <h1 class="mega-title">Служба автоматизації: vectorizer</h1>
-            <p class="mega-subtitle">Технічний скрипт автоматизації процесів збирання, аналізу або конвертації в екосистемі ATLAS</p>
-            <div class="status-tags"><span class="tag tag-online">DEFENSE EDITION</span><span class="tag tag-version">v5.0.0</span><span class="tag tag-role">UTILITY SCRIPT</span></div>
+            <h1 class="mega-title">LSTM Data Vectorizer: vectorizer</h1>
+            <p class="mega-subtitle">Трансформація часових рядів у тензори для LSTM. Циклічне кодування часу (Sine/Cosine), версійний відбір фіч (V1-V3), ковзне вікно 48 год.</p>
+            <div class="status-tags"><span class="tag tag-online">NUMPY TENSORS</span><span class="tag tag-version">v3.0.0</span><span class="tag tag-role">FEATURE ENGINEERING</span></div>
         </div>
     </div>
 </div>
 
 <!-- KEY METRICS GRID -->
 <div class="metrics-grid">
-    <div class="glass-card metric-card"><div class="metric-icon">🛡️</div><div class="metric-info"><span class="metric-label">Runtime</span><span class="metric-value">Python 3.11+</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">⚡</div><div class="metric-info"><span class="metric-label">Execution</span><span class="metric-value">Automated Task</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🧬</div><div class="metric-info"><span class="metric-label">Priority</span><span class="metric-value">High Performance</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🩺</div><div class="metric-info"><span class="metric-label">Interface</span><span class="metric-value">CLI / Script</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🎡</div><div class="metric-info"><span class="metric-label">Temporal</span><span class="metric-value">Sin/Cos (hour + weekday)</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🗃️</div><div class="metric-info"><span class="metric-label">Versions</span><span class="metric-value">V1: 1f / V2: 5f / V3: 9f</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🪟</div><div class="metric-info"><span class="metric-label">Window</span><span class="metric-value">DEFAULT = 48 годин</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🩹</div><div class="metric-info"><span class="metric-label">Imputation</span><span class="metric-value">Linear + ffill/bfill</span></div></div>
 </div>
 
 <!-- SECTION 01: CONCEPTUAL ROLE -->
 <div class="section-container">
     <div class="section-header"><span class="section-number">01</span><h2 class="section-title">Концептуальне призначення</h2></div>
     <div class="glass-card flow-step">
-        <p>Модуль <b>vectorizer</b> забезпечує інтеграцію та виконання наступних обчислювальних процесів системи: <i>🔢 ML DATA VECTORIZER (Feature Engineering Engine). Призначення: Трансформація сирих часових рядів у високоякісні вхідні тензори для ШІ-моделей з використанням методів проектування ознак.</i><br><br><b>Архітектурний інтерфейс:</b> надає методи <code>select_features_v2()</code>, <code>_prepare_features()</code>.</p>
+        <p>Модуль <b>vectorizer.py</b> — це "Кухар" ML-пайплайну. Сирі дані БД або Kaggle CSV не можна прямо передати в нейромережу. Їх потрібно підготувати: вибрати правильні колонки, закодувати час, нормалізувати, сформувати вікна.</p>
+        <p style="margin-top: 12px;">Найцікавіший прийом — <b>Циклічне кодування часу</b>: замість числа "23" для 23:00 (яке LSTM сприйме як "майже 24, дуже близько до 0"), використовуються <code>sin(2π * h / 24)</code> і <code>cos(2π * h / 24)</code>. Це дозволяє нейромережі "зрозуміти" кругову природу доби. Підтримка трьох версій (V1/V2/V3) дозволяє поступово розширювати набір фіч: V1 — тільки навантаження, V3 — повний набір з телеметрією та часовими ознаками.</p>
     </div>
 </div>
 
-<!-- SECTION 02: CODE DOCUMENTATION (SMART PARSED) -->
+<!-- SECTION 02: API REFERENCE -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Системний опис з коду (Docstring)</h2></div>
-    <div class="glass-card flow-step" style="border-left: 4px solid var(--accent); padding-left: 20px;">
-        <p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>🔢 ML DATA VECTORIZER (Feature Engineering Engine).</p>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'><b>Призначення:</b> Трансформація сирих часових рядів у високоякісні вхідні тензори для ШІ-моделей з використанням методів проектування ознак.</p>
-<h3 style='color: var(--accent); font-family: "Orbitron", sans-serif; font-size: 15px; margin-top: 22px; margin-bottom: 10px;'>Ключові можливості</h3>
-<ul style='margin-left: 20px; margin-bottom: 15px; list-style-type: square;'>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>🎡 Temporal Engineering:</b> Циклічне кодування часу (Sine/Cosine) для відображення сезонності.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>🗃️ Versioned Selection:</b> Динамічне формування наборів ознак для різних архітектур моделей (V1-V3).</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>🪟 Rolling Window:</b> Формування "ковзних вікон" (Sliding Windows) заданої глибини.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>🩹 Data Imputation:</b> Интелектуальне заповнення пропусків для забезпечення безперервності векторів.</li>
-</ul>
-    </div>
-</div>
-
-<!-- SECTION 03: API REFERENCE (INTERACTIVE BLOCK) -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Інтерфейси та сигнатури коду</h2></div>
+    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Публічний інтерфейс (API)</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 15px; color: var(--text-dim);">Документовані класи та методи, знайдені за допомогою статичного аналізу коду (AST):</p>
         <div style='display: flex; flex-direction: column; gap: 10px;'>
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def select_features_v2()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Standardized feature selection for LSTM input tensors.</p>
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>def select_features_v2(data, version="v3") → np.ndarray</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Вибирає потрібні колонки залежно від версії. V1: <code>[actual_load_mw]</code>. V2: +temperature_c, h2_ppm, health_score, air_temp. V3: +hour_sin/cos, day_sin/cos. Якщо DataFrame — додає відсутні колонки як 0.0. Якщо ndarray — додає нульовий padding до правильного розміру.</p>
             </div>
-            
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def _prepare_features()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Internal helper to calculate periodic signals and metadata.</p>
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>def get_latest_window(substation_name, source_type, version, offset_hours, window_size) → Tuple</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Головна публічна функція. Визначає Is_All (чи це агрегований запит). Для <code>source_type="CSV"</code> — викликає <code>_fetch_window_csv()</code>. Для <code>"Live"</code> — будує SQL через <code>_build_live_sql()</code>, виконує <code>run_query()</code>. Сортує, інтерполює, викликає <code>_prepare_features()</code>. Повертає: <code>(values: np.ndarray, constants: dict, last_ts: Timestamp, feature_names: list)</code>.</p>
             </div>
-            
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def _fetch_window_csv()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Завантажує вікно даних із Kaggle CSV-джерела.</p>
-            </div>
-            
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def _build_live_sql()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Будує SQL-запит та параметри для Live-джерела даних.</p>
-            </div>
-            
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def get_latest_window()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Fetches and prepares the most recent data window for forecasting.</p>
-            </div>
-            </div>
+        </div>
     </div>
 </div>
 
-<!-- SECTION 04: EXECUTION FLOW (DIAGRAM) -->
+<!-- SECTION 03: EXECUTION FLOW DIAGRAM -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Життєвий цикл виконання</h2></div>
+    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Пайплайн Feature Engineering</h2></div>
     <div class="diagram-outer-wrapper"><div class="mermaid">
 graph TD
-    START("Запуск vectorizer.py") --> CONFIG("Ініціалізація оточення")
-    CONFIG --> RUN("Основний алгоритм")
-    RUN --> COMP("Завершення завдання")
+    IN("get_latest_window(\nsubstation, source, version)") --> SRC_CHK{"source_type"}
+    
+    SRC_CHK -->|CSV| CSV("_fetch_window_csv()\nload_kaggle_data()\ngroup + sort + slice")
+    SRC_CHK -->|Live| SQL("_build_live_sql()\nrun_query(DB)")
+    
+    CSV --> INTERP("df.interpolate(linear)\nffill + bfill gaps")
+    SQL --> INTERP
+    
+    INTERP --> TEMPORAL("_prepare_features():\nhour_sin = sin(2π * h / 24)\nhour_cos = cos(2π * h / 24)\nday_sin = sin(2π * d / 7)\nday_cos = cos(2π * d / 7)")
+    
+    TEMPORAL --> SELECT("select_features_v2(df, version)\nV1: 1f | V2: 5f | V3: 9f")
+    
+    SELECT --> RETURN("Return:\n(values, constants, last_ts, f_names)")
     </div></div>
 </div>
 
-<!-- SECTION 05: MODULE DEPENDENCIES -->
+<!-- SECTION 04: DEPENDENCIES -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
+    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 12px; color: var(--text-dim);">Бібліотеки та модулі, що імпортуються цим файлом:</p>
         <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; border: 1px solid var(--border);">
-            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>logging</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>numpy</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>pandas</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.core.database</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>typing</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>numpy</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>pandas</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>logging</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>typing (Tuple, Optional, Dict, List, Any)</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.core.database (run_query)</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.core.kaggle_loader (load_kaggle_data) [lazy import]</span>
         </div>
     </div>
 </div>

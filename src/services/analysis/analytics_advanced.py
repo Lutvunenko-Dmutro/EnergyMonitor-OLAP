@@ -14,7 +14,7 @@ from itertools import combinations
 import logging
 
 import matplotlib.pyplot as plt
-# ATLAS_PASSPORT: docs/system/map/analysis_services_hub.md
+# ATLAS_PASSPORT: docs/system/map/analytics_advanced.md
 import pandas as pd
 import seaborn as sns
 from dotenv import load_dotenv

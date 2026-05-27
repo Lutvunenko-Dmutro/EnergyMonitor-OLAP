@@ -15,7 +15,7 @@ from contextlib import contextmanager
 
 import matplotlib.pyplot as plt
 import numpy as np
-# ATLAS_PASSPORT: docs/system/map/analysis_services_hub.md
+# ATLAS_PASSPORT: docs/system/map/advanced_mining.md
 import pandas as pd
 import psycopg2
 import seaborn as sns

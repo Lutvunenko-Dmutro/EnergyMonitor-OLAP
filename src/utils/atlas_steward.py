@@ -6,30 +6,11 @@ from datetime import datetime
 
 # --- CONFIGURATION: HUB MAPPING ---
 HUB_CONSOLIDATION_MAP = {
-    "predict_v2.md": "ml_core_engine.md",
-    "train_lstm.md": "ml_core_engine.md",
-    "train_v1.md": "ml_core_engine.md",
-    "vectorizer.md": "ml_core_engine.md",
     "ml_backtest_framework.md": "ml_core_engine.md",
     "ml_visual_utils.md": "ml_core_engine.md",
-    "model_loader.md": "ml_core_engine.md",
     "core_config.md": "core_kernel_hub.md",
-    "core_kaggle_loader.md": "core_kernel_hub.md",
-    "queries.md": "core_kernel_hub.md",
-    "kaggle_loader.md": "core_kernel_hub.md",
-    "cache_management_engine.md": "core_kernel_hub.md",
-    "unified_logging_registry.md": "core_kernel_hub.md",
-    "error_resilience_system.md": "core_kernel_hub.md",
-    "system_root_package.md": "core_kernel_hub.md",
-    "patterns.md": "diagnostics_engine_hub.md",
     "services_data_seeder.md": "data_services_hub.md",
     "sql_schema_passport.md": "data_services_hub.md",
-    "db_services.md": "data_services_hub.md",
-    "import_real_data.md": "data_services_hub.md",
-    "migrate_db.md": "data_services_hub.md",
-    "services_package.md": "data_services_hub.md",
-    "utils_package.md": "utils_extended_toolkit.md",
-    "ui_package_root.md": "ui_components_hub.md",
 }
 
 TAG_PATTERN = re.compile(r"# ATLAS_PASSPORT: docs/system/map/(.+?\.md)")

@@ -1,4 +1,4 @@
-# ATLAS_PASSPORT: docs/system/map/core_kernel_hub.md
+# ATLAS_PASSPORT: docs/system/map/queries.md
 """
 БІБЛІОТЕКА ОПТИМІЗОВАНИХ SQL-ЗАПИТІВ (Optimized SQL Library)
 Модуль: queries.py | Версія: 2.1.0 "QueryMaster"

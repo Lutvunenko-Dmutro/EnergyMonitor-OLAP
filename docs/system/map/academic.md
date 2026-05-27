@@ -4,82 +4,91 @@
 
 <!-- HERO SECTION -->
 <div class="hero-section">
-    <div class="hero-badge">AUTOMATION ENGINE & UTILITY NODE</div>
+    <div class="hero-badge">ACADEMIC RESEARCH VISUALIZATION</div>
     <div class="hero-main">
-        <div class="hero-icon-wrapper"><span class="hero-icon">⚙️</span><div class="pulse-ring"></div></div>
+        <div class="hero-icon-wrapper"><span class="hero-icon">🎓</span><div class="pulse-ring"></div></div>
         <div class="hero-title-group">
-            <h1 class="mega-title">Служба автоматизації: academic</h1>
-            <p class="mega-subtitle">Технічний скрипт автоматизації процесів збирання, аналізу або конвертації в екосистемі ATLAS</p>
-            <div class="status-tags"><span class="tag tag-online">DEFENSE EDITION</span><span class="tag tag-version">v5.0.0</span><span class="tag tag-role">UTILITY SCRIPT</span></div>
+            <h1 class="mega-title">Thesis Charts: academic</h1>
+            <p class="mega-subtitle">Візуалізатор академічної звітності. Реалізує спеціалізовані графіки (Trend, Distribution, Scatter) зі строгим форматуванням для наукового обґрунтування точності нейромереж у дипломній роботі.</p>
+            <div class="status-tags"><span class="tag tag-online">PLOTLY COMPONENT</span><span class="tag tag-version">v2.0.0</span><span class="tag tag-role">THESIS EXPORT</span></div>
         </div>
     </div>
 </div>
 
 <!-- KEY METRICS GRID -->
 <div class="metrics-grid">
-    <div class="glass-card metric-card"><div class="metric-icon">🛡️</div><div class="metric-info"><span class="metric-label">Runtime</span><span class="metric-value">Python 3.11+</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">⚡</div><div class="metric-info"><span class="metric-label">Execution</span><span class="metric-value">Automated Task</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🧬</div><div class="metric-info"><span class="metric-label">Priority</span><span class="metric-value">High Performance</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🩺</div><div class="metric-info"><span class="metric-label">Interface</span><span class="metric-value">CLI / Script</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">📈</div><div class="metric-info"><span class="metric-label">Fig. 5</span><span class="metric-value">Temporal Tracking</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">📊</div><div class="metric-info"><span class="metric-label">Fig. 7</span><span class="metric-value">Error Density (PDF)</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🔵</div><div class="metric-info"><span class="metric-label">Fig. 8</span><span class="metric-value">Regression Scatter</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🧠</div><div class="metric-info"><span class="metric-label">Support</span><span class="metric-value">Multi-Model Compare</span></div></div>
 </div>
 
 <!-- SECTION 01: CONCEPTUAL ROLE -->
 <div class="section-container">
     <div class="section-header"><span class="section-number">01</span><h2 class="section-title">Концептуальне призначення</h2></div>
     <div class="glass-card flow-step">
-        <p>Модуль <b>academic</b> забезпечує інтеграцію та виконання наступних обчислювальних процесів системи: <i>ВІЗУАЛІЗАТОР АКАДЕМІЧНОЇ ЗВІТНОСТІ (Academic Research Visualization) Модуль реалізує спеціалізовані графіки для наукового обґрунтування точності нейромереж.</i><br><br><b>Архітектурний інтерфейс:</b> надає методи <code>generate_academic_plots()</code>.</p>
+        <p>Модуль <b>academic.py</b> створений спеціально для генерації "красивих" та науково достовірних графіків, готових для вставки у дипломну роботу (Thesis-ready Formatting). На відміну від звичайних UI-графіків, ці візуалізації мають строгу нумерацію (Figure 5, 7, 8) та академічні підписи осей.</p>
+        <p style="margin-top: 12px;">Унікальна особливість модуля — вбудована підтримка <b>мультимодельного порівняння</b>. Якщо передати словник з прогнозами різних версій моделей (V1, V2, V3), модуль автоматично побудує графіки, де на одному полотні можна порівняти щільність помилок (PDF) та тренди різних архітектур, використовуючи заздалегідь визначену колірну палітру.</p>
     </div>
 </div>
 
-<!-- SECTION 02: CODE DOCUMENTATION (SMART PARSED) -->
+<!-- SECTION 02: API REFERENCE -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Системний опис з коду (Docstring)</h2></div>
-    <div class="glass-card flow-step" style="border-left: 4px solid var(--accent); padding-left: 20px;">
-        <p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>ВІЗУАЛІЗАТОР АКАДЕМІЧНОЇ ЗВІТНОСТІ (Academic Research Visualization)</p>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>Модуль реалізує спеціалізовані графіки для наукового обґрунтування точності нейромереж.</p>
-<h3 style='color: var(--accent); font-family: "Orbitron", sans-serif; font-size: 15px; margin-top: 22px; margin-bottom: 10px;'>Ключові можливості</h3>
-<ol style='margin-left: 20px; margin-bottom: 15px;'>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Statistical Error Analysis (Fig. 7):</b> діаграми щільності розподілу помилок з нормалізацією.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Neural Regression Correlation (Fig. 8):</b> побудова Scatter-діаграм "Actual vs Predicted".</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Temporal Dynamics & Tracking (Fig. 5):</b> детальний аналіз відхилень прогнозів у часі.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Thesis-ready Formatting:</b> суворе дотримання нумерації та академічного стилю для диплома.</li>
-</ol>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>Забезпечує високу доказову базу при захисті архітектурних рішень та результатів дослідження.</p>
-    </div>
-</div>
-
-<!-- SECTION 03: API REFERENCE (INTERACTIVE BLOCK) -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Інтерфейси та сигнатури коду</h2></div>
+    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Публічний інтерфейс (API)</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 15px; color: var(--text-dim);">Документовані класи та методи, знайдені за допомогою статичного аналізу коду (AST):</p>
         <div style='display: flex; flex-direction: column; gap: 10px;'>
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def generate_academic_plots()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Універсальна функція для академічних графіків (Figure 5, 7, 8).</p>
+            
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>def generate_academic_plots(data: Union[pd.DataFrame, dict], substation_name="Selected Object") → Tuple[go.Figure, go.Figure, go.Figure]</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Єдина точка входу модуля. Повертає кортеж із 3-х фігур Plotly. Приймає або один DataFrame (для режиму однієї моделі), або словник <code>{"v1": df1, "v2": df2}</code> (для порівняльного режиму). Використовує бібліотеку <code>scipy.stats</code> для розрахунку функції щільності ймовірності (PDF) нормального розподілу при побудові гістограми помилок.</p>
             </div>
-            </div>
+
+        </div>
     </div>
 </div>
 
-<!-- SECTION 04: EXECUTION FLOW (DIAGRAM) -->
+<!-- SECTION 03: VISUALIZATIONS GENERATED -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Життєвий цикл виконання</h2></div>
-    <div class="diagram-outer-wrapper"><div class="mermaid">
-graph TD
-    START("Запуск academic.py") --> CONFIG("Ініціалізація оточення")
-    CONFIG --> RUN("Основний алгоритм")
-    RUN --> COMP("Завершення завдання")
-    </div></div>
+    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Математична база графіків</h2></div>
+    <div class="glass-card flow-step">
+        <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+            <thead>
+                <tr style="border-bottom: 1px solid var(--border); color: var(--accent);">
+                    <th style="padding: 8px; text-align: left;">Фігура</th>
+                    <th style="padding: 8px; text-align: left;">Опис та Логіка</th>
+                    <th style="padding: 8px; text-align: left;">Plotly Traces</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <td style="padding: 8px; font-weight: 600;">Figure 5</td>
+                    <td style="padding: 8px;"><b>Temporal Load Dynamics:</b> Візуалізує Ground Truth суцільною лінією (#ff9f43), а прогнози нейромереж пунктиром.</td>
+                    <td style="padding: 8px;"><code>go.Scatter(mode='lines')</code></td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <td style="padding: 8px; font-weight: 600;">Figure 7</td>
+                    <td style="padding: 8px;"><b>Statistical Error Analysis:</b> Вираховує помилку <code>err = actual - predicted</code>. Будує нормовану гістограму та лінію PDF Гауса.</td>
+                    <td style="padding: 8px;"><code>go.Histogram(histnorm)</code> + <code>go.Scatter(scipy.stats.norm)</code></td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <td style="padding: 8px; font-weight: 600;">Figure 8</td>
+                    <td style="padding: 8px;"><b>Neural Regression Correlation:</b> Діаграма розсіювання, що показує відхилення точок від ідеальної лінії <code>y = x</code>.</td>
+                    <td style="padding: 8px;"><code>go.Scatter(mode='lines', y=x)</code> + <code>go.Scatter(mode='markers')</code></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 
-<!-- SECTION 05: MODULE DEPENDENCIES -->
+<!-- SECTION 04: DEPENDENCIES -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
+    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 12px; color: var(--text-dim);">Бібліотеки та модулі, що імпортуються цим файлом:</p>
         <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; border: 1px solid var(--border);">
-            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>numpy</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>pandas</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>plotly.graph_objects</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>plotly.graph_objects</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>numpy</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>pandas</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>scipy.stats (inline)</span>
         </div>
     </div>
 </div>

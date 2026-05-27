@@ -199,10 +199,10 @@ def run_query(query_text: str, params: Optional[dict] = None) -> pd.DataFrame:
                 return df
                 
         except (st.runtime.scriptrunner.StopException, st.errors.StreamlitAPIException):
-            from streamlit.runtime.scriptrunner.exceptions import RerunException
+            from src.utils.helpers import RerunException
             raise # Прокидаємо системні сигнали Streamlit (наприклад, rerun)
         except Exception as e:
-            from streamlit.runtime.scriptrunner.exceptions import RerunException
+            from src.utils.helpers import RerunException
             if isinstance(e, RerunException): raise e
             err_msg = str(e).lower()
             err_type = type(e).__name__
@@ -240,7 +240,7 @@ def execute_update(query_text: str, params: Optional[dict] = None) -> bool:
                 conn.execute(text(query_text), params or {})
             return True
         except Exception as e:
-            from streamlit.runtime.scriptrunner.exceptions import StopException, RerunException
+            from src.utils.helpers import StopException, RerunException
             if isinstance(e, (StopException, RerunException)): raise e
             if i < retries - 1:
                 import time

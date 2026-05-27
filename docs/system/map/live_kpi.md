@@ -4,87 +4,87 @@
 
 <!-- HERO SECTION -->
 <div class="hero-section">
-    <div class="hero-badge">AUTOMATION ENGINE & UTILITY NODE</div>
+    <div class="hero-badge">REAL-TIME TELEMETRY ORCHESTRATOR</div>
     <div class="hero-main">
-        <div class="hero-icon-wrapper"><span class="hero-icon">⚙️</span><div class="pulse-ring"></div></div>
+        <div class="hero-icon-wrapper"><span class="hero-icon">📡</span><div class="pulse-ring"></div></div>
         <div class="hero-title-group">
-            <h1 class="mega-title">Служба автоматизації: live_kpi</h1>
-            <p class="mega-subtitle">Технічний скрипт автоматизації процесів збирання, аналізу або конвертації в екосистемі ATLAS</p>
-            <div class="status-tags"><span class="tag tag-online">DEFENSE EDITION</span><span class="tag tag-version">v5.0.0</span><span class="tag tag-role">UTILITY SCRIPT</span></div>
+            <h1 class="mega-title">Live Data Syncer: live_kpi</h1>
+            <p class="mega-subtitle">Забезпечує миттєву візуалізацію стану енергосистеми через реактивне оновлення метрик. Читає JSON-стейт симулятора з нульовою затримкою (Zero Latency).</p>
+            <div class="status-tags"><span class="tag tag-online">STREAMLIT FRAGMENT</span><span class="tag tag-version">v2.0.0</span><span class="tag tag-role">POLLING ENGINE</span></div>
         </div>
     </div>
 </div>
 
 <!-- KEY METRICS GRID -->
 <div class="metrics-grid">
-    <div class="glass-card metric-card"><div class="metric-icon">🛡️</div><div class="metric-info"><span class="metric-label">Runtime</span><span class="metric-value">Python 3.11+</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">⚡</div><div class="metric-info"><span class="metric-label">Execution</span><span class="metric-value">Automated Task</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🧬</div><div class="metric-info"><span class="metric-label">Priority</span><span class="metric-value">High Performance</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🩺</div><div class="metric-info"><span class="metric-label">Interface</span><span class="metric-value">CLI / Script</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🔄</div><div class="metric-info"><span class="metric-label">Polling</span><span class="metric-value">st.fragment (5s)</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">⚡</div><div class="metric-info"><span class="metric-label">Transport</span><span class="metric-value">JSON State File Sync</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🛡️</div><div class="metric-info"><span class="metric-label">Fallback</span><span class="metric-value">SQL Recovery</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🧩</div><div class="metric-info"><span class="metric-label">Integration</span><span class="metric-value">Session State Global</span></div></div>
 </div>
 
 <!-- SECTION 01: CONCEPTUAL ROLE -->
 <div class="section-container">
     <div class="section-header"><span class="section-number">01</span><h2 class="section-title">Концептуальне призначення</h2></div>
     <div class="glass-card flow-step">
-        <p>Модуль <b>live_kpi</b> забезпечує інтеграцію та виконання наступних обчислювальних процесів системи: <i>ОРКЕСТРАТОР ЖИВОЇ ТЕЛЕМЕТРІЇ ТА ПОКАЗНИКІВ KPI (Real-time Telemetry Orchestrator) Модуль забезпечує миттєву візуалізацію стану енергосистеми через реактивне оновлення.</i><br><br><b>Архітектурний інтерфейс:</b> надає методи <code>safe_fragment()</code>, <code>live_telemetry_wrapper()</code>.</p>
+        <p>Модуль <b>live_kpi.py</b> відповідає за ефект "Живої Симуляції". Замість того, щоб перезавантажувати весь великий дашборд кожні кілька секунд, він використовує <code>@st.fragment(run_every=5)</code> — спеціальну фічу Streamlit, яка оновлює лише одну конкретну частину екрану.</p>
+        <p style="margin-top: 12px;">Архітектурна знахідка цього модуля — читання даних безпосередньо з <code>live_state.json</code>. SQL бази даних можуть мати затримки кешу (latency) під час масових інсертів, але JSON-файл оновлюється симулятором (data_generator.py) миттєво. Модуль зчитує цей JSON, перетворює його на Pandas DataFrame, підганяє назви колонок, і віддає візуалізатору (<code>tab_kpi.render()</code>). Якщо JSON старий або зламаний — вмикається SQL Fallback.</p>
     </div>
 </div>
 
-<!-- SECTION 02: CODE DOCUMENTATION (SMART PARSED) -->
+<!-- SECTION 02: API REFERENCE -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Системний опис з коду (Docstring)</h2></div>
-    <div class="glass-card flow-step" style="border-left: 4px solid var(--accent); padding-left: 20px;">
-        <p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>ОРКЕСТРАТОР ЖИВОЇ ТЕЛЕМЕТРІЇ ТА ПОКАЗНИКІВ KPI (Real-time Telemetry Orchestrator)</p>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>Модуль забезпечує миттєву візуалізацію стану енергосистеми через реактивне оновлення.</p>
-<h3 style='color: var(--accent); font-family: "Orbitron", sans-serif; font-size: 15px; margin-top: 22px; margin-bottom: 10px;'>Ключові можливості</h3>
-<ol style='margin-left: 20px; margin-bottom: 15px;'>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Active Telemetry Handshake:</b> пряме зчитування JSON-стейту симуляції для нульової затримки.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Fragment-based Polling:</b> використання st.fragment (5с) для ізольованого оновлення KPI.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Simulation State Sync:</b> автоматичне мапування Load, Voltage, Frequency та H2 у UI-метрики.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Robust Fallback Layer:</b> резервне перемикання на SQL-запити при втраті стріму даних.</li>
-</ol>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>Забезпечує ефект реального часу та високу динаміку ситуаційного центру оператора.</p>
-    </div>
-</div>
-
-<!-- SECTION 03: API REFERENCE (INTERACTIVE BLOCK) -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Інтерфейси та сигнатури коду</h2></div>
+    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Публічний інтерфейс (API)</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 15px; color: var(--text-dim);">Документовані класи та методи, знайдені за допомогою статичного аналізу коду (AST):</p>
         <div style='display: flex; flex-direction: column; gap: 10px;'>
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def safe_fragment()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Декоратор-запобіжник для st.fragment з підтримкою таймера</p>
-            </div>
             
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def live_telemetry_wrapper()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Автономний фрагмент для живого оновлення показників (KPI).</p>
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>@safe_fragment(run_every=5)<br>def live_telemetry_wrapper(active=False) → None</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Циклічний оркестратор. 1. Блокується, якщо <code>active=False</code> або режим Kaggle. 2. Перевіряє вік файлу <code>live_state.json</code> через <code>st_mtime</code> (<15 сек). 3. Читає JSON та створює Pandas DataFrame <code>df_telemetry</code>. 4. Ренеймить колонки (temp -> temperature_c) для уніфікації з БД. 5. Записує глобальні метрики в <code>st.session_state</code> (<code>live_total_mw</code>, <code>live_freq</code>). 6. Викликає рендеринг KPI. 7. Fallback: якщо JSON немає — викликає <code>get_latest_measurements()</code> з БД.</p>
             </div>
-            </div>
+
+        </div>
     </div>
 </div>
 
-<!-- SECTION 04: EXECUTION FLOW (DIAGRAM) -->
+<!-- SECTION 03: EXECUTION FLOW DIAGRAM -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Життєвий цикл виконання</h2></div>
+    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Пайплайн Живої Синхронізації</h2></div>
     <div class="diagram-outer-wrapper"><div class="mermaid">
 graph TD
-    START("Запуск live_kpi.py") --> CONFIG("Ініціалізація оточення")
-    CONFIG --> RUN("Основний алгоритм")
-    RUN --> COMP("Завершення завдання")
+    LOOP("Auto-Run (every 5s)") --> IN("live_telemetry_wrapper()")
+    
+    IN --> CHK_MODE{"Kaggle Mode?"}
+    CHK_MODE -->|Yes| OUT_WARN("Show Warning & Stop")
+    
+    CHK_MODE -->|No| CHK_JSON{"live_state.json exists\n& fresh (<15s)?"}
+    
+    CHK_JSON -->|Yes| READ_J("json.load(f)")
+    READ_J --> DF("pd.DataFrame(state['substations'])")
+    DF --> RENAME("Rename columns\n(load -> actual_load_mw)")
+    
+    RENAME --> S_STATE("Sync Globals\n(st.session_state['live_freq'] = freq)")
+    
+    CHK_JSON -->|No| FALLBACK("get_latest_measurements()\n[SQL Fallback]")
+    
+    S_STATE --> RENDER("tab_kpi.render(df, region_filter)")
+    FALLBACK --> RENDER
     </div></div>
 </div>
 
-<!-- SECTION 05: MODULE DEPENDENCIES -->
+<!-- SECTION 04: DEPENDENCIES -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
+    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 12px; color: var(--text-dim);">Бібліотеки та модулі, що імпортуються цим файлом:</p>
         <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; border: 1px solid var(--border);">
-            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>json</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>logging</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>pandas</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>pathlib</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.ui.views</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>streamlit</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>time</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>json</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>time</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>pathlib.Path</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>streamlit</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>pandas</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>logging</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.ui.views.kpi (tab_kpi)</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.services.data.db_services (get_latest_measurements - SQL fallback)</span>
         </div>
     </div>
 </div>

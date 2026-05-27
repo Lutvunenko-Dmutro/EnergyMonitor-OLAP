@@ -215,7 +215,7 @@ def render_sidebar(data):
                     st.cache_data.clear()
                     st.rerun()
                 except Exception as e:
-                    from streamlit.runtime.scriptrunner.exceptions import StopException, RerunException
+                    from src.utils.helpers import StopException, RerunException
                     if isinstance(e, (StopException, RerunException)): raise e
                     st.error(f"Помилка: {e}")
 

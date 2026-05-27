@@ -4,82 +4,86 @@
 
 <!-- HERO SECTION -->
 <div class="hero-section">
-    <div class="hero-badge">AUTOMATION ENGINE & UTILITY NODE</div>
+    <div class="hero-badge">REAL-WORLD DATA INGESTION</div>
     <div class="hero-main">
-        <div class="hero-icon-wrapper"><span class="hero-icon">⚙️</span><div class="pulse-ring"></div></div>
+        <div class="hero-icon-wrapper"><span class="hero-icon">📥</span><div class="pulse-ring"></div></div>
         <div class="hero-title-group">
-            <h1 class="mega-title">Служба автоматизації: import_real_data</h1>
-            <p class="mega-subtitle">Технічний скрипт автоматизації процесів збирання, аналізу або конвертації в екосистемі ATLAS</p>
-            <div class="status-tags"><span class="tag tag-online">DEFENSE EDITION</span><span class="tag tag-version">v5.0.0</span><span class="tag tag-role">UTILITY SCRIPT</span></div>
+            <h1 class="mega-title">External Data Importer: import_real_data</h1>
+            <p class="mega-subtitle">Сервіс інтеграції зовнішніх історичних датасетів (напр. Kaggle AEP_hourly.csv) в ізольовану таблицю системи для валідації ШІ-моделей.</p>
+            <div class="status-tags"><span class="tag tag-online">PSYCOPG2 BATCH</span><span class="tag tag-version">v1.2.0</span><span class="tag tag-role">ETL SCRIPT</span></div>
         </div>
     </div>
 </div>
 
 <!-- KEY METRICS GRID -->
 <div class="metrics-grid">
-    <div class="glass-card metric-card"><div class="metric-icon">🛡️</div><div class="metric-info"><span class="metric-label">Runtime</span><span class="metric-value">Python 3.11+</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">⚡</div><div class="metric-info"><span class="metric-label">Execution</span><span class="metric-value">Automated Task</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🧬</div><div class="metric-info"><span class="metric-label">Priority</span><span class="metric-value">High Performance</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🩺</div><div class="metric-info"><span class="metric-label">Interface</span><span class="metric-value">CLI / Script</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">📂</div><div class="metric-info"><span class="metric-label">Parser</span><span class="metric-value">Pandas CSV Read</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🧹</div><div class="metric-info"><span class="metric-label">Cleanse</span><span class="metric-value">Sort & Deduplicate</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🏗️</div><div class="metric-info"><span class="metric-label">Schema</span><span class="metric-value">RealLoadMeasurements</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🚀</div><div class="metric-info"><span class="metric-label">Ingest</span><span class="metric-value">execute_values (Fast)</span></div></div>
 </div>
 
 <!-- SECTION 01: CONCEPTUAL ROLE -->
 <div class="section-container">
     <div class="section-header"><span class="section-number">01</span><h2 class="section-title">Концептуальне призначення</h2></div>
     <div class="glass-card flow-step">
-        <p>Модуль <b>import_real_data</b> забезпечує інтеграцію та виконання наступних обчислювальних процесів системи: <i>СЕРВІС ІМПОРТУ РЕАЛЬНИХ ДАНИХ (Real-World Data Ingestion) Модуль для інтеграції зовнішніх історичних датасетів у систему Atlas. Ключові можливості:</i><br><br><b>Архітектурний інтерфейс:</b> надає методи <code>import_real_data()</code>.</p>
+        <p>Модуль <b>import_real_data.py</b> потрібен для того, щоб тестувати прогнози не тільки на синтетиці, а й на "бойових" даних з реального світу (наприклад, з відкритого датасету AEP або PJM).</p>
+        <p style="margin-top: 12px;">Скрипт читає важкий CSV-файл, стандартизує час, і заливає дані у спеціально виділену таблицю <code>RealLoadMeasurements</code>. Ця таблиця повністю ізольована від основної (синтетичної), що гарантує відсутність конфліктів у системі. Головна перевага — використання <code>execute_values</code> для миттєвої вставки десятків тисяч рядків та <code>ON CONFLICT DO NOTHING</code> для безпечних повторних запусків.</p>
     </div>
 </div>
 
-<!-- SECTION 02: CODE DOCUMENTATION (SMART PARSED) -->
+<!-- SECTION 02: API REFERENCE -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Системний опис з коду (Docstring)</h2></div>
-    <div class="glass-card flow-step" style="border-left: 4px solid var(--accent); padding-left: 20px;">
-        <p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>СЕРВІС ІМПОРТУ РЕАЛЬНИХ ДАНИХ (Real-World Data Ingestion)</p>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>Модуль для інтеграції зовнішніх історичних датасетів у систему Atlas.</p>
-<h3 style='color: var(--accent); font-family: "Orbitron", sans-serif; font-size: 15px; margin-top: 22px; margin-bottom: 10px;'>Ключові можливості</h3>
-<ol style='margin-left: 20px; margin-bottom: 15px;'>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Automated CSV Parsing:</b> зчитування та стандартизація часових рядів з великих файлів.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Data Cleansing & Sorting:</b> конвертація типів, обробка пропусків та сортування.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Isolated Storage Architecture:</b> завантаження даних у таблицю RealLoadMeasurements.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Batch Processing:</b> швидка пакетна вставка десятків тисяч записів через psycopg2.</li>
-</ol>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>Служить містком для валідації ШІ-моделей на основі реальних світових показників.</p>
-    </div>
-</div>
-
-<!-- SECTION 03: API REFERENCE (INTERACTIVE BLOCK) -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Інтерфейси та сигнатури коду</h2></div>
+    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Публічний інтерфейс (API)</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 15px; color: var(--text-dim);">Документовані класи та методи, знайдені за допомогою статичного аналізу коду (AST):</p>
         <div style='display: flex; flex-direction: column; gap: 10px;'>
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def import_real_data()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Зчитує реальні дані з CSV (формат: Datetime, AEP_MW)</p>
+            
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>def import_real_data(csv_path: str = "AEP_hourly.csv") → None</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Головний скрипт (ETL). 1. Перевіряє наявність файлу. 2. Читає датасет через <code>pd.read_csv</code>. 3. Конвертує колонку "Datetime", сортує та видаляє дублікати (<code>drop_duplicates</code>). 4. Відкриває <code>psycopg2.connect</code>. 5. Створює таблицю <code>RealLoadMeasurements</code> з індексом. 6. Конвертує pandas-рядки у масив кортежів <code>itertuples</code>. 7. Виконує <code>execute_values</code> з опцією ігнорування конфліктів. 8. Здійснює <code>commit()</code>.</p>
             </div>
-            </div>
+
+        </div>
     </div>
 </div>
 
-<!-- SECTION 04: EXECUTION FLOW (DIAGRAM) -->
+<!-- SECTION 03: EXECUTION FLOW DIAGRAM -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Життєвий цикл виконання</h2></div>
+    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Пайплайн Ізольованого Завантаження</h2></div>
     <div class="diagram-outer-wrapper"><div class="mermaid">
 graph TD
-    START("Запуск import_real_data.py") --> CONFIG("Ініціалізація оточення")
-    CONFIG --> RUN("Основний алгоритм")
-    RUN --> COMP("Завершення завдання")
+    IN("import_real_data()") --> CHK{"File Exists?"}
+    
+    CHK -->|No| ERR("Print Error & Exit")
+    CHK -->|Yes| READ("pd.read_csv(csv_path)")
+    
+    READ --> CLN("df['Datetime'] = to_datetime()\ndf.sort_values()\ndf.drop_duplicates()")
+    
+    CLN --> DB("psycopg2.connect(**DB_CONFIG)")
+    
+    DB --> SQL("CREATE TABLE IF NOT EXISTS\nRealLoadMeasurements")
+    
+    SQL --> TUPLES("data_tuples = list(df.itertuples())")
+    
+    TUPLES --> INSERT("execute_values(cursor, query,\ndata_tuples)")
+    
+    INSERT --> CONFLICT("ON CONFLICT (timestamp)\nDO NOTHING")
+    
+    CONFLICT --> DONE("conn.commit()")
     </div></div>
 </div>
 
-<!-- SECTION 05: MODULE DEPENDENCIES -->
+<!-- SECTION 04: DEPENDENCIES -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
+    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 12px; color: var(--text-dim);">Бібліотеки та модулі, що імпортуються цим файлом:</p>
         <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; border: 1px solid var(--border);">
-            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>dotenv</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>os</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>pandas</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>psycopg2</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>psycopg2.extras</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.core.config</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>os</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>pandas</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>psycopg2</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>dotenv (load_dotenv)</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>psycopg2.extras.execute_values</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.core.config (DB_CONFIG)</span>
         </div>
     </div>
 </div>

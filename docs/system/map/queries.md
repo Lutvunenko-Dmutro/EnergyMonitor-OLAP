@@ -4,77 +4,69 @@
 
 <!-- HERO SECTION -->
 <div class="hero-section">
-    <div class="hero-badge">AUTOMATION ENGINE & UTILITY NODE</div>
+    <div class="hero-badge">OPTIMIZED SQL LIBRARY</div>
     <div class="hero-main">
-        <div class="hero-icon-wrapper"><span class="hero-icon">⚙️</span><div class="pulse-ring"></div></div>
+        <div class="hero-icon-wrapper"><span class="hero-icon">📖</span><div class="pulse-ring"></div></div>
         <div class="hero-title-group">
-            <h1 class="mega-title">Служба автоматизації: queries</h1>
-            <p class="mega-subtitle">Технічний скрипт автоматизації процесів збирання, аналізу або конвертації в екосистемі ATLAS</p>
-            <div class="status-tags"><span class="tag tag-online">DEFENSE EDITION</span><span class="tag tag-version">v5.0.0</span><span class="tag tag-role">UTILITY SCRIPT</span></div>
+            <h1 class="mega-title">SQL Константи: queries</h1>
+            <p class="mega-subtitle">Централізована бібліотека SQL-рядків для складних аналітичних операцій, корелятивних JOIN-запитів та денормалізації даних з OLAP-схеми.</p>
+            <div class="status-tags"><span class="tag tag-online">MULTI-JOIN SQL</span><span class="tag tag-version">v2.1.0</span><span class="tag tag-role">QUERY CONSTANTS</span></div>
         </div>
     </div>
 </div>
 
 <!-- KEY METRICS GRID -->
 <div class="metrics-grid">
-    <div class="glass-card metric-card"><div class="metric-icon">🛡️</div><div class="metric-info"><span class="metric-label">Runtime</span><span class="metric-value">Python 3.11+</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">⚡</div><div class="metric-info"><span class="metric-label">Execution</span><span class="metric-value">Automated Task</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🧬</div><div class="metric-info"><span class="metric-label">Priority</span><span class="metric-value">High Performance</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🩺</div><div class="metric-info"><span class="metric-label">Interface</span><span class="metric-value">CLI / Script</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🔗</div><div class="metric-info"><span class="metric-label">Load+Weather</span><span class="metric-value">5-Table JOIN</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">⚡</div><div class="metric-info"><span class="metric-label">Generation</span><span class="metric-value">LIMIT 50 000 Rows</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">📏</div><div class="metric-info"><span class="metric-label">Lines</span><span class="metric-value">Dynamic Load_pct CASE</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">💰</div><div class="metric-info"><span class="metric-label">Finance</span><span class="metric-value">Price × Load Cost Calc</span></div></div>
 </div>
 
 <!-- SECTION 01: CONCEPTUAL ROLE -->
 <div class="section-container">
     <div class="section-header"><span class="section-number">01</span><h2 class="section-title">Концептуальне призначення</h2></div>
     <div class="glass-card flow-step">
-        <p>Модуль <b>queries</b> забезпечує інтеграцію та виконання наступних обчислювальних процесів системи: <i>БІБЛІОТЕКА ОПТИМІЗОВАНИХ SQL-ЗАПИТІВ (Optimized SQL Library) Модуль: queries.py | Версія: 2.1.0 "QueryMaster" Призначення: Централізована бібліотека SQL-логіки для складних аналітичних операцій, денормалізації та вилучення даних з OLAP-сховища.</i></p>
+        <p>Модуль <b>queries.py</b> — це "Книга SQL-заклинань" системи. Замість того щоб писати сирі SQL-рядки всередині Python-функцій (де їх важко тестувати і знайти), всі складні запити централізовані тут як іменовані константи.</p>
+        <p style="margin-top: 12px;">Це дозволяє: легко знайти і переписати запит без пошуку по всьому проєкту; скоротити ризик SQL-помилок через дублювання; використовувати SQL-синтаксичний підсвітлювач у IDE. Найцікавіший запит — <code>QUERY_LINES</code>: він динамічно рахує <code>load_pct</code> прямо в БД через <code>CASE WHEN max_load_mw > 0</code>, уникаючи ділення на нуль.</p>
     </div>
 </div>
 
-<!-- SECTION 02: CODE DOCUMENTATION (SMART PARSED) -->
+<!-- SECTION 02: SQL CATALOG -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Системний опис з коду (Docstring)</h2></div>
-    <div class="glass-card flow-step" style="border-left: 4px solid var(--accent); padding-left: 20px;">
-        <p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>БІБЛІОТЕКА ОПТИМІЗОВАНИХ SQL-ЗАПИТІВ (Optimized SQL Library)</p>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'><b>Модуль:</b> queries.py | Версія: 2.1.0 "QueryMaster"</p>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'><b>Призначення:</b> Централізована бібліотека SQL-логіки для складних аналітичних операцій, денормалізації та вилучення даних з OLAP-сховища.</p>
-<h3 style='color: var(--accent); font-family: "Orbitron", sans-serif; font-size: 15px; margin-top: 22px; margin-bottom: 10px;'>Ключові аналітичні вектори</h3>
-<ul style='margin-left: 20px; margin-bottom: 15px; list-style-type: square;'>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>🔗 Load-Weather Correlation:</b> Інтегровані запити для аналізу впливу метеоумов на споживання.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>⚡ Generation Slicing:</b> Диференційована вибірка за типами генерації та регіонами.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>📏 Grid Topology Audit:</b> Моніторинг завантаженості ліній електропередач у реальному часі.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>💰 Financial Intelligence:</b> Розрахунок вартості енергії за динамічними тарифними сітками.</li>
-</ul>
-    </div>
-</div>
-
-<!-- SECTION 03: API REFERENCE (INTERACTIVE BLOCK) -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Інтерфейси та сигнатури коду</h2></div>
+    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Каталог SQL-Запитів</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 15px; color: var(--text-dim);">Документовані класи та методи, знайдені за допомогою статичного аналізу коду (AST):</p>
-        <p style='color: var(--text-dim); font-style: italic;'>Модуль виконується як лінійний скрипт без виділених класів або функцій.</p>
+        <div style='display: flex; flex-direction: column; gap: 10px;'>
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>QUERY_LOAD_WEATHER</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Основний навантажувальний запит. JOIN між <code>LoadMeasurements</code>, <code>Substations</code>, <code>Regions</code> та <code>WeatherReports</code> (LEFT JOIN). Вибирає: timestamp, region_name, actual_load_mw, lat/lon, capacity_mw, temperature. Дані за останні 30 днів.</p>
+            </div>
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>QUERY_GENERATION</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Генерація за типами. JOIN між <code>GenerationMeasurements</code>, <code>Generators</code>, <code>Substations</code>, <code>Regions</code>. Вибирає: timestamp, generator_type, actual_generation_mw, region_name. LIMIT 50000.</p>
+            </div>
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>QUERY_LINES</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Топологія ліній. Динамічно обчислює <code>load_pct = actual_load_mw / max_load_mw * 100</code> через SQL CASE для захисту від ділення на 0. JOIN з <code>PowerLines</code>, <code>Substations</code>, <code>Regions</code>.</p>
+            </div>
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>QUERY_FINANCE</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Фінансовий аналіз. JOIN з <code>EnergyPricing</code> по timestamp і region_id. Розраховує <code>cost = actual_load_mw * price_per_mwh</code> прямо в SQL.</p>
+            </div>
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>QUERY_REAL_LOAD</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Реальні дані (Kaggle). Читає з ізольованої таблиці <code>RealLoadMeasurements</code>. Підставляє константну назву регіону 'Kaggle AEP (США)'. За останні 30 днів.</p>
+            </div>
+        </div>
     </div>
 </div>
 
-<!-- SECTION 04: EXECUTION FLOW (DIAGRAM) -->
+<!-- SECTION 03: DEPENDENCIES -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Життєвий цикл виконання</h2></div>
-    <div class="diagram-outer-wrapper"><div class="mermaid">
-graph TD
-    START("Запуск queries.py") --> CONFIG("Ініціалізація оточення")
-    CONFIG --> RUN("Основний алгоритм")
-    RUN --> COMP("Завершення завдання")
-    </div></div>
-</div>
-
-<!-- SECTION 05: MODULE DEPENDENCIES -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
+    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 12px; color: var(--text-dim);">Бібліотеки та модулі, що імпортуються цим файлом:</p>
         <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; border: 1px solid var(--border);">
-            <span style='color: var(--text-dim); font-style: italic;'>Немає зовнішніх залежностей</span>
+            <span style='display: inline-block; background: rgba(168, 162, 158, 0.1); border: 1px solid rgba(168, 162, 158, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: #a8a29e; margin: 4px;'>Немає імпортів — чистий модуль SQL-констант</span>
         </div>
     </div>
 </div>

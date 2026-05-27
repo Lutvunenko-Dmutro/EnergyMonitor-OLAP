@@ -4,92 +4,132 @@
 
 <!-- HERO SECTION -->
 <div class="hero-section">
-    <div class="hero-badge">AUTOMATION ENGINE & UTILITY NODE</div>
+    <div class="hero-badge">ML CORE ENGINE & RESOURCE REGISTRY</div>
     <div class="hero-main">
-        <div class="hero-icon-wrapper"><span class="hero-icon">⚙️</span><div class="pulse-ring"></div></div>
+        <div class="hero-icon-wrapper"><span class="hero-icon">🧠</span><div class="pulse-ring"></div></div>
         <div class="hero-title-group">
-            <h1 class="mega-title">Служба автоматизації: model_loader</h1>
-            <p class="mega-subtitle">Технічний скрипт автоматизації процесів збирання, аналізу або конвертації в екосистемі ATLAS</p>
-            <div class="status-tags"><span class="tag tag-online">DEFENSE EDITION</span><span class="tag tag-version">v5.0.0</span><span class="tag tag-role">UTILITY SCRIPT</span></div>
+            <h1 class="mega-title">Resource Loader: model_loader</h1>
+            <p class="mega-subtitle">Центральний вузол керування життєвим циклом ONNX-моделей (V1/V2/V3), Joblib-скейлерів та динамічного кешування ресурсів для оптимізованого інференсу.</p>
+            <div class="status-tags"><span class="tag tag-online">CACHED INFERENCE</span><span class="tag tag-version">v2.1.0</span><span class="tag tag-role">ML LOADER</span></div>
         </div>
     </div>
 </div>
 
 <!-- KEY METRICS GRID -->
 <div class="metrics-grid">
-    <div class="glass-card metric-card"><div class="metric-icon">🛡️</div><div class="metric-info"><span class="metric-label">Runtime</span><span class="metric-value">Python 3.11+</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">⚡</div><div class="metric-info"><span class="metric-label">Execution</span><span class="metric-value">Automated Task</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🧬</div><div class="metric-info"><span class="metric-label">Priority</span><span class="metric-value">High Performance</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🩺</div><div class="metric-info"><span class="metric-label">Interface</span><span class="metric-value">CLI / Script</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">⚙️</div><div class="metric-info"><span class="metric-label">Inference Engine</span><span class="metric-value">ONNX Runtime</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">💾</div><div class="metric-info"><span class="metric-label">State Storage</span><span class="metric-value">Joblib Scalers</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🧠</div><div class="metric-info"><span class="metric-label">Memory Control</span><span class="metric-value">st.cache_resource</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🛡️</div><div class="metric-info"><span class="metric-label">Fault Tolerance</span><span class="metric-value">CLI Fallback / DB Fallback</span></div></div>
 </div>
 
 <!-- SECTION 01: CONCEPTUAL ROLE -->
 <div class="section-container">
     <div class="section-header"><span class="section-number">01</span><h2 class="section-title">Концептуальне призначення</h2></div>
     <div class="glass-card flow-step">
-        <p>Модуль <b>model_loader</b> забезпечує інтеграцію та виконання наступних обчислювальних процесів системи: <i>🧠 ML MODEL REGISTRY & LIFECYCLE (Resource Loader). py | Версія: 2.1.0 Призначення: Центральний вузол керування життєвим циклом ШІ-моделей, скейлерів та відповідних метаданих конфігурації.</i><br><br><b>Архітектурний інтерфейс:</b> надає методи <code>st_cache_resource_fallback()</code>, <code>_get_substation_peak_automated()</code>.</p>
+        <p>Модуль <b>model_loader.py</b> відповідає за безпечне, кешоване та оптимізоване завантаження важких бінарних файлів ШІ-моделей (<code>.onnx</code>) та препроцесорів (<code>.pkl</code>). Його головна задача — гарантувати, що моделі завантажуються в оперативну пам'ять (RAM) <b>лише один раз</b> за сесію, запобігаючи витокам пам'яті (OOM errors) при використанні у веб-інтерфейсі (Streamlit).</p>
+        <p style="margin-top: 12px;">Модуль забезпечує абстракцію над фізичними шляхами до моделей (V1, V2, V3) та надає стійкість до помилок: якщо Streamlit недоступний (запуск із CLI/cron), модуль безпечно ігнорує декоратори кешування (через <code>st_cache_resource_fallback</code>).</p>
     </div>
 </div>
 
-<!-- SECTION 02: CODE DOCUMENTATION (SMART PARSED) -->
+<!-- SECTION 02: RESOURCE REGISTRY -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Системний опис з коду (Docstring)</h2></div>
-    <div class="glass-card flow-step" style="border-left: 4px solid var(--accent); padding-left: 20px;">
-        <p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>🧠 ML MODEL REGISTRY & LIFECYCLE (Resource Loader).</p>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'><b>py | Версія:</b> 2.1.0</p>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'><b>Призначення:</b> Центральний вузол керування життєвим циклом ШІ-моделей, скейлерів та відповідних метаданих конфігурації.</p>
-<h3 style='color: var(--accent); font-family: "Orbitron", sans-serif; font-size: 15px; margin-top: 22px; margin-bottom: 10px;'>Ключові можливості</h3>
-<ul style='margin-left: 20px; margin-bottom: 15px; list-style-type: square;'>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>🗄️ Unified Registry:</b> Ведення реєстру версій моделей (V1-V3) та бінарних ресурсів.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>🚀 Optimized Inference:</b> Конфігурація ONNX-сесій з максимальною оптимізацією графів обчислень.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>🛡️ Integrity Guards:</b> Автоматична перевірка цілісності та валідація бінарних файлів.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>🧠 Smart Caching:</b> Використання st.cache_resource для запобігання дублювання моделей у RAM.</li>
-</ul>
-    </div>
-</div>
-
-<!-- SECTION 03: API REFERENCE (INTERACTIVE BLOCK) -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Інтерфейси та сигнатури коду</h2></div>
+    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Реєстр ШІ-ресурсів</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 15px; color: var(--text-dim);">Документовані класи та методи, знайдені за допомогою статичного аналізу коду (AST):</p>
-        <div style='display: flex; flex-direction: column; gap: 10px;'>
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def st_cache_resource_fallback()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Conditional decorator for Streamlit caching with CLI fallback.</p>
-            </div>
-            
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def _get_substation_peak_automated()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Виконує обчислювальну операцію системи.</p>
-            </div>
-            
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def load_resources()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Loads ONNX model and Joblib scaler with integrity checks.</p>
-            </div>
-            </div>
+        <p style="margin-bottom: 15px; color: var(--text-dim);">Абсолютні шляхи та відображення конфігурацій (визначаються динамічно відносно <code>src/ml/models</code>):</p>
+        <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+            <thead>
+                <tr style="border-bottom: 1px solid var(--border); color: var(--accent);">
+                    <th style="padding: 8px; text-align: left;">Версія (ID)</th>
+                    <th style="padding: 8px; text-align: left;">ONNX Модель</th>
+                    <th style="padding: 8px; text-align: left;">Скейлер (Joblib)</th>
+                    <th style="padding: 8px; text-align: left;">Опис</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <td style="padding: 8px;"><b>V1</b></td>
+                    <td style="padding: 8px;"><code>substation_model_v1.onnx</code></td>
+                    <td style="padding: 8px;"><code>scaler_v1.pkl</code></td>
+                    <td style="padding: 8px;">Базова ARIMA/LSTM гібридна модель</td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <td style="padding: 8px;"><b>V2</b></td>
+                    <td style="padding: 8px;"><code>substation_model_v2.onnx</code></td>
+                    <td style="padding: 8px;"><code>scaler_v2.pkl</code></td>
+                    <td style="padding: 8px;">Мульти-таргетна (з телеметрією Twin)</td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <td style="padding: 8px;"><b>V3</b></td>
+                    <td style="padding: 8px;"><code>substation_model_v3_final.onnx</code><br><span style="color:var(--text-dim);font-size:11px;">Fallback: checkpoints/best_v3.onnx</span></td>
+                    <td style="padding: 8px;"><code>scaler_v3_final.pkl</code></td>
+                    <td style="padding: 8px;">Фінальна архітектура з 48h вікном</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 
-<!-- SECTION 04: EXECUTION FLOW (DIAGRAM) -->
+<!-- SECTION 03: API REFERENCE -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Життєвий цикл виконання</h2></div>
+    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Публічний інтерфейс (API)</h2></div>
+    <div class="glass-card flow-step">
+        <div style='display: flex; flex-direction: column; gap: 10px;'>
+            
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>def load_resources(version: str = "v3") → Tuple[Optional[ort.InferenceSession], Optional[Any]]</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Головна функція завантаження моделі та скейлера. Кешується у RAM через <code>@st.cache_resource</code>. Включає перевірки цілісності (наявність файлів, наявність атрибутів <code>mean_</code> та <code>data_max_</code> у скейлері). Налаштовує ONNXRuntime на максимальну оптимізацію графа (<code>ORT_ENABLE_ALL</code>) з 1 потоком для стабільності у веб-воркерах.</p>
+            </div>
+            
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>def st_cache_resource_fallback(show_spinner=True) → Callable</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Декоратор-фабрика. Якщо Streamlit імпортовано успішно, повертає <code>st.cache_resource</code>. Якщо ні (запуск у cron, terminal), повертає функцію без змін. Це дозволяє використовувати один і той же код як у веб-додатку, так і в CLI-скриптах.</p>
+            </div>
+            
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>def _get_substation_peak_automated(name: Union[str, List[str]]) → float</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Автоматично витягує з БД історичний пік навантаження або ємність підстанції(й) для нормалізації прогнозів. У разі недоступності БД повертає hardcoded fallback значення (<code>5269.0</code>).</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- SECTION 04: EXECUTION FLOW DIAGRAM -->
+<div class="section-container">
+    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Схема завантаження (load_resources)</h2></div>
     <div class="diagram-outer-wrapper"><div class="mermaid">
 graph TD
-    START("Запуск model_loader.py") --> CONFIG("Ініціалізація оточення")
-    CONFIG --> RUN("Основний алгоритм")
-    RUN --> COMP("Завершення завдання")
+    CALL("load_resources(version='v3')") --> CACHE{Streamlit\nCache Hit?}
+    CACHE -->|Yes| RETURN_RAM("Return from RAM")
+    CACHE -->|No| CHECK("Check MODEL_REGISTRY")
+    
+    CHECK --> EXISTS{Files\nExist?}
+    EXISTS -->|No| FALLBACK("Try 'v3_checkpoint'")
+    FALLBACK --> EXISTS2{Exists?}
+    EXISTS2 -->|No| ERR1("Return None, None\nLog Error")
+    
+    EXISTS -->|Yes| INIT_ORT("Init ONNX InferenceSession\n(ORT_ENABLE_ALL)")
+    EXISTS2 -->|Yes| INIT_ORT
+    
+    INIT_ORT --> LOAD_SCL("joblib.load(scaler_path)")
+    LOAD_SCL --> VAL_SCL{Has mean_ &\ndata_max_?}
+    
+    VAL_SCL -->|No| ERR2("Return None, None\nLog Corruption")
+    VAL_SCL -->|Yes| SUCCESS("Cache in RAM\nReturn model, scaler")
     </div></div>
 </div>
 
-<!-- SECTION 05: MODULE DEPENDENCIES -->
+<!-- SECTION 05: DEPENDENCIES -->
 <div class="section-container">
     <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 12px; color: var(--text-dim);">Бібліотеки та модулі, що імпортуються цим файлом:</p>
         <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; border: 1px solid var(--border);">
-            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>joblib</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>logging</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>onnxruntime</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>os</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>pathlib</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.utils.error_handlers</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>typing</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>onnxruntime</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>joblib</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>streamlit (Optional)</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.utils.error_handlers</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.core.database</span>
         </div>
     </div>
 </div>

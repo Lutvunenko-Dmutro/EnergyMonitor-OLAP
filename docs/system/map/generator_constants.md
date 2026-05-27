@@ -4,76 +4,55 @@
 
 <!-- HERO SECTION -->
 <div class="hero-section">
-    <div class="hero-badge">AUTOMATION ENGINE & UTILITY NODE</div>
+    <div class="hero-badge">SUBSTATION REGISTRY</div>
     <div class="hero-main">
-        <div class="hero-icon-wrapper"><span class="hero-icon">⚙️</span><div class="pulse-ring"></div></div>
+        <div class="hero-icon-wrapper"><span class="hero-icon">🏭</span><div class="pulse-ring"></div></div>
         <div class="hero-title-group">
-            <h1 class="mega-title">Служба автоматизації: generator_constants</h1>
-            <p class="mega-subtitle">Технічний скрипт автоматизації процесів збирання, аналізу або конвертації в екосистемі ATLAS</p>
-            <div class="status-tags"><span class="tag tag-online">DEFENSE EDITION</span><span class="tag tag-version">v5.0.0</span><span class="tag tag-role">UTILITY SCRIPT</span></div>
+            <h1 class="mega-title">Capacity Constants: generator_constants</h1>
+            <p class="mega-subtitle">Технічний паспорт об'єктів енергосистеми. Містить нормативні показники встановлених потужностей (МВт) для забезпечення реалізму фізичної симуляції.</p>
+            <div class="status-tags"><span class="tag tag-online">METADATA</span><span class="tag tag-version">v1.0.0</span><span class="tag tag-role">STATIC REGISTRY</span></div>
         </div>
     </div>
 </div>
 
 <!-- KEY METRICS GRID -->
 <div class="metrics-grid">
-    <div class="glass-card metric-card"><div class="metric-icon">🛡️</div><div class="metric-info"><span class="metric-label">Runtime</span><span class="metric-value">Python 3.11+</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">⚡</div><div class="metric-info"><span class="metric-label">Execution</span><span class="metric-value">Automated Task</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🧬</div><div class="metric-info"><span class="metric-label">Priority</span><span class="metric-value">High Performance</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🩺</div><div class="metric-info"><span class="metric-label">Interface</span><span class="metric-value">CLI / Script</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🗺️</div><div class="metric-info"><span class="metric-label">Mapping</span><span class="metric-value">Name to Capacity (MW)</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">⚓</div><div class="metric-info"><span class="metric-label">Role</span><span class="metric-value">Simulation Anchoring</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🎯</div><div class="metric-info"><span class="metric-label">Precision</span><span class="metric-value">Real-world Scales</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">⚡</div><div class="metric-info"><span class="metric-label">Type</span><span class="metric-value">Static Dictionary</span></div></div>
 </div>
 
 <!-- SECTION 01: CONCEPTUAL ROLE -->
 <div class="section-container">
     <div class="section-header"><span class="section-number">01</span><h2 class="section-title">Концептуальне призначення</h2></div>
     <div class="glass-card flow-step">
-        <p>Модуль <b>generator_constants</b> забезпечує інтеграцію та виконання наступних обчислювальних процесів системи: <i>ТЕХНІЧНИЙ ПАСПОРТ ОБ'ЄКТІВ ЕНЕРГОСИСТЕМИ (Substation Capacity Registry) Модуль містить нормативні показники потужностей для забезпечення реалізму симуляції.</i></p>
+        <p>Модуль <b>generator_constants.py</b> слугує фізичним якорем (Anchor) для "цифрового двійника". Щоб симуляція виглядала правдоподібно, навантаження різних підстанцій має відрізнятися в рази.</p>
+        <p style="margin-top: 12px;">Цей файл містить єдиний словник <code>BASE_CAPACITY_MAP</code>, що зіставляє назви українських енерговузлів з їх реальною (або наближеною) максимальною пропускною здатністю. Ці константи читаються модулями <code>db_seeder</code> та <code>data_generator</code> перед розрахунком відсоткового навантаження, перетворюючи абстрактні відсотки на конкретні Мегавати.</p>
     </div>
 </div>
 
-<!-- SECTION 02: CODE DOCUMENTATION (SMART PARSED) -->
+<!-- SECTION 02: API REFERENCE -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Системний опис з коду (Docstring)</h2></div>
-    <div class="glass-card flow-step" style="border-left: 4px solid var(--accent); padding-left: 20px;">
-        <p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>ТЕХНІЧНИЙ ПАСПОРТ ОБ'ЄКТІВ ЕНЕРГОСИСТЕМИ (Substation Capacity Registry)</p>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>Модуль містить нормативні показники потужностей для забезпечення реалізму симуляції.</p>
-<h3 style='color: var(--accent); font-family: "Orbitron", sans-serif; font-size: 15px; margin-top: 22px; margin-bottom: 10px;'>Ключові можливості</h3>
-<ol style='margin-left: 20px; margin-bottom: 15px;'>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Base Capacity Mapping:</b> визначення встановленої потужності (МВт) для вузлів України.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Simulation Anchoring:</b> використання реальних масштабів для створення "цифрового двійника".</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Metadata Standardization:</b> консистентність найменувань підстанцій у всій системі.</li>
-</ol>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>Забезпечує математичну та логічну достовірність модельованої енергосистеми.</p>
-    </div>
-</div>
-
-<!-- SECTION 03: API REFERENCE (INTERACTIVE BLOCK) -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Інтерфейси та сигнатури коду</h2></div>
+    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Структура даних</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 15px; color: var(--text-dim);">Документовані класи та методи, знайдені за допомогою статичного аналізу коду (AST):</p>
-        <p style='color: var(--text-dim); font-style: italic;'>Модуль виконується як лінійний скрипт без виділених класів або функцій.</p>
+        <div style='display: flex; flex-direction: column; gap: 10px;'>
+            
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>BASE_CAPACITY_MAP</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Python Dictionary. Ключі — точні назви підстанцій (String, наприклад "ПС Запорізька"), значення — базова потужність у МВт (Float, наприклад 3200.0). Якщо підстанції немає в словнику, генератори використовують fallback-логіку або 100.0 МВт за замовчуванням.</p>
+            </div>
+
+        </div>
     </div>
 </div>
 
-<!-- SECTION 04: EXECUTION FLOW (DIAGRAM) -->
+<!-- SECTION 03: DEPENDENCIES -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Життєвий цикл виконання</h2></div>
-    <div class="diagram-outer-wrapper"><div class="mermaid">
-graph TD
-    START("Запуск generator_constants.py") --> CONFIG("Ініціалізація оточення")
-    CONFIG --> RUN("Основний алгоритм")
-    RUN --> COMP("Завершення завдання")
-    </div></div>
-</div>
-
-<!-- SECTION 05: MODULE DEPENDENCIES -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
+    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 12px; color: var(--text-dim);">Бібліотеки та модулі, що імпортуються цим файлом:</p>
         <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; border: 1px solid var(--border);">
-            <span style='color: var(--text-dim); font-style: italic;'>Немає зовнішніх залежностей</span>
+            <p style="color: var(--text-dim); margin-bottom: 0;"><i>Цей модуль не має зовнішніх залежностей.</i></p>
         </div>
     </div>
 </div>

@@ -1,4 +1,4 @@
-# ATLAS_PASSPORT: docs/system/map/ml_core_engine.md
+# ATLAS_PASSPORT: docs/system/map/metrics_engine.md
 """
 📐 ANALYTICAL METRICS ENGINE (Scientific Accuracy Audit).
 =====================================================================

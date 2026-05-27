@@ -4,77 +4,58 @@
 
 <!-- HERO SECTION -->
 <div class="hero-section">
-    <div class="hero-badge">AUTOMATION ENGINE & UTILITY NODE</div>
+    <div class="hero-badge">SECURITY & QUALITY SIGNATURES</div>
     <div class="hero-main">
-        <div class="hero-icon-wrapper"><span class="hero-icon">⚙️</span><div class="pulse-ring"></div></div>
+        <div class="hero-icon-wrapper"><span class="hero-icon">🛡️</span><div class="pulse-ring"></div></div>
         <div class="hero-title-group">
-            <h1 class="mega-title">Служба автоматизації: patterns</h1>
-            <p class="mega-subtitle">Технічний скрипт автоматизації процесів збирання, аналізу або конвертації в екосистемі ATLAS</p>
-            <div class="status-tags"><span class="tag tag-online">DEFENSE EDITION</span><span class="tag tag-version">v5.0.0</span><span class="tag tag-role">UTILITY SCRIPT</span></div>
+            <h1 class="mega-title">Diagnostic Pattern Registry: patterns</h1>
+            <p class="mega-subtitle">Централізоване сховище евристичних правил та regex-сигнатур вразливостей для системи автоматичного аудиту безпеки коду.</p>
+            <div class="status-tags"><span class="tag tag-online">REGEX PATTERNS</span><span class="tag tag-version">v2.2.0</span><span class="tag tag-role">GUARDIAN RULES</span></div>
         </div>
     </div>
 </div>
 
 <!-- KEY METRICS GRID -->
 <div class="metrics-grid">
-    <div class="glass-card metric-card"><div class="metric-icon">🛡️</div><div class="metric-info"><span class="metric-label">Runtime</span><span class="metric-value">Python 3.11+</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">⚡</div><div class="metric-info"><span class="metric-label">Execution</span><span class="metric-value">Automated Task</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🧬</div><div class="metric-info"><span class="metric-label">Priority</span><span class="metric-value">High Performance</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🩺</div><div class="metric-info"><span class="metric-label">Interface</span><span class="metric-value">CLI / Script</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">📂</div><div class="metric-info"><span class="metric-label">Scan dirs</span><span class="metric-value">7 директорій</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">📦</div><div class="metric-info"><span class="metric-label">Whitelist</span><span class="metric-value">16 ThirdParty Libs</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">⚠️</div><div class="metric-info"><span class="metric-label">SQL Rules</span><span class="metric-value">F-String & % Injection</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🔑</div><div class="metric-info"><span class="metric-label">Secrets</span><span class="metric-value">Hardcoded Password Detect</span></div></div>
 </div>
 
 <!-- SECTION 01: CONCEPTUAL ROLE -->
 <div class="section-container">
     <div class="section-header"><span class="section-number">01</span><h2 class="section-title">Концептуальне призначення</h2></div>
     <div class="glass-card flow-step">
-        <p>Модуль <b>patterns</b> забезпечує інтеграцію та виконання наступних обчислювальних процесів системи: <i>🛡️ DIAGNOSTIC PATTERN REGISTRY (Security & Quality Signatures). Модуль: patterns.py | Версія: 2.2.0 "Guardian Rules" Призначення: Централізоване сховище евристичних правил, сигнатур вразливостей та архітектурних констант для системи діагностики.</i></p>
+        <p>Модуль <b>patterns.py</b> — це "Посвідчення" для системи аудиту. Сам по собі він не сканує нічого. Він лише декларує <b>правила</b>, за якими сканер (<code>scanner.py</code>) проводить перевірку.</p>
+        <p style="margin-top: 12px;">Модуль містить: список директорій для обходу (<code>SCAN_DIRS</code>), список відомих бібліотек (<code>KNOWN_THIRD_PARTY</code>) для уникнення хибних "missing import" помилок, та найголовніше — список <code>SECURITY_PATTERNS</code>: кортежів <code>(regex, severity, code, message)</code>. Ці патерни можуть виловлювати SQL ін'єкції через f-strings, хардкодовані паролі, небезпечні <code>eval()</code> виклики та HTTP-запити без таймауту.</p>
     </div>
 </div>
 
-<!-- SECTION 02: CODE DOCUMENTATION (SMART PARSED) -->
+<!-- SECTION 02: SECURITY CATALOG -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Системний опис з коду (Docstring)</h2></div>
-    <div class="glass-card flow-step" style="border-left: 4px solid var(--accent); padding-left: 20px;">
-        <p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>🛡️ DIAGNOSTIC PATTERN REGISTRY (Security & Quality Signatures).</p>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'><b>Модуль:</b> patterns.py | Версія: 2.2.0 "Guardian Rules"</p>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'><b>Призначення:</b> Централізоване сховище евристичних правил, сигнатур вразливостей та архітектурних констант для системи діагностики.</p>
-<h3 style='color: var(--accent); font-family: "Orbitron", sans-serif; font-size: 15px; margin-top: 22px; margin-bottom: 10px;'>Ключові розділи</h3>
-<ul style='margin-left: 20px; margin-bottom: 15px; list-style-type: square;'>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>📂 Directory Configuration:</b> Визначення зон сканування та виключення системних шляхів.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>🚚 Dependency Whitelists:</b> Реєстр довірених бібліотек (Standard Library & Third-party).</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>📏 Heuristic Thresholds:</b> Граничні значення складності та довжини функцій.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>🛡️ Security Signatures:</b> Регулярні вирази для виявлення SQLi, Hardcoded Secrets та небезпечного коду.</li>
-</ul>
-    </div>
-</div>
-
-<!-- SECTION 03: API REFERENCE (INTERACTIVE BLOCK) -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Інтерфейси та сигнатури коду</h2></div>
+    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Каталог Сигнатур Безпеки</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 15px; color: var(--text-dim);">Документовані класи та методи, знайдені за допомогою статичного аналізу коду (AST):</p>
-        <p style='color: var(--text-dim); font-style: italic;'>Модуль виконується як лінійний скрипт без виділених класів або функцій.</p>
+        <div style='display: flex; flex-direction: column; gap: 8px;'>
+            <div style='padding: 10px 14px; border-radius: 8px; background: rgba(248, 81, 73, 0.08); border-left: 3px solid #f85149;'><code style='color: #f85149; font-size: 13px; font-weight: 600;'>⛔ SQL_INJECTION_FSTRING</code><span style='font-size: 12px; color: var(--text-dim); margin-left: 10px;'>f-string всередині execute() — ERROR</span></div>
+            <div style='padding: 10px 14px; border-radius: 8px; background: rgba(210, 153, 34, 0.08); border-left: 3px solid #d29922;'><code style='color: #d29922; font-size: 13px; font-weight: 600;'>⚠️ SQL_INJECTION_FORMAT</code><span style='font-size: 12px; color: var(--text-dim); margin-left: 10px;'>% форматування в SQL — WARNING</span></div>
+            <div style='padding: 10px 14px; border-radius: 8px; background: rgba(248, 81, 73, 0.08); border-left: 3px solid #f85149;'><code style='color: #f85149; font-size: 13px; font-weight: 600;'>🔑 HARDCODED_SECRET</code><span style='font-size: 12px; color: var(--text-dim); margin-left: 10px;'>Рядковий літерал у password=... — ERROR</span></div>
+            <div style='padding: 10px 14px; border-radius: 8px; background: rgba(248, 81, 73, 0.08); border-left: 3px solid #f85149;'><code style='color: #f85149; font-size: 13px; font-weight: 600;'>☠️ DANGEROUS_EVAL</code><span style='font-size: 12px; color: var(--text-dim); margin-left: 10px;'>Виклик eval() або exec() — ERROR</span></div>
+            <div style='padding: 10px 14px; border-radius: 8px; background: rgba(210, 153, 34, 0.08); border-left: 3px solid #d29922;'><code style='color: #d29922; font-size: 13px; font-weight: 600;'>⚠️ UNSAFE_DESERIALIZATION</code><span style='font-size: 12px; color: var(--text-dim); margin-left: 10px;'>pickle.load або yaml.load — WARNING</span></div>
+            <div style='padding: 10px 14px; border-radius: 8px; background: rgba(210, 153, 34, 0.08); border-left: 3px solid #d29922;'><code style='color: #d29922; font-size: 13px; font-weight: 600;'>⏱️ MISSING_TIMEOUT</code><span style='font-size: 12px; color: var(--text-dim); margin-left: 10px;'>HTTP requests.get() без timeout= — WARNING</span></div>
+            <div style='padding: 10px 14px; border-radius: 8px; background: rgba(248, 81, 73, 0.08); border-left: 3px solid #f85149;'><code style='color: #f85149; font-size: 13px; font-weight: 600;'>🔑 EXPOSED_CONN_STRING</code><span style='font-size: 12px; color: var(--text-dim); margin-left: 10px;'>Відкритий рядок підключення postgresql:// — ERROR</span></div>
+        </div>
     </div>
 </div>
 
-<!-- SECTION 04: EXECUTION FLOW (DIAGRAM) -->
+<!-- SECTION 03: DEPENDENCIES -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Життєвий цикл виконання</h2></div>
-    <div class="diagram-outer-wrapper"><div class="mermaid">
-graph TD
-    START("Запуск patterns.py") --> CONFIG("Ініціалізація оточення")
-    CONFIG --> RUN("Основний алгоритм")
-    RUN --> COMP("Завершення завдання")
-    </div></div>
-</div>
-
-<!-- SECTION 05: MODULE DEPENDENCIES -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
+    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 12px; color: var(--text-dim);">Бібліотеки та модулі, що імпортуються цим файлом:</p>
         <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; border: 1px solid var(--border);">
-            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>pathlib</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>re</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>sys</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>re</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>sys (stdlib_module_names)</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>pathlib.Path</span>
         </div>
     </div>
 </div>

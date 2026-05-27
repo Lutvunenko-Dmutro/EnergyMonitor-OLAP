@@ -240,3 +240,16 @@ def deduplicate_list(items: List[Any], preserve_order: bool = True) -> List[Any]
         return result
     else:
         return list(set(items))
+
+
+# --- STREAMLIT EXCEPTION FALLBACKS (Robust Streamlit v1.56+ Compatibility) ---
+try:
+    from streamlit.runtime.scriptrunner import RerunException, StopException
+except ImportError:
+    try:
+        from streamlit.runtime.scriptrunner.exceptions import RerunException, StopException
+    except ImportError:
+        # Dummy fallbacks for non-Streamlit environments or standard linters
+        class RerunException(Exception): pass
+        class StopException(Exception): pass
+

@@ -1,4 +1,4 @@
-# ATLAS_PASSPORT: docs/system/map/data_services_hub.md
+# ATLAS_PASSPORT: docs/system/map/migrate_db.md
 """
 СИСТЕМА ЕВОЛЮЦІЇ СХЕМИ БАЗИ ДАНИХ (Database Migration Engine)
 ============================================================

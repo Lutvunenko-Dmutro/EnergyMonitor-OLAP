@@ -4,82 +4,76 @@
 
 <!-- HERO SECTION -->
 <div class="hero-section">
-    <div class="hero-badge">AUTOMATION ENGINE & UTILITY NODE</div>
+    <div class="hero-badge">FORECAST CONTROL HEADER</div>
     <div class="hero-main">
-        <div class="hero-icon-wrapper"><span class="hero-icon">⚙️</span><div class="pulse-ring"></div></div>
+        <div class="hero-icon-wrapper"><span class="hero-icon">🎛️</span><div class="pulse-ring"></div></div>
         <div class="hero-title-group">
-            <h1 class="mega-title">Служба автоматизації: header</h1>
-            <p class="mega-subtitle">Технічний скрипт автоматизації процесів збирання, аналізу або конвертації в екосистемі ATLAS</p>
-            <div class="status-tags"><span class="tag tag-online">DEFENSE EDITION</span><span class="tag tag-version">v5.0.0</span><span class="tag tag-role">UTILITY SCRIPT</span></div>
+            <h1 class="mega-title">UI Configuration: header</h1>
+            <p class="mega-subtitle">Інтерактивна панель налаштування прогнозів з вбудованим детектором змін станів. Забезпечує What-If симуляцію через повзунки (Сценарії).</p>
+            <div class="status-tags"><span class="tag tag-online">STREAMLIT STATE</span><span class="tag tag-version">v1.3.0</span><span class="tag tag-role">CONTROL BAR</span></div>
         </div>
     </div>
 </div>
 
 <!-- KEY METRICS GRID -->
 <div class="metrics-grid">
-    <div class="glass-card metric-card"><div class="metric-icon">🛡️</div><div class="metric-info"><span class="metric-label">Runtime</span><span class="metric-value">Python 3.11+</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">⚡</div><div class="metric-info"><span class="metric-label">Execution</span><span class="metric-value">Automated Task</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🧬</div><div class="metric-info"><span class="metric-label">Priority</span><span class="metric-value">High Performance</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🩺</div><div class="metric-info"><span class="metric-label">Interface</span><span class="metric-value">CLI / Script</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🔄</div><div class="metric-info"><span class="metric-label">Detector</span><span class="metric-value">Session State Observer</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">⚙️</div><div class="metric-info"><span class="metric-label">What-If</span><span class="metric-value">Temp / H2 / Health</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🛡️</div><div class="metric-info"><span class="metric-label">Safety</span><span class="metric-value">Wipe on Fundamental Change</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🧪</div><div class="metric-info"><span class="metric-label">Mode</span><span class="metric-value">Multi-Model Toggle</span></div></div>
 </div>
 
 <!-- SECTION 01: CONCEPTUAL ROLE -->
 <div class="section-container">
     <div class="section-header"><span class="section-number">01</span><h2 class="section-title">Концептуальне призначення</h2></div>
     <div class="glass-card flow-step">
-        <p>Модуль <b>header</b> забезпечує інтеграцію та виконання наступних обчислювальних процесів системи: <i>ПАНЕЛЬ КЕРУВАННЯ ПРОГНОЗАМИ (Forecast Control Header) Модуль відповідає за інтерактивний інтерфейс конфігурації прогнозів та виявлення змін.</i><br><br><b>Архітектурний інтерфейс:</b> надає методи <code>render_forecast_header()</code>.</p>
+        <p>Модуль <b>header.py</b> — це "штурвал" системи прогнозування. Його головна фішка — розумний <i>детектор змін</i>. Оскільки Streamlit перемальовує весь екран при будь-якому кліку, ми не можемо просто кешувати графіки: якщо користувач змінив модель з V1 на V2, нам потрібно <b>очистити старі прогнози</b>.</p>
+        <p style="margin-top: 12px;">Модуль зберігає попередні значення (<code>last_version</code>, <code>last_sub_selection</code>) і постійно порівнює їх з поточними. Якщо є зміна — викликається <code>Comprehensive wipe</code>, який чистить десятки ключів з <code>st.session_state</code> та змушує систему перезавантажитись (<code>st.rerun</code>). Також тут розміщено Expander з повзунками "Що-Якщо" (для V2/V3), які дозволяють штучно змінити погоду та знос перед прогнозом.</p>
     </div>
 </div>
 
-<!-- SECTION 02: CODE DOCUMENTATION (SMART PARSED) -->
+<!-- SECTION 02: API REFERENCE -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Системний опис з коду (Docstring)</h2></div>
-    <div class="glass-card flow-step" style="border-left: 4px solid var(--accent); padding-left: 20px;">
-        <p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>ПАНЕЛЬ КЕРУВАННЯ ПРОГНОЗАМИ (Forecast Control Header)</p>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>Модуль відповідає за інтерактивний інтерфейс конфігурації прогнозів та виявлення змін.</p>
-<h3 style='color: var(--accent); font-family: "Orbitron", sans-serif; font-size: 15px; margin-top: 22px; margin-bottom: 10px;'>Ключові можливості</h3>
-<ol style='margin-left: 20px; margin-bottom: 15px;'>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>State Change Detection:</b> система відстеження змін у виборі об'єкта для скидання кешу.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Reactive UI Controls:</b> перемикач мульти-модельного аналізу та селектор архітектур.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Scenario Parameterization:</b> панель параметрів симуляції (Temp, H2, Health) для What-If аналізу.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Session Management:</b> очищення session_state при зміні фундаментальних параметрів.</li>
-</ol>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>Забезпечує гнучкість та надійність налаштування аналітичних сесій користувачем.</p>
-    </div>
-</div>
-
-<!-- SECTION 03: API REFERENCE (INTERACTIVE BLOCK) -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Інтерфейси та сигнатури коду</h2></div>
+    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Публічний інтерфейс (API)</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 15px; color: var(--text-dim);">Документовані класи та методи, знайдені за допомогою статичного аналізу коду (AST):</p>
         <div style='display: flex; flex-direction: column; gap: 10px;'>
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def render_forecast_header()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Renders the configuration header and manages station change detection.</p>
+            
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>def render_forecast_header(sub_name: str, sub_label: str, data_source: str) → tuple</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Повертає кортеж конфігурації: <code>(version, scenario, is_multi_model, src_type)</code>. Логіка: 1) Ініціалізує <code>last_*</code> змінні в стейті. 2) Рендерить toggle порівняння та selectbox архітектури (блокує його, якщо toggle=True або CSV режим). 3) Перевіряє умову <code>changed = (last_sub != sub_name or ...)</code>. 4) Якщо changed == True, видаляє масив ключів (<code>tab_fc_df</code>, <code>tab_bt_df</code>, etc.) та викликає <code>st.rerun()</code>. 5) Рендерить Expander з 3 слайдерами (Температура, H2, Health) та повертає їх у словнику <code>scenario</code>.</p>
             </div>
-            </div>
+
+        </div>
     </div>
 </div>
 
-<!-- SECTION 04: EXECUTION FLOW (DIAGRAM) -->
+<!-- SECTION 03: EXECUTION FLOW DIAGRAM -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Життєвий цикл виконання</h2></div>
+    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Життєвий Цикл Детектора Змін</h2></div>
     <div class="diagram-outer-wrapper"><div class="mermaid">
 graph TD
-    START("Запуск header.py") --> CONFIG("Ініціалізація оточення")
-    CONFIG --> RUN("Основний алгоритм")
-    RUN --> COMP("Завершення завдання")
+    IN("render_forecast_header()") --> UI_RENDER("Render Controls\n(Toggle, Select, Sliders)")
+    
+    UI_RENDER --> GET_CUR("Get Current: version, multi_mode")
+    
+    GET_CUR --> COMPARE{"Current == Last State?"}
+    
+    COMPARE -->|Yes| OK("Return\n(version, scenario, multi, src)")
+    
+    COMPARE -->|No| RESET("Set tab_active_mode = 'idle'")
+    RESET --> UPDATE("Update last_ variables in state")
+    UPDATE --> WIPE("del st.session_state[key]\nfor 12+ cache keys")
+    WIPE --> RERUN("st.rerun()\nTrigger hard refresh")
     </div></div>
 </div>
 
-<!-- SECTION 05: MODULE DEPENDENCIES -->
+<!-- SECTION 04: DEPENDENCIES -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
+    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 12px; color: var(--text-dim);">Бібліотеки та модулі, що імпортуються цим файлом:</p>
         <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; border: 1px solid var(--border);">
-            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.ui.views.forecast_components.constants</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>streamlit</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>streamlit</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.ui.views.forecast_components.constants (MODEL_LABELS)</span>
         </div>
     </div>
 </div>

@@ -1,4 +1,4 @@
-# ATLAS_PASSPORT: docs/system/map/core_kernel_hub.md
+# ATLAS_PASSPORT: docs/system/map/core_kaggle_loader.md
 """
 🚚 DATA INGESTION PIPELINE (Kaggle Dataset Connector).
 Модуль: kaggle_loader.py | Версія: 2.0.0 "Data-Link"

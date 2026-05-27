@@ -1,4 +1,4 @@
-# ATLAS_PASSPORT: docs/system/map/data_services_hub.md
+# ATLAS_PASSPORT: docs/system/map/archive.md
 """
 📜 HISTORICAL ARCHIVE ENGINE (OLAP Data Sourcing).
 Модуль: archive.py | Версія: 1.2.0

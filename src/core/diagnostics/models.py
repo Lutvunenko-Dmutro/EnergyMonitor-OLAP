@@ -1,4 +1,4 @@
-# ATLAS_PASSPORT: docs/system/map/diagnostics_engine_hub.md
+# ATLAS_PASSPORT: docs/system/map/models.md
 """
 🏗️ DIAGNOSTICS DATA MODELS (Quality Assurance Schema).
 =================================================

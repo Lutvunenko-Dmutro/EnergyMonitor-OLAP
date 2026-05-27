@@ -4,97 +4,93 @@
 
 <!-- HERO SECTION -->
 <div class="hero-section">
-    <div class="hero-badge">AUTOMATION ENGINE & UTILITY NODE</div>
+    <div class="hero-badge">ANALYTICAL DATA AGGREGATOR</div>
     <div class="hero-main">
-        <div class="hero-icon-wrapper"><span class="hero-icon">⚙️</span><div class="pulse-ring"></div></div>
+        <div class="hero-icon-wrapper"><span class="hero-icon">📈</span><div class="pulse-ring"></div></div>
         <div class="hero-title-group">
-            <h1 class="mega-title">Служба автоматизації: aggregator</h1>
-            <p class="mega-subtitle">Технічний скрипт автоматизації процесів збирання, аналізу або конвертації в екосистемі ATLAS</p>
-            <div class="status-tags"><span class="tag tag-online">DEFENSE EDITION</span><span class="tag tag-version">v5.0.0</span><span class="tag tag-role">UTILITY SCRIPT</span></div>
+            <h1 class="mega-title">OLAP Engine: aggregator</h1>
+            <p class="mega-subtitle">Високопродуктивна обробка, ресемплінг та нормалізація сирих метрик. Формує агреговані зрізи (OLAP) для формування цілісної аналітичної картини в дашбордах.</p>
+            <div class="status-tags"><span class="tag tag-online">PANDAS ENGINE</span><span class="tag tag-version">v2.1.0</span><span class="tag tag-role">ETL AGGREGATOR</span></div>
         </div>
     </div>
 </div>
 
 <!-- KEY METRICS GRID -->
 <div class="metrics-grid">
-    <div class="glass-card metric-card"><div class="metric-icon">🛡️</div><div class="metric-info"><span class="metric-label">Runtime</span><span class="metric-value">Python 3.11+</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">⚡</div><div class="metric-info"><span class="metric-label">Execution</span><span class="metric-value">Automated Task</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🧬</div><div class="metric-info"><span class="metric-label">Priority</span><span class="metric-value">High Performance</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🩺</div><div class="metric-info"><span class="metric-label">Interface</span><span class="metric-value">CLI / Script</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">⏳</div><div class="metric-info"><span class="metric-label">Resampling</span><span class="metric-value">1h-window (mean)</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">📏</div><div class="metric-info"><span class="metric-label">Normalization</span><span class="metric-value">Relative Load (%)</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🔄</div><div class="metric-info"><span class="metric-label">ETL Hybrid</span><span class="metric-value">DB 72h / Kaggle 48h</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">📊</div><div class="metric-info"><span class="metric-label">Synthesis</span><span class="metric-value">Global SUM / AVG</span></div></div>
 </div>
 
 <!-- SECTION 01: CONCEPTUAL ROLE -->
 <div class="section-container">
     <div class="section-header"><span class="section-number">01</span><h2 class="section-title">Концептуальне призначення</h2></div>
     <div class="glass-card flow-step">
-        <p>Модуль <b>aggregator</b> забезпечує інтеграцію та виконання наступних обчислювальних процесів системи: <i>📈 ANALYTICAL DATA AGGREGATOR (OLAP Engine). Модуль: aggregator.py | Версія: 2.1.0 Призначення: Високопродуктивна обробка, ресемплінг та нормалізація сирих метрик для формування цілісної аналітичної картини.</i><br><br><b>Архітектурний інтерфейс:</b> надає методи <code>aggregate_consumption()</code>, <code>add_relative_load()</code>.</p>
+        <p>Модуль <b>aggregator.py</b> працює на рівні проміжної обробки даних (Business Logic). Його головна задача — прийняти сирі (або частково відфільтровані) дані з БД чи Kaggle та перетворити їх на зручний для графіків формат.</p>
+        <p style="margin-top: 12px;">Зокрема, модуль згладжує "шум" у часових рядах, дискретизуючи (Resampling) дані за годинними інтервалами (<code>1h</code>). Він також дозволяє перевести абсолютні значення мегават (МВт) у відносні відсотки (Relative Load), що критично важливо для порівняльного аналізу маленьких та великих підстанцій на одному графіку.</p>
     </div>
 </div>
 
-<!-- SECTION 02: CODE DOCUMENTATION (SMART PARSED) -->
+<!-- SECTION 02: API REFERENCE -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Системний опис з коду (Docstring)</h2></div>
-    <div class="glass-card flow-step" style="border-left: 4px solid var(--accent); padding-left: 20px;">
-        <p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>📈 ANALYTICAL DATA AGGREGATOR (OLAP Engine).</p>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'><b>Модуль:</b> aggregator.py | Версія: 2.1.0</p>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'><b>Призначення:</b> Високопродуктивна обробка, ресемплінг та нормалізація сирих метрик для формування цілісної аналітичної картини.</p>
-<h3 style='color: var(--accent); font-family: "Orbitron", sans-serif; font-size: 15px; margin-top: 22px; margin-bottom: 10px;'>Ключові можливості</h3>
-<ul style='margin-left: 20px; margin-bottom: 15px; list-style-type: square;'>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>⏳ Temporal Resampling:</b> Дискретизація часових рядів (1h-window) через Pandas Resample API.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>📏 Metric Normalization:</b> Розрахунок відносного навантаження (%) для порівняльного аналізу об'єктів.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>🔄 Hybrid ETL:</b> Уніфікований доступ до історичних даних з PostgreSQL та локальних архівів.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>📊 Data Synthesis:</b> Формування агрегованих зрізів за регіонами та групами активів.</li>
-</ul>
-    </div>
-</div>
-
-<!-- SECTION 03: API REFERENCE (INTERACTIVE BLOCK) -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Інтерфейси та сигнатури коду</h2></div>
+    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Публічний інтерфейс (API)</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 15px; color: var(--text-dim);">Документовані класи та методи, знайдені за допомогою статичного аналізу коду (AST):</p>
         <div style='display: flex; flex-direction: column; gap: 10px;'>
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def aggregate_consumption()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Дискретизує та агрегує дані за годинами.</p>
+            
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>def aggregate_consumption(df: pd.DataFrame, group_by_col: str, num_cols: list) → pd.DataFrame</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Конвертує стовпець часу у <code>datetime</code>, групує за вказаним полем (напр. підстанція чи регіон) і застосовує <code>.resample("1h").mean()</code> до числових колонок. Повертає відсортований датафрейм без NaN значень.</p>
             </div>
             
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def add_relative_load()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Здійснює нормалізацію навантаження до відносних показників (%).</p>
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>def add_relative_load(df: pd.DataFrame, group_by_col: str) → pd.DataFrame</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Нормалізує навантаження. Для кожної групи (<code>group_by_col</code>) знаходить максимум і розраховує <code>x / max * 100</code>. Використовує <code>.replace</code> замість <code>.fillna</code> для безпечної роботи з Categorical Dtypes.</p>
             </div>
             
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def get_history_live()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Завантажує історичні дані споживання з реляційної БД за останні 72 години.</p>
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>def get_history_live(substation_name: str | None) → pd.DataFrame</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>SQL-екстрактор. Завантажує останні <b>72 години</b> з PostgreSQL. Якщо обрано список "Всі", виконує глобальну агрегацію <code>SUM(load)</code>, якщо конкретні — фільтрує через <code>ANY(:sub)</code>.</p>
             </div>
             
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def get_history_csv()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Зчитує історичні покази за останні 48 годин з еталонного датасету (Kaggle).</p>
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>def get_history_csv(substation_name: str | None = None) → pd.DataFrame</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Екстрактор локальних архівів. Завантажує дані з Kaggle датасету (через <code>load_kaggle_data()</code>) і повертає зріз за останні <b>48 годин</b>. Також підтримує глобальну агрегацію (SUM).</p>
             </div>
-            </div>
+
+        </div>
     </div>
 </div>
 
-<!-- SECTION 04: EXECUTION FLOW (DIAGRAM) -->
+<!-- SECTION 03: EXECUTION FLOW DIAGRAM -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Життєвий цикл виконання</h2></div>
+    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">ETL пайплайн агрегації</h2></div>
     <div class="diagram-outer-wrapper"><div class="mermaid">
 graph TD
-    START("Запуск aggregator.py") --> CONFIG("Ініціалізація оточення")
-    CONFIG --> RUN("Основний алгоритм")
-    RUN --> COMP("Завершення завдання")
+    UI("UI Request\n(Substation/Region)") --> SRC{"Source?"}
+    
+    SRC -->|Live DB| LIVE("get_history_live(sub_name)\nSQL: SELECT ... WHERE >= NOW() - 72h")
+    SRC -->|Kaggle CSV| CSV("get_history_csv(sub_name)\nPandas: filter >= MAX - 48h")
+    
+    LIVE --> RAW(Raw DataFrame)
+    CSV --> RAW
+    
+    RAW --> RESAMP("aggregate_consumption(df)\n.resample('1h').mean()")
+    
+    RESAMP --> REL("add_relative_load(df)\nGroup Transform (x/max*100)")
+    
+    REL --> FINAL("Final Aggregated Data\nfor Plotly Charts")
     </div></div>
 </div>
 
-<!-- SECTION 05: MODULE DEPENDENCIES -->
+<!-- SECTION 04: DEPENDENCIES -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
+    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 12px; color: var(--text-dim);">Бібліотеки та модулі, що імпортуються цим файлом:</p>
         <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; border: 1px solid var(--border);">
-            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>pandas</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.core.database</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>pandas</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.core.database</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.core.kaggle_loader (inline)</span>
         </div>
     </div>
 </div>

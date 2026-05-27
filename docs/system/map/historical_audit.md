@@ -4,82 +4,89 @@
 
 <!-- HERO SECTION -->
 <div class="hero-section">
-    <div class="hero-badge">AUTOMATION ENGINE & UTILITY NODE</div>
+    <div class="hero-badge">DIGITAL ARCHIVE</div>
     <div class="hero-main">
-        <div class="hero-icon-wrapper"><span class="hero-icon">⚙️</span><div class="pulse-ring"></div></div>
+        <div class="hero-icon-wrapper"><span class="hero-icon">📜</span><div class="pulse-ring"></div></div>
         <div class="hero-title-group">
-            <h1 class="mega-title">Служба автоматизації: historical_audit</h1>
-            <p class="mega-subtitle">Технічний скрипт автоматизації процесів збирання, аналізу або конвертації в екосистемі ATLAS</p>
-            <div class="status-tags"><span class="tag tag-online">DEFENSE EDITION</span><span class="tag tag-version">v5.0.0</span><span class="tag tag-role">UTILITY SCRIPT</span></div>
+            <h1 class="mega-title">System Audit: historical_audit</h1>
+            <p class="mega-subtitle">Панель цифрового архіву з підтримкою глибокого кореляційного аналізу, візуалізації "ритмів" споживання (Day Multipliers) та теплової діагностики активів.</p>
+            <div class="status-tags"><span class="tag tag-online">PLOTLY DUAL-AXIS</span><span class="tag tag-version">v2.5.0</span><span class="tag tag-role">RETROSPECTIVE VIEW</span></div>
         </div>
     </div>
 </div>
 
 <!-- KEY METRICS GRID -->
 <div class="metrics-grid">
-    <div class="glass-card metric-card"><div class="metric-icon">🛡️</div><div class="metric-info"><span class="metric-label">Runtime</span><span class="metric-value">Python 3.11+</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">⚡</div><div class="metric-info"><span class="metric-label">Execution</span><span class="metric-value">Automated Task</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🧬</div><div class="metric-info"><span class="metric-label">Priority</span><span class="metric-value">High Performance</span></div></div>
-    <div class="glass-card metric-card"><div class="metric-icon">🩺</div><div class="metric-info"><span class="metric-label">Interface</span><span class="metric-value">CLI / Script</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🌡️</div><div class="metric-info"><span class="metric-label">Weather</span><span class="metric-value">Load vs Air Temp</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🛢️</div><div class="metric-info"><span class="metric-label">Physics</span><span class="metric-value">Load vs Oil Temp</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">🛡️</div><div class="metric-info"><span class="metric-label">Health</span><span class="metric-value">Score vs H2 ppm</span></div></div>
+    <div class="glass-card metric-card"><div class="metric-icon">⏳</div><div class="metric-info"><span class="metric-label">Rhythm</span><span class="metric-value">Weekday vs Weekend</span></div></div>
 </div>
 
 <!-- SECTION 01: CONCEPTUAL ROLE -->
 <div class="section-container">
     <div class="section-header"><span class="section-number">01</span><h2 class="section-title">Концептуальне призначення</h2></div>
     <div class="glass-card flow-step">
-        <p>Модуль <b>historical_audit</b> забезпечує інтеграцію та виконання наступних обчислювальних процесів системи: <i>ЦИФРОВИЙ АРХІВ ТА СИСТЕМА ФІЗИЧНОГО АУДИТУ (Digital Archive & Audit) Модуль для поглибленого ретроспективного аналізу станів енергосистеми.</i><br><br><b>Архітектурний інтерфейс:</b> надає методи <code>render()</code>.</p>
+        <p>Модуль <b>historical_audit.py</b> — це інструмент для Data Scientists та Інженерів. Його головна мета — показати <i>причинно-наслідкові зв'язки</i> в історії енергосистеми.</p>
+        <p style="margin-top: 12px;">Замість звичайних графіків тут активно використовуються Dual-Axis (дві шкали Y) візуалізації, щоб накласти один параметр на інший. Наприклад, як навантаження корелює з температурою повітря, або як виділення H2 вбиває Health Score трансформатора. Також модуль рендерить спеціальний "Ритмічний" графік, який показує патерни споживання у будні (працюють заводи) порівняно з вихідними днями (типовий спад). В кінці завжди виводиться Data Table з сирими даними.</p>
     </div>
 </div>
 
-<!-- SECTION 02: CODE DOCUMENTATION (SMART PARSED) -->
+<!-- SECTION 02: API REFERENCE -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Системний опис з коду (Docstring)</h2></div>
-    <div class="glass-card flow-step" style="border-left: 4px solid var(--accent); padding-left: 20px;">
-        <p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>ЦИФРОВИЙ АРХІВ ТА СИСТЕМА ФІЗИЧНОГО АУДИТУ (Digital Archive & Audit)</p>
-<p style='line-height: 1.7; margin-bottom: 12px; color: var(--text-main);'>Модуль для поглибленого ретроспективного аналізу станів енергосистеми.</p>
-<h3 style='color: var(--accent); font-family: "Orbitron", sans-serif; font-size: 15px; margin-top: 22px; margin-bottom: 10px;'>Ключові можливості</h3>
-<ol style='margin-left: 20px; margin-bottom: 15px;'>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Cross-parameter Correlation:</b> візуалізація зв'язків між навантаженням, температурою масла, H2 та метеоданими на Dual-Axis графіках.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Asset Health Audit:</b> аналіз динаміки зносу обладнання (Health Score) у контексті експлуатаційних навантажень.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Rhythm Analysis:</b> порівняння енергетичних "пульсів" системи (Будні vs Вихідні) для верифікації day-type моделей.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Physical Diagnostics:</b> виявлення аномальних теплових трендів трансформаторного парку.</li>
-<li style='margin-bottom: 6px; line-height: 1.5;'><b>Raw Data Access:</b> надання прямого доступу до агрегованих історичних масивів через інтерфейс таблиць.</li>
-</ol>
-    </div>
-</div>
-
-<!-- SECTION 03: API REFERENCE (INTERACTIVE BLOCK) -->
-<div class="section-container">
-    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Інтерфейси та сигнатури коду</h2></div>
+    <div class="section-header"><span class="section-number">02</span><h2 class="section-title">Публічний інтерфейс (API)</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 15px; color: var(--text-dim);">Документовані класи та методи, знайдені за допомогою статичного аналізу коду (AST):</p>
         <div style='display: flex; flex-direction: column; gap: 10px;'>
-            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;'>
-                <code style='color: var(--accent); font-size: 13px; font-weight: 600;'>def render()</code>
-                <p style='margin: 4px 0 0 0; font-size: 12.5px; color: var(--text-dim);'>Рендер панелі цифрого архіву з глибоким аналізом кореляції параметрів.</p>
+            
+            <div style='background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;'>
+                <code style='color: var(--accent); font-size: 14px; font-weight: 600;'>def render(selected_region: str, date_range=None, selected_substation: list|str) → None</code>
+                <p style='margin: 8px 0 0 0; font-size: 13px; color: var(--text-dim);'>Контролер архіву. 1. Викликає <code>_get_archive_bounds</code> для валідації дати. 2. Нормалізує цільовий об'єкт (конкретна станція чи всі разом). 3. Викликає <code>_load_archive_data</code>. Якщо станцій декілька — агрегує метрики через <code>groupby('ts').mean()</code>. 4. Формує 4 верхніх KPI-метрики (st.metric). 5. Виводить 3 блоки кореляцій через <code>render_dual_axis_chart</code>. 6. Завантажує дані для ритмів через <code>_load_rhythm_data</code> та будує <code>render_rhythm_chart</code>. 7. Виводить <code>render_raw_data_table</code>.</p>
             </div>
-            </div>
+
+        </div>
     </div>
 </div>
 
-<!-- SECTION 04: EXECUTION FLOW (DIAGRAM) -->
+<!-- SECTION 03: EXECUTION FLOW DIAGRAM -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Життєвий цикл виконання</h2></div>
+    <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Конвеєр Аналізу Архіву</h2></div>
     <div class="diagram-outer-wrapper"><div class="mermaid">
 graph TD
-    START("Запуск historical_audit.py") --> CONFIG("Ініціалізація оточення")
-    CONFIG --> RUN("Основний алгоритм")
-    RUN --> COMP("Завершення завдання")
+    IN("render(region, date_range, sub)") --> DB1("_get_archive_bounds()")
+    
+    DB1 --> TIME("Calculate effective\nstart_date, end_date")
+    
+    TIME --> DB2("_load_archive_data()")
+    
+    DB2 --> AGG{"Multiple Substations?"}
+    AGG -->|Yes| GROUP("df.groupby('ts').mean()")
+    AGG -->|No| KPI("Render st.metric KPIs")
+    GROUP --> KPI
+    
+    KPI --> DUAL1("render_dual_axis_chart\n(Load vs Air Temp)")
+    DUAL1 --> DUAL2("render_dual_axis_chart\n(Load vs Oil Temp)")
+    DUAL2 --> DUAL3("render_dual_axis_chart\n(Health vs H2)")
+    
+    DUAL3 --> DB3("_load_rhythm_data()")
+    DB3 --> RHYTHM("render_rhythm_chart()")
+    
+    RHYTHM --> RAW("render_raw_data_table()")
+    RAW --> DONE("Spacer Height 300px")
     </div></div>
 </div>
 
-<!-- SECTION 05: MODULE DEPENDENCIES -->
+<!-- SECTION 04: DEPENDENCIES -->
 <div class="section-container">
-    <div class="section-header"><span class="section-number">05</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
+    <div class="section-header"><span class="section-number">04</span><h2 class="section-title">Карта залежностей (Imports)</h2></div>
     <div class="glass-card flow-step">
-        <p style="margin-bottom: 12px; color: var(--text-dim);">Бібліотеки та модулі, що імпортуються цим файлом:</p>
         <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; border: 1px solid var(--border);">
-            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>datetime</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>pandas</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.core.database.archive</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.ui.components.charts</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.utils.ui_helpers</span><span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>streamlit</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>datetime</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>pandas</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>streamlit</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.utils.ui_helpers (safe_plotly_render)</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.core.database.archive (_get_archive_bounds, _load_archive_data, _load_rhythm_data)</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.ui.components.charts (render_dual_axis_chart, render_rhythm_chart)</span>
+            <span style='display: inline-block; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); padding: 4px 10px; border-radius: 6px; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); margin: 4px;'>src.ui.views.historical_audit_components.data_table (render_raw_data_table)</span>
         </div>
     </div>
 </div>

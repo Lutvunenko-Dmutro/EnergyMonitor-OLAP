@@ -1,4 +1,4 @@
-# ATLAS_PASSPORT: docs/system/map/diagnostics_engine_hub.md
+# ATLAS_PASSPORT: docs/system/map/patterns.md
 """
 🛡️ DIAGNOSTIC PATTERN REGISTRY (Security & Quality Signatures).
 Модуль: patterns.py | Версія: 2.2.0 "Guardian Rules"

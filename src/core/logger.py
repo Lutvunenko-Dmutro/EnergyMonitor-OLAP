@@ -1,4 +1,4 @@
-# ATLAS_PASSPORT: docs/system/map/core_kernel_hub.md
+# ATLAS_PASSPORT: docs/system/map/logger.md
 """
 📡 LOGGING ORCHESTRATOR (System Audit System).
 Призначення: Централізована реєстрація подій, моніторинг стану та аудит помилок у всіх компонентах Atlas.

@@ -1,4 +1,4 @@
-# ATLAS_PASSPORT: docs/system/map/ml_core_engine.md
+# ATLAS_PASSPORT: docs/system/map/vectorizer.md
 """
 🔢 ML DATA VECTORIZER (Feature Engineering Engine).
 Призначення: Трансформація сирих часових рядів у високоякісні вхідні тензори для ШІ-моделей з використанням методів проектування ознак.
