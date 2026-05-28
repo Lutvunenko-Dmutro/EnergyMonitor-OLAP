@@ -27,6 +27,7 @@ nav:
       - База даних: system/database.md
       - ML Pipeline: ml/index.md
   - 🗺️ Атлас Проєкту:
+      - "🛡️ Базовий Атлас": system/atlas.md
       - "🛡️ Defense Atlas (Interactive)": system/atlas_final.md
       - "🗺️ Реєстр Гіга-Паспортів (79 модулів)": system/map/ATLAS_MASTER_INDEX.md
       - "🏙️ CodeCity: 3D-Атлас": system/atlas_city.md
@@ -64,6 +65,8 @@ nav:
       - Аудит якості: history/COMPREHENSIVE_CODE_QUALITY_AUDIT.md
       - Звіт про виправлення: history/FIXES_IMPLEMENTED_REPORT.md
       - Фінальний звіт імплементації: history/FINAL_IMPLEMENTATION_REPORT.md
+      - Початковий аудит проєкту: history/PROJECT_AUDIT_REPORT.md
+      - Звіт про застосовані фікси: history/FIXES_APPLIED.md
       - Метрики та Дашборд: history/METRICS_AND_DASHBOARD.md
       - Аудит зображень: thesis/IMAGE_AUDIT_REPORT.md
       - Повна збірка (Master): thesis/THESIS_FULL_FINAL_UTF8.md
