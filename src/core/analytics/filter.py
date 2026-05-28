@@ -1,4 +1,4 @@
-# ATLAS_PASSPORT: docs/system/map/analysis_services_hub.md
+# ATLAS_PASSPORT: docs/system/map/filter.md
 """
 🔍 DATA FILTERING & CONDITIONING (Analytical Pre-processor).
 Призначення: Забезпечення безпечної, валідованої та високопродуктивної "нарізки" даних для потреб UI-візуалізації та глибокої аналітики.

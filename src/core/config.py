@@ -1,4 +1,4 @@
-# ATLAS_PASSPORT: docs/system/map/core_kernel_hub.md
+# ATLAS_PASSPORT: docs/system/map/core_config.md
 """
 ГЛОБАЛЬНИЙ РЕЄСТР КОНФІГУРАЦІЙ ТА КОНСТАНТ (System Configuration Registry)
 ========================================================================

@@ -1,4 +1,4 @@
-# ATLAS_PASSPORT: docs/system/map/analysis_services_hub.md
+# ATLAS_PASSPORT: docs/system/map/aggregator.md
 """
 📈 ANALYTICAL DATA AGGREGATOR (OLAP Engine).
 Модуль: aggregator.py | Версія: 2.1.0

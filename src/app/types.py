@@ -11,7 +11,7 @@
 """
 
 from typing import Dict, List, Tuple, Optional, Union
-# ATLAS_PASSPORT: docs/system/map/app_core_logic.md
+# ATLAS_PASSPORT: docs/system/map/types.md
 from dataclasses import dataclass
 from datetime import date, datetime
 import pandas as pd

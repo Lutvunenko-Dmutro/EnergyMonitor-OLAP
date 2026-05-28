@@ -125,7 +125,7 @@
                     Математичні бібліотеки (NumPy, Scipy, TensorFlow) за замовчуванням намагаються захопити всі доступні ядра процесора для розрахунків, що викликає вибухове зростання пам'яті (Memory Spikes). Для стабільності у безкоштовних обмежених хмарах (Streamlit Cloud, Heroku) оркестратор блокує мультипотоковість на рівні ОС:
                 </p>
                 <div class="math-block" style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 6px; text-align: center; margin-bottom: 8px; font-family: monospace; color: var(--accent);">
-                    $$ \text{OPENBLAS\_NUM\_THREADS} = 1, \quad \text{MKL\_NUM\_THREADS} = 1, \quad \text{OMP\_NUM\_THREADS} = 1 $$
+                    <code>OPENBLAS_NUM_THREADS = 1, MKL_NUM_THREADS = 1, OMP_NUM_THREADS = 1</code>
                 </div>
             </div>
             

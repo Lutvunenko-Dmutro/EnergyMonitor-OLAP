@@ -1,4 +1,4 @@
-# ATLAS_PASSPORT: docs/system/map/analysis_services_hub.md
+# ATLAS_PASSPORT: docs/system/map/clustering.md
 """
 🧩 ML CLUSTERING ENGINE (Pattern Recognition).
 py | Версія: 2.3.0 "ML-Profiler"

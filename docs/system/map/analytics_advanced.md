@@ -57,26 +57,26 @@
     <div class="section-header"><span class="section-number">03</span><h2 class="section-title">Схема комбінаторного аналізу (Association Rules)</h2></div>
     <div class="diagram-outer-wrapper"><div class="mermaid">
 graph TD
-    DB[(PostgreSQL\nTable: Alerts)] --> |SELECT date_trunc('hour')| SQL_GRP("Grouping\nby Hour (Baskets)")
+    DB[(PostgreSQL Table: Alerts)] -->|SELECT date_trunc hour| SQL_GRP("Grouping by Hour")
     
-    SQL_GRP --> B1["Hour 1: [Sub_A, Sub_B]"]
-    SQL_GRP --> B2["Hour 2: [Sub_A, Sub_C, Sub_B]"]
-    SQL_GRP --> B3["Hour 3: [Sub_C]"]
+    SQL_GRP --> B1["Hour 1: Sub_A, Sub_B"]
+    SQL_GRP --> B2["Hour 2: Sub_A, Sub_C, Sub_B"]
+    SQL_GRP --> B3["Hour 3: Sub_C"]
     
-    B1 --> COMB("itertools.combinations\n(size=2)")
+    B1 --> COMB("itertools.combinations")
     B2 --> COMB
     B3 --> COMB
     
-    COMB --> C1("(Sub_A, Sub_B) +1")
-    COMB --> C2("(Sub_A, Sub_C) +1")
-    COMB --> C3("(Sub_B, Sub_C) +1")
+    COMB --> C1("Sub_A, Sub_B +1")
+    COMB --> C2("Sub_A, Sub_C +1")
+    COMB --> C3("Sub_B, Sub_C +1")
     
     C1 --> COUNT("collections.Counter")
     C2 --> COUNT
     C3 --> COUNT
     
-    COUNT --> TOP("most_common(5)")
-    TOP --> LOG("Logger:\nTOP-5 Cascade Risks")
+    COUNT --> TOP("most_common")
+    TOP --> LOG("Logger: TOP-5 Risks")
     </div></div>
 </div>
 

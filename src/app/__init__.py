@@ -1,4 +1,4 @@
-# ATLAS_PASSPORT: docs/system/map/app_core_logic.md
+# ATLAS_PASSPORT: docs/system/map/app_init.md
 """
 📦 APPLICATION CORE INTERFACE (App Package Entry).
 Пакет: src.app | Версія: 2.1.0

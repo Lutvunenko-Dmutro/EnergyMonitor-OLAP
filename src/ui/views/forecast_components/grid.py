@@ -9,7 +9,7 @@
 4. Smart Legend Management: оптимізація відображення легенд графіків для економії екранного простору.
 Забезпечує диспетчеру швидкий огляд всієї енергосистеми через "дзеркало" прогнозів.
 """
-# ATLAS_PASSPORT: docs/system/map/forecast_view.md
+# ATLAS_PASSPORT: docs/system/map/grid.md
 import streamlit as st
 from src.utils.ui_helpers import safe_plotly_render
 from src.ml.forecast_controller import cached_ai_forecast as _cached_ai_forecast

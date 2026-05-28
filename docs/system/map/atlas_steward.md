@@ -40,7 +40,7 @@
         <h4>1. Оператор екстракції тегів ($T$)</h4>
         <p>Для кожного рядка коду $l$ функція шукає наявність спеціального коментаря за допомогою регулярного виразу $\mathbf{P}_{\text{tag}}$:</p>
         $$T(l) = \text{RegexSearch}(l, \mathbf{P}_{\text{tag}}) \implies \text{PassportName}$$
-        <p>де $\mathbf{P}_{\text{tag}} = \text{"\# ATLAS\_PASSPORT: docs/system/map/(.+?\\.md)"}$.</p>
+        <p>де $\mathbf{P}_{\text{tag}} = \text{"# ATLAS_PASSPORT: docs/system/map/(.+?\\.md)"}$.</p>
 
         <h4>2. Функція консолідаційного мапування ($M$)</h4>
         <p>Отримане ім'я паспорта перевіряється за словником консолідації $\mathbf{Map}$ для об'єднання у центральні технічні хаби:</p>

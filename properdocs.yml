@@ -56,17 +56,7 @@ nav:
       - Скорочення: thesis/ABBREVIATIONS.md
       - Шпаргалка до захисту: thesis/DEFENSE_GUIDE.md
       - Презентація диплома: thesis/THESIS_PRESENTATION_FINAL.md
-  - 📋 Матеріали практики:
-      - Звіт (ФІНАЛ): thesis/PRACTICE_REPORT_FINAL.md
-      - Щоденник практики: thesis/PRACTICE_DIARY_DRAFT.md
-      - Презентація: thesis/PRACTICE_PRESENTATION_DRAFT.md
-      - Повний чернетка звіту: thesis/ARCHIVE/PRACTICE_REPORT_FULL_DRAFT.md
-  - 📄 Офіційні бланки:
-      - Титульна сторінка: thesis/OFFICIAL_TITLE_PAGE.md
-      - Завдання на роботу: thesis/OFFICIAL_TASK_STATEMENT.md
-      - Календарний план: thesis/OFFICIAL_CALENDAR_PLAN.md
-      - Відгук керівника: thesis/OFFICIAL_REVIEW_PROJECT.md
-      - Рецензія: thesis/OFFICIAL_RECENSION_PROJECT.md
+
   - 🕰️ Архів та Історія:
       - Для рецензента: FOR_REVIEWER.md
       - Що змінено (v3): history/WHATS_CHANGED.md

@@ -2,7 +2,7 @@
 
 ## Огляд (4 шари)
 
-```mermaid
+<div class="diagram-outer-wrapper"><div class="mermaid">
 %%{init: {'theme': 'dark'}}%%
 graph TB
     subgraph UI["🌐 Presentation Layer"]
@@ -40,7 +40,7 @@ graph TB
     style CORE fill:#0d1117,stroke:#ffb703
     style DATA fill:#0d1117,stroke:#00ff88
     style DEVOPS fill:#0d1117,stroke:#ff6b6b
-```
+</div></div>
 
 ---
 
@@ -61,7 +61,7 @@ graph TB
 
 ## Intelligence Layer (ML)
 
-```mermaid
+<div class="diagram-outer-wrapper"><div class="mermaid">
 %%{init: {'theme': 'dark'}}%%
 flowchart LR
     DB[("DB: last 48h")] --> VEC["vectorizer.py\nSliding Window"]
@@ -72,7 +72,7 @@ flowchart LR
 
     LSTM -- "Якщо unavailable" --> FALL["SARIMA\nbaseline_arima.py"]
     FALL --> OUT
-```
+</div></div>
 
 **Версії моделей:**
 
@@ -117,7 +117,7 @@ startup_cache_cleanup(ttl_hours=24)  # викликається з main.py
 
 Наступна діаграма демонструє шлях даних від запиту користувача до візуалізації ШІ-прогнозу.
 
-```mermaid
+<div class="diagram-outer-wrapper"><div class="mermaid">
 %%{init: {'theme': 'dark'}}%%
 sequenceDiagram
     participant U as 👤 Користувач
@@ -138,7 +138,7 @@ sequenceDiagram
     UI->>S: inverse_transform() + scale_factor
     S-->>UI: final_forecast (MW)
     UI->>U: Відображення графіка
-```
+</div></div>
 
 ---
 
@@ -146,7 +146,7 @@ sequenceDiagram
 
 ### Детальний CI/CD Pipeline
 
-```mermaid
+<div class="diagram-outer-wrapper"><div class="mermaid">
 %%{init: {'theme': 'dark'}}%%
 flowchart TD
     Build[Build Phase] --> Test[Test Phase]
@@ -171,7 +171,7 @@ flowchart TD
         D1["Push to Registry\n(Docker Hub)"]
         D2["Render.com\nWebHook"]
     end
-```
+</div></div>
 
 ### Ключові конфіги
 
@@ -205,3 +205,15 @@ $$J = \sum_{j=1}^{k} \sum_{x \in C_j} \|x - \mu_j\|^2$$
 - $H$: Середній показник Health Score.
 
 Це дозволяє автоматично виділяти «вузлові», «промислові» та «критичні» підстанції без втручання оператора.
+
+<script>
+function setupMermaid() {
+    if (typeof mermaid !== 'undefined') {
+        mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+        mermaid.init(undefined, '.mermaid');
+    }
+}
+document.addEventListener("DOMContentLoaded", setupMermaid);
+document.addEventListener("DOMContentSwitch", setupMermaid);
+setTimeout(setupMermaid, 1500);
+</script>

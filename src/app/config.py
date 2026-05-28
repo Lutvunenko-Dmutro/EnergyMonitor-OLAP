@@ -1,4 +1,4 @@
-# ATLAS_PASSPORT: docs/system/map/app_core_logic.md
+# ATLAS_PASSPORT: docs/system/map/app_config.md
 from enum import Enum
 """
 ГЛОБАЛЬНИЙ РЕЄСТР КОНФІГУРАЦІЙ (Global Config Registry)

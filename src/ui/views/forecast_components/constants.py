@@ -1,4 +1,4 @@
-# ATLAS_PASSPORT: docs/system/map/forecast_view.md
+# ATLAS_PASSPORT: docs/system/map/constants.md
 """
 РЕЄСТР КОНСТАНТ ІНТЕРФЕЙСУ ПРОГНОЗІВ (Forecast UI Registry)
 ===========================================================

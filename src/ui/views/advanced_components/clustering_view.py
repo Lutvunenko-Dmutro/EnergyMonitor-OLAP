@@ -9,7 +9,7 @@
 4. Scale Adaptation: підтримка логарифмічного масштабу для мереж з великим розкидом потужностей.
 Дозволяє оператору миттєво оцінити стан парку підстанцій та виявити критичні аномалії.
 """
-# ATLAS_PASSPORT: docs/system/map/advanced_view.md
+# ATLAS_PASSPORT: docs/system/map/clustering_view.md
 import streamlit as st
 import plotly.express as px
 from src.core.analytics.clustering import cluster_substations

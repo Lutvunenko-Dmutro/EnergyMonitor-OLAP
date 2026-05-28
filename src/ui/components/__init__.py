@@ -1,4 +1,4 @@
-# ATLAS_PASSPORT: docs/system/map/ui_components_hub.md
+# ATLAS_PASSPORT: docs/system/map/ui_components_init.md
 """
 БІБЛІОТЕКА UI-КОМПОНЕНТІВ (Shared UI Components)
 ==============================================

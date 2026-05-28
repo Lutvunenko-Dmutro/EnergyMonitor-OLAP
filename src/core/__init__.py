@@ -1,4 +1,4 @@
-# ATLAS_PASSPORT: docs/system/map/core_kernel_hub.md
+# ATLAS_PASSPORT: docs/system/map/core_init.md
 """
 ПАКЕТ СИСТЕМНОГО ЯДРА (Core Logic Package)
 ===========================================

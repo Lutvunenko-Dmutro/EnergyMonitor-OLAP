@@ -9,7 +9,7 @@
 4. Autonomous Operation: автоматичне оновлення метеоумов та цінових трендів.
 Створює живий потік даних для тестування ШІ-алгоритмів та інтерфейсів у динаміці.
 """
-# ATLAS_PASSPORT: docs/system/map/simulation_engine_hub.md
+# ATLAS_PASSPORT: docs/system/map/data_generator.md
 import os
 import random
 import time

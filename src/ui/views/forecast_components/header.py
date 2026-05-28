@@ -9,7 +9,7 @@
 4. Session Management: очищення session_state при зміні фундаментальних параметрів.
 Забезпечує гнучкість та надійність налаштування аналітичних сесій користувачем.
 """
-# ATLAS_PASSPORT: docs/system/map/forecast_view.md
+# ATLAS_PASSPORT: docs/system/map/header.md
 import streamlit as st
 from src.ui.views.forecast_components.constants import MODEL_LABELS
 

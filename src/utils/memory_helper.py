@@ -9,7 +9,7 @@
 4. DataFrame Optimization: детальна діагностика споживання пам'яті колонками великих датасетів.
 Гарантує безперебійну роботу системи на хмарних платформах з обмеженими лімітами.
 """
-# ATLAS_PASSPORT: docs/system/map/utils_extended_toolkit.md
+# ATLAS_PASSPORT: docs/system/map/memory_helper.md
 import gc
 import os
 import logging

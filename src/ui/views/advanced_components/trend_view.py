@@ -9,7 +9,7 @@
 4. Data Conditioning: автоматична інтерполяція та дискретизація даних перед статистичною обробкою.
 Допомагає виявити фундаментальні зміни в енергоспоживанні та приховані циклічні патерни.
 """
-# ATLAS_PASSPORT: docs/system/map/advanced_view.md
+# ATLAS_PASSPORT: docs/system/map/trend_view.md
 import streamlit as st
 import pandas as pd
 import plotly.express as px

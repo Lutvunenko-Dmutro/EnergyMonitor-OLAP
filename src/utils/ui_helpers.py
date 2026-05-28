@@ -8,7 +8,7 @@
 3. UI Guardrails: запобігання типовим помилкам рендерингу в динамічних контейнерах Streamlit.
 Допомагає підтримувати професійний рівень UX та візуальну чистоту концепції "Cyber-HUD".
 """
-# ATLAS_PASSPORT: docs/system/map/utils_extended_toolkit.md
+# ATLAS_PASSPORT: docs/system/map/ui_helpers.md
 import streamlit as st
 
 def safe_plotly_render(fig, container=st, **kwargs):

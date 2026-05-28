@@ -11,13 +11,15 @@
 
 **Інтелектуальна система аналітики та предиктивного моделювання навантаження енергетичних мереж на базі концепції Digital Twin та рекурентних нейромереж LSTM.**
 
-🚀 **Live Production (MaaS/SaaS):** [energymonitor-olap.onrender.com](https://energymonitor-olap.onrender.com/)
+🚀 **Live Production (MaaS/SaaS):** [energymonitor-olap.onrender.com](https://energymonitor-olap.onrender.com/)  
+📖 **Live Documentation (ProperDocs):** [lutvunenko-dmutro.github.io/EnergyMonitor-OLAP](https://lutvunenko-dmutro.github.io/EnergyMonitor-OLAP/)
 
 ### 📂 Документація системи / System Documentation
 
 *   📊 [**PROJECT_STATUS.md**](docs/PROJECT_STATUS.md) — Поточний стан системи (79 тести / 5 пропущено / 0 помилок).
 *   🏗️ [**ARCHITECTURE.md**](docs/system/architecture.md) — Архітектурна схема та опис шарів.
-*   🗺️ [**ROADMAP.md**](docs/ROADMAP.md) — План розробки та дорожня карта проекту.
+*   📚 [**ProperDocs Defense Edition**](https://lutvunenko-dmutro.github.io/EnergyMonitor-OLAP/) — Офіційний вебсайт-документація проєкту (містить Глосарій, API Референс та 3D-Атлас).
+*   🗺️ [**ATLAS MASTER INDEX**](docs/system/map/ATLAS_MASTER_INDEX.md) — Повний реєстр усіх 170+ системних паспортів проєкту.
 *   📜 [**PROJECT_HISTORY.md**](docs/PROJECT_HISTORY.md) — Повна хронологія розробки (від Telegram-бота до аналітичного комплексу).
 
 ---
@@ -97,6 +99,8 @@
 *   📊 [**quality_check.py**](scripts/thesis/quality_check.py) — автоматизований нормоконтроль та перевірка цілісності цитувань.
 *   🧠 [**stylometry_check.py**](scripts/thesis/stylometry_check.py) — аналіз стилістичної однорідності тексту для захисту від помилкових спрацювань AI-детекторів.
 *   🛡️ [**deep_ai_check.py**](scripts/thesis/deep_ai_check.py) — локальна система верифікації оригінальності тексту.
+*   📘 **ProperDocs Defense System** — автоматизована генерація статичного сайту-документації MkDocs із підтримкою авто-збірки API (`mkdocstrings`) та інтерактивних Mermaid-графів.
+*   🗺️ **Atlas Auto-Mapper** (`scripts/rebuild_master_index.py`) — динамічне сканування вихідного коду для підтримки реєстру із 170+ "паспортів" модулів.
 *   🖼️ **Hybrid Visuals (FINAL)**: Впроваджено формат «Mermaid + PNG». Оптимізовано Рис. 2.2 (Activity Diagram) та Рис. 3.10. Загальний обсяг документації — **~45 сторінок**.
 
 ---
@@ -399,6 +403,14 @@ python -m venv .venv
 .venv\Scripts\activate
 pip install -r requirements.txt
 streamlit run main.py
+```
+
+### 3. Запуск документації (ProperDocs)
+```bash
+# Генерація та запуск локального сервера документації
+properdocs serve
+# (або mkdocs serve, якщо properdocs не налаштовано)
+# Відкрийте в браузері: http://127.0.0.1:8000
 ```
 
 ---

@@ -12,7 +12,7 @@
 
 from typing import Union, List, Optional, Any, Tuple
 from datetime import date
-# ATLAS_PASSPORT: docs/system/map/utils_extended_toolkit.md
+# ATLAS_PASSPORT: docs/system/map/helpers.md
 import pandas as pd
 import numpy as np
 import logging

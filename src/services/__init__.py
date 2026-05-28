@@ -1,4 +1,4 @@
-# ATLAS_PASSPORT: docs/system/map/data_services_hub.md
+# ATLAS_PASSPORT: docs/system/map/services_init.md
 """
 СЕРВІСНИЙ РІВЕНЬ СИСТЕМИ (System Service Layer)
 ==============================================

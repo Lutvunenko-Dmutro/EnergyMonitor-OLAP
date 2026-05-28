@@ -5,7 +5,7 @@
 > [!TIP]
 > Натисніть на назву папки або файлу в схемі нижче для переходу до детального технічного опису.
 
-```mermaid
+<div class="diagram-outer-wrapper"><div class="mermaid">
 graph TD
     %% Стилі
     classDef folder fill:#2d3436,stroke:#f1c40f,stroke-width:2px,color:#fff;
@@ -66,7 +66,7 @@ graph TD
     click FM_Prd "map/ml_map/#srcmlpredict_v2py" "Про інференс нейромережі"
     click FU_Dash "map/ui_map/#srcuidashboardpy" "Про архітектуру дашборду"
     click FS_Sim "map/services_map/#srcservicesdatageneratorpy" "Про цифрового двійника"
-```
+</div></div>
 
 ---
 
@@ -86,3 +86,15 @@ graph TD
 ## 🔗 Швидкий доступ до файлів
 *   [📂 Переглянути вихідний код проєкту в GitHub](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/tree/main/src)
 *   [📖 Повний технічний звіт](https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/blob/main/docs/thesis/THESIS_FULL_FINAL_UTF8.md)
+
+<script>
+function setupMermaid() {
+    if (typeof mermaid !== 'undefined') {
+        mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+        mermaid.init(undefined, '.mermaid');
+    }
+}
+document.addEventListener("DOMContentLoaded", setupMermaid);
+document.addEventListener("DOMContentSwitch", setupMermaid);
+setTimeout(setupMermaid, 1500);
+</script>

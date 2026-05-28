@@ -9,7 +9,7 @@
 4. Structured Formatting: використання ANSI-кольорів та іконок для швидкої візуальної діагностики.
 """
 
-# ATLAS_PASSPORT: docs/system/map/utils_extended_toolkit.md
+# ATLAS_PASSPORT: docs/system/map/logging_config.md
 import logging
 import logging.handlers
 import os

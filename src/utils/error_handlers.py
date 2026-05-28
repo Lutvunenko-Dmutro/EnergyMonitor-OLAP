@@ -11,7 +11,7 @@
 """
 
 import functools
-# ATLAS_PASSPORT: docs/system/map/utils_extended_toolkit.md
+# ATLAS_PASSPORT: docs/system/map/error_handlers.md
 import logging
 import streamlit as st
 from typing import Callable, Any, Optional

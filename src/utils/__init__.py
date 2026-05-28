@@ -1,4 +1,4 @@
-# ATLAS_PASSPORT: docs/system/map/utils_extended_toolkit.md
+# ATLAS_PASSPORT: docs/system/map/utils_init.md
 """
 ПАКЕТ ДОПОМІЖНИХ УТИЛІТ (System Utilities Package)
 ==================================================

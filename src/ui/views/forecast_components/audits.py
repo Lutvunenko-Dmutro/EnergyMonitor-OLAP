@@ -10,7 +10,7 @@
 5. Academic Context: наукове обґрунтування переваг інтеграції зовнішніх факторів у моделі.
 Забезпечує науково обґрунтований підхід до оцінки якості інтелектуальних прогнозів.
 """
-# ATLAS_PASSPORT: docs/system/map/forecast_view.md
+# ATLAS_PASSPORT: docs/system/map/audits.md
 import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go

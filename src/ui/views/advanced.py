@@ -1,4 +1,4 @@
-# ATLAS_PASSPORT: docs/system/map/advanced_view.md
+# ATLAS_PASSPORT: docs/system/map/advanced.md
 """
 СИСТЕМА ІНТЕЛЕКТУАЛЬНОГО АНАЛІЗУ ТА СЕГМЕНТАЦІЇ (Advanced AI Analytics)
 =====================================================================

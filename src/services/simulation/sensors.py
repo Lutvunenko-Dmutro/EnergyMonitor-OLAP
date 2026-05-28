@@ -9,7 +9,7 @@
 4. Operational States: автоматичне визначення статусів роботи (OK, WARNING, CRITICAL).
 Дозволяє отримати дані, ідентичні реальним сигналам з систем моніторингу SCADA.
 """
-# ATLAS_PASSPORT: docs/system/map/simulation_engine_hub.md
+# ATLAS_PASSPORT: docs/system/map/sensors.md
 import random
 from dataclasses import dataclass
 from datetime import datetime

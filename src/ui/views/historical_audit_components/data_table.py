@@ -9,7 +9,7 @@
 4. UI Resilience: автоматична обробка пропущених значень та адаптивна висота для великих масивів.
 Забезпечує прозорість аналітики через прямий доступ до першоджерел даних системи.
 """
-# ATLAS_PASSPORT: docs/system/map/historical_audit_view.md
+# ATLAS_PASSPORT: docs/system/map/data_table.md
 import streamlit as st
 
 def render_raw_data_table(df, start_date, end_date):

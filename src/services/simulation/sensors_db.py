@@ -11,7 +11,7 @@
 import os
 import sys
 import time
-# ATLAS_PASSPORT: docs/system/map/simulation_engine_hub.md
+# ATLAS_PASSPORT: docs/system/map/sensors_db.md
 import json
 import random
 import logging

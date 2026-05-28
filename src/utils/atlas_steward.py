@@ -1,3 +1,9 @@
+# ATLAS_PASSPORT: docs/system/map/atlas_steward.md
+"""
+🛠️ СЛУЖБА АВТОМАТИЗАЦІЇ (Project Atlas Steward)
+========================================================================
+Автоматизований інструмент очищення, консолідації та актуалізації метаданих технічних паспортів в екосистемі ATLAS.
+"""
 import os
 import re
 import json
@@ -5,13 +11,8 @@ from pathlib import Path
 from datetime import datetime
 
 # --- CONFIGURATION: HUB MAPPING ---
-HUB_CONSOLIDATION_MAP = {
-    "ml_backtest_framework.md": "ml_core_engine.md",
-    "ml_visual_utils.md": "ml_core_engine.md",
-    "core_config.md": "core_kernel_hub.md",
-    "services_data_seeder.md": "data_services_hub.md",
-    "sql_schema_passport.md": "data_services_hub.md",
-}
+# Hub consolidation is now disabled to ensure each python file has a 1-to-1 passport mapping.
+HUB_CONSOLIDATION_MAP = {}
 
 TAG_PATTERN = re.compile(r"# ATLAS_PASSPORT: docs/system/map/(.+?\.md)")
 

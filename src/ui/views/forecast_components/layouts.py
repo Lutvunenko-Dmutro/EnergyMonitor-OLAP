@@ -10,7 +10,7 @@
 Забезпечує професійний рівень інтерпретації результатів ШІ-моделей для операторів та аналітиків.
 """
 import pandas as pd
-# ATLAS_PASSPORT: docs/system/map/forecast_view.md
+# ATLAS_PASSPORT: docs/system/map/layouts.md
 import streamlit as st
 from src.utils.ui_helpers import safe_plotly_render
 from src.ui.components.charts import _generate_mega_hybrid_figure

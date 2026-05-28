@@ -1,4 +1,4 @@
-# ATLAS_PASSPORT: docs/system/map/simulation_engine_hub.md
+# ATLAS_PASSPORT: docs/system/map/generator_constants.md
 """
 ТЕХНІЧНИЙ ПАСПОРТ ОБ'ЄКТІВ ЕНЕРГОСИСТЕМИ (Substation Capacity Registry)
 ====================================================================

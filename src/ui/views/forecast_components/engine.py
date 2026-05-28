@@ -9,7 +9,7 @@
 4. Cross-source Adaptation: адаптація логіки вибору об'єктів залежно від джерела (SQL DB / Kaggle CSV).
 Служить сполучною ланкою між інтерфейсом користувача та аналітичними обчисленнями ШІ.
 """
-# ATLAS_PASSPORT: docs/system/map/forecast_view.md
+# ATLAS_PASSPORT: docs/system/map/engine.md
 import streamlit as st
 from src.ui.views.forecast_components.constants import MODEL_LABELS
 from src.ml.forecast_controller import cached_ai_forecast as _cached_ai_forecast

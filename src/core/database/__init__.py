@@ -1,4 +1,4 @@
-# ATLAS_PASSPORT: docs/system/map/data_services_hub.md
+# ATLAS_PASSPORT: docs/system/map/database_init.md
 """
 🗄️ DATABASE ACCESS LAYER (Resilient Data Node).
 Пакет: src.core.database | Версія: 3.2.0 "NeonGuard"
