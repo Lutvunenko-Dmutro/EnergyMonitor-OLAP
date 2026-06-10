@@ -14,13 +14,13 @@ import plotly.graph_objects as go
 import streamlit as st
 from src.utils.ui_helpers import safe_plotly_render
 
-# Координація кольорової схеми для всіх візуалізацій
+# Координація кольорової схеми для всіх візуалізацій (Українські назви)
 MASTER_COLORS = {
-    "nuclear": "#fbbf24",  # Жовтий
-    "thermal": "#a855f7",  # Фіолетовий
-    "hydro": "#3b82f6",  # Синій
-    "solar": "#f97316",  # Помаранчевий
-    "wind": "#2dd4bf",  # Бірюзовий
+    "АЕС": "#fbbf24",  # Жовтий
+    "ТЕС": "#a855f7",  # Фіолетовий
+    "ГЕС": "#3b82f6",  # Синій
+    "СЕС": "#f97316",  # Помаранчевий
+    "ВЕС": "#2dd4bf",  # Бірюзовий
 }
 
 
@@ -45,6 +45,17 @@ def render(df_gen):
         "generator_type": "Тип джерела",
         "region_name": "Регіон",
     }
+    
+    # Переклад джерел генерації
+    gen_translation = {
+        "nuclear": "АЕС",
+        "thermal": "ТЕС",
+        "hydro": "ГЕС",
+        "solar": "СЕС",
+        "wind": "ВЕС"
+    }
+    df_gen = df_gen.copy()
+    df_gen["generator_type"] = df_gen["generator_type"].str.lower().map(lambda x: gen_translation.get(x, x))
 
     # Візуалізація потоків енергії (Sankey Diagram)
     st.markdown("##### 🌊 Потік енергії (Джерело -> Регіон)")
@@ -70,9 +81,9 @@ def render(df_gen):
     values = df_s["actual_generation_mw"].tolist()
 
     # 2. Генеруємо списки кольорів для малюнка (СИНХРОНІЗОВАНИЙ З MASTER_COLORS)
-    node_colors = [MASTER_COLORS.get(node.lower(), "#64748b") for node in all_nodes]
+    node_colors = [MASTER_COLORS.get(node, "#64748b") for node in all_nodes]
     link_colors = [
-        MASTER_COLORS.get(src.lower(), "rgba(100, 116, 139, 0.5)").replace("#", "rgba(")
+        MASTER_COLORS.get(src, "rgba(100, 116, 139, 0.5)").replace("#", "rgba(")
         for src in df_s["generator_type"]
     ]
 
@@ -82,9 +93,9 @@ def render(df_gen):
         rgb = tuple(int(h[i : i + 2], 16) for i in (0, 2, 4))
         return f"rgba({rgb[0]}, {rgb[1]}, {rgb[2]}, {alpha})"
 
-    node_colors = [MASTER_COLORS.get(n.lower(), "#64748b") for n in all_nodes]
+    node_colors = [MASTER_COLORS.get(n, "#64748b") for n in all_nodes]
     link_colors = [
-        hex_to_rgba(MASTER_COLORS.get(t.lower(), "#888888"), 0.5)
+        hex_to_rgba(MASTER_COLORS.get(t, "#888888"), 0.5)
         for t in df_s["generator_type"]
     ]
 
@@ -129,7 +140,7 @@ def render(df_gen):
         st.markdown("##### 🍰 Частка джерел (Energy Mix)")
         # Створюємо мапу для синхронізації
         mix_map = {
-            gen: MASTER_COLORS.get(gen.lower(), "#888888")
+            gen: MASTER_COLORS.get(gen, "#888888")
             for gen in df_gen["generator_type"].unique()
         }
 
@@ -142,7 +153,11 @@ def render(df_gen):
             color_discrete_map=mix_map,
             labels=labels_ua,
         )
-        fig_pie.update_traces(textposition="inside", textinfo="percent+label")
+        fig_pie.update_traces(
+            textposition="inside", 
+            textinfo="percent+label",
+            textfont=dict(color="white", size=13)
+        )
         fig_pie.update_layout(showlegend=False, margin=dict(l=20, r=20, t=30, b=20))
         safe_plotly_render(fig_pie)
 
@@ -166,7 +181,7 @@ def render(df_gen):
 
         for gen_type in df_area["generator_type"].unique():
             df_sub = df_area[df_area["generator_type"] == gen_type]
-            line_color = MASTER_COLORS.get(gen_type.lower(), "#888888")
+            line_color = MASTER_COLORS.get(gen_type, "#888888")
             rgba_color = hex_to_rgba(line_color, 0.3)
 
             fig_area.add_trace(

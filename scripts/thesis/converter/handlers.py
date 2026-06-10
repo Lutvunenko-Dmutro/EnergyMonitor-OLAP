@@ -345,10 +345,15 @@ def add_table_caption(doc, text):
 def add_table(doc, table_lines):
     rows_data = []
     is_borderless = False
+    is_title_right = False
     for line in table_lines:
         if "<!-- NO_BORDER -->" in line:
             is_borderless = True
             line = line.replace("<!-- NO_BORDER -->", "")
+        if "<!-- TITLE_RIGHT -->" in line:
+            is_borderless = True
+            is_title_right = True
+            line = line.replace("<!-- TITLE_RIGHT -->", "")
         cells = [c.strip() for c in line.strip().strip('|').split('|')]
         if all(re.match(r'^:?-+:?$', c) for c in cells if c): continue
         rows_data.append(cells)
@@ -367,8 +372,11 @@ def add_table(doc, table_lines):
     available_width = 16.5
     col_widths = [0.0] * ncols
     
+    # Спеціальна логіка для блоків, що мають бути притиснуті вправо (2 колонки)
+    if is_title_right and ncols == 2:
+        col_widths = [8.5, 8.0]
     # Спеціальна логіка для Щоденника (4 колонки: № | Зміст | Дати | Відмітка)
-    if ncols == 4 and not is_borderless:
+    elif ncols == 4 and not is_borderless:
         col_widths = [1.2, 9.3, 3.5, 2.5]
     # Спеціальна логіка для Титулки (3 колонки: Виконав | Підпис | Прізвище)
     elif ncols == 3 and is_borderless:

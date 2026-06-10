@@ -56,7 +56,36 @@ def render_sidebar(data):
         st.cache_data.clear()
         st.rerun()
 
-    st.sidebar.header("🎛️ Фільтрація")
+    st.sidebar.header("🎛️ Налаштування Даних")
+    
+    # --- 0. Режим БД (Neon vs Local) ---
+    db_options = ["Хмарна (Neon Cloud)", "Локальна (PostgreSQL)"]
+    current_db_idx = 0 if st.session_state.get("db_mode", "cloud") == "cloud" else 1
+    
+    selected_db = st.sidebar.radio(
+        "🌐 Сервер Бази Даних:",
+        db_options,
+        index=current_db_idx,
+        help="Оберіть, до якого сервера підключатися."
+    )
+    
+    new_db_mode = "cloud" if selected_db == "Хмарна (Neon Cloud)" else "local"
+    if new_db_mode != st.session_state.get("db_mode", "cloud"):
+        st.session_state["db_mode"] = new_db_mode
+        st.cache_data.clear()
+        st.cache_resource.clear()
+        st.rerun()
+        
+    # --- Live Connection Test ---
+    with st.sidebar.expander("Статус підключення", expanded=True):
+        try:
+            engine = db.get_engine()
+            with engine.connect() as conn:
+                st.success("🟢 Підключено до БД (Live)")
+        except Exception:
+            st.warning("🟡 БД недоступна. Працює Офлайн-Кеш")
+            
+    st.sidebar.markdown("---")
 
     # --- 0. Джерело Даних ---
     data_source_options = ["Локальна БД (Симуляція)", "Еталонні дані (Kaggle)"]
@@ -154,12 +183,15 @@ def render_sidebar(data):
     # [ОПТІМІЗАЦІЯ v2.1]: Динамічний ключ для календаря, щоб він скидався при зміні джерела даних
     date_key = f"date_filter_{data_source.split(' ')[0]}"
     
+    is_forecast_mode = st.session_state.get("top_navigation") == "🔮 Прогноз ШІ"
+    
     date_range = st.sidebar.date_input(
         "📅 Період:",
         value=(default_start, max_date),
         min_value=min_date,
         max_value=max_date,
-        help="Фільтрація графіків за часом.",
+        help="Фільтр дат ігнорується для Прогнозу ШІ (прогноз завжди генерується від поточного часу)." if is_forecast_mode else "Фільтрація графіків за часом.",
+        disabled=is_forecast_mode,
         key=date_key
     )
 
@@ -183,12 +215,20 @@ def render_sidebar(data):
             env["PYTHONPATH"] = cwd
             
             subprocess.Popen(
-                [sys.executable, "-m", "src.services.sensors_db"],
+                [sys.executable, "-m", "src.services.simulation.sensors_db"],
                 cwd=cwd,
                 env=env,
                 # Додаємо прапори, щоб на Windows не вискакувало зайве вікно консолі
                 creationflags=subprocess.CREATE_NO_WINDOW if os.name == 'nt' else 0
             )
+            
+            # Чекаємо поки фоновий процес створить lock-файл (макс 2 секунди)
+            import time
+            for _ in range(20):
+                if lock_file.exists():
+                    break
+                time.sleep(0.1)
+                
             st.rerun()
     else:
         st.sidebar.success("✅ Симуляція активна (15 хв)")
@@ -196,11 +236,15 @@ def render_sidebar(data):
             if lock_file.exists():
                 try:
                     import os
+                    import subprocess
                     import signal
                     with open(lock_file, "r") as f:
                         pid = int(f.read())
-                    os.kill(pid, signal.SIGTERM)
-                except (ProcessLookupError, ValueError, OSError):
+                    if os.name == 'nt':
+                        subprocess.call(['taskkill', '/F', '/T', '/PID', str(pid)], creationflags=subprocess.CREATE_NO_WINDOW)
+                    else:
+                        os.kill(pid, signal.SIGTERM)
+                except Exception:
                     pass
                 if lock_file.exists(): lock_file.unlink()
             st.rerun()

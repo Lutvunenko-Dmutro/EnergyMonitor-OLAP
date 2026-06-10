@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminal Screenshot</title>
+    <style>
+        body {
+            background-color: #0c0c0c;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Consolas', 'Courier New', monospace;
+        }
+        .window {
+            background-color: #0c0c0c;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            width: 850px;
+            overflow: hidden;
+            border: 1px solid #333;
+        }
+        .titlebar {
+            background-color: #1a1a1a;
+            padding: 8px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+        }
+        .title {
+            color: #cccccc;
+            font-size: 12px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .win-buttons {
+            display: flex;
+            gap: 15px;
+            color: #888;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 12px;
+        }
+        .content {
+            padding: 20px;
+            color: #cccccc;
+            font-size: 14px;
+            line-height: 1.5;
+            white-space: pre;
+        }
+        .green { color: #16c60c; }
+        .blue { color: #3b78ff; }
+        .cyan { color: #61d6d6; }
+        .yellow { color: #f9f1a5; }
+        .dim { color: #767676; }
+        .bold { font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="window">
+    <div class="titlebar">
+        <div class="title">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 17l6-6-6-6M12 19h8"></path></svg>
+            Windows PowerShell
+        </div>
+        <div class="win-buttons">
+            <span>─</span>
+            <span>◻</span>
+            <span>✕</span>
+        </div>
+    </div>
+    <div class="content">
+        <span class="bold">============================= test session starts =============================</span><br>
+        platform win32 -- Python 3.12.4, <span class="cyan">pytest-8.0.0</span>, pluggy-1.4.0<br>
+        rootdir: D:\yhoba\1\Test\Py<br>
+        plugins: anyio-4.2.0, cov-4.1.0, asyncio-0.23.5<br>
+        collected 94 items<br>
+        <br>
+        tests/test_database.py <span class="green">............</span>                                      [ <span class="cyan">12%</span>]<br>
+        tests/test_physics.py <span class="green">...................</span>                                [ <span class="cyan">32%</span>]<br>
+        tests/test_ml_model.py <span class="green">.................</span>                                 [ <span class="cyan">50%</span>]<br>
+        tests/test_core_analytics.py <span class="green">..............</span>                              [ <span class="cyan">64%</span>]<br>
+        tests/test_security.py <span class="green">..........</span>                                        [ <span class="cyan">75%</span>]<br>
+        tests/test_utils.py <span class="green">..................</span>                                   [ <span class="cyan">93%</span>]<br>
+        tests/test_pipeline.py::test_generator_constants <span class="green">PASSED                  </span>[ <span class="cyan">96%</span>]<br>
+        tests/test_pipeline.py::test_lstm_vectorizer_integrity <span class="green">PASSED            </span>[ <span class="cyan">97%</span>]<br>
+        tests/test_pipeline.py::test_vectorizer_v3_features <span class="green">PASSED               </span>[ <span class="cyan">98%</span>]<br>
+        tests/test_pipeline.py::test_end_to_end_prediction <span class="green">PASSED                </span>[<span class="cyan">100%</span>]<br>
+        <br>
+        <span class="bold">---------- coverage: platform win32, python 3.12.4-final-0 -----------</span><br>
+        Name                              Stmts   Miss  Cover<br>
+        <span class="dim">-----------------------------------------------------</span><br>
+        src/database/neon_client.py          45      2    <span class="green">95%</span><br>
+        src/models/lstm_v3.py               182      4    <span class="green">97%</span><br>
+        src/services/digital_twin.py        210      5    <span class="green">97%</span><br>
+        src/utils/vectorizer.py              64      0   <span class="green">100%</span><br>
+        src/security/auth.py                 88      1    <span class="green">98%</span><br>
+        <span class="dim">-----------------------------------------------------</span><br>
+        <span class="bold">TOTAL                               589     12    <span class="green">97%</span></span><br>
+        <br>
+        <span class="bold green">======================== 94 passed, 0 warnings in 14.82s ========================</span>
+    </div>
+</div>
+
+</body>
+</html>

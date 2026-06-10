@@ -31,13 +31,14 @@ def render(df_fin, df_lines):
 
     # Словник підписів
     labels_ua = {
-        "cost": "Вартість (грн)",
+        "cost": "Вартість (млн грн)",
         "timestamp": "Час",
         "region_name": "Регіон",
         "load_pct": "Завантаження (%)",
         "price_per_mwh": "Ціна (грн/МВт·год)",
         "hour": "Година",
         "losses_mw": "Втрати (МВт)",
+        "line_type": "Тип лінії",
     }
 
     # Розрахунок типу ліній та фізичних втрат потужності
@@ -57,6 +58,7 @@ def render(df_fin, df_lines):
         st.markdown("##### 📊 Вартість генерації по днях")
         if not df_fin.empty:
             df_cost = df_fin.groupby(["day", "region_name"])["cost"].sum().reset_index()
+            df_cost["cost"] = df_cost["cost"] / 1_000_000  # Конвертація в мільйони
 
             fig_fin = px.bar(
                 df_cost,
@@ -86,6 +88,9 @@ def render(df_fin, df_lines):
             
             # 2. Фільтрація: прибираємо неповні дні (менше 20 годин даних), щоб не було "падіння" в кінці
             df_l_mean = df_daily[df_daily["sample_count"] >= 20].copy()
+            
+            # Переклад ліній
+            df_l_mean["line_type"] = df_l_mean["line_type"].map({"AC": "AC (Змінний струм)", "HVDC": "HVDC (Постійний струм)"})
 
             # 3. Побудова графіка
             fig_lines = px.line(
@@ -93,7 +98,7 @@ def render(df_fin, df_lines):
                 x="day",
                 y="load_pct",
                 color="line_type",
-                color_discrete_map={"AC": "#3b82f6", "HVDC": COLOR_HVDC},
+                color_discrete_map={"AC (Змінний струм)": "#3b82f6", "HVDC (Постійний струм)": COLOR_HVDC},
                 labels=labels_ua,
                 markers=True,
                 line_shape="spline", # Плавні лінії
@@ -157,12 +162,14 @@ def render(df_fin, df_lines):
         st.markdown("##### ⚖️ Характеристика втрат")
         # Втрати losses_mw розраховано у модулі physics.py
         if not df_lines.empty:
+            df_lines_viz = df_lines.copy()
+            df_lines_viz["line_type"] = df_lines_viz["line_type"].map({"AC": "AC (Змінний струм)", "HVDC": "HVDC (Постійний струм)"})
             fig_scat = px.scatter(
-                df_lines,
+                df_lines_viz,
                 x="load_pct",
                 y="losses_mw",
                 color="line_type",
-                color_discrete_map={"AC": "#3b82f6", "HVDC": COLOR_HVDC},
+                color_discrete_map={"AC (Змінний струм)": "#3b82f6", "HVDC (Постійний струм)": COLOR_HVDC},
                 labels=labels_ua,
                 opacity=0.6,
             )

@@ -48,6 +48,16 @@ def run_conversion(input_md, output_docx, include_appendix=False):
     # ГАЛОЧКИ ДЛЯ ТЕКСТУ: Тільки контроль висячих рядків!
     pf_norm.keep_with_next = False
     pf_norm.keep_together = False
+    
+    # НАЛАШТУВАННЯ ЗМІСТУ (ОДИНАРНИЙ ІНТЕРВАЛ ДЛЯ ЕКОНОМІЇ МІСЦЯ)
+    for i in range(1, 4):
+        try:
+            toc_style = doc.styles[f'TOC {i}']
+            toc_style.paragraph_format.line_spacing = 1.0
+            toc_style.paragraph_format.space_before = Pt(0)
+            toc_style.paragraph_format.space_after = Pt(0)
+        except KeyError:
+            pass
     pf_norm.widow_control = True
 
     # СТВОРЕННЯ СТИЛЮ ДЛЯ ЗАГОЛОВКІВ (Heading 1)

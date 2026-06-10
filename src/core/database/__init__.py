@@ -178,7 +178,9 @@ def run_query(query_text: str, params: Optional[dict] = None) -> pd.DataFrame:
     cache_path = os.path.join("data", "fallback", f"query_{query_id}.parquet")
     os.makedirs(os.path.dirname(cache_path), exist_ok=True)
 
-    retries = 5
+    db_mode = st.session_state.get("db_mode", "cloud")
+    retries = 3 if db_mode == "cloud" else 1
+    
     for i in range(retries):
         try:
             engine = get_engine()
@@ -215,8 +217,8 @@ def run_query(query_text: str, params: Optional[dict] = None) -> pd.DataFrame:
             is_recoverable = any(x in err_msg for x in recoverable_patterns)
             
             if is_recoverable and i < retries - 1:
-                wait_time = (i * 6) + 4 # Продвинуті паузи: 4, 10, 16, 22...
-                log.warning(f"🔌 [{err_type}] БД Neon прокидається... Спроба {i+1}/{retries}. Чекаємо {wait_time}с.")
+                wait_time = 2  # Швидкий ретрай (2 сек) замість довгих зависань
+                log.warning(f"🔌 [{err_type}] БД прокидається... Спроба {i+1}/{retries}. Чекаємо {wait_time}с.")
                 import time
                 time.sleep(wait_time)
                 continue

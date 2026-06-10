@@ -60,6 +60,7 @@ nav:
       - Презентація диплома: thesis/THESIS_PRESENTATION_FINAL.md
 
   - 🕰️ Архів та Історія:
+      - Повна історія Git комітів: history/FULL_GIT_HISTORY.md
       - Для рецензента: FOR_REVIEWER.md
       - Що змінено (v3): history/WHATS_CHANGED.md
       - Аудит якості: history/COMPREHENSIVE_CODE_QUALITY_AUDIT.md

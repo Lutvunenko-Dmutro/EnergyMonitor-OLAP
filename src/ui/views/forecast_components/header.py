@@ -34,7 +34,12 @@ def render_forecast_header(sub_name, sub_label, data_source):
     col1, col2 = st.columns([2, 3])
     
     with col1:
-        is_multi_model = st.toggle("🧪 Порівняльний аналіз (Всі моделі)", value=False, key="tab_multi_model_toggle")
+        is_multi_model = st.toggle(
+            "🧪 Порівняльний аналіз (Всі моделі)", 
+            value=False, 
+            key="tab_multi_model_toggle",
+            disabled=(src_type == "CSV")
+        )
         available_models = {"v1": "LSTM-v1 (Базова)"} if src_type == "CSV" else MODEL_LABELS
         ver_label = st.selectbox(
             "🧠 Архітектура моделі", list(available_models.items()), 

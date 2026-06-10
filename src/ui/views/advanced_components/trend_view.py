@@ -53,7 +53,8 @@ def render_trend_decomposition(df, selected_substation, use_rel):
             }).melt(id_vars="timestamp", var_name="Компонент", value_name="Значення")
 
             fig = px.line(df_decomp, x="timestamp", y="Значення", facet_row="Компонент", color="Компонент",
-                         template="plotly_dark", height=650, title=title_text)
+                         template="plotly_dark", height=650, title=title_text,
+                         labels={"timestamp": "Час"})
             fig.update_yaxes(title_text="", matches=None)
             fig.for_each_annotation(lambda a: a.update(text=a.text.split("=")[-1]))
             safe_plotly_render(fig)

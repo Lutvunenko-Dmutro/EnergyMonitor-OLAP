@@ -3,6 +3,7 @@ import os
 # ПЕРЕЛІК ФАЙЛІВ ДЛЯ ЗБІРКИ (В порядку п. 6.1 методики)
 FILES_TO_MERGE = [
     "OFFICIAL_TITLE_PAGE.md",
+    "OFFICIAL_TASK_STATEMENT.md",
     "THESIS_0_ABSTRACT.md",
     "ABBREVIATIONS.md",
     "THESIS_0_INTRODUCTION.md",
