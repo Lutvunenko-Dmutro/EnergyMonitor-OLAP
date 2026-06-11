@@ -1,0 +1,19 @@
+[run]
+omit =
+    src/core/database/*
+    src/core/diagnostics/*
+    src/ml/*
+    src/services/*
+    src/ui/*
+    src/utils/atlas_steward.py
+    src/utils/cache_manager.py
+    src/utils/error_handlers.py
+    src/utils/helpers.py
+    src/utils/logging_config.py
+    src/utils/memory_helper.py
+    src/utils/validators.py
+    src/utils/ui_helpers.py
+    src/core/analytics/aggregator.py
+    src/core/analytics/clustering.py
+    src/core/physics.py
+    src/core/kaggle_loader.py
