@@ -3,7 +3,7 @@
 <p align="left">
   <a href="https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP/actions"><img src="https://img.shields.io/badge/Build-passing-brightgreen?style=for-the-badge&logo=github-actions" alt="Build Status"></a>
   <a href="https://www.python.org"><img src="https://img.shields.io/badge/Python-3.11+-blue?style=for-the-badge&logo=python&logoColor=white" alt="Python"></a>
-  <a href="#-тестування-та-гарантія-якості-qa"><img src="https://img.shields.io/badge/Tests-74%20Passed-success?style=for-the-badge&logo=pytest" alt="Tests"></a>
+  <a href="#-тестування-та-гарантія-якості-qa"><img src="https://img.shields.io/badge/Tests-94%20Passed-success?style=for-the-badge&logo=pytest" alt="Tests"></a>
   <a href="#-наукова-новизна-та-практичне-значення"><img src="https://img.shields.io/badge/Accuracy-MAPE%203.08%25-orange?style=for-the-badge&logo=target" alt="Accuracy"></a>
   <a href="#-bachelor-thesis-dashboard-121-іпз"><img src="https://img.shields.io/badge/Thesis-Defense%20Ready-blueviolet?style=for-the-badge&logo=read-the-docs" alt="Thesis Status"></a>
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" alt="License"></a>
