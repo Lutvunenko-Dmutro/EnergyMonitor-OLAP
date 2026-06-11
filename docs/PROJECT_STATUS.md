@@ -74,13 +74,14 @@
 ```
 tests/test_core_analytics.py  ........... (11 пройдено)
 tests/test_database.py        ....       ( 4 пройдено)
-tests/test_ml_model.py        sssss...   ( 5 пропущено, 3 пройдено)
+tests/test_extra_validators.py .......... (10 пройдено)
+tests/test_ml_model.py        ........   ( 8 пройдено)
 tests/test_physics.py         .....      ( 5 пройдено)
 tests/test_pipeline.py        ...        ( 3 пройдено)
 tests/test_security.py        .......... (26 пройдено)
-tests/test_utils.py           .......... (19 пройдено)
+tests/test_utils.py           .......... (27 пройдено)
 
-Разом: 94 пройдено, 0 пропущено, 0 помилок — 1.41s
+Разом: 94 пройдено, 0 пропущено, 0 помилок — 1.23s
 ```
 
 ---
