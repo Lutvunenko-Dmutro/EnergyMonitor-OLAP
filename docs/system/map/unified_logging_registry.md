@@ -175,9 +175,9 @@ END FUNCTION</code></pre>
 
 <!-- SECTION 12: ROADMAP TO v2.0 (ELK STACK & REAL-TIME ALERTS) -->
 <div class="section-container">
-    <div class="section-header":"12</span><h2 class="section-title">Дорожня карта v2.0 (ELK Stack & Telegram Alerts)</h2></div>
+    <div class="section-header":"12"></span><h2 class="section-title">Дорожня карта v2.0 (ELK Stack & Real-time Alerts)</h2></div>
     <div class="glass-card flow-step">
-        <p>У версії 2.0 планується інтеграція з <b>ELK Stack (Elasticsearch, Logstash, Kibana)</b> для централізованого аналізу логів, впровадження <b>Telegram-бота</b> для миттєвих сповіщень адміністратора про Critical-події та підтримка <b>Binary Log Format</b> для екстремально швидкого запису телеметрії.</p>
+        <p>У версії 2.0 планується інтеграція з <b>ELK Stack (Elasticsearch, Logstash, Kibana)</b> для централізованого аналізу логів, впровадження <b>Push/Email сповіщень</b> для миттєвих сповіщень адміністратора про Critical-події та підтримка <b>Binary Log Format</b> для екстремально швидкого запису телеметрії.</p>
     </div>
 </div>
 
