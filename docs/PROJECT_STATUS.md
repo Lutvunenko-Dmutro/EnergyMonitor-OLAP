@@ -8,7 +8,7 @@
 
 | Метрика | Значення | Статус |
 | :--- | :---: | :---: |
-| **Тести (pytest)** | 74 пройдено / 0 помилок / 5 пропущено | ✅ ВІДМІННО |
+| **Тести (pytest)** | 94 пройдено / 0 помилок / 0 пропущено | ✅ ВІДМІННО |
 | **Security Audit** | Чисто (Bandit + detect-secrets) | ✅ ВЕРИФІКОВАНО |
 | **System Resilience** | Висока (SARIMA Fallback) | ✅ FALLBACK АКТИВНИЙ |
 | **Оптимізація пам'яті** | Auto-GC watchdog (380 MB поріг) | ✅ ОПТИМІЗОВАНО |
@@ -41,7 +41,7 @@
 - Маскування облікових даних у логах системи.
 
 ### 5. Production DevOps
-- Full CI/CD: lint → type check → 79 тестів → security scan → Docker build → Render deploy.
+- Full CI/CD: lint → type check → 94 тести → security scan → Docker build → Render deploy.
 - Log rotation + memory watchdog для довгострокової стабільності.
 - TTL-кеш менеджер — авто-очищення JSON-файлів старіших 24 годин.
 
@@ -80,7 +80,7 @@ tests/test_pipeline.py        ...        ( 3 пройдено)
 tests/test_security.py        .......... (26 пройдено)
 tests/test_utils.py           .......... (19 пройдено)
 
-Разом: 74 пройдено, 5 пропущено, 0 помилок — 13.71s
+Разом: 94 пройдено, 0 пропущено, 0 помилок — 1.41s
 ```
 
 ---

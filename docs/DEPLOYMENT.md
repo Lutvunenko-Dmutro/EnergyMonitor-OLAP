@@ -84,7 +84,7 @@ STREAMLIT_LOGGER_LEVEL=info
 git status
 
 # Обов'язково запустити тести перед деплоєм
-pytest tests/ -v  # Результат має бути: 74 passed, 0 failed
+pytest tests/ -v  # Результат має бути: 94 passed, 0 failed
 
 # Відправити зміни в гілку main
 git push origin main
@@ -145,7 +145,7 @@ OMP_NUM_THREADS=1
 При кожному `git push origin main` відбувається наступне:
 1. **Linting**: Перевірка стилю коду (flake8 + pylint).
 2. **Type Check**: Перевірка типізації (mypy).
-3. **Tests**: Запуск 79 тестів (pytest).
+3. **Tests**: Запуск 94 тестів (pytest).
 4. **Security**: Сканування на вразливості та витік секретів.
 5. **Docker Build**: Збірка контейнера та його відправка на Docker Hub.
 6. **Deploy**: Автоматичне оновлення сервісу на Render.com.
@@ -172,7 +172,7 @@ docker run -p 10000:10000 --env-file .env energy-monitor:latest
 
 Перед кожним деплоєм у "Production":
 
-- [x] Всі 79 тестів проходять успішно (`79 passed, 0 failed`).
+- [x] Всі 94 тести проходять успішно (`94 passed, 0 failed`).
 - [x] Виконано перевірку лінтером (flake8).
 - [x] Відсутні захардкоджені секрети або паролі.
 - [x] Оновлені змінні оточення в панелі Render.

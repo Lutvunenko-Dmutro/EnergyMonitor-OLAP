@@ -39,7 +39,7 @@
 *   **docs/guides/MAINTENANCE.md**: Робота з логами, очищення кешу, моніторинг ресурсів.
 
 ### Рівень 4: Валідація та безпека (Quality Assurance)
-*   **testing.md**: Покриття 79 тестами, методологія тестування фізики та безпеки.
+*   **testing.md**: Покриття 94 тестами, методологія тестування фізики та безпеки.
 *   **Security Details**: Опис захисту від SQLi, XSS та управління секретами.
 
 ---
@@ -52,7 +52,7 @@
 | **Розділ 2** | `docs/system/architecture.md`, `docs/system/database.md` | Діаграми класів, ER-діаграма, опис шарів |
 | **Розділ 3** | `docs/ml/index.md` | Графіки навчання LSTM, опис 9 ознак (вектор ознак) |
 | **Розділ 4** | `docs/system/digital_twin.md`, `docs/guides/MAINTENANCE.md` | Алгоритм Digital Twin, опис стеку технологій |
-| **Розділ 5** | `docs/guides/TESTING_GUIDE.md`, `docs/guides/USER_MANUAL.md` | Результати 79 тестів, скріншоти інтерфейсу |
+| **Розділ 5** | `docs/guides/TESTING_GUIDE.md`, `docs/guides/USER_MANUAL.md` | Результати 94 тестів, скріншоти інтерфейсу |
 
 ---
 

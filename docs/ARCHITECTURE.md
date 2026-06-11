@@ -143,7 +143,7 @@ Energy Monitor ULTIMATE
 flowchart LR
     Push["git push\nmain"] --> Lint["🧹 Lint\nflake8 + pylint"]
     Lint --> Types["🔍 Type Check\nmypy"]
-    Types --> Tests["🧪 Unit Tests\npytest (79 tests)"]
+    Types --> Tests["🧪 Unit Tests\npytest (94 tests)"]
     Tests --> Security["🛡️ Security\nbandit + detect-secrets"]
     Security --> Docker["🐳 Docker Build\n& Push"]
     Docker --> Deploy["🚀 Deploy\nRender.com"]
@@ -170,7 +170,7 @@ flowchart LR
 
 | Метрика | Значення |
 |---------|----------|
-| **Тести** | ✅ 79 пройдено, 0 помилок |
+| **Тести** | ✅ 94 пройдено, 0 помилок |
 | **Час тестування** | 13.71s |
 | **Покриття гілок** | ~65% (ціль: >90%) |
 | **Type Coverage** | ~60% (ціль: >90%) |

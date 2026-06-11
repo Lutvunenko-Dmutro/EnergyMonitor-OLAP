@@ -55,7 +55,7 @@ python -m streamlit run main.py
 ```bash
 # Виконати всі тести
 pytest tests/ -v
-# Очікуваний результат: 74 passed, 5 skipped, 0 failed
+# Очікуваний результат: 94 passed, 0 skipped, 0 failed
 
 # Запуск із перевіркою покриття коду
 pytest tests/ --cov=src --cov=core --cov=ml --cov-report=html
@@ -133,7 +133,7 @@ EnergyMonitor-OLAP/
 │   ├── logging_config.py          # Конфігурація логів (Rich + File)
 │   └── validators.py              # Валідатори SQL (захист від ін'єкцій)
 │
-├── tests/                         # Автоматичне тестування (79 тестів)
+├── tests/                         # Автоматичне тестування (94 тести)
 │   ├── conftest.py                # Фікстури Pytest (сесії БД, тестові DF)
 │   ├── test_physics.py            # Валідація фізики Digital Twin
 │   ├── test_ml_model.py           # Тести ML Pipeline

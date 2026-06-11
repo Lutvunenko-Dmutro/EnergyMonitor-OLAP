@@ -26,7 +26,7 @@ Energy Monitor ULTIMATE — це production-ready SaaS-дашборд для м�
 | **[API Reference](api/index.md)** | Автодокументація модулів |
 | **[Digital Twin](system/digital_twin.md)** | Фізична симуляція, сенсори, lifecycle |
 | **[Database](system/database.md)** | Схема БД, SQL запити, OLAP |
-| **[Testing](guides/TESTING_GUIDE.md)** | 79 тестів, coverage, стратегія |
+| **[Testing](guides/TESTING_GUIDE.md)** | 94 тести, coverage, стратегія |
 | **[Security](guides/SECURITY.md)** | SQL injection, секрети, Bandit |
 | **[Diploma Plan](thesis/DIPLOMA_PLAN.md)** | Структура дипломної роботи |
 
@@ -40,7 +40,7 @@ cd EnergyMonitor-OLAP
 python -m venv .venv && .venv\Scripts\activate
 pip install -r requirements.txt
 cp .env.example .env   # Заповнити DB credentials
-pytest tests/ -v       # 74 passed ✅
+pytest tests/ -v       # 94 passed ✅
 python -m streamlit run main.py
 ```
 
@@ -63,7 +63,7 @@ python -m streamlit run main.py
 ## Метрики проекту
 
 ```
-🧪 Тести:         74 passed, 0 failed, 5 skipped
+🧪 Тести:         94 passed, 0 failed, 5 skipped
 ⏱️ Час тестів:   13.71s
 🔒 Security:      Clean (Bandit + detect-secrets)
 💾 Cache:         TTL 24h (auto-cleanup)

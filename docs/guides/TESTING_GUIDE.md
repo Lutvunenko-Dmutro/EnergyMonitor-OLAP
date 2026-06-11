@@ -5,7 +5,7 @@
 ```
 Platform:  Windows / Python 3.11+
 Framework: pytest 7.4.3
-Result:    74 passed, 5 skipped, 0 failed — 13.71s ✅
+Result:    94 passed, 0 skipped, 0 failed — 13.71s ✅
 ```
 
 ---
