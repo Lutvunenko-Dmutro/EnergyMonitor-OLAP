@@ -16,47 +16,49 @@ class ThesisDashboard:
         self.style.theme_use("clam")
         
         # COLOR PALETTE
-        BG_DARK = "#0f0f0f"
+        BG_DARK = "#121212"
         BG_LIGHT = "#1e1e1e"
-        ACCENT_GREEN = "#00ff41" # Matrix green
-        TEXT_COLOR = "#e0e0e0"
+        ACCENT_COLOR = "#58a6ff" # Modern soft blue
+        TEXT_COLOR = "#e1e4e8"
+        FONT_MAIN = ("Segoe UI", 11)
+        FONT_HEADER = ("Segoe UI", 18, "bold")
         
         # Налаштування стилів
         self.style.configure("TFrame", background=BG_DARK)
-        self.style.configure("TLabel", background=BG_DARK, foreground=TEXT_COLOR)
-        self.style.configure("Header.TLabel", font=("Consolas", 18, "bold"), background=BG_DARK, foreground=ACCENT_GREEN)
-        self.style.configure("Status.TLabel", font=("Consolas", 10), background=BG_DARK, foreground="#888")
+        self.style.configure("TLabel", background=BG_DARK, foreground=TEXT_COLOR, font=FONT_MAIN)
+        self.style.configure("Header.TLabel", font=FONT_HEADER, background=BG_DARK, foreground=ACCENT_COLOR)
+        self.style.configure("Status.TLabel", font=("Segoe UI", 10), background=BG_DARK, foreground="#8b949e")
         
-        self.style.configure("Action.TButton", padding=10, font=("Consolas", 11, "bold"), background=BG_LIGHT, foreground=ACCENT_GREEN)
+        self.style.configure("Action.TButton", padding=10, font=("Segoe UI", 11, "bold"), background=BG_LIGHT, foreground=ACCENT_COLOR)
         self.style.map("Action.TButton", 
-                       background=[('active', ACCENT_GREEN), ('disabled', '#333')],
-                       foreground=[('active', BG_DARK), ('disabled', '#666')])
+                       background=[('active', "#1f6feb"), ('disabled', '#21262d')],
+                       foreground=[('active', "#ffffff"), ('disabled', '#8b949e')])
 
         # HEADER
         header_frame = ttk.Frame(root)
         header_frame.pack(pady=20, fill="x")
-        header = ttk.Label(header_frame, text=">>> THESIS GENERATION SYSTEM v3.0 <<<", style="Header.TLabel")
+        header = ttk.Label(header_frame, text="Thesis Generation System v3.0", style="Header.TLabel")
         header.pack(anchor="center")
         
         # MAIN CONTROLS
         ctrl_frame = ttk.Frame(root)
         ctrl_frame.pack(pady=10, padx=20, fill="x")
         
-        self.build_btn = ttk.Button(ctrl_frame, text="[ 🚀 RUN FULL BUILD ]", style="Action.TButton", command=self.start_build)
+        self.build_btn = ttk.Button(ctrl_frame, text="🚀 Run Full Build", style="Action.TButton", command=self.start_build)
         self.build_btn.pack(side="left", padx=5, expand=True, fill="x")
 
-        self.test_btn = ttk.Button(ctrl_frame, text="[ 🧪 TEST FORMULAS ]", style="Action.TButton", command=self.test_formulas)
+        self.test_btn = ttk.Button(ctrl_frame, text="🧪 Test Formulas", style="Action.TButton", command=self.test_formulas)
         self.test_btn.pack(side="left", padx=5, expand=True, fill="x")
         
-        self.folder_btn = ttk.Button(ctrl_frame, text="[ 📂 OPEN FOLDER ]", style="Action.TButton", command=self.open_folder)
+        self.folder_btn = ttk.Button(ctrl_frame, text="📂 Open Folder", style="Action.TButton", command=self.open_folder)
         self.folder_btn.pack(side="left", padx=5, expand=True, fill="x")
 
         # ROW 2 — Practice Report
         ctrl_frame2 = ttk.Frame(root)
         ctrl_frame2.pack(pady=(0, 10), padx=20, fill="x")
-        self.practice_btn = ttk.Button(ctrl_frame2, text="[ 📝 BUILD PRACTICE REPORT ]", style="Action.TButton", command=self.start_practice_build)
+        self.practice_btn = ttk.Button(ctrl_frame2, text="📝 Build Practice Report", style="Action.TButton", command=self.start_practice_build)
         self.practice_btn.pack(side="left", padx=5, expand=True, fill="x")
-        self.practice_open_btn = ttk.Button(ctrl_frame2, text="[ 📂 OPEN PRACTICE FOLDER ]", style="Action.TButton", command=self.open_practice_folder)
+        self.practice_open_btn = ttk.Button(ctrl_frame2, text="📂 Open Practice Folder", style="Action.TButton", command=self.open_practice_folder)
         self.practice_open_btn.pack(side="left", padx=5, expand=True, fill="x")
 
         # LOG AREA
@@ -70,10 +72,10 @@ class ThesisDashboard:
         self.copy_btn = ttk.Button(log_header, text="📋 Copy All Logs", width=15, command=self.copy_logs)
         self.copy_btn.pack(side="right")
         
-        self.log_text = scrolledtext.ScrolledText(log_frame, bg="#000", fg=ACCENT_GREEN, 
-                                                 insertbackground=ACCENT_GREEN,
+        self.log_text = scrolledtext.ScrolledText(log_frame, bg="#0d1117", fg="#c9d1d9", 
+                                                 insertbackground="#c9d1d9",
                                                  font=("Consolas", 10), state="normal",
-                                                 borderwidth=2, relief="flat")
+                                                 borderwidth=1, relief="solid")
         self.log_text.pack(pady=5, fill="both", expand=True)
         
         # PROGRESS & STATUS
