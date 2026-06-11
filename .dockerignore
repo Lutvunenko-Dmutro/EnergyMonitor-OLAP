@@ -2,10 +2,15 @@
 # Docker Build Context Exclusions
 # ═══════════════════════════════════════════════════════════════
 
-# Git
+# Docker itself
+Dockerfile
+.dockerignore
+
+# Git & CI
 .git
 .gitignore
 .gitattributes
+.github/
 
 # Dependencies & Virtual Environments
 __pycache__/
@@ -32,12 +37,15 @@ htmlcov/
 *.swo
 *~
 .DS_Store
+Test.srctrl*
 
-# Environment
+# Environment & Secrets
 .env
 .env.local
 .env.local_bak
 .env.*_bak
+*.bak
+.secrets.baseline
 
 # Logs & Data
 *.log
@@ -47,9 +55,15 @@ data/fallback/
 results/
 cache/
 
-# Documentation site (build output)
+# Documentation & Thesis
 site/
 docs/_build/
+thesis_backups/
+FINAL_THESIS_MASTER_BUILD.docx
+planThesisRewrite.prompt.md
+build_thesis.bat
+refresh_docs.ps1
+properdocs.yml
 
 # Database dumps
 *.sql
@@ -63,5 +77,6 @@ backup_local.sql
 *.tar
 
 # Misc
-.pytest_cache/
+scratch/
+terminal_screenshot.html
 diagnostics_report.html
