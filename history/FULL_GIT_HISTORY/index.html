@@ -1,0 +1,2160 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Інтелектуальна система OLAP-моніторингу та ШІ-прогнозування навантаження енергетичних мереж. Автор - Литвиненко Дмитро Сергійович (Lutvunenko Dmutro), бакалавр 121 ІПЗ.">
+      
+      
+      
+        <link rel="canonical" href="https://lutvunenko-dmutro.github.io/EnergyMonitor-OLAP/history/FULL_GIT_HISTORY/">
+      
+      
+        <link rel="prev" href="../../thesis/THESIS_PRESENTATION_FINAL/">
+      
+      
+        <link rel="next" href="../../FOR_REVIEWER/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Повна історія Git комітів - ⚡ Energy Monitor Ultimate (Project Atlas)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../atlas/theme.css">
+    
+      <link rel="stylesheet" href="../../atlas/components.css">
+    
+      <link rel="stylesheet" href="../../atlas/mermaid.css">
+    
+      <link rel="stylesheet" href="../../atlas/blueprint.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/vs2015.min.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#git" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="⚡ Energy Monitor Ultimate (Project Atlas)" class="md-header__button md-logo" aria-label="⚡ Energy Monitor Ultimate (Project Atlas)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ⚡ Energy Monitor Ultimate (Project Atlas)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Повна історія Git комітів
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../system/architecture/" class="md-tabs__link">
+          
+  
+  
+  🏗️ Архітектура
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../system/atlas/" class="md-tabs__link">
+          
+  
+  
+  🗺️ Атлас Проєкту
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../DOCS_PLAN/" class="md-tabs__link">
+          
+  
+  
+  📗 Плани та Статус
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../guides/USER_MANUAL/" class="md-tabs__link">
+          
+  
+  
+  🛠️ Інструкції та Безпека
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../api/" class="md-tabs__link">
+          
+  
+  
+  📚 Довідка
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../thesis/DIPLOMA_PLAN/" class="md-tabs__link">
+          
+  
+  
+  Дипломна робота
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  🕰️ Архів та Історія
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="⚡ Energy Monitor Ultimate (Project Atlas)" class="md-nav__button md-logo" aria-label="⚡ Energy Monitor Ultimate (Project Atlas)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ⚡ Energy Monitor Ultimate (Project Atlas)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏗️ Архітектура
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🏗️ Архітектура
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Загальний огляд
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system/digital_twin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Digital Twin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system/database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    База даних
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ML Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🗺️ Атлас Проєкту
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🗺️ Атлас Проєкту
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system/atlas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🛡️ Базовий Атлас
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system/atlas_final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🛡️ Defense Atlas (Interactive)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system/map/ATLAS_MASTER_INDEX/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🗺️ Реєстр Гіга-Паспортів (79 модулів)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system/atlas_city/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏙️ CodeCity: 3D-Атлас
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📗 Плани та Статус
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    📗 Плани та Статус
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DOCS_PLAN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    План документації
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ROADMAP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    План розробки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PROJECT_STATUS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Поточний статус
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🛠️ Інструкції та Безпека
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🛠️ Інструкції та Безпека
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/USER_MANUAL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Інструкція користувача
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/SECURITY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Звіт з безпеки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/TESTING_GUIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Тестування
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/MAINTENANCE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обслуговування
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📚 Довідка
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    📚 Довідка
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Референс модулів (API)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../GLOSSARY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Глосарій
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дипломна робота
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Дипломна робота
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thesis/DIPLOMA_PLAN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    План та Календар
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thesis/THESIS_0_ABSTRACT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Реферат
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thesis/THESIS_0_INTRODUCTION/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Вступ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thesis/THESIS_1_THEORY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Розділ 1. Теорія
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thesis/THESIS_2_REQUIREMENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Розділ 2. Вимоги
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thesis/THESIS_3_DESIGN_AND_IMPLEMENTATION/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Розділ 3. Реалізація (v3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thesis/THESIS_FINAL_CONCLUSIONS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Висновки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thesis/BIBLIOGRAPHY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Список літератури
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thesis/THESIS_APPENDICES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Додатки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thesis/KANBAN_THESIS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Канбан проєкту
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thesis/THESIS_PROCEEDINGS_ABSTRACTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Тези та апробація
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thesis/ABBREVIATIONS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Скорочення
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thesis/DEFENSE_GUIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Шпаргалка до захисту
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thesis/THESIS_PRESENTATION_FINAL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Презентація диплома
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🕰️ Архів та Історія
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🕰️ Архів та Історія
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Повна історія Git комітів
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FOR_REVIEWER/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Для рецензента
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../WHATS_CHANGED/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Що змінено (v3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../COMPREHENSIVE_CODE_QUALITY_AUDIT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Аудит якості
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../FIXES_IMPLEMENTED_REPORT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Звіт про виправлення
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../FINAL_IMPLEMENTATION_REPORT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Фінальний звіт імплементації
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PROJECT_AUDIT_REPORT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Початковий аудит проєкту
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../FIXES_APPLIED/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Звіт про застосовані фікси
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../METRICS_AND_DASHBOARD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Метрики та Дашборд
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thesis/IMAGE_AUDIT_REPORT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Аудит зображень
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thesis/THESIS_FULL_FINAL_UTF8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Повна збірка (Master)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="git">📚 Повна історія Git комітів</h1>
+<p>Цей файл містить повну хронологію розробки проєкту, автоматично згенеровану з Git.</p>
+<ul>
+<li><strong>2026-05-28</strong> | aa5b927 | docs: add missing history and atlas files to MkDocs nav - <strong>2026-05-28</strong> | 4375ff3 | docs: update ATLAS MASTER INDEX link to live site - <strong>2026-05-28</strong> | b08a96d | fix(docs): add site_url to fix 404 page CSS - <strong>2026-05-28</strong> | ed0248f | fix(docs): configure native mermaid in mkdocs and revert HTML wrappers - <strong>2026-05-28</strong> | 2d38048 | docs(system): finalize ProperDocs MkDocs generation, fix API reference and update README - <strong>2026-05-27</strong> | 8ec0f6a | docs &amp; refactor: update architecture passports to 169/169 valid, fix python source code docstrings - <strong>2026-05-27</strong> | 71f85ce | docs: modernize and fix Mermaid diagrams, MathJax and syntax highlighting in passports - <strong>2026-05-27</strong> | c0dbd74 | feat: implement fullscreen lightbox modal for all Mermaid diagrams on click - <strong>2026-05-27</strong> | 110d80b | style: optimize database ERD layout with relationships to fit screen without scrollbars - <strong>2026-05-27</strong> | 21881fc | style: enable diagram horizontal scroll and add VS Code highlight.js for pseudocode - <strong>2026-05-26</strong> | aafcd68 | docs: complete system passports modernization to Giga-Passports v3 and MathJax formula rendering fix - <strong>2026-05-24</strong> | 9a88cc1 | fix(ci): remove non-existent mkdocs-kroki package from requirements - <strong>2026-05-24</strong> | d0e5c11 | fix(ci): remove unused kroki plugin that blocked CI deployment - <strong>2026-05-24</strong> | d503e3a | Fix mkdocs build encoding issues, resolve navigation warnings and stage interactive atlas - <strong>2026-05-24</strong> | 15acdcd | feat: implement core conversion engine and document project history in README - <strong>2026-05-19</strong> | 6c124ec | docs: fix broken script links, restore system docs section, and resolve typos in README - <strong>2026-05-19</strong> | 4c1923b | docs: modernize and polish README.md with premium styles and interactive sections - <strong>2026-05-18</strong> | c83b560 | docs: merge latest PR changes and fix slide links in merged report - <strong>2026-05-18</strong> | 7aa4918 | docs: use correct relative paths for slide images in PR_S6 - <strong>2026-05-18</strong> | 681ed71 | docs: fix and optimize all relative links in dashboard README - <strong>2026-05-18</strong> | c852931 | feat: practice report formatting, slide integration, and terminology synchronization - <strong>2026-05-18</strong> | 6d3ac97 | feat: complete thesis parity alignment and fix formatting engine - <strong>2026-05-14</strong> | 68e6157 | docs: fix broken links and update test counts in README - <strong>2026-05-08</strong> | fdbedc7 | chore(thesis): organize archive, remove duplicates, and sanitize practice reports - <strong>2026-05-08</strong> | 164fd6f | chore: final project state synchronization and result documents - <strong>2026-05-08</strong> | f552e36 | docs(history): preserve development prompts and formula testing templates - <strong>2026-05-08</strong> | 62169b3 | docs(thesis): update practice reports and project management artifacts - <strong>2026-05-08</strong> | 4cdcc4f | docs(thesis): refine academic style, remove AI markers, and finalize structural modules - <strong>2026-05-08</strong> | b84c209 | feat(thesis): upgrade build pipeline, dashboard v3.0, and rich syntax highlighting - <strong>2026-05-06</strong> | df896c0 | fix: restore Ukrainian encoding in all thesis chapters - <strong>2026-05-04</strong> | 01aeab6 | docs: Final ATLAS 'Defense-Ready' expansion (58 passports @ 200+ lines each). Master Index synchronized. Technical Audit Complete. 🛡️🎓 - <strong>2026-05-04</strong> | 0956d7a | FIX: Restore missing imports in core, ml and scripts to fix CI/CD flake8 failures - <strong>2026-05-04</strong> | e6d0e29 | ARCH: ATLAS V3 Hub-Centric Consolidation &amp; Documentation Stewardship - <strong>2026-04-29</strong> | 2b915b6 | feat: implement premium engineering atlas v4 with interactive SVG and smooth animations - <strong>2026-04-29</strong> | 3d2e84e | fix: resolve encoding issues and navigation warnings for MkDocs build - <strong>2026-04-29</strong> | 38f6d5d | docs: add professional badges and architectural walkthrough to README - <strong>2026-04-29</strong> | 8312810 | docs: fix links and add final docx download to README - <strong>2026-04-29</strong> | ead1fb1 | feat(thesis): comprehensive update for academic integrity, DSTU formatting and automated audit tools - <strong>2026-04-29</strong> | 34b331c | Finalize thesis document structure, TOC filtering, and interactive atlas integration - <strong>2026-04-22</strong> | 23ebeeb | docs: finalize hybrid visuals and math v2, documentation reached 47 pages - <strong>2026-04-22</strong> | 11525bd | docs: implement hybrid visuals, fix LaTeX math v2, and optimize activity diagram layout - <strong>2026-04-22</strong> | d3af252 | feat: integrate modular converter, math engine v2 and image audit system - <strong>2026-04-20</strong> | 8632b84 | Security: update .gitignore to block Word cache and OS junk - <strong>2026-04-20</strong> | 04c0c7d | Finalize: Museum Atlas v15.0 and Graduate Thesis Document - <strong>2026-04-20</strong> | 99ebb9a | docs: final author identity synchronization across all documents - <strong>2026-04-20</strong> | 4863d89 | docs: standardize author name and bachelor status across all documentation - <strong>2026-04-19</strong> | 092eee8 | docs: implement deep interactive file atlas with technical maps - <strong>2026-04-19</strong> | c1050cf | docs: remove problematic exclude_docs for build stability - <strong>2026-04-19</strong> | 3c144d2 | fix: correct exclude_docs format and nav structure - <strong>2026-04-19</strong> | 91c5944 | docs: final polish of documentation structure and links - <strong>2026-04-19</strong> | e193f11 | fix: correct mkdocstrings config and clean up plugins - <strong>2026-04-19</strong> | de6e108 | docs: trigger deploy with manual site name update - <strong>2026-04-19</strong> | 34e97f8 | ci: trigger docs deploy when requirements-dev.txt changes - <strong>2026-04-19</strong> | d21da44 | fix: add missing mkdocs plugins to dev dependencies - <strong>2026-04-19</strong> | 6a9bb16 | docs: finalize project atlas and restructure documentation for clarity - <strong>2026-04-19</strong> | c0293a2 | ci: automate mkdocs deployment and optimize ci-cd triggers - <strong>2026-04-19</strong> | c83411b | docs: re-merge final thesis document with style refinements - <strong>2026-04-19</strong> | 2925ae8 | fix: resolve mermaid syntax errors in thesis documentation - <strong>2026-04-19</strong> | 8ead0aa | docs: finalize bachelor thesis text, humanize sections, and update README status - <strong>2026-04-19</strong> | a3adc5f | docs: finalize README as a full documentation hub with all md links - <strong>2026-04-19</strong> | e2bc71a | docs: add final thesis documents, practice report and defense guide - <strong>2026-04-19</strong> | 102916b | docs: sync readme checklist with final thesis and defense files - <strong>2026-04-19</strong> | 0034615 | docs(thesis): finalize Kanban by marking Practice Report and Diary as complete - <strong>2026-04-19</strong> | 38c398c | docs(thesis): comprehensive kanban audit and 100% completion sync of developer tasks - <strong>2026-04-19</strong> | 13a83d4 | docs(thesis): total kanban synchronization 100% complete and final presentation polish - <strong>2026-04-19</strong> | 3611eaa | docs(thesis): integrate specific screenshot references into the final presentation draft - <strong>2026-04-19</strong> | 2aeb8f3 | docs(thesis): finalize presentation slides and full defense speech; update kanban - <strong>2026-04-19</strong> | 199e83a | docs(thesis): sync official front-matter (Task, Calendar) with current completion state - <strong>2026-04-19</strong> | 0e47c5c | docs(thesis): create scientific conference abstracts (proceedings) and update kanban - <strong>2026-04-19</strong> | d19c00d | docs(thesis): finalize bibliography to 35 sources and mark as done in Kanban - <strong>2026-04-19</strong> | 11ef924 | docs(thesis): massively expand Appendices with pro-grade code listings, SQL schema, test protocol, and user manual - <strong>2026-04-19</strong> | 82c5b34 | docs(thesis): finalize General Conclusions and mark as done in Kanban - <strong>2026-04-19</strong> | 6cba8c4 | docs(thesis): finalize Chapter 3 with security specs, DB levels, and testing details; sync kanban - <strong>2026-04-19</strong> | 690e45f | docs(thesis): add final conclusions block to Chapter 1 and update kanban progress - <strong>2026-04-19</strong> | 93e8e91 | fix(docs): repair mermaid use-case diagram syntax parsing error in github markdown - <strong>2026-04-19</strong> | e0a8492 | chore(docs): mark Chapter 2 tasks as complete in KANBAN_THESIS.md - <strong>2026-04-19</strong> | 67d33e2 | docs(thesis): heavily expand Chapter 2 with UML diagrams, exact i/o specs, and detailed tooling to satisfy thesis guidelines - <strong>2026-04-19</strong> | 2c6dba1 | chore: remove utility script for resolving links - <strong>2026-04-19</strong> | 9cb5eaf | refactor(docs): restructure documentation folders (thesis/, guides/, system/) and automatically update all internal links - <strong>2026-04-19</strong> | 2f97288 | chore(docs): global sync of line endings, formatting and user manual edits - <strong>2026-04-19</strong> | d21580f | fix(docs): update APPENDICES code snippets to reflect true implemented physics and LSTM inference logic - <strong>2026-04-19</strong> | 3021a45 | fix(ml): sync look_back=48 default in function signatures to match global const and architecture docs - <strong>2026-04-19</strong> | 0de0c9d | fix: exhaustive audit pass 3 — update test metrics to 79 everywhere, add ML test count, fix DOCS_PLAN paths - <strong>2026-04-19</strong> | 85d82a5 | fix: resolve remaining file path and version discrepancies (train_lstm path, 48h window in DIPLOMA_PLAN, .keras format) - <strong>2026-04-19</strong> | f36e4e5 | fix: deep audit pass — W=48, 94 tests, single output in ALL docs (ARCHITECTURE, THESIS_3, APPENDICES, database, README) - <strong>2026-04-19</strong> | 6b1cd9b | fix: global sync — align ALL docs with codebase (Huber loss, W=48, 1 output, Python 3.11+) - <strong>2026-04-19</strong> | 3471587 | fix: align README math/architecture docs with actual codebase (Huber loss, W=48, single output) - <strong>2026-04-19</strong> | ee88d29 | docs: global spell check and terminology unification (new orthography) - <strong>2026-04-19</strong> | 4308025 | fix: correct LaTeX math rendering for GitHub/VSCode compatibility - <strong>2026-04-19</strong> | ce8fd72 | docs: finalize practice synchronization and expand thesis chapter 1 with formal labeling - <strong>2026-04-18</strong> | e8c0a9d | docs: sync practice report structure with official template (Sections 1-5) - <strong>2026-04-18</strong> | 13bc929 | docs: add detailed requirements for practice report (20-25 pages) - <strong>2026-04-18</strong> | 8b3c31c | docs: set final defense date to 17.06 and add KEP requirements - <strong>2026-04-18</strong> | 838034a | docs: finalize pre-defense date and requirements for group I23 - <strong>2026-04-18</strong> | b3f649d | docs: update bachelor thesis kanban and readme dashboard - <strong>2026-04-13</strong> | b6bd732 | docs: major README refactoring to reflect the final 3-chapter thesis structure and metrics - <strong>2026-04-13</strong> | 1993b65 | docs: finalize abstract with linguistic corrections and complete English translation - <strong>2026-04-13</strong> | a51139b | docs: complete navigation links across all thesis files - <strong>2026-04-13</strong> | 4ed9d7f | docs: finalize abstract and introduction according to 3nd-chapter structure - <strong>2026-04-13</strong> | 40d0da8 | docs: finalize 3-chapter thesis documentation according to MNTU standards - <strong>2026-04-13</strong> | a6d50d5 | docs: finalize academic thesis documentation with UML diagrams and appendices - <strong>2026-04-13</strong> | 178e7fb | Docs: Remove duplicate gallery section from README and clean up formatting - <strong>2026-04-13</strong> | 3bd0875 | Docs: Final localized documentation with 24 high-quality interface screenshots and logical blocks - <strong>2026-04-13</strong> | 28020f0 | Docs: Complete Ukrainian translation of all documentation files (README, ARCHITECTURE, STATUS, DEVELOPMENT, DEPLOYMENT) - <strong>2026-04-13</strong> | adf7d59 | Docs: Translate ROADMAP.md to Ukrainian - <strong>2026-04-13</strong> | 1dc204f | Docs: Update documentation to reflect v3.1 STABLE status and architecture improvements - <strong>2026-04-13</strong> | d1b3a53 | Build 2.0: Comprehensive stabilization, Kaggle data sync, and AI analytics fix - <strong>2026-04-11</strong> | 702dcf1 | chore: cleanup repository from build artifacts and reports - <strong>2026-04-11</strong> | d7da9d7 | fix: updated CI/CD paths and resolved script syntax warnings - <strong>2026-04-11</strong> | 12ff82e | refactor: migrate to src/ layout + consolidate core/ + modularize services - <strong>2026-04-11</strong> | b616a4f | docs: Fill docs/ folder — architecture, ml pipeline, digital twin, database, testing, updated mkdocs.yml nav - <strong>2026-04-11</strong> | 4100969 | docs: Rewrite DEVELOPMENT.md with real structure, Digital Twin section, Windows commands; add sensors_db.py module docstring - <strong>2026-04-11</strong> | 784eae9 | docs: Rewrite DEPLOYMENT.md — fix duplicate/mirrored content, add real troubleshooting from session - <strong>2026-04-11</strong> | c8b4bae | docs: Add ARCHITECTURE.md, update PROJECT_STATUS and README with real test metrics (94 passed) - <strong>2026-04-11</strong> | 8776065 | feat: Add TTL cache manager with auto-cleanup on startup (cleared 100 stale JSONs, freed 257MB) - <strong>2026-04-11</strong> | fb4f292 | Emergency Fix: Global rollback of width parameter to avoid TypeError on Render.com - <strong>2026-04-11</strong> | c30ec76 | Fix: Revert button parameter to use_container_width for Render.com compatibility - <strong>2026-04-11</strong> | ad7dc94 | Stable Production: UI Polished, Logs Cleaned, Sensors Fixed - <strong>2026-04-11</strong> | 3601c70 | UI Resiliency v2: Fix stretch width strings in alerts and kpi data editors - <strong>2026-04-10</strong> | 10879c0 | Global UI Resilience: Remove all invalid width='stretch' arguments across the project - <strong>2026-04-10</strong> | deb9957 | Fix: Replace invalid width='stretch' with use_container_width=True in sidebar buttons - <strong>2026-04-10</strong> | 5201ea6 | Production Resiliency: Upgrade Streamlit to 1.37.0 and add safety wrapper for st.fragment - <strong>2026-04-10</strong> | 7cdc829 | Fix: Upgrade Streamlit to 1.33.0 to support st.fragment and resolve production crash - <strong>2026-04-10</strong> | 72cf119 | YAML Final Fix: Map secrets to env variables to satisfy GitHub Actions parser - <strong>2026-04-10</strong> | e72bd0c | YAML Rescue: Clean up Docker job syntax and fix multiline tag validation - <strong>2026-04-10</strong> | 5e80706 | Docker Fix: Refine build context and add fault-tolerance for missing registry secrets - <strong>2026-04-10</strong> | 6499776 | Robust CI/CD Fix: Add health checks for postgres and error-stop for schema initialization - <strong>2026-04-10</strong> | 9b244b3 | Final CI/CD fix: Initialize test database schema and seed data to satisfy unit tests - <strong>2026-04-10</strong> | 47fd3b3 | Final CI/CD Rescue: Fix missing numpy import in mining service and verify test collection - <strong>2026-04-10</strong> | e0d5896 | CI/CD Fix: Stabilize pipeline, resolve import errors, and harden security tests - <strong>2026-04-10</strong> | 8b2a158 | 🚀 ENERGY MONITOR ULTIMATE: Production Gold v3.0 [PROD-READY] - <strong>2026-04-10</strong> | 88ff82f | Refactor: Stable fragments for live monitoring and polished database logging. Cleaned up repo index. - <strong>2026-04-09</strong> | cd750a3 | HOTFIX: Removed RLIMIT_AS virtual memory limit to resolve Pandas mmap segment loading error. - <strong>2026-04-09</strong> | a817e54 | HOTFIX: OpenBLAS thread restriction to prevent multi-buffer memory allocation OOMs. - <strong>2026-04-09</strong> | 10f760c | STABILITY RATING 10/10: Implemented database chunking, early pruning, and OS-bound memory limitations to eliminate all 503 Render crashes. - <strong>2026-04-09</strong> | 3f8ec10 | RADICAL MEMORY RESCUE: Removed TensorFlow, implemented Kaggle sampling, and added real-time object auditing. Final stability for 512MB limit. - <strong>2026-04-09</strong> | cf1dae6 | ENERGY MONITOR ULTIMATE: Final logging unification and thread-safe startup fix. Optimized memory management and resolved onnxruntime dependency. - <strong>2026-04-09</strong> | 131f325 | ENERGY MONITOR ULTIMATE: Pre-memory optimization save. Includes DB retry logic, Plotly API compliance, and startup log deduplication. - <strong>2026-04-08</strong> | 3fb7237 | ENERGY MONITOR ULTIMATE: Production-ready refactoring. Integrated Active Boot Sequence, Modular UI Components (max 200 lines), Fixed Scrolling &amp; Audit UI Synchronization. - <strong>2026-04-08</strong> | 5066caf | STABILIZATION: Reactive Forecasting, Splash Screen, Robustness &amp; Security Hardening - <strong>2026-04-09</strong> | fe18d7a | Merge pull request #1 from Lutvunenko-Dmutro/release/onnx-final - <strong>2026-04-09</strong> | 6afd6d1 | Merge branch 'main' into release/onnx-final - <strong>2026-04-08</strong> | 83e69f1 | Reorder and add packages in requirements.txt - <strong>2026-04-08</strong> | f2a32f8 | feat: Final Secure Release - ONNX Architecture &amp; Modular UI (Fixed Secret Leak) - <strong>2026-03-17</strong> | 4c5e6a9 | Update actor relationships in README diagram - <strong>2026-03-17</strong> | cbcc17a | Remove thesis structure and recommendations from README - <strong>2026-03-17</strong> | 690f934 | Fix formatting and spacing in README.md - <strong>2026-03-17</strong> | 813868b | Fix formatting and enhance clarity in README.md - <strong>2026-03-17</strong> | c6628f5 | Fix LaTeX formatting in README.md - <strong>2026-03-17</strong> | e03b263 | Update mathematical notation in README - <strong>2026-03-17</strong> | b5f19c8 | Fix LaTeX syntax in README for feature vectors - <strong>2026-03-17</strong> | fc32b95 | Enhance README with mathematical modeling details - <strong>2026-03-17</strong> | 77aaff0 | Update subgraph labels in README.md - <strong>2026-03-17</strong> | 7987cfd | Enhance README with database and use case diagrams - <strong>2026-03-17</strong> | 40f6216 | Update README.md - <strong>2026-03-17</strong> | a3c75de | Revise README with visual models and diagrams - <strong>2026-03-17</strong> | accabd1 | Update quotes in data flow diagram in README - <strong>2026-03-17</strong> | f796fa8 | Revise UML Component Diagram for Multi-layer Architecture - <strong>2026-03-17</strong> | c7dbfd6 | Enhance README with user roles and testing details - <strong>2026-03-17</strong> | 0457c92 | Enhance README with project details and structure - <strong>2026-03-17</strong> | a6589de | Add files via upload - <strong>2026-03-17</strong> | 28d3541 | Add statsmodels to requirements - <strong>2026-03-17</strong> | 4489525 | Update dependencies, remove <code>trends_innovators.png</code>, and add <code>DIPLOMA_PLAN.md</code>. - <strong>2026-03-16</strong> | ca6c855 | Revise README for project overview and details - <strong>2026-03-16</strong> | 4dd02e3 | docs: Add diploma plan, update README, and remove trends image. - <strong>2026-03-16</strong> | 1ca9039 | 🚀 Final architectural overhaul: replacing old files with SOLID structure - <strong>2025-06-22</strong> | 6e1571b | просто - <strong>2025-06-22</strong> | eaedd02 | Обнова для пітримки андроида - <strong>2025-05-20</strong> | b565cfa | 123 - <strong>2025-05-20</strong> | a857f9a | Add health check to Dockerfile and improve error handling in Lab.py - <strong>2025-05-20</strong> | b981676 | Update requirements.txt - <strong>2025-05-20</strong> | 08c3c2f | Update requirements.txt - <strong>2025-05-20</strong> | 2943766 | Update Lab.py - <strong>2025-05-20</strong> | 9382448 | Update Lab.py - <strong>2025-05-20</strong> | 83bb956 | Update Dockerfile - <strong>2025-05-20</strong> | be19a68 | 123 - <strong>2025-05-20</strong> | 710d1f1 | Add Dockerfile for Python 3.11 deployment - <strong>2025-05-20</strong> | 3ad337b | Коментар - <strong>2025-05-20</strong> | c2610ae | Initial commit</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/polyfill/3.111.0/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      
+        <script src="../../javascripts/syntax_highlighter.js"></script>
+      
+        <script src="../../javascripts/diagram_lightbox.js"></script>
+      
+    
+  </body>
+</html>
