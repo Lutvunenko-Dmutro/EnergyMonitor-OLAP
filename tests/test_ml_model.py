@@ -20,85 +20,54 @@ class TestLSTMPredictor:
     """Test suite для LSTM prediction функціональності."""
     
     def test_model_initialization(self):
-        """Тест: модель інітіалізується без помилок."""
-        try:
-            from src.ml.predict_v2 import LSTMPredictor
-            model = LSTMPredictor()
-            assert model is not None
-        except ImportError:
-            pytest.skip("ML module not available")
-    
-    def test_forecast_output_shape(self, sample_forecast_data):
-        """Тест: forecast повинен повертати правильний shape."""
-        try:
-            from src.ml.predict_v2 import LSTMPredictor
-            model = LSTMPredictor()
-            
-            # Prepare input
-            X_test = sample_forecast_data.reshape(1, 24, 9)
-            
-            # Predict
-            prediction = model.predict(X_test)
-            
-            # Check shape: (1, 24, 1) для 24-hour forecast, 1 feature
-            assert prediction.shape[0] == 1  # batch size
-            assert prediction.shape[1] == 24  # forecast horizon
-            assert prediction.shape[2] == 1   # output feature
-        except ImportError:
-            pytest.skip("ML module not available")
-    
-    def test_forecast_values_in_range(self, sample_forecast_data):
-        """Тест: forecasted values повинні бути в розумному діапазоні."""
-        try:
-            from src.ml.predict_v2 import LSTMPredictor
-            model = LSTMPredictor()
-            
-            X_test = sample_forecast_data.reshape(1, 24, 9)
-            prediction = model.predict(X_test)
-            
-            # Check that values are not NaN or inf
-            assert not np.isnan(prediction).any()
-            assert not np.isinf(prediction).any()
-            
-            # Check that values are in reasonable range (0-500 MW for energy)
-            assert (prediction >= 0).all() or (prediction.min() > -500)
-            assert prediction.max() < 1000
-        except ImportError:
-            pytest.skip("ML module not available")
-    
-    def test_batch_prediction(self, sample_forecast_data):
-        """Тест: модель повинна обробляти batch predictions."""
-        try:
-            from src.ml.predict_v2 import LSTMPredictor
-            model = LSTMPredictor()
-            
-            # Create batch of 5 samples
-            X_batch = np.repeat(sample_forecast_data[np.newaxis, :, :], 5, axis=0)
-            
-            # Predict
-            predictions = model.predict(X_batch)
-            
-            assert predictions.shape[0] == 5  # batch size
-            assert predictions.shape[1] == 24  # horizon
-        except ImportError:
-            pytest.skip("ML module not available")
-    
+        """Тест: перевірка наявності модулів прогнозування."""
+        from src.ml import predict_v2
+        assert hasattr(predict_v2, "get_ai_forecast")
+        
+    def test_forecast_output_shape(self):
+        """Тест: baseline fallback генерує правильний shape DataFrame."""
+        from src.ml.predict_v2 import _run_baseline_fallback
+        import pandas as pd
+        values = np.array([[100.0], [105.0], [110.0]])
+        last_ts = pd.Timestamp("2023-01-01 12:00:00")
+        df = _run_baseline_fallback(24, values, last_ts)
+        # 1 last value + 24 predictions
+        assert len(df) == 25
+        assert "predicted_load_mw" in df.columns
+        
+    def test_forecast_values_in_range(self):
+        """Тест: значення прогнозу знаходяться в адекватному діапазоні."""
+        from src.ml.predict_v2 import _run_baseline_fallback
+        import pandas as pd
+        values = np.array([[100.0]])
+        last_ts = pd.Timestamp("2023-01-01 12:00:00")
+        df = _run_baseline_fallback(24, values, last_ts)
+        assert df["predicted_load_mw"].min() >= 0
+        assert not df["predicted_load_mw"].isnull().any()
+        
+    def test_batch_prediction(self):
+        """Тест: перевірка обчислення scale factor для адаптації."""
+        from src.ml.predict_v2 import _compute_scale_factor
+        class DummyScaler:
+            data_max_ = [5000]
+        values = np.array([[1000.0]])
+        scale, loc_max = _compute_scale_factor(values, "Test Sub", "CSV", DummyScaler())
+        assert scale >= 1.0
+        assert loc_max == 1000.0
+        
     def test_domain_adaptation(self):
-        """Тест: модель повинна підтримувати domain adaptation."""
-        try:
-            from src.ml.predict_v2 import LSTMPredictor
-            model = LSTMPredictor()
-            
-            # Спробуємо адаптуватися до різних регіонів
-            regions = ['Київ', 'Харків', 'Львів']
-            
-            for region in regions:
-                # Проверь, чи функція adapt_to_region існує
-                if hasattr(model, 'adapt_to_region'):
-                    model.adapt_to_region(region)
-                    assert True  # If no error, test passes
-        except ImportError:
-            pytest.skip("ML module not available")
+        """Тест: перевірка нормалізації температури та health score."""
+        from src.ml.predict_v2 import _build_norm_overrides
+        class DummyScaler:
+            data_max_ = [0, 0, 0, 100, 30]
+            data_min_ = [0, 0, 0, 0, -20]
+        current_window = np.zeros((1, 5))
+        current_window[-1, 4] = 0.5
+        target_temp, norm_health = _build_norm_overrides(
+            5, current_window, DummyScaler(), 5.0, {"health": 80}
+        )
+        assert target_temp is not None
+        assert norm_health == 0.8
 
 
 class TestForecastMetrics:
