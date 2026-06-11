@@ -35,6 +35,8 @@ site/
 cache/
 .DS_Store
 Thumbs.db
+Test.srctrl*
+terminal_screenshot.html
 
 # Test artifacts and reports
 .coverage
