@@ -20,7 +20,7 @@
 *   🏗️ [**ARCHITECTURE.md**](docs/system/architecture.md) — Архітектурна схема та опис шарів.
 *   📚 [**ProperDocs Defense Edition**](https://lutvunenko-dmutro.github.io/EnergyMonitor-OLAP/) — Офіційний вебсайт-документація проєкту (містить Глосарій, API Референс та 3D-Атлас).
 *   🗺️ [**ATLAS MASTER INDEX (Live)**](https://lutvunenko-dmutro.github.io/EnergyMonitor-OLAP/system/map/ATLAS_MASTER_INDEX/) — Повний інтерактивний реєстр усіх 170+ системних паспортів проєкту.
-*   📜 [**PROJECT_HISTORY.md**](docs/PROJECT_HISTORY.md) — Повна хронологія розробки (від Telegram-бота до аналітичного комплексу).
+*   📜 [**PROJECT_HISTORY.md**](docs/PROJECT_HISTORY.md) — Повна хронологія розробки (від лабораторного прототипу до аналітичного комплексу).
 
 ---
 
