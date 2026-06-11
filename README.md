@@ -76,7 +76,7 @@
 | **Практика** | [**Звіт з практики (ФІНАЛ)**](docs/thesis/practice_report/PRACTICE_REPORT_MERGED.md) <br> ([Титулка](docs/thesis/practice_report/PR_TITLE.md) / [Р1](docs/thesis/practice_report/PR_S1.md) / [Р2](docs/thesis/practice_report/PR_S2.md) / [Р3](docs/thesis/practice_report/PR_S3.md) / [Р4](docs/thesis/practice_report/PR_S4.md) / [Р5](docs/thesis/practice_report/PR_S5.md) / [Додаток А](docs/thesis/practice_report/PR_S6.md)) | ✅ **100% Ready** |
 | | [Щоденник практики](docs/thesis/PRACTICE_DIARY_DRAFT.md) | ✅ Ready |
 | | [Презентація до практики](docs/thesis/PRACTICE_PRESENTATION_DRAFT.md) | ✅ Ready |
-| **Диплом** | [**Кваліфікаційна робота (Шліфування)**](docs/thesis/THESIS_FULL_FINAL_UTF8.md) | 🏗️ **In Progress** |
+| **Диплом** | [**Кваліфікаційна робота**](docs/thesis/THESIS_FULL_FINAL_UTF8.md) | ✅ **Finalized** |
 | | [Реферат (Укр/Англ)](docs/thesis/THESIS_0_ABSTRACT.md) | ✅ Ready |
 | | [**Тези доповідей (Апробація)**](docs/thesis/THESIS_PROCEEDINGS_ABSTRACTS.md) | ✅ **Ready** |
 | **Допуск** | [**Відгук керівника (Додаток Г)**](docs/thesis/OFFICIAL_REVIEW_PROJECT.md) | ✅ **Ready** |
