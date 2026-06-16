@@ -1,0 +1,2363 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Інтелектуальна система OLAP-моніторингу та ШІ-прогнозування навантаження енергетичних мереж. Автор - Литвиненко Дмитро Сергійович (Lutvunenko Dmutro), бакалавр 121 ІПЗ.">
+      
+      
+      
+        <link rel="canonical" href="https://lutvunenko-dmutro.github.io/EnergyMonitor-OLAP/thesis/DEFENSE_SCRIPT_AND_QA/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>🎓 Сценарій Захисту + Можливі Запитання - ⚡ Energy Monitor Ultimate (Project Atlas)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../atlas/theme.css">
+    
+      <link rel="stylesheet" href="../../atlas/components.css">
+    
+      <link rel="stylesheet" href="../../atlas/mermaid.css">
+    
+      <link rel="stylesheet" href="../../atlas/blueprint.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/vs2015.min.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="⚡ Energy Monitor Ultimate (Project Atlas)" class="md-header__button md-logo" aria-label="⚡ Energy Monitor Ultimate (Project Atlas)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ⚡ Energy Monitor Ultimate (Project Atlas)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              🎓 Сценарій Захисту + Можливі Запитання
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../system/architecture/" class="md-tabs__link">
+          
+  
+  
+  🏗️ Архітектура
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../system/atlas/" class="md-tabs__link">
+          
+  
+  
+  🗺️ Атлас Проєкту
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../DOCS_PLAN/" class="md-tabs__link">
+          
+  
+  
+  📗 Плани та Статус
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../guides/USER_MANUAL/" class="md-tabs__link">
+          
+  
+  
+  🛠️ Інструкції та Безпека
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../api/" class="md-tabs__link">
+          
+  
+  
+  📚 Довідка
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../DIPLOMA_PLAN/" class="md-tabs__link">
+          
+  
+  
+  Дипломна робота
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../history/FULL_GIT_HISTORY/" class="md-tabs__link">
+          
+  
+  
+  🕰️ Архів та Історія
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="⚡ Energy Monitor Ultimate (Project Atlas)" class="md-nav__button md-logo" aria-label="⚡ Energy Monitor Ultimate (Project Atlas)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ⚡ Energy Monitor Ultimate (Project Atlas)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Lutvunenko-Dmutro/EnergyMonitor-OLAP" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏗️ Архітектура
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🏗️ Архітектура
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Загальний огляд
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system/digital_twin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Digital Twin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system/database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    База даних
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ML Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🗺️ Атлас Проєкту
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🗺️ Атлас Проєкту
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system/atlas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🛡️ Базовий Атлас
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system/atlas_final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🛡️ Defense Atlas (Interactive)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system/map/ATLAS_MASTER_INDEX/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🗺️ Реєстр Гіга-Паспортів (79 модулів)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system/atlas_city/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏙️ CodeCity: 3D-Атлас
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📗 Плани та Статус
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    📗 Плани та Статус
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DOCS_PLAN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    План документації
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ROADMAP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    План розробки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PROJECT_STATUS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Поточний статус
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🛠️ Інструкції та Безпека
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🛠️ Інструкції та Безпека
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/USER_MANUAL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Інструкція користувача
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/SECURITY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Звіт з безпеки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/TESTING_GUIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Тестування
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/MAINTENANCE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обслуговування
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📚 Довідка
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    📚 Довідка
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Референс модулів (API)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../GLOSSARY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Глосарій
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дипломна робота
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Дипломна робота
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DIPLOMA_PLAN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    План та Календар
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../THESIS_0_ABSTRACT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Реферат
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../THESIS_0_INTRODUCTION/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Вступ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../THESIS_1_THEORY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Розділ 1. Теорія
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../THESIS_2_REQUIREMENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Розділ 2. Вимоги
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../THESIS_3_DESIGN_AND_IMPLEMENTATION/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Розділ 3. Реалізація (v3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../THESIS_FINAL_CONCLUSIONS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Висновки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BIBLIOGRAPHY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Список літератури
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../THESIS_APPENDICES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Додатки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../KANBAN_THESIS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Канбан проєкту
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../THESIS_PROCEEDINGS_ABSTRACTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Тези та апробація
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ABBREVIATIONS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Скорочення
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DEFENSE_GUIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Шпаргалка до захисту
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../THESIS_PRESENTATION_FINAL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Презентація диплома
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🕰️ Архів та Історія
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🕰️ Архів та Історія
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../history/FULL_GIT_HISTORY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Повна історія Git комітів
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FOR_REVIEWER/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Для рецензента
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../history/WHATS_CHANGED/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Що змінено (v3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../history/COMPREHENSIVE_CODE_QUALITY_AUDIT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Аудит якості
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../history/FIXES_IMPLEMENTED_REPORT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Звіт про виправлення
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../history/FINAL_IMPLEMENTATION_REPORT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Фінальний звіт імплементації
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../history/PROJECT_AUDIT_REPORT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Початковий аудит проєкту
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../history/FIXES_APPLIED/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Звіт про застосовані фікси
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../history/METRICS_AND_DASHBOARD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Метрики та Дашборд
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../IMAGE_AUDIT_REPORT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Аудит зображень
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../THESIS_FULL_FINAL_UTF8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Повна збірка (Master)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="_1">🎓 Сценарій Захисту + Можливі Запитання</h1>
+<hr />
+<h1 id="_2">🎤 Повний текст виступу</h1>
+<h3 id="1">🖥️ Слайд 1</h3>
+<p>Добрий день! 
+Представляю роботу на тему: 
+<strong>"Прогнозування енергоспоживання для Smart City [смарт сіті] на основі нейромереж"</strong>.
+Я розробив предиктивну платформу <strong>EnergyMonitor [енерджі монітор]</strong>, яка поєднує штучний інтелект та фізичне моделювання зносу.</p>
+<hr />
+<h3 id="2">🖥️ Слайд 2</h3>
+<p><strong>Щодо актуальності теми.</strong> 
+Через пошкодження енергоінфраструктури та дефіцит потужностей, мережі сьогодні працюють на межі можливостей. </p>
+<p>Класичний підхід працює із запізненням — він лише <strong>фіксує аварію</strong>, коли обладнання вже вийшло з ладу. </p>
+<p><strong>Моє рішення</strong> — це перехід до <strong>предиктивного керування</strong>. Завчасний прогноз дозволяє діяти на випередження, балансувати мережу та рятувати дефіцитне обладнання.</p>
+<hr />
+<h3 id="3">🖥️ Слайд 3</h3>
+<p>Мета дослідження це створення хмарної SaaS-платформи [саас-платформи] з похибкою прогнозу MAPE [мейп] <strong>менше 4 відсотків</strong>. 
+Основні завдання для її досягнення наведені на слайді.
+<em>(пауза 2-3 секунди)</em></p>
+<hr />
+<h3 id="4">🖥️ Слайд 4</h3>
+<p><strong>Переходячи до вибору алгоритму ШІ.</strong> 
+З порівняння видно: класична ARIMA [аріма] <strong>не тягне складну нелінійність</strong>, XGBoost [ікс-джі-буст] <strong>повільний</strong>, а базова RNN [ер-ен-ен] <strong>швидко забуває</strong> історію. </p>
+<p>Саме тому я обрав архітектуру <strong>LSTM [ел-ес-ті-ем]</strong> — її унікальна будова дозволяє мережі самій вирішувати, яку інформацію треба запам'ятати надовго, а яку — відкинути. Це забезпечує ідеальну довгострокову пам'ять.</p>
+<hr />
+<h3 id="5">🖥️ Слайд 5</h3>
+<p>Система має 4-рівневу архітектуру. 
+Перший рівень це інтерфейс на <strong>Streamlit [стрімліт]</strong>.
+Другий рівень це ядро ШІ на <strong>TensorFlow [тензор-флоу]</strong>.
+Третій рівень це хмарна база <strong>Neon PostgreSQL [неон постгрес-кью-ел]</strong>. 
+Четвертий рівень це автоматизація DevOps [девопс]. 
+Уся система запакована в <strong>Docker [докер]</strong> для миттєвого розгортання на будь-якому сервері.</p>
+<hr />
+<h3 id="6">🖥️ Слайд 6</h3>
+<p><strong>Перейдемо до математичної бази моделі.</strong>
+По-перше, на вхід подається <strong>9 ознак</strong>, де окрім історії навантаження враховано погоду. 
+По-друге, я використав <strong>циклічне кодування часу</strong>, щоб модель розуміла безперервність доби. 
+По-третє, функція втрат <strong>Huber Loss [х'юбер лос]</strong> надійно захищає модель від аномальних стрибків напруги.</p>
+<hr />
+<h3 id="7">🖥️ Слайд 7</h3>
+<p>База даних побудована за схемою <strong>"Зірка"</strong> з <strong>B-Tree [бі-трі] індексами</strong> для миттєвого пошуку.
+Інтерфейс має 8 функціональних вкладок. Завдяки <strong>Granular Rendering [грануляр рендерінг]</strong> графіки оновлюються миттєво, без перезавантаження сторінки.</p>
+<hr />
+<h3 id="8">🖥️ Слайд 8</h3>
+<p>Слайд номер вісім це <strong>Цифровий Двійник</strong>. 
+Він симулює теплове нагрівання за стандартом <strong>IEEE [і-три-е]</strong>. 
+Рахується температура найгарячішої точки (<strong>Hot-Spot [хот-спот]</strong>) і генерується <strong>Health Score [хелс скор]</strong> це індекс здоров'я від 0 до 100%. 
+В основі лежить <strong>закон Арреніуса</strong>: кожні зайві 6 градусів перегріву прискорюють старіння ізоляції вдвічі.</p>
+<hr />
+<h3 id="9">🖥️ Слайд 9</h3>
+<p>Ліворуч на графіку це CI/CD [сі-ай сі-ді]: <strong>94 автотести</strong>, збірка через GitHub Actions [гітхаб екшнз] та деплой на Render [рендер]. 
+Праворуч це графік точності. Графік показує похибку, тому чим стовпчик нижче — тим краще. 
+Похибка моєї LSTM-моделі [ел-ес-ті-ем] склала <strong>менше 4%</strong>. Вона виявилася у <strong>3.6 рази точнішою</strong> за класичну ARIMA [аріма]. Вимоги технічного завдання виконані.</p>
+<hr />
+<h3 id="10">🖥️ Слайд 10</h3>
+<p>Перед вами реальні логи тестування. 
+Всі <strong>94</strong> тести успішно пройдено. Покриття коду тестами (Coverage [каверидж]) становить <strong>97%</strong>. Такий рівень покриття забезпечує стабільність базового функціоналу та робить систему надійною базою для подальшого масштабування.</p>
+<hr />
+<h3 id="11">🖥️ Слайд 11</h3>
+<p><strong>Перейдемо до демонстрації інтерфейсу.</strong> 
+Червона пунктирна лінія це прогноз навантаження на наступну добу. 
+Напівпрозора зона навколо неї це <strong>довірчий інтервал</strong>. Він враховує можливі відхилення і допомагає диспетчеру бачити коридор прогнозування.</p>
+<hr />
+<h3 id="12">🖥️ Слайд 12</h3>
+<p><strong>На цьому слайді показано цифрового двійника у дії.</strong> 
+На верхньому графіку чітко видно кореляцію: зростає навантаження — одразу зростає <strong>температура</strong> масла. 
+На нижньому моніториться водень (H2). Якщо водень різко стрибне, Health Score [хелс скор] миттєво впаде. Це дозволить диспетчеру запобігти аварії.</p>
+<hr />
+<h3 id="13">🖥️ Слайд 13</h3>
+<p><strong>Підбиваючи підсумки, хочу зазначити, що всі п'ять поставлених завдань виконано.</strong> </p>
+<p>По-перше, обґрунтовано вибір LSTM [ел-ес-ті-ем]. По-друге, розгорнуто хмарну архітектуру. По-третє, навчено нейромережу. По-четверте, інтегровано фізичну модель зносу. І по-п'яте, проведено верифікацію з похибкою менше 4%.</p>
+<h2 id="smart-city">Головне досягнення — це <strong>успішне схрещення ШІ з класичною фізикою</strong>. Це готове рішення для Smart City [смарт сіті], що може заощадити мільйони на ремонтах.</h2>
+<h3 id="14">🖥️ Слайд 14</h3>
+<p>Доповідь завершено. Дякую за увагу! 
+Буду радий відповісти на ваші запитання.</p>
+<hr />
+<h1 id="qa">📝 Детальний розбір по слайдах та Запитання (Q&amp;A)</h1>
+<h2 id="1_1">🖥️ Слайд 1. Титульний</h2>
+<p><strong>❓ Що таке рекурентні нейронні мережі (RNN) простими словами?</strong>
+✅ <strong>Відповідь:</strong> Звичайні нейромережі аналізують кожен факт окремо (як фотографію). А рекурентні мережі мають "пам'ять" — вони аналізують дані в послідовності, запам'ятовуючи вчорашній день. Це ідеально для графіку споживання.</p>
+<p><strong>❓ Що означає термін "предиктивна SaaS-платформа"?</strong>
+✅ <strong>Відповідь:</strong> Предиктивна означає завчасне передбачення навантаження (на 24 години), а не просто констатація аварії. SaaS — це "програма як послуга". Диспетчеру не треба купувати важке ПЗ, він просто відкриває дашборд у браузері.</p>
+<h2 id="2_1">🖥️ Слайд 2. Актуальність теми</h2>
+<p><strong>❓ Звідки система знає про погоду і що буде, якщо погодні дані пропадуть? (Як система розуміє, коли вмикати План Б?)</strong>
+✅ <strong>Відповідь:</strong> Метеодані підтягуються через зовнішнє API. У коді реалізовано блок <code>try-except</code>. Система робить запит до погодного сервера. Якщо сервер не відповідає (timeout) або видає помилку, програма перехоплює цю помилку (Exception) і не падає. Замість цього вона автоматично викликає резервну функцію (SARIMA Fallback), яка генерує прогноз суто по історії вчорашнього споживання, і виводить у логах попередження про використання резервного прогнозу.</p>
+<p><strong>❓ Що таке "предиктивне керування" і чим воно відрізняється від реактивного?</strong>
+✅ <strong>Відповідь:</strong> Реактивне керування — це коли диспетчер реагує на проблему, яка ВЖЕ сталася (наприклад, спрацювала автоматика і відключила лінію через перевантаження). А <strong>предиктивне керування</strong> (від слова predict - передбачати) — це управління на випередження. Штучний інтелект каже диспетчеру: "Завтра о 18:00 на цій підстанції буде критичне перевантаження і перегрів". Завдяки цьому диспетчер має цілу добу, щоб завчасно перерозподілити енергію на інші підстанції або попередити споживачів, не допускаючи аварії взагалі.</p>
+<p><strong>❓ Як це пов'язано зі Smart City (Розумним містом)?</strong>
+✅ <strong>Відповідь:</strong> У Розумному місті інфраструктура сама "розуміє" свій стан і прогнозує свої потреби. Моя система робить міську електромережу "розумною" — вона не просто передає струм, а аналізує погоду, історію та поведінку людей, щоб працювати безперебійно.</p>
+<hr />
+<h2 id="3_1">🖥️ Слайд 3. Мета та завдання дослідження</h2>
+<p><strong>❓ Що означає термін "предиктивна SaaS-платформа"?</strong>
+✅ <strong>Відповідь:</strong> Предиктивна — означає, що система завчасно передбачає навантаження (на 24 години у майбутнє), а не просто констатує аварію, яка вже сталася. SaaS (Software as a Service) — означає "програма як послуга". Тобто диспетчеру не треба встановлювати складне ПЗ чи купувати сервери; він просто відкриває дашборд у браузері, а всі важкі розрахунки нейромережі робляться у хмарі.</p>
+<p><strong>❓ Що таке MAPE (як розшифровується)?</strong>
+✅ <strong>Відповідь:</strong> MAPE розшифровується як <strong>M</strong>ean <strong>A</strong>bsolute <strong>P</strong>ercentage <strong>E</strong>rror (Середня абсолютна відсоткова похибка). Це стандартна метрика в машинному навчанні, яка показує, на скільки відсотків у середньому мій прогноз помиляється відносно реального значення. Наприклад, MAPE 3% означає, що ми вгадуємо навантаження з точністю 97%.</p>
+<p><strong>❓ Чому саме 9 ознак для нейромережі?</strong>
+✅ <strong>Відповідь:</strong> Споживання, температура, хмарність, вологість, вітер + 4 часові ознаки (косинус/синус часу). Кожна група давала математично підтверджене зниження похибки.</p>
+<hr />
+<h2 id="4-lstm">🖥️ Слайд 4. Порівняльний аналіз (Чому LSTM?)</h2>
+<p><strong>❓ Що таке ARIMA і як вона розшифровується?</strong> ⚠️ <strong>ПИТАННЯ ВІД ЕКСПЕРТА!</strong>
+✅ <strong>Відповідь:</strong> ARIMA — це AutoRegressive Integrated Moving Average (Авторегресійна інтегрована ковзна середня). Вона складається з 3 частин: AR (залежність від минулих значень), I (диференціювання для згладжування тренду), MA (залежність від минулих похибок). Це класика статистичного прогнозування.</p>
+<p><strong>❓ Чому ви вважаєте, що ARIMA "погано працює", якщо це класика? Чим LSTM краще?</strong> ⚠️ <strong>ГОЛОВНЕ ПИТАННЯ!</strong>
+✅ <strong>Відповідь:</strong> Я дуже поважаю ARIMA! Насправді я <strong>використав SARIMA у своєму проєкті як резервний Fallback-механізм</strong>. Якщо погодні сервери падають, система перемикається на SARIMA, бо вона ідеально працює з одним рядом (лише історією споживання). АЛЕ для основної моделі мені треба було згодувати системі аж <strong>9 різних ознак</strong> одночасно (температура, вологість, хмарність, час). ARIMA (і навіть ARIMAX) дуже важко перетравлює таку велику кількість нелінійних факторів погоди. LSTM з її внутрішніми гейтами (вентилями пам'яті) знаходить нелінійні зв'язки між погодою і споживанням набагато ефективніше.</p>
+<p><strong>❓ Що таке XGBoost і чому він не підійшов?</strong>
+✅ <strong>Відповідь:</strong> XGBoost — це алгоритм на основі дерев рішень (градієнтний бустинг). Він класний, але щоб він зрозумів "час", треба вручну створювати сотні часових ознак (lag features). До того ж, на великих об'ємах даних він працює повільніше в реальному часі (низька швидкість інференсу), ніж оптимізована нейромережа.</p>
+<p><strong>❓ Чому на одних підстанціях (Вінниця, Запорізька) похибка менше 4%, а на інших (Слобожанська, Полтава) — близько 6%? Це проблема моделі?</strong> ⚠️ <strong>ВАЖЛИВЕ ПИТАННЯ!</strong>
+✅ <strong>Відповідь:</strong> Ні, це не проблема моделі, це об'єктивна фізика мережі. Річ у базовій ентропії (шумності) даних. Транзитні підстанції (Вінниця) мають дуже стабільний і плавний графік — там гібридна модель легко досягає еталонних 3.5-3.9%. А от великі індустріальні вузли (Харків/Слобожанська) мають дуже "рваний" графік через хаотичне включення заводів або перемикання ліній. Передбачити такий хаос з похибкою менше 4% математично неможливо без жорсткого перенавчання (overfitting). Тому 6% для промислового вузла — це насправді блискучий результат, який рятує мережу від аварій.</p>
+<p><strong>❓ Що таке показник R² (R-квадрат), який у вас на графіках дорівнює 0.98?</strong>
+✅ <strong>Відповідь:</strong> R² (Коефіцієнт детермінації) показує, наскільки наша модель краща за "дурний" прогноз. Уявіть, що ми б взагалі не робили нейромережу, а просто завжди прогнозували середнє значення за день (провели б пряму горизонтальну лінію). R² = 0.98 означає, що моя модель пояснює і вловлює <strong>98%</strong> усіх коливань і стрибків графіка порівняно з цією базовою середньою лінією. Це показник дуже високої адекватності моделі.</p>
+<p><strong>❓ Чому на графіку "Вартість генерації" фігурують такі величезні суми (понад 1 мільярд гривень на добу)? Це реальні цифри?</strong>
+✅ <strong>Відповідь:</strong> Так, це абсолютно реальні макроекономічні показники оптового ринку електроенергії України. Давайте порахуємо: середнє навантаження енергосистеми становить близько 14 000 МВт. За добу це 14 000 × 24 = 336 000 МВт·год. Середня оптова ціна електроенергії (РДН) становить близько 3500–4000 грн за 1 МВт·год. Отже, 336 000 × 4000 = 1,34 мільярда гривень на добу. Це доводить, що моя система оперує реальними економічними масштабами країни, а оптимізація хоча б на 1% економить десятки мільйонів гривень щодня.</p>
+<p><strong>❓ Чому базова RNN "забуває" історію, а LSTM — ні? (Що таке LSTM?)</strong>
+✅ <strong>Відповідь:</strong> Базова RNN (Рекурентна нейромережа) страждає від проблеми "згасаючого градієнта". Вона пам'ятає вчорашній день, але вже забуває те, що було місяць тому. А <strong>LSTM</strong> (Long Short-Term Memory) — це особлива RNN. Вона має систему "вентилів" (гейтів). Ці вентилі працюють як фільтр: вони вирішують, яку інформацію (наприклад, сезонність) варто запам'ятати надовго, а яку (наприклад, випадковий скачок світла) — забути.</p>
+<p><strong>❓ У чому різниця між моделями V1 та V2? Чому V2 краща?</strong>
+✅ <strong>Відповідь:</strong> Модель <strong>V1</strong> — це класична архітектура зі статті. Її єдиний вхідний параметр — це історія самого графіка споживання (тільки 1 ознака). Вона добре вловлює чисту математику хвилі, але "не розуміє" контексту. Модель <strong>V2</strong> — це моя власна вдосконалена архітектура. Я додав туди календарно-часовий контекст: Годину доби, День тижня та Місяць (тобто 4 ознаки). Тепер мережа "розуміє", що, наприклад, у неділю вранці заводи не працюють, і не намагається тягнути графік вгору, як вона робила б це в понеділок. Завдяки розумінню "людського фактору" похибка V2 значно менша.</p>
+<p><strong>❓ Ви згадали про "закон Арреніуса" для розрахунку зносу трансформаторів. Що це таке і як він тут застосовується?</strong>
+✅ <strong>Відповідь:</strong> Закон Арреніуса — це фундаментальний закон фізичної хімії, який описує залежність швидкості хімічних реакцій від температури. В енергетиці (згідно зі стандартами IEEE) він застосовується для розрахунку терміну служби целюлозної ізоляції трансформатора. Практичне правило Арреніуса для трансформаторів звучить так: <strong>"Кожні додаткові 6 градусів Цельсія вище номінальної температури (наприклад, вище 98°C) прискорюють старіння ізоляції у 2 рази"</strong>. Тобто, якщо трансформатор працюватиме не при 98°C, а при 104°C, його розрахунковий термін служби скоротиться з 20 років до 10. Моя система (Цифровий Двійник) використовує це рівняння, щоб перевести температуру перегріву безпосередньо у відсотки втраченого ресурсу (Health Score).</p>
+<p><strong>❓ Як саме ви отримали графік "Результати точності" (порівняння ARIMA та LSTM)? Звідки ці цифри?</strong>
+✅ <strong>Відповідь:</strong> Цей графік — це результат класичного бектестингу (Backtesting) на реальних історичних даних. Я взяв масив даних (наприклад, за місяць) і розділив його на дві частини: 80% — для навчання, 20% — для тестування (приховані дані). Обидві моделі (ARIMA та LSTM) "навчалися" на перших 80%, а потім робили прогноз на ті самі тестові 20%. Далі я порівняв їхні прогнози з <strong>реальними (фактичними)</strong> показниками, які були приховані від моделей. Похибку я рахував за метрикою <strong>MAPE</strong> (Mean Absolute Percentage Error) — вона показує середнє відхилення у відсотках. У результаті класична математична модель ARIMA помилялася в середньому на 10-11%, тоді як моя навчена нейромережа LSTM (завдяки розумінню контексту та погоди) показала похибку менше 4%. Саме так я довів, що ШІ ефективніший майже в 3 рази.</p>
+<p><strong>❓ Чому не використали сучасні Трансформери (Transformer)?</strong>
+✅ <strong>Відповідь:</strong> Це дуже хороше питання. Трансформери потребують значно більше ресурсів і надпотужних відеокарт (GPU). Для прикладного прогнозування на рівні локальних підстанцій LSTM дає ідеальний баланс високої точності та швидкості роботи.</p>
+<hr />
+<h2 id="5_1">🖥️ Слайд 5. Архітектура платформи</h2>
+<p><strong>❓ Чому саме Streamlit для інтерфейсу і що таке Plotly?</strong>
+✅ <strong>Відповідь:</strong> Streamlit — це ідеальний фреймворк для швидкої розробки дашбордів на Python. А Plotly — це бібліотека всередині нього, яка малює <strong>інтерактивні графіки</strong>. На відміну від звичайних картинок, графіки Plotly можна зумувати, наводити мишкою і бачити точні цифри. Для диспетчера енергомережі це дуже важливо.</p>
+<p><strong>❓ Чому обрали TensorFlow для нейромережі (а не, наприклад, PyTorch)?</strong>
+✅ <strong>Відповідь:</strong> TensorFlow (через API Keras) є індустріальним стандартом від Google, який ідеально підходить саме для виведення моделей у продакшн (SaaS). У ньому є дуже зручні та потужні готові класи для LSTM-шарів, які працюють надзвичайно швидко. PyTorch частіше використовують для наукових експериментів, а TensorFlow — для стабільних комерційних платформ, якою і є EnergyMonitor.</p>
+<p><strong>❓ Що таке ORM (SQLAlchemy ORM) на слайді?</strong>
+✅ <strong>Відповідь:</strong> ORM розшифровується як Object-Relational Mapping. Це технологія, яка дозволяє працювати з базою даних через звичайний Python-код, а не писати сирі SQL-запити. Це пришвидшує розробку і захищає від SQL-ін'єкцій.</p>
+<p><strong>❓ Що дає використання Docker? навіщо він?</strong>
+✅ <strong>Відповідь:</strong> Docker створює ізольований "контейнер" для програми. Уявіть, що це віртуальна коробка, де лежить мій код і всі необхідні бібліотеки. Завдяки цьому моя програма гарантовано запуститься на будь-якому комп'ютері чи сервері точно так само, як і на моєму ноутбуці.</p>
+<p><strong>❓ Що буде, якщо "впаде" база даних Neon?</strong>
+✅ <strong>Відповідь:</strong> У коді реалізовано механізм Graceful Retry з кешуванням. Система покаже останні збережені дані з пам'яті.</p>
+<hr />
+<h2 id="6_1">🖥️ Слайд 6. Математичне забезпечення</h2>
+<p><strong>❓ Перерахуйте всі 9 ознак, які йдуть на вхід нейромережі.</strong>
+✅ <strong>Відповідь:</strong> У нас є 5 фізичних параметрів та 4 часові:
+  1. <strong>Історія навантаження</strong> (МВт).
+  2. <strong>Температура трансформатора</strong> (температура масла).
+  3. <strong>Рівень водню (H2 ppm)</strong> — показник внутрішнього зносу ізоляції.
+  4. <strong>Індекс здоров'я (Health Score)</strong> — загальний стан обладнання від Цифрового Двійника.
+  5. <strong>Температура повітря</strong> на вулиці.
+  Та 4 циклічні часові ознаки:
+  6. <strong>Синус години</strong> (<code>sin_h</code>).
+  7. <strong>Косинус години</strong> (<code>cos_h</code>).
+  8. <strong>Синус дня тижня</strong> (<code>sin_d</code>).
+  9. <strong>Косинус дня тижня</strong> (<code>cos_d</code>).</p>
+<p><strong>❓ Як саме працює циклічне кодування часу (через синус і косинус)?</strong>
+✅ <strong>Відповідь:</strong> *   <strong>hour</strong> — поточна година (число від 0 до 23).
+  *   <strong>24</strong> — кількість годин у добі. Година ділиться на 24, щоб отримати відсоток проходження доби.
+  *   <strong>2π</strong> (два пі) — це повне коло в радіанах (360 градусів). Поточний час ставиться як точка на колі (циферблаті).
+  *   <strong>sin / cos</strong> — вираховують координати цієї точки. Завдяки цьому, для нейромережі 23-тя година і 0-ва (північ) знаходяться поруч на колі. Якби я просто давали числа (0...23), то 23 і 0 були б математично дуже далеко одне від одного, і мережа б "спотикалася" опівночі.</p>
+<p><strong>❓ Поясніть кожну букву у формулі Huber Loss.</strong>
+✅ <strong>Відповідь:</strong> Huber Loss — це "розумний штраф" для нейромережі, коли вона помиляється.
+  *   <strong><span class="arithmatex">\(L_\delta(e)\)</span></strong> — саме значення штрафу (Loss).
+  *   <strong><span class="arithmatex">\(e\)</span></strong> (від слова error) — це похибка: різниця між тим, що мережа напрогнозувала, і що сталось насправді.
+  *   <strong><span class="arithmatex">\(\delta\)</span> (дельта)</strong> — це поріг, який я задаю сам. Він відділяє "нормальну похибку" від "аномального викиду" (наприклад, аварії).
+  *   <strong>Верхній рядок (<span class="arithmatex">\(\frac{1}{2} e^2\)</span>)</strong>: діє, коли похибка менша за дельту (<span class="arithmatex">\(|e| \le \delta\)</span>). Це формула MSE (середньоквадратична похибка). Вона змушує мережу дуже точно підганяти прогноз до реальності.
+  *   <strong>Нижній рядок (<span class="arithmatex">\(\delta |e| - ...\)</span>)</strong>: діє, коли похибка величезна (<span class="arithmatex">\(|e| &gt; \delta\)</span>). Це наближення до формули MAE (по модулю). Воно рятує мережу від паніки, якщо в даних стався раптовий стрибок напруги чи поломка лічильника. Мережа штрафується, але не критично.</p>
+<hr />
+<h2 id="7_1">🖥️ Слайд 7. База даних та Інтерфейс</h2>
+<p><strong>❓ Ви пишете про 8 вкладок, але на скріншоті їх не видно. Де вони?</strong>
+✅ <strong>Відповідь:</strong> На скріншоті показано глобальний дашборд "Оперативний моніторинг", який завжди висить зверху екрану для оператора. А самі 8 вкладок (розділів) знаходяться в навігаційному меню трохи нижче, вони просто не влізли в цей скріншот.</p>
+<p><strong>❓ Перерахуйте ці 8 вкладок вашої системи.</strong>
+✅ <strong>Відповідь:</strong> 1) Карта мережі (GIS), 2) Споживання, 3) Генерація, 4) Журнал аварій, 5) Економіка (Фінанси), 6) AI Аналітика (Цифровий двійник), 7) Прогноз ШІ, 8) Цифровий архів.</p>
+<p><strong>❓ Що таке схема "Зірка" (Star Schema)?</strong>
+✅ <strong>Відповідь:</strong> Це спосіб організації бази даних для аналітики (OLAP). Є одна величезна центральна таблиця з фактами (мої <code>LoadMeasurements</code> — навантаження, температура), а навколо неї, як промені зірки, дрібні таблиці-довідники (назви підстанцій, регіони). Це дозволяє робити дуже швидкі вибірки без десятків "важких" JOIN-ів.</p>
+<p><strong>❓ Що таке композитні B-Tree індекси?</strong>
+✅ <strong>Відповідь:</strong> B-Tree (збалансоване дерево) — це класичний метод індексації в базах даних, який працює як алфавітний покажчик у книзі. А "композитний" означає, що індекс побудовано одразу по кількох колонках (наприклад, <code>id_підстанції</code> + <code>час</code>). Це пришвидшує пошук історичних даних у сотні разів.</p>
+<p><strong>❓ Що означає Granular Rendering у Streamlit?</strong>
+✅ <strong>Відповідь:</strong> Streamlit за замовчуванням перемальовує всю сторінку при будь-якій зміні. Це викликає "миготіння" (flickering). Granular Rendering (через використання <code>st.fragment</code> або кастомних контейнерів) дозволяє оновлювати лише один конкретний графік чи цифру, поки решта інтерфейсу залишається нерухомою.</p>
+<hr />
+<h2 id="8_1">🖥️ Слайд 8. Цифровий двійник</h2>
+<p><strong>❓ Звідки ви взяли формули для нагрівання трансформатора?</strong>
+✅ <strong>Відповідь:</strong> З офіційного міжнародного стандарту IEEE C57.91, який описує термічне навантаження масляних трансформаторів.</p>
+<p><strong>❓ Що таке Закон Арреніуса?</strong>
+✅ <strong>Відповідь:</strong> Фізичний закон старіння матеріалів. У моєму випадку: +6 градусів перегріву вище норми = прискорення зносу паперової ізоляції трансформатора у 2 рази.</p>
+<p><strong>❓ Як ви рахуєте коефіцієнт K?</strong>
+✅ <strong>Відповідь:</strong> Коефіцієнт K — це просто відношення поточного навантаження до номінального (максимально допустимого). Грубо кажучи: якщо K дорівнює одиниці, трансформатор працює на 100% своїх можливостей. Якщо K більше одиниці — це вже перевантаження, і він починає грітися.</p>
+<p><strong>❓ Як формується Health Score (0-100%)?</strong>
+✅ <strong>Відповідь:</strong> Це комплексна метрика. Вона стартує зі 100% (ідеальний стан) і поступово знижується, якщо трансформатор працює в перевантаженні (високий K), перегрівається (Hot-Spot), або якщо росте рівень розчинених газів (наприклад, H2).</p>
+<hr />
+<h2 id="9_1">🖥️ Слайд 9. Тестування та результати точності</h2>
+<p><strong>❓ Що таке MAPE?</strong>
+✅ <strong>Відповідь:</strong> Mean Absolute Percentage Error (Середня абсолютна похибка у відсотках). Це головна метрика в прогнозуванні, яка показує, на скільки відсотків у середньому помиляється модель. Менше 4% — це відмінний результат для енергетики.</p>
+<p><strong>❓ Як працює ваш конвеєр тестування (CI/CD)?</strong>
+✅ <strong>Відповідь:</strong> Коли я пишу новий код і роблю "Git Push", GitHub Actions автоматично запускає 94 автотести. Якщо тести пройдені успішно, створюється Docker-образ, який автоматично розгортається на хмарному сервері Render. Це гарантує, що в продакшн не потрапить зламаний код.</p>
+<hr />
+<h2 id="10_1">🖥️ Слайд 10. Протоколи автоматизованого тестування</h2>
+<p><strong>❓ Що означає "Coverage 97%"?</strong>
+✅ <strong>Відповідь:</strong> Це відсоток рядків коду в моїй програмі, які були реально виконані і перевірені автоматичними тестами. 97% — це дуже високий показник індустріального рівня.</p>
+<p><strong>❓ Який стек технологій використовується для автоматизації?</strong>
+✅ <strong>Відповідь:</strong> Для автоматизації тестування використовується фреймворк <code>pytest</code>, а для забезпечення безперервної інтеграції та доставки (CI/CD) — <code>GitHub Actions</code> та <code>Docker</code>.</p>
+<hr />
+<h2 id="11_1">🖥️ Слайд 11. Результати прогнозування</h2>
+<p><strong>❓ Що саме означає заштрихована зона (довірчий інтервал) на графіку?</strong>
+✅ <strong>Відповідь:</strong> Вона показує рівень впевненості у прогнозі. Якщо зона вузька — модель впевнена, що навантаження буде саме таким. Якщо вона розширюється (наприклад, через різку зміну погоди), модель попереджає диспетчера про можливі значні коливання.</p>
+<p><strong>❓ Чому ви обрали саме LSTM, а не простішу модель, як ARIMA?</strong>
+✅ <strong>Відповідь:</strong> LSTM (Long Short-Term Memory) краще вловлює складні нелінійні залежності та довгострокові часові патерни в енергетичних даних, що критично для точного прогнозування навантаження в умовах сучасних змін клімату та динамічного балансування мережі.</p>
+<p><strong>❓ Наскільки точним є прогноз? Як ви оцінювали якість моделі?</strong>
+✅ <strong>Відповідь:</strong> Якість моделі оцінювалася за метрикою MAPE (середня абсолютна відсоткова похибка). Для глобальної системи вона склала менше 4%, що є високим показником для завдань прогнозування енергетичних навантажень. Детальні результати порівняння з ARIMA представлені на дев'ятому слайді.</p>
+<hr />
+<h2 id="12_1">🖥️ Слайд 12. Демонстрація: Модуль цифрового двійника</h2>
+<p><strong>❓ Ці дані збираються з реального трансформатора прямо зараз?</strong>
+✅ <strong>Відповідь:</strong> Ні, це симуляційна модель (програмно-апаратний комплекс у розробці). Дані для навантаження взяті з реальних історичних баз, а фізичні процеси нагрівання і генерації газів розраховуються математичною моделлю (Цифровим двійником) за стандартом IEEE.</p>
+<p><strong>❓ Чому ви моніторите саме водень (H2) на нижньому графіку?</strong>
+✅ <strong>Відповідь:</strong> У трансформаторній діагностиці поява водню в маслі — це перша ознака часткових розрядів або перегріву ізоляції. Це найшвидший індикатор того, що всередині бака щось йде не так.</p>
+<p><strong>❓ Чому температура масла зростає не одразу після навантаження, а з затримкою?</strong>
+✅ <strong>Відповідь:</strong> Через теплову інерцію. Трансформатор має велику масу металу та масла, тому потрібен час, щоб виділене тепло прогріло весь об'єм. Це класичний фізичний процес, який мій двійник чудово симулює.</p>
+<hr />
+<p><strong>🔥 ЗАГАЛЬНІ ПИТАННЯ (які можуть пролунати в кінці):</strong></p>
+<p><strong>❓ Що плануєте робити далі?</strong>
+✅ <strong>Відповідь:</strong> Додати інтерактивну симуляцію погоди (щоб можна було вручну повзунками міняти температуру і дивитися, як змінюється знос трансформатора).</p>
+<p><strong>❓ Яка економічна ефективність для Укренерго/ДТЕК?</strong>
+✅ <strong>Відповідь:</strong> Значне скорочення витрат на екстрені заміни згорілих трансформаторів + можливість купувати електроенергію на ринку без штрафів за небаланс завдяки точному прогнозу.</p>
+<p><strong>❓ Чому ви часто кажете SARIMA замість класичної ARIMA?</strong>
+✅ <strong>Відповідь:</strong> Це не помилка, а свідомий вибір. Класична ARIMA не розуміє періодичності. Але графік споживання електроенергії має яскраво виражену сезонність (наприклад, піки щодня о 19:00). Тому я використав саме <strong>SARIMA (Seasonal ARIMA)</strong>, яка містить літеру "S" (Seasonal) і математично здатна враховувати добові цикли навантаження.</p>
+<p><strong>❓ На якій стадії зараз розробка?</strong>
+✅ <strong>Відповідь:</strong> Програма знаходиться на стадії MVP (Beta-версія). З точки зору архітектури вона повністю готова: запакована в Docker, має налаштований CI/CD конвеєр та хмарну базу даних. Для повноцінного Production бракує лише підключення до реальних апаратних SCADA-датчиків (зараз використовується завантажений датасет).</p>
+<p><strong>❓ Чи може пересічна людина нею скористатися (навіщо ви залили її в інтернет)?</strong>
+✅ <strong>Відповідь:</strong> За прямим призначенням пересічній людині це не потрібно. Це спеціалізований B2B продукт для диспетчерів Укренерго/ДТЕК або операторів Smart City. В інтернет на платформу Render я розгорнув її виключно як публічний демо-стенд (Proof of Concept) спеціально для комісії, щоб ви могли оцінити живий працюючий інтерфейс. У разі реального впровадження система розгортається на закритих внутрішніх серверах.</p>
+<p><strong>❓ Чим Ваша розробка краща за інші?</strong>
+✅ <strong>Відповідь:</strong> Гібридністю. Більшість конкурентів роблять АБО тільки ШІ-прогноз навантаження, АБО тільки моніторинг датчиками. Моя система бере ШІ-прогноз майбутнього і передає його у фізичну модель Цифрового двійника. Це дозволяє попередити диспетчера про перегрів за 24 години до його настання (перехід до предиктивного обслуговування).</p>
+<p><strong>❓ Чи впроваджена ця система вже зараз на реальному підприємстві (Акт впровадження)?</strong>
+✅ <strong>Відповідь:</strong> На даному етапі це <strong>Proof of Concept (PoC)</strong> — повноцінний робочий прототип (MVP), який доводить життєздатність гібридного підходу. Архітектура повністю готова до розгортання в хмарі, тому наступним кроком є пілотне тестування на базі реальної підстанції.</p>
+<p><strong>❓ Звідки ви брали дані? Цей моніторинг підключений до реальної мережі чи це симуляція?</strong>
+✅ <strong>Відповідь:</strong> Тут є два етапи. <strong>Перший етап (навчання ШІ):</strong> Нейромережа навчалася та тестувалася на <strong>реальних історичних даних</strong> відкритого еталонного датасету PJM Interconnection (енергомережа США). Саме на реальних даних я довів математичну точність моделі (похибка менше 4%). 
+    <strong>Другий етап (демонстраційний інтерфейс):</strong> Оскільки я не маю прямого доступу до "живих" SCADA-датчиків Укренерго (це закрита комерційна таємниця), для роботи хмарного дашборду я написав <strong>програмний симулятор</strong> (<code>db_seeder.py</code>). Він генерує реалістичні дані навантаження, погоди та показники Цифрового двійника (температуру, водень) і записує їх у базу, імітуючи роботу справжньої підстанції. Це доводить, що сама архітектура платформи повністю готова і працює. Щойно систему підключать до реального датчика — вона почне аналізувати живі дані без зміни коду.</p>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/polyfill/3.111.0/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      
+        <script src="../../javascripts/syntax_highlighter.js"></script>
+      
+        <script src="../../javascripts/diagram_lightbox.js"></script>
+      
+    
+  </body>
+</html>

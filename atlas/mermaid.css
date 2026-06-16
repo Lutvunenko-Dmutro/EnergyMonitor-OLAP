@@ -1,0 +1,137 @@
+/* 📊 Atlas Mermaid - Diagram & Flowchart Styling */
+
+.diagram-outer-wrapper { 
+    background: rgba(15, 23, 42, 0.4); 
+    border-radius: 20px; 
+    padding: 30px; 
+    border: 1px solid var(--border); 
+    box-shadow: inset 0 0 40px rgba(0,0,0,0.5); 
+    overflow-x: auto; /* Enable horizontal scrolling to prevent squishing */
+    width: 100%;
+    display: block;
+    -webkit-overflow-scrolling: touch;
+}
+
+.mermaid { 
+    color: white; 
+    text-align: center; 
+    display: inline-block;
+    min-width: 100%;
+}
+
+.mermaid svg {
+    max-width: 100%;
+    height: auto !important; /* Keep aspect ratio intact */
+}
+
+/* 🔍 Diagram Lightbox (Fullscreen Modal) */
+.diagram-lightbox-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(10px);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.diagram-lightbox-modal.active {
+    display: flex;
+}
+
+.diagram-lightbox-content {
+    background: #0f172a;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 95%;
+    max-height: 95%;
+    overflow: auto;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    position: relative;
+}
+
+/* Make sure the diagram inside modal has a comfortable large width */
+.diagram-lightbox-content .mermaid {
+    min-width: 1200px !important;
+}
+
+.diagram-lightbox-content .mermaid svg {
+    max-width: 100%;
+    height: auto !important;
+}
+
+.diagram-lightbox-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: var(--text-dim);
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s, background 0.2s;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+}
+
+.diagram-lightbox-close:hover {
+    color: var(--accent);
+    background: rgba(255,255,255,0.1);
+}
+
+/* 🏷️ Hover Expand Button on diagrams */
+.diagram-outer-wrapper {
+    position: relative;
+    cursor: zoom-in;
+}
+
+.diagram-expand-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--accent);
+    padding: 6px 12px;
+    font-size: 11px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s, background 0.2s, color 0.2s;
+    pointer-events: none;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+.diagram-outer-wrapper:hover .diagram-expand-btn {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.diagram-expand-btn:hover {
+    background: var(--accent);
+    color: #0f172a;
+}
+
+/* MERMAID NODE STYLING (SVG Targets) */
+.mermaid #M rect { fill: #0369a1 !important; stroke: #38bdf8 !important; }
+.mermaid #L rect, .mermaid #W rect { fill: #1e293b !important; stroke: #94a3b8 !important; }
+.mermaid #D rect, .mermaid #P rect { fill: rgba(34,197,94,0.1) !important; stroke: #22c55e !important; }
+.mermaid #S rect, .mermaid #H rect, .mermaid #B rect { fill: rgba(168,85,247,0.1) !important; stroke: #a855f7 !important; }
+.mermaid #ST rect { fill: #0f172a !important; stroke: #38bdf8 !important; }
+.mermaid #END rect { fill: rgba(34,197,94,0.2) !important; stroke: #4ade80 !important; }
+.mermaid .rhombus { fill: #1e293b !important; stroke: #38bdf8 !important; }

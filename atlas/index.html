@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep CodeViz | EnergyMonitor Architecture</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.26.0/cytoscape.min.js"></script>
+    <script src="https://unpkg.com/cytoscape-expand-collapse/cytoscape-expand-collapse.js"></script>
+    <script src="https://unpkg.com/layout-base/layout-base.js"></script>
+    <script src="https://unpkg.com/cose-base/cose-base.js"></script>
+    <script src="https://unpkg.com/cytoscape-fcose/cytoscape-fcose.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script src="data.js?v=deep"></script>
+    <script src="status.js?v=realtime"></script>
+    <script src="logs_data.js?v=realtime"></script>
+    <script src="app.js?v=modular"></script>
+    <link rel="stylesheet" href="style.css?v=deep">
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <div id="loader">
+        <div class="loader-content" style="text-align:center;">
+            <div class="spinner" style="margin: 0 auto 20px;"></div>
+            <h2 style="font-weight:900; letter-spacing:2px;">SYSTEM INITIALIZING</h2>
+            <p id="loader-status" style="font-size:0.7rem; color:var(--accent); opacity:0.7;">Mapping Neural Call Graph...</p>
+            <div class="progress-container">
+                <div id="progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <aside id="sidebar">
+        <div class="title-group">
+            <h1>Deep CodeViz</h1>
+            <p>Function Call Graph</p>
+        </div>
+
+        <div class="system-status">
+            <label style="font-size:0.5rem; color:var(--accent); letter-spacing:2px; display:block; margin-bottom:10px;">SYSTEM MONITOR</label>
+            <div class="status-row"><span>ML Engine</span><div class="status-led led-dim" id="led-ml"></div></div>
+            <div class="status-row"><span>UI Dashboard</span><div class="status-led led-dim" id="led-ui"></div></div>
+            <div class="status-row"><span>Simulation</span><div class="status-led led-dim" id="led-sim"></div></div>
+        </div>
+
+        <div class="focus-mode" style="margin-bottom:20px;">
+            <label style="font-size:0.5rem; color:var(--accent); letter-spacing:2px; display:block; margin-bottom:10px;">FOCUS MODE</label>
+            <button class="filter-btn" onclick="focusMain()"><i data-lucide="zap"></i> Entry Point: MAIN</button>
+            <button class="filter-btn secondary" onclick="resetFilter()" style="margin-top:5px;">Show All</button>
+        </div>
+
+        <input type="text" class="search-box" placeholder="Шукати функцію..." id="search-input" oninput="filterGraph()">
+
+        <div class="stats-grid">
+            <div class="stat-box"><span id="stat-nodes">0</span><label>Entities</label></div>
+            <div class="stat-box">
+                <button class="refresh-btn" onclick="runLayout()"><i data-lucide="refresh-cw"></i> Оновити</button>
+            </div>
+        </div>
+
+        <div id="legend" style="font-size:0.6rem; color:rgba(255,255,255,0.4); margin-top:20px; line-height:1.5;">
+            <b style="color:white; display:block; margin-bottom:5px;">ЛЕГЕНДА:</b>
+            <span style="color:#c084fc">■ Фіолетовий квадрат</span> — Папка<br>
+            <span style="color:#22d3ee">□ Блакитний квадрат</span> — Файл (.py)<br>
+            <span style="color:#00f2ff">● Мала точка</span> — Функція
+        </div>
+    </aside>
+
+    <main id="viewport">
+        <div id="cy"></div>
+        <div id="console-panel">
+            <div class="console-header">
+                <div class="console-tabs">
+                    <div class="console-tab active" id="tab-main" onclick="switchTab('main')">TERMINAL</div>
+                    <div class="console-tab" id="tab-errors" onclick="switchTab('errors')">ERRORS</div>
+                </div>
+                <div style="flex:1"></div>
+                <div class="console-tools"><span style="font-size:0.6rem; opacity:0.5;">LIVE LOGS</span></div>
+            </div>
+            <div id="console-output" class="console-body"></div>
+        </div>
+
+        <div id="inspector">
+            <div style="position:absolute; top:20px; right:20px; cursor:pointer; opacity:0.3;" onclick="closeInspector()"><i data-lucide="x"></i></div>
+            <h2 id="i-label" style="margin-bottom:5px;">Function</h2>
+            <p id="i-module" style="font-size:0.6rem; opacity:0.5; margin-bottom:15px; font-family:'JetBrains Mono';"></p>
+            <div id="i-doc-container" style="margin-bottom:20px; display:none;">
+                <label style="font-size:0.5rem; text-transform:uppercase; color:var(--accent); font-weight:900;">Docstring</label>
+                <p id="i-doc" style="font-size:0.65rem; line-height:1.4; color:var(--text-dim); background:rgba(255,255,255,0.03); padding:10px; border-radius:8px;"></p>
+            </div>
+            <label style="font-size:0.5rem; text-transform:uppercase; color:var(--accent); font-weight:900;">Source Code</label>
+            <div style="background:rgba(0,0,0,0.3); border-radius:10px; border:1px solid var(--border); overflow:hidden; margin-bottom:20px;">
+                <pre id="i-code" style="font-family:'JetBrains Mono'; font-size:0.6rem; padding:15px; overflow-x:auto; max-height:250px; color:#a5f3fc;"></pre>
+            </div>
+            <label style="font-size:0.5rem; text-transform:uppercase; color:var(--accent); font-weight:900;">Call Connections</label>
+            <ul class="dep-list" id="i-deps"></ul>
+            
+            <div id="execution-panel" style="margin-top:20px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.1); display:none;">
+                <label style="font-size:0.5rem; text-transform:uppercase; color:#10b981; font-weight:900; display:flex; align-items:center; gap:5px;"><i data-lucide="play-circle" style="width:12px;height:12px;"></i> Live Execution</label>
+                <div style="margin-top:10px;">
+                    <input type="text" id="exec-args" placeholder="ARGS (JSON list: [1, 'test'])" style="width:100%; background:rgba(0,0,0,0.3); border:1px solid var(--border); color:#fff; padding:8px; border-radius:5px; font-family:'JetBrains Mono'; font-size:0.6rem; margin-bottom:5px;">
+                    <input type="text" id="exec-kwargs" placeholder='KWARGS (JSON dict: {"a": 1})' style="width:100%; background:rgba(0,0,0,0.3); border:1px solid var(--border); color:#fff; padding:8px; border-radius:5px; font-family:'JetBrains Mono'; font-size:0.6rem; margin-bottom:10px;">
+                    <button onclick="executeFunction()" style="width:100%; background:#059669; color:white; border:none; padding:10px; border-radius:5px; font-weight:bold; cursor:pointer; display:flex; justify-content:center; align-items:center; gap:5px; font-size:0.6rem; text-transform:uppercase;"><i data-lucide="zap" style="width:12px;height:12px;"></i> Execute</button>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
