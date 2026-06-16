@@ -144,28 +144,7 @@ def finalize_backtest_metrics(version: str, all_preds_scaled: np.ndarray, shared
     
     actual, preds = merged["actual_load_mw"].values, merged["predicted_load_mw"].values
     
-    # ─── HYBRID LSTM + ADAPTIVE AR ERROR CORRECTION ──────────────────────
-    # Адаптивний алгоритм пошуку оптимального коефіцієнта авторегресії (Adaptive ECM).
-    # Він автоматично підбирає такий alpha, який мінімізує MAPE для поточної підстанції.
-    if len(preds) > 1:
-        best_mape = float('inf')
-        best_preds = np.copy(preds)
-        
-        # Скануємо можливі значення alpha від 0.3 до 0.95
-        for alpha_cand in np.arange(0.3, 0.96, 0.05):
-            temp_preds = np.copy(preds)
-            for i in range(1, len(temp_preds)):
-                prev_error = actual[i-1] - temp_preds[i-1]
-                temp_preds[i] += alpha_cand * prev_error
-                
-            temp_mape = np.mean(np.abs((actual[1:] - temp_preds[1:]) / actual[1:])) * 100
-            if temp_mape < best_mape:
-                best_mape = temp_mape
-                best_preds = np.copy(temp_preds)
-                
-        preds = best_preds
-        merged["predicted_load_mw"] = preds
-    # ────────────────────────────────────────────────────────────
+    # (Adaptive Error Correction removed to prevent visual saw-tooth artifacts on the dashboard)
     
     mask = _get_outlier_mask(actual, preds)
     

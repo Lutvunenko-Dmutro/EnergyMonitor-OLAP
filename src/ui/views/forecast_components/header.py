@@ -34,9 +34,11 @@ def render_forecast_header(sub_name, sub_label, data_source):
     col1, col2 = st.columns([2, 3])
     
     with col1:
+        if src_type == "CSV" and st.session_state.get("tab_multi_model_toggle", False):
+            st.session_state["tab_multi_model_toggle"] = False
+
         is_multi_model = st.toggle(
             "🧪 Порівняльний аналіз (Всі моделі)", 
-            value=False, 
             key="tab_multi_model_toggle",
             disabled=(src_type == "CSV")
         )

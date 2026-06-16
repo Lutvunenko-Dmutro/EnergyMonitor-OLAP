@@ -109,7 +109,7 @@ $$L_{\delta}(a) = \begin{cases} 0.5 a^2, & |a| \leq \delta \\ \delta(|a| - 0.5\d
 ```json
 {
   "forecast_id": "F_20260508_04",
-  "prediction_horizon": "48h",
+  "prediction_horizon": "24h",
   "data_points": [
     {
       "timestamp": "2026-05-08T16:00:00Z", 
