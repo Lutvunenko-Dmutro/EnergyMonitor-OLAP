@@ -16,6 +16,7 @@
 
 ### 📂 Документація системи / System Documentation
 
+*   🎤 [**ДЛЯ ЗАХИСТУ (Сценарій + Q&A)**](docs/thesis/DEFENSE_SCRIPT_AND_QA.md) — 
 *   📊 [**PROJECT_STATUS.md**](docs/PROJECT_STATUS.md) — Поточний стан системи (94 тести / 0 пропущено / 0 помилок).
 *   🏗️ [**ARCHITECTURE.md**](docs/system/architecture.md) — Архітектурна схема та опис шарів.
 *   📚 [**ProperDocs Defense Edition**](https://lutvunenko-dmutro.github.io/EnergyMonitor-OLAP/) — Офіційний вебсайт-документація проєкту (містить Глосарій, API Референс та 3D-Атлас).
@@ -86,7 +87,7 @@
 | | PDF з КЕП ([Інструкція Дія](https://www.youtube.com/watch?v=VaT8KmAh5B4)) | ⏳ Очікує |
 | | [Презентація до захисту](docs/thesis/THESIS_PRESENTATION_FINAL.md) | ✅ **Ready** |
 | | [**Текст доповіді (у презентації)**](docs/thesis/THESIS_PRESENTATION_FINAL.md) | ✅ **Ready** |
-| | [**Шпаргалка до захисту (Cheat Sheet)**](docs/thesis/DEFENSE_GUIDE.md) | ✅ **Ready** |
+| | [**Шпаргалка до захисту (Сценарій + Q&A)**](docs/thesis/DEFENSE_SCRIPT_AND_QA.md) | ✅ **Ready** |
 
 ---
 
