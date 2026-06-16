@@ -56,7 +56,7 @@ def generate_academic_plots(data, substation_name="Selected Object"):
             
     fig_trend.update_layout(
         template="plotly_dark", 
-        title=dict(text=f"📉 Figure 5: Temporal Load Dynamics & Multi-Model Tracking", x=0.5, xanchor="center"),
+        title=dict(text=f"📉 Динаміка навантаження та трекінг моделі", x=0.5, xanchor="center"),
         xaxis_title="Час (Last 7 Days)", yaxis_title="МВт",
         legend=dict(orientation="h", y=-0.2, x=0.5, xanchor="center"),
         margin=dict(l=10, r=10, t=50, b=100), height=500
@@ -88,7 +88,7 @@ def generate_academic_plots(data, substation_name="Selected Object"):
     
     fig_dist.update_layout(
         template="plotly_dark", 
-        title=dict(text=f"📊 Figure 7: Comparative Statistical Error Analysis", x=0.5, xanchor="center"),
+        title=dict(text=f"📊 Статистичний розподіл похибок прогнозу", x=0.5, xanchor="center"),
         barmode='overlay', xaxis_title="Відхилення (МВт)", yaxis_title="Щільність розподілу",
         legend=dict(orientation="h", y=-0.2, x=0.5, xanchor="center"),
         margin=dict(l=10, r=10, t=50, b=100), height=500
@@ -114,7 +114,7 @@ def generate_academic_plots(data, substation_name="Selected Object"):
         
     fig_scatter.update_layout(
         template="plotly_dark", 
-        title=dict(text=f"🔵 Figure 8: Neural Regression Correlation ({substation_name})", x=0.5, xanchor="center"),
+        title=dict(text=f"🔵 Регресійна кореляція факт/прогноз ({substation_name})", x=0.5, xanchor="center"),
         xaxis_title="Actual Data (Ground Truth)",
         yaxis_title="Neural Predictions",
         legend=dict(orientation="h", y=-0.2, x=0.5, xanchor="center"),

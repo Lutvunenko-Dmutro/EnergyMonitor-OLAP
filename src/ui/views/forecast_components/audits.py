@@ -133,7 +133,7 @@ def _render_group_comparison(stations_list, source_type, version):
     
     fig.update_layout(
         template="plotly_dark",
-        title=f"📈 Figure 11: Системне порівняння навантаження ({len(stations_list)} об'єктів)",
+        title=f"📈 Системне порівняння навантаження ({len(stations_list)} об'єктів)",
         xaxis_title="Час",
         yaxis_title="Навантаження, МВт",
         hovermode="x unified",

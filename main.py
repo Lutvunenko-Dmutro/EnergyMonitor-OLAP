@@ -43,8 +43,12 @@ from src.ui.segments.sidebar import render_sidebar
 from src.ui.segments.splash import show_boot_sequence
 from src.utils.memory_helper import auto_gc
 
-# Ініціалізація централізованого логера
-log = setup_logging(log_level=os.getenv("STREAMLIT_LOGGER_LEVEL", "INFO"))
+# Ініціалізація централізованого логера (тільки один раз завдяки кешуванню)
+@st.cache_resource
+def init_logger():
+    return setup_logging(log_level=os.getenv("STREAMLIT_LOGGER_LEVEL", "INFO"))
+
+log = init_logger()
 
 def system_startup():
     """
