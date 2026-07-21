@@ -44,8 +44,11 @@ def get_baseline_prediction(X_test_scaled, scaler):
 # 2. ПІДГОТОВКА ДАНИХ ТА МОДЕЛІ (Data & Model)
 # ==============================================================================
 def fetch_real_data(substation_id=10):
-    query = f"SELECT timestamp, actual_load_mw FROM LoadMeasurements WHERE substation_id = {substation_id} ORDER BY timestamp"
+    # ЗАХИСТ ВІД ЗАВИСАНЬ: обмежуємо вибірку до останніх 3000 записів
+    query = f"SELECT timestamp, actual_load_mw FROM LoadMeasurements WHERE substation_id = {substation_id} ORDER BY timestamp DESC LIMIT 3000"
     df = run_query(query)
+    df = df.sort_values('timestamp')
+    print(f"   🛡️ [ЗАХИСТ] Завантажено {len(df)} записів для підстанції {substation_id}")
     return df[['actual_load_mw']].values
 
 def create_dataset(dataset, look_back=24, forecast_horizon=24):

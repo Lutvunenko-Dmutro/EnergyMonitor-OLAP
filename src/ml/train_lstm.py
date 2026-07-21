@@ -204,6 +204,20 @@ def train_lstm(version="v3", look_back=48):
     final_model_p = "models/substation_model_v3_final.keras" if version == "v3" else model_path
     model.save(final_model_p)
     logger.info(f"✅ Універсальна модель збережена: {final_model_p}")
+    
+    # ==========================================
+    # ONNX EXPORT
+    # ==========================================
+    logger.info("⚙️ Інтеграція: автоматична конвертація в ONNX...")
+    BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+    if BASE_DIR not in sys.path:
+        sys.path.insert(0, BASE_DIR)
+    from scripts.ml.convert_to_onnx import convert_model
+    
+    onnx_path = final_model_p.replace(".keras", ".onnx").replace(".h5", ".onnx")
+    convert_model(final_model_p, onnx_path)
+    
+    logger.info("✅ Модель та її ONNX версія успішно збережені!")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Навчання універсальних LSTM моделей")

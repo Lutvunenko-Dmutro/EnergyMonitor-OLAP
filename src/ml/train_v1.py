@@ -149,7 +149,18 @@ def train_and_evaluate():
     # ==========================================
     generate_final_plots(actual_test_unscaled, lstm_preds_unscaled, arima_preds_unscaled, RESULTS_DIR)
     
-    logger.info("✅ Усі графіки збережені у results/!")
+    # ==========================================
+    # ONNX EXPORT
+    # ==========================================
+    logger.info("⚙️ Інтеграція: автоматична конвертація в ONNX...")
+    # Add BASE_DIR to path if not already to import scripts.ml
+    if BASE_DIR not in sys.path:
+        sys.path.insert(0, BASE_DIR)
+    from scripts.ml.convert_to_onnx import convert_model
+    onnx_path = model_path.replace(".h5", ".onnx").replace(".keras", ".onnx")
+    convert_model(model_path, onnx_path)
+    
+    logger.info("✅ Усі графіки та моделі (H5 + ONNX) успішно збережені!")
 
 if __name__ == "__main__":
     train_and_evaluate()

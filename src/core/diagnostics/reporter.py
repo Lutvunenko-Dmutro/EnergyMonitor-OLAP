@@ -55,5 +55,10 @@ class HtmlReporter:
         output.write_text(html, encoding="utf-8")
 
     def _file_row(self, r: FileDiag):
-        issues_html = "".join([f'<div class="issue-item"><b class="sev-{i.severity}">{i.severity}</b>: {i.message} (L{i.line})</div>' for i in r.file_issues + r.security_issues])
+        issues_html = ""
+        for mi in r.missing_imports:
+            issues_html += f'<div class="issue-item"><b class="sev-ERROR">ERROR</b>: Missing {mi}</div>'
+        for i in r.file_issues + r.security_issues:
+            issues_html += f'<div class="issue-item"><b class="sev-{i.severity}">{i.severity}</b>: {i.message} (L{i.line})</div>'
+        
         return f'<div class="file-card status-{r.status}"><b>{r.rel_path}</b> {issues_html}</div>'

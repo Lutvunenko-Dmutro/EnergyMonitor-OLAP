@@ -79,12 +79,20 @@ def rolling_arima_forecast(train_data, test_data, order, seasonal_order=(1, 1, 1
     predictions.append(yhat)
     
     # Цикл по тесту (крім останнього)
-    for i in range(len(test_data) - 1):
+    total_steps = len(test_data) - 1
+    import sys
+    for i in range(total_steps):
         obs = test_data[i]
         # Оновлюємо модель новим спостереженням БЕЗ повного перенавчання (append)
         model_fit = model_fit.append([obs], refit=False)
         yhat = model_fit.forecast()[0]
         predictions.append(yhat)
+        
+        # Відображення прогресу кожні 10%
+        if i % max(1, total_steps // 10) == 0 or i == total_steps - 1:
+            pct = int((i / total_steps) * 100)
+            print(f"[PROGRESS] {pct}")
+            sys.stdout.flush()
         
     return np.array(predictions)
 

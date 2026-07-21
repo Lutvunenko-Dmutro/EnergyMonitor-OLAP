@@ -29,7 +29,9 @@ from src.ml.baseline_arima import run_arima_baseline
 # ==============================================================================
 # 1. SETUP
 # ==============================================================================
-RESULTS_DIR = "results"
+ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+RESULTS_DIR = os.path.join(ROOT_DIR, "results")
+MODELS_DIR = os.path.join(ROOT_DIR, "src", "ml", "models")
 os.makedirs(RESULTS_DIR, exist_ok=True)
 SUBSTATION_ID = 10  # ПС Київська-Центральна
 
@@ -120,70 +122,108 @@ def generate_scientific_plots(model_name, actual, forecast, arima_pred):
 # ==============================================================================
 def run_benchmark():
     versions = ["v1", "v2", "v3"]
+    print("[PROGRESS] 5")
     
-    for ver in versions:
+    for idx, ver in enumerate(versions):
+        base_p = int(idx * 33)
+        print(f"[PROGRESS] {base_p + 5}")
         print(f"\n🚀 БЕНЧМАРК МОДЕЛІ {ver.upper()} (One-Step-Ahead)...")
         
-        model_file = f"models/substation_model_{ver}.h5" if ver != "v3" else "models/lstm_v3_multistep.keras"
-        scaler_file = f"models/scaler_{ver}.pkl"
+        model_file = os.path.join(MODELS_DIR, f"substation_model_{ver}.h5") if ver != "v3" else os.path.join(MODELS_DIR, "lstm_v3_multistep.keras")
+        scaler_file = os.path.join(MODELS_DIR, f"scaler_{ver}.pkl")
         
-        if not os.path.exists(model_file) or not os.path.exists(scaler_file):
-            print(f"⚠️ Модель або скалер для {ver} не знайдено.")
-            continue
-            
-        # 1. Завантаження даних
-        df = load_data_from_db(version=ver)
-        data = df.values
-        scaler = joblib.load(scaler_file)
-        data_scaled = scaler.transform(data)
-        
-        # Тестова вибірка (останні 20%)
-        test_size = int(len(data_scaled) * 0.2)
-        train_scaled = data_scaled[: -test_size]
-        test_scaled = data_scaled[-test_size:]
-        
-        # 2. Завантаження моделі
-        model = load_model(model_file)
-        model_output_size = model.output_shape[-1]
-        print(f"   Інфо: Модель має {model_output_size} вихідний(их) нейрон(ів).")
-
-        # 3. Оцінка (One-Step-Ahead: 336 годин)
-        total_steps = 336
-        WINDOW_SIZE = 24
-        
-        X_test, y_test = [], []
-        for i in range(total_steps):
-            X_test.append(test_scaled[i : i + WINDOW_SIZE, :])
-            # Фактичне значення (завжди колонка 0: load_mw)
-            y_test.append(test_scaled[i + WINDOW_SIZE, 0])
-            
-        X_test = np.array(X_test)
-        y_test = np.array(y_test)
-        
-        # Прогноз
-        preds_scaled = model.predict(X_test, verbose=0)
-        
-        # Якщо модель має кілька виходів (v2 має 2, v3 має 24), беремо ПЕРШИЙ (навантаження)
-        if model_output_size > 1:
-            preds_scaled = preds_scaled[:, 0]
+        cache_file = os.path.join(RESULTS_DIR, f"benchmark_cache_{ver}_final.pkl")
+        if os.path.exists(cache_file):
+            print(f"   🔄 [КЕШ] Знайдено збережені результати для {ver}. Завантажуємо миттєво (щоб оновити, видаліть {cache_file})...")
+            cache_data = joblib.load(cache_file)
+            actual_unscaled = cache_data['actual']
+            preds_unscaled = cache_data['preds']
+            arima_preds = cache_data['arima']
         else:
-            preds_scaled = preds_scaled.flatten()
+            if not os.path.exists(model_file) or not os.path.exists(scaler_file):
+                print(f"⚠️ Модель або скалер для {ver} не знайдено.")
+                continue
+                
+            print(f"[PROGRESS] {base_p + 10}")
+            # 1. Завантаження даних
+            df = load_data_from_db(version=ver)
+            if "substation_name" in df.columns:
+                # ЗАХИСТ ВІД ЗАВИСАНЬ: беремо цільову підстанцію
+                target_sub = 'ПС Київська-Центральна'
+                if target_sub in df['substation_name'].values:
+                    print(f"   🛡️ [ЗАХИСТ] Вибрано підстанцію '{target_sub}'")
+                    df = df[df['substation_name'] == target_sub].copy()
+                else:
+                    first_sub = df['substation_name'].unique()[0]
+                    print(f"   🛡️ [ЗАХИСТ] Вибрано підстанцію '{first_sub}'")
+                    df = df[df['substation_name'] == first_sub].copy()
+                
+                # ЗАХИСТ ВІД ЗАВИСАНЬ: обмежуємо історію до 2000 годин
+                if len(df) > 2000:
+                    print(f"   🛡️ [ЗАХИСТ] Обрізано історію до 2000 годин (було {len(df)})")
+                    df = df.tail(2000)
+                    
+                df = df.drop(columns=["substation_name"])
+                
+            data = df.values
+            scaler = joblib.load(scaler_file)
+            data_scaled = scaler.transform(data)
             
-        # Зворотне масштабування
-        # Для inverse_transform потрібно мати ту ж кількість колонок
-        def inverse(vals, sc, n_cols):
-            dummy = np.zeros((len(vals), n_cols))
-            dummy[:, 0] = vals
-            return sc.inverse_transform(dummy)[:, 0]
+            # Тестова вибірка (останні 20%)
+            test_size = int(len(data_scaled) * 0.2)
+            train_scaled = data_scaled[: -test_size]
+            test_scaled = data_scaled[-test_size:]
+            
+            print(f"[PROGRESS] {base_p + 15}")
+            # 2. Завантаження моделі (ВИПРАВЛЕННЯ: compile=False щоб уникнути помилки ValueError з 'mae')
+            model = load_model(model_file, compile=False)
+            model_output_size = model.output_shape[-1]
+            print(f"   Інфо: Модель має {model_output_size} вихідний(их) нейрон(ів).")
 
-        preds_unscaled = inverse(preds_scaled, scaler, data.shape[1])
-        actual_unscaled = inverse(y_test, scaler, data.shape[1])
+            print(f"[PROGRESS] {base_p + 20}")
+            # 3. Оцінка (One-Step-Ahead: 336 годин)
+            total_steps = 336
+            WINDOW_SIZE = 48
+            
+            X_test, y_test = [], []
+            for i in range(total_steps):
+                X_test.append(test_scaled[i : i + WINDOW_SIZE, :])
+                # Фактичне значення (завжди колонка 0: load_mw)
+                y_test.append(test_scaled[i + WINDOW_SIZE, 0])
+                
+            X_test = np.array(X_test)
+            y_test = np.array(y_test)
+            
+            # Прогноз
+            preds_scaled = model.predict(X_test, verbose=0)
+            
+            # Якщо модель має кілька виходів (v2 має 2, v3 має 24), беремо ПЕРШИЙ (навантаження)
+            if model_output_size > 1:
+                preds_scaled = preds_scaled[:, 0]
+            else:
+                preds_scaled = preds_scaled.flatten()
+                
+            # Зворотне масштабування
+            # Для inverse_transform потрібно мати ту ж кількість колонок
+            def inverse(vals, sc, n_cols):
+                dummy = np.zeros((len(vals), n_cols))
+                dummy[:, 0] = vals
+                return sc.inverse_transform(dummy)[:, 0]
+
+            preds_unscaled = inverse(preds_scaled, scaler, data.shape[1])
+            actual_unscaled = inverse(y_test, scaler, data.shape[1])
+            
+            print(f"[PROGRESS] {base_p + 25}")
+            # 4. ARIMA Baseline (Grid Search Disabled)
+            train_unscaled = data[: -test_size, 0]
+            print(f"   🔬 Запуск SARIMA для {ver} (Без важкого Grid Search!)...")
+            arima_preds, _, _ = run_arima_baseline(ver, train_unscaled, actual_unscaled, do_grid_search=False)
+            
+            # Збереження в кеш
+            joblib.dump({'actual': actual_unscaled, 'preds': preds_unscaled, 'arima': arima_preds}, cache_file)
+            print(f"   💾 Результати обчислень збережено в кеш ({cache_file})")
         
-        # 4. ARIMA Baseline (Grid Search)
-        train_unscaled = data[: -test_size, 0]
-        print(f"   🔬 Пошук найкращої SARIMA для {ver}...")
-        arima_preds, _, _ = run_arima_baseline(ver, train_unscaled, actual_unscaled, do_grid_search=True)
-        
+        print(f"[PROGRESS] {base_p + 30}")
         # 5. Метрики
         rmse = np.sqrt(mean_squared_error(actual_unscaled, preds_unscaled))
         mae = mean_absolute_error(actual_unscaled, preds_unscaled)
@@ -194,6 +234,9 @@ def run_benchmark():
         # 6. Плоти
         generate_scientific_plots(ver, actual_unscaled, preds_unscaled, arima_preds)
         print(f"✅ Усі графіки для {ver.upper()} збережені у {RESULTS_DIR}/")
+
+    print("[PROGRESS] 100")
+    print("✅ Бенчмарк повністю завершено!")
 
 if __name__ == "__main__":
     run_benchmark()

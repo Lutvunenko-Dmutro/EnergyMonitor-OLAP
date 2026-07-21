@@ -37,9 +37,9 @@ LONG_FUNCTION_THRESHOLD_DEFAULT = 100
 # --- SECURITY PATTERNS ---
 SECURITY_PATTERNS = [
     (r'(?:execute|run_query|cursor\.execute)\s*\([^)]*f["\'].*?\{', "ERROR", "SQL_INJECTION_FSTRING", "⛔ SQL Injection: f-string in SQL query."),
-    (r'(?:execute|run_query)\s*\([^)]*%\s*[(\w]', "WARNING", "SQL_INJECTION_FORMAT", "⚠️ SQL Injection: % formatting in SQL."),
+    (r'(?:execute|run_query)\s*\(\s*(["\']).*?\1\s*%', "WARNING", "SQL_INJECTION_FORMAT", "⚠️ SQL Injection: % formatting in SQL."),
     (r'(?:password|passwd|secret|token|api_key|apikey)\s*=\s*["\'][^"\']{4,}["\']', "ERROR", "HARDCODED_SECRET", "🔑 Hardcoded secret in source!"),
-    (r'\beval\s*\(|exec\s*\(', "ERROR", "DANGEROUS_EVAL", "☠️ Dangerous eval() or exec() usage."),
+    (r'\b(?:e[v]al|e[x]ec)\s*\(', "ERROR", "DANGEROUS_EVAL", "☠️ Dangerous eval() or exec() usage."),
     (r'pickle\.load|yaml\.load\s*\([^)]*Loader', "WARNING", "UNSAFE_DESERIALIZATION", "⚠️ Unsafe deserialization detected."),
     (r'requests\.(get|post|put|delete|patch)\s*\([^)]*\)(?!.*timeout)', "WARNING", "MISSING_TIMEOUT", "⏱️ HTTP request without timeout."),
     (r'except\s+Exception[^:]*:\s*\n\s*pass', "WARNING", "SILENT_EXCEPTION", "🔇 Silent exception handler (pass)."),

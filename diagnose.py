@@ -16,7 +16,9 @@ from src.core.diagnostics.reporter import HtmlReporter
 
 def main():
     ROOT = Path(__file__).parent
-    REPORT_PATH = ROOT / "diagnostics_report.html"
+    REPORT_DIR = ROOT / "results" / "reports"
+    REPORT_DIR.mkdir(parents=True, exist_ok=True)
+    REPORT_PATH = REPORT_DIR / "diagnostics_report.html"
 
     print("\n" + "═" * 50)
     print("   ⚡ ENERGY MONITOR — DIAGNOSTICS SYSTEM")

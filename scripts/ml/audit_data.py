@@ -40,7 +40,7 @@ def audit_v3_data():
         print(f"{col}: {zero_percent:.2f}%")
         
     print("\n--- Кореляція з load_mw ---")
-    print(df.corr()['load_mw'].sort_values(ascending=False))
+    print(df.corr(numeric_only=True)['load_mw'].sort_values(ascending=False))
 
 if __name__ == "__main__":
     audit_v3_data()

@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-05-27T13:31:54.955026",
-  "total": 169,
+  "generated_at": "2026-07-21T11:27:22.294759",
+  "total": 167,
   "summary": {
-    "ok": 169,
+    "ok": 167,
     "low": 0,
     "medium": 0,
     "high": 0,
@@ -88,7 +88,7 @@
     },
     {
       "md": "__init__.md",
-      "py": "src/__init__.py",
+      "py": "src/core/analytics/__init__.py",
       "score": 100,
       "priority": "✅ OK",
       "issues": [],
@@ -115,7 +115,7 @@
         }
       ],
       "py_functions_count": 0,
-      "py_lines": 14,
+      "py_lines": 12,
       "md_size_bytes": 14391
     },
     {
@@ -313,24 +313,14 @@
     },
     {
       "md": "advanced_view.md",
-      "py": "src/ui/views/advanced.py",
+      "py": null,
       "score": 100,
       "priority": "✅ OK",
       "issues": [
         {
-          "key": "missing_params_fragment_advanced_tab1",
-          "desc": "Функція fragment_advanced_tab1() є в паспорті без параметрів",
-          "penalty": -2
-        },
-        {
-          "key": "missing_params_fragment_advanced_tab2",
-          "desc": "Функція fragment_advanced_tab2() є в паспорті без параметрів",
-          "penalty": -2
-        },
-        {
-          "key": "missing_params_render_advanced_analysis",
-          "desc": "Функція render_advanced_analysis() є в паспорті без параметрів",
-          "penalty": -2
+          "key": "no_source",
+          "desc": "Не знайдено відповідний .py файл",
+          "penalty": -5
         }
       ],
       "bonuses": [
@@ -355,8 +345,8 @@
           "points": 10
         }
       ],
-      "py_functions_count": 3,
-      "py_lines": 65,
+      "py_functions_count": 0,
+      "py_lines": 0,
       "md_size_bytes": 21854
     },
     {
@@ -474,50 +464,7 @@
       ],
       "py_functions_count": 2,
       "py_lines": 199,
-      "md_size_bytes": 18518
-    },
-    {
-      "md": "analysis_services_hub.md",
-      "py": "src/core/analytics/aggregator.py",
-      "score": 100,
-      "priority": "✅ OK",
-      "issues": [
-        {
-          "key": "api_mismatch",
-          "desc": "Жодна з 4 функцій .py не згадана в паспорті",
-          "penalty": -10
-        }
-      ],
-      "bonuses": [
-        {
-          "key": "has_table",
-          "desc": "Є HTML-таблиця з детальними даними",
-          "points": 15
-        },
-        {
-          "key": "has_params_in_api",
-          "desc": "API містить параметри функцій",
-          "points": 10
-        },
-        {
-          "key": "has_specific_diagram",
-          "desc": "Діаграма містить конкретні операції (SQL/ML/API)",
-          "points": 12
-        },
-        {
-          "key": "has_real_version",
-          "desc": "Є реальний номер версії",
-          "points": 5
-        },
-        {
-          "key": "has_sql_columns",
-          "desc": "Документовані SQL-типи даних (схема БД)",
-          "points": 10
-        }
-      ],
-      "py_functions_count": 4,
-      "py_lines": 116,
-      "md_size_bytes": 21242
+      "md_size_bytes": 18522
     },
     {
       "md": "analytics_advanced.md",
@@ -549,20 +496,15 @@
       ],
       "py_functions_count": 2,
       "py_lines": 98,
-      "md_size_bytes": 9015
+      "md_size_bytes": 8965
     },
     {
-      "md": "app_core_logic.md",
+      "md": "app_config.md",
       "py": "src/app/config.py",
       "score": 100,
       "priority": "✅ OK",
       "issues": [],
       "bonuses": [
-        {
-          "key": "has_params_in_api",
-          "desc": "API містить параметри функцій",
-          "points": 10
-        },
         {
           "key": "has_real_version",
           "desc": "Є реальний номер версії",
@@ -576,7 +518,29 @@
       ],
       "py_functions_count": 0,
       "py_lines": 21,
-      "md_size_bytes": 15100
+      "md_size_bytes": 5848
+    },
+    {
+      "md": "app_init.md",
+      "py": "src/app/__init__.py",
+      "score": 100,
+      "priority": "✅ OK",
+      "issues": [],
+      "bonuses": [
+        {
+          "key": "has_real_version",
+          "desc": "Є реальний номер версії",
+          "points": 5
+        },
+        {
+          "key": "has_sql_columns",
+          "desc": "Документовані SQL-типи даних (схема БД)",
+          "points": 10
+        }
+      ],
+      "py_functions_count": 0,
+      "py_lines": 12,
+      "md_size_bytes": 4340
     },
     {
       "md": "appendix.md",
@@ -736,8 +700,8 @@
         }
       ],
       "py_functions_count": 4,
-      "py_lines": 90,
-      "md_size_bytes": 17008
+      "py_lines": 91,
+      "md_size_bytes": 17006
     },
     {
       "md": "audit_data.md",
@@ -1288,7 +1252,7 @@
         }
       ],
       "py_functions_count": 1,
-      "py_lines": 64,
+      "py_lines": 70,
       "md_size_bytes": 7661
     },
     {
@@ -1563,6 +1527,50 @@
       "md_size_bytes": 14483
     },
     {
+      "md": "core_config.md",
+      "py": "src/core/config.py",
+      "score": 100,
+      "priority": "✅ OK",
+      "issues": [],
+      "bonuses": [
+        {
+          "key": "has_real_version",
+          "desc": "Є реальний номер версії",
+          "points": 5
+        },
+        {
+          "key": "has_sql_columns",
+          "desc": "Документовані SQL-типи даних (схема БД)",
+          "points": 10
+        }
+      ],
+      "py_functions_count": 0,
+      "py_lines": 119,
+      "md_size_bytes": 4991
+    },
+    {
+      "md": "core_init.md",
+      "py": "src/core/__init__.py",
+      "score": 100,
+      "priority": "✅ OK",
+      "issues": [],
+      "bonuses": [
+        {
+          "key": "has_real_version",
+          "desc": "Є реальний номер версії",
+          "points": 5
+        },
+        {
+          "key": "has_sql_columns",
+          "desc": "Документовані SQL-типи даних (схема БД)",
+          "points": 10
+        }
+      ],
+      "py_functions_count": 0,
+      "py_lines": 12,
+      "md_size_bytes": 3239
+    },
+    {
       "md": "core_kaggle_loader.md",
       "py": "src/core/kaggle_loader.py",
       "score": 100,
@@ -1599,38 +1607,6 @@
       "py_functions_count": 1,
       "py_lines": 107,
       "md_size_bytes": 16866
-    },
-    {
-      "md": "core_kernel_hub.md",
-      "py": "src/__init__.py",
-      "score": 100,
-      "priority": "✅ OK",
-      "issues": [],
-      "bonuses": [
-        {
-          "key": "has_params_in_api",
-          "desc": "API містить параметри функцій",
-          "points": 10
-        },
-        {
-          "key": "has_specific_diagram",
-          "desc": "Діаграма містить конкретні операції (SQL/ML/API)",
-          "points": 12
-        },
-        {
-          "key": "has_real_version",
-          "desc": "Є реальний номер версії",
-          "points": 5
-        },
-        {
-          "key": "has_sql_columns",
-          "desc": "Документовані SQL-типи даних (схема БД)",
-          "points": 10
-        }
-      ],
-      "py_functions_count": 0,
-      "py_lines": 14,
-      "md_size_bytes": 14688
     },
     {
       "md": "dashboard.md",
@@ -2127,38 +2103,6 @@
       "md_size_bytes": 14506
     },
     {
-      "md": "data_services_hub.md",
-      "py": "src/services/__init__.py",
-      "score": 100,
-      "priority": "✅ OK",
-      "issues": [],
-      "bonuses": [
-        {
-          "key": "has_table",
-          "desc": "Є HTML-таблиця з детальними даними",
-          "points": 15
-        },
-        {
-          "key": "has_params_in_api",
-          "desc": "API містить параметри функцій",
-          "points": 10
-        },
-        {
-          "key": "has_real_version",
-          "desc": "Є реальний номер версії",
-          "points": 5
-        },
-        {
-          "key": "has_sql_columns",
-          "desc": "Документовані SQL-типи даних (схема БД)",
-          "points": 10
-        }
-      ],
-      "py_functions_count": 0,
-      "py_lines": 12,
-      "md_size_bytes": 15489
-    },
-    {
       "md": "data_table.md",
       "py": "src/ui/views/historical_audit_components/data_table.py",
       "score": 100,
@@ -2194,6 +2138,34 @@
       "py_functions_count": 1,
       "py_lines": 65,
       "md_size_bytes": 7145
+    },
+    {
+      "md": "database_init.md",
+      "py": "src/core/database/__init__.py",
+      "score": 100,
+      "priority": "✅ OK",
+      "issues": [
+        {
+          "key": "api_mismatch",
+          "desc": "Жодна з 6 функцій .py не згадана в паспорті",
+          "penalty": -10
+        }
+      ],
+      "bonuses": [
+        {
+          "key": "has_real_version",
+          "desc": "Є реальний номер версії",
+          "points": 5
+        },
+        {
+          "key": "has_sql_columns",
+          "desc": "Документовані SQL-типи даних (схема БД)",
+          "points": 10
+        }
+      ],
+      "py_functions_count": 6,
+      "py_lines": 253,
+      "md_size_bytes": 4972
     },
     {
       "md": "db_seeder.md",
@@ -2433,49 +2405,6 @@
       "md_size_bytes": 14798
     },
     {
-      "md": "diagnostics_engine_hub.md",
-      "py": null,
-      "score": 100,
-      "priority": "✅ OK",
-      "issues": [
-        {
-          "key": "no_source",
-          "desc": "Не знайдено відповідний .py файл",
-          "penalty": -5
-        }
-      ],
-      "bonuses": [
-        {
-          "key": "has_table",
-          "desc": "Є HTML-таблиця з детальними даними",
-          "points": 15
-        },
-        {
-          "key": "has_params_in_api",
-          "desc": "API містить параметри функцій",
-          "points": 10
-        },
-        {
-          "key": "has_specific_diagram",
-          "desc": "Діаграма містить конкретні операції (SQL/ML/API)",
-          "points": 12
-        },
-        {
-          "key": "has_real_version",
-          "desc": "Є реальний номер версії",
-          "points": 5
-        },
-        {
-          "key": "has_sql_columns",
-          "desc": "Документовані SQL-типи даних (схема БД)",
-          "points": 10
-        }
-      ],
-      "py_functions_count": 0,
-      "py_lines": 0,
-      "md_size_bytes": 18924
-    },
-    {
       "md": "engine.md",
       "py": "src/ui/views/forecast_components/engine.py",
       "score": 100,
@@ -2670,7 +2599,7 @@
         }
       ],
       "py_functions_count": 1,
-      "py_lines": 178,
+      "py_lines": 185,
       "md_size_bytes": 8184
     },
     {
@@ -2708,7 +2637,7 @@
         }
       ],
       "py_functions_count": 1,
-      "py_lines": 178,
+      "py_lines": 185,
       "md_size_bytes": 18207
     },
     {
@@ -2857,10 +2786,16 @@
     },
     {
       "md": "forecast_view.md",
-      "py": "src/ui/views/forecast_components/constants.py",
+      "py": null,
       "score": 100,
       "priority": "✅ OK",
-      "issues": [],
+      "issues": [
+        {
+          "key": "no_source",
+          "desc": "Не знайдено відповідний .py файл",
+          "penalty": -5
+        }
+      ],
       "bonuses": [
         {
           "key": "has_specific_diagram",
@@ -2879,7 +2814,7 @@
         }
       ],
       "py_functions_count": 0,
-      "py_lines": 17,
+      "py_lines": 0,
       "md_size_bytes": 10774
     },
     {
@@ -2992,7 +2927,7 @@
         }
       ],
       "py_functions_count": 3,
-      "py_lines": 196,
+      "py_lines": 211,
       "md_size_bytes": 8287
     },
     {
@@ -3035,7 +2970,7 @@
         }
       ],
       "py_functions_count": 3,
-      "py_lines": 196,
+      "py_lines": 211,
       "md_size_bytes": 18842
     },
     {
@@ -3164,7 +3099,7 @@
         }
       ],
       "py_functions_count": 1,
-      "py_lines": 84,
+      "py_lines": 91,
       "md_size_bytes": 7460
     },
     {
@@ -3918,7 +3853,7 @@
         }
       ],
       "py_functions_count": 5,
-      "py_lines": 160,
+      "py_lines": 163,
       "md_size_bytes": 10339
     },
     {
@@ -3990,49 +3925,6 @@
       "py_functions_count": 0,
       "py_lines": 0,
       "md_size_bytes": 14779
-    },
-    {
-      "md": "ml_core_engine.md",
-      "py": null,
-      "score": 100,
-      "priority": "✅ OK",
-      "issues": [
-        {
-          "key": "no_source",
-          "desc": "Не знайдено відповідний .py файл",
-          "penalty": -5
-        }
-      ],
-      "bonuses": [
-        {
-          "key": "has_table",
-          "desc": "Є HTML-таблиця з детальними даними",
-          "points": 15
-        },
-        {
-          "key": "has_params_in_api",
-          "desc": "API містить параметри функцій",
-          "points": 10
-        },
-        {
-          "key": "has_specific_diagram",
-          "desc": "Діаграма містить конкретні операції (SQL/ML/API)",
-          "points": 12
-        },
-        {
-          "key": "has_real_version",
-          "desc": "Є реальний номер версії",
-          "points": 5
-        },
-        {
-          "key": "has_sql_columns",
-          "desc": "Документовані SQL-типи даних (схема БД)",
-          "points": 10
-        }
-      ],
-      "py_functions_count": 0,
-      "py_lines": 0,
-      "md_size_bytes": 22884
     },
     {
       "md": "model_loader.md",
@@ -4451,8 +4343,30 @@
         }
       ],
       "py_functions_count": 2,
-      "py_lines": 60,
+      "py_lines": 65,
       "md_size_bytes": 8080
+    },
+    {
+      "md": "root_init.md",
+      "py": "src/__init__.py",
+      "score": 100,
+      "priority": "✅ OK",
+      "issues": [],
+      "bonuses": [
+        {
+          "key": "has_real_version",
+          "desc": "Є реальний номер версії",
+          "points": 5
+        },
+        {
+          "key": "has_sql_columns",
+          "desc": "Документовані SQL-типи даних (схема БД)",
+          "points": 10
+        }
+      ],
+      "py_functions_count": 0,
+      "py_lines": 14,
+      "md_size_bytes": 3228
     },
     {
       "md": "run_backtest_diag.md",
@@ -4648,28 +4562,12 @@
       "md_size_bytes": 14688
     },
     {
-      "md": "services_package.md",
-      "py": null,
+      "md": "services_init.md",
+      "py": "src/services/__init__.py",
       "score": 100,
       "priority": "✅ OK",
-      "issues": [
-        {
-          "key": "no_source",
-          "desc": "Не знайдено відповідний .py файл",
-          "penalty": -5
-        }
-      ],
+      "issues": [],
       "bonuses": [
-        {
-          "key": "has_table",
-          "desc": "Є HTML-таблиця з детальними даними",
-          "points": 15
-        },
-        {
-          "key": "has_specific_diagram",
-          "desc": "Діаграма містить конкретні операції (SQL/ML/API)",
-          "points": 12
-        },
         {
           "key": "has_real_version",
           "desc": "Є реальний номер версії",
@@ -4682,8 +4580,8 @@
         }
       ],
       "py_functions_count": 0,
-      "py_lines": 0,
-      "md_size_bytes": 17379
+      "py_lines": 12,
+      "md_size_bytes": 4940
     },
     {
       "md": "sidebar.md",
@@ -4714,45 +4612,8 @@
         }
       ],
       "py_functions_count": 1,
-      "py_lines": 236,
+      "py_lines": 280,
       "md_size_bytes": 9269
-    },
-    {
-      "md": "simulation_engine_hub.md",
-      "py": "src/services/simulation/generator_constants.py",
-      "score": 100,
-      "priority": "✅ OK",
-      "issues": [],
-      "bonuses": [
-        {
-          "key": "has_table",
-          "desc": "Є HTML-таблиця з детальними даними",
-          "points": 15
-        },
-        {
-          "key": "has_params_in_api",
-          "desc": "API містить параметри функцій",
-          "points": 10
-        },
-        {
-          "key": "has_specific_diagram",
-          "desc": "Діаграма містить конкретні операції (SQL/ML/API)",
-          "points": 12
-        },
-        {
-          "key": "has_real_version",
-          "desc": "Є реальний номер версії",
-          "points": 5
-        },
-        {
-          "key": "has_sql_columns",
-          "desc": "Документовані SQL-типи даних (схема БД)",
-          "points": 10
-        }
-      ],
-      "py_functions_count": 0,
-      "py_lines": 25,
-      "md_size_bytes": 23936
     },
     {
       "md": "splash.md",
@@ -4893,45 +4754,7 @@
       ],
       "py_functions_count": 0,
       "py_lines": 0,
-      "md_size_bytes": 15477
-    },
-    {
-      "md": "system_root_package.md",
-      "py": null,
-      "score": 100,
-      "priority": "✅ OK",
-      "issues": [
-        {
-          "key": "no_source",
-          "desc": "Не знайдено відповідний .py файл",
-          "penalty": -5
-        }
-      ],
-      "bonuses": [
-        {
-          "key": "has_table",
-          "desc": "Є HTML-таблиця з детальними даними",
-          "points": 15
-        },
-        {
-          "key": "has_specific_diagram",
-          "desc": "Діаграма містить конкретні операції (SQL/ML/API)",
-          "points": 12
-        },
-        {
-          "key": "has_real_version",
-          "desc": "Є реальний номер версії",
-          "points": 5
-        },
-        {
-          "key": "has_sql_columns",
-          "desc": "Документовані SQL-типи даних (схема БД)",
-          "points": 10
-        }
-      ],
-      "py_functions_count": 0,
-      "py_lines": 0,
-      "md_size_bytes": 17432
+      "md_size_bytes": 15445
     },
     {
       "md": "test_core_analytics.md",
@@ -5340,7 +5163,7 @@
         }
       ],
       "py_functions_count": 1,
-      "py_lines": 64,
+      "py_lines": 65,
       "md_size_bytes": 8303
     },
     {
@@ -5694,22 +5517,12 @@
       "md_size_bytes": 16575
     },
     {
-      "md": "ui_components_hub.md",
-      "py": "src/ui/__init__.py",
+      "md": "ui_components_init.md",
+      "py": "src/ui/components/__init__.py",
       "score": 100,
       "priority": "✅ OK",
       "issues": [],
       "bonuses": [
-        {
-          "key": "has_table",
-          "desc": "Є HTML-таблиця з детальними даними",
-          "points": 15
-        },
-        {
-          "key": "has_specific_diagram",
-          "desc": "Діаграма містить конкретні операції (SQL/ML/API)",
-          "points": 12
-        },
         {
           "key": "has_real_version",
           "desc": "Є реальний номер версії",
@@ -5723,7 +5536,7 @@
       ],
       "py_functions_count": 0,
       "py_lines": 12,
-      "md_size_bytes": 17705
+      "md_size_bytes": 4653
     },
     {
       "md": "ui_dashboard_layout.md",
@@ -5859,6 +5672,28 @@
       "md_size_bytes": 6529
     },
     {
+      "md": "ui_init.md",
+      "py": "src/ui/__init__.py",
+      "score": 100,
+      "priority": "✅ OK",
+      "issues": [],
+      "bonuses": [
+        {
+          "key": "has_real_version",
+          "desc": "Є реальний номер версії",
+          "points": 5
+        },
+        {
+          "key": "has_sql_columns",
+          "desc": "Документовані SQL-типи даних (схема БД)",
+          "points": 10
+        }
+      ],
+      "py_functions_count": 0,
+      "py_lines": 12,
+      "md_size_bytes": 4460
+    },
+    {
       "md": "ui_live_kpi_segment.md",
       "py": "src/ui/segments/live_kpi.py",
       "score": 100,
@@ -5902,44 +5737,6 @@
       "md_size_bytes": 23552
     },
     {
-      "md": "ui_package_root.md",
-      "py": null,
-      "score": 100,
-      "priority": "✅ OK",
-      "issues": [
-        {
-          "key": "no_source",
-          "desc": "Не знайдено відповідний .py файл",
-          "penalty": -5
-        }
-      ],
-      "bonuses": [
-        {
-          "key": "has_table",
-          "desc": "Є HTML-таблиця з детальними даними",
-          "points": 15
-        },
-        {
-          "key": "has_specific_diagram",
-          "desc": "Діаграма містить конкретні операції (SQL/ML/API)",
-          "points": 12
-        },
-        {
-          "key": "has_real_version",
-          "desc": "Є реальний номер версії",
-          "points": 5
-        },
-        {
-          "key": "has_sql_columns",
-          "desc": "Документовані SQL-типи даних (схема БД)",
-          "points": 10
-        }
-      ],
-      "py_functions_count": 0,
-      "py_lines": 0,
-      "md_size_bytes": 16433
-    },
-    {
       "md": "ui_sidebar_controls.md",
       "py": "src/ui/segments/sidebar.py",
       "score": 100,
@@ -5974,7 +5771,7 @@
         }
       ],
       "py_functions_count": 1,
-      "py_lines": 236,
+      "py_lines": 280,
       "md_size_bytes": 24734
     },
     {
@@ -6083,7 +5880,7 @@
       ],
       "py_functions_count": 0,
       "py_lines": 0,
-      "md_size_bytes": 13876
+      "md_size_bytes": 13891
     },
     {
       "md": "universal_system_helpers.md",
@@ -6125,38 +5922,6 @@
     },
     {
       "md": "utils_extended_toolkit.md",
-      "py": "src/utils/__init__.py",
-      "score": 100,
-      "priority": "✅ OK",
-      "issues": [],
-      "bonuses": [
-        {
-          "key": "has_table",
-          "desc": "Є HTML-таблиця з детальними даними",
-          "points": 15
-        },
-        {
-          "key": "has_specific_diagram",
-          "desc": "Діаграма містить конкретні операції (SQL/ML/API)",
-          "points": 12
-        },
-        {
-          "key": "has_real_version",
-          "desc": "Є реальний номер версії",
-          "points": 5
-        },
-        {
-          "key": "has_sql_columns",
-          "desc": "Документовані SQL-типи даних (схема БД)",
-          "points": 10
-        }
-      ],
-      "py_functions_count": 0,
-      "py_lines": 13,
-      "md_size_bytes": 17834
-    },
-    {
-      "md": "utils_package.md",
       "py": null,
       "score": 100,
       "priority": "✅ OK",
@@ -6191,7 +5956,29 @@
       ],
       "py_functions_count": 0,
       "py_lines": 0,
-      "md_size_bytes": 16662
+      "md_size_bytes": 17834
+    },
+    {
+      "md": "utils_init.md",
+      "py": "src/utils/__init__.py",
+      "score": 100,
+      "priority": "✅ OK",
+      "issues": [],
+      "bonuses": [
+        {
+          "key": "has_real_version",
+          "desc": "Є реальний номер версії",
+          "points": 5
+        },
+        {
+          "key": "has_sql_columns",
+          "desc": "Документовані SQL-типи даних (схема БД)",
+          "points": 10
+        }
+      ],
+      "py_functions_count": 0,
+      "py_lines": 13,
+      "md_size_bytes": 5209
     },
     {
       "md": "utils_validators.md",

@@ -57,3 +57,11 @@ docs/thesis/THESIS_FULL_FINAL.docx
 docs/thesis/THESIS_FULL_FINAL_v2.docx
 *.docx
 !docs/thesis/Литвиненко_*.docx
+
+# Ignore logs and pycache
+*.log
+__pycache__/
+.pytest_cache/
+
+# Ignore thesis archive
+archive_thesis/
