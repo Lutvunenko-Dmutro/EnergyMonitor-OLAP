@@ -1,4 +1,7 @@
-[🇺🇸 English](README.md) | [🇺🇦 Українська](README.uk.md)
+<p align="right">
+  <a href="README.md"><img src="https://flagcdn.com/24x18/us.png" alt="English"> English</a> |
+  <a href="README.uk.md"><img src="https://flagcdn.com/24x18/ua.png" alt="Українська"> Українська</a>
+</p>
 
 ---
 
