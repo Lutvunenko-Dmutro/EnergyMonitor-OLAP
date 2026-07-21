@@ -1,13 +1,36 @@
-# 🛠️ `scripts/` - Утиліти та Інструментарій
+# 🛠️ System Tools & CI/CD Scripts (`scripts/`)
+**Утиліти, Моніторинг та Інструментарій**
 
-Папка містить різноманітні Python-скрипти, які не є частиною основного додатка (Streamlit), але виконують важливі сервісні задачі, автоматизацію та моніторинг.
+This directory contains standalone utility scripts, orchestration tools, and machine learning pipelines that support the main application. These scripts are crucial for development, auditing, and maintenance operations.
 
-## Ключові скрипти
+Папка містить різноманітні Python-скрипти, які не є частиною основного веб-додатка, але виконують важливі сервісні задачі: автоматизацію, бенчмаркінг моделей та аудит безпеки.
 
-- `system/dev_dashboard.py` — **Developer Dashboard**, панель управління для розробника. Дозволяє запускати всі інші скрипти через єдиний веб-інтерфейс (аудит, перевірка БД, тренування ML).
-- `ml/benchmark_models.py` — Скрипт для тестування та порівняння точності моделей (ARIMA vs LSTM) на історичних даних.
-- `ml/audit_data.py` — Аналізатор чистоти датасетів та кореляцій.
-- `audit_passports.py` — Скрипт для масової перевірки цілісності архітектурної документації.
-- `rebuild_master_index.py` — Автоматично оновлює посилання у файлах документації.
+---
 
-*Більшість з цих скриптів рекомендується запускати через `START_DASHBOARD.py` з кореня проєкту, оскільки він створює зручний UI навколо їх виконання.*
+## 🌟 Key Tools / Ключові інструменти
+
+### 🎛️ 1. Developer Dashboard (`system/dev_dashboard.py`)
+A centralized Streamlit-based control panel for developers. Instead of running scripts via CLI, the Dev Dashboard provides an interactive GUI to execute audits, check database health, and run ML benchmarks with rich visual outputs.
+*Централізована панель управління для розробників. Дозволяє запускати всі службові скрипти через зручний веб-інтерфейс (доступний через `START_DASHBOARD.py` у корені).*
+
+### 🤖 2. Machine Learning Pipelines (`ml/`)
+- **`benchmark_models.py`**: Executes an automated competition between predictive models (e.g., ARIMA vs LSTM) on historical data, generating comparative accuracy graphs and R² metrics.
+- **`audit_data.py`**: A deep-dive dataset analyzer that checks for anomalies, missing values, and feature correlations before model training.
+- **`real_data_evaluation.py`**: Validates pre-trained models against continuous live/simulated telemetry data.
+
+### 🛡️ 3. Architecture Auditing (`system/`)
+- **`diagnose.py`**: Runs a deep code audit searching for security vulnerabilities (e.g., SQL injections), memory leaks, and architectural anti-patterns, generating an interactive HTML health report.
+- **`check_db_stats.py`**: Monitors PostgreSQL database health, identifying large tables and tracking query performance.
+
+### 📄 4. Documentation Stewardship
+- **`audit_passports.py`**: Validates the integrity of all architectural Markdown documents (ProperDocs).
+- **`rebuild_master_index.py`**: Automatically updates navigation links across the documentation system.
+
+---
+
+## ⚙️ How to use / Використання
+It is highly recommended to run these scripts via the Developer Dashboard:
+```bash
+# Відкрити панель управління розробника (з кореня проєкту)
+python START_DASHBOARD.py
+```
