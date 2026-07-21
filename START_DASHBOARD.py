@@ -8,10 +8,13 @@ ROOT_DIR = Path(__file__).resolve().parent
 STREAMLIT_SCRIPT = ROOT_DIR / "scripts" / "system" / "dev_dashboard.py"
 PYTHON_EXE = ROOT_DIR / ".venv" / "Scripts" / "python.exe"
 
+streamlit_process = None
+
 def run_streamlit():
+    global streamlit_process
     py_exe = str(PYTHON_EXE) if PYTHON_EXE.exists() else "python"
     # Запускаємо Streamlit на фіксованому порту без автоматичного відкриття браузера
-    subprocess.Popen([py_exe, "-m", "streamlit", "run", str(STREAMLIT_SCRIPT), "--server.port=8501", "--server.headless=True"])
+    streamlit_process = subprocess.Popen([py_exe, "-m", "streamlit", "run", str(STREAMLIT_SCRIPT), "--server.port=8501", "--server.headless=True"])
 
 if __name__ == '__main__':
     # Запускаємо streamlit у фоні
@@ -25,3 +28,7 @@ if __name__ == '__main__':
     # Відкриваємо нативне вікно, яке дивиться на Streamlit
     webview.create_window("Developer Dashboard (Streamlit + PyWebView)", "http://localhost:8501", width=1200, height=800)
     webview.start()
+    
+    # Коли вікно закривається (webview.start завершує роботу), вбиваємо процес Streamlit
+    if streamlit_process:
+        streamlit_process.terminate()
