@@ -65,3 +65,6 @@ __pycache__/
 
 # Ignore thesis archive
 archive_thesis/
+
+# Ignore local scratchpad
+scratch/
