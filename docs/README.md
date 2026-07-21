@@ -1,17 +1,14 @@
-# 📚 Architecture & System Documentation (`docs/`)
-**Технічна документація та Архітектура**
-
-Welcome to the central repository for the EnergyMonitor-OLAP documentation. This folder serves as the single source of truth for the system's architecture, UI/UX designs, and module specifications.
-
-Ця папка містить всю технічну та архітектурну документацію проєкту. Проєкт використовує строгий підхід "Documentation as Code", гарантуючи, що документація розвивається синхронно з кодом.
+[🇺🇸 English](README.md) | [🇺🇦 Українська](README.uk.md)
 
 ---
+
+# 📚 Architecture & System Documentation (`docs/`)
+
+Welcome to the central repository for the EnergyMonitor-OLAP documentation. This folder serves as the single source of truth for the system's architecture, UI/UX designs, and module specifications. We use a strict "Documentation as Code" approach, ensuring documentation evolves synchronously with the codebase.
 
 ## 🗺️ The ProperDocs System (System Passports)
 We use a custom documentation architecture called **ProperDocs** (located in `system/map/`).
 Every critical Python module in the `src/` directory has a corresponding Markdown "Passport" here.
-
-*Ми використовуємо власну систему "паспортів" модулів. Кожен важливий Python-файл має відповідний Markdown-паспорт з детальним описом його призначення, залежностей та архітектури.*
 
 **What a Passport includes:**
 - Component definition and responsibilities.

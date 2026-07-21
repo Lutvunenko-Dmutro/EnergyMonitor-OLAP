@@ -1,17 +1,16 @@
-# 🛠️ System Tools & CI/CD Scripts (`scripts/`)
-**Утиліти, Моніторинг та Інструментарій**
-
-This directory contains standalone utility scripts, orchestration tools, and machine learning pipelines that support the main application. These scripts are crucial for development, auditing, and maintenance operations.
-
-Папка містить різноманітні Python-скрипти, які не є частиною основного веб-додатка, але виконують важливі сервісні задачі: автоматизацію, бенчмаркінг моделей та аудит безпеки.
+[🇺🇸 English](README.md) | [🇺🇦 Українська](README.uk.md)
 
 ---
 
-## 🌟 Key Tools / Ключові інструменти
+# 🛠️ System Tools & CI/CD Scripts (`scripts/`)
+
+This directory contains standalone utility scripts, orchestration tools, and machine learning pipelines that support the main application. These scripts are crucial for development, auditing, and maintenance operations.
+
+## 🌟 Key Tools
 
 ### 🎛️ 1. Developer Dashboard (`system/dev_dashboard.py`)
 A centralized Streamlit-based control panel for developers. Instead of running scripts via CLI, the Dev Dashboard provides an interactive GUI to execute audits, check database health, and run ML benchmarks with rich visual outputs.
-*Централізована панель управління для розробників. Дозволяє запускати всі службові скрипти через зручний веб-інтерфейс (доступний через `START_DASHBOARD.py` у корені).*
+*(Launch via `START_DASHBOARD.py` in the project root).*
 
 ### 🤖 2. Machine Learning Pipelines (`ml/`)
 - **`benchmark_models.py`**: Executes an automated competition between predictive models (e.g., ARIMA vs LSTM) on historical data, generating comparative accuracy graphs and R² metrics.
@@ -28,9 +27,8 @@ A centralized Streamlit-based control panel for developers. Instead of running s
 
 ---
 
-## ⚙️ How to use / Використання
+## ⚙️ How to use
 It is highly recommended to run these scripts via the Developer Dashboard:
 ```bash
-# Відкрити панель управління розробника (з кореня проєкту)
 python START_DASHBOARD.py
 ```
